@@ -131,6 +131,7 @@ export function TargetsStage() {
       {/* purpose before data — what happened, what to do */}
       {targets.length > 0 && (
         <Orient
+          runKind="targets"
           lead={
             <>
               Launch Kit ranked where this app should launch.{' '}

@@ -15,6 +15,19 @@ Last updated: 2026-09-02.
 
 ## A. Shell integration (the app inside the shell)
 
+### A9. Two menus in one view — chrome rendered in two places at once
+- **Symptom:** entering a launch showed the main menu twice: once as the app-wide rail and again inside the workspace.
+- **Cause:** `app-chrome.tsx` rendered the main nav for every view while `workspace-shell.tsx` still rendered its own copy from the pre-migration layout (it also had a second `CommandPalette`). Neither knew about the other, and nothing typechecked as wrong.
+- **Fix:** exactly one owner for app-wide chrome. `AppChrome` renders the top bar and the palette; the workspace renders only what is its own (title, run state, stage rail). Guard: assert `document.querySelectorAll('nav[aria-label="Main"]').length === 1` on every view in the navigation drive.
+- **Doc gap:** when a view supplies its own layout, say explicitly which chrome the app shell owns and which the view owns, and give the duplicate-chrome assertion as a standard check.
+
+### A10. Sequences read as a list, not as tabs — and long jobs must state their cost up front
+- **Symptom:** the seven-stage procedure sat in a horizontal tab strip and read as "stale"; nothing told the user how long a stage takes or that it keeps running if they navigate away (some stages take minutes).
+- **Fix:** the stage rail became a **vertical numbered list on the left** (current step highlighted, verdict dot per finished step, locked steps visible with the reason) so one step is done at a time. Every run-starting surface — each stage's orientation card, empty states, and the create-launch form — now states a **measured** typical duration and that the run continues in the background; the running indicator shows elapsed against that same measured time.
+- **Method:** the durations come from the recorded runs in the trace store, not estimates, in one shared module (`lib/run-eta.ts`) so a single edit keeps every surface honest.
+- **Doc gap:** recommend that any app running multi-minute pipelines publish a measured expectation before the click, and that empty states carry it too — an empty state is where "how long will this take?" is actually asked.
+
+
 ### A8. App text reads too small inside the shell → pin the type scale to px and enlarge; the app is token-only
 - **Symptom:** owner reports the app's text is "very small" in the shell, though it looked normal in the original Next app and in the preview.
 - **Cause:** NOT a shrink bug — verified the shell leaves the html root at the browser default 16px (zero `html`/`body`/`:root` font-size overrides in its CSS). The design system's 14px "workspace default" body is true-size but reads small beside the shell's chrome and on a wide viewport. Because the scale was `rem`-based, it would also have silently shrunk had the shell ever changed its root.
@@ -199,6 +212,13 @@ Last updated: 2026-09-02.
 - **What was tried (2026-09-03):** (a) **Docker** — `ghcr.io/rocketride-org/rocketride-engine:latest` publishes **no arm64 manifest**; the amd64 image starts under emulation, then dies bootstrapping its Python AI dependencies: `No solution found when resolving dependencies … no version of onnxruntime-gpu` for the emulated platform. (b) **Native binary** — `build/apps/engine/engine` from the server repo is a real arm64 Mach-O, but the build never staged its bundled JRE (`dyld: Library not loaded: @rpath/libjli.dylib`, expected at `build/apps/engine/java/jre/lib/`) and the machine has **no JDK installed at all**, so it needs a JDK plus a rebuild.
 - **Fix / ask:** publish an arm64 engine image (or make the AI dependency set optional so the amd64 image boots under emulation); document the JDK prerequisite and the runtime-staging step for source builds. Until then, local engine work costs a JDK install plus a full C++/Java/Python rebuild.
 - **Workaround in place:** `tools/gen-preview-env.mjs local|staging` switches only the preview harness's dev engine (the harness builds its own client), so flipping to local is one command the moment an engine is available; deploys read `.env` + `.env.deploy` and are unaffected.
+
+### D5. Dropping a second LLM provider: Qwen → Claude on the two stages that used it (validated 2026-09-03)
+- **Why:** every provider is a key an end user (or the publisher) must supply. Removing GMI/Qwen cut the app's key set from five to four (Claude, Firecrawl, Exa, optional GitHub) and, with Claude publisher-supplied, leaves a customer just Firecrawl + Exa.
+- **Risk going in:** both stages were *tuned* on Qwen, and Claude has a documented failure mode here — large JSON output killing the agent loop (the reason `lk_targets` needed a compact output contract).
+- **Result — no regression, measurable improvement.** `lk_understand`: 80 trace steps, zero step errors, 0.95 confidence with richer sourcing notes (it reports which sources read thin). `lk_signals`: 200 steps (vs 110–156 on Qwen), zero step errors, **13 search queries vs 3**, **3 signals stored vs 1**, 5 candidates rejected by the relevance judge, zero gate drops.
+- **Method that made this safe:** swap the `llm_openai_api` custom block, **rotate the pipe's `project_id`** so a fresh task picks up the new config (`useExisting: true` otherwise reuses the old one), then run each stage end-to-end through the app UI and read the stored data, not just the run status.
+- **Doc gap:** document that changing a pipeline's model requires a task restart (or id rotation) to take effect, and that stage output should be re-validated from stored data — a green run can still store nothing.
 
 ## Open items to fold into the docs
 

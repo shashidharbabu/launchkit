@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TextShimmer } from '../motion-primitives/text-shimmer';
 import { StatusStamp } from '../ui/status-stamp';
 import { elapsedLabel } from '../../lib/format';
+import { etaLabel } from '../../lib/run-eta';
 import { ASSET_LABELS } from '../../lib/asset-types';
 
 /** Name what people control, not how it's built (voice.md). */
@@ -23,8 +24,9 @@ function runningLine(kind: string, secs: number): string {
 }
 
 /**
- * Running state (components.md): RUNNING stamp + shimmer status line +
- * elapsed in Data mono; jobs >30s add "usually ~2 min".
+ * Running state (components.md): RUNNING stamp + shimmer status line + elapsed
+ * against a measured typical time, plus the one fact people actually need —
+ * the run continues if they navigate away.
  */
 export function RunningIndicator({ kind, since }: { kind: string; since: number }) {
   const [secs, setSecs] = React.useState(() => Math.floor((Date.now() - since) / 1000));
@@ -40,9 +42,9 @@ export function RunningIndicator({ kind, since }: { kind: string; since: number 
         {runningLine(kind, secs)}
       </TextShimmer>
       <span className="font-mono text-data tabular text-muted-foreground">
-        {elapsedLabel(secs)}
-        {secs > 30 ? ' · usually ~2 min' : ''}
+        {elapsedLabel(secs)} · {etaLabel(kind)}
       </span>
+      <span className="text-data text-muted-foreground">Runs in the background — you can keep working.</span>
     </span>
   );
 }

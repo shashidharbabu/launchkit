@@ -58,10 +58,10 @@
    "config": {
     "profile": "custom",
     "custom": {
-     "apikey": "${ROCKETRIDE_GMI_KEY}",
-     "base_url": "https://api.gmi-serving.com/v1",
-     "model": "Qwen/Qwen3-235B-A22B-Instruct-2507-FP8",
-     "modelTotalTokens": 262144
+     "apikey": "${ROCKETRIDE_ANTHROPIC_KEY}",
+     "base_url": "https://api.anthropic.com/v1",
+     "model": "claude-sonnet-4-6",
+     "modelTotalTokens": 200000
     },
     "parameters": {}
    },
@@ -187,7 +187,7 @@
    }
   }
  ],
- "project_id": "dd4ad27a-daed-4163-bc5d-69c71f8fd923",
+ "project_id": "a67f07b2-186f-4e86-ae49-676a7567f937",
  "viewport": {
   "x": 0,
   "y": 0,

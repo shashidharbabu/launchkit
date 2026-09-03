@@ -8,6 +8,7 @@ import { cn } from '../../lib/utils';
 import { useNav, type NavState } from '../../nav';
 
 const NAV = [
+  { href: '/home', label: 'Home', match: /^\/home/ },
   { href: '/dashboard', label: 'Dashboard', match: /^\/dashboard/ },
   { href: '/launches', label: 'Launches', match: /^\/(launches|p)(\/|$)/ },
   { href: '/runs', label: 'Runs', match: /^\/runs/ },
@@ -68,7 +69,7 @@ export function AppNav() {
 
   return (
     <div className="border-b border-border bg-background">
-      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-1 px-4 py-2">
+      <div className="flex w-full flex-wrap items-center gap-1 px-6 py-2">
         <a
           href={href({ view: 'dashboard' })}
           onClick={(e) => {

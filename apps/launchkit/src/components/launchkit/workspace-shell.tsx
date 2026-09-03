@@ -1,10 +1,8 @@
 import { AlertCircle, ExternalLink } from 'lucide-react';
 import { useProject } from './project-provider';
-import { AppNav } from './app-nav';
 import { StageRail } from './stage-rail';
 import { RunningIndicator } from './running-indicator';
 import { RunHistory } from './run-history';
-import { CommandPalette } from './command-palette';
 import { Button } from '../ui/button';
 import { DelayedSkeleton } from '../ui/skeleton';
 import { useNav } from '../../nav';
@@ -15,9 +13,8 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-full flex-1 flex-col bg-background text-foreground">
-      <AppNav />
       <header className="border-b border-border">
-        <div className="mx-auto flex w-full max-w-5xl flex-wrap items-end justify-between gap-3 px-4 pb-3 pt-4">
+        <div className="flex w-full flex-wrap items-end justify-between gap-3 px-6 pb-3 pt-4">
           <div className="min-w-0">
             <a
               href={href({ view: 'launches' })}
@@ -58,11 +55,10 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
             {project && <RunHistory projectId={project.id} running={Boolean(running)} />}
           </div>
         </div>
-        <StageRail />
       </header>
 
       {error && (
-        <div className="mx-auto w-full max-w-5xl px-4 pt-4">
+        <div className="w-full px-6 pt-4">
           <div className="flex items-start gap-2 border border-nogo bg-nogo/10 p-3 text-body text-foreground">
             <AlertCircle size={16} strokeWidth={1.5} className="mt-0.5 shrink-0 text-nogo" />
             <span className="min-w-0 flex-1">{error}</span>
@@ -75,17 +71,23 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
         </div>
       )}
 
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
-        {!loaded && !error ? (
-          <div className="grid gap-4">
-            <DelayedSkeleton className="h-40 w-full" />
-            <DelayedSkeleton className="h-24 w-full" />
+      <div className="flex w-full flex-1 gap-6 pr-6">
+        <aside className="w-[15rem] shrink-0 border-r border-border">
+          <div className="sticky top-0">
+            <StageRail />
           </div>
-        ) : (
-          children
-        )}
-      </main>
-      <CommandPalette />
+        </aside>
+        <main className="min-w-0 flex-1 py-6">
+          {!loaded && !error ? (
+            <div className="grid gap-4">
+              <DelayedSkeleton className="h-40 w-full" />
+              <DelayedSkeleton className="h-24 w-full" />
+            </div>
+          ) : (
+            children
+          )}
+        </main>
+      </div>
     </div>
   );
 }

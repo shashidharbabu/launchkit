@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Clock } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { useNav } from '../../nav';
+import { etaLabel } from '../../lib/run-eta';
 
 /** A sheet laid on the desk: bg-card, hairline border, sharp, no shadow. */
 export function Card({
@@ -27,17 +28,27 @@ export function HonestEmpty({
   reason,
   action,
   className,
+  runKind,
 }: {
   fact: string;
   reason: string;
   action?: React.ReactNode;
   className?: string;
+  /** Run kind the action starts — an empty state is exactly where "how long?" is asked. */
+  runKind?: string;
 }) {
   return (
     <div className={cn('max-w-xl', className)}>
       <p className="text-heading font-semibold">{fact}</p>
       <p className="mt-1 text-body text-muted-foreground">{reason}</p>
       {action && <div className="mt-3">{action}</div>}
+      {runKind && (
+        <p className="mt-2 flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
+          <Clock size={13} strokeWidth={1.5} aria-hidden />
+          <span>Takes {etaLabel(runKind)}.</span>
+          <span>Runs in the background — you can leave this page.</span>
+        </p>
+      )}
     </div>
   );
 }
@@ -50,14 +61,24 @@ export function HonestEmpty({
 export function Orient({
   lead,
   detail,
+  runKind,
 }: {
   lead: React.ReactNode;
   detail?: React.ReactNode;
+  /** Run kind this stage starts — adds a measured "how long / where it runs" line. */
+  runKind?: string;
 }) {
   return (
     <Card className="grid gap-1 p-4">
       <p className="text-read leading-[1.625rem]">{lead}</p>
       {detail && <p className="text-body text-muted-foreground">{detail}</p>}
+      {runKind && (
+        <p className="mt-1 flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
+          <Clock size={13} strokeWidth={1.5} aria-hidden />
+          <span>Takes {etaLabel(runKind)}.</span>
+          <span>Runs in the background — you can leave this page.</span>
+        </p>
+      )}
     </Card>
   );
 }

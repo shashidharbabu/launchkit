@@ -7,7 +7,7 @@ const client = new RocketRideClient({
   uri: env.ROCKETRIDE_DEPLOY_URI || env.ROCKETRIDE_URI,
   auth: env.ROCKETRIDE_DEPLOY_APIKEY || env.ROCKETRIDE_APIKEY, persist: true });
 await client.connect();
-const res = await client.publishApp('rocketride_sb.launchkit', 11, '@me');
+const res = await client.publishApp('rocketride_sb.launchkit', 14, '@me');
 console.log('publishApp:', JSON.stringify(res).slice(0, 500));
 try { await client.disconnect?.(); } catch {}
 process.exit(0);

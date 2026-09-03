@@ -120,6 +120,7 @@ export function BrandStage() {
       {/* purpose before data — what happened, what to check */}
       {(dna || campaigns.length > 0) && (
         <Orient
+          runKind="brand_dna"
           lead={
             <>
               Launch Kit read your live site and wrote down your brand — the voice every post and

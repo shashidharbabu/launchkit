@@ -152,6 +152,7 @@ export function SignalsStage() {
       {/* purpose before data — what happened, what to do */}
       {queue.length > 0 && (
         <Orient
+          runKind="signals"
           lead={
             <>
               Real people, publicly asking for what you built — right now.{' '}
@@ -183,6 +184,7 @@ export function SignalsStage() {
 
       {signals.length === 0 && (<>
         <HonestEmpty
+          runKind="signals"
           fact="No signals yet."
           reason="Nobody is publicly asking for what your app does right now — that's common before launch. Re-run after your first posts, or widen the pain phrasing in your profile."
           action={

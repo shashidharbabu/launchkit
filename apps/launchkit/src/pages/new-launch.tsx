@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BRAND } from '../brand/assets';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Clock } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Field, Input } from '../components/ui/field';
 import { api } from '../data/api';
@@ -8,6 +8,7 @@ import { ConnectionBanner } from '../components/launchkit/connection-banner';
 import { actionError } from '../lib/errors';
 import type { ProjectRow } from '../lib/types';
 import { useNav } from '../nav';
+import { etaLabel } from '../lib/run-eta';
 
 /** Match what the server will normalise the input to, so the duplicate hint
  *  fires on 'myapp.com' as well as 'https://myapp.com/'. */
@@ -132,6 +133,11 @@ export default function NewLaunchPage() {
           </p>
         )}
 
+        <p className="flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
+          <Clock size={13} strokeWidth={1.5} aria-hidden />
+          <span>Reading your repo and site takes {etaLabel('understand')}.</span>
+          <span>It runs in the background — you can leave this page and come back.</span>
+        </p>
         <div className="flex items-center gap-2">
           <Button type="submit" variant="primary" loading={creating} loadingLabel="Starting analysis…">
             Analyze my app

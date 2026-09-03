@@ -258,6 +258,7 @@ export function AssetsStage() {
       {/* purpose before data — what happened, what to do */}
       {assets.length > 0 && (
         <Orient
+          runKind="asset:x_post"
           lead={
             <>
               One post per platform, drafted in your brand voice.{' '}

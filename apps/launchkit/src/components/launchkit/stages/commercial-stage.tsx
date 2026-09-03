@@ -254,6 +254,7 @@ export function CommercialStage() {
       {/* purpose before data — what happened, what to check */}
       {(pricing || listing) && (
         <Orient
+          runKind="pricing"
           lead={
             <>
               Launch Kit priced your app against real competitors and rewrote your store listing.{' '}
