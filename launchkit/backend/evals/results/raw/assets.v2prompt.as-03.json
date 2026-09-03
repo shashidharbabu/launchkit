@@ -1,0 +1,15 @@
+{
+  "output": {
+    "post": "99.2% field-level accuracy on invoices — measured on 5,000 real documents, methodology public. DocParse extracts line items, totals, and vendor data into clean JSON at p95 latency of 1.8s/page. Human-review fallback below your confidence threshold. {APP_URL}",
+    "thread_extension": [
+      "Most document AI breaks when layouts vary. We don’t retrain per vendor. Instead, our layout-aware model generalizes across formats — no tuning needed for new suppliers.",
+      "Built for AP automation teams. Integrates with ERPs via structured JSON output, confidence scores per field, and audit trail. SLA-backed uptime and throughput.",
+      "SOC 2 Type II audit in progress. Type I report available under NDA. No EU data residency yet — roadmap item based on early feedback."
+    ],
+    "alt_variants": [
+      "Generic OCR fails on invoice layout variety. DocParse delivers 99.2% field accuracy without per-type tuning — p95 latency 1.8s/page. {APP_URL}",
+      "p95 latency of 1.8 seconds per page at any volume, with 99.2% field accuracy on invoices. DocParse is the API for reliable document parsing at scale. {APP_URL}"
+    ],
+    "warnings": []
+  }
+}

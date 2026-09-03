@@ -1,0 +1,180 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/dasomel/narwhal-portal/issues/66",
+        "title_or_quote": "[P0][Security][Supply Chain] Harden Node/PNPM Build Against Malicious Dependency...",
+        "posted_when": "2026-08-21T06:29:09Z",
+        "why_relevant": "Requests hardening against malicious install scripts in Node/PNPM builds.",
+        "intent_strength": "high",
+        "drafted_reply": "The Rust incident you linked is a good forcing function here. For the PNPM side, beyond --frozen-lockfile you can add a pnpm audit --audit-level=high gate, but that still only catches disclosed CVEs — it would not have caught the event-stream attack until weeks after the malicious version was live. For surfacing transitive dependency changes at PR time (your fourth requirement), diffing the lockfile in CI and piping it through a tool that checks for new install scripts or maintainer handoffs gives you earlier signal than any CVE feed. I built depsentry ({APP_URL}) to do exactly that behavioral check in CI and comment on the PR introducing the risk — free for open-source repos.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.93,
+          "why": "The thread is a P0 security issue explicitly focused on hardening against malicious install-time and build-script supply-chain attacks in a Node/PNPM project — exactly the behavioral risk class depsentry addresses."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/Akanimoh12/Stellar-Tipz/issues/1372",
+        "title_or_quote": "Add supply chain security controls",
+        "posted_when": "2026-08-24T16:02:13Z",
+        "why_relevant": "Seeks to implement supply chain security controls for dependencies.",
+        "intent_strength": "high",
+        "drafted_reply": "The lockfile duplication you flagged is worth fixing first — divergent installs between npm and pnpm can silently introduce different transitive dependency versions, which is exactly the kind of inconsistency supply-chain attackers exploit in the gap between local and CI environments. Once you settle on one lockfile and enforce `npm ci`, adding a CODEOWNERS rule on the lockfile is straightforward and catches human-introduced changes. For provenance beyond that, behavioral signals like new install scripts or maintainer handoffs in minor version bumps are what preceded the event-stream attack and aren't caught by CVE scanners alone. I built depsentry to flag those signals in CI at {APP_URL} — free for open-source repos.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The issue explicitly asks for supply chain hardening including dependency provenance verification and review of new dependencies, which maps directly to what depsentry does."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/ncp-core/ncp/issues/10",
+        "title_or_quote": "Security: Harden CI/CD, Dependencies and Repository Supply Chain",
+        "posted_when": "2026-08-13T15:51:14Z",
+        "why_relevant": "Aims to harden CI/CD and dependencies against supply-chain attacks.",
+        "intent_strength": "high",
+        "drafted_reply": "Your audit checklist covers dependency pinning and vulnerability scanning, but the hardest supply-chain risks — hijacked maintainer accounts, newly added install scripts, obfuscated payloads in minor version bumps — won't show up in CVE feeds until weeks after exposure. For the Node and Python dependency items, it's worth adding behavioral checks: does any package run a postinstall script it didn't before, or did a maintainer change hands recently? Those signals preceded event-stream and similar attacks long before any CVE existed. I built a scanner that catches exactly these behavioral changes in CI and comments on the PR introducing the risk: {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The issue explicitly lists dependency auditing (Python and Node), supply-chain hardening, and dependency vulnerability scanning as deliverables — exactly what this app addresses."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "forum",
+        "url": "https://stackoverflow.com/questions/67699412/how-to-check-if-any-npm-packages-are-stealing-environment-variables-from-my-system",
+        "title_or_quote": "How to check if any npm packages are stealing environment variables from my system",
+        "posted_when": "2021-05-26T12:33:37Z",
+        "why_relevant": "Asks about detecting npm packages exfiltrating environment variables.",
+        "intent_strength": "medium",
+        "drafted_reply": "Your concern about obfuscated network calls in transitive dependencies is well-founded — the `process.env` exfiltration pattern you described has appeared in real attacks. LavaMoat's compartment approach is the strongest runtime defense here. For pre-install detection, you can also audit packages before they land by checking for newly added network calls in minor version bumps, unexpected postinstall scripts, or recent maintainer changes — these behavioral signals often appear days before any CVE is filed. I built a scanner that watches for exactly those signals in CI: {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The thread author is directly asking how to detect malicious npm packages exfiltrating env vars through obfuscated code in deep dependencies — exactly the behavioral supply-chain risk depsentry is built to catch."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=48944189",
+        "title_or_quote": "Ask HN: Best approach to dependency vulnerability scanning in CI?",
+        "posted_when": "2026-07-17T07:05:02Z",
+        "why_relevant": "Asks for CI-based dependency scanning beyond CVEs.",
+        "intent_strength": "medium",
+        "drafted_reply": "For CI scanning beyond CVEs, consider behavioral analysis of packages—like new install scripts or network calls. depsentry does this, flags risks in PRs, and scans 1,200 deps in 40 seconds. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "tool that detects malicious install scripts in npm packages",
+      "how to catch supply chain attacks before CVE",
+      "alternative to Snyk for behavioral package analysis",
+      "site:reddit.com/r/netsec struggling with supply chain security in CI",
+      "site:reddit.com/r/node detect typosquatting in dependencies",
+      "site:reddit.com/r/netsec supply chain security install scripts",
+      "site:reddit.com/r/devops detect malicious dependencies",
+      "site:reddit.com/r/node monitor maintainer changes npm",
+      "site:reddit.com/r/cybersecurity obfuscated code in dependencies",
+      "supply chain security",
+      "malicious dependencies",
+      "install script audit",
+      "malicious install script dependencies",
+      "supply chain security audit dependencies",
+      "check npm packages stealing environment variables"
+    ],
+    "coverage_notes": "No relevant Reddit results found; all r/ subreddits returned empty. HN and GitHub provided sufficient signals.",
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Strong signals from GitHub and StackOverflow. Reddit and some HN queries returned no results, but PASS D provided evergreen, replyable threads."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/dasomel/narwhal-portal/issues/66",
+      "title_or_quote": "[P0][Security][Supply Chain] Harden Node/PNPM Build Against Malicious Dependency...",
+      "posted_when": "2026-08-21T06:29:09Z",
+      "why_relevant": "Requests hardening against malicious install scripts in Node/PNPM builds.",
+      "intent_strength": "high",
+      "drafted_reply": "The Rust incident you linked is a good forcing function here. For the PNPM side, beyond --frozen-lockfile you can add a pnpm audit --audit-level=high gate, but that still only catches disclosed CVEs — it would not have caught the event-stream attack until weeks after the malicious version was live. For surfacing transitive dependency changes at PR time (your fourth requirement), diffing the lockfile in CI and piping it through a tool that checks for new install scripts or maintainer handoffs gives you earlier signal than any CVE feed. I built depsentry ({APP_URL}) to do exactly that behavioral check in CI and comment on the PR introducing the risk — free for open-source repos.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.93,
+        "why": "The thread is a P0 security issue explicitly focused on hardening against malicious install-time and build-script supply-chain attacks in a Node/PNPM project — exactly the behavioral risk class depsentry addresses."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/Akanimoh12/Stellar-Tipz/issues/1372",
+      "title_or_quote": "Add supply chain security controls",
+      "posted_when": "2026-08-24T16:02:13Z",
+      "why_relevant": "Seeks to implement supply chain security controls for dependencies.",
+      "intent_strength": "high",
+      "drafted_reply": "The lockfile duplication you flagged is worth fixing first — divergent installs between npm and pnpm can silently introduce different transitive dependency versions, which is exactly the kind of inconsistency supply-chain attackers exploit in the gap between local and CI environments. Once you settle on one lockfile and enforce `npm ci`, adding a CODEOWNERS rule on the lockfile is straightforward and catches human-introduced changes. For provenance beyond that, behavioral signals like new install scripts or maintainer handoffs in minor version bumps are what preceded the event-stream attack and aren't caught by CVE scanners alone. I built depsentry to flag those signals in CI at {APP_URL} — free for open-source repos.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The issue explicitly asks for supply chain hardening including dependency provenance verification and review of new dependencies, which maps directly to what depsentry does."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/ncp-core/ncp/issues/10",
+      "title_or_quote": "Security: Harden CI/CD, Dependencies and Repository Supply Chain",
+      "posted_when": "2026-08-13T15:51:14Z",
+      "why_relevant": "Aims to harden CI/CD and dependencies against supply-chain attacks.",
+      "intent_strength": "high",
+      "drafted_reply": "Your audit checklist covers dependency pinning and vulnerability scanning, but the hardest supply-chain risks — hijacked maintainer accounts, newly added install scripts, obfuscated payloads in minor version bumps — won't show up in CVE feeds until weeks after exposure. For the Node and Python dependency items, it's worth adding behavioral checks: does any package run a postinstall script it didn't before, or did a maintainer change hands recently? Those signals preceded event-stream and similar attacks long before any CVE existed. I built a scanner that catches exactly these behavioral changes in CI and comments on the PR introducing the risk: {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The issue explicitly lists dependency auditing (Python and Node), supply-chain hardening, and dependency vulnerability scanning as deliverables — exactly what this app addresses."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "forum",
+      "url": "https://stackoverflow.com/questions/67699412/how-to-check-if-any-npm-packages-are-stealing-environment-variables-from-my-system",
+      "title_or_quote": "How to check if any npm packages are stealing environment variables from my system",
+      "posted_when": "2021-05-26T12:33:37Z",
+      "why_relevant": "Asks about detecting npm packages exfiltrating environment variables.",
+      "intent_strength": "medium",
+      "drafted_reply": "Your concern about obfuscated network calls in transitive dependencies is well-founded — the `process.env` exfiltration pattern you described has appeared in real attacks. LavaMoat's compartment approach is the strongest runtime defense here. For pre-install detection, you can also audit packages before they land by checking for newly added network calls in minor version bumps, unexpected postinstall scripts, or recent maintainer changes — these behavioral signals often appear days before any CVE is filed. I built a scanner that watches for exactly those signals in CI: {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The thread author is directly asking how to detect malicious npm packages exfiltrating env vars through obfuscated code in deep dependencies — exactly the behavioral supply-chain risk depsentry is built to catch."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 5,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=48944189",
+      "title_or_quote": "Ask HN: Best approach to dependency vulnerability scanning in CI?",
+      "posted_when": "2026-07-17T07:05:02Z",
+      "why_relevant": "Asks for CI-based dependency scanning beyond CVEs.",
+      "intent_strength": "medium",
+      "drafted_reply": "For CI scanning beyond CVEs, consider behavioral analysis of packages—like new install scripts or network calls. depsentry does this, flags risks in PRs, and scans 1,200 deps in 40 seconds. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

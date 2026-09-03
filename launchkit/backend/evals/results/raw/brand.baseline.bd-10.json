@@ -1,0 +1,109 @@
+{
+  "output": {
+    "brand_name": "Tally",
+    "tagline_observed": "Create Beautiful Forms for Free | Unlimited Forms & Submissions",
+    "voice": {
+      "tone_words": [
+        "simple",
+        "friendly",
+        "confident",
+        "approachable",
+        "clear",
+        "professional"
+      ],
+      "sentence_style": "short declaratives, second person, active voice, minimal jargon",
+      "vocabulary": [
+        "beautiful forms",
+        "unlimited forms",
+        "unlimited submissions",
+        "free forever",
+        "no credit card required",
+        "build in seconds",
+        "conditional logic",
+        "file uploads",
+        "payments",
+        "embeddable"
+      ],
+      "avoid": [
+        "overly technical terms",
+        "corporate jargon",
+        "passive voice",
+        "lengthy explanations"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Create beautiful, professional forms in seconds",
+        "Free forever with unlimited forms, submissions, and features",
+        "No credit card required to start"
+      ],
+      "key_messages": [
+        "The simplest way to create beautiful, professional forms in seconds.",
+        "Free forever: unlimited forms, submissions, payments, conditional logic, file uploads.",
+        "No credit card required. Upgrade only if you need advanced features."
+      ],
+      "proof_points_observed": [
+        "Free forever plan includes unlimited forms and submissions",
+        "Team describes themselves as 'bootstrapped team of 10'",
+        "Features include conditional logic, file uploads, and payments at no cost"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#000000",
+          "role": "text",
+          "evidence": "Observed in inline styles and CSS variables for body text on homepage and pricing page"
+        },
+        {
+          "value": "#FFFFFF",
+          "role": "background",
+          "evidence": "Observed as background color in CSS for main sections"
+        },
+        {
+          "value": "#1070FF",
+          "role": "primary",
+          "evidence": "Observed as button color and primary accent in navigation and CTAs"
+        },
+        {
+          "value": "rgb(243, 244, 246)",
+          "role": "background",
+          "evidence": "Observed as section background in pricing page"
+        }
+      ],
+      "typography": {
+        "headings": "'Inter', sans-serif",
+        "body": "'Inter', sans-serif",
+        "evidence": "Font-family declaration observed in CSS; Inter loaded via CDN"
+      },
+      "imagery_style": "illustration",
+      "logo_url": "https://tally.so/favicon.svg"
+    },
+    "audience_language": "You talk directly to the user as a capable builder who values simplicity and speed, addressing them with clear, empowering instructions and reassurance about ease of use.",
+    "dos_and_donts": {
+      "do": [
+        "Use clear, concise language",
+        "Highlight 'free forever' and 'no credit card required'",
+        "Emphasize speed and ease: 'in seconds', 'unlimited'",
+        "Show confidence in product quality",
+        "Use second-person address ('you', 'your')"
+      ],
+      "dont": [
+        "Use technical jargon",
+        "Overpromise or exaggerate",
+        "Use passive voice",
+        "Focus on enterprise features or complexity",
+        "Mention competitors"
+      ]
+    },
+    "sources_read": [
+      "https://tally.so",
+      "https://tally.so/pricing",
+      "https://tally.so/about"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; all key brand elements observed directly from live site content. Colors and typography confirmed via CSS. No missing critical data."
+    }
+  }
+}

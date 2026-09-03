@@ -1,0 +1,111 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=47179989",
+        "title_or_quote": "How do you catch schema drift and security gaps in Firestore?",
+        "posted_when": "2026-02-27T12:56:58Z",
+        "why_relevant": "Author describes schema drift between TypeScript types and runtime data — exactly the problem schemaguard solves.",
+        "intent_strength": "high",
+        "drafted_reply": "Schema drift in Firestore is real — the root cause is usually that your TypeScript types and your runtime validation live in two separate files that nobody keeps in sync. One approach: generate validators directly from your existing interfaces at build time so there is only one source of truth. That is what schemaguard does — {APP_URL}. Disclosure: I built it. Even if you skip it, the key insight is to treat your TS types as the schema, not a parallel Zod file.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=47276142",
+        "title_or_quote": "Validation pipeline that blocks AI-generated files with schema errors",
+        "posted_when": "2026-03-06T15:28:46Z",
+        "why_relevant": "Author needs runtime schema validation for structured files — schemaguard compiles validators from TS types at build time.",
+        "intent_strength": "medium",
+        "drafted_reply": "For blocking malformed structured files, the most reliable approach is to derive your validator from the same TypeScript type that describes the expected shape — that way the validator can never drift from the spec. You can do this with a compiler plugin that emits a validator at build time. schemaguard ({APP_URL}) does exactly that. Disclosure: I'm the author. Even without it, the pattern of \"type first, validator derived\" is worth adopting over hand-written schemas.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "forum",
+        "url": "https://stackoverflow.com/questions/74324147/how-to-increase-type-safety-when-generically-indexing-into-generic-types",
+        "title_or_quote": "How to increase type-safety when generically indexing into generic types",
+        "posted_when": "2022-11-05",
+        "why_relevant": "TypeScript developer seeking stronger type safety at runtime boundaries — schemaguard addresses this by compiling validators from types.",
+        "intent_strength": "low",
+        "drafted_reply": "For generic indexing type safety, the compile-time constraints you have are the right tool. At runtime boundaries (API responses, JSON parsing) you also need a validator that matches those same constraints — and keeping a hand-written Zod schema in sync with generic types is fragile. One option is to compile the validator from the type itself. schemaguard ({APP_URL}) does this at build time. Disclosure: I built it. The accepted answer here covers the static side well; this is the runtime complement.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.05,
+          "why": "The thread is about TypeScript compile-time type inference for generic lens constructors, not about runtime validation or schema duplication — the app's core problem."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "schema drift types (HN ask_hn)",
+      "runtime validator typescript (HN comment)",
+      "typescript schema validation sync (GitHub issues)",
+      "site:reddit.com/r/javascript zod schema out of sync typescript types runtime validation",
+      "site:reddit.com/r/webdev tired of writing zod schema for every typescript interface",
+      "site:reddit.com/r/typescript how do you handle runtime validation without duplicating types",
+      "typescript schema type safety stackoverflow",
+      "typescript+schema+validation+sync is:issue is:open (GitHub)",
+      "typescript schema sync agent coordination (GitHub)"
+    ],
+    "coverage_notes": "All HN items found are older than 14 days (locked). Reddit Exa searches returned 0 results across r/typescript, r/javascript, r/webdev. GitHub issues returned mostly unrelated agentic-workflow coordination threads. Only 3 replyable signals found.",
+    "confidence": {
+      "overall": 0.25,
+      "notes": "Very low signal volume. HN items are locked; Reddit searches returned nothing; GitHub issues were off-topic. Only 1 evergreen SO result and 2 locked HN items surfaced. Builder should search manually on Reddit and consider posting a Show HN."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=47179989",
+      "title_or_quote": "How do you catch schema drift and security gaps in Firestore?",
+      "posted_when": "2026-02-27T12:56:58Z",
+      "why_relevant": "Author describes schema drift between TypeScript types and runtime data — exactly the problem schemaguard solves.",
+      "intent_strength": "high",
+      "drafted_reply": "Schema drift in Firestore is real — the root cause is usually that your TypeScript types and your runtime validation live in two separate files that nobody keeps in sync. One approach: generate validators directly from your existing interfaces at build time so there is only one source of truth. That is what schemaguard does — {APP_URL}. Disclosure: I built it. Even if you skip it, the key insight is to treat your TS types as the schema, not a parallel Zod file.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=47276142",
+      "title_or_quote": "Validation pipeline that blocks AI-generated files with schema errors",
+      "posted_when": "2026-03-06T15:28:46Z",
+      "why_relevant": "Author needs runtime schema validation for structured files — schemaguard compiles validators from TS types at build time.",
+      "intent_strength": "medium",
+      "drafted_reply": "For blocking malformed structured files, the most reliable approach is to derive your validator from the same TypeScript type that describes the expected shape — that way the validator can never drift from the spec. You can do this with a compiler plugin that emits a validator at build time. schemaguard ({APP_URL}) does exactly that. Disclosure: I'm the author. Even without it, the pattern of \"type first, validator derived\" is worth adopting over hand-written schemas.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "forum",
+      "url": "https://stackoverflow.com/questions/74324147/how-to-increase-type-safety-when-generically-indexing-into-generic-types",
+      "title_or_quote": "How to increase type-safety when generically indexing into generic types",
+      "posted_when": "2022-11-05",
+      "why_relevant": "TypeScript developer seeking stronger type safety at runtime boundaries — schemaguard addresses this by compiling validators from types.",
+      "intent_strength": "low",
+      "drafted_reply": "For generic indexing type safety, the compile-time constraints you have are the right tool. At runtime boundaries (API responses, JSON parsing) you also need a validator that matches those same constraints — and keeping a hand-written Zod schema in sync with generic types is fragile. One option is to compile the validator from the type itself. schemaguard ({APP_URL}) does this at build time. Disclosure: I built it. The accepted answer here covers the static side well; this is the runtime complement.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.05,
+        "why": "The thread is about TypeScript compile-time type inference for generic lens constructors, not about runtime validation or schema duplication — the app's core problem."
+      }
+    }
+  ]
+}

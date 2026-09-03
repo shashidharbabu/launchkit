@@ -1,0 +1,187 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "HubSpot",
+        "url": "https://www.hubspot.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in every startup CRM comparison list; G2 CRM category leader; 306k+ customers",
+        "mentions": 6,
+        "pricing_model": "freemium",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "forever",
+            "key_limits": "2 users, 1 deal pipeline, HubSpot branding"
+          },
+          {
+            "name": "Starter",
+            "price": "$7/seat/mo",
+            "period": "annual",
+            "key_limits": "2 pipelines, 500 calling minutes, no branding"
+          }
+        ],
+        "source_url": "https://www.hubspot.com/pricing/crm"
+      },
+      {
+        "name": "Pipedrive",
+        "url": "https://www.pipedrive.com",
+        "notability": "established",
+        "evidence_of_standing": "Rated on G2, Capterra, Gartner, GetApp; 100k+ sales teams; named in all comparison lists",
+        "mentions": 5,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Lite",
+            "price": "$14/seat/mo",
+            "period": "annual",
+            "key_limits": "Basic pipeline, 500+ integrations, no email automation"
+          },
+          {
+            "name": "Growth",
+            "price": "$39/seat/mo",
+            "period": "annual",
+            "key_limits": "Full email sync, automations, meeting scheduler"
+          },
+          {
+            "name": "Premium",
+            "price": "$59/seat/mo",
+            "period": "annual",
+            "key_limits": "Lead routing, e-signatures, AI email tools"
+          }
+        ],
+        "source_url": "https://www.pipedrive.com/en/pricing"
+      },
+      {
+        "name": "Attio",
+        "url": "https://attio.com",
+        "notability": "established",
+        "evidence_of_standing": "Named as top HubSpot alternative for startups; G2 listed; used by Replicate, Railway, TaskRabbit",
+        "mentions": 4,
+        "pricing_model": "freemium",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "forever",
+            "key_limits": "Up to 3 seats, 50k records, 200 emails/mo"
+          },
+          {
+            "name": "Plus",
+            "price": "$44/user/mo",
+            "period": "monthly",
+            "key_limits": "Up to 10 seats, 250k records, 1k emails/mo"
+          },
+          {
+            "name": "Pro",
+            "price": "$99/user/mo",
+            "period": "monthly",
+            "key_limits": "Unlimited seats, 1M records, sequences, advanced reporting"
+          }
+        ],
+        "source_url": "https://attio.com/pricing"
+      },
+      {
+        "name": "Salesforce",
+        "url": "https://www.salesforce.com",
+        "notability": "established",
+        "evidence_of_standing": "Named as pain-point incumbent in ICP; appears in all CRM comparison lists; market leader",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Starter Suite",
+            "price": "$25/user/mo",
+            "period": "annual",
+            "key_limits": "Basic CRM, limited customization"
+          }
+        ],
+        "source_url": "https://www.salesforce.com/editions-pricing/sales-cloud"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Notion databases",
+        "url": "https://www.notion.so",
+        "why": "General-purpose tool used as CRM workaround, not a CRM product"
+      },
+      {
+        "name": "dupple.com",
+        "url": "https://dupple.com/learn/best-crm-for-startups",
+        "why": "Listicle aggregator page, not a competing product"
+      },
+      {
+        "name": "TechRadar CRM list",
+        "url": "https://www.techradar.com/best/the-best-crm-for-startups",
+        "why": "Review aggregator page, not a competing product"
+      },
+      {
+        "name": "G2 CRM category",
+        "url": "https://www.g2.com/categories/crm",
+        "why": "Review platform listing page, not a competing product"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium + subscription",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Solo founder evaluating, up to 1 user and 25 active deals",
+          "includes": [
+            "Single-page pipeline view",
+            "Keyboard navigation",
+            "Basic note logging",
+            "14-day email sync preview"
+          ],
+          "rationale": "Matches Attio and HubSpot free tiers; removes signup friction for founder ICP"
+        },
+        {
+          "name": "Pro",
+          "price_usd_month": 29,
+          "who_its_for": "Founder or first sales hire running 10-100 active deals",
+          "includes": [
+            "Unlimited deals",
+            "Two-way Gmail sync",
+            "HubSpot/Pipedrive import",
+            "Full keyboard-first UI",
+            "Priority support"
+          ],
+          "rationale": "Sits above Pipedrive Lite ($14) and below Attio Plus ($44); justified by zero-setup and Gmail-included positioning"
+        },
+        {
+          "name": "Team",
+          "price_usd_month": 49,
+          "who_its_for": "Post-seed team with 2-5 sales reps needing shared pipeline",
+          "includes": [
+            "Everything in Pro",
+            "Shared pipeline views",
+            "Team notes and activity feed",
+            "Admin seat management"
+          ],
+          "rationale": "Anchors below Pipedrive Growth ($39/seat) at team level; captures Series A expansion revenue"
+        }
+      ],
+      "anchor_competitors": [
+        "Attio",
+        "Pipedrive",
+        "HubSpot"
+      ],
+      "positioning_note": "$29 is 34% below Attio Plus; frame as the CRM that costs less because it refuses to build what founders never use.",
+      "risks": [
+        "$19 current price may be too low; upgrading existing beta users to $29 risks churn if not communicated as value increase",
+        "Free tier may cannibalize Pro if deal limit is set too high",
+        "Salesforce and HubSpot offer free tiers that are sticky; differentiation must be felt in first 5 minutes"
+      ]
+    },
+    "search_queries_used": [
+      "best CRM for founders early-stage startups comparison",
+      "site:g2.com CRM software for startups comparison"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "3 established competitors confirmed and scraped. HubSpot and Pipedrive pricing fully extracted. Attio pricing fully extracted. Salesforce pricing page not scraped (budget exhausted on 3 scrapes); Salesforce Starter Suite $25/seat/mo is widely published but not independently verified here. Current $19 price is below Attio Plus, suggesting room to raise to $29 without losing the value narrative."
+    }
+  }
+}

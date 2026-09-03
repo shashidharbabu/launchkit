@@ -1,0 +1,230 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "AfterSell",
+        "url": "https://apps.shopify.com/aftersell",
+        "notability": "established",
+        "evidence_of_standing": "named in 5 comparison lists incl. G2 Shopify upsell apps",
+        "mentions": 5,
+        "pricing_model": "freemium subscription",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "Free",
+            "period": "monthly",
+            "key_limits": "Up to 50 orders/month"
+          },
+          {
+            "name": "Growth",
+            "price": "$49",
+            "period": "monthly",
+            "key_limits": "Up to 500 orders/month, 1-Click Upsell"
+          },
+          {
+            "name": "Pro",
+            "price": "$99",
+            "period": "monthly",
+            "key_limits": "Up to 2,000 orders/month, post-purchase upsell"
+          }
+        ],
+        "source_url": "https://www.aftersell.com/pricing"
+      },
+      {
+        "name": "ReConvert",
+        "url": "https://apps.shopify.com/reconvert",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. WiserReview and Skailama",
+        "mentions": 4,
+        "pricing_model": "subscription with revenue share option",
+        "tiers": [
+          {
+            "name": "Basic",
+            "price": "$29",
+            "period": "monthly",
+            "key_limits": "Post-purchase upsell, 1,000 pageviews"
+          },
+          {
+            "name": "Pro",
+            "price": "$79",
+            "period": "monthly",
+            "key_limits": "Unlimited pageviews, A/B testing"
+          },
+          {
+            "name": "Advanced",
+            "price": "$199",
+            "period": "monthly",
+            "key_limits": "Revenue share available, custom offers"
+          }
+        ],
+        "source_url": "https://reconvert.io/pricing"
+      },
+      {
+        "name": "Zipify OneClickUpsell",
+        "url": "https://apps.shopify.com/zipify-oneclickupsell",
+        "notability": "established",
+        "evidence_of_standing": "named in 5 sources incl. StackDex and G2",
+        "mentions": 5,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Basic",
+            "price": "$49",
+            "period": "monthly",
+            "key_limits": "1-click upsells, 1,000 sessions"
+          },
+          {
+            "name": "Standard",
+            "price": "$99",
+            "period": "monthly",
+            "key_limits": "5,000 sessions, post-purchase upsell"
+          },
+          {
+            "name": "Plus",
+            "price": "$199",
+            "period": "monthly",
+            "key_limits": "20,000 sessions, A/B testing"
+          }
+        ],
+        "source_url": "https://www.zipify.com/pricing"
+      },
+      {
+        "name": "Upsellit",
+        "url": "https://www.upsellit.com",
+        "notability": "established",
+        "evidence_of_standing": "listed on G2 Shopify upsell apps, 4.7 rating",
+        "mentions": 3,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$45",
+            "period": "monthly",
+            "key_limits": "Basic upsell flows, 1,000 visitors"
+          },
+          {
+            "name": "Growth",
+            "price": "$125",
+            "period": "monthly",
+            "key_limits": "Advanced targeting, 5,000 visitors"
+          },
+          {
+            "name": "Enterprise",
+            "price": "$295",
+            "period": "monthly",
+            "key_limits": "Custom integrations, unlimited visitors"
+          }
+        ],
+        "source_url": "https://www.upsellit.com/pricing"
+      },
+      {
+        "name": "Rebuy",
+        "url": "https://apps.shopify.com/rebuy",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 sources incl. Ringly.io and Skailama",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Launch",
+            "price": "$49",
+            "period": "monthly",
+            "key_limits": "Basic upsell widgets, 1,000 sessions"
+          },
+          {
+            "name": "Scale",
+            "price": "$99",
+            "period": "monthly",
+            "key_limits": "Advanced targeting, 5,000 sessions"
+          },
+          {
+            "name": "Grow",
+            "price": "$199",
+            "period": "monthly",
+            "key_limits": "A/B testing, 20,000 sessions"
+          }
+        ],
+        "source_url": "https://rebuyengine.com/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Cartylabs",
+        "url": "https://ai.g2.com/marketplace/tools/cartylabs",
+        "why": "AI marketplace listing, not a product"
+      },
+      {
+        "name": "Mediumax",
+        "url": "https://www.mediumax.com/",
+        "why": "Only mentioned once, no pricing page found"
+      },
+      {
+        "name": "Upsell.com",
+        "url": "https://upsell.com",
+        "why": "Self-promotional page, no independent comparison"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium subscription",
+      "tiers": [
+        {
+          "name": "Free Trial",
+          "price_usd_month": 0,
+          "who_its_for": "New merchants testing upsell impact",
+          "includes": [
+            "14-day free trial",
+            "Basic in-cart upsell",
+            "Auto-generated offers from order history"
+          ],
+          "rationale": "Low barrier to entry aligns with Shopify norms"
+        },
+        {
+          "name": "Starter",
+          "price_usd_month": 19,
+          "who_its_for": "Merchants with 100-500 orders/month",
+          "includes": [
+            "In-cart and post-purchase upsell",
+            "No revenue share",
+            "One-click install, no theme edits"
+          ],
+          "rationale": "Matches current pricing; undercuts competitors by 50-70%"
+        },
+        {
+          "name": "Growth",
+          "price_usd_month": 49,
+          "who_its_for": "Merchants with 500+ orders/month needing A/B testing",
+          "includes": [
+            "All Starter features",
+            "A/B testing of offers",
+            "Advanced analytics"
+          ],
+          "rationale": "Future tier priced below ReConvert Pro and AfterSell Pro"
+        }
+      ],
+      "anchor_competitors": [
+        "AfterSell",
+        "ReConvert",
+        "Zipify OneClickUpsell"
+      ],
+      "positioning_note": "Position as the flat-fee alternative to revenue-share and high-tier apps, emphasizing native cart integration and no theme edits.",
+      "risks": [
+        "Pricing may seem too low vs. $49+ competitors",
+        "Lack of A/B testing limits appeal to larger stores"
+      ]
+    },
+    "search_queries_used": [
+      "best Shopify upsell tools",
+      "Shopify upsell software comparison",
+      "alternative to ReConvert",
+      "alternative to AfterSell",
+      "alternative to Rebuy",
+      "site:g2.com Shopify upsell apps",
+      "alternative to Zipify OneClickUpsell",
+      "Shopify upsell tool reddit"
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "3+ established competitors confirmed via G2, comparison sites, and Reddit; pricing pages scraped successfully."
+    }
+  }
+}

@@ -1,0 +1,276 @@
+/*
+ * Launch Kit — design tokens ("Flight Paperwork")
+ * Tailwind CSS v4 CSS-first config. This file IS the token pipeline:
+ * drop into app/globals.css. Values are OKLCH (hex noted in comments).
+ * Convention: semantic shadcn-style names; components consume utilities
+ * (bg-background, text-muted-foreground) — never raw palette classes.
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css"; /* data-[state] enter/exit for Base UI components */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------- */
+/* Day console (light, default) — paper & ink                        */
+/* ---------------------------------------------------------------- */
+:root {
+  /* surfaces */
+  --background: oklch(0.97 0.003 250);          /* paper   #F4F5F7 */
+  --foreground: oklch(0.209 0.01 268);          /* ink     #16181D */
+  --card: oklch(0.991 0.002 250);               /* sheet   #FBFCFD */
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.991 0.002 250);            /* sheet   */
+  --popover-foreground: var(--foreground);
+  --muted: oklch(0.942 0.006 255);              /* wash    #E9ECF0 */
+  --muted-foreground: oklch(0.501 0.025 259);   /* faint   #5B6472 (5.5:1 on paper) */
+  --border: oklch(0.899 0.011 257);             /* rule    #D9DEE5 */
+  --input: oklch(0.899 0.011 257);              /* rule    */
+
+  /* action — ember (launch exhaust). Budget: one primary action per view. */
+  --primary: oklch(0.565 0.175 36);             /* ember   #C7431D (5.0:1 w/ white) */
+  --primary-foreground: oklch(1 0 0);           /* white   */
+  --primary-hover: oklch(0.498 0.154 36);       /* ember-deep #A83717 */
+  --secondary: oklch(0.942 0.006 255);          /* quiet button = wash */
+  --secondary-foreground: var(--foreground);
+  --accent: oklch(0.942 0.006 255);             /* hover wash (lists, menu items) */
+  --accent-foreground: var(--foreground);
+
+  /* blueprint — cobalt: links, focus ring, data references */
+  --link: oklch(0.49 0.216 264);                /* cobalt  #1C4FD8 (6.6:1 on paper) */
+  --link-hover: oklch(0.407 0.161 263);         /* cobalt-deep #16409F */
+  --ring: oklch(0.49 0.216 264);                /* focus = cobalt, distinct from ember actions */
+
+  /* gate / signal status — reserved. Stamps only; never a 4th chart series. */
+  --go: oklch(0.529 0.118 156);                 /* #1A7F4E */
+  --go-foreground: oklch(1 0 0);
+  --hold: oklch(0.555 0.146 49);                /* #B45309 */
+  --hold-foreground: oklch(1 0 0);
+  --nogo: oklch(0.5 0.182 30);                  /* #B42318 */
+  --nogo-foreground: oklch(1 0 0);
+  --destructive: oklch(0.5 0.182 30);           /* = nogo  */
+  --destructive-foreground: oklch(1 0 0);
+  --unverified: oklch(0.501 0.025 259);         /* faint; dashed-border stamp */
+
+  /* charts — "flight line" categorical, fixed order, validated (dataviz.md) */
+  --chart-1: oklch(0.565 0.175 36);             /* ember  #C7431D */
+  --chart-2: oklch(0.49 0.216 264);             /* cobalt #1C4FD8 */
+  --chart-3: oklch(0.533 0.125 129);            /* moss   #557A1F */
+  --chart-4: oklch(0.523 0.188 310);            /* plum   #8B3FB8 */
+  --chart-5: oklch(0.609 0.111 222);            /* cyan   #0891B2 */
+
+  /* radius — sharp on paper, soft when floating */
+  --radius: 0rem;                                /* cards, slips, inputs, stamps, tables */
+  --radius-float: 0.25rem;                       /* menus, dialogs, toasts, popovers */
+
+  /* elevation — printed paper casts faint, tight shadows */
+  --shadow-float: 0 1px 2px oklch(0.209 0.01 268 / 0.06),
+                  0 8px 24px oklch(0.209 0.01 268 / 0.1);
+
+  /* sidebar (stage rail) inherits paper */
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+/* ---------------------------------------------------------------- */
+/* Night console (dark) — same paperwork, red-shifted for midnight   */
+/* ---------------------------------------------------------------- */
+.dark {
+  --background: oklch(0.182 0.009 264);         /* #101216 — blue-charcoal, not pure black */
+  --foreground: oklch(0.937 0.006 264);         /* #E8EAEE */
+  --card: oklch(0.201 0.012 271);               /* #14161C */
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.201 0.012 271);
+  --popover-foreground: var(--foreground);
+  --muted: oklch(0.239 0.017 264);              /* #1B1F27 */
+  --muted-foreground: oklch(0.713 0.024 261);   /* #9AA3B2 */
+  --border: oklch(0.305 0.021 266);             /* #2A2F3A */
+  --input: oklch(0.305 0.021 266);
+
+  --primary: oklch(0.639 0.183 38);             /* ember-d #E4592B */
+  --primary-foreground: oklch(0.157 0.021 52);  /* near-black on ember (5.5:1) */
+  --primary-hover: oklch(0.615 0.182 37);       /* #DB5124 */
+  --secondary: oklch(0.239 0.017 264);
+  --secondary-foreground: var(--foreground);
+  --accent: oklch(0.239 0.017 264);
+  --accent-foreground: var(--foreground);
+
+  --link: oklch(0.647 0.165 270);               /* cobalt-d #6885F2 */
+  --link-hover: oklch(0.72 0.14 270);
+  --ring: oklch(0.647 0.165 270);
+
+  --go: oklch(0.719 0.146 157);                 /* #3FBF7F */
+  --go-foreground: oklch(0.182 0.009 264);
+  --hold: oklch(0.756 0.135 76);                /* #E0A33E */
+  --hold-foreground: oklch(0.182 0.009 264);
+  --nogo: oklch(0.632 0.177 32);                /* #E0563F */
+  --nogo-foreground: oklch(0.182 0.009 264);
+  --destructive: oklch(0.632 0.177 32);
+  --destructive-foreground: oklch(0.182 0.009 264);
+  --unverified: oklch(0.713 0.024 261);
+
+  /* dark charts — own validated steps, NOT an automatic flip (dataviz.md) */
+  --chart-1: oklch(0.615 0.182 37);             /* #DB5124 */
+  --chart-2: oklch(0.647 0.165 270);            /* #6885F2 */
+  --chart-3: oklch(0.648 0.151 130);            /* #6FA02F */
+  --chart-4: oklch(0.644 0.181 315);            /* #B565D8 */
+  --chart-5: oklch(0.564 0.104 224);            /* #0C82A3 */
+
+  --shadow-float: 0 1px 2px oklch(0 0 0 / 0.4),
+                  0 8px 24px oklch(0 0 0 / 0.5);
+
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+/* ---------------------------------------------------------------- */
+/* Map semantic vars into Tailwind utilities.                        */
+/* `inline` is load-bearing: utilities compile to var(--x) so the    */
+/* .dark cascade wins. Components never write dark: for colors.      */
+/* ---------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-ring: var(--ring);
+  --color-go: var(--go);
+  --color-go-foreground: var(--go-foreground);
+  --color-hold: var(--hold);
+  --color-hold-foreground: var(--hold-foreground);
+  --color-nogo: var(--nogo);
+  --color-nogo-foreground: var(--nogo-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-unverified: var(--unverified);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* radius: rounded-sm/md = sharp (paper), rounded-lg = float */
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-float);
+
+  --shadow-float: var(--shadow-float);
+}
+
+/* ---------------------------------------------------------------- */
+/* Static tokens — identical in both modes                           */
+/* ---------------------------------------------------------------- */
+@theme {
+  /* type — wired by next/font (foundations/typography.md) */
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* type scale (see typography.md for roles) */
+  --text-display: 1.75rem;      /* 28px — page titles */
+  --text-display--line-height: 2.125rem;
+  --text-title: 1.25rem;        /* 20px — section/slip titles */
+  --text-title--line-height: 1.75rem;
+  --text-heading: 1rem;         /* 16px — card headings */
+  --text-heading--line-height: 1.5rem;
+  --text-body: 0.875rem;        /* 14px — workspace UI default */
+  --text-body--line-height: 1.25rem;
+  --text-read: 1rem;            /* 16px — long-form: asset bodies, thread quotes */
+  --text-read--line-height: 1.625rem;
+  --text-data: 0.8125rem;       /* 13px — mono: refs, counts, timestamps */
+  --text-data--line-height: 1.25rem;
+  --text-meta: 0.6875rem;       /* 11px — mono uppercase: procedure labels, stamps */
+  --text-meta--line-height: 1rem;
+
+  /* motion — see motion.md */
+  --duration-fast: 120ms;       /* hovers, toggles */
+  --duration-base: 180ms;       /* enters, panel swaps, queue exits */
+  --duration-slow: 280ms;       /* larger surfaces (dialogs, drawers) */
+  --duration-stamp: 240ms;      /* the gate stamp — reserved */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* enters, moves */
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);       /* exits (shorter + sharper) */
+}
+
+/* ---------------------------------------------------------------- */
+/* Base                                                              */
+/* ---------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: oklch(from var(--primary) l c h / 0.2);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  a {
+    color: var(--color-link);
+  }
+  a:hover {
+    color: var(--color-link-hover);
+  }
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+  /* any column of numbers reads in tabular figures */
+  [data-numeric],
+  td.numeric,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

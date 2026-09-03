@@ -1,0 +1,182 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Upsell.com (ReConvert)",
+        "url": "https://upsell.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 5+ Shopify upsell comparison lists incl. acquirex.io and gropulse.com",
+        "mentions": 5,
+        "pricing_model": "subscription, order-volume tiers",
+        "tiers": [
+          {
+            "name": "Growth",
+            "price": "$4.99",
+            "period": "month",
+            "key_limits": "Up to 2,000 monthly orders"
+          },
+          {
+            "name": "Scale",
+            "price": "$399.99",
+            "period": "month",
+            "key_limits": "Up to 10,000 monthly orders"
+          },
+          {
+            "name": "Elite",
+            "price": "$799.99",
+            "period": "month",
+            "key_limits": "Up to 20,000 monthly orders"
+          }
+        ],
+        "source_url": "https://upsell.com/pricing"
+      },
+      {
+        "name": "AfterSell",
+        "url": "https://www.aftersell.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 4+ comparison lists; 40,000+ brands cited on own pricing page",
+        "mentions": 4,
+        "pricing_model": "subscription, modular by placement, order-volume tiers",
+        "tiers": [
+          {
+            "name": "Cart Drawer",
+            "price": "$29.99",
+            "period": "month",
+            "key_limits": "200 monthly orders"
+          },
+          {
+            "name": "Post Purchase",
+            "price": "$34.99",
+            "period": "month",
+            "key_limits": "500 monthly orders"
+          },
+          {
+            "name": "Checkout",
+            "price": "$99",
+            "period": "month",
+            "key_limits": "500 orders; Shopify Plus only"
+          }
+        ],
+        "source_url": "https://www.aftersell.com/pricing"
+      },
+      {
+        "name": "Rebuy Engine",
+        "url": "https://www.rebuyengine.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 4+ comparison lists; ROI guarantee cited across multiple review sources",
+        "mentions": 4,
+        "pricing_model": "usage-based, per-order, modular packages",
+        "tiers": [
+          {
+            "name": "Cart & Merchandising",
+            "price": "$45+",
+            "period": "month",
+            "key_limits": "$0.08 per order above base"
+          },
+          {
+            "name": "Checkout & Post-Purchase",
+            "price": "$25+",
+            "period": "month",
+            "key_limits": "$0.04 per order above base"
+          },
+          {
+            "name": "Premium Support",
+            "price": "$499",
+            "period": "month",
+            "key_limits": "Add-on; CSM and priority access"
+          }
+        ],
+        "source_url": "https://www.rebuyengine.com/pricing"
+      },
+      {
+        "name": "Zipify OneClickUpsell",
+        "url": "https://zipify.com/apps/ocu",
+        "notability": "established",
+        "evidence_of_standing": "Named in 3+ comparison lists; $1B+ upsell revenue claimed; 50,000+ brands",
+        "mentions": 3,
+        "pricing_model": "subscription base + revenue-share scaling",
+        "tiers": [
+          {
+            "name": "Unlimited",
+            "price": "$8",
+            "period": "month",
+            "key_limits": "Scales with upsell revenue generated; 30-day trial"
+          }
+        ],
+        "source_url": "https://zipify.com/apps/ocu/"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "AcquireX Blog",
+        "url": "https://acquirex.io/blog/best-upsell-apps-for-shopify/",
+        "why": "Listicle comparison page, not a competing product"
+      },
+      {
+        "name": "GroPulse",
+        "url": "https://gropulse.com/top-shopify-upsell-apps/",
+        "why": "Listicle comparison page, not a competing product"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium-to-subscription, flat monthly, two tiers",
+      "tiers": [
+        {
+          "name": "Starter",
+          "price_usd_month": 0,
+          "who_its_for": "Stores under 100 orders/month testing the app",
+          "includes": [
+            "In-cart upsells up to 50 orders/month",
+            "Basket-aware offer generation",
+            "No revenue share",
+            "14-day full-feature trial"
+          ],
+          "rationale": "Free entry removes install friction; converts to paid once merchants see AOV lift"
+        },
+        {
+          "name": "Growth",
+          "price_usd_month": 19,
+          "who_its_for": "Stores doing 100-2,000 orders/month",
+          "includes": [
+            "Unlimited in-cart and post-purchase upsells",
+            "Basket-aware AI offer selection",
+            "Flat fee, zero revenue share",
+            "Email support"
+          ],
+          "rationale": "Undercuts AfterSell $34.99 and Upsell.com $4.99-scaling; flat fee is the core differentiator"
+        },
+        {
+          "name": "Pro",
+          "price_usd_month": 49,
+          "who_its_for": "Stores doing 2,000-10,000 orders/month",
+          "includes": [
+            "Everything in Growth",
+            "Priority support",
+            "Advanced targeting rules",
+            "Offer performance analytics"
+          ],
+          "rationale": "Captures mid-market before Rebuy and Upsell.com Scale tier pricing kicks in at $399"
+        }
+      ],
+      "anchor_competitors": [
+        "AfterSell",
+        "Upsell.com (ReConvert)",
+        "Zipify OneClickUpsell"
+      ],
+      "positioning_note": "Flat fee beats revenue-share rivals; native cart beats popup rivals. Price at $19 is honest but risks undervaluing at $100k+ GMV stores.",
+      "risks": [
+        "$19 flat may signal low quality to high-GMV merchants used to paying $100-400/mo",
+        "No free tier means zero-friction trial requires credit card; add a free tier to reduce churn risk",
+        "Revenue-share competitors earn more as stores scale; cartnudge must prove retention at flat price"
+      ]
+    },
+    "search_queries_used": [
+      "best Shopify upsell apps comparison 2024",
+      "site:g2.com Shopify upsell app"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "4 established competitors confirmed across multiple independent comparison sources. Pricing scraped from upsell.com, aftersell.com, rebuyengine.com, and zipify.com product page. Zipify OCU pricing found on product page not a dedicated /pricing URL. AfterSell exact per-tier prices are slider-based; $29.99 and $34.99 are the displayed entry points at 200 and 500 orders respectively."
+    }
+  }
+}

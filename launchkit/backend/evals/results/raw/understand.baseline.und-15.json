@@ -1,0 +1,76 @@
+{
+  "output": {
+    "one_liner": "Email API for developers to send transactional and marketing emails reliably.",
+    "description": "Resend is an email platform built for developers to send transactional and marketing emails at scale. It offers a simple API, SDKs for major languages, and tools like test mode, webhooks, and React-based email templating to streamline email delivery. The platform focuses on high deliverability with features like dedicated IPs, domain authentication, and multi-region sending.",
+    "category": "Developer Tools",
+    "target_user": "Software developer",
+    "icp": {
+      "who": "Engineering teams at startups and mid-sized tech companies",
+      "pain": "Emails landing in spam folders, complex legacy email infrastructure, unreliable delivery, and time spent managing email systems",
+      "current_alternatives": [
+        "SendGrid",
+        "Mailgun",
+        "Amazon SES"
+      ],
+      "buying_trigger": "Switching from a legacy email provider due to deliverability issues or developer friction"
+    },
+    "differentiators": [
+      "Developer-first API with SDKs for 12+ languages",
+      "Test mode to simulate email events without sending",
+      "React-based email templating via open-source react-email",
+      "Managed dedicated IPs with automatic warmup"
+    ],
+    "proof_points": [
+      "Testimonials from CTOs/Engineers at Replit, Raycast, MrBeast, Gumroad (found on homepage)",
+      "Trusted by Warner Bros, eBay, Tailwind, Max (listed on pricing page)",
+      "Guillermo Rauch (CEO of Vercel) testimonial on homepage",
+      "Simple integration shown with working code example on homepage"
+    ],
+    "tech_stack": [
+      "React",
+      "Node.js",
+      "TypeScript",
+      "REST API",
+      "SMTP"
+    ],
+    "pricing_current": "Free tier (3,000 emails/month), Pro ($20 for 50k emails), Scale ($90 for 100k emails), Custom enterprise plans",
+    "voice": {
+      "tone": [
+        "clear",
+        "confident",
+        "developer-friendly",
+        "concise"
+      ],
+      "sample_phrase": "The best way to reach humans instead of spam folders. Deliver transactional and marketing emails at scale."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing page",
+        "Customer testimonials",
+        "Trusted by major brands",
+        "Active documentation"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "No GitHub repo, but site provides comprehensive information"
+    },
+    "sources_read": [
+      {
+        "source": "https://resend.com",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main landing page, features, testimonials"
+      },
+      {
+        "source": "https://resend.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing tiers, add-ons, feature comparison"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

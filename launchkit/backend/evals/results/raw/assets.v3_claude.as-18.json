@@ -1,0 +1,10 @@
+{
+  "output": {
+    "subject": "A document parsing API your readers building AP pipelines will actually want to know about",
+    "pitch": "Data Engineering Weekly's audience includes engineers building document ingestion and AP automation workflows — exactly the people who hit a wall when generic OCR breaks on invoice layout variety.\n\nDocParse is a layout-aware document parsing API that extracts line items, totals, tax fields, and vendor data from invoices, receipts, and purchase orders into structured JSON. It delivers 99.2% field-level accuracy on a published 5,000-invoice benchmark, with p95 latency of 1.8 seconds per page tracked on a public metrics page. Per-field confidence scores and a configurable human-in-the-loop fallback give engineering teams a production-grade accuracy SLA without weeks of model tuning per document type.\n\nFor readers who have evaluated AWS Textract or Google Document AI and found the tuning overhead prohibitive, this is a direct alternative with published methodology rather than vendor claims.\n\nPricing starts at $0.01 per page with 500 free pages. SOC 2 Type I report is available under NDA.\n\n{APP_URL}",
+    "warnings": [
+      "No named customer logos are available yet — the pitch relies on benchmark and latency proof points only. Disclose this if the newsletter requires customer validation.",
+      "Benchmark covers invoices only; receipts and PO accuracy are not independently verified. Do not overstate coverage."
+    ]
+  }
+}

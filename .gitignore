@@ -1,0 +1,32 @@
+.rocketride/
+.env
+
+# Dependencies and build output (machine-generated)
+**/node_modules/
+**/dist/
+.env.deploy
+
+# Secrets (belt and braces — never commit any env file)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+**/env.generated.ts
+
+# Python / virtualenvs
+**/.venv/
+**/__pycache__/
+*.pyc
+
+# Build + tooling artifacts
+**/.rsbuild/
+**/.next/
+tools/.styles-raw.css
+/tmp/
+
+# External repo with its own remote (rocketride-org/branding)
+/branding/
+
+# Disabled nested git history
+**/.git.disabled/

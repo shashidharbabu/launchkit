@@ -1,0 +1,263 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "LaunchDarkly",
+        "url": "https://launchdarkly.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in both comparison articles and all 4 ICP alternatives; category default",
+        "mentions": 5,
+        "pricing_model": "freemium + usage-based",
+        "tiers": [
+          {
+            "name": "Developer",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "unlimited flags, 5000 AI runs, 30 SDKs"
+          },
+          {
+            "name": "Foundation",
+            "price": "$10/service + $8.33/1000 MAU",
+            "period": "month billed yearly",
+            "key_limits": "usage-based, per client MAU"
+          },
+          {
+            "name": "Enterprise",
+            "price": "custom",
+            "period": "year",
+            "key_limits": "custom contract, Guardian tier"
+          }
+        ],
+        "source_url": "https://launchdarkly.com/pricing"
+      },
+      {
+        "name": "Flagsmith",
+        "url": "https://flagsmith.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in both comparison articles and ICP alternatives; open-source category leader",
+        "mentions": 5,
+        "pricing_model": "freemium + subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "50k requests, 1 seat, unlimited flags"
+          },
+          {
+            "name": "Start-Up",
+            "price": "$40",
+            "period": "month annual",
+            "key_limits": "1M requests, 3 seats"
+          },
+          {
+            "name": "Scale-Up",
+            "price": "$250",
+            "period": "month",
+            "key_limits": "5M+ requests, more seats"
+          }
+        ],
+        "source_url": "https://flagsmith.com/pricing"
+      },
+      {
+        "name": "ConfigCat",
+        "url": "https://configcat.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in both comparison articles; known for flat predictable pricing model",
+        "mentions": 4,
+        "pricing_model": "freemium + flat subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "10 flags, 2 environments, 5M downloads"
+          },
+          {
+            "name": "Pro",
+            "price": "$110",
+            "period": "month",
+            "key_limits": "100 flags, unlimited seats and MAUs"
+          },
+          {
+            "name": "Smart",
+            "price": "$325",
+            "period": "month",
+            "key_limits": "unlimited flags, unlimited seats"
+          }
+        ],
+        "source_url": "https://configcat.com/pricing"
+      },
+      {
+        "name": "PostHog",
+        "url": "https://posthog.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in both comparison articles and ICP alternatives; all-in-one analytics+flags",
+        "mentions": 5,
+        "pricing_model": "freemium + usage-based",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "1M flag requests/mo included"
+          },
+          {
+            "name": "Paid",
+            "price": "~$0.0001/request",
+            "period": "month",
+            "key_limits": "volume discounts, hard spend caps"
+          }
+        ],
+        "source_url": "https://posthog.com/pricing"
+      },
+      {
+        "name": "Unleash",
+        "url": "https://www.getunleash.io",
+        "notability": "established",
+        "evidence_of_standing": "Named in both comparison articles and ICP alternatives; mature OSS enterprise option",
+        "mentions": 5,
+        "pricing_model": "open-source + per-seat subscription",
+        "tiers": [
+          {
+            "name": "Open Source",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "self-hosted, full OSS core"
+          },
+          {
+            "name": "Pay-As-You-Go",
+            "price": "$75/seat",
+            "period": "month",
+            "key_limits": "5-seat minimum, 14-day trial"
+          },
+          {
+            "name": "Enterprise",
+            "price": "custom",
+            "period": "year",
+            "key_limits": "custom contract, SSO, SAML"
+          }
+        ],
+        "source_url": "https://www.getunleash.io/pricing"
+      },
+      {
+        "name": "Statsig",
+        "url": "https://statsig.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in both comparison articles as best all-rounder; flags plus experimentation",
+        "mentions": 4,
+        "pricing_model": "freemium + event-based subscription",
+        "tiers": [
+          {
+            "name": "Developer",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "2M events, unlimited flags and seats"
+          },
+          {
+            "name": "Pro",
+            "price": "$150",
+            "period": "month",
+            "key_limits": "5M events, $0.05 per extra 1000 events"
+          }
+        ],
+        "source_url": "https://statsig.com/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "GrowthBook",
+        "url": "https://www.growthbook.io",
+        "why": "Warehouse-native experimentation focus; not a flag-first tool buyers compare"
+      },
+      {
+        "name": "Optimizely Feature Experimentation",
+        "url": "https://www.optimizely.com",
+        "why": "Single mention in vendor-authored blog; marketing-team tool, not engineering"
+      },
+      {
+        "name": "AWS AppConfig",
+        "url": "https://aws.amazon.com/appconfig",
+        "why": "Single mention in vendor blog; config service not a dedicated flag platform"
+      },
+      {
+        "name": "Harness FME",
+        "url": "https://www.harness.io",
+        "why": "Evidence source is Harness own blog; self-promotion, not independent mention"
+      },
+      {
+        "name": "dupple.com",
+        "url": "https://dupple.com",
+        "why": "Review aggregator listicle page, not a product"
+      },
+      {
+        "name": "harness.io/blog",
+        "url": "https://www.harness.io/blog",
+        "why": "Vendor blog page, not a competing product"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium + per-seat subscription",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Solo devs and small teams evaluating git-native flags",
+          "includes": [
+            "3 seats",
+            "1M evaluations/month",
+            "unlimited flags",
+            "PR-based flag changes",
+            "edge evaluation"
+          ],
+          "rationale": "Matches Flagsmith free tier scope; enough to prove the git-native workflow"
+        },
+        {
+          "name": "Team",
+          "price_usd_month": 19,
+          "who_its_for": "Product engineering teams of 5-25 practicing trunk-based development",
+          "includes": [
+            "per seat",
+            "10M evaluations/month",
+            "SSO",
+            "audit log export",
+            "priority support"
+          ],
+          "rationale": "Sits between Flagsmith $40 flat and ConfigCat $110 flat; per-seat scales fairly"
+        },
+        {
+          "name": "Growth",
+          "price_usd_month": 39,
+          "who_its_for": "Scaling teams 25-50 needing compliance and higher eval volume",
+          "includes": [
+            "per seat",
+            "100M evaluations/month",
+            "SAML/SSO",
+            "custom environments",
+            "SLA"
+          ],
+          "rationale": "Half of Unleash $75/seat; justified once SOC 2 ships and mobile SDKs land"
+        }
+      ],
+      "anchor_competitors": [
+        "Flagsmith",
+        "ConfigCat",
+        "Unleash"
+      ],
+      "positioning_note": "Current $8/seat is 5-10x below market; $19 Team is still a clear discount vs Unleash $75 and defensible on beta status.",
+      "risks": [
+        "No SOC 2 blocks enterprise deals regardless of price; ship compliance before raising Growth tier",
+        "Per-seat model punishes large teams; add an eval-volume flat tier once usage data exists",
+        "Beta label suppresses willingness-to-pay; time-box beta and GA before Growth tier launch"
+      ]
+    },
+    "search_queries_used": [
+      "best feature flag tools software comparison 2024",
+      "site:g2.com feature flag software"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "5 established competitors confirmed across 2 independent sources. Pricing figures sourced from dupple.com third-party review article (cites vendor pricing pages) not direct FireCrawl scrapes of vendor domains — treat tier prices as indicative, verify before publishing. G2 search returned 0 results; category leaders still surfaced clearly via comparison articles."
+    }
+  }
+}

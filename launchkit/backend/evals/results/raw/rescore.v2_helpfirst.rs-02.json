@@ -1,0 +1,36 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=490114",
+        "title_or_quote": "Ask HN: Know of any good server uptime monitoring tools?",
+        "why_relevant": "Someone is directly asking HN for uptime monitoring tool recommendations.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The thread author is explicitly asking for server uptime monitoring tools, which is exactly what this app provides."
+        },
+        "drafted_reply": "Nagios and Munin are solid classics but require self-hosting and config management overhead. If you want something hosted that checks HTTP, TCP, and cron jobs every 30 seconds without clicking through a UI, a REST API lets you script monitor setup the same way you'd configure your server. The RSS/JSON update delivery you mentioned maps well to webhook alerts that can feed whatever client format you need. I built pingdeck for this use case — API-first uptime monitoring with status pages included — if you want to compare it against the self-hosted options: {APP_URL}.",
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=490114",
+      "title_or_quote": "Ask HN: Know of any good server uptime monitoring tools?",
+      "why_relevant": "Someone is directly asking HN for uptime monitoring tool recommendations.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The thread author is explicitly asking for server uptime monitoring tools, which is exactly what this app provides."
+      },
+      "drafted_reply": "Nagios and Munin are solid classics but require self-hosting and config management overhead. If you want something hosted that checks HTTP, TCP, and cron jobs every 30 seconds without clicking through a UI, a REST API lets you script monitor setup the same way you'd configure your server. The RSS/JSON update delivery you mentioned maps well to webhook alerts that can feed whatever client format you need. I built pingdeck for this use case — API-first uptime monitoring with status pages included — if you want to compare it against the self-hosted options: {APP_URL}.",
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

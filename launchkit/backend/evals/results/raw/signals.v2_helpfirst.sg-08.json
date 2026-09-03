@@ -1,0 +1,209 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/nikutek/Kazimierska/issues/4",
+        "title_or_quote": "Photo Projects #3: Admin — bulk photo upload with Sharp optimisation",
+        "posted_when": "2026-06-30T12:04:52Z",
+        "why_relevant": "User needs bulk photo processing for e-commerce admin — matches pixelmuse's batch API use case.",
+        "intent_strength": "high",
+        "drafted_reply": "Bulk photo handling in admin is a common bottleneck. I built pixelmuse to automate cleanup and upscaling for product catalogs via API. It handles batches and applies store-wide presets for consistency. I'm the founder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub issue spec for building a bulk photo upload pipeline using Sharp and Supabase — a backend engineering task — not a request for AI upscaling or catalog image enhancement tools."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/Thomasevano/musickeeper/issues/58",
+        "title_or_quote": "Reading: turn screenshots into Candidates on the device",
+        "posted_when": "2026-08-08T17:57:37Z",
+        "why_relevant": "User describes converting raw images into usable assets, similar to supplier photo cleanup.",
+        "intent_strength": "medium",
+        "drafted_reply": "You're tackling image ingestion and enhancement — a challenge we solved for e-commerce product photos. pixelmuse cleans up and upscales supplier images in bulk, with consistent output. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is about building an on-device screenshot-to-music-candidate pipeline for a music tracking app, with no connection to product photo upscaling or e-commerce image processing."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/mhemeryck/goalkeepr/issues/13",
+        "title_or_quote": "Backlog of product and operational ideas",
+        "posted_when": "2026-08-22T21:07:27Z",
+        "why_relevant": "Includes image enhancement as a product priority, indicating active need.",
+        "intent_strength": "medium",
+        "drafted_reply": "You mentioned image enhancement as a key task — our tool pixelmuse automates background cleanup and 4x upscaling for product catalogs, with batch API support. I'm the founder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a GitHub issue backlog for a soccer match-day tracking app (Goalkeepr), with no mention of product photography, image quality, e-commerce, or catalog management."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/Robertuncan/magnificfreepik/issues/3",
+        "title_or_quote": "MagnificFreepik  A Creative Guide to Modern Image Enhancement and Design",
+        "posted_when": "2026-08-23T11:19:11Z",
+        "why_relevant": "Focus on image enhancement aligns with pixelmuse's core functionality.",
+        "intent_strength": "medium",
+        "drafted_reply": "Your project on image enhancement resonates — we're doing similar work for e-commerce with automated cleanup and upscaling. pixelmuse ensures catalog-wide consistency and handles bulk processing. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.05,
+          "why": "The thread is a generic SEO-style GitHub issue promoting a keyword mashup of 'Magnific' and 'Freepik' as a content marketing piece, not a real user struggling with product photo quality or catalog image workflows."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=44823042",
+        "title_or_quote": "Problem: Image generation and enhancement at scale for product visuals",
+        "posted_when": "2025-08-07T11:12:39Z",
+        "why_relevant": "Discusses scaling product image generation, relevant to bulk upscaling needs.",
+        "intent_strength": "medium",
+        "drafted_reply": "Scaling product visuals is tough — we built pixelmuse to clean and upscale supplier photos in bulk, with consistent output via presets. It's designed for e-commerce catalogs. I'm the founder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 6,
+        "platform": "github",
+        "url": "https://github.com/Tikstar-TikTok-Analytics-Tool/Tikstar-TikTok-Analytics-Tool/issues/4",
+        "title_or_quote": "Building Automated Creative Pipelines: How Developers Are Transforming Advertising",
+        "posted_when": "2026-07-31T02:22:25Z",
+        "why_relevant": "Discusses automated creative pipelines, relevant to batch image processing.",
+        "intent_strength": "low",
+        "drafted_reply": "Automating creative workflows is key — pixelmuse helps by turning low-res supplier photos into consistent, catalog-ready images via batch API. I'm the founder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.1,
+          "why": "The thread is a generic editorial/blog post about automated creative pipelines in advertising, not a developer seeking help with a specific product image processing problem that pixelmuse solves."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that upscales product images in bulk site:reddit.com",
+      "struggling with inconsistent supplier photos site:reddit.com",
+      "alternative to Topaz Photo AI for e-commerce product images",
+      "tired of manually editing hundreds of low-res product images",
+      "how do you handle low-res supplier images at scale site:reddit.com",
+      "is there an open source alternative to remove.bg for e-commerce site:reddit.com",
+      "site:reddit.com/r/ecommerce low-res supplier images",
+      "site:reddit.com/r/shopify bulk image upscaling",
+      "site:reddit.com/r/FulfillmentByAmazon inconsistent product photos",
+      "product image upscaling",
+      "bulk image api",
+      "supplier photo tool",
+      "bulk image upscaling API is:issue is:open",
+      "automate product photo enhancement is:issue is:open",
+      "automate product image processing for e-commerce"
+    ],
+    "coverage_notes": "No relevant StackOverflow results found; Reddit searches returned no valid threads.",
+    "confidence": {
+      "overall": 0.7,
+      "notes": "GitHub and HN provided relevant signals; lack of Reddit and StackOverflow results limits breadth."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/nikutek/Kazimierska/issues/4",
+      "title_or_quote": "Photo Projects #3: Admin — bulk photo upload with Sharp optimisation",
+      "posted_when": "2026-06-30T12:04:52Z",
+      "why_relevant": "User needs bulk photo processing for e-commerce admin — matches pixelmuse's batch API use case.",
+      "intent_strength": "high",
+      "drafted_reply": "Bulk photo handling in admin is a common bottleneck. I built pixelmuse to automate cleanup and upscaling for product catalogs via API. It handles batches and applies store-wide presets for consistency. I'm the founder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub issue spec for building a bulk photo upload pipeline using Sharp and Supabase — a backend engineering task — not a request for AI upscaling or catalog image enhancement tools."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/Thomasevano/musickeeper/issues/58",
+      "title_or_quote": "Reading: turn screenshots into Candidates on the device",
+      "posted_when": "2026-08-08T17:57:37Z",
+      "why_relevant": "User describes converting raw images into usable assets, similar to supplier photo cleanup.",
+      "intent_strength": "medium",
+      "drafted_reply": "You're tackling image ingestion and enhancement — a challenge we solved for e-commerce product photos. pixelmuse cleans up and upscales supplier images in bulk, with consistent output. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is about building an on-device screenshot-to-music-candidate pipeline for a music tracking app, with no connection to product photo upscaling or e-commerce image processing."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/mhemeryck/goalkeepr/issues/13",
+      "title_or_quote": "Backlog of product and operational ideas",
+      "posted_when": "2026-08-22T21:07:27Z",
+      "why_relevant": "Includes image enhancement as a product priority, indicating active need.",
+      "intent_strength": "medium",
+      "drafted_reply": "You mentioned image enhancement as a key task — our tool pixelmuse automates background cleanup and 4x upscaling for product catalogs, with batch API support. I'm the founder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a GitHub issue backlog for a soccer match-day tracking app (Goalkeepr), with no mention of product photography, image quality, e-commerce, or catalog management."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/Robertuncan/magnificfreepik/issues/3",
+      "title_or_quote": "MagnificFreepik  A Creative Guide to Modern Image Enhancement and Design",
+      "posted_when": "2026-08-23T11:19:11Z",
+      "why_relevant": "Focus on image enhancement aligns with pixelmuse's core functionality.",
+      "intent_strength": "medium",
+      "drafted_reply": "Your project on image enhancement resonates — we're doing similar work for e-commerce with automated cleanup and upscaling. pixelmuse ensures catalog-wide consistency and handles bulk processing. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.05,
+        "why": "The thread is a generic SEO-style GitHub issue promoting a keyword mashup of 'Magnific' and 'Freepik' as a content marketing piece, not a real user struggling with product photo quality or catalog image workflows."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=44823042",
+      "title_or_quote": "Problem: Image generation and enhancement at scale for product visuals",
+      "posted_when": "2025-08-07T11:12:39Z",
+      "why_relevant": "Discusses scaling product image generation, relevant to bulk upscaling needs.",
+      "intent_strength": "medium",
+      "drafted_reply": "Scaling product visuals is tough — we built pixelmuse to clean and upscale supplier photos in bulk, with consistent output via presets. It's designed for e-commerce catalogs. I'm the founder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 6,
+      "platform": "github",
+      "url": "https://github.com/Tikstar-TikTok-Analytics-Tool/Tikstar-TikTok-Analytics-Tool/issues/4",
+      "title_or_quote": "Building Automated Creative Pipelines: How Developers Are Transforming Advertising",
+      "posted_when": "2026-07-31T02:22:25Z",
+      "why_relevant": "Discusses automated creative pipelines, relevant to batch image processing.",
+      "intent_strength": "low",
+      "drafted_reply": "Automating creative workflows is key — pixelmuse helps by turning low-res supplier photos into consistent, catalog-ready images via batch API. I'm the founder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.1,
+        "why": "The thread is a generic editorial/blog post about automated creative pipelines in advertising, not a developer seeking help with a specific product image processing problem that pixelmuse solves."
+      }
+    }
+  ]
+}

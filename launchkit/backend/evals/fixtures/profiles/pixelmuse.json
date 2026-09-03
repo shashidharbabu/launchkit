@@ -1,0 +1,59 @@
+{
+  "one_liner": "AI cleanup and 4x upscaling for product photos, built for e-commerce catalogs and batch workflows.",
+  "description": "pixelmuse takes messy product shots and returns catalog-ready images: background cleanup, lighting correction, and 4x upscaling tuned specifically for product photography rather than portraits or art. A batch API processes whole catalogs overnight, and presets keep an entire store's images visually consistent.",
+  "category": "AI Apps / Image Tools",
+  "target_user": "E-commerce store owners and the agencies that manage their catalogs",
+  "icp": {
+    "who": "Shopify merchants and small e-commerce agencies managing 200-20,000 SKU images",
+    "pain": "Supplier photos arrive low-res and inconsistent, and neither generic AI upscalers nor manual Photoshop passes scale across a catalog",
+    "current_alternatives": [
+      "Topaz Photo AI",
+      "Magnific",
+      "Photoroom",
+      "remove.bg"
+    ],
+    "buying_trigger": "A store redesign, marketplace onboarding, or supplier catalog import that surfaces hundreds of substandard product images at once"
+  },
+  "differentiators": [
+    "Models tuned on product photography — keeps label text and fabric texture crisp instead of painting over them",
+    "Batch API plus CSV workflow for whole-catalog processing, not one-image-at-a-time",
+    "Store-level presets keep every image in a catalog visually consistent"
+  ],
+  "proof_points": [
+    "4x upscale of a 12MP product image in 9 seconds",
+    "38,000 images processed during beta",
+    "Three Shopify agencies use it in their standard listing workflow"
+  ],
+  "tech_stack": [
+    "Python",
+    "PyTorch",
+    "FastAPI",
+    "Next.js"
+  ],
+  "pricing_current": "usage-based ($0.04/image, 50 free credits on signup)",
+  "voice": {
+    "tone": [
+      "playful",
+      "visual",
+      "results-first"
+    ],
+    "sample_phrase": "Supplier photos in, catalog-ready images out."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "Self-serve beta with credit billing live",
+      "Batch API documented but marked beta",
+      "Before/after gallery updated weekly"
+    ]
+  },
+  "gaps": [
+    "No Shopify app store listing yet",
+    "No named customer logos",
+    "API docs lack SDKs"
+  ],
+  "confidence": {
+    "overall": 0.75,
+    "notes": "Speed and volume claims are plausible and demo-backed, but no third-party validation yet."
+  }
+}

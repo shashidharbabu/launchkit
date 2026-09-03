@@ -1,0 +1,176 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Kurude/weekly-project-bot/issues/1",
+        "title_or_quote": "Proposal: flexi-tracker-mvp",
+        "posted_when": "2026-08-16T07:54:08Z",
+        "why_relevant": "Seeks a flexible habit tracker with weekly targets and streak repair.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: Streakly repairs missed days within the week and scores against weekly targets. It's designed to prevent the guilt spiral when life gets busy. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread proposes a flexible, customizable tracking tool for personal data, but does not express frustration with missed days or streak-breaking, which is the core problem Streakly solves."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/elizaOS/eliza/issues/17025",
+        "title_or_quote": "[agent] Add flexible daily quota routines with per-set progress and check-ins",
+        "posted_when": "2026-07-23T11:10:02Z",
+        "why_relevant": "Requests flexible habit tracking with progress repair and weekly check-ins.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: Streakly allows flexible weekly targets and lets you repair missed days by doubling up. It keeps motivation alive even when routines slip. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.2,
+          "why": "The thread discusses implementing flexible daily quota routines in a software development context, not personal habit tracking or streak forgiveness, which are the core features of the app."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/Vaquum/Origo/issues/275",
+        "title_or_quote": "tracker: no-false-green, single-truth, self-heal (a/b/c program)",
+        "posted_when": "2026-07-06T07:41:26Z",
+        "why_relevant": "Asks for a self-healing habit tracker that forgives missed entries.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: Streakly's streak repair feature lets you maintain progress even after missed days. It focuses on consistency over perfection. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread discusses a technical software development issue related to data integrity and system self-healing in a codebase, not personal habit tracking or streak management."
+        }
+      },
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/shadiqaddoura/habit-tracker/issues/10",
+        "title_or_quote": "Streak Protection Features",
+        "posted_when": "2025-04-23T18:42:07Z",
+        "why_relevant": "Explicitly requests streak protection to avoid losing progress.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: Streakly lets you repair a missed day within the week so your streak survives real life. No more starting over. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly requests 'streak protection features' that forgive missed days and reduce the punitive nature of habit tracking, which directly aligns with the app's core functionality of repairing missed days and using weekly targets instead of daily streaks."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/zincplusplus/habit-tracker/issues/85",
+        "title_or_quote": "Feature Request: Allows Habits to be Organized into Hierarchy (Sub-Habits)",
+        "posted_when": "2026-04-11T04:58:40Z",
+        "why_relevant": "Discusses habit tracking structure and motivation after missed days.",
+        "intent_strength": "low",
+        "drafted_reply": "I built a tool for exactly this: Streakly focuses on sustainable habits by letting you repair missed days within the week. It keeps you going even when life interrupts. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread is focused on a feature request for hierarchical habit organization with sub-habits, which is unrelated to Streakly's core functionality of forgiving missed days and repairing streaks within weekly targets."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a habit tracker that forgives missed days",
+      "alternative to Habitica or Streaks for forgiving habits",
+      "struggling with daily guilt in habit tracking apps",
+      "habit tracker",
+      "missed streak",
+      "streak repair",
+      "habit tracker missed day repair is:issue is:open",
+      "habit tracker flexible streak is:issue is:open",
+      "habit tracker weekly target is:issue is:open"
+    ],
+    "coverage_notes": "Reddit and StackOverflow queries returned no relevant results; focused on GitHub and HN. HN results were filtered by freshness.",
+    "confidence": {
+      "overall": 0.7,
+      "notes": "Strong GitHub signals match core mechanic. Reddit and StackOverflow returned no relevant results. HN had outdated threads."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/shadiqaddoura/habit-tracker/issues/10",
+      "title_or_quote": "Streak Protection Features",
+      "posted_when": "2025-04-23T18:42:07Z",
+      "why_relevant": "Explicitly requests streak protection to avoid losing progress.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: Streakly lets you repair a missed day within the week so your streak survives real life. No more starting over. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly requests 'streak protection features' that forgive missed days and reduce the punitive nature of habit tracking, which directly aligns with the app's core functionality of repairing missed days and using weekly targets instead of daily streaks."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Kurude/weekly-project-bot/issues/1",
+      "title_or_quote": "Proposal: flexi-tracker-mvp",
+      "posted_when": "2026-08-16T07:54:08Z",
+      "why_relevant": "Seeks a flexible habit tracker with weekly targets and streak repair.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: Streakly repairs missed days within the week and scores against weekly targets. It's designed to prevent the guilt spiral when life gets busy. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread proposes a flexible, customizable tracking tool for personal data, but does not express frustration with missed days or streak-breaking, which is the core problem Streakly solves."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/elizaOS/eliza/issues/17025",
+      "title_or_quote": "[agent] Add flexible daily quota routines with per-set progress and check-ins",
+      "posted_when": "2026-07-23T11:10:02Z",
+      "why_relevant": "Requests flexible habit tracking with progress repair and weekly check-ins.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: Streakly allows flexible weekly targets and lets you repair missed days by doubling up. It keeps motivation alive even when routines slip. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.2,
+        "why": "The thread discusses implementing flexible daily quota routines in a software development context, not personal habit tracking or streak forgiveness, which are the core features of the app."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/Vaquum/Origo/issues/275",
+      "title_or_quote": "tracker: no-false-green, single-truth, self-heal (a/b/c program)",
+      "posted_when": "2026-07-06T07:41:26Z",
+      "why_relevant": "Asks for a self-healing habit tracker that forgives missed entries.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: Streakly's streak repair feature lets you maintain progress even after missed days. It focuses on consistency over perfection. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread discusses a technical software development issue related to data integrity and system self-healing in a codebase, not personal habit tracking or streak management."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/zincplusplus/habit-tracker/issues/85",
+      "title_or_quote": "Feature Request: Allows Habits to be Organized into Hierarchy (Sub-Habits)",
+      "posted_when": "2026-04-11T04:58:40Z",
+      "why_relevant": "Discusses habit tracking structure and motivation after missed days.",
+      "intent_strength": "low",
+      "drafted_reply": "I built a tool for exactly this: Streakly focuses on sustainable habits by letting you repair missed days within the week. It keeps you going even when life interrupts. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread is focused on a feature request for hierarchical habit organization with sub-habits, which is unrelated to Streakly's core functionality of forgiving missed days and repairing streaks within weekly targets."
+      }
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "output": {
+    "brand_name": "Raycast",
+    "tagline_observed": "Your shortcut to everything",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "terse",
+        "confident",
+        "witty",
+        "technical"
+      ],
+      "sentence_style": "Short declaratives and fragments, second person, imperative mood, no filler — often a single punchy clause",
+      "vocabulary": [
+        "shortcut",
+        "launcher",
+        "ergonomic",
+        "keyboard-first",
+        "extensions",
+        "snippets",
+        "quicklinks",
+        "productivity layer",
+        "extendable",
+        "crash-free"
+      ],
+      "avoid": [
+        "long explanatory paragraphs",
+        "passive voice",
+        "feature-list prose",
+        "corporate mission statements",
+        "emotional appeals",
+        "exclamation-heavy hype"
+      ],
+      "evidence_quotes": [
+        "It's not about saving time. It's about feeling like you're never wasting it.",
+        "Take shortcuts, not detours",
+        "Stop playing Clipboard ping pong",
+        "We write stuff from time to time that might be interesting 🤷"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "One keyboard-first interface that replaces dozens of scattered tools",
+        "Millisecond-fast and reliable — 99.8% crash-free",
+        "Extensible by design — thousands of community extensions, build your own",
+        "Free for personal use; Pro unlocks AI, Cloud Sync, and advanced features"
+      ],
+      "key_messages": [
+        "Your shortcut to everything",
+        "One interface, everything you need",
+        "Fast. Think in milliseconds. Ergonomic. Keyboard First. Personal. Your tools, your way. Reliable. 99.8% crash-free rate.",
+        "We think of Raycast as a productivity layer that everybody should use to get work done faster.",
+        "There's an extension for that."
+      ],
+      "proof_points_observed": [
+        "99.8% crash-free rate",
+        "Thousands of extensions",
+        "$30M Series B to bring Raycast to new platforms",
+        "SOC2 Type II Compliant",
+        "Free for personal use — no charge for the individual plan"
+      ]
+    },
+    "visual": {
+      "colors": [],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links were observed in the scraped content."
+      },
+      "imagery_style": "screenshots",
+      "logo_url": ""
+    },
+    "audience_language": "Talks directly to keyboard-savvy power users in second person with terse imperatives, assuming they already know what a launcher is and want speed, not explanation.",
+    "dos_and_donts": {
+      "do": [
+        "Use short, punchy declaratives and fragments",
+        "Address the reader as 'you' and make it personal ('your tools, your way')",
+        "Lead with the feeling or outcome, not the feature list",
+        "Use dry wit sparingly to signal self-awareness",
+        "Ground claims in specifics (crash-free rate, extension count)"
+      ],
+      "dont": [
+        "Write long explanatory paragraphs or feature-dump prose",
+        "Use passive voice or corporate hedging language",
+        "Over-explain what a keyboard launcher is",
+        "Use exclamation-point hype or breathless enthusiasm",
+        "Invent emotional narratives — let the product speak through concrete outcomes"
+      ]
+    },
+    "sources_read": [
+      "https://www.raycast.com",
+      "https://www.raycast.com/pricing",
+      "https://www.raycast.com/blog"
+    ],
+    "confidence": {
+      "overall": 0.72,
+      "notes": "Colors: scrape returned markdown without inline styles or CSS variables — no hex/rgb values could be observed; colors array is empty. Typography: no font-family declarations or CDN font links observed in markdown output. Logo URL: only a favicon was present in metadata; no <img> or SVG logo URL appeared in scraped content. Visual section is therefore largely unobserved. Voice and messaging confidence is high — multiple verbatim quotes captured across three pages."
+    }
+  }
+}

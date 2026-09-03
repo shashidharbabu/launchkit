@@ -1,0 +1,15 @@
+{
+  "output": {
+    "post": "Renders a 10,000-line git diff in 38ms — an order of magnitude faster than existing pagers. termdiff gives you side-by-side, word-level highlighting in your terminal with zero config. Ships as a single static binary, drops into your existing git aliases. {APP_URL} #git #diff",
+    "thread_extension": [
+      "Most fancy diff tools slow down or misalign on large diffs. termdiff uses Rust + tree-sitter to parse and render precisely — even in monorepos.",
+      "It doesn’t replace your workflow. Set core.pager=termdiff and keep using 'git diff', 'git log -p', or your aliases. No config needed.",
+      "4,200+ engineers use it. It’s in Homebrew core and Terminal Trove. MIT licensed, open source, and built for maintainers who review diffs all day."
+    ],
+    "alt_variants": [
+      "Default git diff output is unreadable for large changes. termdiff renders 10k-line diffs in 38ms with true side-by-side, word-level highlighting. {APP_URL}",
+      "Your diffs, side by side, in 38 milliseconds. termdiff is a zero-config, static binary that works with your existing git setup. {APP_URL}"
+    ],
+    "warnings": []
+  }
+}

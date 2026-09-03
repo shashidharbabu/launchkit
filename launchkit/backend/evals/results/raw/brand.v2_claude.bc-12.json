@@ -1,0 +1,169 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Repair, Don't Quit",
+        "objective": "awareness — reach people at the exact moment they delete a habit app after a missed day",
+        "big_idea": "Target the guilt spiral in real time. Post relatable 'I just broke my streak' content on Reddit and X that names the feeling, then introduces streak repair as the alternative to quitting. The mechanic is empathy-first storytelling, not a product pitch.",
+        "channels": [
+          "Reddit (r/selfimprovement, r/habits, r/getdisciplined)",
+          "X/Twitter"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "x_post"
+        ],
+        "hook": "You missed one day. Now the app feels like evidence of failure. What if it didn't?",
+        "sample_copy": {
+          "headline": "Missed a day? Repair it. Your streak survives real life.",
+          "body": "Most habit apps treat one missed day like a reset button. Streakly doesn't. Double up within the week and your chain stays alive. Weekly wins, not daily guilt. We built streak repair as the core mechanic — not a paid add-on — because that's what behavior-change research actually supports. 41% of our beta users are still tracking at day 30.",
+          "cta": "Join the TestFlight beta — free while we're building."
+        },
+        "assets_needed": [
+          "Reddit post written in first-person builder voice sharing the 'why' behind streak repair",
+          "3-5 X posts capturing the guilt-spiral moment with a warm, non-preachy reframe",
+          "A short reply template for comments that ask 'how does repair work?'"
+        ],
+        "effort": "small",
+        "success_metric": "Number of TestFlight sign-ups attributed to Reddit/X referral links in the first two weeks",
+        "why_on_brand": "Directly mirrors the DNA's key message 'Missed a day? Repair it' and the warm, empathy-first voice that avoids shame mechanics."
+      },
+      {
+        "name": "Fresh Start Launch",
+        "objective": "signups — capture the new-year / new-month fresh-start moment when the ICP is most motivated to try again",
+        "big_idea": "Launch on Product Hunt timed to a natural reset moment (January 1, first Monday of a month, post-holiday). The listing leans into the 'comeback' framing — Streakly is for people who've already tried and quit, not first-timers. This positions it as the wiser, kinder choice.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "For everyone who deleted their last habit app the day they missed a day.",
+        "sample_copy": {
+          "headline": "Streakly — Habits that survive real life.",
+          "body": "You've tried the streak apps. One bad day and the whole thing collapses. Streakly works differently: miss a day, make it up within the week, your streak lives on. Weekly targets instead of unbroken daily chains. Private by default — no social feed, no leaderboards. 4.8 stars from 96 TestFlight reviewers who've been there before.",
+          "cta": "Grab the free beta on TestFlight — App Store listing coming soon."
+        },
+        "assets_needed": [
+          "Product Hunt listing copy and tagline",
+          "Product Hunt gallery screenshots showing streak repair UI and weekly view",
+          "A maker comment written in warm first-person voice explaining the origin story",
+          "A short video or GIF showing the repair mechanic in action"
+        ],
+        "effort": "medium",
+        "success_metric": "Product Hunt upvotes and TestFlight installs on launch day",
+        "why_on_brand": "Targets the ICP's 'buying trigger' (fresh-start moment) and uses proof points the DNA explicitly observed — 4.8 stars, 96 reviews — without inventing anything."
+      },
+      {
+        "name": "Show HN: The Forgiving Tracker",
+        "objective": "awareness — reach technically curious early adopters on Hacker News who appreciate honest builder stories",
+        "big_idea": "Post a Show HN that leads with the behavioral insight, not the app. Explain why unbroken streaks are a flawed mechanic, what the research says, and how streak repair changes the retention curve. Let the idea earn the interest; the app is the proof.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: I built a habit tracker that lets you repair a missed day — because the streak was never the point.",
+        "sample_copy": {
+          "headline": "Show HN: Streakly — habit tracking built around weekly targets, not unbroken chains",
+          "body": "Most habit apps collapse the moment you miss a day. The streak breaks, motivation evaporates, the app gets deleted. I wanted to test whether weekly-target scoring — where you can make up a missed day within the week — changes that. 41% of our 800-person TestFlight cohort is still tracking at day 30. Everything stays on-device. No accounts, no social feed. Happy to talk through the mechanic or the SwiftUI architecture.",
+          "cta": "TestFlight link in comments — free during beta."
+        },
+        "assets_needed": [
+          "Show HN post draft with honest builder narrative",
+          "A short written explanation of the weekly-target scoring mechanic for the comments",
+          "Prepared answers to likely HN questions (privacy model, CloudKit sync, monetization plan)"
+        ],
+        "effort": "small",
+        "success_metric": "HN points and number of TestFlight installs from the HN referral link within 48 hours",
+        "why_on_brand": "Matches the DNA's direct, evidence-grounded voice and the proof point '41% still tracking at day 30' without overstating claims."
+      },
+      {
+        "name": "The Comeback Letter",
+        "objective": "signups — build an email list of people who've quit habit apps before, priming them for the App Store launch",
+        "big_idea": "Write a short, personal newsletter pitch to productivity and self-improvement newsletters whose readers match the ICP. The angle is a relatable essay: 'Why I kept quitting habit apps (and what I built instead).' It reads like a letter, not an ad, and ends with a gentle nudge to join the waitlist.",
+        "channels": [
+          "Newsletter sponsorships / guest essays (productivity, self-improvement niche)"
+        ],
+        "asset_types": [
+          "newsletter_pitch"
+        ],
+        "hook": "I deleted four habit apps in two years. Then I built a different one.",
+        "sample_copy": {
+          "headline": "The habit app that lets you miss a day",
+          "body": "Every January I'd pick a new tracker. Every February I'd miss one day, feel the guilt, and quietly delete it. The streak was the motivation — and the streak was the trap. Streakly works on weekly targets instead. Miss Monday? Make it up by Sunday. Your streak survives. It's private, on-device, and free during beta. 4.8 stars from the people who've tested it so far.",
+          "cta": "Join the TestFlight beta or get on the waitlist for the App Store launch."
+        },
+        "assets_needed": [
+          "500-word essay draft in warm first-person voice for newsletter editors",
+          "A one-paragraph pitch email to send to newsletter owners",
+          "Waitlist landing page or TestFlight link to include as the CTA"
+        ],
+        "effort": "medium",
+        "success_metric": "Waitlist email sign-ups or TestFlight installs from newsletter referral links",
+        "why_on_brand": "Uses the 'comeback' and 'fresh start' vocabulary from the DNA and speaks directly to the ICP's lived experience without shame or pressure."
+      },
+      {
+        "name": "Weekly Win Thread",
+        "objective": "community — build an engaged audience of beta users who share small wins, generating authentic social proof before the App Store launch",
+        "big_idea": "Run a weekly 'What's your win this week?' thread on Reddit or X. Invite beta users to share one habit they kept — or repaired — that week. No leaderboards, no competition. Just a gentle nudge to notice progress. The builder participates too, keeping it human.",
+        "channels": [
+          "Reddit (r/streakly or r/selfimprovement)",
+          "X/Twitter"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "x_post"
+        ],
+        "hook": "What's one habit you kept this week — or came back to?",
+        "sample_copy": {
+          "headline": "Weekly wins thread — no streaks required to join",
+          "body": "No judgment if last week was rough. This is just a place to notice what you did do. Drop your win — big or tiny — and give someone else's a thumbs up. Streakly beta users, newcomers, everyone welcome. Weekly targets, not daily guilt — that goes for this thread too.",
+          "cta": "Share your win below. And if you want to track it properly, the TestFlight beta is open."
+        },
+        "assets_needed": [
+          "Weekly thread template (copy that can be reused each week with minor tweaks)",
+          "A pinned comment explaining Streakly's weekly-target mechanic for newcomers",
+          "A simple graphic or emoji header to make the thread recognizable week to week"
+        ],
+        "effort": "small",
+        "success_metric": "Number of replies per thread and growth in thread participation week over week",
+        "why_on_brand": "Embodies 'no social feed, no leaderboards' while still building community — consistent with the DNA's private-by-default value and warm, non-competitive voice."
+      },
+      {
+        "name": "Repair in 60 Seconds",
+        "objective": "awareness — show, don't tell, how streak repair works for people who've never seen the mechanic",
+        "big_idea": "A short screen-recorded video (under 60 seconds) that walks through a single realistic scenario: user misses Wednesday, doubles up Thursday, streak survives. No voiceover script needed — on-screen captions in brand voice carry the story. Post natively to X and as a Reddit video post.",
+        "channels": [
+          "X/Twitter",
+          "Reddit"
+        ],
+        "asset_types": [
+          "video_script",
+          "x_post",
+          "reddit_post"
+        ],
+        "hook": "Missed Wednesday. Made it up Thursday. Streak still alive. Here's how.",
+        "sample_copy": {
+          "headline": "Your streak can survive a missed day. Watch.",
+          "body": "This is streak repair. Miss a day, make it up within the week, your chain stays intact. Weekly wins, not daily guilt. No accounts, no leaderboards — just you and your habits. Streakly is free on TestFlight right now.",
+          "cta": "TestFlight link in bio — join the beta."
+        },
+        "assets_needed": [
+          "60-second screen recording of the streak repair flow on a real device",
+          "On-screen caption script in brand voice (warm, short sentences, one emoji max)",
+          "Vertical crop for X and a square crop for Reddit",
+          "A written post to accompany each video on its platform"
+        ],
+        "effort": "medium",
+        "success_metric": "Video views and click-throughs to the TestFlight link within the first week of posting",
+        "why_on_brand": "Shows the core differentiator in action using the exact vocabulary ('streak repair', 'weekly wins') from the DNA, in a format that respects the ICP's short attention span."
+      }
+    ],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "All proof points used are from BRAND_DNA or APP_PROFILE. No Android channel campaigns included — gap noted in APP_PROFILE. Retention stats are self-reported from a single cohort per APP_PROFILE confidence notes; campaigns cite them accurately without amplifying them. No website beyond a one-page waitlist exists, so web-traffic campaigns were excluded."
+    }
+  }
+}

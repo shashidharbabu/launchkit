@@ -1,0 +1,59 @@
+{
+  "one_liner": "Shopify upsells driven by what's actually in the cart — no popups, no theme edits, +9.4% AOV on average.",
+  "description": "cartnudge adds in-cart and post-purchase upsell offers to Shopify stores based on basket contents and store history, rendered natively inside the cart instead of as interruptive popups. Install is one click with no theme code changes, offers are generated automatically from order data, and a flat monthly price replaces the revenue-share pricing common in the category.",
+  "category": "Niche SaaS / E-commerce Plugin",
+  "target_user": "Shopify merchants doing 100+ orders a month",
+  "icp": {
+    "who": "Owners and marketers of Shopify stores between $10k and $500k monthly revenue",
+    "pain": "Upsell apps either spam customers with popups that hurt conversion or demand a percentage of upsell revenue that scales painfully",
+    "current_alternatives": [
+      "ReConvert",
+      "AfterSell",
+      "Rebuy",
+      "Zipify OneClickUpsell"
+    ],
+    "buying_trigger": "AOV flatlining while ad costs rise, making on-site revenue expansion the obvious next lever"
+  },
+  "differentiators": [
+    "Offers render natively in the cart — no popups, no conversion-killing interruptions",
+    "Basket-aware offer selection generated from the store's own order history",
+    "Flat $19/month — no revenue share, no per-order fees"
+  ],
+  "proof_points": [
+    "Average +9.4% AOV across 60 pilot stores",
+    "5.0-star rating from the first 22 Shopify App Store reviews",
+    "One-click install with zero theme edits, confirmed in reviews"
+  ],
+  "tech_stack": [
+    "Ruby on Rails",
+    "Shopify App Bridge",
+    "PostgreSQL",
+    "React"
+  ],
+  "pricing_current": "$19/month flat with a 14-day free trial",
+  "voice": {
+    "tone": [
+      "merchant-friendly",
+      "ROI-focused",
+      "straight-talking"
+    ],
+    "sample_phrase": "Bigger carts without a single popup."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Live on the Shopify App Store",
+      "Public review count growing weekly",
+      "Pilot cohort metrics published"
+    ]
+  },
+  "gaps": [
+    "Shopify-only, no WooCommerce or BigCommerce",
+    "No A/B testing of offers yet",
+    "Small review base"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "App Store presence and reviews are public. AOV lift is from the vendor's pilot cohort."
+  }
+}

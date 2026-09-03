@@ -1,0 +1,87 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/DataTalksClub/course-management-platform/issues/214",
+        "title_or_quote": "Plan monitoring and observability for course management platform",
+        "posted_when": "2026-07-05T09:35:15Z",
+        "why_relevant": "Team planning monitoring setup for a production service, matches ICP.",
+        "intent_strength": "high",
+        "drafted_reply": "For uptime monitoring with Terraform support, consider PingDeck. It offers a full API and official Terraform provider from day one, so you can manage monitors as code. I built it for exactly this — avoiding click-ops while keeping costs low for small teams. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.9,
+          "why": "The thread explicitly seeks monitoring solutions for application health, uptime, and release observability, which aligns directly with PingDeck's API-first uptime monitoring and status page capabilities for small teams."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/kiwix/operations/issues/523",
+        "title_or_quote": "Migrate from Uptime Robot to Upptime",
+        "posted_when": "2025-12-16T10:36:50Z",
+        "why_relevant": "Explicitly seeking alternative to UptimeRobot, core ICP pain point.",
+        "intent_strength": "high",
+        "drafted_reply": "Since you're looking to move from Uptime Robot to something more code-driven, PingDeck might help. It has a full REST API and official Terraform provider, so monitors live in code. I built it for small teams tired of click-ops. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread author is actively migrating from UptimeRobot to Upptime, a GitHub Actions-based open-source alternative, and values its code-in-repo, issue-based alerting, and free/libre nature, which contrasts with PingDeck's API-first but proprietary model."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that supports uptime monitoring with Terraform integrati...",
+      "struggling with click-ops uptime monitoring for small team",
+      "site:reddit.com \"alternative to UptimeRobot\" for small teams",
+      "site:reddit.com \"tired of managing uptime monitors by hand\"",
+      "site:reddit.com/r/selfhosted uptime monitoring Terraform",
+      "site:reddit.com/r/devops alternative to UptimeRobot small team",
+      "site:reddit.com/r/sysadmin struggling with manual uptime checks",
+      "site:reddit.com/r/homelab monitoring without click-ops",
+      "uptime monitoring status page terraform",
+      "uptime monitoring terraform api"
+    ],
+    "coverage_notes": "No Reddit or HN results; StackOverflow returned empty. Rate limiting affected one GitHub call. HN not searched due to budget exhaustion.",
+    "confidence": {
+      "overall": 0.65,
+      "notes": "Signals are relevant but limited in number. PASS D provided the only valid results. Missed HN and Reddit due to zero results and rate limits."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/DataTalksClub/course-management-platform/issues/214",
+      "title_or_quote": "Plan monitoring and observability for course management platform",
+      "posted_when": "2026-07-05T09:35:15Z",
+      "why_relevant": "Team planning monitoring setup for a production service, matches ICP.",
+      "intent_strength": "high",
+      "drafted_reply": "For uptime monitoring with Terraform support, consider PingDeck. It offers a full API and official Terraform provider from day one, so you can manage monitors as code. I built it for exactly this — avoiding click-ops while keeping costs low for small teams. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.9,
+        "why": "The thread explicitly seeks monitoring solutions for application health, uptime, and release observability, which aligns directly with PingDeck's API-first uptime monitoring and status page capabilities for small teams."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/kiwix/operations/issues/523",
+      "title_or_quote": "Migrate from Uptime Robot to Upptime",
+      "posted_when": "2025-12-16T10:36:50Z",
+      "why_relevant": "Explicitly seeking alternative to UptimeRobot, core ICP pain point.",
+      "intent_strength": "high",
+      "drafted_reply": "Since you're looking to move from Uptime Robot to something more code-driven, PingDeck might help. It has a full REST API and official Terraform provider, so monitors live in code. I built it for small teams tired of click-ops. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread author is actively migrating from UptimeRobot to Upptime, a GitHub Actions-based open-source alternative, and values its code-in-repo, issue-based alerting, and free/libre nature, which contrasts with PingDeck's API-first but proprietary model."
+      }
+    }
+  ]
+}

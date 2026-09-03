@@ -1,0 +1,91 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/galaxyproject/brc-analytics/issues/1192",
+        "title_or_quote": "Epic: Introduce a Database Backing the Catalog Pipeline",
+        "posted_when": "2026-03-12T23:16:55Z",
+        "why_relevant": "User discusses building a data pipeline in their VPC, aligning with pipewright's self-hosted, flat-rate model.",
+        "intent_strength": "high",
+        "drafted_reply": "Building a data pipeline inside your infrastructure is a solid approach for control and cost predictability. Pipewright offers a flat-rate, self-hosted ELT solution with 60+ connectors that runs in your VPC and defines pipelines as Python code. I'm the builder and would love to hear how your implementation is going.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.08,
+          "why": "The thread is about redesigning an internal bioinformatics catalog pipeline to use a database backend for complex biological entity relationships, not about ELT connectors or SaaS-to-warehouse data movement."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "forum",
+        "url": "https://stackoverflow.com/questions/66151919/apache-beam-python-sdk-readfromkafk...",
+        "title_or_quote": "Apache Beam Python SDK ReadFromKafka does not receive data",
+        "posted_when": "2021-02-09T00:03:38Z",
+        "why_relevant": "User is working with Python-based data pipelines, relevant to pipewright's Python-defined ELT approach.",
+        "intent_strength": "medium",
+        "drafted_reply": "When dealing with Python-based data pipelines, ensuring reliable ingestion is key. Pipewright simplifies this by offering version-controlled, testable pipelines as Python code with 60+ built-in connectors. It runs in your VPC and avoids per-row costs. I'm the builder and happy to help if you're exploring alternatives.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.98,
+          "why": "The thread is about a specific Apache Beam Python SDK bug with ReadFromKafka and the Flink runner's handling of unbounded Splittable DoFns — entirely unrelated to ELT pipelines, data warehousing, or connector pricing."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "alternative to Fivetran no per row pricing",
+      "struggling with Airbyte maintenance",
+      "does anyone know a tool like Fivetran but flat rate site:reddit.com",
+      "tired of babysitting Airbyte syncs site:reddit.com",
+      "ELT tool without MAR pricing",
+      "site:reddit.com/r/dataengineering struggling with Airbyte maintenance",
+      "site:reddit.com/r/Python self-hosted ELT flat rate",
+      "site:reddit.com/r/snowflake data pipeline as code Python",
+      "site:reddit.com/r/BusinessIntelligence alternative to Fivetran no per row pricin...",
+      "data pipeline Python self-hosted is:issue is:open",
+      "self-hosted ELT flat rate is:issue is:open",
+      "data pipeline as code Python is:issue is:open",
+      "ELT tool flat rate is:issue is:open",
+      "alternative to Fivetran flat pricing is:issue is:open",
+      "Apache Beam Python SDK ReadFromKafka does not receive data"
+    ],
+    "coverage_notes": "No relevant HN or additional Reddit results found; focused on GitHub and StackOverflow for active, replyable threads.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Limited high-intent signals found; reliance on GitHub and StackOverflow due to lack of Reddit and HN activity."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/galaxyproject/brc-analytics/issues/1192",
+      "title_or_quote": "Epic: Introduce a Database Backing the Catalog Pipeline",
+      "posted_when": "2026-03-12T23:16:55Z",
+      "why_relevant": "User discusses building a data pipeline in their VPC, aligning with pipewright's self-hosted, flat-rate model.",
+      "intent_strength": "high",
+      "drafted_reply": "Building a data pipeline inside your infrastructure is a solid approach for control and cost predictability. Pipewright offers a flat-rate, self-hosted ELT solution with 60+ connectors that runs in your VPC and defines pipelines as Python code. I'm the builder and would love to hear how your implementation is going.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.08,
+        "why": "The thread is about redesigning an internal bioinformatics catalog pipeline to use a database backend for complex biological entity relationships, not about ELT connectors or SaaS-to-warehouse data movement."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "forum",
+      "url": "https://stackoverflow.com/questions/66151919/apache-beam-python-sdk-readfromkafk...",
+      "title_or_quote": "Apache Beam Python SDK ReadFromKafka does not receive data",
+      "posted_when": "2021-02-09T00:03:38Z",
+      "why_relevant": "User is working with Python-based data pipelines, relevant to pipewright's Python-defined ELT approach.",
+      "intent_strength": "medium",
+      "drafted_reply": "When dealing with Python-based data pipelines, ensuring reliable ingestion is key. Pipewright simplifies this by offering version-controlled, testable pipelines as Python code with 60+ built-in connectors. It runs in your VPC and avoids per-row costs. I'm the builder and happy to help if you're exploring alternatives.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.98,
+        "why": "The thread is about a specific Apache Beam Python SDK bug with ReadFromKafka and the Flink runner's handling of unbounded Splittable DoFns — entirely unrelated to ELT pipelines, data warehousing, or connector pricing."
+      }
+    }
+  ]
+}

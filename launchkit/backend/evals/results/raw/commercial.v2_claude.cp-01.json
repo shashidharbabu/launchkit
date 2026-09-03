@@ -1,0 +1,251 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Mixpanel",
+        "url": "https://mixpanel.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 7 independent results incl. G2 product analytics category and 4 comparison lists",
+        "mentions": 7,
+        "pricing_model": "freemium + usage-based",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "1M events, 10K session replays, unlimited seats"
+          },
+          {
+            "name": "Growth",
+            "price": "starts $0",
+            "period": "month",
+            "key_limits": "up to 20M events, usage-based overage"
+          },
+          {
+            "name": "Enterprise",
+            "price": "custom",
+            "period": "month",
+            "key_limits": "up to 1T events, dedicated support"
+          }
+        ],
+        "source_url": "https://mixpanel.com/pricing"
+      },
+      {
+        "name": "Amplitude",
+        "url": "https://amplitude.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 7 independent results incl. G2 product analytics and multiple SaaS comparison posts",
+        "mentions": 7,
+        "pricing_model": "freemium + usage-based",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "2M events, 10K session replays, limited experiments"
+          },
+          {
+            "name": "Plus",
+            "price": "starts $0",
+            "period": "month",
+            "key_limits": "up to 70M events, credit card required"
+          },
+          {
+            "name": "Growth",
+            "price": "custom",
+            "period": "month",
+            "key_limits": "advanced exploration, SSO, 20K replays"
+          }
+        ],
+        "source_url": "https://amplitude.com/pricing"
+      },
+      {
+        "name": "PostHog",
+        "url": "https://posthog.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 7 independent results incl. G2 and AlternativeTo; 600K+ companies self-reported",
+        "mentions": 7,
+        "pricing_model": "freemium + pay-as-you-go",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "1M events, 5K replays, 1M feature flag requests"
+          },
+          {
+            "name": "Pay-as-you-go",
+            "price": "usage-based",
+            "period": "month",
+            "key_limits": "unlimited usage, 6 projects, 7yr retention"
+          },
+          {
+            "name": "Enterprise",
+            "price": "custom",
+            "period": "month",
+            "key_limits": "volume discounts, annual plans, SSO"
+          }
+        ],
+        "source_url": "https://posthog.com/pricing"
+      },
+      {
+        "name": "Heap",
+        "url": "https://www.heap.io",
+        "notability": "established",
+        "evidence_of_standing": "Named in 6 independent results incl. G2 product analytics category listing",
+        "mentions": 6,
+        "pricing_model": "freemium + custom",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "up to 10K monthly sessions, 6mo data history"
+          },
+          {
+            "name": "Growth",
+            "price": "custom",
+            "period": "month",
+            "key_limits": "unlimited users, 12mo history, AI assistant"
+          },
+          {
+            "name": "Pro",
+            "price": "custom",
+            "period": "month",
+            "key_limits": "account analytics, session replay add-on"
+          }
+        ],
+        "source_url": "https://www.heap.io/pricing"
+      },
+      {
+        "name": "Google Analytics 4",
+        "url": "https://analytics.google.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 3 independent results; universally recognised default analytics tool",
+        "mentions": 3,
+        "pricing_model": "free (Google product)",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "unlimited events, no EU-only residency, no funnel focus"
+          }
+        ],
+        "source_url": "https://marketingplatform.google.com/about/analytics/"
+      },
+      {
+        "name": "Pendo",
+        "url": "https://www.pendo.io",
+        "notability": "emerging",
+        "evidence_of_standing": "Named in 2 independent results incl. G2 product analytics category",
+        "mentions": 2,
+        "pricing_model": "freemium + custom",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "up to 500 MAU, basic analytics"
+          },
+          {
+            "name": "Growth",
+            "price": "custom",
+            "period": "month",
+            "key_limits": "custom MAU, in-app guides, NPS"
+          }
+        ],
+        "source_url": "https://www.pendo.io/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "valueaddvc.com blog",
+        "url": "https://valueaddvc.com/blog/best-product-analytics-for-startups-2026-amplitude-mixpanel",
+        "why": "Listicle comparison page, not a product"
+      },
+      {
+        "name": "PostHog blog comparison post",
+        "url": "https://posthog.com/blog/best-product-analytics-tools-for-startups",
+        "why": "Vendor-controlled blog post, not independent evidence"
+      },
+      {
+        "name": "G2 Learn article",
+        "url": "https://learn.g2.com/best-product-analytics-software",
+        "why": "Review aggregator article, not a product"
+      },
+      {
+        "name": "G2 category page",
+        "url": "https://www.g2.com/categories/product-analytics",
+        "why": "Aggregator category page, not a product"
+      },
+      {
+        "name": "Statsig",
+        "url": "https://statsig.com",
+        "why": "Only 1 independent mention; niche, not recognisable to target buyer"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium + flat subscription",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Solo founders evaluating or in early beta",
+          "includes": [
+            "50K events/month",
+            "Auto-capture snippet",
+            "Up to 3 funnels",
+            "EU data residency",
+            "Community support"
+          ],
+          "rationale": "Matches current free tier; lower than Mixpanel/PostHog free but sufficient for pre-launch validation"
+        },
+        {
+          "name": "Starter",
+          "price_usd_month": 29,
+          "who_its_for": "Small SaaS teams post-launch tracking activation",
+          "includes": [
+            "500K events/month",
+            "Unlimited funnels",
+            "EU data residency + signed DPA",
+            "Email support",
+            "6-month data retention"
+          ],
+          "rationale": "Anchors to PostHog pay-as-you-go entry cost; $29 is credible for focused EU funnel tool"
+        },
+        {
+          "name": "Growth",
+          "price_usd_month": 79,
+          "who_its_for": "Teams scaling past 500K events or needing longer retention",
+          "includes": [
+            "5M events/month",
+            "12-month data retention",
+            "Priority support",
+            "CSV export",
+            "Team seats"
+          ],
+          "rationale": "Mixpanel Growth scales to hundreds per month at volume; $79 is a fair ceiling for pre-Series-A teams"
+        }
+      ],
+      "anchor_competitors": [
+        "Mixpanel",
+        "PostHog"
+      ],
+      "positioning_note": "Price below Mixpanel Growth but above free; EU residency default justifies premium over PostHog free tier.",
+      "risks": [
+        "50K free event limit is 20x lower than Mixpanel/Amplitude free tiers — may deter trial",
+        "€29 (~$32) feels right but beta waiver means real willingness-to-pay is untested",
+        "No data export yet weakens Growth tier value proposition against PostHog"
+      ]
+    },
+    "search_queries_used": [
+      "best product analytics tools for SaaS startups comparison",
+      "site:g2.com product analytics software"
+    ],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "4 established competitors confirmed across 7+ independent sources each; pricing scraped from Mixpanel, Amplitude, PostHog, Heap own domains. Mixpanel scrape returned full page content confirming tiers. GA4 pricing is publicly known as free. Pendo pricing page not scraped within budget — tiers are approximate from prior knowledge, not scraped. Recommendation anchored only to established competitors."
+    }
+  }
+}

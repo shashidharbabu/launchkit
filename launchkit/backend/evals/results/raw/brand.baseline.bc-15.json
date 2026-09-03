@@ -1,0 +1,120 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Git-First Publishing",
+        "objective": "signups — drive developers to sign up by highlighting frictionless, code-friendly publishing",
+        "big_idea": "Position lettercraft as the only newsletter tool that truly respects a developer's workflow. Emphasize writing in Markdown, versioning with Git, and pushing to publish — no more copy-paste fights with clunky editors.",
+        "channels": [
+          "Show HN",
+          "Reddit",
+          "Twitter"
+        ],
+        "asset_types": [
+          "show_hn",
+          "reddit_post",
+          "x_post"
+        ],
+        "hook": "Write your newsletter like you write your code.",
+        "sample_copy": {
+          "headline": "Your newsletter belongs in Git, not a WYSIWYG trap.",
+          "body": "Write in Markdown. Edit in your IDE. Publish with a git push. Syntax-highlighted code blocks that actually work in every inbox. No lock-in. Just git clone to leave.",
+          "cta": "Start with a repo, not a signup."
+        },
+        "assets_needed": [
+          "Short demo video of git push to publish",
+          "Screenshot of code block rendering across email clients"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of Show HN upvotes and resulting signups",
+        "why_on_brand": "Uses plainspoken, developer-native tone and anti-lock-in messaging directly from the brand voice and key differentiators."
+      },
+      {
+        "name": "Code Block Confidence",
+        "objective": "awareness — build credibility around flawless code rendering",
+        "big_idea": "Leverage the published 14-client test matrix as proof that lettercraft solves a real pain point. Turn technical validation into a marketing asset.",
+        "channels": [
+          "Twitter",
+          "LinkedIn",
+          "Dev.to"
+        ],
+        "asset_types": [
+          "x_post",
+          "linkedin_post",
+          "newsletter_pitch"
+        ],
+        "hook": "Your code blocks shouldn’t break in Gmail.",
+        "sample_copy": {
+          "headline": "We tested code blocks in 14 email clients so you don’t have to.",
+          "body": "Most platforms fail. We verify. lettercraft renders syntax-highlighted, copyable code in every major email client — and we publish the test matrix so you can trust it.",
+          "cta": "See the test results and try it yourself."
+        },
+        "assets_needed": [
+          "Link to public test matrix",
+          "Side-by-side comparison image (lettercraft vs Substack)"
+        ],
+        "effort": "small",
+        "success_metric": "Clicks on test matrix link",
+        "why_on_brand": "Highlights proof points observed in APP_PROFILE and speaks with technical precision developers trust."
+      },
+      {
+        "name": "Own Your Audience",
+        "objective": "signups — appeal to users tired of platform lock-in",
+        "big_idea": "Frame content and subscriber ownership as a fundamental right. Contrast one-click export and git clone freedom with competitors’ walled gardens.",
+        "channels": [
+          "Twitter",
+          "Product Hunt",
+          "Indie Hackers"
+        ],
+        "asset_types": [
+          "x_post",
+          "producthunt"
+        ],
+        "hook": "What if you actually owned your newsletter?",
+        "sample_copy": {
+          "headline": "Your subscribers aren’t theirs. Your content isn’t theirs. Why is it locked in their platform?",
+          "body": "With lettercraft, your posts are Markdown files in your Git repo. Your list exports in one click. No gatekeepers. No surprise fees. Just your audience, your way.",
+          "cta": "Move your newsletter to Git today."
+        },
+        "assets_needed": [
+          "Animation showing export process",
+          "Testimonial quote from beta user"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of migrations from competitors",
+        "why_on_brand": "Echoes the anti-lock-in stance and developer-native language central to the brand."
+      },
+      {
+        "name": "From Push to Inbox",
+        "objective": "retention — engage existing users by celebrating their workflow",
+        "big_idea": "Celebrate the git push as the moment a developer’s insight goes live. Reinforce that lettercraft is built for their rhythm.",
+        "channels": [
+          "Discord",
+          "Email",
+          "Twitter"
+        ],
+        "asset_types": [
+          "x_post",
+          "video_script"
+        ],
+        "hook": "Another git push. Another issue shipped.",
+        "sample_copy": {
+          "headline": "You pushed. They received. Under 60 seconds.",
+          "body": "No staging. No syncing. No waiting. Your git push triggers delivery. For lists under 10k, median inbox time is under a minute. That’s the lettercraft difference.",
+          "cta": "Ship your next issue with confidence."
+        },
+        "assets_needed": [
+          "Video script showing push-to-inbox flow",
+          "Tweet thread on delivery speed"
+        ],
+        "effort": "medium",
+        "success_metric": "User engagement in Discord after campaign launch",
+        "why_on_brand": "Uses plainspoken tone and focuses on speed and ownership, aligning with core messaging and proof points."
+      }
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "Campaigns are grounded in APP_PROFILE differentiators and proof points, and written in the brand's voice. No invented claims or metrics."
+    }
+  }
+}

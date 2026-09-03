@@ -1,0 +1,60 @@
+{
+  "one_liner": "Docs-grounded support chatbot builder where every answer cites its source or escalates to a human.",
+  "description": "botsmith builds a support chatbot from your docs, helpdesk articles, and past tickets in about five minutes from a sitemap URL. Its guardrail layer forces every answer to carry citations to source passages; when retrieval confidence is low it refuses to improvise and hands off to a human instead of hallucinating. Embeds as a widget or plugs into existing helpdesks.",
+  "category": "AI Apps / Chatbot Builder",
+  "target_user": "Support and product teams at SaaS companies with substantial docs",
+  "icp": {
+    "who": "Heads of support at SaaS companies with 100+ docs pages and rising ticket volume",
+    "pain": "Existing bots either deflect nothing or confidently invent wrong answers, which costs more trust than the tickets they save",
+    "current_alternatives": [
+      "Chatbase",
+      "Intercom Fin",
+      "Voiceflow",
+      "Botpress"
+    ],
+    "buying_trigger": "A chatbot hallucination reaches a paying customer, or ticket volume forces a deflection initiative with a no-hallucination requirement"
+  },
+  "differentiators": [
+    "Citation-forced answers: the bot cannot reply without linking the source passage",
+    "Confidence-gated escalation to human handoff instead of improvised answers",
+    "Five-minute setup from a sitemap URL, no training UI to babysit"
+  ],
+  "proof_points": [
+    "Resolves 61% of inbound chats end-to-end for design-tool customer Pixelhaven",
+    "100% of shipped answers carry source citations by construction",
+    "Median setup-to-first-answer time of 5 minutes from a sitemap URL"
+  ],
+  "tech_stack": [
+    "Python",
+    "FastAPI",
+    "pgvector",
+    "OpenAI API",
+    "React"
+  ],
+  "pricing_current": "freemium (free up to 200 chats/month, $49/month Growth)",
+  "voice": {
+    "tone": [
+      "confident",
+      "trust-focused",
+      "concrete"
+    ],
+    "sample_phrase": "Every answer shows its source — or it doesn't ship."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Self-serve signup with free tier",
+      "Named customer with published deflection metrics",
+      "Widget deployed on customer sites"
+    ]
+  },
+  "gaps": [
+    "No multilingual support yet",
+    "No voice channel",
+    "Security page thin for enterprise buyers"
+  ],
+  "confidence": {
+    "overall": 0.85,
+    "notes": "Citation guarantee is an architectural claim that is easy to spot-check. Deflection number comes from a single named customer."
+  }
+}

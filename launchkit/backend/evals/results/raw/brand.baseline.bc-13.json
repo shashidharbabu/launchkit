@@ -1,0 +1,156 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Accuracy Above All",
+        "objective": "awareness — Increase visibility among engineering teams evaluating document parsing APIs by emphasizing DocParse's industry-leading 99.2% field-level accuracy.",
+        "big_idea": "Position DocParse as the only document parsing API with independently verified, published accuracy metrics. Highlight the rigor behind the benchmark and contrast it with opaque 'black-box' competitors. Make precision the centerpiece of the conversation.",
+        "channels": [
+          "LinkedIn",
+          "Product Hunt",
+          "Show HN",
+          "Reddit (r/fintech, r/devops)"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "producthunt",
+          "show_hn",
+          "reddit_post"
+        ],
+        "hook": "Most document AI claims high accuracy. Only one publishes the benchmark.",
+        "sample_copy": {
+          "headline": "99.2% Field-Level Accuracy, Published — Not Promised",
+          "body": "Generic OCR fails on layout variance. Cloud document AI needs weeks of tuning. DocParse delivers 99.2% accuracy on invoices out of the box — validated on 5,000 real documents, methodology public. For AP automation and ERP workflows, precision isn't optional.",
+          "cta": "See the benchmark, not the brochure"
+        },
+        "assets_needed": [
+          "Link to public benchmark page",
+          "Short explainer graphic showing accuracy comparison",
+          "Post copy tailored per platform"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of visits to the benchmark page from campaign links",
+        "why_on_brand": "Uses precise, assured tone and emphasizes published proof points from the brand DNA, avoiding vague superlatives."
+      },
+      {
+        "name": "Confidence Thresholds, Not Guesswork",
+        "objective": "signups — Drive free-tier signups by showcasing the human-in-the-loop fallback system that respects engineering control.",
+        "big_idea": "Engineers don’t want magic — they want predictable systems. Frame DocParse’s confidence scoring and configurable review thresholds as the responsible alternative to black-box AI that silently fails.",
+        "channels": [
+          "X (Twitter)",
+          "Newsletter outreach (fintech/devops newsletters)",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "x_post",
+          "newsletter_pitch",
+          "linkedin_post"
+        ],
+        "hook": "Your documents, your rules. Set the confidence threshold. We handle the rest.",
+        "sample_copy": {
+          "headline": "No More Silent Failures in Document Parsing",
+          "body": "Other APIs guess and hope. DocParse gives you per-field confidence scores and routes only low-confidence fields for human review. You define the threshold. You keep control. Precision with accountability.",
+          "cta": "Try it with 500 free pages"
+        },
+        "assets_needed": [
+          "Diagram of confidence score + fallback workflow",
+          "Testimonial snippet (if available) or use proof point",
+          "Landing page with clear signup CTA"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of free-tier signups attributed to campaign",
+        "why_on_brand": "Reflects the formal, assured voice and vocabulary like 'confidence score' and 'human-in-the-loop' directly from the brand DNA."
+      },
+      {
+        "name": "Built for Scale, Not Demos",
+        "objective": "signups — Attract high-volume users by focusing on consistent p95 latency and throughput at scale, not just accuracy.",
+        "big_idea": "Many APIs perform well in demos but break under load. DocParse’s p95 latency of 1.8 seconds per page is guaranteed at any volume. Target engineers who need reliability, not just features.",
+        "channels": [
+          "Show HN",
+          "Reddit (r/programming, r/sysadmin)",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "show_hn",
+          "reddit_post",
+          "linkedin_post"
+        ],
+        "hook": "1.8 seconds per page. At 10,000 documents. Every time.",
+        "sample_copy": {
+          "headline": "p95 Latency That Holds at Scale",
+          "body": "Parsing 10k+ documents a month? DocParse maintains a p95 latency of 1.8 seconds per page — tracked live on our public metrics page. No slowdowns, no surprises. Built for production, not pitch decks.",
+          "cta": "Check the real-time metrics"
+        },
+        "assets_needed": [
+          "Screenshot of public metrics page",
+          "Performance comparison table (vs. AWS Textract, Google Document AI)",
+          "Post copy for technical audience"
+        ],
+        "effort": "medium",
+        "success_metric": "Traffic to public metrics page and API signups from high-volume tiers",
+        "why_on_brand": "Uses the brand’s formal tone and key vocabulary like 'p95 latency' and 'throughput', while citing observed proof points."
+      },
+      {
+        "name": "The Audit-Ready Parser",
+        "objective": "trust — Build credibility with compliance-conscious buyers by highlighting SOC 2 progress and audit trail capabilities.",
+        "big_idea": "For fintechs and ERPs, security and compliance are non-negotiable. Position DocParse as the only document parser with SOC 2 Type II in progress and structured audit trails for every parse.",
+        "channels": [
+          "LinkedIn",
+          "Newsletter outreach (security/fintech focused)",
+          "Product Hunt update"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "newsletter_pitch"
+        ],
+        "hook": "Your document pipeline should pass audit. Ours will.",
+        "sample_copy": {
+          "headline": "SOC 2 Type II in Progress — Because Compliance Isn’t an Afterthought",
+          "body": "We’re building DocParse to meet the standards your auditors demand. SOC 2 Type II compliance in progress. Type I report available under NDA. Every parse includes a full audit trail. For financial operations, trust is structured.",
+          "cta": "Request the SOC 2 Type I report"
+        },
+        "assets_needed": [
+          "SOC 2 Type I summary (NDA-protected)",
+          "Audit trail diagram",
+          "Compliance-focused landing page section"
+        ],
+        "effort": "large",
+        "success_metric": "Number of SOC 2 report requests from prospects",
+        "why_on_brand": "Aligns with the formal, assured tone and emphasizes 'audit trail' and 'SOC 2' as in the brand DNA, avoiding casual language."
+      },
+      {
+        "name": "Parsing, Not Promising",
+        "objective": "community — Establish thought leadership by contrasting DocParse’s transparency with industry hype.",
+        "big_idea": "Call out the pattern of overpromising in document AI. Position DocParse as the anti-hype alternative: no 'magic', no 'game-changers' — just measurable, repeatable results.",
+        "channels": [
+          "X (Twitter)",
+          "LinkedIn",
+          "Reddit discussion"
+        ],
+        "asset_types": [
+          "x_post",
+          "linkedin_post",
+          "reddit_post"
+        ],
+        "hook": "We don’t call our API 'magic'. We call it 99.2% accurate — because we measured it.",
+        "sample_copy": {
+          "headline": "Stop Believing in Magic. Start Believing in Metrics.",
+          "body": "The document AI space is full of 'revolutionary' claims and 'effortless' promises. DocParse offers field-level accuracy, confidence scores, and human-in-the-loop fallback — all measurable, all transparent. No hype. Just results.",
+          "cta": "See the data, not the deck"
+        },
+        "assets_needed": [
+          "Side-by-side comparison of marketing claims vs. DocParse's measured metrics",
+          "Short video script explaining the philosophy",
+          "Engagement plan for comment threads"
+        ],
+        "effort": "small",
+        "success_metric": "Engagement rate (likes, shares, comments) on campaign posts",
+        "why_on_brand": "Directly reflects the brand’s 'avoid' list and uses vocabulary like 'field-level accuracy' and 'confidence score' from the DNA."
+      }
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "Campaigns are grounded in observed brand voice, vocabulary, and proof points. No invented claims or customer stories used."
+    }
+  }
+}

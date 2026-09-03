@@ -1,0 +1,102 @@
+{
+  "output": {
+    "brand_name": "Descript",
+    "tagline_observed": "AI-editing for every kind of video",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "practical",
+        "confident",
+        "accessible",
+        "creator-focused"
+      ],
+      "sentence_style": "Short declaratives and second-person address, plain language, no jargon, action-oriented",
+      "vocabulary": [
+        "AI co-editor",
+        "text-based editing",
+        "filler words",
+        "Underlord",
+        "media hours",
+        "AI credits",
+        "transcript",
+        "clips",
+        "Studio Sound",
+        "watermark-free"
+      ],
+      "avoid": [
+        "passive voice",
+        "corporate jargon",
+        "hype-speak",
+        "overly technical language",
+        "long compound sentences",
+        "buzzword stacking"
+      ],
+      "evidence_quotes": [
+        "Direct your AI co-editor to do your video editing for you",
+        "video editing is as easy as editing a document",
+        "without Descript, you're going to find yourself stuck in an editing abyss",
+        "For teams with more video to make than editors to make it"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Edit video by editing text — the document metaphor makes video editing approachable for anyone",
+        "Underlord, the AI co-editor, handles the heavy lifting so creators focus on content",
+        "Scales from solo hobbyist to enterprise teams at Amazon, Spotify, and Netflix",
+        "AI tools like Studio Sound, Remove Filler Words, and Create Clips reduce production time dramatically"
+      ],
+      "key_messages": [
+        "AI-editing for every kind of video",
+        "video editing is as easy as editing a document",
+        "Direct your AI co-editor to do your video editing for you",
+        "For teams with more video to make than editors to make it",
+        "Craft + creativity + workflow. For creators + communicators."
+      ],
+      "proof_points_observed": [
+        "Cloudinary cut video production by 70% — from 13 hours for a single episode to 4",
+        "Cloudinary now produces two video podcasts per month, up from just one every few months",
+        "Trusted by teams at Amazon, Canva, Salesforce, Okta, Spotify, Vox, Reuters, CBS, Microsoft, NYT, BBC, Netflix, Shopify, Siemens",
+        "Annual plans save up to 35% over monthly pricing",
+        "Plans start free; paid plans from $16/month"
+      ]
+    },
+    "visual": {
+      "colors": [],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrapes returned markdown without CSS; no font-family declarations or font CDN links were observable in the scraped content."
+      },
+      "imagery_style": "screenshots",
+      "logo_url": "https://cdn.prod.website-files.com/634e7aa49f5b028264d9e879/6974177eb6730d7193ae1c75_01a_Logo_2-color_Dark.svg"
+    },
+    "audience_language": "Descript speaks directly to creators and production teams as capable people who deserve better tools, not as beginners who need hand-holding.",
+    "dos_and_donts": {
+      "do": [
+        "Use the document/text metaphor to explain video editing",
+        "Name specific AI features (Underlord, Studio Sound, Remove Filler Words) rather than speaking generically",
+        "Address creators and teams directly in second person",
+        "Ground claims in concrete outcomes (hours saved, production volume increased)",
+        "Write short, punchy sentences that respect the reader's time"
+      ],
+      "dont": [
+        "Use vague hype adjectives not found on the site (e.g. revolutionary, next-level)",
+        "Write long passive-voice paragraphs",
+        "Invent metrics or testimonials not present in scraped content",
+        "Speak down to creators as if they are non-technical beginners",
+        "Ignore the enterprise audience — Descript serves both solo creators and large teams"
+      ]
+    },
+    "sources_read": [
+      "https://www.descript.com/",
+      "https://www.descript.com/pricing",
+      "https://www.descript.com/customers/cloudinary",
+      "https://www.descript.com/careers",
+      "https://www.descript.com/blog"
+    ],
+    "confidence": {
+      "overall": 0.72,
+      "notes": "Colors: all scrapes returned markdown without inline CSS, CSS variables, or meta theme-color tags — no hex/rgb values were observable, so colors array is empty. Typography: no font-family declarations or font CDN links appeared in any scraped page. Logo URL is an SVG img tag observed with alt='Descript' on the blog and careers pages. Proof points are limited to the Cloudinary case study; other customer outcomes were not quantified in scraped content."
+    }
+  }
+}

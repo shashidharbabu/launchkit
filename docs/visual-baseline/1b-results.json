@@ -1,0 +1,136 @@
+[
+ {
+  "step": "understand",
+  "started": true,
+  "run": {
+   "id": "053eda1842e7",
+   "kind": "understand",
+   "status": "done",
+   "error": "",
+   "trace": {
+    "ok": true,
+    "ms": 107288,
+    "steps": 94,
+    "err": "",
+    "stepErr": null
+   }
+  },
+  "banner": null
+ },
+ {
+  "step": "approve:profile",
+  "ok": true
+ },
+ {
+  "step": "open:brand",
+  "ok": true
+ },
+ {
+  "step": "brand:Extract Business DNA",
+  "started": true,
+  "run": {
+   "id": "f0af4deb0f83",
+   "kind": "brand_dna",
+   "status": "done",
+   "error": "",
+   "trace": {
+    "ok": true,
+    "ms": 92915,
+    "steps": 76,
+    "err": "",
+    "stepErr": null
+   }
+  },
+  "banner": null
+ },
+ {
+  "step": "open:commercial",
+  "ok": true
+ },
+ {
+  "step": "commercial:Draft pricing & listing",
+  "started": true,
+  "run": {
+   "id": "07263fc52a82",
+   "kind": "pricing",
+   "status": "done",
+   "error": "",
+   "trace": {
+    "ok": true,
+    "ms": 122093,
+    "steps": 88,
+    "err": "",
+    "stepErr": null
+   }
+  },
+  "banner": null
+ },
+ {
+  "step": "approve:commercial",
+  "ok": false
+ },
+ {
+  "step": "open:assets",
+  "ok": true
+ },
+ {
+  "step": "approve:assets",
+  "ok": false
+ },
+ {
+  "step": "open:targets",
+  "ok": true
+ },
+ {
+  "step": "targets:Find launch venues",
+  "started": true,
+  "run": {
+   "id": "fd39eefe5892",
+   "kind": "targets",
+   "status": "done",
+   "error": "",
+   "trace": {
+    "ok": true,
+    "ms": 107716,
+    "steps": 102,
+    "err": "",
+    "stepErr": null
+   }
+  },
+  "banner": null
+ },
+ {
+  "step": "targets:select",
+  "ok": false
+ },
+ {
+  "step": "open:signals",
+  "ok": true
+ },
+ {
+  "step": "signals:keep",
+  "ok": false
+ },
+ {
+  "step": "open:plan",
+  "ok": true
+ },
+ {
+  "step": "plan:export-json",
+  "ok": false
+ },
+ {
+  "step": "plan:export-md",
+  "ok": true
+ },
+ {
+  "step": "plan:content-length",
+  "len": 832
+ },
+ {
+  "step": "summary",
+  "pageerrors": 1,
+  "firstError": "NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission denied.",
+  "banner": null
+ }
+]

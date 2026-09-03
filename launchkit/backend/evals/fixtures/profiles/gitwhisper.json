@@ -1,0 +1,58 @@
+{
+  "one_liner": "VS Code extension that writes conventional commit messages and PR descriptions from your staged diff, with a local-model option.",
+  "description": "gitwhisper reads the staged diff in VS Code and drafts a commit message that follows Conventional Commits, plus an optional PR description summarizing the change set. Teams that cannot send code to cloud APIs can point it at a local Ollama model instead. It learns each repo's commit style from history.",
+  "category": "Developer Tools / VS Code Extension",
+  "target_user": "Developers who commit many times a day and dislike writing commit messages",
+  "icp": {
+    "who": "IC developers on teams that enforce Conventional Commits or meaningful commit hygiene",
+    "pain": "Writing accurate commit messages is a chore, so history fills with 'fix' and 'wip' that make archaeology painful later",
+    "current_alternatives": [
+      "GitHub Copilot commit message suggestions",
+      "aicommits CLI",
+      "Writing messages by hand"
+    ],
+    "buying_trigger": "Team adopts Conventional Commits or commit-lint and message quality suddenly gets enforced in CI"
+  },
+  "differentiators": [
+    "Local-model mode via Ollama for teams that cannot send diffs to cloud APIs",
+    "Learns per-repo commit style from the last 200 commits instead of using a generic template",
+    "Generates both the commit message and a PR description from the same diff analysis"
+  ],
+  "proof_points": [
+    "18,000 installs on the VS Code Marketplace",
+    "4.6-star average from 210 Marketplace reviews",
+    "Generates a message in under 2 seconds with a local 3B model"
+  ],
+  "tech_stack": [
+    "TypeScript",
+    "VS Code Extension API",
+    "Ollama",
+    "OpenAI API"
+  ],
+  "pricing_current": "freemium ($4/month Pro unlocks PR descriptions and style learning)",
+  "voice": {
+    "tone": [
+      "practical",
+      "lightly witty",
+      "developer-focused"
+    ],
+    "sample_phrase": "Commit messages your future self will thank you for."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Public Marketplace listing with regular releases",
+      "Paid tier live with Stripe checkout",
+      "Changelog updated monthly"
+    ]
+  },
+  "gaps": [
+    "No JetBrains version despite requests in reviews",
+    "No team/seat billing",
+    "Website is a single landing page with no docs"
+  ],
+  "confidence": {
+    "overall": 0.85,
+    "notes": "Install counts and ratings are publicly visible on the Marketplace. Latency claim comes from the vendor's own demo."
+  }
+}

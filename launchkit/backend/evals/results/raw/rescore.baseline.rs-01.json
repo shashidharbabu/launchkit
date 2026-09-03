@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=36159270",
+        "title_or_quote": "Show HN: JuxtaCode – native Git diff tool for macOS",
+        "why_relevant": "A Show HN for a git diff tool draws exactly the audience actively evaluating diff tooling that termdiff serves.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread discusses a native macOS Git diff tool with 3-way merge capabilities and cross-OS concerns, but the app in question is a Rust-powered terminal-based diff viewer focused on performance and side-by-side word-level diffs, which does not address the core needs or questions raised about cross-platform support, standalone GUI use, or merge tool functionality."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=36159270",
+      "title_or_quote": "Show HN: JuxtaCode – native Git diff tool for macOS",
+      "why_relevant": "A Show HN for a git diff tool draws exactly the audience actively evaluating diff tooling that termdiff serves.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread discusses a native macOS Git diff tool with 3-way merge capabilities and cross-OS concerns, but the app in question is a Rust-powered terminal-based diff viewer focused on performance and side-by-side word-level diffs, which does not address the core needs or questions raised about cross-platform support, standalone GUI use, or merge tool functionality."
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "output": {
+    "title": "Gridframe — Layout-First Design Tool",
+    "tagline": "Sketch frames. Export real CSS Grid. Zero absolute positioning.",
+    "description_short": "Gridframe (alpha) turns rough wireframes into responsive CSS Grid and Flexbox — with a layout audit that catches overflow bugs before engineering ever sees the design.",
+    "description_long": "**Gridframe is in private alpha.** Join the waitlist to get early access.\n\nMost design-to-code tools export absolutely-positioned rectangles. Engineers throw them away and rebuild every layout from scratch. Responsive bugs surface at handoff. Sprints slip.\n\nGridframe works differently. You sketch rough frames on a **layout-first canvas** — structure is the primitive, not rectangles. Gridframe resolves your frames into a proper responsive grid system with real breakpoints, then exports **clean CSS Grid and Flexbox** that engineers will actually keep.\n\nBefore handoff, the built-in **layout audit** scans your design for overflow errors and breakpoint bugs. In alpha testing it caught **140 overflow bugs** across users' production sites — problems that would have landed in the sprint backlog instead.\n\nExported CSS passes stylelint with zero warnings, as shown in the published demo repos.\n\n**Who it's for:** Product designers and design engineers at startups where handoff friction burns sprint time — especially during responsive redesigns or design-system builds.\n\n3,400 designers are already on the waitlist. If layout handoff keeps eating your sprints, Gridframe was built for you.",
+    "keywords": [
+      "CSS Grid export design tool",
+      "responsive layout design tool",
+      "design to code CSS",
+      "Figma alternative CSS export",
+      "layout handoff tool",
+      "design engineer tool",
+      "responsive grid design",
+      "Flexbox export design",
+      "design system layout tool",
+      "wireframe to CSS",
+      "layout audit tool",
+      "design to code no absolute positioning",
+      "responsive breakpoint design tool",
+      "handoff tool for engineers"
+    ],
+    "screenshot_order": [
+      "1st — Layout canvas showing a rough wireframe being resolved into a responsive grid system: proves the core thesis instantly and shows the layout-first primitive in action.",
+      "2nd — Layout audit panel listing overflow and breakpoint bugs caught before handoff: makes the 140-bug proof point tangible and answers the 'what does it actually do' question.",
+      "3rd — Exported CSS Grid code side-by-side with the design, stylelint output showing zero warnings: closes the loop for design engineers and proves the output is production-ready."
+    ],
+    "faq": [
+      {
+        "q": "Is Gridframe available now?",
+        "a": "Gridframe is in private alpha. You can join the waitlist and we'll invite you in batches as we open access."
+      },
+      {
+        "q": "How is this different from exporting CSS from Figma?",
+        "a": "Figma exports absolute positioning. Gridframe exports real CSS Grid and Flexbox with responsive breakpoints — code engineers keep rather than rewrite."
+      },
+      {
+        "q": "Does it import my existing Figma files?",
+        "a": "Figma import is on the roadmap but not yet available in alpha. Gridframe currently works from its own layout-first canvas."
+      },
+      {
+        "q": "Will the exported CSS work with our existing codebase?",
+        "a": "Exported CSS passes stylelint with zero warnings and uses standard Grid and Flexbox — no proprietary runtime or wrapper required."
+      },
+      {
+        "q": "What does the layout audit actually check?",
+        "a": "It scans for overflow errors and breakpoint bugs before handoff. In alpha it caught 140 such bugs across users' production sites."
+      }
+    ],
+    "cta": "Join the waitlist — get early access to Gridframe alpha.",
+    "changes_from_current": [],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Profile is detailed and consistent. All proof points are self-reported pre-launch figures; listing treats them accurately as alpha signals, not verified production metrics. Figma import gap is disclosed in FAQ. Confidence docked slightly because no public demo exists to validate claims independently."
+    }
+  }
+}

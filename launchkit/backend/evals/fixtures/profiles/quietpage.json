@@ -1,0 +1,59 @@
+{
+  "one_liner": "Private journaling app with on-device encryption, no account required, and AI reflections that never leave your phone.",
+  "description": "quietpage is a journaling app for people who won't put their inner life in someone's cloud. Entries are encrypted on-device with keys that never leave the phone, no account or email is required to start, and the optional AI reflection feature runs a local model so prompts and entries are never transmitted anywhere. Export is plain Markdown, always.",
+  "category": "Consumer / Journaling & Privacy",
+  "target_user": "Privacy-conscious people who journal or want to start",
+  "icp": {
+    "who": "Privacy-minded professionals and journaling enthusiasts who distrust cloud-synced diaries",
+    "pain": "Existing journals want an account and cloud sync, which is exactly where you don't want your most private writing",
+    "current_alternatives": [
+      "Day One",
+      "Journey",
+      "Apple Journal",
+      "Obsidian with plugins"
+    ],
+    "buying_trigger": "A data-breach headline or a therapist's journaling suggestion colliding with distrust of cloud diary apps"
+  },
+  "differentiators": [
+    "End-to-end on-device encryption with keys that never leave the device — no account, no email, no server",
+    "AI reflections computed by a local model, so entries are never transmitted",
+    "Plain Markdown export with zero lock-in"
+  ],
+  "proof_points": [
+    "1,900 downloads in the first month with no paid marketing",
+    "Recommended in r/privacy weekly software thread",
+    "Full security model documented on the site, including key storage details"
+  ],
+  "tech_stack": [
+    "Swift",
+    "SwiftUI",
+    "Core ML",
+    "SQLCipher"
+  ],
+  "pricing_current": "paid ($4.99 one-time on the App Store)",
+  "voice": {
+    "tone": [
+      "calm",
+      "minimal",
+      "trustworthy"
+    ],
+    "sample_phrase": "Your thoughts stay on your phone. Full stop."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Live on the App Store with a one-time price",
+      "Published security model page",
+      "Monthly updates in release notes"
+    ]
+  },
+  "gaps": [
+    "No Android or desktop version",
+    "No screenshots of the reflection feature on the site",
+    "Small review count so far"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Privacy architecture is documented in detail. Traction is early and modest, consistent with a recent indie launch."
+  }
+}

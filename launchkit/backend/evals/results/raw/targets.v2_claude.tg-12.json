@@ -1,0 +1,204 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Go + Cloudflare Workers tech stack, open-source SDKs, sub-5ms benchmark — exactly what HN technical audience evaluates.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "millions of dev readers",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "r/devops",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/devops/",
+        "submission_url": "https://www.reddit.com/r/devops/submit",
+        "why_fit": "ICP is engineering teams practicing trunk-based dev; flag-incident-with-no-audit-trail pain is a core devops concern.",
+        "rules_summary": "Self-promotion goes in the weekly self-promotion thread. Must disclose personal affiliation at top of post. No sole-purpose promotion; posts must not funnel traffic to external blogs.",
+        "rules_url": "https://old.reddit.com/r/devops/about/rules",
+        "audience_signal": "~1M members",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "awesome-feature-flag-management",
+        "kind": "awesome_list",
+        "url": "https://github.com/andrewdmaclean/awesome-feature-flag-management",
+        "submission_url": "https://github.com/andrewdmaclean/awesome-feature-flag-management",
+        "why_fit": "Exact category match: feature flag tools list; togglr's Git-backed PR workflow is a novel differentiator worth listing.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 4,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "Dev-tools-only launch platform; togglr's open-source SDKs and Go/Cloudflare stack fit the audience precisely.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 5,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Developer-focused launch platform; ICP of 5-50 eng teams aligns with Peerlist's professional dev audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 6,
+        "name": "r/golang",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/golang/",
+        "submission_url": "https://www.reddit.com/r/golang/submit",
+        "why_fit": "togglr's control plane and SDKs are written in Go; open-source Go libraries and dev tools explicitly allowed per rules.",
+        "rules_summary": "Open-source Go libraries, apps, and dev tools targeting Go developers are allowed. Closed-source/paid tools not specifically aimed at Go devs are not. No AI-generated content.",
+        "rules_url": "https://old.reddit.com/r/golang/about/rules",
+        "audience_signal": "~150k members",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "AlternativeTo",
+        "kind": "directory",
+        "url": "https://alternativeto.net",
+        "submission_url": "https://alternativeto.net/manage-item/",
+        "why_fit": "ICP buying trigger is LaunchDarkly renewal shock; listing as LaunchDarkly alternative captures high-intent search traffic.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 8,
+        "name": "Platform Weekly",
+        "kind": "newsletter",
+        "url": "https://platformweekly.com/",
+        "submission_url": "https://platformweekly.com/",
+        "why_fit": "Platform engineering newsletter by Luca Galante; ICP of trunk-based dev teams managing infra flags is core readership.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "r/programming",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/programming/",
+        "submission_url": "https://www.reddit.com/r/programming/submit",
+        "why_fit": "Sub-5ms edge evaluation via Cloudflare Workers is technically novel; a writeup on the architecture qualifies per rules.",
+        "rules_summary": "No product promotion without a deep technical writeup. The writeup must be the focus — how it was built, not what it does. No LLM-written content. Technical posts about novel engineering are allowed.",
+        "rules_url": "https://old.reddit.com/r/programming/about/rules",
+        "audience_signal": "~6M members",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "SaaSHub",
+        "kind": "directory",
+        "url": "https://www.saashub.com",
+        "submission_url": "https://www.saashub.com/submit",
+        "why_fit": "Evergreen directory; listing as LaunchDarkly/Flagsmith alternative captures teams searching for feature flag tools.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "BetaList",
+        "kind": "launch_platform",
+        "url": "https://betalist.com",
+        "submission_url": "https://betalist.com/submit",
+        "why_fit": "togglr is in open beta with self-serve orgs and pre-1.0 SDKs; BetaList targets early adopters seeking beta products.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "StackShare",
+        "kind": "directory",
+        "url": "https://stackshare.io",
+        "submission_url": "https://stackshare.io/submit",
+        "why_fit": "Dev tool directory; teams comparing LaunchDarkly vs alternatives actively browse StackShare for feature flag tools.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 13,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "togglr is indie-built beta; r/SideProject is a showcase venue for builders sharing what they made.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "~200k members",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 14,
+        "name": "r/alphaandbetausers",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/alphaandbetausers/",
+        "submission_url": "https://www.reddit.com/r/alphaandbetausers/submit",
+        "why_fit": "Open beta with self-serve orgs; subreddit exists specifically for products seeking early user feedback.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "~100k members",
+        "effort": "high",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "1. Submit to AlternativeTo and SaaSHub first (low effort, evergreen SEO — captures LaunchDarkly-switcher intent immediately).",
+      "2. Open a PR to awesome-feature-flag-management and submit to DevHunt and Peerlist Launchpad in the same week to build early social proof before the big launch.",
+      "3. Launch on Show HN with a technical post about the Git-backed flag evaluation architecture and the Cloudflare Workers edge benchmark — this is the highest-impact single event.",
+      "4. Post in r/devops weekly self-promotion thread and pitch Platform Weekly newsletter after Show HN traction is visible, using upvotes as social proof."
+    ],
+    "search_queries_used": [
+      "awesome list feature flags GitHub",
+      "platform engineering newsletter feature flags",
+      "feature flag subreddit devops community",
+      "r/devops r/golang r/programming rules self-promotion"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Rules verified for r/devops, r/golang, r/programming. Niche venues confirmed via search. Unverified subreddits ranked low."
+    }
+  }
+}

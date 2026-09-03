@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "github",
+        "url": "https://github.com/medusajs/medusa/issues/6331",
+        "title_or_quote": "You cannot complete a cart without a payment session.",
+        "why_relevant": "High-engagement issue about carts in an e-commerce framework.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.98,
+          "why": "The thread is a Medusa.js open-source backend bug report about a missing payment session error during cart completion, completely unrelated to Shopify upsell or AOV optimization."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "github",
+      "url": "https://github.com/medusajs/medusa/issues/6331",
+      "title_or_quote": "You cannot complete a cart without a payment session.",
+      "why_relevant": "High-engagement issue about carts in an e-commerce framework.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.98,
+        "why": "The thread is a Medusa.js open-source backend bug report about a missing payment session error during cart completion, completely unrelated to Shopify upsell or AOV optimization."
+      }
+    }
+  ]
+}

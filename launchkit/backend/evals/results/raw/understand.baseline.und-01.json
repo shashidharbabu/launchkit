@@ -1,0 +1,91 @@
+{
+  "output": {
+    "one_liner": "Plausible Analytics is a privacy-friendly, open-source Google Analytics alternative for websites.",
+    "description": "Plausible Analytics is a lightweight, open-source web analytics tool that respects user privacy. It provides simple, real-time insights without using cookies or tracking personal data. The platform is GDPR, CCPA, and PECR compliant, with all data processed in the EU.",
+    "category": "web analytics",
+    "target_user": "website owner",
+    "icp": {
+      "who": "independent website owners and small to medium businesses",
+      "pain": "needing simple, compliant web analytics without the complexity and privacy concerns of Google Analytics",
+      "current_alternatives": [
+        "Google Analytics",
+        "Matomo",
+        "Cloudflare Web Analytics"
+      ],
+      "buying_trigger": "migrating from Google Analytics due to GA4 complexity or privacy compliance requirements"
+    },
+    "differentiators": [
+      "No cookies or personal data collection",
+      "Lightweight script 54x smaller than Google Analytics",
+      "Built-in GDPR/CCPA/PECR compliance",
+      "Open source with self-hosted option"
+    ],
+    "proof_points": [
+      "20k paying subscribers cited on homepage",
+      "313B tracked pageviews cited on homepage",
+      "99.99% uptime over last 90 days cited on homepage",
+      "Testimonials from Hugging Face, Basecamp, and Ghost on homepage",
+      "Live demo available at https://plausible.io/plausible.io"
+    ],
+    "tech_stack": [
+      "Elixir",
+      "Phoenix",
+      "PostgreSQL",
+      "ClickHouse",
+      "React",
+      "TailwindCSS"
+    ],
+    "pricing_current": "Starter: $9/month, Growth: $14/month, Business: $19/month, Enterprise: custom pricing",
+    "voice": {
+      "tone": [
+        "clear",
+        "confident",
+        "friendly",
+        "professional"
+      ],
+      "sample_phrase": "Plausible is powerful, lightweight analytics. No cookies, just insights."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "public pricing",
+        "live product",
+        "20k+ paying customers",
+        "public roadmap",
+        "active GitHub repository"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; data from live site and GitHub repo"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, features, tech stack"
+      },
+      {
+        "source": "mix.exs",
+        "via": "github",
+        "ok": true,
+        "note": "Elixir dependencies and project config"
+      },
+      {
+        "source": "https://plausible.io",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site with features, pricing, testimonials"
+      },
+      {
+        "source": "https://plausible.io/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "404 Not Found"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

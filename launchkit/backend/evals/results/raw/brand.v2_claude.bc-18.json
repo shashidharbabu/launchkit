@@ -1,0 +1,161 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "One Page. Every Deal.",
+        "objective": "awareness — put dealpage in front of founders who are actively outgrowing Notion or spreadsheets for pipeline tracking",
+        "big_idea": "Launch on Product Hunt with a demo that shows the entire pipeline living on one keyboard-navigable page. The hook is the contrast: founders already know what a bloated CRM feels like. Show them what it looks like when it isn't.",
+        "channels": [
+          "Product Hunt",
+          "X/Twitter"
+        ],
+        "asset_types": [
+          "producthunt",
+          "x_post"
+        ],
+        "hook": "Your pipeline on one page. Your hands never leave the keyboard.",
+        "sample_copy": {
+          "headline": "One page. Every deal. No mouse required.",
+          "body": "dealpage is a CRM built for founders doing their own sales. Move deals, log notes, and send synced email — all from the keyboard, all in under 100ms. No pipelines to configure. No admin console. Founders at 40 companies already use it as their primary CRM. 14-day free trial, no card required.",
+          "cta": "Try dealpage free"
+        },
+        "assets_needed": [
+          "Product Hunt listing with GIF or short screen recording showing keyboard navigation",
+          "3-5 X posts scheduled around launch day",
+          "A short written maker comment explaining why dealpage exists"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of trial signups on launch day",
+        "why_on_brand": "Mirrors the DNA's direct, second-person declaratives and grounds the claim in the published p95 latency proof point rather than vague superlatives."
+      },
+      {
+        "name": "Show HN: CRM That Fits on One Page",
+        "objective": "signups — reach technical founders and early engineers on Hacker News who distrust bloated SaaS",
+        "big_idea": "A Show HN post written founder-to-founder, explaining the infrastructure decision to build keyboard-first and publish latency numbers. The technical specifics (TypeScript, Next.js, p95 under 100ms) are the credibility. No marketing language.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: I built a CRM for founders — the whole pipeline fits on one keyboard-driven page",
+        "sample_copy": {
+          "headline": "Show HN: dealpage — founder CRM, one page, keyboard-first, p95 under 100ms",
+          "body": "HubSpot is built for sales ops teams. Founders end up in Notion. I built dealpage to sit between those two: a single keyboard-navigable page for your pipeline, notes, and two-way Gmail sync. No required fields, no workflow config. Imports from HubSpot or Pipedrive in minutes. p95 interaction latency is under 100ms — measured and published. Happy to share the architecture decisions.",
+          "cta": "Try it free for 14 days — dealpage.com"
+        },
+        "assets_needed": [
+          "Show HN post text",
+          "Published latency benchmark page to link to",
+          "Prepared responses to likely HN questions (architecture, pricing, roadmap)"
+        ],
+        "effort": "small",
+        "success_metric": "Number of trial signups from HN referral traffic within 72 hours",
+        "why_on_brand": "Transparent, pragmatic, grounded in specifics — matches the DNA's instruction to ground claims in measurable facts and speak directly to the reader's role."
+      },
+      {
+        "name": "Migrated in an Afternoon",
+        "objective": "signups — convert founders currently on HubSpot or Pipedrive who feel the admin overhead",
+        "big_idea": "A short Reddit post in r/startups and r/entrepreneur framed as a founder sharing what they learned switching CRMs. The proof point — 12,000 contacts migrated out of HubSpot in one afternoon — does the work. No pitch, just the story.",
+        "channels": [
+          "Reddit"
+        ],
+        "asset_types": [
+          "reddit_post"
+        ],
+        "hook": "We migrated 12,000 contacts out of HubSpot in one afternoon. Here's what we switched to and why.",
+        "sample_copy": {
+          "headline": "Migrated 12,000 contacts out of HubSpot in one afternoon",
+          "body": "HubSpot is built for sales ops teams, not founders doing their own sales. We were spending more time configuring workflows than talking to customers. Switched to dealpage: one keyboard-navigable page, two-way Gmail sync, no admin console. The import took an afternoon. If you're a founder tracking deals in Notion because real CRMs feel like ERP software, worth a look.",
+          "cta": "14-day free trial at dealpage.com"
+        },
+        "assets_needed": [
+          "Reddit post text",
+          "Prepared follow-up comments answering likely questions about migration and pricing"
+        ],
+        "effort": "small",
+        "success_metric": "Click-through rate from Reddit post to trial signup page",
+        "why_on_brand": "Uses the site's own customer proof point verbatim, written in plain second-person language with no hype — consistent with the DNA's avoid list and do list."
+      },
+      {
+        "name": "Infrastructure for Deals",
+        "objective": "awareness — reach developer-founders and technical operators through developer-adjacent newsletters",
+        "big_idea": "Pitch a short sponsored or guest slot in newsletters that reach technical founders (e.g. TLDR Founders, Indie Hackers digest). Frame dealpage as infrastructure for the sales layer of a startup, the same way founders think about their data or auth infrastructure — something that should be fast, reliable, and out of the way.",
+        "channels": [
+          "Newsletter"
+        ],
+        "asset_types": [
+          "newsletter_pitch"
+        ],
+        "hook": "Your sales pipeline is infrastructure. Treat it like one.",
+        "sample_copy": {
+          "headline": "Your pipeline is infrastructure. Build it like one.",
+          "body": "dealpage is a CRM for founders doing their own sales. The entire pipeline lives on one keyboard-navigable page. Move deals, log notes, send synced email — all in under 100ms. No workflows to configure. No admin console. Imports from HubSpot or Pipedrive in minutes. Founders at 40 companies use it as their primary CRM. $19/user/month. 14-day free trial.",
+          "cta": "Start your free trial"
+        },
+        "assets_needed": [
+          "Newsletter pitch email to editors",
+          "Two ad copy variants (50-word and 100-word)",
+          "UTM-tagged landing page URL"
+        ],
+        "effort": "medium",
+        "success_metric": "Trial signups attributed to newsletter UTM within 30 days",
+        "why_on_brand": "Borrows the DNA's infrastructure framing ('We're building the infrastructure for time') and applies it to the sales layer — direct, role-specific, grounded in specifics."
+      },
+      {
+        "name": "Founder-to-Founder on X",
+        "objective": "community — build an audience of early-stage founders by sharing transparent, opinionated takes on CRM and founder sales",
+        "big_idea": "A recurring thread series on X where the builder shares specific, opinionated observations about how founders actually run sales — not best practices, but real patterns. Each thread ends with a natural mention of dealpage. The mechanic is consistency and specificity, not promotion.",
+        "channels": [
+          "X/Twitter"
+        ],
+        "asset_types": [
+          "x_post"
+        ],
+        "hook": "Most founders track deals in Notion until it breaks. Here's what that moment looks like — and what to do about it.",
+        "sample_copy": {
+          "headline": "The Notion CRM breaks at the worst possible time",
+          "body": "You're mid-fundraise or hiring your first sales rep. Your Notion table has 80 rows and no one can read it. That's the moment. You don't need Salesforce. You need a pipeline on one page, keyboard-navigable, with Gmail sync that actually works. That's what we built. Direct, fast, no configuration required.",
+          "cta": "dealpage.com — 14-day free trial"
+        },
+        "assets_needed": [
+          "10 pre-written X threads on founder sales topics",
+          "Content calendar for 6-week posting cadence",
+          "Reply templates for engagement"
+        ],
+        "effort": "medium",
+        "success_metric": "Follower growth and click-through to trial page over 6 weeks",
+        "why_on_brand": "Founder-to-founder tone, short declaratives, speaks directly to the ICP's buying trigger moment — consistent with the DNA's direct and pragmatic voice."
+      },
+      {
+        "name": "Latency as a Feature",
+        "objective": "signups — convert technically-minded founders who care about tool quality by making the p95 latency claim the centerpiece of a LinkedIn post",
+        "big_idea": "A single LinkedIn post written by the founder explaining why they measured and published interaction latency for a CRM — and what that decision says about how they think about software quality. The argument: if your tools are slow, your sales process is slow. The proof point is already published.",
+        "channels": [
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "linkedin_post"
+        ],
+        "hook": "We measured and published the p95 interaction latency for our CRM. Here's why that matters for founders doing their own sales.",
+        "sample_copy": {
+          "headline": "We published our latency numbers. Here's why.",
+          "body": "Most CRMs are built for sales ops teams with time to configure workflows. We built dealpage for founders who need to move fast. Every action lands in under 100ms — p95, measured, published. Not a marketing claim. A number you can check. If your pipeline tool is slow, your sales process is slow. One page. Keyboard-first. Two-way Gmail sync. 14-day free trial.",
+          "cta": "Read the numbers and try it free at dealpage.com"
+        },
+        "assets_needed": [
+          "LinkedIn post text",
+          "Link to published latency benchmark page",
+          "Optional: simple chart or screenshot of the latency data"
+        ],
+        "effort": "small",
+        "success_metric": "LinkedIn post impressions and trial signups from LinkedIn referral traffic",
+        "why_on_brand": "Transparent and pragmatic — grounds the claim in a published, verifiable number rather than a vague superlative, exactly as the DNA instructs."
+      }
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Campaigns are built on dealpage APP_PROFILE proof points (40 companies, 12,000 contacts, p95 latency) and Cal.com DNA voice patterns. The BRAND_DNA is Cal.com's, not dealpage's — campaigns adapt the DNA's direct/transparent/pragmatic voice to dealpage's product and ICP. No numeric claims were invented; all figures come from APP_PROFILE.proof_points. Channel selection prioritizes founder-heavy communities (HN, Reddit r/startups, X, LinkedIn, newsletters) consistent with the ICP."
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "output": {
+    "brand_name": "Zed",
+    "tagline_observed": "Your last next editor",
+    "voice": {
+      "tone_words": [
+        "terse",
+        "conviction-driven",
+        "craft-focused",
+        "direct"
+      ],
+      "sentence_style": "Short declaratives and imperative statements, second person, no jargon, grounded in concrete beliefs",
+      "vocabulary": [
+        "handcrafted",
+        "hyper-responsive",
+        "multiplayer",
+        "native speed",
+        "minimal",
+        "mission-critical",
+        "joyful coding",
+        "disappear",
+        "signal",
+        "noise"
+      ],
+      "avoid": [
+        "marketing superlatives without substance",
+        "passive voice",
+        "vague benefit statements",
+        "feature-list prose",
+        "corporate hedging"
+      ],
+      "evidence_quotes": [
+        "We believe the best software is handcrafted, with unparalleled attention to detail",
+        "Your editor should disappear",
+        "Joyful coding starts with an editor that stays out of your way",
+        "Mission-critical tools should be hyper-responsive"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "A minimal code editor built for speed and collaboration with humans and AI",
+        "Written from scratch in Rust to leverage multiple CPU cores and your GPU",
+        "Real-time multiplayer collaboration baked into the editor, not bolted on",
+        "Run agents in parallel at native speed"
+      ],
+      "key_messages": [
+        "Your last next editor",
+        "Code at the speed of thought",
+        "Zed is a minimal code editor crafted for speed and collaboration with humans and AI",
+        "Building tools that matter is in our DNA",
+        "We believe there's a better way to write software—and this is just the start of the adventure"
+      ],
+      "proof_points_observed": [
+        "Created Atom and Electron",
+        "Built Tree-sitter, used by the most popular editors in the world",
+        "Backed by Root Ventures, V1, Matchstick, Redpoint, and Sequoia",
+        "Personal plan free forever; Pro at $10/month; Business at $30/seat/month",
+        "Two-week free trial of Pro with $20 of token credits"
+      ]
+    },
+    "visual": {
+      "colors": [],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links observed"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": "https://zed.dev/cdn-cgi/image/width=2048,quality=100,format=auto/_next/static/media/logo_wordmark_white_bigger.11rssg-7g1jg..png"
+    },
+    "audience_language": "The site speaks directly to developers as peers, using 'you' and concrete technical language, assuming the reader already lives inside a code editor all day.",
+    "dos_and_donts": {
+      "do": [
+        "Lead with concrete, specific claims (speed, Rust, GPU)",
+        "Use short declarative sentences and second person",
+        "Ground every benefit in a tangible developer experience",
+        "Invoke craft and intentionality — 'handcrafted', 'attention to detail'",
+        "Let the product's technical reality do the persuading"
+      ],
+      "dont": [
+        "Use vague adjectives without grounding (e.g. 'powerful', 'innovative')",
+        "Write long feature-list paragraphs",
+        "Overexplain — trust the reader to be technical",
+        "Use corporate or startup-hype register",
+        "Separate collaboration from the core editor pitch — it is the pitch"
+      ]
+    },
+    "sources_read": [
+      "https://zed.dev/",
+      "https://zed.dev/about",
+      "https://zed.dev/pricing"
+    ],
+    "confidence": {
+      "overall": 0.72,
+      "notes": "Colors could not be observed — scrape returned markdown without inline styles, CSS variables, or hex values; theme-color is a CSS variable reference not a hex. Typography (font-family) not observable from markdown output. Logo URL extracted from an img tag on the pricing page and appears to be a wordmark, not a favicon. All tone, vocabulary, and messaging drawn strictly from scraped text."
+    }
+  }
+}

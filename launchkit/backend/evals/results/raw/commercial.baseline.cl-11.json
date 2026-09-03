@@ -1,0 +1,61 @@
+{
+  "output": {
+    "title": "gitwhisper – AI Commit Messages",
+    "tagline": "Smart, conventional commits from your staged changes",
+    "description_short": "AI-powered commit messages and PR descriptions in VS Code. Follows Conventional Commits and learns your repo's style. Works locally with Ollama.",
+    "description_long": "Stop writing vague 'fix' and 'wip' commits. gitwhisper analyzes your staged changes and generates clear, conventional commit messages that match your team's standards. It even drafts PR descriptions—saving you time and improving code history.\n\nTrained on your repo's last 200 commits, gitwhisper adapts to your project's voice. For security-conscious teams, run it locally with Ollama—no code leaves your machine.\n\nWith 18,000+ installs and a 4.6-star rating, developers trust gitwhisper to keep their Git history clean. Pro tier unlocks PR descriptions and style learning. Fast: generates messages in under 2 seconds with a local 3B model.\n\nPerfect for teams adopting Conventional Commits or commit linting in CI.",
+    "keywords": [
+      "commit message",
+      "conventional commits",
+      "VS Code extension",
+      "AI commit",
+      "PR description",
+      "Git helper",
+      "Ollama",
+      "local AI",
+      "commit lint",
+      "developer tools",
+      "code review",
+      "automated commits",
+      "Git hygiene",
+      "AI for developers",
+      "VS Code AI"
+    ],
+    "screenshot_order": [
+      "1. Commit message generation in action in VS Code – shows integration",
+      "2. PR description output – highlights added value",
+      "3. Local Ollama settings – emphasizes security and privacy"
+    ],
+    "faq": [
+      {
+        "q": "Does it work offline?",
+        "a": "Yes, with a local Ollama model. No code is sent to the cloud."
+      },
+      {
+        "q": "How does it learn my repo's style?",
+        "a": "It analyzes the last 200 commits in your repo to match tone and structure."
+      },
+      {
+        "q": "What's included in the Pro tier?",
+        "a": "PR descriptions and per-repo style learning. Free tier generates commit messages only."
+      },
+      {
+        "q": "Is my code sent to external servers?",
+        "a": "Only if you use cloud models. Local mode with Ollama keeps everything on-device."
+      }
+    ],
+    "cta": "Install now and write commits your future self will thank you for.",
+    "changes_from_current": [
+      "Improved title and tagline for clarity and searchability",
+      "Expanded description with key differentiators and proof points",
+      "Added structured keywords for discoverability",
+      "Defined screenshot order to guide user onboarding",
+      "Added FAQ to handle common objections",
+      "Stronger CTA using brand voice"
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "APP_PROFILE is rich in proof points, differentiators, and voice guidance. No gaps in listing-relevant data."
+    }
+  }
+}

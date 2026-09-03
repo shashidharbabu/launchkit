@@ -1,0 +1,150 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/spcsorg/daylens/issues/189",
+        "title_or_quote": "## North star\\n\\n**Ask Rwanda's data. Get cited answers.**",
+        "posted_when": "2026-08-12T15:56:07Z",
+        "why_relevant": "User wants cited answers from approved sources, core app function.",
+        "intent_strength": "high",
+        "drafted_reply": "You're building a system that provides answers with verifiable citations from trusted sources — that's exactly what botsmith does. I built it to ensure every response links back to the source material or escalates instead of guessing. {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly requests a system that provides cited answers from approved sources and refuses to answer when no source is available, which directly aligns with the app's core functionality of source-grounded responses with citation and escalation."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/ShezinKhais/Cognitive_Learning_Intelligence_Platform/issues/57",
+        "title_or_quote": "P5 AI 2: Socratic chatbot UI with streaming and citations",
+        "posted_when": "2026-08-05T14:37:11Z",
+        "why_relevant": "Explicitly requests a chatbot UI with source citations.",
+        "intent_strength": "high",
+        "drafted_reply": "I built botsmith to solve this exact need: a chatbot that only answers when it can cite a source, and escalates otherwise. It's designed for educational and support contexts where citation integrity matters. {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.9,
+          "why": "The thread explicitly requests a chatbot with citations and source-linked responses, which directly aligns with the app's core functionality of providing docs-grounded answers with citations."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49461299",
+        "title_or_quote": "Far worse from my perspective is that it's not a fixed citation that it's not falsifiable.",
+        "posted_when": "2026-08-27T07:45:38Z",
+        "why_relevant": "Highlights the need for fixed, verifiable citations in AI responses.",
+        "intent_strength": "medium",
+        "drafted_reply": "You're right — mutable, stochastic sources undermine trust. I built botsmith to ensure every answer cites a fixed source passage or escalates instead of improvising. It's for teams that need verifiable accuracy. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread discusses concerns about citation reliability and falsifiability in a philosophical or academic context, not about support chatbots or documentation-grounded AI responses."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49460970",
+        "title_or_quote": "Wikipedia also strongly grounds its content in citations and secondary sources, while AI slop generally does not.",
+        "posted_when": "2026-08-27T07:09:15Z",
+        "why_relevant": "Contrasts reliable citation practices with current AI outputs.",
+        "intent_strength": "medium",
+        "drafted_reply": "You're identifying a key gap: AI should ground responses like Wikipedia does. I built botsmith to enforce source citations on every answer — or escalate if uncertain. It's for teams that can't afford made-up answers. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread discusses Wikipedia's citation practices and contrasts them with AI-generated content, but does not indicate a need for a docs-grounded support chatbot or express any pain point related to customer support or ticket deflection."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "chatbot hallucinations",
+      "source citations",
+      "chatbot source citations",
+      "does anyone know a chatbot with source citations",
+      "tired of bots making up answers in customer support",
+      "site:reddit.com \"alternative to Chatbase\" citation",
+      "site:reddit.com \"chatbot hallucinations\" support",
+      "how do you handle chatbot hallucinations in support",
+      "site:reddit.com/r/SaaS chatbot hallucinations citation",
+      "site:reddit.com/r/LangChain support chatbot source citations",
+      "site:reddit.com/r/artificial avoid AI hallucinations in customer support",
+      "site:reddit.com/r/Entrepreneur chatbot that cites sources or escalates",
+      "AI support"
+    ],
+    "coverage_notes": "StackOverflow returned no results. Reddit and HN story searches yielded no replyable threads. Exa returned marketing content, not user signals.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong signals from GitHub and HN comments. No Reddit or StackOverflow hits. Some search angles returned only vendor content."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/spcsorg/daylens/issues/189",
+      "title_or_quote": "## North star\\n\\n**Ask Rwanda's data. Get cited answers.**",
+      "posted_when": "2026-08-12T15:56:07Z",
+      "why_relevant": "User wants cited answers from approved sources, core app function.",
+      "intent_strength": "high",
+      "drafted_reply": "You're building a system that provides answers with verifiable citations from trusted sources — that's exactly what botsmith does. I built it to ensure every response links back to the source material or escalates instead of guessing. {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly requests a system that provides cited answers from approved sources and refuses to answer when no source is available, which directly aligns with the app's core functionality of source-grounded responses with citation and escalation."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/ShezinKhais/Cognitive_Learning_Intelligence_Platform/issues/57",
+      "title_or_quote": "P5 AI 2: Socratic chatbot UI with streaming and citations",
+      "posted_when": "2026-08-05T14:37:11Z",
+      "why_relevant": "Explicitly requests a chatbot UI with source citations.",
+      "intent_strength": "high",
+      "drafted_reply": "I built botsmith to solve this exact need: a chatbot that only answers when it can cite a source, and escalates otherwise. It's designed for educational and support contexts where citation integrity matters. {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.9,
+        "why": "The thread explicitly requests a chatbot with citations and source-linked responses, which directly aligns with the app's core functionality of providing docs-grounded answers with citations."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 3,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49461299",
+      "title_or_quote": "Far worse from my perspective is that it's not a fixed citation that it's not falsifiable.",
+      "posted_when": "2026-08-27T07:45:38Z",
+      "why_relevant": "Highlights the need for fixed, verifiable citations in AI responses.",
+      "intent_strength": "medium",
+      "drafted_reply": "You're right — mutable, stochastic sources undermine trust. I built botsmith to ensure every answer cites a fixed source passage or escalates instead of improvising. It's for teams that need verifiable accuracy. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread discusses concerns about citation reliability and falsifiability in a philosophical or academic context, not about support chatbots or documentation-grounded AI responses."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49460970",
+      "title_or_quote": "Wikipedia also strongly grounds its content in citations and secondary sources, while AI slop generally does not.",
+      "posted_when": "2026-08-27T07:09:15Z",
+      "why_relevant": "Contrasts reliable citation practices with current AI outputs.",
+      "intent_strength": "medium",
+      "drafted_reply": "You're identifying a key gap: AI should ground responses like Wikipedia does. I built botsmith to enforce source citations on every answer — or escalate if uncertain. It's for teams that can't afford made-up answers. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread discusses Wikipedia's citation practices and contrasts them with AI-generated content, but does not indicate a need for a docs-grounded support chatbot or express any pain point related to customer support or ticket deflection."
+      }
+    }
+  ]
+}

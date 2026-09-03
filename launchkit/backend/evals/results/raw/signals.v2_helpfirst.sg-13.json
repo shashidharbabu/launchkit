@@ -1,0 +1,180 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/blanc86/youtube-automation/issues/14",
+        "title_or_quote": "Auto-clipping: turn a long video or stream into short clips",
+        "posted_when": "2026-08-13T10:55:34Z",
+        "why_relevant": "User wants to auto-clip long videos into shorts, matching podclip's core function.",
+        "intent_strength": "high",
+        "drafted_reply": "One approach is to use transcript-driven heuristics first—like preferring sentence boundaries and high speech density—before adding AI. This gives a testable baseline. I built a tool that does this for podcasts—{APP_URL}. I'm the creator.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.15,
+          "why": "The thread is a GitHub issue requesting open-source contributors to build an auto-clipping feature inside an existing codebase, not a podcaster or creator looking for a ready-made clipping tool."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/cbwinslow/clipper/issues/10",
+        "title_or_quote": "[EPIC] Phase 4: Scoring & Highlight Detection",
+        "posted_when": "2026-05-07T05:54:54Z",
+        "why_relevant": "They're building highlight detection for podcasts, which is exactly what podclip does.",
+        "intent_strength": "high",
+        "drafted_reply": "For scoring highlights, combining transcript sentiment, keyword density, and audio energy works well. Our model was trained on 40k rated clips to avoid generic picks. More here: {APP_URL}. I'm the founder.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is a GitHub epic tracking active open-source development of a custom scoring and highlight-detection pipeline — the author is building this infrastructure themselves, not looking for a finished product to replace that work."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=45405343",
+        "title_or_quote": "I frequently find myself wanting to share information surfaced in a podcast... but I don't have a great way of sharing.",
+        "posted_when": "2025-09-28T16:01:18Z",
+        "why_relevant": "User struggles to share podcast snippets, a core use case for podclip.",
+        "intent_strength": "high",
+        "drafted_reply": "You could use a tool that auto-detects strong moments and exports them with captions. I built one that picks narrative hooks, not random clips—{APP_URL}. I'm the creator.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/bisheshabramhacharya/clipping-factory/issues/2",
+        "title_or_quote": "Clipping Factory Paid Product Buildout",
+        "posted_when": "2026-07-31T02:27:35Z",
+        "why_relevant": "They're building a professional clipping studio, directly overlapping with podclip's ICP.",
+        "intent_strength": "medium",
+        "drafted_reply": "Local, reliable clipping with full control is key for pros. We focused on speed and brand consistency—rendering a 60-min episode in ~90 seconds. Check it out: {APP_URL}. I'm the builder.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub issue tracking a local-first, privacy-preserving, Rust-based clipping tool being built by the author themselves — they are building a competitor, not looking for an existing SaaS solution like podclip."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/marceloarruda01/omacast/issues/4",
+        "title_or_quote": "Feature: Implement Chapter Support with Navigation",
+        "posted_when": "2026-08-22T21:00:47Z",
+        "why_relevant": "Chapter support implies need for clip-level navigation, adjacent to podclip's use case.",
+        "intent_strength": "medium",
+        "drafted_reply": "Chapter data can also feed clip detection—moments right after chapter starts often have strong intros. Our tool auto-generates clips with captions: {APP_URL}. I'm the creator.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "This thread is a GitHub feature request for implementing chapter navigation (ID3 tags, MP4 metadata, RSS parsing) in a podcast player app — a developer task unrelated to automated clip generation for social media."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "tool to auto highlight podcast moments",
+      "struggling with podcast clipping",
+      "alternative to Opus Clip",
+      "alternative to Riverside Magic Clips",
+      "tired of manual podcast editing",
+      "does anyone know a podcast clipping tool",
+      "open source podcast highlight detection",
+      "how to automate podcast clips",
+      "site:reddit.com/r/podcasting podcast clipping automation",
+      "site:reddit.com/r/podcasts struggling with manual editing",
+      "podcast clipping",
+      "auto clips podcast",
+      "AI highlight detection",
+      "podcast auto clipping",
+      "podcast highlight detection",
+      "auto highlight podcast"
+    ],
+    "coverage_notes": "All required passes completed. No additional communities or queries needed.",
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Strong signals from GitHub and HN with high intent. All sources relevant and recent."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/blanc86/youtube-automation/issues/14",
+      "title_or_quote": "Auto-clipping: turn a long video or stream into short clips",
+      "posted_when": "2026-08-13T10:55:34Z",
+      "why_relevant": "User wants to auto-clip long videos into shorts, matching podclip's core function.",
+      "intent_strength": "high",
+      "drafted_reply": "One approach is to use transcript-driven heuristics first—like preferring sentence boundaries and high speech density—before adding AI. This gives a testable baseline. I built a tool that does this for podcasts—{APP_URL}. I'm the creator.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.15,
+        "why": "The thread is a GitHub issue requesting open-source contributors to build an auto-clipping feature inside an existing codebase, not a podcaster or creator looking for a ready-made clipping tool."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/cbwinslow/clipper/issues/10",
+      "title_or_quote": "[EPIC] Phase 4: Scoring & Highlight Detection",
+      "posted_when": "2026-05-07T05:54:54Z",
+      "why_relevant": "They're building highlight detection for podcasts, which is exactly what podclip does.",
+      "intent_strength": "high",
+      "drafted_reply": "For scoring highlights, combining transcript sentiment, keyword density, and audio energy works well. Our model was trained on 40k rated clips to avoid generic picks. More here: {APP_URL}. I'm the founder.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is a GitHub epic tracking active open-source development of a custom scoring and highlight-detection pipeline — the author is building this infrastructure themselves, not looking for a finished product to replace that work."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=45405343",
+      "title_or_quote": "I frequently find myself wanting to share information surfaced in a podcast... but I don't have a great way of sharing.",
+      "posted_when": "2025-09-28T16:01:18Z",
+      "why_relevant": "User struggles to share podcast snippets, a core use case for podclip.",
+      "intent_strength": "high",
+      "drafted_reply": "You could use a tool that auto-detects strong moments and exports them with captions. I built one that picks narrative hooks, not random clips—{APP_URL}. I'm the creator.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/bisheshabramhacharya/clipping-factory/issues/2",
+      "title_or_quote": "Clipping Factory Paid Product Buildout",
+      "posted_when": "2026-07-31T02:27:35Z",
+      "why_relevant": "They're building a professional clipping studio, directly overlapping with podclip's ICP.",
+      "intent_strength": "medium",
+      "drafted_reply": "Local, reliable clipping with full control is key for pros. We focused on speed and brand consistency—rendering a 60-min episode in ~90 seconds. Check it out: {APP_URL}. I'm the builder.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub issue tracking a local-first, privacy-preserving, Rust-based clipping tool being built by the author themselves — they are building a competitor, not looking for an existing SaaS solution like podclip."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/marceloarruda01/omacast/issues/4",
+      "title_or_quote": "Feature: Implement Chapter Support with Navigation",
+      "posted_when": "2026-08-22T21:00:47Z",
+      "why_relevant": "Chapter support implies need for clip-level navigation, adjacent to podclip's use case.",
+      "intent_strength": "medium",
+      "drafted_reply": "Chapter data can also feed clip detection—moments right after chapter starts often have strong intros. Our tool auto-generates clips with captions: {APP_URL}. I'm the creator.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "This thread is a GitHub feature request for implementing chapter navigation (ID3 tags, MP4 metadata, RSS parsing) in a podcast player app — a developer task unrelated to automated clip generation for social media."
+      }
+    }
+  ]
+}

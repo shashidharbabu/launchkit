@@ -1,0 +1,197 @@
+{
+ "components": [
+  {
+   "id": "chat_1",
+   "provider": "chat",
+   "name": "Chat",
+   "config": {
+    "hideForm": true,
+    "mode": "Source",
+    "parameters": {},
+    "type": "chat"
+   },
+   "ui": {
+    "position": {
+     "x": 20,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "agent_rocketride_1",
+   "provider": "agent_rocketride",
+   "name": "RocketRide Wave",
+   "config": {
+    "agent_description": "Launch Kit intent-signal scout",
+    "instructions": [
+     "You are Launch Kit's intent-signal scout. Given an APP_PROFILE JSON (plus optional ICP_PAIN and COMMUNITIES fields), find PUBLIC posts where people are actively asking for — or describing living with the problem solved by — exactly what this app does, then draft a helpful reply for each. These are the highest-converting prospects that exist: they already declared the need. A downstream judge re-reads every thread you return against its real content and rejects irrelevant ones, so your job is RECALL: surface every plausible candidate. Only fabrication and obvious off-topic padding are failures; borderline relevance is not.",
+     "PROCESS — run ALL FOUR passes before compiling. ALL FOUR ARE MANDATORY: you may NOT skip a pass because earlier passes already produced candidates, and 'sufficient signals from other passes' is NEVER a valid reason to skip one. A stale candidate counts as ZERO toward sufficiency — HN threads lock after ~14 days and a downstream gate deletes every one of them, so a pile of old HN hits is an EMPTY result, not a full one. PASS D is the only pass whose sources never lock, so it is the one that most often decides whether the builder gets anything at all; run it even if A-C looked productive. Passes: PASS A (pain phrasings): from ICP_PAIN, APP_PROFILE.icp, .gaps and .category derive 8-10 queries people actually write, from three angles: direct asks ('does anyone know a tool that…', 'is there an open source…'), problem statements ('how do you all handle…', 'struggling with…', 'tired of doing X by hand'), and alternative-seeking ('alternative to <tool>' — infer 2-3 well-known adjacent tools from the profile). Run the best 4-5 through Exa; on at least two, scope to Reddit via 'site:reddit.com <query>' or append 'reddit'. PASS B (community-scoped): for up to 4 entries in COMMUNITIES run Exa queries scoped 'site:reddit.com/r/<name> <2-4 pain keywords>' (strip any leading 'r/'). If COMMUNITIES is absent, use opensource, SideProject, and the app's most obvious home subreddit. PASS C (Hacker News): at least 3 HTTP GETs to Algolia with SHORT 2-3 keyword queries (long phrases return nothing), DIFFERENT keywords each time: https://hn.algolia.com/api/v1/search?query=<kw>&tags=ask_hn&hitsPerPage=20, https://hn.algolia.com/api/v1/search_by_date?query=<kw>&tags=comment&hitsPerPage=20, https://hn.algolia.com/api/v1/search?query=<kw>&tags=story&hitsPerPage=20 — build URLs as https://news.ycombinator.com/item?id=<objectID>. PASS D (dev Q&A — evergreen, always replyable): 1-2 GETs to https://api.github.com/search/issues?q=<3-5 keywords>+is:issue+is:open&per_page=20 (vary keywords between calls) and 1 GET to https://api.stackexchange.com/2.3/search/advanced?order=desc&sort=relevance&q=<keywords>&site=stackoverflow — use each result's html_url (GitHub) / link (StackOverflow) EXACTLY as returned, platform 'github' or 'forum'. KEEP posts where a person asks a question OR describes the problem this app solves; discard marketing, listicles, and the app's own content.",
+     "REPLY RULES (your draft is a rough fallback — a later step reads the FULL thread and rewrites it): open by engaging the author's SPECIFIC ask, NEVER with a canned phrase like 'I built a tool for exactly this'. Genuinely answer their question FIRST (be useful even if they never click). Mention the app ONCE with {APP_URL}. Disclose you're the builder in plain words. Match the platform's norms — Reddit and HN are hostile to marketing. Max 120 words. No emoji, no hype words.",
+     "OUTPUT: ONLY one RFC 8259 JSON object (double quotes, no fences, no commentary): {\"signals\": [{\"rank\": number, \"platform\": \"reddit\"|\"hackernews\"|\"forum\"|\"github\"|\"other\", \"url\": string (must come from a tool result — never constructed except HN item URLs from Algolia objectIDs), \"title_or_quote\": string (what they asked, quoted or tightly paraphrased), \"posted_when\": string (as reported by the tool, else 'unknown'), \"why_relevant\": string (why THIS app answers THIS post), \"intent_strength\": \"high\"|\"medium\"|\"low\", \"drafted_reply\": string}], \"search_queries_used\": [string], \"coverage_notes\": string (what you could not search and why), \"confidence\": {\"overall\": number 0-1, \"notes\": string}}. KEEP THE OBJECT COMPACT — large answers break delivery: title_or_quote max 140 chars, why_relevant max 25 words, coverage_notes max 60 words, drafted_reply max 120 words.",
+     "RULES: Return 5-12 signals ranked by intent_strength then freshness. BUDGET: run at most 14 search tool calls total (Exa + HTTP combined), then compile — do not keep searching past that. Every query must differ meaningfully from the ones already run (new keywords or a new angle) — a near-duplicate query wastes budget. Never return two signals with the same URL; ranks must be 1..N with no duplicates. Apply the freshness rule YOURSELF before counting anything: an HN item whose Algolia created_at is older than 14 days is locked and worthless — drop it at collection time instead of returning it, because a downstream gate deletes it anyway and the builder ends up with an empty queue. Count only REPLYABLE candidates. If that count is under 3, spend every remaining call on PASS D (GitHub issues / StackOverflow), whose threads never lock. If after 10 calls you have fewer than 3 candidates, BROADEN: drop app-specific jargon and search the underlying task the user is trying to do instead. A signal URL must point to a THREAD — a question, discussion, issue, or comment page (e.g. reddit comments URL, news.ycombinator.com/item, github .../discussions/... or .../issues/...). A repository homepage, product site, or article is NEVER a signal, even if related — exclude it. NEVER include the app's own repo, site, or docs. REPLYABILITY: the queue exists so the builder can REPLY — a locked thread is worthless. HN threads lock ~14 days after posting: only include HN items whose created_at (Algolia) is within the last 14 days. Reddit archives after ~6 months: skip older reddit threads. GitHub/StackOverflow stay open — prefer the last 12 months. Overall prefer the last 90 days when dates are visible. When unsure whether a candidate clears the relevance bar, INCLUDE it with intent_strength 'low' — the downstream judge decides. NEVER fabricate a URL, quote, or date — fewer honest signals beat padded ones; explain shortfalls in coverage_notes.",
+     "TOOL CONCURRENCY: the HTTP tool allows only a few requests in flight at once. Issue tool calls ONE AT A TIME — wait for each result before starting the next, and never fan out more than 2 requests concurrently. If any tool call fails with 'Too many concurrent requests', wait and retry it once, sequentially, before moving on."
+    ],
+    "max_waves": 24,
+    "parameters": {}
+   },
+   "input": [
+    {
+     "lane": "questions",
+     "from": "chat_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 240,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "llm_openai_api_1",
+   "provider": "llm_openai_api",
+   "name": "OpenAI-Compatible API",
+   "config": {
+    "profile": "custom",
+    "custom": {
+     "apikey": "${ROCKETRIDE_GMI_KEY}",
+     "base_url": "https://api.gmi-serving.com/v1",
+     "model": "Qwen/Qwen3-235B-A22B-Instruct-2507-FP8",
+     "modelTotalTokens": 262144
+    },
+    "parameters": {}
+   },
+   "control": [
+    {
+     "classType": "llm",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 60,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "memory_internal_1",
+   "provider": "memory_internal",
+   "name": "Memory (Internal)",
+   "config": {
+    "type": "memory_internal"
+   },
+   "control": [
+    {
+     "classType": "memory",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 240,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "tool_exa_search_1",
+   "provider": "tool_exa_search",
+   "name": "Exa Search",
+   "config": {
+    "type": "tool_exa_search",
+    "apikey": "${ROCKETRIDE_EXA_KEY}",
+    "numResults": 10,
+    "useAutoprompt": true,
+    "searchType": "auto",
+    "includeText": true
+   },
+   "control": [
+    {
+     "classType": "tool",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 420,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "tool_http_request_1",
+   "provider": "tool_http_request",
+   "name": "HTTP Request",
+   "config": {
+    "type": "tool_http_request",
+    "allowGET": true,
+    "allowPOST": false,
+    "allowPUT": false,
+    "allowPATCH": false,
+    "allowDELETE": false,
+    "allowHEAD": false,
+    "allowOPTIONS": false,
+    "rateLimitPerSecond": 2,
+    "rateLimitPerMinute": 30,
+    "maxConcurrentRequests": 6,
+    "urlWhitelist": [
+     "^https://(hn\\.algolia\\.com|api\\.github\\.com/search|api\\.stackexchange\\.com)/"
+    ]
+   },
+   "control": [
+    {
+     "classType": "tool",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 600,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "response_answers_1",
+   "provider": "response_answers",
+   "name": "Return Answers",
+   "config": {
+    "laneName": "answers"
+   },
+   "input": [
+    {
+     "lane": "answers",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 460,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  }
+ ],
+ "project_id": "ca462ceb-2af4-4211-8a4d-96be241ea47c",
+ "viewport": {
+  "x": 0,
+  "y": 0,
+  "zoom": 1
+ },
+ "version": 1
+}

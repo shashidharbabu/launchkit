@@ -1,0 +1,10 @@
+{
+  "output": {
+    "title": "I built an API-first uptime monitor with Terraform support for indie devs",
+    "body": "I'm the builder of PingDeck, an uptime monitoring tool designed for indie devs and small teams who treat infrastructure as code. It checks HTTP, cron jobs, and TCP ports every 30 seconds (even on the free tier), sends alerts to Slack, email, or webhooks, and generates clean public status pages.\n\nMost tools like UptimeRobot are click-ops with APIs added later. Datadog's synthetic checks are overkill and expensive. I wanted monitors that live in code from day one — so PingDeck launched with a full REST API and an official Terraform provider in the Terraform Registry.\n\nIt's been running 11,000 endpoints across 640 accounts. Built with Go, PostgreSQL, and ClickHouse. Currently no mobile app or SSO, and only three built-in alert integrations beyond webhooks.\n\nWould love feedback from the self-hosting community on how it compares to running Uptime Kuma or other self-hosted options. You can try it at {APP_URL}.",
+    "suggested_flair": "Showcase",
+    "warnings": [
+      "This post discloses the builder's affiliation and avoids hype, aligning with r/selfhosted norms. However, since PingDeck is a hosted service, some community members may prefer fully self-hosted alternatives. The post acknowledges Uptime Kuma as a competitor and invites critical feedback."
+    ]
+  }
+}

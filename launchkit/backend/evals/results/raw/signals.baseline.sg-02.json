@@ -1,0 +1,178 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/colinhacks/zod/issues/2903",
+        "title_or_quote": "How to keep a TypeScript interface in sync with a Zod schema?",
+        "posted_when": "2023-10-26T00:00:00.000Z",
+        "why_relevant": "User struggles with syncing Zod and TypeScript types.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this. Schemaguard generates runtime validation directly from your TypeScript types, so you don't need to maintain Zod schemas alongside interfaces. It compiles to fast, tiny validators and keeps your types as the single source of truth. Check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread author is explicitly struggling with keeping TypeScript interfaces in sync with Zod schemas, which is the exact problem SchemaGuard solves by generating runtime validation directly from TypeScript types."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "stackoverflow",
+        "url": "https://stackoverflow.com/questions/77365056/how-to-keep-a-typescript-interface-in-sync-with-a-zod-schema",
+        "title_or_quote": "How to keep a TypeScript interface in sync with a Zod schema?",
+        "posted_when": "unknown",
+        "why_relevant": "Direct ask about syncing Zod and TypeScript types.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this. Schemaguard eliminates schema duplication by generating runtime validators directly from your TypeScript types. No more manual Zod schemas — your types are the source of truth. It's fast, small, and keeps your validation in sync. See {APP_URL}.",
+        "rescore": {
+          "verdict": "unverified",
+          "why": "fetch failed: HTTP Error 403: Forbidden"
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/kryft-dev/exenv/issues/7",
+        "title_or_quote": "feat: generate typed definitions and runtime validation schemas from templates",
+        "posted_when": "2026-08-26T17:57:41Z",
+        "why_relevant": "User wants generated runtime validation from types.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this. Schemaguard generates runtime validation directly from your existing TypeScript types at build time, no manual schemas needed. It's designed to keep your types as the single source of truth and outputs compact, fast validators. More at {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread author is explicitly seeking a solution to generate runtime validation schemas from type definitions, which directly aligns with schemaguard's core functionality of compiling TypeScript types into runtime validators without duplicate schemas."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/SuperFamousGuy/AutoTiers/issues/1206",
+        "title_or_quote": "Generate web/src/api/types.ts from FastAPI's OpenAPI schema and gate CI on drift",
+        "posted_when": "2026-08-20T07:11:18Z",
+        "why_relevant": "User wants to prevent type drift in API contracts.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this. Schemaguard ensures your TypeScript types stay in sync by generating runtime validators directly from them, eliminating manual schema maintenance. It helps prevent drift between expected and actual data. Learn more at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread focuses on generating TypeScript types from OpenAPI schema to prevent type drift, not on runtime validation from existing TypeScript types, which is the core functionality of schemaguard."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/edgm74/chorustr-community/issues/429",
+        "title_or_quote": "P3: Publish shared API DTOs from runtime validation schemas",
+        "posted_when": "2026-08-23T00:16:02Z",
+        "why_relevant": "Team needs runtime validation tied to types.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this. Schemaguard generates runtime validation from your TypeScript types automatically, so you don't need to write or sync separate schemas. It keeps your API contracts consistent and validation reliable. See {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread discusses maintaining duplicate TypeScript interfaces and Zod schemas for API DTOs, which directly aligns with the app's purpose of eliminating duplicated schema definitions by generating runtime validation from existing types."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that generates runtime validation from TypeScript types",
+      "struggling with keeping Zod schemas in sync with TypeScript interfaces",
+      "alternative to Zod for TypeScript runtime validation",
+      "site:reddit.com/r/typescript TypeScript interface validation without duplication",
+      "site:reddit.com/r/javascript runtime validation from TypeScript types",
+      "site:reddit.com/r/node keep Zod schema in sync with interface",
+      "site:reddit.com/r/webdev alternative to Zod for runtime validation",
+      "TypeScript runtime validation",
+      "Zod sync",
+      "interface validation",
+      "runtime validation typescript",
+      "sync TypeScript interface zod schema is:issue is:open",
+      "TypeScript runtime validation from types"
+    ],
+    "coverage_notes": "Reddit queries returned no results; used default subreddits. HN results were either too old or not relevant. Focused on GitHub and StackOverflow for evergreen signals.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong signals from GitHub and StackOverflow. Reddit and HN had no recent relevant threads. PASS D provided the most actionable results."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/colinhacks/zod/issues/2903",
+      "title_or_quote": "How to keep a TypeScript interface in sync with a Zod schema?",
+      "posted_when": "2023-10-26T00:00:00.000Z",
+      "why_relevant": "User struggles with syncing Zod and TypeScript types.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this. Schemaguard generates runtime validation directly from your TypeScript types, so you don't need to maintain Zod schemas alongside interfaces. It compiles to fast, tiny validators and keeps your types as the single source of truth. Check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread author is explicitly struggling with keeping TypeScript interfaces in sync with Zod schemas, which is the exact problem SchemaGuard solves by generating runtime validation directly from TypeScript types."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/77365056/how-to-keep-a-typescript-interface-in-sync-with-a-zod-schema",
+      "title_or_quote": "How to keep a TypeScript interface in sync with a Zod schema?",
+      "posted_when": "unknown",
+      "why_relevant": "Direct ask about syncing Zod and TypeScript types.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this. Schemaguard eliminates schema duplication by generating runtime validators directly from your TypeScript types. No more manual Zod schemas — your types are the source of truth. It's fast, small, and keeps your validation in sync. See {APP_URL}.",
+      "rescore": {
+        "verdict": "unverified",
+        "why": "fetch failed: HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/kryft-dev/exenv/issues/7",
+      "title_or_quote": "feat: generate typed definitions and runtime validation schemas from templates",
+      "posted_when": "2026-08-26T17:57:41Z",
+      "why_relevant": "User wants generated runtime validation from types.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this. Schemaguard generates runtime validation directly from your existing TypeScript types at build time, no manual schemas needed. It's designed to keep your types as the single source of truth and outputs compact, fast validators. More at {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread author is explicitly seeking a solution to generate runtime validation schemas from type definitions, which directly aligns with schemaguard's core functionality of compiling TypeScript types into runtime validators without duplicate schemas."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/edgm74/chorustr-community/issues/429",
+      "title_or_quote": "P3: Publish shared API DTOs from runtime validation schemas",
+      "posted_when": "2026-08-23T00:16:02Z",
+      "why_relevant": "Team needs runtime validation tied to types.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this. Schemaguard generates runtime validation from your TypeScript types automatically, so you don't need to write or sync separate schemas. It keeps your API contracts consistent and validation reliable. See {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread discusses maintaining duplicate TypeScript interfaces and Zod schemas for API DTOs, which directly aligns with the app's purpose of eliminating duplicated schema definitions by generating runtime validation from existing types."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/SuperFamousGuy/AutoTiers/issues/1206",
+      "title_or_quote": "Generate web/src/api/types.ts from FastAPI's OpenAPI schema and gate CI on drift",
+      "posted_when": "2026-08-20T07:11:18Z",
+      "why_relevant": "User wants to prevent type drift in API contracts.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this. Schemaguard ensures your TypeScript types stay in sync by generating runtime validators directly from them, eliminating manual schema maintenance. It helps prevent drift between expected and actual data. Learn more at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread focuses on generating TypeScript types from OpenAPI schema to prevent type drift, not on runtime validation from existing TypeScript types, which is the core functionality of schemaguard."
+      }
+    }
+  ]
+}

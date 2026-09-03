@@ -1,0 +1,112 @@
+{
+  "output": {
+    "brand_name": "Retool",
+    "tagline_observed": "Build internal software better, with AI.",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "builder-centric",
+        "results-oriented",
+        "pragmatic",
+        "confident"
+      ],
+      "sentence_style": "Short declaratives and imperatives, second person implied, outcome-first framing with named customer proof, no jargon beyond standard engineering terms",
+      "vocabulary": [
+        "internal tools",
+        "build",
+        "deploy",
+        "workflows",
+        "automation",
+        "builders",
+        "operators",
+        "production-grade",
+        "self-hosted",
+        "audit logs"
+      ],
+      "avoid": [
+        "vague superlatives without proof",
+        "consumer-app language",
+        "passive voice",
+        "unnamed or hypothetical customer claims",
+        "feature lists without outcomes"
+      ],
+      "evidence_quotes": [
+        "Apps that mean business",
+        "Built for builders, by builders",
+        "Retool cut the internal tools development time from 1-2 months to 30-60 minutes.",
+        "making tools a quick and painless part of any project, saving us countless hours of operator and engineering time"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Build internal tools in minutes, not months — connect any data source and ship apps, workflows, and AI agents from one platform",
+        "Enterprise-grade security and compliance: SSO, SCIM, audit logs, self-hosted and air-gapped deployment options",
+        "Scales from startups to Fortune 500s with pricing that fits your team size",
+        "AI-native building: import vibe-coded apps, build via MCP, or prompt your way to a working tool"
+      ],
+      "key_messages": [
+        "Build internal software better, with AI.",
+        "Apps that mean business",
+        "Built for builders, by builders",
+        "From startups to Fortune 500s, the world's most effective teams use Retool to build business software and operate better.",
+        "Investing in internal tools used to be a difficult and polarizing trade-off; Retool helped us to shift that paradigm by making tools a quick and painless part of any project"
+      ],
+      "proof_points_observed": [
+        "DoorDash cut internal tools development time from 1-2 months to 30-60 minutes",
+        "DoorDash saved $6M",
+        "Ramp saved $8M in operational costs",
+        "Pernod Ricard built AI apps 5x faster to influence $2B in sales",
+        "Brex reduced code written for internal tools by 75%",
+        "Plaid made support agent workflows 80% faster as support team tripled",
+        "Komatsu projecting savings of 22,000+ hours per year",
+        "Harmonic replaced a $20K SaaS tool and built a 33-app internal operating system",
+        "Tripplo improved transporter efficiency by 80%",
+        "University of Texas Medical Branch screens 10x more patients with AI-powered Retool apps",
+        "Tens of thousands of companies use Retool"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#151515",
+          "role": "background",
+          "evidence": "meta theme-color tag observed on homepage, about, pricing, and customers pages"
+        }
+      ],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrapes returned markdown without CSS; no font-family declarations or font CDN links observed"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": ""
+    },
+    "audience_language": "Speaks directly to engineers, engineering leads, and technical operators at growth-stage to enterprise companies, leading with concrete time and cost outcomes backed by named customers.",
+    "dos_and_donts": {
+      "do": [
+        "Lead with concrete, named customer outcomes",
+        "Use action verbs and imperative framing",
+        "Reference compliance and security as first-class features",
+        "Show real use cases with specific industries or company names",
+        "Address both builders and operators as distinct audiences"
+      ],
+      "dont": [
+        "Use vague adjectives without proof (e.g. 'powerful', 'innovative')",
+        "Make claims without naming the customer or source",
+        "Use consumer-app or lifestyle language",
+        "Bury security/compliance features — they are buying triggers",
+        "Speak only to non-technical buyers or executives first"
+      ]
+    },
+    "sources_read": [
+      "https://retool.com",
+      "https://retool.com/about",
+      "https://retool.com/pricing",
+      "https://retool.com/customers"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Colors: only #151515 (theme-color meta) observed — scrapes returned markdown without CSS, so no palette beyond this one value; typography: no font-family or CDN links visible in markdown output; logo_url: no Retool wordmark img/SVG URL found in scraped content (favicon excluded per rules); all tone words, vocabulary, and proof points are directly sourced from scraped text."
+    }
+  }
+}

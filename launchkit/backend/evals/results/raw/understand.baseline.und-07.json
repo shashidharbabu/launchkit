@@ -1,0 +1,94 @@
+{
+  "output": {
+    "one_liner": "Astro is a web framework for building fast, content-driven websites with modern developer experience.",
+    "description": "Astro is a JavaScript web framework optimized for building fast, content-driven websites like marketing sites, blogs, and e-commerce. It uses server-first rendering and island architecture to deliver lightweight HTML with minimal JavaScript. The framework supports multiple UI libraries and integrates with various CMSs and deployment platforms.",
+    "category": "Web Framework",
+    "target_user": "Frontend developers and web engineers",
+    "icp": {
+      "who": "Development teams building content-focused websites",
+      "pain": "Slow website performance and complex full-stack setups for content sites",
+      "current_alternatives": [
+        "Next.js",
+        "Gatsby",
+        "Nuxt"
+      ],
+      "buying_trigger": "Need to improve Core Web Vitals or migrate from a monolithic CMS"
+    },
+    "differentiators": [
+      "Server-first rendering with zero JavaScript by default",
+      "Astro Islands architecture for selective interactivity",
+      "Supports multiple UI frameworks with no lock-in",
+      "Built-in optimizations for images, prefetching, and view transitions"
+    ],
+    "proof_points": [
+      "66% of real-world Astro sites pass Core Web Vitals (vs 30% for Next.js) - found on homepage",
+      "Over 50,000 GitHub stars - inferred from GitHub badge in README",
+      "Used by companies like NordVPN - mentioned on homepage"
+    ],
+    "tech_stack": [
+      "JavaScript",
+      "TypeScript",
+      "Vite",
+      "React",
+      "Vue",
+      "Svelte",
+      "Preact",
+      "Solid",
+      "Node.js"
+    ],
+    "pricing_current": "none found",
+    "voice": {
+      "tone": [
+        "clear",
+        "confident",
+        "developer-focused",
+        "modern"
+      ],
+      "sample_phrase": "Astro is a website build tool for the modern web — powerful developer experience meets lightweight output."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public website with documentation",
+        "Active GitHub repository",
+        "Production usage by companies",
+        "Regular releases (v7.2 mentioned)"
+      ]
+    },
+    "gaps": [
+      "No pricing page found",
+      "No direct demo link on homepage"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; primary sources fully analyzed"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, install, badges"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Dependencies and tooling info"
+      },
+      {
+        "source": "https://astro.build/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content and features"
+      },
+      {
+        "source": "https://astro.build/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Pricing page not found (404)"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

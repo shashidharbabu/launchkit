@@ -1,0 +1,19 @@
+{
+  "output": {
+    "name": "botsmith",
+    "tagline": "Support chatbot that cites every answer or hands off",
+    "description": "botsmith turns your docs, help articles, and past tickets into a support chatbot in ~5 minutes from a sitemap URL. Every answer is forced to cite its source passage. When confidence is low, it escalates to a human instead of guessing. No hallucinations by construction.",
+    "first_comment": "Hey Product Hunt — I'm the builder of botsmith, and I want to be straight with you about what it is and isn't.\n\nThe core idea: existing support bots either deflect nothing useful or confidently make things up. A hallucinated answer to a paying customer costs more trust than the ticket it was supposed to save. So I built botsmith around one hard constraint — the bot cannot send a reply without linking the exact source passage it drew from. If retrieval confidence is too low, it refuses to improvise and routes to a human instead.\n\nSetup is a sitemap URL. Median time to first answer is 5 minutes. No training UI to babysit.\n\nOne real proof point: Pixelhaven (a design tool) resolves 61% of inbound chats end-to-end with botsmith. 100% of shipped answers carry citations — that's enforced at the architecture level, not a dashboard toggle.\n\nHonest limitations: no multilingual support yet, no voice channel, and the security page is thin if you're enterprise. I'm working on all three.\n\nI'd love feedback on: (1) whether the citation UX feels trustworthy or cluttered to end users, and (2) what would make this credible enough for a security-conscious buyer. Thanks for taking a look — {APP_URL}",
+    "topics": [
+      "Artificial Intelligence",
+      "Customer Support",
+      "SaaS",
+      "Chatbots"
+    ],
+    "warnings": [
+      "Deflection metric (61%) comes from a single named customer (Pixelhaven) — make sure this is clearly attributed and not presented as an average across all users.",
+      "'100% cited answers' is an architectural claim — be prepared for technical questions on how the guardrail is implemented; HN and PH power users will probe this.",
+      "Description is 249 characters — within the 260-char limit, but verify character count in the PH submission UI as it may count differently."
+    ]
+  }
+}

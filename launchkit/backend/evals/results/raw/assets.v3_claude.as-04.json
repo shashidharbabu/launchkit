@@ -1,0 +1,10 @@
+{
+  "output": {
+    "post": "Generic OCR breaks on layout variety. That is the core problem AP automation teams keep running into.\n\nDocParse is a layout-aware document parsing API built specifically for invoices, receipts, and purchase orders. It extracts line items, totals, tax fields, and vendor data into structured JSON — with per-field confidence scores and a configurable human-review fallback for anything below your accuracy threshold.\n\nOn a published 5,000-invoice benchmark, DocParse reaches 99.2% field-level accuracy. p95 latency is 1.8 seconds per page, tracked on a public metrics page. SOC 2 Type I report is available under NDA; Type II audit is in progress.\n\nPricing is usage-based at $0.01 per page, with volume tiers and 500 free pages to start.\n\nIf your team is building an AP automation feature against an accuracy SLA and in-house OCR keeps missing it, DocParse is worth a look: {APP_URL}\n\n#APAutomation #DocumentAI #ERPIntegration",
+    "alt_hook": "An accuracy SLA is only as good as the pipeline behind it. Most OCR tools are not built for the layout variety that invoices, receipts, and purchase orders actually present.",
+    "warnings": [
+      "No named customer logos are available yet — the post relies on benchmark and latency proof points only. LinkedIn audiences may ask for case studies; be prepared to reference the published benchmark methodology instead.",
+      "Benchmark covers invoices only; receipts and POs are listed in the product description but not yet covered by the published accuracy data. Avoid implying 99.2% applies to all three document types in follow-up comments."
+    ]
+  }
+}

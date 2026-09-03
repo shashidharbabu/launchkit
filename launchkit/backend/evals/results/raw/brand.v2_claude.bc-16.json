@@ -1,0 +1,169 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Show HN: Schema In, Admin Panel Out",
+        "objective": "signups — drive self-hosted installs from the Hacker News engineering audience by demonstrating the core workflow unedited",
+        "big_idea": "Post a Show HN with a screen recording of the full flow: Docker run, point at Postgres, working CRUD UI in under 60 seconds. No narration, no edits. Engineers trust what they can see. The thread becomes the proof.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Point it at Postgres. Ship the admin panel before standup ends.",
+        "sample_copy": {
+          "headline": "Show HN: stackbuilt — Postgres schema in, working admin panel out (self-hosted, Docker, free RBAC)",
+          "body": "I kept getting asked to build one more admin panel. stackbuilt reads your Postgres schema and scaffolds CRUD interfaces, dashboards, and approval flows. Single Docker command. Data never leaves your network. RBAC in the free tier. Viewers are always free — only builders pay. Demo is the real thing, unedited.",
+          "cta": "Try it or watch the 60-second demo — link in comments."
+        },
+        "assets_needed": [
+          "Unedited screen recording: docker run → schema read → working UI",
+          "Show HN post draft",
+          "Docker Hub image published and stable"
+        ],
+        "effort": "small",
+        "success_metric": "Number of Docker pulls in the 48 hours after the Show HN post",
+        "why_on_brand": "Mirrors APP_PROFILE's sample phrase and proof point — 'schema-to-working-UI in under 60 seconds, shown unedited in the demo video' — and the engineer-first, anti-bloat voice."
+      },
+      {
+        "name": "Retool Renewal Season",
+        "objective": "signups — intercept engineers actively reconsidering Retool at renewal time by meeting them where they search and vent",
+        "big_idea": "When a Retool renewal quote lands, engineers go to Reddit and Twitter to complain. Be there with a direct, no-hype alternative: self-hosted, viewers free, production data stays on your network. No pitch deck, just the facts.",
+        "channels": [
+          "Reddit (r/selfhosted, r/devops, r/sysadmin)",
+          "X / Twitter"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "x_post"
+        ],
+        "hook": "Retool renewal quote just hit. Viewers are free on stackbuilt. Your data stays on your network.",
+        "sample_copy": {
+          "headline": "Tired of paying per viewer? stackbuilt is self-hosted and viewers are always free.",
+          "body": "stackbuilt connects to your existing Postgres database and scaffolds a working admin panel with a single Docker command. RBAC is included in the free tier. Production data never leaves your network — no cloud vendor in the middle of your security review. Only builders pay.",
+          "cta": "Self-host it today — no credit card needed."
+        },
+        "assets_needed": [
+          "Reddit post for r/selfhosted and r/devops",
+          "X post thread (3-4 posts) walking through the self-hosting story",
+          "Landing page section addressing the Retool-to-stackbuilt migration path"
+        ],
+        "effort": "small",
+        "success_metric": "Click-through rate from Reddit/X posts to the self-hosted install docs",
+        "why_on_brand": "Directly addresses the ICP's buying trigger ('a Retool renewal quote') and the differentiator 'production data never leaves your network' in a pragmatic, no-bloat voice."
+      },
+      {
+        "name": "The One-Minute Admin Panel",
+        "objective": "awareness — reach engineers on LinkedIn who manage internal tooling backlogs by showing the full workflow in 60 seconds",
+        "big_idea": "A short, unscripted video post on LinkedIn: open terminal, run Docker command, connect to Postgres, show the scaffolded UI. Caption is a single declarative sentence. Engineers share what saves them time.",
+        "channels": [
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "video_script"
+        ],
+        "hook": "Your Postgres schema is already the spec. stackbuilt reads it and builds the panel.",
+        "sample_copy": {
+          "headline": "Admin panel in under a minute. No cloud. No per-viewer fees.",
+          "body": "Backend engineers at growing companies spend hours on internal tooling requests that should take minutes. stackbuilt reads your existing Postgres schema and scaffolds CRUD interfaces, dashboards, and approval flows. Single Docker command. RBAC included free. Viewers never cost you anything — only builders pay. Running in production at a 200-person logistics company.",
+          "cta": "Watch the 60-second demo. Link in comments."
+        },
+        "assets_needed": [
+          "60-second screen recording (terminal → working UI, no cuts)",
+          "LinkedIn post copy",
+          "Video script (minimal — narrate only what's on screen)"
+        ],
+        "effort": "small",
+        "success_metric": "LinkedIn post impressions and link clicks to the demo page in the first week",
+        "why_on_brand": "Uses the proof point 'runs in production at a 200-person logistics company' and the core vocabulary — schema, CRUD, Docker, RBAC — in short declaratives matching the engineer-first voice."
+      },
+      {
+        "name": "Compliance Blocker",
+        "objective": "signups — reach eng leads whose security or compliance team has blocked a cloud-hosted internal tool by framing self-hosting as the answer",
+        "big_idea": "A newsletter pitch or LinkedIn article aimed at eng leads: when the security review rules out piping production data through a vendor's cloud, self-hosting is not a workaround — it is the architecture. stackbuilt makes that architecture a single Docker command.",
+        "channels": [
+          "Developer newsletters (TLDR, Pointer, Changelog)",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "newsletter_pitch",
+          "linkedin_post"
+        ],
+        "hook": "Your compliance team said no to cloud-hosted internal tools. Your Postgres is already there.",
+        "sample_copy": {
+          "headline": "When the security review says no, self-host the admin panel instead.",
+          "body": "Compliance teams balk at production data leaving your network. stackbuilt runs entirely inside your infrastructure — single Docker command, no external cloud in the data path. It reads your Postgres schema and scaffolds a working CRUD interface with role-based access control included in the free tier. Viewers are always free. Only builders pay.",
+          "cta": "Read the self-hosting guide and run it today."
+        },
+        "assets_needed": [
+          "Newsletter pitch email (150 words)",
+          "LinkedIn article (400-600 words) on self-hosted internal tooling for compliance-sensitive teams",
+          "Self-hosting architecture diagram showing data flow staying inside the network"
+        ],
+        "effort": "medium",
+        "success_metric": "Newsletter referral clicks to the self-hosted install page",
+        "why_on_brand": "Directly maps to the ICP pain point 'compliance teams balk at piping production data through someone else's cloud' and the differentiator 'production data never leaves your network.'"
+      },
+      {
+        "name": "Builder vs. Viewer Pricing Breakdown",
+        "objective": "signups — convert engineers evaluating internal tool platforms by making the pricing model concrete and shareable",
+        "big_idea": "A Reddit post or X thread that walks through the stackbuilt pricing model with a real scenario: a team with many viewers and a few builders. No invented numbers — just the model itself. Engineers who have been burned by per-seat pricing share this.",
+        "channels": [
+          "Reddit (r/devops, r/programming)",
+          "X / Twitter"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "x_post"
+        ],
+        "hook": "Viewers are free. Always. Only the engineers building the tools pay.",
+        "sample_copy": {
+          "headline": "stackbuilt pricing: only builders pay. Viewers are free forever.",
+          "body": "Most internal tool platforms charge per seat. stackbuilt charges per builder — the engineers scaffolding and editing interfaces. Everyone else who uses the tools? Free. Self-hosted with a single Docker command. RBAC included in the free tier. Cloud tier available for teams that want managed hosting.",
+          "cta": "See the pricing page or self-host it free today."
+        },
+        "assets_needed": [
+          "Reddit post explaining the builder/viewer model",
+          "X thread (3 posts) on the pricing model",
+          "Pricing comparison table on the stackbuilt site (builders vs. viewers, self-hosted vs. cloud)"
+        ],
+        "effort": "small",
+        "success_metric": "Reddit post upvotes and click-throughs to the pricing page",
+        "why_on_brand": "Addresses the ICP pain 'Retool pricing scales per user until it hurts' using the differentiator 'viewers are free forever; only builders pay' in a direct, no-bloat voice."
+      },
+      {
+        "name": "Production Proof Tour",
+        "objective": "community — build credibility with the self-hosted and devops community by sharing a transparent, behind-the-scenes look at a real production deployment",
+        "big_idea": "A short written case study or Reddit post describing how stackbuilt runs in production at a 200-person logistics company — what the schema looked like, what panels were scaffolded, how RBAC was configured. No marketing language, just the technical story.",
+        "channels": [
+          "Reddit (r/selfhosted, r/devops)",
+          "Hacker News"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "show_hn"
+        ],
+        "hook": "Here is what a real production stackbuilt deployment looks like at a 200-person logistics company.",
+        "sample_copy": {
+          "headline": "How a 200-person logistics company replaced their hand-rolled admin panels with stackbuilt",
+          "body": "They had a Postgres database, a pile of internal tool requests, and a compliance requirement that ruled out cloud-hosted vendors. Single Docker command. Schema read. CRUD interfaces and approval flows scaffolded. RBAC configured for ops, finance, and engineering roles. Viewers free. This is what the setup actually looked like.",
+          "cta": "Read the full technical breakdown — link in comments."
+        },
+        "assets_needed": [
+          "Written case study (600-800 words, technical, no marketing language)",
+          "Architecture diagram of the production deployment",
+          "Reddit post linking to the case study"
+        ],
+        "effort": "medium",
+        "success_metric": "Case study page visits and inbound GitHub stars or Docker pulls in the two weeks after posting",
+        "why_on_brand": "Uses the proof point 'runs in production at a 200-person logistics company' in a transparent, engineer-first format that matches the anti-bloat, pragmatic voice."
+      }
+    ],
+    "confidence": {
+      "overall": 0.78,
+      "notes": "BRAND_DNA provided was extracted from Retool (the competitor), not stackbuilt. Campaigns are written using APP_PROFILE.voice (pragmatic, engineer-first, anti-bloat) and APP_PROFILE.proof_points as the authoritative brand signal. No numeric claims invented beyond those in APP_PROFILE.proof_points. Retool DNA was used only for competitive context and ICP framing."
+    }
+  }
+}

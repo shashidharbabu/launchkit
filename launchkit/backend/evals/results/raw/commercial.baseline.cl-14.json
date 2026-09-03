@@ -1,0 +1,66 @@
+{
+  "output": {
+    "title": "depsentry",
+    "tagline": "Catch supply-chain attacks before they hit",
+    "description_short": "Behavioral dependency scanning for npm and PyPI. Flags install scripts, maintainer changes, and typosquats in CI.",
+    "description_long": "depsentry watches what dependencies do — not just what CVE databases say. It detects supply-chain risks like new install scripts, sudden maintainer handoffs, typosquat-adjacent names, and unexpected network calls added in minor versions. These are the behavioral signals that preceded attacks like event-stream.\n\nRunning in CI, depsentry scans a 1,200-dependency lockfile in 40 seconds and comments directly on the PR introducing the risk — not weeks later in a digest. It’s built for security-conscious engineering teams shipping in JavaScript and Python.\n\nBacked by evidence: our retro-analysis shows depsentry would have flagged the event-stream attack 11 days before public disclosure. Free for open-source repositories, already trusted by 300+ public projects. Team plans start at $199/month with white-glove onboarding.",
+    "keywords": [
+      "dependency scanner",
+      "supply chain security",
+      "npm security",
+      "PyPI security",
+      "CI security",
+      "detect malicious packages",
+      "install script detection",
+      "typosquatting detection",
+      "maintainer change alert",
+      "behavioral package analysis",
+      "event-stream attack detection",
+      "open source security",
+      "Snyk alternative",
+      "Dependabot alternative",
+      "Socket alternative"
+    ],
+    "screenshot_order": [
+      "PR comment showing a flagged install script — because real risk appears in pull requests",
+      "Dashboard view of recent dependency behaviors — to show depth beyond CVEs",
+      "Side-by-side scan time comparison in CI — proving 40-second performance on large lockfiles"
+    ],
+    "faq": [
+      {
+        "q": "How is this different from Snyk or Dependabot?",
+        "a": "CVE scanners only alert after disclosure. depsentry analyzes behavior — install scripts, network calls, maintainer changes — to catch attacks before they're known."
+      },
+      {
+        "q": "Does it work with Python projects?",
+        "a": "Yes, with growing coverage. npm support is more mature, but Python scanning is actively expanding."
+      },
+      {
+        "q": "Is it free for open-source?",
+        "a": "Yes, depsentry is free for public repositories and already runs on over 300 open-source projects."
+      },
+      {
+        "q": "What CI systems does it support?",
+        "a": "Currently GitHub Actions. GitLab support is planned for a future release."
+      },
+      {
+        "q": "Can I see detection proof?",
+        "a": "Yes — our retro-analysis shows depsentry would have flagged the event-stream attack 11 days before public disclosure."
+      }
+    ],
+    "cta": "Secure your dependencies in CI — start free for open source or request a team trial.",
+    "changes_from_current": [
+      "Expanded tagline to communicate core benefit",
+      "Rewrote short description to emphasize behavioral analysis and CI integration",
+      "Replaced minimal long description with compelling, evidence-led narrative",
+      "Added strategic keywords including competitor alternatives and technical signals",
+      "Defined screenshot order with conversion rationale",
+      "Added 5 objection-handling FAQs",
+      "Strengthened CTA with clear next steps"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Profile includes specific, falsifiable proof points. Voice and differentiators are clear. Lacks public benchmark vs Socket, but retro-test claim strengthens credibility."
+    }
+  }
+}

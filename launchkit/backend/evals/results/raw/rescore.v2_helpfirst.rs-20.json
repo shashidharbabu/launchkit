@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=18874707",
+        "title_or_quote": "Ask HN: Which Wiki or internal documentation tools do you use?",
+        "why_relevant": "Popular Ask HN about internal tools.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is asking about wiki and internal documentation tools for engineering handbooks, not about internal admin panels, CRUD interfaces, or Postgres-backed tooling."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=18874707",
+      "title_or_quote": "Ask HN: Which Wiki or internal documentation tools do you use?",
+      "why_relevant": "Popular Ask HN about internal tools.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is asking about wiki and internal documentation tools for engineering handbooks, not about internal admin panels, CRUD interfaces, or Postgres-backed tooling."
+      }
+    }
+  ]
+}

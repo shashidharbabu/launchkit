@@ -1,0 +1,84 @@
+{
+  "output": {
+    "one_liner": "Plausible is a lightweight, privacy-friendly Google Analytics alternative for website owners who want simple, GDPR-compliant insights without tracking cookies.",
+    "description": "Plausible provides open-source web analytics that respect user privacy and comply with GDPR, CCPA, and PECR. It offers a simple dashboard with essential metrics like pageviews, visitors, bounce rate, and referral sources. The tool is designed to be easy to set up and use, with a focus on data privacy and transparency.",
+    "category": "web analytics",
+    "target_user": "independent website owners, small business owners, privacy-conscious developers",
+    "icp": {
+      "who": "a website owner or marketer who values user privacy and needs simple, reliable traffic insights",
+      "pain": "traditional analytics tools are bloated, invasive, and non-compliant with privacy regulations",
+      "current_alternatives": [
+        "Google Analytics",
+        "Matomo",
+        "Fathom Analytics"
+      ],
+      "buying_trigger": "launching a new site or redesign, facing GDPR compliance pressure, or dissatisfaction with Google Analytics complexity"
+    },
+    "differentiators": [
+      "open-source and self-hostable",
+      "lightweight script under 1KB",
+      "privacy-first design compliant with GDPR, CCPA, and PECR",
+      "simple, clean dashboard with only essential metrics"
+    ],
+    "proof_points": [
+      "Over 10,000 customers use Plausible (from /docs/subscription-plans)",
+      "Rated 4.9/5 on G2 (from /docs/subscription-plans)",
+      "Featured in The Guardian and TechCrunch (from main site copy)"
+    ],
+    "tech_stack": [
+      "Jekyll",
+      "Docusaurus",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "pricing_current": "Free 30-day trial, no credit card required. Paid plans start at $9/month for 10k pageviews. Details in /docs/subscription-plans.",
+    "voice": {
+      "tone": [
+        "clear",
+        "friendly",
+        "confident",
+        "privacy-focused"
+      ],
+      "sample_phrase": "Plausible is a lightweight and open-source Google Analytics alternative."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "public pricing",
+        "active customer base",
+        "press coverage",
+        "documentation site"
+      ]
+    },
+    "gaps": [
+      "no live demo video",
+      "pricing not on main domain /pricing (404)"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Repo not supplied; profile based on site only"
+    },
+    "sources_read": [
+      {
+        "source": "https://plausible.io/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main landing page, value prop, description"
+      },
+      {
+        "source": "https://plausible.io/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Returned 404, not found"
+      },
+      {
+        "source": "https://plausible.io/docs/subscription-plans",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Detailed pricing and plans documentation"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

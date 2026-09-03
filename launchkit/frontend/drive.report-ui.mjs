@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+import { readFileSync } from 'node:fs';
+const OUT='/Users/shashidharbabu/rocketride-apps-gtm/docs/visual-baseline';
+const b=await chromium.launch(); const page=await b.newPage({viewport:{width:2000,height:1260}});
+const errs=[]; page.on('pageerror',e=>errs.push(String(e).slice(0,140)));
+await page.goto('http://localhost:3400',{waitUntil:'networkidle'});
+await page.evaluate((raw)=>{localStorage.setItem('lk-preview-appstate',raw);localStorage.removeItem('lk-nav');},readFileSync(`${OUT}/1b-appstate-p5.json`,'utf8'));
+await page.reload({waitUntil:'networkidle'}); await page.waitForTimeout(4000);
+await page.click('#lk-root aside nav a:has-text("Launches")'); await page.waitForTimeout(1200);
+await page.getByText('Excalidraw').first().click({timeout:10000}); await page.waitForTimeout(2000);
+await page.getByText(/06\s*SIGNALS/i).first().click({timeout:8000}); await page.waitForTimeout(2500);
+const r=await page.evaluate(()=>{const t=document.querySelector('#lk-root')?.textContent||'';return {scanReport:/Scan report/i.test(t),searched:/Searched/.test(t)&&/whiteboard/i.test(t),coverage:/freshness window/i.test(t),droppedShown:/Dropped by gate/.test(t)&&/own content/.test(t)};});
+console.log('REPORT_UI',JSON.stringify(r),'pageerrors',errs.length); await page.screenshot({path:`${OUT}/v10-scan-report.png`}); await b.close();
+process.exit(r.scanReport&&r.searched&&r.coverage&&r.droppedShown&&errs.length===0?0:1);

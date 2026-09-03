@@ -1,0 +1,7 @@
+{
+  "output": {
+    "title": "Show HN: Self-hostable no-code internal tools on top of your Postgres — schema in, working admin panel out",
+    "body": "I built stackbuilt because we kept getting asked to build internal admin panels, and Retool's pricing and data residency became a problem. It connects to your Postgres, reads the schema, and scaffolds CRUD interfaces, dashboards, and approval flows in under a minute. It self-hosts with a single Docker command — data never leaves your network. RBAC is included in the free tier, and only builders pay; viewers are free forever.\n\nBuilt in Go and React, it’s running in production at a 200-person logistics company. The core workflow — schema to working UI in under 60 seconds — is shown unedited in the demo video. Postgres-only for now; no MySQL or REST sources yet. No audit log export.\n\nWould love feedback on the scaffolding accuracy, UX for non-technical builders, and what integrations would make it stickier.",
+    "warnings": []
+  }
+}

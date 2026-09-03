@@ -1,0 +1,102 @@
+{
+  "output": {
+    "brand_name": "Plausible Analytics",
+    "tagline_observed": "Easy to use and privacy-friendly Google Analytics alternative",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "principled",
+        "transparent",
+        "understated",
+        "candid"
+      ],
+      "sentence_style": "Short declaratives in first-person plural, plain language, no jargon, occasional dry wit",
+      "vocabulary": [
+        "privacy-friendly",
+        "open source",
+        "lightweight",
+        "no cookies",
+        "self-funded",
+        "bootstrapped",
+        "profitable",
+        "independent",
+        "transparent",
+        "subscription"
+      ],
+      "avoid": [
+        "hype and superlatives",
+        "corporate mission-statement language",
+        "passive voice",
+        "growth-hacking framing",
+        "surveillance capitalism vocabulary used approvingly"
+      ],
+      "evidence_quotes": [
+        "Most analytics tools are black boxes.",
+        "No cookies, just insights.",
+        "We have never spent a cent on advertising, affiliates or paid endorsements.",
+        "Plausible grows because people recommend it when they have no reason to other than that it works."
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "No cookies, no personal data, no cookie consent banner required",
+        "Lightweight script — 54 times smaller than Google Analytics",
+        "Fully open source and auditable under AGPLv3",
+        "Made and hosted in the EU — data never leaves EU servers"
+      ],
+      "key_messages": [
+        "No cookies, just insights.",
+        "Google Analytics is frustrating to use, difficult to understand, slow to load and privacy-invasive.",
+        "Check your site traffic and get the essential insights on one page in one minute.",
+        "We are self-funded and profitable, with no outside investors and no plans to sell.",
+        "Plausible grows because people recommend it when they have no reason to other than that it works."
+      ],
+      "proof_points_observed": [
+        "20,000 paying subscribers",
+        "313 billion tracked pageviews",
+        "99.99% uptime over last 90 days",
+        "Script is 54 times smaller than Google Analytics",
+        "Crossed $1 million in annual recurring revenue in 2022",
+        "Customers include Hugging Face, Basecamp, Ghost, MongoDB, Python Software Foundation, Harvard University",
+        "Team of 10, running since 2018, no outside investors"
+      ]
+    },
+    "visual": {
+      "colors": [],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown without HTML or CSS; no font-family declarations or font CDN links were observable"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": "https://plausible.io/assets/images/icon/plausible_logo_dark.svg"
+    },
+    "audience_language": "Talks directly to site owners and developers as peers who are frustrated with Google Analytics complexity and want honest, no-nonsense answers about their traffic.",
+    "dos_and_donts": {
+      "do": [
+        "Lead with what the product does NOT do (no cookies, no personal data) as a feature",
+        "Use plain, specific language — name the problem before the solution",
+        "Cite real numbers and named customers when making claims",
+        "Acknowledge limitations honestly (e.g. 'Plausible is not the right tool for every analytics use case')",
+        "Frame open source as accountability, not just a feature"
+      ],
+      "dont": [
+        "Use hype words or superlatives not grounded in evidence",
+        "Imply surveillance or data brokerage is acceptable",
+        "Claim features without specifics",
+        "Use passive voice or corporate mission-statement padding",
+        "Pretend to be a large company — the bootstrapped, small-team identity is a trust signal"
+      ]
+    },
+    "sources_read": [
+      "https://plausible.io",
+      "https://plausible.io/about",
+      "https://plausible.io/blog",
+      "https://plausible.io/open-source-website-analytics"
+    ],
+    "confidence": {
+      "overall": 0.72,
+      "notes": "Colors not observable — scrape returned markdown without HTML/CSS styling, so no hex or rgb values could be extracted. Typography not observable for the same reason. Pricing page returned 404 so pricing details come from homepage only. Blog was scraped as an article index, not individual posts, so blog voice is inferred from titles and descriptions rather than full article text."
+    }
+  }
+}

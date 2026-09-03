@@ -1,0 +1,46 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "What if your wireframes could become real, responsive layouts — not just mockups?",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "Hand-drawn wireframe on screen transforming into a live grid layout",
+        "voiceover": "What if your wireframes could become real, responsive layouts — not just mockups?"
+      },
+      {
+        "seconds": "3-12",
+        "visual": "GridFrame interface: rough frames being sketched, auto-resolved into responsive grid",
+        "voiceover": "GridFrame is a layout-first design tool. You sketch frames. It builds a real grid system — with breakpoints, flow, and clean structure."
+      },
+      {
+        "seconds": "12-21",
+        "visual": "Side-by-side: Figma’s absolute positioning vs. GridFrame’s CSS Grid output",
+        "voiceover": "Most tools export absolute rectangles. Engineers rebuild everything. GridFrame exports clean CSS Grid and Flexbox — no absolute positioning. Code that ships."
+      },
+      {
+        "seconds": "21-30",
+        "visual": "Layout audit panel highlighting overflow bugs across breakpoints",
+        "voiceover": "It even audits your design for overflow and breakpoint bugs before handoff. Caught 140 real bugs in alpha users’ sites."
+      },
+      {
+        "seconds": "30-39",
+        "visual": "Code export window showing clean, linted CSS",
+        "voiceover": "The CSS passes stylelint with zero warnings. We tested it in real repos."
+      },
+      {
+        "seconds": "39-45",
+        "visual": "Waitlist sign-up screen with {APP_URL}",
+        "voiceover": "No more layout lies. Just layouts that ship. Join 3,400 others on the waitlist."
+      }
+    ],
+    "cta": "Join the waitlist at {APP_URL}",
+    "production_notes": [
+      "Record screen: wireframe to grid transformation in GridFrame",
+      "Capture side-by-side export comparison: Figma vs. GridFrame",
+      "Show layout audit panel flagging responsive issues",
+      "Show clean CSS export passing stylelint"
+    ],
+    "warnings": []
+  }
+}

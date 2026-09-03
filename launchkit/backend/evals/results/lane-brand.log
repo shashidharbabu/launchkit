@@ -1,0 +1,36 @@
+[brand.baseline] 20 to run (0 already done)
+[brand.baseline] 1/20 bd-01 OK  det=0.967 judge=0.497 146.3s
+[brand.baseline] 2/20 bd-02 OK  det=0.967 judge=0.587 127.3s
+[brand.baseline] 3/20 bd-03 OK  det=0.967 judge=0.42 62.1s
+[brand.baseline] 4/20 bd-04 OK  det=0.967 judge=0.54 88.2s
+[brand.baseline] 5/20 bd-05 OK  det=0.967 judge=0.5 96.0s
+[brand.baseline] 6/20 bd-06 OK  det=0.767 judge=0.557 142.2s
+[brand.baseline] 7/20 bd-07 OK  det=0.967 judge=0.377 94.0s
+[brand.baseline] 8/20 bd-08 OK  det=0.917 judge=0.513 61.3s
+[brand.baseline] 9/20 bd-09 OK  det=0.967 judge=0.35 113.4s
+[brand.baseline] 10/20 bd-10 OK  det=0.967 judge=0.417 70.6s
+[brand.baseline] 11/20 bc-11 OK  det=0.75 judge=0.495 43.0s
+[brand.baseline] 12/20 bc-12 OK  det=1.0 judge=0.515 63.4s
+[brand.baseline] 13/20 bc-13 OK  det=0.75 judge=0.417 65.7s
+[brand.baseline] 14/20 bc-14 OK  det=1.0 judge=0.588 61.1s
+[brand.baseline] 15/20 bc-15 OK  det=1.0 judge=0.482 43.7s
+[brand.baseline] 16/20 bc-16 OK  det=1.0 judge=0.512 52.9s
+[brand.baseline] 17/20 bc-17 OK  det=1.0 judge=0.5 38.5s
+[brand.baseline] 18/20 bc-18 OK  det=1.0 judge=0.438 44.3s
+[brand.baseline] 19/20 bc-19 OK  det=1.0 judge=0.413 81.8s
+[brand.baseline] 20/20 bc-20 OK  det=1.0 judge=0.4 62.7s
+[brand.baseline] lane complete
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<TransportWebSocket._run_receive_task() done, defined at /Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py:310> exception=AttributeError("'RocketRideClient' object has no attribute '_debug_message'")>
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 347, in _run_receive_task
+    await self._transport_disconnected(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?

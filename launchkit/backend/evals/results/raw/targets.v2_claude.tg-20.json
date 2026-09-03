@@ -1,0 +1,204 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "Show HN (Hacker News)",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Python pipelines, VPC deployment, public connector source — exactly the technical infra story HN rewards; ICP reads HN daily.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "millions of dev/technical readers",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "r/dataengineering",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/dataengineering/",
+        "submission_url": "https://www.reddit.com/r/dataengineering/submit",
+        "why_fit": "Home subreddit for the exact ICP: data engineers fleeing Fivetran MAR pricing or Airbyte self-hosting pain.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "~300k members",
+        "effort": "high",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "dbt Community Slack",
+        "kind": "community",
+        "url": "https://www.getdbt.com/community",
+        "submission_url": "https://www.getdbt.com/community/join-the-community",
+        "why_fit": "100k+ analytics engineers who run Snowflake/BigQuery warehouses — the exact ICP buying pipewright to replace Fivetran.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "100k+ data professionals",
+        "effort": "high",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "Data Engineering Weekly",
+        "kind": "newsletter",
+        "url": "https://www.dataengineeringweekly.com",
+        "submission_url": "https://www.dataengineeringweekly.com",
+        "why_fit": "Newsletter read by data engineers evaluating ELT tools; flat-pricing vs Fivetran MAR is a perfect editorial hook.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 5,
+        "name": "AlternativeTo",
+        "kind": "directory",
+        "url": "https://alternativeto.net",
+        "submission_url": "https://alternativeto.net/manage-item/",
+        "why_fit": "Buyers searching 'Fivetran alternative' or 'Airbyte alternative' land here — pipewright's core buying trigger.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 6,
+        "name": "awesome-open-source-data-engineering",
+        "kind": "awesome_list",
+        "url": "https://github.com/pracdata/awesome-open-source-data-engineering",
+        "submission_url": "https://github.com/pracdata/awesome-open-source-data-engineering",
+        "why_fit": "60+ public-source connectors and Python-native pipelines qualify pipewright for this curated OSS data engineering list.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "StackShare",
+        "kind": "directory",
+        "url": "https://stackshare.io",
+        "submission_url": "https://stackshare.io/submit",
+        "why_fit": "Data engineers compare ELT stack choices here; Python/Kubernetes/DuckDB tech stack maps directly to StackShare categories.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 8,
+        "name": "SaaSHub",
+        "kind": "directory",
+        "url": "https://www.saashub.com",
+        "submission_url": "https://www.saashub.com/submit",
+        "why_fit": "Evergreen SEO listing in data-pipeline category; captures buyers comparing Fivetran/Airbyte/Meltano alternatives.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "Locally Optimistic",
+        "kind": "community",
+        "url": "https://locallyoptimistic.com/community/",
+        "submission_url": "https://locallyoptimistic.com/community/",
+        "why_fit": "Analytics engineering community of practitioners at 50-500 person companies — exact ICP for pipewright's warehouse-first positioning.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "Dev-tool launch platform; Python-native infra tool with public connectors fits the developer-builder audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Developer-focused launch platform; data engineering infra tool with Python stack fits the technical builder audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Promo-tolerant showcase subreddit; flat $99 pricing story and 12-minute connector setup are concrete builder wins.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "~200k members",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 13,
+        "name": "r/AlphaAndBetaUsers",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/alphaandbetausers/",
+        "submission_url": "https://www.reddit.com/r/alphaandbetausers/submit",
+        "why_fit": "Purpose-built for early-user recruitment; 14-day free trial and self-serve onboarding match the subreddit's mandate.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 14,
+        "name": "r/EntrepreneurRideAlong",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/EntrepreneurRideAlong/",
+        "submission_url": "https://www.reddit.com/r/EntrepreneurRideAlong/submit",
+        "why_fit": "Founder journey framing fits pipewright's anti-hype voice; flat-pricing vs Fivetran shock invoice is a relatable story.",
+        "rules_summary": "Scraped rules require: Be Respectful, Follow Reddit Global Rules, Engage with Good Intent. No explicit self-promotion rule stated.",
+        "rules_url": "https://old.reddit.com/r/EntrepreneurRideAlong/about/rules",
+        "audience_signal": "~300k members",
+        "effort": "medium",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "Week 1: Submit to AlternativeTo, SaaSHub, StackShare, awesome-open-source-data-engineering, DevHunt, and Peerlist Launchpad — low-effort evergreen listings that build SEO and credibility before the launch spike.",
+      "Week 2: Fire Show HN with a technical write-up on Python-native pipelines and VPC deployment; this is the highest-impact single event and needs the directories live first for social proof.",
+      "Week 3: Pitch Data Engineering Weekly with the Fivetran MAR pricing angle; engage authentically in dbt Community Slack and Locally Optimistic before posting any link.",
+      "Week 4: Post to r/EntrepreneurRideAlong (rules verified, founder-journey framing), then r/SideProject and r/AlphaAndBetaUsers — treat r/dataengineering as read-and-participate until you know its self-promo rules."
+    ],
+    "search_queries_used": [
+      "data engineering subreddit community forum ELT pipelines analytics engineers",
+      "data engineering newsletter ELT pipelines Python analytics engineering weekly",
+      "github awesome list data engineering ELT pipelines Python",
+      "dbt community discord slack data engineering newsletter Locally Optimistic"
+    ],
+    "confidence": {
+      "overall": 0.78,
+      "notes": "r/dataengineering rules unverified — highest-fit subreddit carries ban risk until rules confirmed."
+    }
+  }
+}

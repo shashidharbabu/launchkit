@@ -1,0 +1,36 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "github",
+        "url": "https://github.com/louislam/uptime-kuma/issues/118",
+        "title_or_quote": "API functionality (feature request on Uptime Kuma)",
+        "why_relevant": "Dozens of users asking a competitor for a management API — pingdeck's headline differentiator.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The thread is explicitly requesting Terraform and API-driven monitor management for Uptime Kuma, which is precisely what this app ships as a core differentiator."
+        },
+        "drafted_reply": "The core ask here — adding and managing monitors via API or Terraform without click-ops — is exactly what's been blocking Uptime Kuma adoption for infra-as-code workflows. If you need this today rather than waiting on a contribution, the pattern is: a monitoring tool with a full REST API and an official Terraform provider in the registry, so monitors live in the same repo as the infrastructure they watch. That sidesteps the socket-based API workarounds people have been patching together in this thread. I built pingdeck ({APP_URL}) with this workflow as the starting point, not an afterthought, if it's useful as a reference or alternative.",
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "github",
+      "url": "https://github.com/louislam/uptime-kuma/issues/118",
+      "title_or_quote": "API functionality (feature request on Uptime Kuma)",
+      "why_relevant": "Dozens of users asking a competitor for a management API — pingdeck's headline differentiator.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The thread is explicitly requesting Terraform and API-driven monitor management for Uptime Kuma, which is precisely what this app ships as a core differentiator."
+      },
+      "drafted_reply": "The core ask here — adding and managing monitors via API or Terraform without click-ops — is exactly what's been blocking Uptime Kuma adoption for infra-as-code workflows. If you need this today rather than waiting on a contribution, the pattern is: a monitoring tool with a full REST API and an official Terraform provider in the registry, so monitors live in the same repo as the infrastructure they watch. That sidesteps the socket-based API workarounds people have been patching together in this thread. I built pingdeck ({APP_URL}) with this workflow as the starting point, not an afterthought, if it's useful as a reference or alternative.",
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

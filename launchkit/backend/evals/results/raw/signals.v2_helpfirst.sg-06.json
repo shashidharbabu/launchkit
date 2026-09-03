@@ -1,0 +1,176 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Techhackontime999/wacrm/issues/12",
+        "title_or_quote": "[Feature] Multi-agent shared inbox with collision detection",
+        "posted_when": "2026-08-26T17:49:05Z",
+        "why_relevant": "Directly asks for shared inbox with collision detection",
+        "intent_strength": "high",
+        "drafted_reply": "The collision detection piece is the trickiest to get right — a simple 'agent is typing' flag isn't enough because it doesn't survive page reloads or dropped connections. A common pattern is a short-lived server-side lock (say, 30-60 seconds) that refreshes while the agent is active and releases on close or timeout, combined with an optimistic UI warning rather than a hard block. For internal notes, storing them in the same thread model with a visibility flag keeps the data model clean and makes note history trivial to render alongside messages. I built replydeck ({APP_URL}), which ships collision detection and assignment out of the box if you ever want a reference implementation or a hosted fallback while this feature lands.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The thread is a feature request explicitly asking for multi-agent shared inbox with collision detection, assignment routing, and internal notes — exactly the core problems replydeck solves, though the context is a WhatsApp CRM repo rather than email."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=38945463",
+        "title_or_quote": "Ask HN: Best tool for team email inbox?",
+        "posted_when": "2024-01-11T00:05:43Z",
+        "why_relevant": "Seeks team inbox solution, frustrated with Intercom",
+        "intent_strength": "high",
+        "drafted_reply": "We built ReplyDeck because tools like Intercom were too heavy for small teams. It gives you a shared inbox with collision detection and AI drafts trained on your past replies — all set up in minutes by forwarding your address. I'm the founder. It's email-first and priced for small teams at $29/seat.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/Babystep-Technologies/cardjoy/issues/176",
+        "title_or_quote": "admin: Support tab — ticket inbox, thread view, and reply",
+        "posted_when": "2026-08-17T23:28:24Z",
+        "why_relevant": "Requests core support inbox functionality",
+        "intent_strength": "medium",
+        "drafted_reply": "You're building a support inbox with thread view and reply — that's the core of what ReplyDeck already does. It includes collision detection and AI drafts trained on your team's past replies. I'm the builder. If you'd rather use than build, I can offer you a free trial.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "This thread is a GitHub issue describing how to build a custom support inbox UI inside an internal admin app — it is a feature implementation task for developers, not a request for a third-party support inbox product like replydeck."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=26011880",
+        "title_or_quote": "Ask HN: Team/Shared Inbox Solutions",
+        "posted_when": "2021-02-03T09:01:32Z",
+        "why_relevant": "Asks for shared inbox tools for team use",
+        "intent_strength": "low",
+        "drafted_reply": "We faced the same need and built ReplyDeck — a shared inbox that prevents reply collisions and drafts responses in your team's voice using past replies. It's simpler than Zendesk and works right from email. I'm the founder. Happy to share how we set it up.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=48908737",
+        "title_or_quote": "The name is a bit of a misnomer, though. It describes the statistical mode and i...",
+        "posted_when": "2026-07-14T15:52:51Z",
+        "why_relevant": "Mentions 'reply collisions' in context of team coordination",
+        "intent_strength": "low",
+        "drafted_reply": "You mentioned reply collisions — we built ReplyDeck to solve that in customer support. It shows which agent is handling a ticket and drafts replies in your team's actual voice by learning from past responses. I'm the founder. It's designed for small teams tired of enterprise tools.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "alternative to zendesk for small team",
+      "shared inbox for customer support without enterprise pricing",
+      "struggling with reply collisions in gmail support inbox",
+      "site:reddit.com/r/smallbusiness how do you handle customer support with small te...",
+      "site:reddit.com/r/SaaS does anyone know a tool that drafts replies in team voice",
+      "site:reddit.com/r/smallbusiness customer support shared inbox",
+      "site:reddit.com/r/CustomerService avoiding reply collisions",
+      "site:reddit.com/r/SaaS small team customer support tool",
+      "site:reddit.com/r/Entrepreneur shared email inbox for team",
+      "shared inbox",
+      "customer support tool",
+      "reply collisions",
+      "team inbox",
+      "shared inbox customer support is:issue is:open",
+      "reply collisions team email is:issue is:open"
+    ],
+    "coverage_notes": "Reddit queries returned no results; used broader HN and GitHub sources. COMMUNITIES searched but no live Reddit threads found.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub and HN signals found, but Reddit communities returned no recent threads. PASS D provided evergreen, replyable issues."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Techhackontime999/wacrm/issues/12",
+      "title_or_quote": "[Feature] Multi-agent shared inbox with collision detection",
+      "posted_when": "2026-08-26T17:49:05Z",
+      "why_relevant": "Directly asks for shared inbox with collision detection",
+      "intent_strength": "high",
+      "drafted_reply": "The collision detection piece is the trickiest to get right — a simple 'agent is typing' flag isn't enough because it doesn't survive page reloads or dropped connections. A common pattern is a short-lived server-side lock (say, 30-60 seconds) that refreshes while the agent is active and releases on close or timeout, combined with an optimistic UI warning rather than a hard block. For internal notes, storing them in the same thread model with a visibility flag keeps the data model clean and makes note history trivial to render alongside messages. I built replydeck ({APP_URL}), which ships collision detection and assignment out of the box if you ever want a reference implementation or a hosted fallback while this feature lands.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The thread is a feature request explicitly asking for multi-agent shared inbox with collision detection, assignment routing, and internal notes — exactly the core problems replydeck solves, though the context is a WhatsApp CRM repo rather than email."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=38945463",
+      "title_or_quote": "Ask HN: Best tool for team email inbox?",
+      "posted_when": "2024-01-11T00:05:43Z",
+      "why_relevant": "Seeks team inbox solution, frustrated with Intercom",
+      "intent_strength": "high",
+      "drafted_reply": "We built ReplyDeck because tools like Intercom were too heavy for small teams. It gives you a shared inbox with collision detection and AI drafts trained on your past replies — all set up in minutes by forwarding your address. I'm the founder. It's email-first and priced for small teams at $29/seat.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/Babystep-Technologies/cardjoy/issues/176",
+      "title_or_quote": "admin: Support tab — ticket inbox, thread view, and reply",
+      "posted_when": "2026-08-17T23:28:24Z",
+      "why_relevant": "Requests core support inbox functionality",
+      "intent_strength": "medium",
+      "drafted_reply": "You're building a support inbox with thread view and reply — that's the core of what ReplyDeck already does. It includes collision detection and AI drafts trained on your team's past replies. I'm the builder. If you'd rather use than build, I can offer you a free trial.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "This thread is a GitHub issue describing how to build a custom support inbox UI inside an internal admin app — it is a feature implementation task for developers, not a request for a third-party support inbox product like replydeck."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=26011880",
+      "title_or_quote": "Ask HN: Team/Shared Inbox Solutions",
+      "posted_when": "2021-02-03T09:01:32Z",
+      "why_relevant": "Asks for shared inbox tools for team use",
+      "intent_strength": "low",
+      "drafted_reply": "We faced the same need and built ReplyDeck — a shared inbox that prevents reply collisions and drafts responses in your team's voice using past replies. It's simpler than Zendesk and works right from email. I'm the founder. Happy to share how we set it up.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=48908737",
+      "title_or_quote": "The name is a bit of a misnomer, though. It describes the statistical mode and i...",
+      "posted_when": "2026-07-14T15:52:51Z",
+      "why_relevant": "Mentions 'reply collisions' in context of team coordination",
+      "intent_strength": "low",
+      "drafted_reply": "You mentioned reply collisions — we built ReplyDeck to solve that in customer support. It shows which agent is handling a ticket and drafts replies in your team's actual voice by learning from past responses. I'm the founder. It's designed for small teams tired of enterprise tools.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

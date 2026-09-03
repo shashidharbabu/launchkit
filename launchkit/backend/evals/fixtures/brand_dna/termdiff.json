@@ -1,0 +1,57 @@
+{
+  "brand_name": "termdiff",
+  "tagline_observed": "Your diffs, side by side, in 38 milliseconds.",
+  "colors": [
+    "#0D1117",
+    "#39D353",
+    "#8B949E",
+    "#F0F6FC"
+  ],
+  "typography": {
+    "headings": "JetBrains Mono",
+    "body": "Inter"
+  },
+  "voice": {
+    "tone_words": [
+      "terse",
+      "precise",
+      "confident"
+    ],
+    "sentence_style": "Short declarative sentences in imperative mood. Numbers over adjectives. No filler words, no exclamation marks.",
+    "vocabulary": [
+      "diff",
+      "hunk",
+      "pager",
+      "zero-config",
+      "word-level",
+      "static binary",
+      "latency"
+    ],
+    "avoid": [
+      "revolutionary",
+      "game-changing",
+      "blazingly",
+      "AI-powered",
+      "unleash",
+      "supercharge"
+    ]
+  },
+  "value_props": [
+    "Word-level side-by-side diffs readable at a glance",
+    "38ms to render a 10,000-line diff",
+    "Zero config — drops into existing git aliases"
+  ],
+  "proof_points_observed": [
+    "4,200 GitHub stars",
+    "Renders a 10k-line diff in 38ms on an M1 MacBook Air",
+    "Single static binary, packaged in Homebrew core"
+  ],
+  "audience_language": [
+    "dotfiles",
+    "git log -p",
+    "difftool",
+    "core.pager",
+    "monorepo",
+    "terminal emulator"
+  ]
+}

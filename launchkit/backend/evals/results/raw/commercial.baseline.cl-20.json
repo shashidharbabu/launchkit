@@ -1,0 +1,58 @@
+{
+  "output": {
+    "title": "SchemaGuard – Type Validation for TS",
+    "tagline": "Auto-generate validators from TypeScript types",
+    "description_short": "Eliminate schema duplication: compile TypeScript types into runtime validators. 5.5x faster than Zod, 2.1 kB gzipped.",
+    "description_long": "SchemaGuard is a TypeScript library that generates runtime validators directly from your existing type declarations — no more writing and maintaining duplicate Zod or Yup schemas. Keep one source of truth: the types you already wrote.\n\nPerfect for TypeScript-heavy teams with typed API contracts, SchemaGuard compiles validators at build time via an esbuild or Vite plugin. Use it at API boundaries, form inputs, or anywhere you handle untrusted JSON. With a runtime core of just 2.1 kB (gzipped) and performance benchmarks showing **5.5x faster validation than Zod**, it’s built for speed and developer efficiency.\n\nAlready adopted in production by multiple startups, SchemaGuard eliminates drift between types and schemas — reducing bugs caused by mismatched API responses. While currently in alpha (v0.4.x), it’s actively maintained and ideal for early adopters seeking type safety without the overhead.\n\nMigrate from Zod? A guide is coming soon. For now, see the README for setup and examples.",
+    "keywords": [
+      "TypeScript validation",
+      "runtime type checking",
+      "Zod alternative",
+      "Yup alternative",
+      "io-ts alternative",
+      "type guard generator",
+      "API validation",
+      "form validation",
+      "type safety",
+      "build-time validation",
+      "esbuild plugin",
+      "Vite plugin",
+      "small validation library",
+      "typed API client",
+      "no schema duplication"
+    ],
+    "screenshot_order": [
+      "1. Code comparison: TypeScript interface side-by-side with generated validator (shows no manual schema)",
+      "2. Benchmark chart: 1M obj/sec SchemaGuard vs 180k/sec Zod (visual proof of speed)",
+      "3. Bundle size badge: '2.1 kB gzipped' with esbuild output snippet"
+    ],
+    "faq": [
+      {
+        "q": "How is this different from Zod or Yup?",
+        "a": "SchemaGuard generates validators from your existing TypeScript types. No manual schemas to write or keep in sync."
+      },
+      {
+        "q": "Is it really faster than Zod?",
+        "a": "Yes. Benchmarks in the repo show ~5.5x throughput on equivalent validation tasks."
+      },
+      {
+        "q": "What’s the runtime size?",
+        "a": "The core runtime is 2.1 kB gzipped — small enough for any production bundle."
+      },
+      {
+        "q": "Can I use it with Webpack?",
+        "a": "Not yet. Current support is for esbuild and Vite. Webpack support is planned."
+      },
+      {
+        "q": "Is it stable for production?",
+        "a": "It’s in alpha (v0.4.x) but used in production by several startups. Expect breaking changes in minor versions."
+      }
+    ],
+    "cta": "Install via npm and start validating — no more duplicate schemas.",
+    "changes_from_current": [],
+    "confidence": {
+      "overall": 0.8,
+      "notes": "Listing based on verified APP_PROFILE data. Benchmarks and size claims are reproducible. Production use relies on README claims."
+    }
+  }
+}

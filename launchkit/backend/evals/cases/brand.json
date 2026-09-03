@@ -1,0 +1,192 @@
+[
+  {
+    "id": "bd-01",
+    "task": "dna",
+    "site_url": "https://plausible.io",
+    "profile_ref": "funnelscope",
+    "expect": {
+      "brand_name": "Plausible",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-02",
+    "task": "dna",
+    "site_url": "https://www.beehiiv.com",
+    "profile_ref": "lettercraft",
+    "expect": {
+      "brand_name": "beehiiv",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-03",
+    "task": "dna",
+    "site_url": "https://retool.com",
+    "profile_ref": "stackbuilt",
+    "expect": {
+      "brand_name": "Retool",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-04",
+    "task": "dna",
+    "site_url": "https://resend.com",
+    "profile_ref": "docparse",
+    "expect": {
+      "brand_name": "Resend",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-05",
+    "task": "dna",
+    "site_url": "https://www.descript.com",
+    "profile_ref": "podclip",
+    "expect": {
+      "brand_name": "Descript",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-06",
+    "task": "dna",
+    "site_url": "https://zed.dev",
+    "profile_ref": "termdiff",
+    "expect": {
+      "brand_name": "Zed",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-07",
+    "task": "dna",
+    "site_url": "https://www.raycast.com",
+    "profile_ref": "streakly",
+    "expect": {
+      "brand_name": "Raycast",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-08",
+    "task": "dna",
+    "site_url": "https://cal.com",
+    "profile_ref": "dealpage",
+    "expect": {
+      "brand_name": "Cal.com",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-09",
+    "task": "dna",
+    "site_url": "https://hoppscotch.io",
+    "profile_ref": "schemaguard",
+    "expect": {
+      "brand_name": "Hoppscotch",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bd-10",
+    "task": "dna",
+    "site_url": "https://tally.so",
+    "profile_ref": "botsmith",
+    "expect": {
+      "brand_name": "Tally",
+      "evidence_required": true
+    }
+  },
+  {
+    "id": "bc-11",
+    "task": "campaigns",
+    "profile_ref": "termdiff",
+    "dna_ref": "termdiff",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-12",
+    "task": "campaigns",
+    "profile_ref": "streakly",
+    "dna_ref": "streakly",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-13",
+    "task": "campaigns",
+    "profile_ref": "docparse",
+    "dna_ref": "docparse",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-14",
+    "task": "campaigns",
+    "profile_ref": "funnelscope",
+    "dna_ref": "from:bd-01",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-15",
+    "task": "campaigns",
+    "profile_ref": "lettercraft",
+    "dna_ref": "from:bd-02",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-16",
+    "task": "campaigns",
+    "profile_ref": "stackbuilt",
+    "dna_ref": "from:bd-03",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-17",
+    "task": "campaigns",
+    "profile_ref": "podclip",
+    "dna_ref": "from:bd-05",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-18",
+    "task": "campaigns",
+    "profile_ref": "dealpage",
+    "dna_ref": "from:bd-08",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-19",
+    "task": "campaigns",
+    "profile_ref": "schemaguard",
+    "dna_ref": "from:bd-09",
+    "expect": {
+      "min_campaigns": 4
+    }
+  },
+  {
+    "id": "bc-20",
+    "task": "campaigns",
+    "profile_ref": "botsmith",
+    "dna_ref": "from:bd-10",
+    "expect": {
+      "min_campaigns": 4
+    }
+  }
+]

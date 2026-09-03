@@ -1,0 +1,119 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Synapse-bridgez/synapse-core/issues/1204",
+        "title_or_quote": "Build a governance dashboard for feature flag audit trail review",
+        "posted_when": "2026-08-26T15:21:02Z",
+        "why_relevant": "User needs audit trail review for feature flags",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this. togglr ensures every feature flag change goes through PR review with full audit trail. It integrates with your Git workflow and provides instant rollback. Check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly requests a governance dashboard for feature flag audit trail review, which directly aligns with togglr's core functionality of providing PR-reviewed, Git-backed feature flag changes with full history and audit trails."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/liverty-music/specification/issues/736",
+        "title_or_quote": "Feature-flag review — 2026-08",
+        "posted_when": "2026-08-01T02:47:54Z",
+        "why_relevant": "User needs monthly feature flag review",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this. togglr treats flag changes as code, requiring PR review and providing full history. It ensures compliance and safety. Learn more at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a routine monthly review of existing PostHog feature flags and does not indicate any struggle with audit trails, PR-based flag changes, or edge evaluation latency that togglr solves."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "forum",
+        "url": "https://stackoverflow.com/questions/78834988/use-ruff-linter-to-issue-warning-for-rule-without-failure",
+        "title_or_quote": "Use ruff linter to issue warning for rule without failure",
+        "posted_when": "2026-08-05T00:00:00Z",
+        "why_relevant": "User needs tooling for code review and warnings",
+        "intent_strength": "medium",
+        "drafted_reply": "While this is about linting, the underlying need for code review and warnings is similar. I built togglr, which ensures feature flag changes go through PR review. It might be useful for your workflow. Check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "unverified",
+          "why": "fetch failed: HTTP Error 403: Forbidden"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "site:reddit.com 'struggling with unreviewed feature flag changes'",
+      "site:reddit.com 'alternative to LaunchDarkly with PR review'",
+      "how to prevent unreviewed feature flag changes in production",
+      "tool for feature flags with audit trail and git workflow",
+      "does anyone know a git-based feature flag system",
+      "site:reddit.com/r/devops feature flag audit trail",
+      "site:reddit.com/r/webdev git-based feature flags",
+      "site:reddit.com/r/ExperiencedDevs unreviewed feature flag changes",
+      "site:reddit.com/r/programming feature flag pr review",
+      "feature flag review",
+      "flag audit trail",
+      "git feature flags",
+      "feature flag pr review",
+      "feature flag audit trail"
+    ],
+    "coverage_notes": "All required passes completed. No additional communities or queries needed.",
+    "confidence": {
+      "overall": 0.85,
+      "notes": "High relevance signals found in GitHub and StackOverflow. Coverage is comprehensive."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Synapse-bridgez/synapse-core/issues/1204",
+      "title_or_quote": "Build a governance dashboard for feature flag audit trail review",
+      "posted_when": "2026-08-26T15:21:02Z",
+      "why_relevant": "User needs audit trail review for feature flags",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this. togglr ensures every feature flag change goes through PR review with full audit trail. It integrates with your Git workflow and provides instant rollback. Check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly requests a governance dashboard for feature flag audit trail review, which directly aligns with togglr's core functionality of providing PR-reviewed, Git-backed feature flag changes with full history and audit trails."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "forum",
+      "url": "https://stackoverflow.com/questions/78834988/use-ruff-linter-to-issue-warning-for-rule-without-failure",
+      "title_or_quote": "Use ruff linter to issue warning for rule without failure",
+      "posted_when": "2026-08-05T00:00:00Z",
+      "why_relevant": "User needs tooling for code review and warnings",
+      "intent_strength": "medium",
+      "drafted_reply": "While this is about linting, the underlying need for code review and warnings is similar. I built togglr, which ensures feature flag changes go through PR review. It might be useful for your workflow. Check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "unverified",
+        "why": "fetch failed: HTTP Error 403: Forbidden"
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/liverty-music/specification/issues/736",
+      "title_or_quote": "Feature-flag review — 2026-08",
+      "posted_when": "2026-08-01T02:47:54Z",
+      "why_relevant": "User needs monthly feature flag review",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this. togglr treats flag changes as code, requiring PR review and providing full history. It ensures compliance and safety. Learn more at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a routine monthly review of existing PostHog feature flags and does not indicate any struggle with audit trails, PR-based flag changes, or edge evaluation latency that togglr solves."
+      }
+    }
+  ]
+}

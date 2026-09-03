@@ -1,0 +1,202 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "OSS Rust CLI with 4200 stars, 38ms benchmark, and single-binary zero-config — exactly what HN engineers upvote.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "r/rust",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/rust/",
+        "submission_url": "https://www.reddit.com/r/rust/submit",
+        "why_fit": "termdiff is written in Rust with tree-sitter; r/rust requires posts reference Rust directly — perfect fit.",
+        "rules_summary": "Posts must reference Rust or relate to things using Rust. No low-effort content, no memes, no AI-generated slop. No explicit self-promo ban.",
+        "rules_url": "https://old.reddit.com/r/rust/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "r/commandline",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/commandline/",
+        "submission_url": "https://www.reddit.com/r/commandline/submit",
+        "why_fit": "Terminal-first CLI tool replacing git pager; ICP lives in the terminal — core audience of this subreddit.",
+        "rules_summary": "No projects newer than 30 days. Must list similar alternatives and how yours differs. State paid affiliations. No AI-generated projects. termdiff is launched and free — compliant.",
+        "rules_url": "https://old.reddit.com/r/commandline/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "Lobsters",
+        "kind": "community",
+        "url": "https://lobste.rs",
+        "submission_url": "https://lobste.rs",
+        "why_fit": "Invite-only technical community; Rust CLI OSS tools with benchmarks are exactly what Lobsters readers share.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 5,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "Developer-tools-only launch platform; termdiff's ICP of senior engineers matches DevHunt's audience precisely.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 6,
+        "name": "r/git",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/git/",
+        "submission_url": "https://www.reddit.com/r/git/submit",
+        "why_fit": "termdiff directly replaces git's default pager — the pain point (unreadable large diffs) is a daily r/git topic.",
+        "rules_summary": "Be nice, no spam, no AI slop. No explicit self-promotion rule found.",
+        "rules_url": "https://old.reddit.com/r/git/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "AlternativeTo",
+        "kind": "directory",
+        "url": "https://alternativeto.net",
+        "submission_url": "https://alternativeto.net/manage-item/",
+        "why_fit": "ICP actively searches for alternatives to delta and difftastic; listing here captures that high-intent traffic.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 8,
+        "name": "Awesome-Rust-CLI-Tools (GitHub)",
+        "kind": "awesome_list",
+        "url": "https://github.com/Mayne-X/Awesome-Rust-Cli-Tools",
+        "submission_url": "https://github.com/Mayne-X/Awesome-Rust-Cli-Tools",
+        "why_fit": "Curated list of production-ready Rust CLI tools; termdiff is MIT OSS Rust CLI — direct category match.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "Cargo Run Newsletter",
+        "kind": "newsletter",
+        "url": "https://cargo-run.news/",
+        "submission_url": "https://cargo-run.news/",
+        "why_fit": "Rust-focused developer newsletter; termdiff is a Rust CLI tool targeting the exact reader demographic.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Dev-focused launch platform; OSS maintainers and senior engineers are Peerlist's core user base.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "StackShare",
+        "kind": "directory",
+        "url": "https://stackshare.io",
+        "submission_url": "https://stackshare.io/submit",
+        "why_fit": "Engineers compare git diff tools in their stack; listing alongside delta and difftastic captures comparison searches.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "SaaSHub",
+        "kind": "directory",
+        "url": "https://www.saashub.com",
+        "submission_url": "https://www.saashub.com/submit",
+        "why_fit": "Evergreen SEO directory; free OSS CLI tools are listed and searched by developers evaluating alternatives.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 13,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Promo-tolerant showcase subreddit; 4200-star OSS tool with benchmark story makes a compelling post.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 14,
+        "name": "r/IMadeThis",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/IMadeThis/",
+        "submission_url": "https://www.reddit.com/r/IMadeThis/submit",
+        "why_fit": "Showcase subreddit for makers; OSS CLI with 4200 stars fits the \"I built something real\" narrative.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "Start with Show HN and r/rust simultaneously — both reward technical depth and the 38ms benchmark is a concrete hook; HN upvotes will amplify all subsequent posts.",
+      "Within the same week, submit to r/commandline (list delta/difftastic as alternatives per rules) and r/git — these are the highest-density ICP subreddits with verified permissive rules.",
+      "Submit to AlternativeTo, StackShare, and SaaSHub immediately after launch posts — evergreen SEO directories compound over time and capture ICP searching for delta/difftastic alternatives.",
+      "Pitch Cargo Run Newsletter and open a PR to Awesome-Rust-CLI-Tools once the HN/Reddit posts have social proof to reference."
+    ],
+    "search_queries_used": [
+      "awesome-rust CLI tools GitHub awesome list",
+      "rust terminal developer tools community newsletter subreddit"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Rules verified for r/rust, r/commandline, r/git. Other venues unverified — ranked conservatively."
+    }
+  }
+}

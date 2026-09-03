@@ -1,0 +1,59 @@
+{
+  "one_liner": "Product analytics for early-stage SaaS: auto-captured funnels you can read in minutes, hosted in the EU.",
+  "description": "funnelscope gives small SaaS teams working funnels without an analytics engineer. Events are auto-captured from a lightweight snippet, funnels are assembled by pointing at UI elements rather than writing SQL, and all data stays on EU servers for GDPR peace of mind. It deliberately ships a fraction of Mixpanel's surface area so a founder can answer 'where do signups drop off' in one sitting.",
+  "category": "B2B SaaS / Product Analytics",
+  "target_user": "Founders and PMs at pre-Series-A SaaS companies",
+  "icp": {
+    "who": "Technical founders at 2-15 person SaaS companies without a data hire",
+    "pain": "Mixpanel and Amplitude require an instrumentation project and a learning curve nobody has time for, so analytics never gets set up properly",
+    "current_alternatives": [
+      "Mixpanel",
+      "Amplitude",
+      "PostHog",
+      "Google Analytics 4"
+    ],
+    "buying_trigger": "Preparing an investor update or pricing change and realizing nobody actually knows the activation funnel numbers"
+  },
+  "differentiators": [
+    "Median time from snippet install to first working funnel is 6 minutes",
+    "Auto-capture plus point-and-click funnel definition — no tracking plan or SQL required",
+    "EU-only data residency by default, not as an enterprise add-on"
+  ],
+  "proof_points": [
+    "312 workspaces active in beta",
+    "Median time-to-first-funnel of 6 minutes measured across beta cohort",
+    "All data processed and stored in EU (Frankfurt) with a signed DPA available on request"
+  ],
+  "tech_stack": [
+    "ClickHouse",
+    "Rust",
+    "React",
+    "TypeScript"
+  ],
+  "pricing_current": "freemium (free up to 50k events/month, then €29/month)",
+  "voice": {
+    "tone": [
+      "plainspoken",
+      "founder-friendly",
+      "no-jargon"
+    ],
+    "sample_phrase": "Know where signups drop off before your next investor update."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "Public beta with self-serve signup",
+      "Pricing page live but billed usage waived during beta",
+      "Weekly changelog posts"
+    ]
+  },
+  "gaps": [
+    "No case studies or named customers",
+    "No comparison pages against Mixpanel or PostHog",
+    "No API or data export yet"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Product claims consistent across site and changelog. Workspace counts are self-reported beta metrics."
+  }
+}

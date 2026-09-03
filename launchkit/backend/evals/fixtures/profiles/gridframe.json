@@ -1,0 +1,59 @@
+{
+  "one_liner": "Design tool that turns rough wireframes into responsive layout systems and exports real CSS Grid — no absolute positioning.",
+  "description": "gridframe is a layout-first design tool. You sketch rough frames, and it resolves them into a responsive grid system with proper breakpoints, then exports clean CSS Grid and Flexbox that engineers will actually keep. It focuses on the layout layer that design-to-code tools get wrong, and audits existing designs for overflow and breakpoint bugs before handoff.",
+  "category": "Niche SaaS / Design Tools",
+  "target_user": "Product designers who hand off to engineers, and design engineers",
+  "icp": {
+    "who": "Product designers and design engineers at startups where handoff friction burns sprint time",
+    "pain": "Figma output is absolutely-positioned rectangles, so engineers rebuild every layout from scratch and responsive bugs appear at handoff",
+    "current_alternatives": [
+      "Figma",
+      "Penpot",
+      "Framer",
+      "Relume"
+    ],
+    "buying_trigger": "A responsive redesign or design-system project where layout handoff bugs keep eating sprint capacity"
+  },
+  "differentiators": [
+    "Exports clean CSS Grid and Flexbox with zero absolute positioning",
+    "Layout audit flags overflow and breakpoint bugs before engineering ever sees the design",
+    "Layout-first canvas: structure is the primitive, not rectangles"
+  ],
+  "proof_points": [
+    "Layout audit caught 140 overflow bugs across alpha users' production sites",
+    "3,400 waitlist signups pre-launch",
+    "Exported CSS passes stylelint with zero warnings in the published demo repos"
+  ],
+  "tech_stack": [
+    "TypeScript",
+    "React",
+    "WebAssembly",
+    "Rust"
+  ],
+  "pricing_current": "none found (private alpha, waitlist only)",
+  "voice": {
+    "tone": [
+      "crafty",
+      "design-nerd",
+      "quality-obsessed"
+    ],
+    "sample_phrase": "Layouts that ship, not rectangles that lie."
+  },
+  "maturity": {
+    "stage": "alpha",
+    "signals": [
+      "Private alpha behind a waitlist",
+      "No public pricing",
+      "Frequent breaking changes noted in alpha release notes"
+    ]
+  },
+  "gaps": [
+    "No public demo or sandbox",
+    "No pricing page",
+    "No integration with Figma import yet"
+  ],
+  "confidence": {
+    "overall": 0.7,
+    "notes": "Product thesis is clear and demoable in alpha videos. All traction numbers are pre-launch and self-reported."
+  }
+}

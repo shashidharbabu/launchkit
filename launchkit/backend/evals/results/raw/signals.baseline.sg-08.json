@@ -1,0 +1,91 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Nirdesh31/ecommerce-platform/issues/21",
+        "title_or_quote": "Integrate AI Image Background Removal",
+        "posted_when": "2026-07-11T21:02:55Z",
+        "why_relevant": "Directly requests AI background removal for e-commerce product images",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: pixelmuse handles AI background removal, lighting correction, and 4x upscaling tuned for product photos. It preserves text on labels and supports batch processing via API. You can try it at {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly requests AI-powered background removal for product images in an e-commerce platform, which directly aligns with the app's core functionality of AI cleanup and upscaling for e-commerce product photos."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/etippei/cloakimg-frontend/issues/16",
+        "title_or_quote": "Background Removal for E-commerce: Boost Your Sales with Professional Product Ph...",
+        "posted_when": "2026-08-20T15:24:18Z",
+        "why_relevant": "Discusses background removal for e-commerce product images",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: pixelmuse cleans up product photos with AI background removal, lighting correction, and 4x upscaling while preserving label text. It supports batch workflows and store-level presets. Check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread is a tutorial on AI background removal for e-commerce product photos, which directly aligns with the app's core functionality of AI cleanup and upscaling for e-commerce catalogs."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that cleans up product photos in bulk site:reddit.com",
+      "struggling with inconsistent supplier images at scale site:reddit.com",
+      "alternative to remove.bg for e-commerce",
+      "tired of manually editing hundreds of product photos",
+      "automate background removal for Shopify catalog",
+      "site:reddit.com/r/ecommerce inconsistent supplier images OR low-res product phot...",
+      "site:reddit.com/r/shopify automate background removal OR bulk image upscaling OR...",
+      "site:reddit.com/r/FulfillmentByAmazon product image quality OR supplier photo is...",
+      "product images",
+      "background removal",
+      "bulk image upscaling",
+      "background removal product images is:issue is:open",
+      "background removal product images is:issue is:open",
+      "background removal product images is:issue is:open",
+      "background removal product images is:issue is:open"
+    ],
+    "coverage_notes": "No relevant StackOverflow results found. Reddit and HN searches yielded no replyable threads. GitHub provided two valid signals.",
+    "confidence": {
+      "overall": 0.65,
+      "notes": "Limited to GitHub signals due to lack of activity on other platforms. Both signals are recent and relevant."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Nirdesh31/ecommerce-platform/issues/21",
+      "title_or_quote": "Integrate AI Image Background Removal",
+      "posted_when": "2026-07-11T21:02:55Z",
+      "why_relevant": "Directly requests AI background removal for e-commerce product images",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: pixelmuse handles AI background removal, lighting correction, and 4x upscaling tuned for product photos. It preserves text on labels and supports batch processing via API. You can try it at {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly requests AI-powered background removal for product images in an e-commerce platform, which directly aligns with the app's core functionality of AI cleanup and upscaling for e-commerce product photos."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/etippei/cloakimg-frontend/issues/16",
+      "title_or_quote": "Background Removal for E-commerce: Boost Your Sales with Professional Product Ph...",
+      "posted_when": "2026-08-20T15:24:18Z",
+      "why_relevant": "Discusses background removal for e-commerce product images",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: pixelmuse cleans up product photos with AI background removal, lighting correction, and 4x upscaling while preserving label text. It supports batch workflows and store-level presets. Check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread is a tutorial on AI background removal for e-commerce product photos, which directly aligns with the app's core functionality of AI cleanup and upscaling for e-commerce catalogs."
+      }
+    }
+  ],
+  "rejected": []
+}

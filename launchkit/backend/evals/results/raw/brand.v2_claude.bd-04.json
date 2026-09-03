@@ -1,0 +1,107 @@
+{
+  "output": {
+    "brand_name": "Resend",
+    "tagline_observed": "Email for developers",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "craft-focused",
+        "candid",
+        "builder-minded",
+        "assured"
+      ],
+      "sentence_style": "Short declaratives and second-person imperatives, written by engineers for engineers, with occasional rhetorical questions and no marketing fluff",
+      "vocabulary": [
+        "reach humans",
+        "spam folders",
+        "first-class developer experience",
+        "just works",
+        "ship early",
+        "open source",
+        "delightful",
+        "reimagine email",
+        "craft",
+        "inbox"
+      ],
+      "avoid": [
+        "corporate superlatives",
+        "passive voice",
+        "buzzword-heavy sentences",
+        "feature-list prose without context",
+        "salesy urgency tactics"
+      ],
+      "evidence_quotes": [
+        "The best way to reach humans instead of spam folders.",
+        "We are a team of engineers who love building tools for other engineers.",
+        "Our goal is to create the email platform we've always wished we had — one that just works.",
+        "Three builders who care about craft, attention to detail, and quality."
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Deliver transactional and marketing emails at scale without landing in spam",
+        "A first-class developer experience with SDKs, React Email, and an API that fits right into your code",
+        "Start sending in minutes — integrate this weekend",
+        "Built by engineers who were frustrated by the same problems you face"
+      ],
+      "key_messages": [
+        "Email for developers",
+        "The best way to reach humans instead of spam folders.",
+        "Integrate this weekend — start sending emails in minutes.",
+        "First-class developer experience — one that just works.",
+        "Building the modern email sending platform — the web has come a long way, but email doesn't have to be stuck in the past."
+      ],
+      "proof_points_observed": [
+        "Trusted by Warner Bros, Gumroad, Tailwind, MrBeast, Replit, Max, eBay, OSN+, Valentino, TOTVS",
+        "SOC 2 Type II certification (listed as platform feature)",
+        "GDPR compliance",
+        "99.99% uptime SLA on Enterprise plan",
+        "Backed by Y Combinator and a16z",
+        "\"After we switched to Dedicated IPs, our deliverability improved tremendously\" — Vlad Matsiiako, Co-founder of Infisical",
+        "\"We value tools that feel stable, well thought out, and aligned with the standards we expect across our stack. Resend meets those expectations.\" — Bradley Greenwood, VP of Engineering at MrBeast"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#000000",
+          "role": "background",
+          "evidence": "meta theme-color tag observed on all three scraped pages; color-scheme: dark declared in metadata"
+        }
+      ],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links observed"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": "https://resend.com/_next/image?url=%2Fstatic%2Fabout%2Ficon2.png&w=640&q=100&dpl=dpl_HkNevA6AfSdBL1JwbQPn8MF7bBqs"
+    },
+    "audience_language": "The site speaks directly to software engineers and developers as peers, using code snippets, SDK names, and technical vocabulary without explanation.",
+    "dos_and_donts": {
+      "do": [
+        "Use short, direct sentences that get to the point immediately",
+        "Speak to developers as peers — reference real code, SDKs, and APIs",
+        "Anchor claims in craft, quality, and reliability",
+        "Use rhetorical questions to surface the reader's pain before offering the solution",
+        "Celebrate open source and community contribution"
+      ],
+      "dont": [
+        "Use vague enterprise marketing language or buzzwords",
+        "Bury the developer value prop under business-speak",
+        "Make claims without grounding them in observable product behavior",
+        "Use passive voice or hedged, committee-written copy",
+        "Ignore the spam/deliverability pain — it is the central problem Resend solves"
+      ]
+    },
+    "sources_read": [
+      "https://resend.com",
+      "https://resend.com/pricing",
+      "https://resend.com/about"
+    ],
+    "confidence": {
+      "overall": 0.78,
+      "notes": "Colors: only #000000 observed from meta theme-color; scrape returned markdown with no CSS, so no palette hex values from stylesheets or CSS variables could be extracted. Typography: no font-family declarations or Google Fonts/CDN links observed in markdown output. Logo: the icon2.png image carries alt text 'Resend' on the about page and is the closest observed candidate, but may be an illustration rather than the primary wordmark logo. Pricing page testimonials and customer logos provide strong proof points. No EU data residency or benchmark methodology pages were scraped."
+    }
+  }
+}

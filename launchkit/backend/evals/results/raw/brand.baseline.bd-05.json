@@ -1,0 +1,120 @@
+{
+  "output": {
+    "brand_name": "Descript",
+    "tagline_observed": "AI Video & Audio Text-based Editor — Try Free",
+    "voice": {
+      "tone_words": [
+        "intuitive",
+        "empowering",
+        "approachable",
+        "efficient",
+        "innovative",
+        "creator-focused"
+      ],
+      "sentence_style": "clear, active voice, second person, concise with minimal jargon",
+      "vocabulary": [
+        "edit like text",
+        "all-in-one",
+        "AI-powered",
+        "record, edit, collaborate",
+        "create faster",
+        "free to start",
+        "no complicated timelines",
+        "real-time collaboration",
+        "voice cloning",
+        "screen recording"
+      ],
+      "avoid": [
+        "overly technical terms",
+        "corporate jargon",
+        "passive voice",
+        "lengthy explanations",
+        "intimidating language"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Edit video and audio by editing text",
+        "All-in-one workspace for recording, editing, and sharing",
+        "AI tools that automate editing tasks like filler word removal and voice cloning",
+        "Free plan available with powerful features included"
+      ],
+      "key_messages": [
+        "Editing as easy as editing a doc.",
+        "The all-in-one editor for video, audio, and screen recording.",
+        "Create and collaborate faster with AI-powered tools.",
+        "Free to start. No credit card required.",
+        "Used by creators at Spotify, The New York Times, and Shopify."
+      ],
+      "proof_points_observed": [
+        "Used by creators at Spotify, The New York Times, and Shopify",
+        "Free to start with no credit card required",
+        "AI tools include filler word removal, voice cloning, and text-to-speech",
+        "Real-time collaboration for teams",
+        "Over 1 million creators use Descript"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#000000",
+          "role": "primary",
+          "evidence": "CSS variable --color-black used in header and primary buttons"
+        },
+        {
+          "value": "#FFFFFF",
+          "role": "background",
+          "evidence": "CSS variable --color-white used for background and card fills"
+        },
+        {
+          "value": "#00A67D",
+          "role": "accent",
+          "evidence": "CSS variable --color-emerald used for primary CTA buttons and highlights"
+        },
+        {
+          "value": "#1A1A1A",
+          "role": "text",
+          "evidence": "Inline styles and CSS using hex #1A1A1A for body text"
+        },
+        {
+          "value": "#F5F5F5",
+          "role": "background",
+          "evidence": "CSS class using F5F5F5 for section backgrounds"
+        }
+      ],
+      "typography": {
+        "headings": "Inter, sans-serif",
+        "body": "Inter, sans-serif",
+        "evidence": "font-family: 'Inter', sans-serif found in multiple CSS declarations"
+      },
+      "imagery_style": "illustration",
+      "logo_url": "https://static-cdn.descript.com/web/icons/favicon-96x96.png"
+    },
+    "audience_language": "Talks to creators directly as capable but time-constrained professionals who want powerful tools without complexity.",
+    "dos_and_donts": {
+      "do": [
+        "Use clear, action-oriented language",
+        "Highlight time-saving and ease-of-use benefits",
+        "Emphasize real-world creator use cases",
+        "Show the product as intuitive and all-in-one",
+        "Use second-person address ('you', 'your')"
+      ],
+      "dont": [
+        "Use film or audio engineering jargon",
+        "Focus on technical specs over outcomes",
+        "Sound corporate or enterprise-focused",
+        "Imply a steep learning curve",
+        "Overpromise on AI capabilities"
+      ]
+    },
+    "sources_read": [
+      "https://www.descript.com/",
+      "https://www.descript.com/pricing",
+      "https://www.descript.com/tools"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence due to comprehensive site scraping including homepage, pricing, and tools pages. All data points are directly observed. Typography and colors confirmed via CSS. No external domains scraped."
+    }
+  }
+}

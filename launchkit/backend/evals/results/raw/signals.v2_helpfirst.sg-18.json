@@ -1,0 +1,62 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Unstructured-IO/unstructured/issues/4235",
+        "title_or_quote": "bug/XLSX Table string representation loses row boundaries after 0.16.0 causing f...",
+        "posted_when": "2026-02-11T19:32:32Z",
+        "why_relevant": "User reports data extraction issues after upgrade, relevant to parsing accuracy.",
+        "intent_strength": "medium",
+        "drafted_reply": "I see you're facing issues with table parsing after an upgrade. This can happen when layout handling changes. Our API maintains field accuracy across document variations by design. I'm the builder of DocParse, a layout-aware document parsing API. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a specific bug report about partition_xlsx losing row boundaries in Unstructured's open-source library after a version upgrade, not a search for an alternative document parsing API."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that parses invoices into JSON with high accuracy",
+      "struggling with OCR failing on different invoice layouts",
+      "site:reddit.com \"alternative to AWS Textract\" for invoices",
+      "site:reddit.com \"tired of tuning Google Document AI for every document type\"",
+      "site:reddit.com/r/dataengineering invoice parsing OCR layout",
+      "site:reddit.com/r/Accounting extract invoice data into JSON",
+      "site:reddit.com/r/Python document AI tuning struggle",
+      "site:reddit.com/r/MachineLearning invoice layout variety problem",
+      "invoice parsing",
+      "OCR layout",
+      "document AI",
+      "document intelligence",
+      "invoice parsing API JSON",
+      "document layout OCR",
+      "extract invoice data layout variation",
+      "extract invoice data layout variation"
+    ],
+    "coverage_notes": "StackOverflow returned no relevant results despite multiple queries.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "GitHub issue is relevant but not specifically about invoice layout variation. No Reddit or HN results found."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Unstructured-IO/unstructured/issues/4235",
+      "title_or_quote": "bug/XLSX Table string representation loses row boundaries after 0.16.0 causing f...",
+      "posted_when": "2026-02-11T19:32:32Z",
+      "why_relevant": "User reports data extraction issues after upgrade, relevant to parsing accuracy.",
+      "intent_strength": "medium",
+      "drafted_reply": "I see you're facing issues with table parsing after an upgrade. This can happen when layout handling changes. Our API maintains field accuracy across document variations by design. I'm the builder of DocParse, a layout-aware document parsing API. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a specific bug report about partition_xlsx losing row boundaries in Unstructured's open-source library after a version upgrade, not a search for an alternative document parsing API."
+      }
+    }
+  ]
+}

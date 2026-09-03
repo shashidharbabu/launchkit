@@ -1,0 +1,36 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=44657201",
+        "title_or_quote": "No-bullshit, essential newsletter platform?",
+        "why_relevant": "The asker wants a minimal newsletter platform without platform bloat — lettercraft's exact pitch.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The author explicitly wants to write Markdown emails and avoid bloated platforms, which is exactly the pain lettercraft solves, and they even mention Buttondown as a reference point which is a direct competitor."
+        },
+        "drafted_reply": "Buttondown is genuinely the closest match to what you described — Markdown input, minimal UI, no drag-and-drop nonsense. If you write about code specifically, the one thing Buttondown still struggles with is code block rendering across email clients; they often arrive unstyled or broken depending on the client. If that matters to you, I built lettercraft ({APP_URL}) around that exact problem — Markdown files in a Git repo, code blocks tested across 14 clients. If you don't write code-heavy content, Buttondown or EmailOctopus are both solid and you already know them.",
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=44657201",
+      "title_or_quote": "No-bullshit, essential newsletter platform?",
+      "why_relevant": "The asker wants a minimal newsletter platform without platform bloat — lettercraft's exact pitch.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The author explicitly wants to write Markdown emails and avoid bloated platforms, which is exactly the pain lettercraft solves, and they even mention Buttondown as a reference point which is a direct competitor."
+      },
+      "drafted_reply": "Buttondown is genuinely the closest match to what you described — Markdown input, minimal UI, no drag-and-drop nonsense. If you write about code specifically, the one thing Buttondown still struggles with is code block rendering across email clients; they often arrive unstyled or broken depending on the client. If that matters to you, I built lettercraft ({APP_URL}) around that exact problem — Markdown files in a Git repo, code blocks tested across 14 clients. If you don't write code-heavy content, Buttondown or EmailOctopus are both solid and you already know them.",
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

@@ -1,0 +1,68 @@
+{
+  "output": {
+    "one_liner": "Tally is a free form builder that lets users create beautiful, professional forms with unlimited responses, ideal for creators and small teams.",
+    "description": "Tally enables users to build aesthetically pleasing and functional forms in seconds without any cost. It supports unlimited forms, submissions, payments, conditional logic, and file uploads, making it a powerful tool for collecting data efficiently.",
+    "category": "form builder",
+    "target_user": "independent creators, small business owners, and marketers",
+    "icp": {
+      "who": "solopreneurs and small teams who need to collect information or payments without developer help",
+      "pain": "existing form tools are either too expensive, limited in features, or lack design flexibility",
+      "current_alternatives": [
+        "Typeform",
+        "Google Forms",
+        "JotForm"
+      ],
+      "buying_trigger": "need to launch a form quickly for a campaign, event, or client without paying for premium tools"
+    },
+    "differentiators": [
+      "completely free with unlimited forms and submissions",
+      "beautiful, modern templates out of the box",
+      "no branding or paywalls even on free plan"
+    ],
+    "proof_points": [
+      "site claims 'Free forever: unlimited forms, submissions, payments, conditional logic, file uploads' (found on https://tally.so/pricing)",
+      "landing page highlights 'Unlimited forms & submissions' and 'No credit card required' (found on https://tally.so)"
+    ],
+    "tech_stack": [],
+    "pricing_current": "Free forever plan with unlimited forms, submissions, payments, conditional logic, and file uploads. No paid plans listed.",
+    "voice": {
+      "tone": [
+        "simple",
+        "confident",
+        "friendly"
+      ],
+      "sample_phrase": "The simplest way to create beautiful, professional forms in seconds."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "live product with public pricing",
+        "active marketing site with clear value proposition",
+        "social media presence indicated by Twitter meta tags"
+      ]
+    },
+    "gaps": [
+      "no demo video embedded on site",
+      "no customer testimonials or case studies shown"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Profile built from live site; no repo available for deeper technical analysis."
+    },
+    "sources_read": [
+      {
+        "source": "https://tally.so",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main landing page with value prop and features"
+      },
+      {
+        "source": "https://tally.so/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and feature list"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

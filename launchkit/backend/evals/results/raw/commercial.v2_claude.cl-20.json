@@ -1,0 +1,58 @@
+{
+  "output": {
+    "title": "schemaguard: Types-First TS Validation",
+    "tagline": "Runtime validators compiled from your TypeScript types — no duplicate schemas",
+    "description_short": "Alpha library: generate runtime validators from existing TS types at build time. No Zod schema drift. 2.1 kB gzipped, ~5.5x faster than Zod.",
+    "description_long": "**schemaguard** is an alpha-stage TypeScript compiler plugin that generates runtime validators directly from your existing type declarations — no hand-written Zod or Yup schemas required.\n\n**The problem it solves:** Every `interface` in a typed codebase eventually gets a duplicate schema that drifts out of sync. A production incident caused by a stale schema is the canonical trigger. schemaguard eliminates the duplicate by making your types the single source of truth.\n\n**How it works:** A build-time plugin (esbuild or Vite) reads your TypeScript types via ts-morph and emits tiny, tree-shakeable validators. The runtime core is **2.1 kB gzipped**. In benchmarks against equivalent Zod schemas on the same payloads, schemaguard validates **~1 million objects/sec versus ~180k/sec for Zod** — roughly 5.5x throughput.\n\n**Current state (v0.4.x):** The API is marked unstable and breaking changes occur between minor versions. Webpack support is not yet available. There is no documentation site — the README is the primary reference. Three seed-stage startups are running it in production.\n\n**Best fit:** TypeScript-heavy teams with typed API contracts who are tired of schema drift and want validators that can never fall behind their types.",
+    "keywords": [
+      "TypeScript runtime validation",
+      "type-safe validator",
+      "Zod alternative",
+      "compile-time validation",
+      "TypeScript schema generator",
+      "API boundary validation",
+      "ts-morph plugin",
+      "esbuild TypeScript plugin",
+      "Vite TypeScript validation",
+      "no schema duplication",
+      "fast JSON validator TypeScript",
+      "TypeScript compiler plugin",
+      "runtime type checking TypeScript",
+      "io-ts alternative",
+      "typia alternative"
+    ],
+    "screenshot_order": [
+      "1st — side-by-side code diff: TypeScript interface on the left, zero extra schema file on the right, with a callout 'One source of truth'. This immediately shows the core value prop to a developer scanning the listing.",
+      "2nd — benchmark chart from the repo: schemaguard ~1M obj/sec vs Zod ~180k/sec on the same payload. Numbers are the strongest proof point and stop scrollers.",
+      "3rd — build output showing the 2.1 kB gzipped runtime bundle size alongside a terminal snippet of the plugin config (3-4 lines). Demonstrates low integration cost."
+    ],
+    "faq": [
+      {
+        "q": "Is schemaguard production-ready?",
+        "a": "It is alpha (v0.4.x). The API is unstable and breaking changes occur between minor versions. Three seed-stage startups use it in production, but evaluate carefully for critical paths."
+      },
+      {
+        "q": "Do I have to rewrite my existing Zod schemas?",
+        "a": "No migration guide exists yet. You can adopt schemaguard incrementally at new API boundaries while keeping existing Zod schemas elsewhere."
+      },
+      {
+        "q": "Does it support Webpack?",
+        "a": "Not yet. Webpack support is an open issue. esbuild and Vite plugins are available today."
+      },
+      {
+        "q": "How does the 5.5x speed claim hold up?",
+        "a": "The benchmark suite is in the repo and reproducible. It compares schemaguard against an equivalent Zod schema on identical payloads — run it yourself to verify."
+      },
+      {
+        "q": "What is the runtime footprint?",
+        "a": "The runtime core is 2.1 kB gzipped. Validators are emitted at build time and tree-shakeable, so only the validators you use ship."
+      }
+    ],
+    "cta": "Install schemaguard and validate your first API boundary in one build step",
+    "changes_from_current": [],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "All claims sourced directly from APP_PROFILE proof_points and maturity signals. Alpha status disclosed prominently. Benchmark figures are repo-reproducible per profile. Production adoption claim attributed to README statements, not independently verified."
+    }
+  }
+}

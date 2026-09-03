@@ -1,0 +1,175 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/solutions-plug/predictIQ/issues/1322",
+        "title_or_quote": "[Design System] Build responsive grid/container utilities",
+        "posted_when": "2026-08-25T16:37:04Z",
+        "why_relevant": "Seeks to build responsive grid utilities, core to gridframe's function.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this. Gridframe turns wireframes into responsive CSS Grid and Flexbox, no absolute positioning. It exports clean, maintainable layout code and audits for breakpoint bugs before handoff. Could help avoid rebuilding grids from scratch in your design system.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly seeks to build a shared responsive grid and container utility system with consistent breakpoints, which aligns directly with the app's core functionality of turning wireframes into responsive layout systems and exporting clean CSS Grid."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/EULER992/orbit-simulator-website/issues/1",
+        "title_or_quote": "Website development handoff",
+        "posted_when": "2026-08-24T11:21:28Z",
+        "why_relevant": "Explicitly about handoff, a core pain point gridframe solves.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this. Gridframe streamlines design-to-engineering handoff by generating responsive CSS Grid and Flexbox from wireframes, with no absolute positioning. It also audits layouts for overflow and breakpoint issues before code handoff, reducing rework.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread discusses a development handoff process and project setup, but does not mention design-to-code layout issues, wireframes, or CSS export needs that the app specifically addresses."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/Ding-Ding-Projects/material-ollama/issues/1",
+        "title_or_quote": "Material Ollama implementation handoff",
+        "posted_when": "2026-08-18T05:06:49Z",
+        "why_relevant": "Team coordinating handoff, indicating process friction.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this. Gridframe generates clean CSS Grid and Flexbox from layout sketches, eliminating absolute positioning. It also audits for responsive bugs before handoff, reducing back-and-forth between design and engineering.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.2,
+          "why": "The thread discusses a Material Ollama implementation handoff focused on CLI parity, upstream source management, and a responsive landing page, not layout design or CSS export, which are the core functions of the app."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=47335725",
+        "title_or_quote": "Workflow to build context for coding agents",
+        "posted_when": "2026-03-11T14:04:35Z",
+        "why_relevant": "Discusses Figma handoff challenges in current workflow.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this. Gridframe turns wireframes into responsive CSS Grid and Flexbox, no absolute positioning. It exports clean, maintainable layout code and audits for breakpoint bugs before handoff, reducing rework in agent-assisted workflows.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/4erkashin/cover-letter-gen/issues/34",
+        "title_or_quote": "Audit Reshaped radius tokens against Figma",
+        "posted_when": "2026-08-08T16:05:44Z",
+        "why_relevant": "Mentions Figma audit, aligns with gridframe's pre-handoff audit feature.",
+        "intent_strength": "low",
+        "drafted_reply": "I built a tool for exactly this. Gridframe audits designs for layout bugs like overflow and breakpoint issues before handoff. It also exports clean CSS Grid and Flexbox, avoiding the absolute positioning that causes rework.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is focused on auditing and aligning design token values for border radius in a design system, not on creating or exporting responsive layouts or CSS Grid from wireframes."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that exports clean CSS Grid from wireframes",
+      "alternative to Figma for responsive layout",
+      "how do you handle layout handoff between design and engineering",
+      "Figma handoff",
+      "CSS Grid",
+      "responsive layout",
+      "CSS+Grid+from+design+is:issue+is:open",
+      "responsive+layout+handoff+is:issue+is:open",
+      "Figma+to+CSS+Grid+is:issue+is:open",
+      "q=css+grid+responsive+is:issue+is:open"
+    ],
+    "coverage_notes": "Reddit queries returned no results; HN and GitHub provided most signals. No StackOverflow queries matched core layout handoff pain.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "GitHub issues show active need for layout systems and handoff tools. HN and Reddit were less fruitful. Freshness and relevance confirmed."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/solutions-plug/predictIQ/issues/1322",
+      "title_or_quote": "[Design System] Build responsive grid/container utilities",
+      "posted_when": "2026-08-25T16:37:04Z",
+      "why_relevant": "Seeks to build responsive grid utilities, core to gridframe's function.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this. Gridframe turns wireframes into responsive CSS Grid and Flexbox, no absolute positioning. It exports clean, maintainable layout code and audits for breakpoint bugs before handoff. Could help avoid rebuilding grids from scratch in your design system.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly seeks to build a shared responsive grid and container utility system with consistent breakpoints, which aligns directly with the app's core functionality of turning wireframes into responsive layout systems and exporting clean CSS Grid."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/EULER992/orbit-simulator-website/issues/1",
+      "title_or_quote": "Website development handoff",
+      "posted_when": "2026-08-24T11:21:28Z",
+      "why_relevant": "Explicitly about handoff, a core pain point gridframe solves.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this. Gridframe streamlines design-to-engineering handoff by generating responsive CSS Grid and Flexbox from wireframes, with no absolute positioning. It also audits layouts for overflow and breakpoint issues before code handoff, reducing rework.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread discusses a development handoff process and project setup, but does not mention design-to-code layout issues, wireframes, or CSS export needs that the app specifically addresses."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/Ding-Ding-Projects/material-ollama/issues/1",
+      "title_or_quote": "Material Ollama implementation handoff",
+      "posted_when": "2026-08-18T05:06:49Z",
+      "why_relevant": "Team coordinating handoff, indicating process friction.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this. Gridframe generates clean CSS Grid and Flexbox from layout sketches, eliminating absolute positioning. It also audits for responsive bugs before handoff, reducing back-and-forth between design and engineering.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.2,
+        "why": "The thread discusses a Material Ollama implementation handoff focused on CLI parity, upstream source management, and a responsive landing page, not layout design or CSS export, which are the core functions of the app."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=47335725",
+      "title_or_quote": "Workflow to build context for coding agents",
+      "posted_when": "2026-03-11T14:04:35Z",
+      "why_relevant": "Discusses Figma handoff challenges in current workflow.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this. Gridframe turns wireframes into responsive CSS Grid and Flexbox, no absolute positioning. It exports clean, maintainable layout code and audits for breakpoint bugs before handoff, reducing rework in agent-assisted workflows.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/4erkashin/cover-letter-gen/issues/34",
+      "title_or_quote": "Audit Reshaped radius tokens against Figma",
+      "posted_when": "2026-08-08T16:05:44Z",
+      "why_relevant": "Mentions Figma audit, aligns with gridframe's pre-handoff audit feature.",
+      "intent_strength": "low",
+      "drafted_reply": "I built a tool for exactly this. Gridframe audits designs for layout bugs like overflow and breakpoint issues before handoff. It also exports clean CSS Grid and Flexbox, avoiding the absolute positioning that causes rework.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is focused on auditing and aligning design token values for border radius in a design system, not on creating or exporting responsive layouts or CSS Grid from wireframes."
+      }
+    }
+  ]
+}

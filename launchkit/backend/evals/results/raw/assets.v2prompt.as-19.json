@@ -1,0 +1,46 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "Missed a day? That’s why you quit last time.",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "App icon: Streakly with tagline 'Habits that survive real life.'",
+        "voiceover": "Missed a day? That’s why you quit last time."
+      },
+      {
+        "seconds": "3-12",
+        "visual": "User marks a habit as missed, then sees 'Repair Streak' option and taps it",
+        "voiceover": "Streakly doesn’t end your streak when life happens. Repair it by doubling up within the week."
+      },
+      {
+        "seconds": "12-22",
+        "visual": "Weekly view showing habit progress against a target, not a daily chain",
+        "voiceover": "We score habits against weekly targets, not unbroken chains. Based on behavior-change research, not guilt."
+      },
+      {
+        "seconds": "22-32",
+        "visual": "Settings screen: 'Data stored on device', 'No account needed', 'No social feed'",
+        "voiceover": "Private by default. Your data stays on your device. No accounts, no sharing, no pressure."
+      },
+      {
+        "seconds": "32-40",
+        "visual": "App Store review screen showing 4.8 stars from 96 reviews",
+        "voiceover": "41% of beta users were still tracking at day 30. That’s 2.5x better than typical habit app retention."
+      },
+      {
+        "seconds": "40-45",
+        "visual": "App icon with CTA button: 'Join the Beta'",
+        "voiceover": "Streakly: habits that survive real life. Join the free beta today."
+      }
+    ],
+    "cta": "Join the free beta at {APP_URL}",
+    "production_notes": [
+      "Record screen demo of streak repair flow",
+      "Capture weekly target view in app",
+      "Screenshot of on-device privacy settings",
+      "Export 4.8-star TestFlight review summary"
+    ],
+    "warnings": []
+  }
+}

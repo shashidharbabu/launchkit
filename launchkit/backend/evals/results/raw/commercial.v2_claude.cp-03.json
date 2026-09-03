@@ -1,0 +1,199 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "UptimeRobot",
+        "url": "https://uptimerobot.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in ICP alternatives, 2 comparison searches, AlternativeTo uptime category",
+        "mentions": 5,
+        "pricing_model": "freemium + subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "50 monitors, 5-min interval, 5 integrations"
+          },
+          {
+            "name": "Solo",
+            "price": "$12",
+            "period": "month",
+            "key_limits": "10-50 monitors, 60-sec interval, 3 status pages"
+          },
+          {
+            "name": "Team",
+            "price": "$39",
+            "period": "month",
+            "key_limits": "100 monitors, 30-sec interval, 3 seats"
+          }
+        ],
+        "source_url": "https://uptimerobot.com/pricing/"
+      },
+      {
+        "name": "Better Stack",
+        "url": "https://betterstack.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in ICP alternatives, 2 comparison searches, G2 uptime monitoring category",
+        "mentions": 4,
+        "pricing_model": "freemium + per-seat subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "10 monitors, 1 status page, Slack/email only"
+          },
+          {
+            "name": "Responder",
+            "price": "$29",
+            "period": "month",
+            "key_limits": "per license, unlimited team members, phone/SMS alerts"
+          }
+        ],
+        "source_url": "https://betterstack.com/pricing"
+      },
+      {
+        "name": "Pingdom",
+        "url": "https://www.pingdom.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in ICP alternatives, 2 comparison searches, AlternativeTo, G2 category leader",
+        "mentions": 5,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Synthetic Monitoring",
+            "price": "contact sales",
+            "period": "month",
+            "key_limits": "Pricing page did not render clear tiers"
+          }
+        ],
+        "source_url": "https://www.pingdom.com/pricing/"
+      },
+      {
+        "name": "Uptime.com",
+        "url": "https://uptime.com",
+        "notability": "established",
+        "evidence_of_standing": "AlternativeTo page dedicated to its alternatives, G2 Leader badge, 3+ comparison results",
+        "mentions": 4,
+        "pricing_model": "subscription (check-volume slider)",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$7",
+            "period": "month",
+            "key_limits": "10 basic checks, 1 advanced check, 25 SMS alerts"
+          },
+          {
+            "name": "Growth",
+            "price": "scales",
+            "period": "month",
+            "key_limits": "25-500 checks, SMS scales with tier"
+          }
+        ],
+        "source_url": "https://uptime.com/pricing"
+      },
+      {
+        "name": "Uptime Kuma",
+        "url": "https://github.com/louislam/uptime-kuma",
+        "notability": "niche",
+        "evidence_of_standing": "Named in ICP as self-hosted alternative, appears in reddit comparisons",
+        "mentions": 2,
+        "pricing_model": "free open-source self-hosted",
+        "tiers": [
+          {
+            "name": "Self-hosted",
+            "price": "$0",
+            "period": "one-time",
+            "key_limits": "Unlimited monitors, self-managed infra required"
+          }
+        ],
+        "source_url": "https://github.com/louislam/uptime-kuma"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "UptimePro.co",
+        "url": "https://uptimepro.co/blog/10-best-free-website-uptime-monitoring-tools-in-2024",
+        "why": "Listicle blog post, not a competing product"
+      },
+      {
+        "name": "Protechwall",
+        "url": "https://protechwall.com/uptime-monitoring-tools/",
+        "why": "Listicle/directory page, not a competing product"
+      },
+      {
+        "name": "AlternativeTo listing pages",
+        "url": "https://alternativeto.net/software/uptime-com/",
+        "why": "Aggregator/directory page, not a product"
+      },
+      {
+        "name": "Sentinel Uptime Monitoring",
+        "url": "https://alternativeto.net/software/sentinel--uptime-monitoring/about/",
+        "why": "Single AlternativeTo hit only, no independent mentions found"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium + subscription",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Solo devs evaluating or running personal projects",
+          "includes": [
+            "10 monitors at 30-second intervals",
+            "1 public status page",
+            "Email + webhook alerts",
+            "Full REST API + Terraform provider"
+          ],
+          "rationale": "30s free interval beats UptimeRobot Free (5-min) and Better Stack Free (no interval stated); strong acquisition hook."
+        },
+        {
+          "name": "Pro",
+          "price_usd_month": 19,
+          "who_its_for": "Indie devs and solo platform engineers running production",
+          "includes": [
+            "50 monitors at 30-second intervals",
+            "5 public status pages",
+            "Slack + email + webhook alerts",
+            "Cron/heartbeat monitoring",
+            "Full API + Terraform"
+          ],
+          "rationale": "Priced above UptimeRobot Solo ($12) to reflect 30s interval and API-first value; well below Better Stack ($29)."
+        },
+        {
+          "name": "Team",
+          "price_usd_month": 49,
+          "who_its_for": "1-5 person platform teams with 50-200 endpoints",
+          "includes": [
+            "200 monitors at 30-second intervals",
+            "Unlimited status pages",
+            "5 team seats",
+            "All alert integrations",
+            "Priority support"
+          ],
+          "rationale": "Matches UptimeRobot Team ($39) on seats but doubles monitor count; undercuts Better Stack per-seat model for small teams."
+        }
+      ],
+      "anchor_competitors": [
+        "UptimeRobot",
+        "Better Stack",
+        "Uptime.com"
+      ],
+      "positioning_note": "Current $10/mo team plan is underpriced vs Better Stack ($29) and leaves margin on the table given the Terraform differentiator.",
+      "risks": [
+        "Free tier with 30s intervals may cannibalize Pro conversions if limits feel generous enough for most indie devs",
+        "$19 Pro sits in a crowded $12-$29 band; Terraform differentiator must be prominent in messaging to justify the premium over UptimeRobot",
+        "Uptime Kuma (free self-hosted) is the real zero-cost alternative; price must stay below the hosting cost of self-managing Kuma"
+      ]
+    },
+    "search_queries_used": [
+      "best uptime monitoring tools comparison 2024",
+      "site:alternativeto.net uptime monitoring"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "3 established competitors confirmed with scraped pricing (UptimeRobot, Better Stack, Uptime.com). Pingdom pricing page rendered navigation only — no tier prices extracted; excluded from anchor. Uptime Kuma is open-source with no commercial pricing page, marked niche. Confidence docked slightly because Pingdom tiers could not be confirmed from scrape."
+    }
+  }
+}

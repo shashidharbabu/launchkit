@@ -1,0 +1,205 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Open-source TS compiler plugin with reproducible benchmarks (5.5x over Zod) is exactly what HN technical audience rewards.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "r/typescript",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/typescript/",
+        "submission_url": "https://www.reddit.com/r/typescript/submit",
+        "why_fit": "schemaguard is open-source, links a repo, written in TypeScript, and directly contributes TS utility — satisfying all three hard rules.",
+        "rules_summary": "Posts must be TS-focused; projects must be open source with repo link and must contribute to TS utility; no excessive self-promotion.",
+        "rules_url": "https://old.reddit.com/r/typescript/about/rules",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "Developer-tools-only launch platform; schemaguard's compiler-plugin approach and MIT license are exactly the profile DevHunt features.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Dev-focused launchpad; TypeScript library targeting typed API contracts fits the technical builder audience on Peerlist.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 5,
+        "name": "r/javascript",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/javascript/",
+        "submission_url": "https://www.reddit.com/r/javascript/submit",
+        "why_fit": "TypeScript explicitly counts per sub description; ICP (TS devs validating API boundaries) is core JS/TS audience; free MIT library.",
+        "rules_summary": "Self-promotion OK if not majority of contributions; advertising paid products prohibited; low-effort content banned.",
+        "rules_url": "https://old.reddit.com/r/javascript/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 6,
+        "name": "awesome-typescript (dzharii)",
+        "kind": "awesome_list",
+        "url": "https://github.com/dzharii/awesome-typescript",
+        "submission_url": "https://github.com/dzharii/awesome-typescript",
+        "why_fit": "Largest curated TS resource list; schemaguard as a runtime-validation compiler plugin fills a gap in the tools section.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "TypeScript Weekly",
+        "kind": "newsletter",
+        "url": "https://typescript-weekly.com/",
+        "submission_url": "https://typescript-weekly.com/",
+        "why_fit": "Newsletter curates best TS links weekly; a benchmark-driven open-source validator compiled from types is strong editorial fit.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 8,
+        "name": "Lobsters",
+        "kind": "community",
+        "url": "https://lobste.rs",
+        "submission_url": "https://lobste.rs",
+        "why_fit": "Computing-focused link aggregator; compiler plugin generating validators from TS types is technically deep content that fits the audience.",
+        "rules_summary": "Self-promotion must be under 25% of one's stories and comments; invite-only registration required before submitting.",
+        "rules_url": "https://lobste.rs/about",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "StackShare",
+        "kind": "directory",
+        "url": "https://stackshare.io",
+        "submission_url": "https://stackshare.io/submit",
+        "why_fit": "Dev-tools directory where TypeScript-heavy teams discover stack components; schemaguard slots into the validation layer.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "Dev.to",
+        "kind": "community",
+        "url": "https://dev.to",
+        "submission_url": "https://dev.to/new",
+        "why_fit": "Write a technical post: 'Stop duplicating your TypeScript types as Zod schemas' — targets the exact ICP pain point.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Promo-tolerant showcase sub; schemaguard as an MIT open-source alpha library fits the side-project showcase format.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 12,
+        "name": "r/AlphaAndBetaUsers",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/alphaandbetausers/",
+        "submission_url": "https://www.reddit.com/r/alphaandbetausers/submit",
+        "why_fit": "Alpha-stage library (v0.4.x, API unstable) seeking early adopters among TS developers matches this sub's explicit purpose.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 13,
+        "name": "Product Hunt",
+        "kind": "launch_platform",
+        "url": "https://www.producthunt.com",
+        "submission_url": "https://www.producthunt.com/posts/new",
+        "why_fit": "Large launch audience; 2.1 kB runtime and 5.5x Zod benchmark are concrete hooks for a PH tagline targeting TS developers.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 14,
+        "name": "awesome-typescript (brandonhimpfen)",
+        "kind": "awesome_list",
+        "url": "https://github.com/brandonhimpfen/awesome-typescript",
+        "submission_url": "https://github.com/brandonhimpfen/awesome-typescript",
+        "why_fit": "Second curated TS awesome-list; a PR adding schemaguard under runtime validation is low-effort evergreen SEO.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "Week 1: Post Show HN and r/typescript simultaneously — both reward open-source TS tools with benchmarks and a repo link, and cross-traffic reinforces credibility.",
+      "Week 1-2: Submit to DevHunt and Peerlist Launchpad while Show HN momentum is fresh; link the HN thread as social proof.",
+      "Week 2: Open PRs on both awesome-typescript lists and email TypeScript Weekly — evergreen placements that compound over time.",
+      "Week 3: Publish a Dev.to post ('Stop duplicating your types as Zod schemas') then share the link in r/javascript — the article satisfies the 'not just self-promo' rule.",
+      "Ongoing: Get a Lobsters invite and participate for 70+ days before submitting; Product Hunt launch after the library reaches a stable v1.0."
+    ],
+    "search_queries_used": [
+      "TypeScript runtime validation subreddit community discord awesome-list",
+      "TypeScript developer newsletter weekly schema validation library",
+      "awesome-typescript GitHub list curated TypeScript libraries tools",
+      "TypeScript Weekly newsletter developer tools library announcements"
+    ],
+    "confidence": {
+      "overall": 0.78,
+      "notes": "Rules verified for r/typescript, r/javascript, Lobsters. Other subreddit rules returned boilerplate only."
+    }
+  }
+}

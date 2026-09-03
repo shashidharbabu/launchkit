@@ -1,0 +1,86 @@
+{
+  "output": {
+    "brand_name": "Zed",
+    "tagline_observed": "Your last next editor",
+    "voice": {
+      "tone_words": [
+        "confident",
+        "technical",
+        "aspirational"
+      ],
+      "sentence_style": "concise declaratives, second person, with technical precision",
+      "vocabulary": [
+        "high-performance",
+        "multiplayer",
+        "agents",
+        "real-time",
+        "codebase",
+        "collaborative editing",
+        "Delta"
+      ],
+      "avoid": [
+        "casual slang",
+        "overly academic language",
+        "passive voice"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "High-performance code editing at scale",
+        "Real-time multiplayer collaboration",
+        "AI-powered coding with agents",
+        "Built by creators of Atom and Tree-sitter"
+      ],
+      "key_messages": [
+        "Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
+        "Introducing: Delta, a multiplayer environment for coding with agents.",
+        "Your last next editor."
+      ],
+      "proof_points_observed": [
+        "From the creators of Atom and Tree-sitter",
+        "Introducing Delta, a multiplayer environment for coding with agents",
+        "Designed for performance and collaboration at scale"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "var(--nav-bg-color)",
+          "role": "background",
+          "evidence": "theme-color meta tag: 'var(--nav-bg-color)'"
+        }
+      ],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "No explicit font-family declarations observed in scraped HTML/CSS; no CDN links for fonts found"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": "https://zed.dev/favicon_black_16.png"
+    },
+    "audience_language": "The site speaks directly to developers with technical clarity, positioning Zed as the next evolution in code editors built for modern collaboration and AI-augmented workflows.",
+    "dos_and_donts": {
+      "do": [
+        "Use precise technical language",
+        "Highlight performance and real-time collaboration",
+        "Reference lineage (creators of Atom and Tree-sitter)",
+        "Emphasize AI agent integration via Delta",
+        "Speak with confidence about the future of coding"
+      ],
+      "dont": [
+        "Use vague or fluffy marketing terms",
+        "Downplay the technical depth",
+        "Ignore multiplayer or AI capabilities",
+        "Sound like a generic IDE alternative",
+        "Use passive or hesitant language"
+      ]
+    },
+    "sources_read": [
+      "https://zed.dev/"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Limited to homepage scrape only; deeper pages like /docs or /blog were identified but not scraped. Colors and typography lack full detail due to CSS variables and lack of inline styles in scraped content. Logo inferred from favicon."
+    }
+  }
+}

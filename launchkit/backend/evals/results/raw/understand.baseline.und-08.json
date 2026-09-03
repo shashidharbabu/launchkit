@@ -1,0 +1,91 @@
+{
+  "output": {
+    "one_liner": "tldraw is a free, instant collaborative whiteboarding tool for teams and creators who need to sketch, plan, and share ideas visually in real time.",
+    "description": "tldraw offers a free, no-signup virtual whiteboard with real-time collaboration. It enables users to draw, annotate, and build visual ideas instantly across devices. The tool emphasizes speed, simplicity, and open extensibility via its SDK.",
+    "category": "productivity",
+    "target_user": "product designers, engineering teams, and indie hackers",
+    "icp": {
+      "who": "design and product teams in startups or small tech companies",
+      "pain": "need fast, frictionless collaboration on visual ideas without onboarding overhead",
+      "current_alternatives": [
+        "Miro",
+        "Figma",
+        "Excalidraw"
+      ],
+      "buying_trigger": "team onboarding new members who struggle with complex whiteboarding tools"
+    },
+    "differentiators": [
+      "No signup required to start collaborating",
+      "Open source SDK allows deep customization and self-hosting",
+      "Lightweight, fast loading with minimal UI chrome",
+      "Built-in support for pen, touch, and multi-user cursors"
+    ],
+    "proof_points": [
+      "Homepage states 'No signup required' and demonstrates instant room creation (found on https://www.tldraw.com)",
+      "GitHub repo has README highlighting real-time collaboration and SDK extensibility (found in README.md)",
+      "Over 38k stars on GitHub as of 2024 (inferred from public GitHub visibility and project prominence)"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Vite",
+      "WebSocket",
+      "Yjs (for CRDT-based collaboration)"
+    ],
+    "pricing_current": "none found",
+    "voice": {
+      "tone": [
+        "clear",
+        "minimal",
+        "developer-friendly",
+        "confident"
+      ],
+      "sample_phrase": "A free and instant collaborative whiteboarding tool."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Live public product with active domain",
+        "Highly starred GitHub repository",
+        "Active SDK documentation and developer links"
+      ]
+    },
+    "gaps": [
+      "No dedicated pricing page found",
+      "No public roadmap or changelog linked",
+      "No customer testimonials or case studies visible"
+    ],
+    "confidence": {
+      "overall": 0.92,
+      "notes": "High confidence; strong evidence from site and repo"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Confirmed SDK features and collaboration model"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Identified tech stack dependencies and monorepo structure"
+      },
+      {
+        "source": "https://www.tldraw.com",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Confirmed product messaging and no-signup access"
+      },
+      {
+        "source": "https://www.tldraw.com/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Pricing page returned 404"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

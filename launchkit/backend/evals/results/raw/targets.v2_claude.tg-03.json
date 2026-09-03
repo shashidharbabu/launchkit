@@ -1,0 +1,205 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "Dev-tools-only launch platform; gitwhisper is a VS Code extension for IC developers — exact ICP match.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Technical HN audience; local Ollama mode and per-repo style learning from 200 commits are HN-worthy differentiators.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "awesome-vscode",
+        "kind": "awesome_list",
+        "url": "https://github.com/viatsko/awesome-vscode",
+        "submission_url": "https://github.com/viatsko/awesome-vscode/pulls",
+        "why_fit": "Canonical curated list for VS Code extensions; gitwhisper fits the AI/productivity section directly.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Developer-focused launchpad; IC developers enforcing Conventional Commits are core Peerlist audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 5,
+        "name": "r/LocalLLaMA",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/LocalLLaMA/",
+        "submission_url": "https://www.reddit.com/r/LocalLLaMA/submit",
+        "why_fit": "Ollama local-model mode directly addresses teams that cannot send diffs to cloud APIs — core differentiator.",
+        "rules_summary": "Self-promotion capped at 1 post per 10 posts; must disclose affiliation in comments. Promotional posts require flair.",
+        "rules_url": "https://old.reddit.com/r/LocalLLaMA/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 6,
+        "name": "r/git",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/git/",
+        "submission_url": "https://www.reddit.com/r/git/submit",
+        "why_fit": "Conventional Commits and commit hygiene pain is the exact ICP trigger; r/git is the home community.",
+        "rules_summary": "Be nice; no spam; no AI-generated slop content. Self-promotion not explicitly banned but spam is.",
+        "rules_url": "https://old.reddit.com/r/git/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "Product Hunt",
+        "kind": "launch_platform",
+        "url": "https://www.producthunt.com",
+        "submission_url": "https://www.producthunt.com/posts/new",
+        "why_fit": "18k installs and 4.6-star rating give social proof for a PH launch; AI dev tools category is active.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 8,
+        "name": "r/vscode",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/vscode/",
+        "submission_url": "https://www.reddit.com/r/vscode/submit",
+        "why_fit": "Home subreddit for VS Code users; gitwhisper is a VS Code extension — most direct audience match.",
+        "rules_summary": "Bans AI-slop extensions and posts about extensions made by AI. High risk if post reads as AI-generated promotion.",
+        "rules_url": "https://old.reddit.com/r/vscode/about/rules",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "AlternativeTo",
+        "kind": "directory",
+        "url": "https://alternativeto.net",
+        "submission_url": "https://alternativeto.net/manage-item/",
+        "why_fit": "Searchers looking for alternatives to aicommits CLI or GitHub Copilot commit suggestions will find gitwhisper.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "There's An AI For That",
+        "kind": "directory",
+        "url": "https://theresanaiforthat.com",
+        "submission_url": "https://theresanaiforthat.com/get-featured/",
+        "why_fit": "AI tool directory; Ollama + OpenAI dual-mode and PR description generation fit the AI coding tools category.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "Dev.to",
+        "kind": "community",
+        "url": "https://dev.to",
+        "submission_url": "https://dev.to/new",
+        "why_fit": "Write a technical post on Conventional Commits + gitwhisper; ICP of IC developers reads Dev.to regularly.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Freemium indie tool with 18k installs and paid tier fits the side-project showcase format.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 13,
+        "name": "r/IMadeThis",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/IMadeThis/",
+        "submission_url": "https://www.reddit.com/r/IMadeThis/submit",
+        "why_fit": "Showcase subreddit for indie builders; gitwhisper's freemium launch with Marketplace proof fits the format.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 14,
+        "name": "Uneed",
+        "kind": "launch_platform",
+        "url": "https://www.uneed.best",
+        "submission_url": "https://www.uneed.best/submit-a-tool",
+        "why_fit": "Indie tool directory with dev-tools category; low-effort submission for evergreen discoverability.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "Submit to DevHunt and Peerlist Launchpad first — lowest friction, dev-focused audiences, builds early momentum before Product Hunt.",
+      "Open a PR to awesome-vscode immediately — evergreen SEO and credibility signal that supports all later launches.",
+      "Post Show HN with a technical writeup on per-repo style learning and Ollama mode — these are the differentiators HN rewards.",
+      "After Show HN traction, launch on Product Hunt using install count and star rating as social proof anchors."
+    ],
+    "search_queries_used": [
+      "VS Code extension conventional commits git workflow subreddit community",
+      "Ollama local LLM developer tools community Discord",
+      "awesome-vscode GitHub list VS Code extensions",
+      "conventional commits newsletter developer tools git workflow community",
+      "Ollama Discord community VS Code AI developer tools"
+    ],
+    "confidence": {
+      "overall": 0.78,
+      "notes": "Rules verified for 4 key subreddits; 3 promo-tolerant subs and all platforms remain unverified."
+    }
+  }
+}

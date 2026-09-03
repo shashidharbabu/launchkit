@@ -1,0 +1,173 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/microsoft/vscode/issues/327959",
+        "title_or_quote": "Generate Commit Message",
+        "posted_when": "2026-07-29T04:09:00Z",
+        "why_relevant": "User wants VS Code to generate commit messages from diff.",
+        "intent_strength": "high",
+        "drafted_reply": "You can use gitwhisper, a VS Code extension that generates conventional commit messages from your staged diff. I built it for exactly this. It works locally via Ollama if you can't send code to the cloud. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread is about a bug in VS Code's commit message generation feature, which directly relates to the core functionality of gitwhisper, making the app a potentially helpful solution for the user's issue."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=43059920",
+        "title_or_quote": "Ask HN: What commit message conventions do you follow?",
+        "posted_when": "2025-02-15T16:47:29Z",
+        "why_relevant": "Discussion about commit message conventions, relevant to enforcing quality.",
+        "intent_strength": "medium",
+        "drafted_reply": "We built gitwhisper to help teams follow Conventional Commits without the grind. It reads your staged diff and drafts the message, learning your repo's style. Works locally via Ollama. I built it for exactly this. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/di-sukharev/opencommit/issues/417",
+        "title_or_quote": "[Bug]: Invalid Conventional Commit format when using GitMojis",
+        "posted_when": "2024-09-12T18:11:11Z",
+        "why_relevant": "User is using a tool for conventional commits and facing formatting issues.",
+        "intent_strength": "medium",
+        "drafted_reply": "gitwhisper ensures valid Conventional Commit formatting by default and supports custom styles. It learns from your repo's history. I built it for exactly this. Runs locally via Ollama if needed. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread author is struggling with invalid Conventional Commit formats when using GitMojis, which directly relates to the app's functionality of generating compliant commit messages in VS Code."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/chahe-dridi/vscode-setup/issues/15",
+        "title_or_quote": "[EXTENSION] Add Git-related extensions to Essential category",
+        "posted_when": "2026-03-14T15:07:55Z",
+        "why_relevant": "User is curating essential Git extensions for VS Code.",
+        "intent_strength": "medium",
+        "drafted_reply": "Consider gitwhisper — it generates conventional commit messages and PR descriptions from your staged diff in VS Code. I built it for exactly this. Supports local Ollama models for privacy. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread is a request to add Git-related extensions to a VS Code setup list, but does not indicate the author is struggling with writing commit messages or needs help drafting them, which is the core functionality of gitwhisper."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=33525754",
+        "title_or_quote": "Ask HN: Are you still using conventional commits? If not why not?",
+        "posted_when": "2022-11-08T23:38:46Z",
+        "why_relevant": "Discussion on adoption of conventional commits, relevant to pain point.",
+        "intent_strength": "low",
+        "drafted_reply": "We built gitwhisper to make conventional commits sustainable — it drafts messages from your diff and learns your team's style. I built it for exactly this. Works offline via Ollama. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "tool that writes conventional commit messages",
+      "vs code extension for better commit messages",
+      "struggling with writing good git commit messages site:reddit.com",
+      "tired of writing commit messages by hand reddit",
+      "alternative to GitHub Copilot commit suggestions",
+      "site:reddit.com/r/vscode writing good commit messages",
+      "site:reddit.com/r/git conventional commits tool",
+      "site:reddit.com/r/programming auto commit message generator",
+      "commit messages",
+      "conventional commits"
+    ],
+    "coverage_notes": "No relevant Reddit threads found. StackOverflow query returned unrelated result. Used fallback to GitHub and HN.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Fewer signals than ideal, but included all relevant ones from GitHub and HN. Reddit and StackOverflow yielded no strong matches."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/microsoft/vscode/issues/327959",
+      "title_or_quote": "Generate Commit Message",
+      "posted_when": "2026-07-29T04:09:00Z",
+      "why_relevant": "User wants VS Code to generate commit messages from diff.",
+      "intent_strength": "high",
+      "drafted_reply": "You can use gitwhisper, a VS Code extension that generates conventional commit messages from your staged diff. I built it for exactly this. It works locally via Ollama if you can't send code to the cloud. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread is about a bug in VS Code's commit message generation feature, which directly relates to the core functionality of gitwhisper, making the app a potentially helpful solution for the user's issue."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/di-sukharev/opencommit/issues/417",
+      "title_or_quote": "[Bug]: Invalid Conventional Commit format when using GitMojis",
+      "posted_when": "2024-09-12T18:11:11Z",
+      "why_relevant": "User is using a tool for conventional commits and facing formatting issues.",
+      "intent_strength": "medium",
+      "drafted_reply": "gitwhisper ensures valid Conventional Commit formatting by default and supports custom styles. It learns from your repo's history. I built it for exactly this. Runs locally via Ollama if needed. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread author is struggling with invalid Conventional Commit formats when using GitMojis, which directly relates to the app's functionality of generating compliant commit messages in VS Code."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=43059920",
+      "title_or_quote": "Ask HN: What commit message conventions do you follow?",
+      "posted_when": "2025-02-15T16:47:29Z",
+      "why_relevant": "Discussion about commit message conventions, relevant to enforcing quality.",
+      "intent_strength": "medium",
+      "drafted_reply": "We built gitwhisper to help teams follow Conventional Commits without the grind. It reads your staged diff and drafts the message, learning your repo's style. Works locally via Ollama. I built it for exactly this. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/chahe-dridi/vscode-setup/issues/15",
+      "title_or_quote": "[EXTENSION] Add Git-related extensions to Essential category",
+      "posted_when": "2026-03-14T15:07:55Z",
+      "why_relevant": "User is curating essential Git extensions for VS Code.",
+      "intent_strength": "medium",
+      "drafted_reply": "Consider gitwhisper — it generates conventional commit messages and PR descriptions from your staged diff in VS Code. I built it for exactly this. Supports local Ollama models for privacy. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread is a request to add Git-related extensions to a VS Code setup list, but does not indicate the author is struggling with writing commit messages or needs help drafting them, which is the core functionality of gitwhisper."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=33525754",
+      "title_or_quote": "Ask HN: Are you still using conventional commits? If not why not?",
+      "posted_when": "2022-11-08T23:38:46Z",
+      "why_relevant": "Discussion on adoption of conventional commits, relevant to pain point.",
+      "intent_strength": "low",
+      "drafted_reply": "We built gitwhisper to make conventional commits sustainable — it drafts messages from your diff and learns your team's style. I built it for exactly this. Works offline via Ollama. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

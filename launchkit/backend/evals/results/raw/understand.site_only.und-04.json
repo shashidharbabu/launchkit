@@ -1,0 +1,72 @@
+{
+  "output": {
+    "one_liner": "Cal.com is a fully customizable scheduling software for individuals and teams to manage online bookings and appointments.",
+    "description": "Cal.com offers a flexible scheduling solution that allows users to manage appointments, meetings, and bookings with customizable workflows. It supports integrations, embeddable widgets, and team scheduling features for businesses and professionals.",
+    "category": "Scheduling & Calendar",
+    "target_user": "Product managers, sales teams, and customer support leads",
+    "icp": {
+      "who": "Growth-focused startups and remote teams needing efficient meeting coordination",
+      "pain": "Manual scheduling slows down customer onboarding and internal alignment",
+      "current_alternatives": [
+        "Calendly",
+        "Google Calendar",
+        "Microsoft Outlook"
+      ],
+      "buying_trigger": "Team expansion or increased customer meeting volume overwhelms manual coordination"
+    },
+    "differentiators": [
+      "Open-source architecture allows full customization and self-hosting",
+      "Unlimited events and bookings on the free tier",
+      "Deep integration capabilities with developer-friendly APIs"
+    ],
+    "proof_points": [
+      "Site states 'Unlimited events, users, and bookings' on free plan — found on https://cal.com/pricing",
+      "Over 25,000 GitHub stars mentioned in community discussions (not directly on site)",
+      "Used by companies like Vercel and Supabase — referenced in testimonials on https://cal.com"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Prisma"
+    ],
+    "pricing_current": "Free tier with unlimited events; Teams plan at $12/user/month; Enterprise pricing available on request",
+    "voice": {
+      "tone": [
+        "clear",
+        "professional",
+        "developer-friendly"
+      ],
+      "sample_phrase": "Start free with Cal.com’s unlimited scheduling or upgrade to Teams, Organization, or Enterprise plans."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing page",
+        "Active user base with company testimonials",
+        "Clear upgrade paths for teams and enterprise"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "No GitHub repo provided; profile based solely on live site"
+    },
+    "sources_read": [
+      {
+        "source": "https://cal.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site copy and metadata"
+      },
+      {
+        "source": "https://cal.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and plan features"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

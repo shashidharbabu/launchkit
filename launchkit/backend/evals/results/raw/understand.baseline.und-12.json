@@ -1,0 +1,104 @@
+{
+  "output": {
+    "one_liner": "Dub is a modern link attribution platform for short links, conversion tracking, and affiliate programs, designed for marketing teams and startups.",
+    "description": "Dub is the modern link attribution platform that unifies short links, real-time analytics, and affiliate programs in one place. It helps marketing teams understand how their links drive revenue with powerful attribution, conversion tracking, and partner management. Used by companies like Twilio, Framer, and Vercel, Dub scales to handle hundreds of millions of clicks monthly.",
+    "category": "Marketing & Analytics",
+    "target_user": "Marketing operations manager",
+    "icp": {
+      "who": "Growth-focused startups and mid-market companies with active referral or affiliate programs",
+      "pain": "Difficulty attributing marketing ROI and managing partner payouts at scale",
+      "current_alternatives": [
+        "Bitly",
+        "Rewardful",
+        "Tapfiliate"
+      ],
+      "buying_trigger": "Launching a new affiliate program or migrating from a legacy link management tool"
+    },
+    "differentiators": [
+      "Open-source core with commercial enterprise features",
+      "Unified platform for links, analytics, and affiliate programs",
+      "Built-in AI landing page generator for partner programs",
+      "Real-time analytics with customer lifetime value tracking"
+    ],
+    "proof_points": [
+      "Powers 100M+ clicks and 2M+ links monthly (from README.md)",
+      "Used by Twilio, Buffer, Framer, Perplexity, Vercel (from README.md and dub.co)",
+      "100,000+ customers (from dub.co)",
+      "Testimonial from Koen Bok, CEO at Framer (from dub.co/pricing)",
+      "G2, Product Hunt, Trustpilot links on homepage (from dub.co)"
+    ],
+    "tech_stack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Prisma",
+      "Upstash",
+      "Tinybird",
+      "PlanetScale",
+      "NextAuth.js",
+      "BoxyHQ",
+      "Turborepo",
+      "Stripe",
+      "Resend",
+      "Vercel"
+    ],
+    "pricing_current": "Business: $X/month, Advanced: $Y/month, Enterprise: custom pricing with 14-day trial",
+    "voice": {
+      "tone": [
+        "clear",
+        "confident",
+        "modern",
+        "professional"
+      ],
+      "sample_phrase": "Dub is the modern link attribution platform that unifies short links, real-time analytics, and affiliate programs – all in one place."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing page",
+        "Customer testimonials",
+        "Active changelog",
+        "100,000+ customers",
+        "Integration with major tools"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence based on comprehensive documentation and live site data"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, tech stack, open-source model"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Confirmed pnpm and devDependencies"
+      },
+      {
+        "source": "",
+        "via": "github",
+        "ok": true,
+        "note": "Directory structure confirmed"
+      },
+      {
+        "source": "https://dub.co",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Product features, customer logos, testimonials"
+      },
+      {
+        "source": "https://dub.co/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing tiers, feature comparison, testimonials"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

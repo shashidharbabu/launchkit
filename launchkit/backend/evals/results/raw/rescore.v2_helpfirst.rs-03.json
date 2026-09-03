@@ -1,0 +1,36 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=41054800",
+        "title_or_quote": "Ask HN: What feature flags platform do you use?",
+        "why_relevant": "Engineers comparing feature flag platforms are in-market for exactly what togglr sells.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The thread's original poster is directly asking which feature flag platform to use, and multiple commenters are actively comparing options like LaunchDarkly, Unleash, and Flagsmith — exactly the decision space togglr addresses."
+        },
+        "drafted_reply": "The comparison you did is solid — GO Feature Flag's YAML-in-Git approach is underrated precisely because flag changes become diffs with history, not mystery clicks in a dashboard. That audit trail gap is real: LaunchDarkly and Unleash both let anyone with dashboard access toggle production with no review record, which is fine until it isn't. If Git-backed review with edge evaluation matters to your team, I built something along those lines called togglr ({APP_URL}) — every flag change is a PR, evaluated at the edge under 5ms p99, open-source SDKs.",
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=41054800",
+      "title_or_quote": "Ask HN: What feature flags platform do you use?",
+      "why_relevant": "Engineers comparing feature flag platforms are in-market for exactly what togglr sells.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The thread's original poster is directly asking which feature flag platform to use, and multiple commenters are actively comparing options like LaunchDarkly, Unleash, and Flagsmith — exactly the decision space togglr addresses."
+      },
+      "drafted_reply": "The comparison you did is solid — GO Feature Flag's YAML-in-Git approach is underrated precisely because flag changes become diffs with history, not mystery clicks in a dashboard. That audit trail gap is real: LaunchDarkly and Unleash both let anyone with dashboard access toggle production with no review record, which is fine until it isn't. If Git-backed review with edge evaluation matters to your team, I built something along those lines called togglr ({APP_URL}) — every flag change is a PR, evaluated at the edge under 5ms p99, open-source SDKs.",
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

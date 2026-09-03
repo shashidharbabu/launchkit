@@ -1,0 +1,104 @@
+{
+  "output": {
+    "one_liner": "A performant toolchain for web projects that formats, lints, and more in a fraction of a second.",
+    "description": "Biome is a performant toolchain for web projects, providing developer tools to maintain project health. It offers fast formatting for JavaScript, TypeScript, JSX, JSON, CSS, and GraphQL with 97% compatibility with Prettier. It also features a linter with over 500 rules from ESLint, typescript-eslint, and other sources, outputting detailed and contextualized diagnostics.",
+    "category": "Developer Tools",
+    "target_user": "Web developers",
+    "icp": {
+      "who": "Web developers working on large-scale projects",
+      "pain": "Slow and fragmented development tooling that requires configuration and maintenance",
+      "current_alternatives": [
+        "Prettier",
+        "ESLint",
+        "typescript-eslint"
+      ],
+      "buying_trigger": "Need for a unified, fast, and zero-configuration toolchain for web development"
+    },
+    "differentiators": [
+      "97% compatibility with Prettier",
+      "Over 500 lint rules from multiple sources",
+      "Zero configuration required",
+      "Supports formatting malformed code in real-time"
+    ],
+    "proof_points": [
+      "97% compatibility with Prettier (found in README.md)",
+      "Over 500 lint rules (found in README.md)",
+      "Used by organizations like AWS, Google, and Microsoft (found on https://biomejs.dev/users/)"
+    ],
+    "tech_stack": [
+      "Rust",
+      "JavaScript",
+      "TypeScript",
+      "WebAssembly"
+    ],
+    "pricing_current": "none found",
+    "voice": {
+      "tone": [
+        "informative",
+        "confident",
+        "developer-focused"
+      ],
+      "sample_phrase": "Biome is a performant toolchain for web projects, it aims to provide developer tools to maintain the health of said projects."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Active community",
+        "Enterprise support available",
+        "Used by major organizations"
+      ]
+    },
+    "gaps": [
+      "No pricing page"
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "High confidence based on comprehensive documentation and live site information."
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Provided project overview and features"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Revealed package dependencies and scripts"
+      },
+      {
+        "source": "Cargo.toml",
+        "via": "github",
+        "ok": true,
+        "note": "Showed Rust dependencies and workspace configuration"
+      },
+      {
+        "source": "https://biomejs.dev",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site with product details and features"
+      },
+      {
+        "source": "https://biomejs.dev/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Pricing page not found"
+      },
+      {
+        "source": "https://biomejs.dev/enterprise",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Enterprise support details"
+      },
+      {
+        "source": "https://biomejs.dev/users",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "List of organizations using Biome"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

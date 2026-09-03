@@ -1,0 +1,59 @@
+{
+  "one_liner": "Feature flags that go through pull-request review like the rest of your code, evaluated at the edge in under 5ms.",
+  "description": "togglr treats flag changes as code: every toggle, rollout percentage change, and environment override is a diff in a Git-backed config that goes through PR review, with full history and instant rollback. Evaluation happens at the edge in under 5 milliseconds p99. Open-source SDKs for the major languages, hosted control plane for teams.",
+  "category": "Infrastructure / Feature Flags",
+  "target_user": "Product engineering teams that ship behind flags",
+  "icp": {
+    "who": "Engineering teams of 5-50 at product companies practicing trunk-based development",
+    "pain": "Flag dashboards drift with no review trail — one misclicked toggle in a web UI can take production down with zero record of who changed what",
+    "current_alternatives": [
+      "LaunchDarkly",
+      "PostHog feature flags",
+      "Flagsmith",
+      "Unleash"
+    ],
+    "buying_trigger": "A flag-related incident with no audit trail, or a LaunchDarkly renewal quote that triggers a search for alternatives"
+  },
+  "differentiators": [
+    "Flag changes are pull requests: reviewed, attributed, revertable with git",
+    "Sub-5ms p99 evaluation at the edge via Cloudflare Workers",
+    "Open-source SDKs — no proprietary client lock-in"
+  ],
+  "proof_points": [
+    "p99 edge evaluation latency under 5ms, benchmark published in docs",
+    "SDK repos have a combined 900 GitHub stars",
+    "Every flag change in the demo org is a browsable pull request"
+  ],
+  "tech_stack": [
+    "Go",
+    "Cloudflare Workers",
+    "TypeScript",
+    "Git"
+  ],
+  "pricing_current": "freemium (free up to 5 seats and 1M evaluations/month, then $8/seat)",
+  "voice": {
+    "tone": [
+      "technical",
+      "opinionated",
+      "safety-minded"
+    ],
+    "sample_phrase": "Your last outage was a toggle nobody reviewed. Fix that."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "Open beta with self-serve orgs",
+      "SDKs versioned pre-1.0",
+      "Design partners named on site"
+    ]
+  },
+  "gaps": [
+    "No experimentation/AB module",
+    "No SOC 2 yet",
+    "Mobile SDKs still in progress"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Workflow differentiation is concrete and demoable. Latency benchmark is vendor-published."
+  }
+}

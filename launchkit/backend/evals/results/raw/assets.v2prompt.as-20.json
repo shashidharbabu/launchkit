@@ -1,0 +1,41 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "Spending hours clipping your podcast?",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "Split screen: person manually scrubbing timeline on editing software vs. clock ticking",
+        "voiceover": "Spending hours clipping your podcast?"
+      },
+      {
+        "seconds": "3-12",
+        "visual": "App interface uploading a 60-minute episode, showing 'Processing with hook-detection model'",
+        "voiceover": "Podclip analyzes your full episode using a model trained on 40,000 rated clips to find the best moments."
+      },
+      {
+        "seconds": "12-24",
+        "visual": "Side-by-side: generic auto-clip selecting bland segment vs. podclip selecting high-tension moment with captions",
+        "voiceover": "It doesn't just pick random 60-second chunks. It finds moments with narrative tension — the ones people actually share."
+      },
+      {
+        "seconds": "24-36",
+        "visual": "Render progress bar completing in under 2 minutes, then output folder with 5 captioned vertical clips",
+        "voiceover": "In about 90 seconds, you get captioned, on-brand clips ready for TikTok, Reels, and Shorts — no editor needed."
+      },
+      {
+        "seconds": "36-45",
+        "visual": "Grid of real-looking clips from different shows, each with consistent branding, ending with {APP_URL}",
+        "voiceover": "120 shows already use podclip weekly to turn episodes into clips that perform. Try it free today."
+      }
+    ],
+    "cta": "Try podclip free at {APP_URL}",
+    "production_notes": [
+      "Record screen of podclip upload and processing interface",
+      "Show render time under 2 minutes for a 60-minute episode",
+      "Capture output folder with multiple captioned vertical clips",
+      "Include real examples of high-tension vs. low-tension clip selection"
+    ],
+    "warnings": []
+  }
+}

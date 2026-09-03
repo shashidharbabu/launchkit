@@ -1,0 +1,67 @@
+{
+  "output": {
+    "title": "DepSentry — Supply-Chain Scanner",
+    "tagline": "Catch dependency attacks before CVE databases know they exist",
+    "description_short": "DepSentry (public beta) watches install scripts, maintainer changes, and obfuscated payloads — behavioral signals CVE scanners miss entirely.",
+    "description_long": "**DepSentry is in public beta.** It watches what your dependencies *do*, not just what CVE databases say about them.\n\nMost supply-chain attacks live in install scripts, hijacked maintainer accounts, and obfuscated payloads added in minor versions — signals that never appear in a CVE feed until weeks after the damage is done. DepSentry models those behaviors directly.\n\n**What it catches:**\n- New or changed install scripts in any dependency update\n- Sudden maintainer handoffs on packages you already trust\n- Typosquat-adjacent package names in your lockfile\n- Network calls added in minor or patch versions\n- Obfuscated code injected into published packages\n\n**How it works in practice:** DepSentry runs in CI, scans a 1,200-dependency lockfile in about 40 seconds, and posts a PR comment on the exact change that introduces risk — not a weekly digest of noise.\n\n**Evidence it works:** A retro-analysis shows DepSentry would have flagged the event-stream/flatmap-stream attack 11 days before public disclosure.\n\nFree for open-source repositories. Already running on 300 public projects. Team plan available for private repositories with white-glove onboarding.\n\nNote: JavaScript/npm coverage is mature; Python/PyPI coverage is newer. GitLab support is not yet available.",
+    "keywords": [
+      "supply chain security",
+      "dependency scanner",
+      "npm security",
+      "PyPI security",
+      "software composition analysis",
+      "CI security scanner",
+      "install script detection",
+      "malicious package detection",
+      "GitHub Actions security",
+      "dependency audit",
+      "open source security",
+      "package integrity",
+      "typosquatting detection",
+      "maintainer hijack detection"
+    ],
+    "screenshot_order": [
+      "1. PR comment screenshot — show the exact inline comment on a pull request flagging a suspicious install script; this is the core workflow moment buyers need to see first.",
+      "2. CI scan output — show the 40-second lockfile scan completing in a GitHub Actions log; proves speed and CI-native fit.",
+      "3. Behavioral signal breakdown — show the detection detail view listing the specific signals triggered (maintainer change + new network call); demonstrates depth CVE scanners lack."
+    ],
+    "faq": [
+      {
+        "q": "How is this different from Snyk or Dependabot?",
+        "a": "Snyk and Dependabot alert on known CVEs — disclosures that are already public. DepSentry flags behavioral signals like new install scripts and maintainer handoffs before any CVE exists. The event-stream attack would have been caught 11 days earlier."
+      },
+      {
+        "q": "Is it production-ready?",
+        "a": "DepSentry is in public beta. The free OSS tier is live and running on 300 public projects. Team plan onboarding is currently white-glove, not fully self-serve."
+      },
+      {
+        "q": "Does it support GitLab or Bitbucket?",
+        "a": "Not yet. DepSentry currently supports GitHub repositories only. GitLab support is on the roadmap."
+      },
+      {
+        "q": "How does it handle Python packages?",
+        "a": "PyPI/Python coverage is available but newer than npm coverage. JavaScript and npm packages have the most mature detection rules today."
+      },
+      {
+        "q": "Will it slow down our CI pipeline?",
+        "a": "A 1,200-dependency lockfile scans in about 40 seconds. For most teams this fits within existing CI time budgets without a dedicated step."
+      }
+    ],
+    "cta": "Add DepSentry to your GitHub repo — free for open source",
+    "changes_from_current": [
+      "Title changed from plain 'depsentry - a dependency scanner written in Rust' to a formatted title with category noun 'Supply-Chain Scanner'",
+      "Tagline added — original had none",
+      "Description expanded from 2 sentences to full structured copy covering differentiators, proof points, and limitations",
+      "Beta status now stated explicitly in description_short and description_long — original omitted it",
+      "Behavioral signals (install scripts, maintainer changes, typosquats, network calls) now named — original mentioned none",
+      "Event-stream retro-test proof point added with specific '11 days before disclosure' claim",
+      "40-second scan speed and 300 public projects proof points added",
+      "Known gaps (no GitLab, Python coverage newer) disclosed honestly — original omitted",
+      "Keywords, screenshot guidance, FAQ, and CTA all new — original had none"
+    ],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "Profile is detailed with specific, falsifiable proof points. Beta stage disclosed. Gaps disclosed. No competitor detection-rate benchmark available to cite, so that comparison is framed qualitatively. Voice tone (sober, evidence-led) maintained throughout."
+    }
+  }
+}

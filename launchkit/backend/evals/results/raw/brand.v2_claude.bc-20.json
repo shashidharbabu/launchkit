@@ -1,0 +1,167 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "No Hallucinations, No Exceptions",
+        "objective": "awareness — put botsmith's citation guarantee in front of support leaders who have been burned by bots that invent answers",
+        "big_idea": "Every support bot promises accuracy. botsmith is the only one that makes it architectural: no citation, no answer. Run a direct-message campaign on LinkedIn targeting Heads of Support with a single concrete claim they can verify themselves in five minutes.",
+        "channels": [
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "linkedin_post"
+        ],
+        "hook": "Your bot just made something up. Again.",
+        "sample_copy": {
+          "headline": "Every answer shows its source — or it doesn't ship.",
+          "body": "Most support bots deflect nothing or confidently invent wrong answers. botsmith works differently: every reply carries a citation to the exact source passage. When retrieval confidence is low, it hands off to a human instead of guessing. Set it up from a sitemap URL in about five minutes. No training UI to babysit. Just answers your team can stand behind.",
+          "cta": "See how it works — no signup required."
+        },
+        "assets_needed": [
+          "LinkedIn post with the hook line",
+          "Short screen-recording showing a cited answer vs. a hallucinated one",
+          "Landing page section that explains the citation guarantee in plain language"
+        ],
+        "effort": "small",
+        "success_metric": "LinkedIn post click-through rate to the landing page",
+        "why_on_brand": "Leads with the concrete differentiator in direct second-person language, mirroring the DNA's short declaratives and trust-focused vocabulary."
+      },
+      {
+        "name": "Show HN: Built a Bot That Refuses to Guess",
+        "objective": "awareness — reach technical founders and support engineers on Hacker News who distrust LLM hallucinations",
+        "big_idea": "Frame botsmith as an architectural answer to the hallucination problem, not a prompt-engineering trick. A Show HN post explains the confidence-gated escalation design and invites the HN community to stress-test it live.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: botsmith — a support chatbot that cites every answer or hands off to a human instead of guessing",
+        "sample_copy": {
+          "headline": "Show HN: botsmith — a support chatbot that cites every answer or hands off to a human instead of guessing",
+          "body": "Built this because every bot I tried either deflected nothing or invented confident wrong answers. botsmith's guardrail layer forces every reply to carry a citation to the source passage. When retrieval confidence is low it refuses to improvise and escalates to a human. Setup is a sitemap URL — median time to first answer is five minutes. Resolves 61% of inbound chats end-to-end for Pixelhaven. Happy to answer questions about the pgvector + confidence-scoring architecture.",
+          "cta": "Try it on your own docs."
+        },
+        "assets_needed": [
+          "Show HN post draft",
+          "Brief technical write-up on the confidence-gating mechanism",
+          "Live demo endpoint or sandbox"
+        ],
+        "effort": "small",
+        "success_metric": "Number of comments and upvotes on the Show HN post",
+        "why_on_brand": "Concrete, direct, no hype — matches the DNA's unpretentious tone and proof-first messaging with the one named customer stat."
+      },
+      {
+        "name": "The Hallucination Incident Thread",
+        "objective": "community — spark organic conversation in support and SaaS communities by inviting people to share bot-gone-wrong stories",
+        "big_idea": "Post an open question in r/CustomerSuccess and r/SaaS asking support leaders to share their worst chatbot hallucination story. Participate genuinely, then introduce botsmith as the architectural fix — not a pitch, a contribution.",
+        "channels": [
+          "Reddit"
+        ],
+        "asset_types": [
+          "reddit_post"
+        ],
+        "hook": "What's the worst thing a support bot has confidently made up for one of your customers?",
+        "sample_copy": {
+          "headline": "What's the worst thing a support bot has confidently made up for one of your customers?",
+          "body": "We built botsmith after watching bots invent refund policies, fake feature names, and wrong pricing — all with total confidence. Curious how common this is. Drop your story below. (We're also happy to share how we approached the problem architecturally if anyone's interested.)",
+          "cta": "Share your story — and ask us anything about how we built the citation layer."
+        },
+        "assets_needed": [
+          "Reddit post copy",
+          "Follow-up comment explaining the confidence-gating design",
+          "Link to a plain-language explainer page"
+        ],
+        "effort": "small",
+        "success_metric": "Number of replies and upvotes on the Reddit thread",
+        "why_on_brand": "Generous, encouraging, and unpretentious — starts by listening, not pitching, consistent with the DNA's conversational register."
+      },
+      {
+        "name": "Five-Minute Setup Challenge",
+        "objective": "signups — convert support leaders who are evaluating deflection tools by making the setup claim tangible and verifiable",
+        "big_idea": "Record a real-time screen capture of the full setup flow — paste a sitemap URL, watch the bot index the docs, ask it a question, see the citation appear — in under five minutes. Distribute as a short video on LinkedIn and as a newsletter pitch to support-focused newsletters.",
+        "channels": [
+          "LinkedIn",
+          "Newsletter"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "newsletter_pitch",
+          "video_script"
+        ],
+        "hook": "We timed it. Sitemap URL to first cited answer: five minutes.",
+        "sample_copy": {
+          "headline": "Sitemap URL to first cited answer: five minutes.",
+          "body": "Paste your sitemap URL. botsmith indexes your docs, helpdesk articles, and past tickets. Ask it a question. Every answer comes back with a citation to the exact source passage — or it hands off to a human. No training UI. No babysitting. Watch the full setup in real time and try it on your own docs.",
+          "cta": "Start your free setup now."
+        },
+        "assets_needed": [
+          "Unedited screen-recording of the five-minute setup",
+          "LinkedIn post with embedded video",
+          "Newsletter pitch paragraph for support-focused publications",
+          "Video script for the recording"
+        ],
+        "effort": "medium",
+        "success_metric": "Free-tier signups attributed to the video or newsletter link",
+        "why_on_brand": "Leads with a concrete, verifiable proof point in direct second-person language — matches the DNA's trust-focused, evidence-first voice."
+      },
+      {
+        "name": "Product Hunt Launch: Cite It or Skip It",
+        "objective": "signups — drive a concentrated spike of signups and visibility on launch day by framing the citation guarantee as the product's defining mechanic",
+        "big_idea": "Launch on Product Hunt with a tagline and description built entirely around the architectural guarantee. The maker comment explains the confidence-gating design in plain language and invites the community to break it.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "A support bot that cites every answer — or hands off to a human instead of guessing.",
+        "sample_copy": {
+          "headline": "botsmith — cite it or skip it",
+          "body": "Built for support teams tired of bots that invent answers. botsmith indexes your docs from a sitemap URL and forces every reply to carry a citation to the source passage. When it's not confident, it escalates to a human. No hallucinations by construction. Setup takes about five minutes. Resolves 61% of inbound chats end-to-end for Pixelhaven. Free up to 200 chats/month.",
+          "cta": "Try it free — no training UI required."
+        },
+        "assets_needed": [
+          "Product Hunt listing copy",
+          "Gallery screenshots showing a cited answer and a human-handoff card",
+          "Maker comment explaining the confidence-scoring architecture",
+          "Short demo GIF"
+        ],
+        "effort": "medium",
+        "success_metric": "Product Hunt upvotes and free-tier signups on launch day",
+        "why_on_brand": "Direct, concrete, proof-first — uses the named customer stat and the architectural claim without hype, consistent with the DNA's unpretentious, trust-focused tone."
+      },
+      {
+        "name": "The Citation Audit",
+        "objective": "signups — give support leaders a self-serve way to audit their current bot's answer quality, creating a natural entry point for botsmith",
+        "big_idea": "Publish a short guide: how to run a ten-question hallucination audit on any support bot. Distribute via a newsletter pitch to support and CX newsletters. The guide ends with a direct comparison: what the audit looks like when every answer is citation-forced.",
+        "channels": [
+          "Newsletter",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "newsletter_pitch",
+          "linkedin_post"
+        ],
+        "hook": "Ten questions that will tell you whether your support bot is making things up.",
+        "sample_copy": {
+          "headline": "Ten questions that will tell you whether your support bot is making things up.",
+          "body": "Ask your current bot ten edge-case questions from your docs. Check whether each answer links to a source. If it can't, it's guessing. We wrote a short audit guide that walks you through the test — and shows what citation-forced answers look like by comparison. Free to use on any bot, including ours.",
+          "cta": "Download the audit guide."
+        },
+        "assets_needed": [
+          "One-page audit guide (PDF or web page)",
+          "Newsletter pitch paragraph",
+          "LinkedIn post with the hook line and link to the guide"
+        ],
+        "effort": "medium",
+        "success_metric": "Guide downloads or page visits attributed to newsletter and LinkedIn",
+        "why_on_brand": "Generous and educational first, promotional second — mirrors the DNA's encouraging, unpretentious register and leads with concrete utility rather than a sales pitch."
+      }
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Campaigns use botsmith's own proof points (61% deflection from Pixelhaven, 100% cited answers, 5-min setup) as permitted by APP_PROFILE.proof_points. Tally DNA voice is applied as the tonal model but botsmith's own vocabulary (citations, escalation, confidence-gating, guardrail) is used where appropriate since the product is different. No numeric claims were invented beyond those in APP_PROFILE.proof_points."
+    }
+  }
+}

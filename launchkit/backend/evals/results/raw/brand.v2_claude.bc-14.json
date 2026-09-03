@@ -1,0 +1,137 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "6-Minute Funnel",
+        "objective": "signups — drive self-serve signups by making the time-to-value claim concrete and verifiable",
+        "big_idea": "Post a Show HN where the builder live-installs funnelscope on a real SaaS demo app and shares the working funnel screenshot in the thread. The mechanic is radical transparency: show the exact steps, the exact time, and let HN readers poke holes. This mirrors the Plausible DNA of stating trade-offs honestly and letting outcomes speak.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: I built a funnel tool that goes from snippet install to first working funnel in 6 minutes — no tracking plan, no SQL",
+        "sample_copy": {
+          "headline": "From snippet to funnel in 6 minutes. No SQL. No tracking plan.",
+          "body": "funnelscope auto-captures events from a lightweight snippet. You point at UI elements to define steps — no instrumentation project required. All data stays on EU servers (Frankfurt) with a signed DPA available. We measured the median time-to-first-funnel across our beta cohort: 6 minutes. Here is the install walkthrough. Tell me where it breaks.",
+          "cta": "Try the free tier — up to 50k events/month, no card required"
+        },
+        "assets_needed": [
+          "Screen-recorded walkthrough of snippet install to first funnel (under 6 minutes)",
+          "Screenshot of a working funnel from the demo app",
+          "Written Show HN post with honest trade-offs section"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of new workspace signups in the 72 hours after the HN post",
+        "why_on_brand": "Mirrors the DNA's 'state trade-offs honestly' and 'let outcomes speak' principles; uses the verified 6-minute proof point directly"
+      },
+      {
+        "name": "Investor Update Deadline",
+        "objective": "awareness — reach founders at the exact moment they realize they don't know their activation numbers",
+        "big_idea": "A short, plainspoken Reddit post in r/SaaS and r/startups framed as a question: 'What do you tell investors when you don't actually know where signups drop off?' The post shares the honest problem, not a pitch, and links to funnelscope only in a comment if asked. The mechanic is community candor, not promotion.",
+        "channels": [
+          "Reddit"
+        ],
+        "asset_types": [
+          "reddit_post"
+        ],
+        "hook": "What do you tell investors when you don't actually know where signups drop off?",
+        "sample_copy": {
+          "headline": "Preparing an investor update and realizing you have no funnel data is a specific kind of panic.",
+          "body": "We built funnelscope for exactly that moment. Auto-captured events, point-and-click funnel steps, no analytics engineer needed. EU-hosted by default — not as an enterprise add-on. 312 workspaces are in beta now. Free up to 50k events/month. If you've been in that investor-update panic, I'd like to hear how you handled it.",
+          "cta": "Free beta signup in the comments if you want to try it"
+        },
+        "assets_needed": [
+          "Reddit post copy (question-first framing)",
+          "Follow-up comment with signup link and honest scope description",
+          "List of 3-5 subreddits where ICP founders are active"
+        ],
+        "effort": "small",
+        "success_metric": "Upvotes and direct replies asking for the link within 48 hours",
+        "why_on_brand": "Candid, no-jargon framing; honest about the specific pain; no vague superlatives — consistent with the DNA's 'willing to state what the product is NOT good for' style"
+      },
+      {
+        "name": "EU by Default",
+        "objective": "awareness — reach GDPR-conscious founders who are evaluating analytics tools on privacy grounds",
+        "big_idea": "A LinkedIn post series (3 posts, one per week) that explains what EU data residency actually means in practice for a SaaS founder — signed DPA, Frankfurt servers, no consent banner required for analytics. Each post is educational, not promotional. funnelscope is mentioned as the context, not the subject.",
+        "channels": [
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "linkedin_post"
+        ],
+        "hook": "EU data residency for analytics: what it actually means vs. what vendors usually mean",
+        "sample_copy": {
+          "headline": "'EU-hosted' means different things depending on who's saying it.",
+          "body": "For funnelscope it means: data processed and stored in Frankfurt, signed DPA available on request, no data routed through US infrastructure. We made it the default — not an enterprise add-on. If you're a SaaS founder selling to European customers, your analytics tool is part of your GDPR story. Worth knowing what you're actually signing up for.",
+          "cta": "Free tier available — see the DPA before you decide"
+        },
+        "assets_needed": [
+          "3 LinkedIn post drafts (educational series)",
+          "One-page plain-language DPA summary to link or screenshot",
+          "Simple diagram showing data flow (EU only)"
+        ],
+        "effort": "medium",
+        "success_metric": "Profile visits and inbound DMs from founders asking about the DPA within the campaign window",
+        "why_on_brand": "Leads with privacy and EU hosting as accountability mechanisms, not just selling points — directly mirrors the DNA's 'do' list"
+      },
+      {
+        "name": "No Analytics Engineer",
+        "objective": "signups — convert founders who have Mixpanel or Amplitude installed but unused",
+        "big_idea": "A Product Hunt launch positioned explicitly as the analytics tool for teams without a data hire. The tagline and first comment both acknowledge what funnelscope does NOT do (no raw SQL export, no custom dashboards) to filter for the right users. Honest scoping is the differentiator.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "Product analytics for the team that hasn't hired a data person yet — and probably won't for a while",
+        "sample_copy": {
+          "headline": "funnelscope: working funnels without an analytics engineer",
+          "body": "Auto-captured events. Point-and-click funnel steps. No SQL, no tracking plan, no instrumentation sprint. EU-hosted by default with a signed DPA. Built for 2-15 person SaaS teams who need to answer 'where do signups drop off' before the next investor call — not for teams who need a full data warehouse. Free up to 50k events/month.",
+          "cta": "Try the free tier — 312 teams are already in beta"
+        },
+        "assets_needed": [
+          "Product Hunt listing copy and tagline",
+          "Product screenshots showing point-and-click funnel builder",
+          "First comment with honest scope (what it does and does not do)",
+          "Short demo GIF of snippet install to first funnel"
+        ],
+        "effort": "large",
+        "success_metric": "Number of upvotes and new workspace signups on launch day",
+        "why_on_brand": "Explicitly states trade-offs and scope limits — the DNA's most distinctive trait; uses verified beta proof point"
+      },
+      {
+        "name": "Changelog as Content",
+        "objective": "retention — keep beta users engaged and turn weekly changelog posts into a public trust signal",
+        "big_idea": "Publish the weekly changelog as a short, plainspoken newsletter pitch to indie-founder and SaaS newsletters (e.g. Indie Hackers digest, TLDR Founders). Each entry is one concrete thing that shipped, one honest thing that is still broken, and one question for readers. The mechanic is building in public without the performance.",
+        "channels": [
+          "Newsletter",
+          "Indie Hackers"
+        ],
+        "asset_types": [
+          "newsletter_pitch"
+        ],
+        "hook": "What shipped in funnelscope this week — and what we know is still broken",
+        "sample_copy": {
+          "headline": "Week N: what shipped, what broke, what we're not sure about yet",
+          "body": "This week: point-and-click funnel steps now work on single-page apps without page reloads. Still broken: funnel step reordering loses your filter settings — fix is in review. Not sure yet: whether auto-capture should include form field values by default (privacy trade-off). 312 workspaces in beta. Free tier is open. Tell us what you'd fix first.",
+          "cta": "Follow the changelog or join the free beta"
+        },
+        "assets_needed": [
+          "Weekly changelog template (shipped / broken / uncertain)",
+          "List of 5-8 newsletters and communities to pitch",
+          "Short pitch email to newsletter editors"
+        ],
+        "effort": "small",
+        "success_metric": "Newsletter reply rate and new signups attributed to changelog posts over 4 weeks",
+        "why_on_brand": "Transparent, candid, willing to name what is not working — the DNA's 'principled' and 'understated' tone applied to building in public"
+      }
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "BRAND_DNA is from Plausible Analytics, not funnelscope itself — voice and principles are borrowed by analogy as instructed. All proof points used (312 workspaces, 6-minute median, EU Frankfurt) come from APP_PROFILE.proof_points. No numeric claims were invented. No named customers or testimonials were used."
+    }
+  }
+}

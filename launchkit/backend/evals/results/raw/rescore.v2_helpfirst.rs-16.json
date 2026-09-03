@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "stackoverflow",
+        "url": "https://stackoverflow.com/questions/44099851",
+        "title_or_quote": "How do I pass variables between stages in a declarative Jenkins pipeline?",
+        "why_relevant": "Popular question about pipelines.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.98,
+          "why": "The thread is entirely about passing variables between Jenkins pipeline stages, which has nothing to do with ELT pipelines, data connectors, or warehouse ingestion."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/44099851",
+      "title_or_quote": "How do I pass variables between stages in a declarative Jenkins pipeline?",
+      "why_relevant": "Popular question about pipelines.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.98,
+        "why": "The thread is entirely about passing variables between Jenkins pipeline stages, which has nothing to do with ELT pipelines, data connectors, or warehouse ingestion."
+      }
+    }
+  ]
+}

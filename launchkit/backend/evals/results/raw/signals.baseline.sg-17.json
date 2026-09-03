@@ -1,0 +1,173 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=35993842",
+        "title_or_quote": "Hello! I'm looking for open-source alternatives to Retools \"Workflows\"...",
+        "posted_when": "2023-05-18T20:49:34Z",
+        "why_relevant": "Seeks open-source Retool alternative, matching stackbuilt's self-hosted, Postgres-native offering.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: stackbuilt generates admin panels from your Postgres schema with a single Docker command. It's open-source, self-hosted, and free for viewers. Check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/satsinush/homelab/issues/28",
+        "title_or_quote": "Feature Request: Deploy Forgejo Self-Hosted Git Service",
+        "posted_when": "2026-08-13T02:07:46Z",
+        "why_relevant": "Discusses self-hosted tooling in a homelab context, relevant to stackbuilt's self-hosting and internal tool focus.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this kind of self-hosted workflow: stackbuilt connects to Postgres and auto-generates admin panels with RBAC. Runs in Docker, data never leaves your network. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.2,
+          "why": "The thread is focused on deploying a self-hosted Git service (Forgejo) with specific infrastructure and authentication requirements, which is unrelated to building internal tools on top of a Postgres database."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/cloudsforge-online/micro-org/issues/214",
+        "title_or_quote": "Backup and restore for the estate, visible in the admin panel",
+        "posted_when": "2026-08-05T16:06:20Z",
+        "why_relevant": "Mentions need for admin panel visibility, aligns with stackbuilt's schema-to-CRUD automation.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: stackbuilt auto-generates admin panels from your Postgres schema, including backup workflows. Self-hosted via Docker, free for viewers. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.4,
+          "why": "The thread discusses implementing backup and restore functionality within an admin panel, but does not indicate a need for a no-code internal tool to scaffold CRUD interfaces or admin panels based on a Postgres schema."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49420891",
+        "title_or_quote": "How many engineers really understand isolation levels?",
+        "posted_when": "2026-08-24T15:09:37Z",
+        "why_relevant": "Discusses Postgres internals; user likely builds internal tooling where stackbuilt's UI scaffolding helps.",
+        "intent_strength": "low",
+        "drafted_reply": "I built a tool for exactly this kind of Postgres-heavy workflow: stackbuilt generates admin panels directly from your schema, so you can focus on isolation logic instead of CRUD boilerplate. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread discusses database administration complexities and developer knowledge gaps around RDBMS internals like isolation levels and index builds, but does not mention internal tools, CRUD interfaces, or self-hosted admin panels, which are the core offerings of the app."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49475141",
+        "title_or_quote": "they charge self-hosted runners for using their coordination plane",
+        "posted_when": "2026-08-28T06:43:28Z",
+        "why_relevant": "Concern about self-hosted tooling costs and control, aligns with stackbuilt's free self-hosted tier.",
+        "intent_strength": "low",
+        "drafted_reply": "I built a tool for exactly this: stackbuilt is self-hosted via Docker, so you keep full control and avoid usage-based pricing. It auto-generates admin panels from Postgres. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.2,
+          "why": "The thread discusses GitHub's self-hosted runners and their pricing, which is unrelated to internal tools for Postgres databases."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "alternative to retool self hosted",
+      "does anyone know a tool that generates admin panels from postgres schema",
+      "open source retool alternative postgres",
+      "retool alternative",
+      "postgres admin",
+      "self-hosted internal tools",
+      "self-hosted",
+      "self-hosted admin panel postgres",
+      "generate admin panel from postgres schema"
+    ],
+    "coverage_notes": "StackOverflow queries returned no results; no Reddit results found despite community scoping.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub and HN signals found, but Reddit and StackOverflow returned no relevant results."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=35993842",
+      "title_or_quote": "Hello! I'm looking for open-source alternatives to Retools \"Workflows\"...",
+      "posted_when": "2023-05-18T20:49:34Z",
+      "why_relevant": "Seeks open-source Retool alternative, matching stackbuilt's self-hosted, Postgres-native offering.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: stackbuilt generates admin panels from your Postgres schema with a single Docker command. It's open-source, self-hosted, and free for viewers. Check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/satsinush/homelab/issues/28",
+      "title_or_quote": "Feature Request: Deploy Forgejo Self-Hosted Git Service",
+      "posted_when": "2026-08-13T02:07:46Z",
+      "why_relevant": "Discusses self-hosted tooling in a homelab context, relevant to stackbuilt's self-hosting and internal tool focus.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this kind of self-hosted workflow: stackbuilt connects to Postgres and auto-generates admin panels with RBAC. Runs in Docker, data never leaves your network. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.2,
+        "why": "The thread is focused on deploying a self-hosted Git service (Forgejo) with specific infrastructure and authentication requirements, which is unrelated to building internal tools on top of a Postgres database."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/cloudsforge-online/micro-org/issues/214",
+      "title_or_quote": "Backup and restore for the estate, visible in the admin panel",
+      "posted_when": "2026-08-05T16:06:20Z",
+      "why_relevant": "Mentions need for admin panel visibility, aligns with stackbuilt's schema-to-CRUD automation.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: stackbuilt auto-generates admin panels from your Postgres schema, including backup workflows. Self-hosted via Docker, free for viewers. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.4,
+        "why": "The thread discusses implementing backup and restore functionality within an admin panel, but does not indicate a need for a no-code internal tool to scaffold CRUD interfaces or admin panels based on a Postgres schema."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49420891",
+      "title_or_quote": "How many engineers really understand isolation levels?",
+      "posted_when": "2026-08-24T15:09:37Z",
+      "why_relevant": "Discusses Postgres internals; user likely builds internal tooling where stackbuilt's UI scaffolding helps.",
+      "intent_strength": "low",
+      "drafted_reply": "I built a tool for exactly this kind of Postgres-heavy workflow: stackbuilt generates admin panels directly from your schema, so you can focus on isolation logic instead of CRUD boilerplate. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread discusses database administration complexities and developer knowledge gaps around RDBMS internals like isolation levels and index builds, but does not mention internal tools, CRUD interfaces, or self-hosted admin panels, which are the core offerings of the app."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49475141",
+      "title_or_quote": "they charge self-hosted runners for using their coordination plane",
+      "posted_when": "2026-08-28T06:43:28Z",
+      "why_relevant": "Concern about self-hosted tooling costs and control, aligns with stackbuilt's free self-hosted tier.",
+      "intent_strength": "low",
+      "drafted_reply": "I built a tool for exactly this: stackbuilt is self-hosted via Docker, so you keep full control and avoid usage-based pricing. It auto-generates admin panels from Postgres. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.2,
+        "why": "The thread discusses GitHub's self-hosted runners and their pricing, which is unrelated to internal tools for Postgres databases."
+      }
+    }
+  ]
+}

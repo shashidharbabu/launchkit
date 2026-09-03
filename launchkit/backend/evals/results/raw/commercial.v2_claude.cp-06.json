@@ -1,0 +1,190 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Retool",
+        "url": "https://retool.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 6+ independent sources incl. G2, reflex.dev comparison, ICP alternatives",
+        "mentions": 6,
+        "pricing_model": "freemium + per-seat subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "5 users total, limited features"
+          },
+          {
+            "name": "Team",
+            "price": "$10/builder + $5/internal user",
+            "period": "month",
+            "key_limits": "Unlimited apps, standard support"
+          },
+          {
+            "name": "Business",
+            "price": "$50/builder + $15/internal user",
+            "period": "month",
+            "key_limits": "SSO, audit logs, custom branding"
+          }
+        ],
+        "source_url": "https://retool.com/pricing"
+      },
+      {
+        "name": "Appsmith",
+        "url": "https://www.appsmith.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 5+ independent sources incl. reflex.dev comparison, G2 category, ICP list",
+        "mentions": 5,
+        "pricing_model": "freemium + per-user subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "Up to 5 users cloud, unlimited self-hosted"
+          },
+          {
+            "name": "Business",
+            "price": "$15/user",
+            "period": "month",
+            "key_limits": "Up to 99 users, workflows, audit logs"
+          },
+          {
+            "name": "Enterprise",
+            "price": "$2,500",
+            "period": "month",
+            "key_limits": "100 users, SAML SSO, SCIM, air-gap"
+          }
+        ],
+        "source_url": "https://www.appsmith.com/pricing"
+      },
+      {
+        "name": "Budibase",
+        "url": "https://budibase.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 5+ independent sources incl. reflex.dev comparison, ICP list, G2 category",
+        "mentions": 5,
+        "pricing_model": "freemium + action-based subscription; self-host free",
+        "tiers": [
+          {
+            "name": "Self-Host Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "Unlimited apps and users, community support"
+          },
+          {
+            "name": "Pro (cloud)",
+            "price": "$19",
+            "period": "month",
+            "key_limits": "1 creator, 5K actions, end users $5/user"
+          },
+          {
+            "name": "Business (cloud)",
+            "price": "$299",
+            "period": "month",
+            "key_limits": "3 creators, 250K actions, SSO, backups"
+          }
+        ],
+        "source_url": "https://budibase.com/pricing"
+      },
+      {
+        "name": "ToolJet",
+        "url": "https://www.tooljet.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 4+ independent sources incl. reflex.dev comparison, ICP list, GitHub",
+        "mentions": 4,
+        "pricing_model": "open-source free + cloud subscription",
+        "tiers": [],
+        "source_url": "https://www.tooljet.com/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Reflex",
+        "url": "https://reflex.dev/blog/internal-tool-builders/",
+        "why": "Own blog comparison page; single self-controlled source, not a competitor"
+      },
+      {
+        "name": "windmill (GitHub)",
+        "url": "https://github.com/jadenblack/windmill",
+        "why": "GitHub repo only; no commercial pricing page scraped"
+      },
+      {
+        "name": "selfhosting.sh",
+        "url": "https://selfhosting.sh/best/low-code/",
+        "why": "Directory and listicle page, not a product"
+      },
+      {
+        "name": "vps.us blog",
+        "url": "https://vps.us/blog/self-hosted-no-code/",
+        "why": "Listicle page, not a product"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium + per-builder subscription",
+      "tiers": [
+        {
+          "name": "Self-Hosted Free",
+          "price_usd_month": 0,
+          "who_its_for": "Engineers self-hosting on their own infra",
+          "includes": [
+            "1 builder seat",
+            "Unlimited viewers",
+            "RBAC included",
+            "Docker single-command deploy",
+            "Postgres schema scaffolding"
+          ],
+          "rationale": "Matches Budibase and Appsmith free self-host; removes compliance objection at zero cost"
+        },
+        {
+          "name": "Cloud Builder",
+          "price_usd_month": 29,
+          "who_its_for": "Teams wanting managed hosting without viewer fees",
+          "includes": [
+            "Per builder seat",
+            "Unlimited free viewers",
+            "All CRUD and dashboard features",
+            "Standard support",
+            "Cloud-hosted"
+          ],
+          "rationale": "$29 undercuts Retool Business ($50/builder) and beats Appsmith ($15/user) once viewers scale past 2"
+        },
+        {
+          "name": "Enterprise",
+          "price_usd_month": 0,
+          "who_its_for": "Companies needing SSO, audit logs, air-gap, SLAs",
+          "includes": [
+            "Custom seat pricing",
+            "SSO and SCIM",
+            "Audit log export",
+            "Air-gapped deployment",
+            "Dedicated support"
+          ],
+          "rationale": "Custom pricing; mirrors Retool and Appsmith enterprise; unlocks compliance-driven buyers"
+        }
+      ],
+      "anchor_competitors": [
+        "Retool",
+        "Appsmith",
+        "Budibase"
+      ],
+      "positioning_note": "Viewers-free model wins decisively when teams exceed 10 viewers; $29 is defensible but could rise to $39 as features mature.",
+      "risks": [
+        "$29 may feel too cheap vs Retool Business at $50; raises quality-signal concerns",
+        "Postgres-only gap lets Retool and Appsmith win multi-source deals",
+        "Beta label may stall enterprise procurement even at competitive price"
+      ]
+    },
+    "search_queries_used": [
+      "best no-code internal tools self-hosted comparison 2024",
+      "site:g2.com internal tools builder low-code",
+      "alternative to Retool self-hosted open source internal tools",
+      "site:reddit.com internal tools builder self-hosted recommendations"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "3 established competitors scraped (Retool, Appsmith, Budibase). ToolJet pricing page not scraped due to budget exhaustion; tiers omitted. Windmill excluded as GitHub-only. Recommendation anchored to 3 scraped established products only."
+    }
+  }
+}

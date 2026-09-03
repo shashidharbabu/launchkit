@@ -1,0 +1,182 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/marcusraitner/pulse/issues/65",
+        "title_or_quote": "E2E encryption of iCloud synced data",
+        "posted_when": "2026-08-11T09:32:12Z",
+        "why_relevant": "User wants end-to-end encryption for journal data, core to quietpage's on-device encryption",
+        "intent_strength": "high",
+        "drafted_reply": "End-to-end encryption for journal data is critical when syncing. quietpage ensures all entries are encrypted on-device with keys that never leave the phone, and no account is needed. I'm the builder and designed it specifically to keep private writing out of the cloud.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is a GitHub issue requesting a specific SwiftData/CloudKit encryption feature (@Attribute(.allowsCloudEncryption)) for an open-source app called Pulse — a technical implementation request, not a search for a journaling app to use."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/grajat90/ambient-journal/issues/6",
+        "title_or_quote": "Web UI for settings, usage, and insights",
+        "posted_when": "2026-08-03T16:59:59Z",
+        "why_relevant": "User building a local journal seeks UI for usage insights, quietpage offers local AI reflections",
+        "intent_strength": "medium",
+        "drafted_reply": "You're building a local journal with user insights — quietpage runs AI reflections on-device so entries never leave the phone. I'm the builder. It might help to see how we handle local processing without cloud dependency.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub feature request for a local web UI dashboard on an open-source ambient journaling daemon, not a request for a privacy-focused journaling app to use."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/aryan-agrawal-1/conceptual-fitness/issues/13",
+        "title_or_quote": "Add recoverable account deletion with permanent erasure",
+        "posted_when": "2026-08-23T15:32:19Z",
+        "why_relevant": "User demands permanent data erasure, aligns with quietpage's no-account, on-device model",
+        "intent_strength": "medium",
+        "drafted_reply": "Permanent data erasure is tough with cloud accounts. quietpage avoids this by never requiring an account — all data stays on-device and is gone when the app is deleted. I'm the builder and focused on ensuring true data ownership.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.05,
+          "why": "The thread is a GitHub issue about implementing an account deletion lifecycle for a fitness app's backend, not about journaling privacy or finding a journaling tool."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/NikoMix/fitness/issues/63",
+        "title_or_quote": "[E04] Local Data Platform and Persistence",
+        "posted_when": "2026-08-20T12:20:50Z",
+        "why_relevant": "User wants local data persistence, matches quietpage's on-device encryption and no cloud sync",
+        "intent_strength": "medium",
+        "drafted_reply": "Building a local data platform is a strong move for privacy. quietpage keeps all journal entries on-device with encryption and no account required. I'm the builder — our Markdown export ensures no lock-in if users want to move data.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "This thread is a GitHub epic about building an encrypted local SQLite persistence layer for a fitness app, not about journaling or personal privacy apps."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/LLM-X-Factorer/diantou-localbuddy-v2/issues/17",
+        "title_or_quote": "[Architecture] Storage Contract V2: private Run state, visible results, lifecycle",
+        "posted_when": "2026-08-17T10:14:52Z",
+        "why_relevant": "User designing private local storage, quietpage uses on-device encryption with no account",
+        "intent_strength": "medium",
+        "drafted_reply": "You're designing private local state — quietpage encrypts journal entries on-device and never transmits them, with no account needed. I'm the builder and have documented our security model in case it helps your architecture.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a software architecture issue about separating storage classes in a local AI coding assistant, with no connection to personal journaling or privacy-focused diary apps."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a journal app without account or cloud",
+      "struggling with journal apps that require login",
+      "tired of cloud-based journaling apps",
+      "site:reddit.com/r/Journaling alternative to Day One no cloud",
+      "site:reddit.com/r/privacy journal app with on-device encryption only",
+      "site:reddit.com/r/Journaling journal app no account",
+      "site:reddit.com/r/privacy journal app on-device encryption",
+      "site:reddit.com/r/productivity local journal app no cloud",
+      "site:reddit.com/r/Mindfulness private journaling app without login",
+      "journal app no cloud",
+      "private journal no account",
+      "on-device encryption journal",
+      "journal app on-device encryption no account is:issue",
+      "private journal no cloud sync is:issue",
+      "on-device encrypted journal no account is:issue",
+      "local encrypted journal app no account is:issue"
+    ],
+    "coverage_notes": "Reddit queries returned no results; used default subreddits. HN queries skipped due to outdated results. Focused on GitHub for evergreen signals.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub signals on privacy and local storage. Reddit and HN returned no recent, relevant threads. Coverage limited by lack of recent public discussion in some communities."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/marcusraitner/pulse/issues/65",
+      "title_or_quote": "E2E encryption of iCloud synced data",
+      "posted_when": "2026-08-11T09:32:12Z",
+      "why_relevant": "User wants end-to-end encryption for journal data, core to quietpage's on-device encryption",
+      "intent_strength": "high",
+      "drafted_reply": "End-to-end encryption for journal data is critical when syncing. quietpage ensures all entries are encrypted on-device with keys that never leave the phone, and no account is needed. I'm the builder and designed it specifically to keep private writing out of the cloud.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is a GitHub issue requesting a specific SwiftData/CloudKit encryption feature (@Attribute(.allowsCloudEncryption)) for an open-source app called Pulse — a technical implementation request, not a search for a journaling app to use."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/grajat90/ambient-journal/issues/6",
+      "title_or_quote": "Web UI for settings, usage, and insights",
+      "posted_when": "2026-08-03T16:59:59Z",
+      "why_relevant": "User building a local journal seeks UI for usage insights, quietpage offers local AI reflections",
+      "intent_strength": "medium",
+      "drafted_reply": "You're building a local journal with user insights — quietpage runs AI reflections on-device so entries never leave the phone. I'm the builder. It might help to see how we handle local processing without cloud dependency.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub feature request for a local web UI dashboard on an open-source ambient journaling daemon, not a request for a privacy-focused journaling app to use."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/aryan-agrawal-1/conceptual-fitness/issues/13",
+      "title_or_quote": "Add recoverable account deletion with permanent erasure",
+      "posted_when": "2026-08-23T15:32:19Z",
+      "why_relevant": "User demands permanent data erasure, aligns with quietpage's no-account, on-device model",
+      "intent_strength": "medium",
+      "drafted_reply": "Permanent data erasure is tough with cloud accounts. quietpage avoids this by never requiring an account — all data stays on-device and is gone when the app is deleted. I'm the builder and focused on ensuring true data ownership.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.05,
+        "why": "The thread is a GitHub issue about implementing an account deletion lifecycle for a fitness app's backend, not about journaling privacy or finding a journaling tool."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/NikoMix/fitness/issues/63",
+      "title_or_quote": "[E04] Local Data Platform and Persistence",
+      "posted_when": "2026-08-20T12:20:50Z",
+      "why_relevant": "User wants local data persistence, matches quietpage's on-device encryption and no cloud sync",
+      "intent_strength": "medium",
+      "drafted_reply": "Building a local data platform is a strong move for privacy. quietpage keeps all journal entries on-device with encryption and no account required. I'm the builder — our Markdown export ensures no lock-in if users want to move data.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "This thread is a GitHub epic about building an encrypted local SQLite persistence layer for a fitness app, not about journaling or personal privacy apps."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/LLM-X-Factorer/diantou-localbuddy-v2/issues/17",
+      "title_or_quote": "[Architecture] Storage Contract V2: private Run state, visible results, lifecycle",
+      "posted_when": "2026-08-17T10:14:52Z",
+      "why_relevant": "User designing private local storage, quietpage uses on-device encryption with no account",
+      "intent_strength": "medium",
+      "drafted_reply": "You're designing private local state — quietpage encrypts journal entries on-device and never transmits them, with no account needed. I'm the builder and have documented our security model in case it helps your architecture.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a software architecture issue about separating storage classes in a local AI coding assistant, with no connection to personal journaling or privacy-focused diary apps."
+      }
+    }
+  ]
+}

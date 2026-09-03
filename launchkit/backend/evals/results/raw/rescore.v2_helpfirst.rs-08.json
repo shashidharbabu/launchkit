@@ -1,0 +1,36 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "github",
+        "url": "https://github.com/dominictarr/event-stream/issues/116",
+        "title_or_quote": "I don't know what to say. (event-stream/flatmap-stream supply-chain attack disclosure)",
+        "why_relevant": "The canonical supply-chain attack discussion — hundreds of developers realizing CVE feeds gave no warning.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.92,
+          "why": "This is the original event-stream attack disclosure thread — the exact incident the app uses as its primary proof point, and the author is directly grappling with how a malicious maintainer handoff went undetected."
+        },
+        "drafted_reply": "The core failure here was that `right9ctrl` gained publish access through a maintainer transfer, then shipped `flatmap-stream@0.1.1` with an obfuscated payload — none of which appeared in any CVE feed until weeks later. The signal was behavioral: a new install script, a sudden maintainer change, and an added dependency with an oddly similar name. Watching for those patterns at PR or publish time, rather than waiting for disclosure, is the only way to catch this class of attack early. I built a scanner that does exactly that behavioral analysis; it would have flagged the flatmap-stream addition 11 days before this issue was filed — {APP_URL}.",
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "github",
+      "url": "https://github.com/dominictarr/event-stream/issues/116",
+      "title_or_quote": "I don't know what to say. (event-stream/flatmap-stream supply-chain attack disclosure)",
+      "why_relevant": "The canonical supply-chain attack discussion — hundreds of developers realizing CVE feeds gave no warning.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.92,
+        "why": "This is the original event-stream attack disclosure thread — the exact incident the app uses as its primary proof point, and the author is directly grappling with how a malicious maintainer handoff went undetected."
+      },
+      "drafted_reply": "The core failure here was that `right9ctrl` gained publish access through a maintainer transfer, then shipped `flatmap-stream@0.1.1` with an obfuscated payload — none of which appeared in any CVE feed until weeks later. The signal was behavioral: a new install script, a sudden maintainer change, and an added dependency with an oddly similar name. Watching for those patterns at PR or publish time, rather than waiting for disclosure, is the only way to catch this class of attack early. I built a scanner that does exactly that behavioral analysis; it would have flagged the flatmap-stream addition 11 days before this issue was filed — {APP_URL}.",
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

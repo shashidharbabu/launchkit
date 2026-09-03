@@ -1,0 +1,91 @@
+{
+  "output": {
+    "one_liner": "Self-hosted uptime monitoring with real-time alerts and status pages for developers and DevOps teams.",
+    "description": "Uptime Kuma is an easy-to-use, self-hosted monitoring tool that allows users to monitor the uptime of websites, servers, and services. It provides a responsive dashboard, status pages, and supports over 90 notification services including Telegram, Discord, and Slack. The app supports multiple monitoring types including HTTP(s), TCP, DNS, and Docker containers with 20-second intervals.",
+    "category": "Monitoring",
+    "target_user": "DevOps engineers and self-hosting enthusiasts",
+    "icp": {
+      "who": "Technical users managing personal or small business infrastructure",
+      "pain": "Need reliable, self-hosted monitoring without depending on third-party services",
+      "current_alternatives": [
+        "Uptime Robot",
+        "Statping",
+        "Pingdom"
+      ],
+      "buying_trigger": "Migrating from a hosted uptime service or setting up a new self-hosted infrastructure"
+    },
+    "differentiators": [
+      "Supports 90+ notification services",
+      "20-second monitoring intervals",
+      "Multiple status pages with custom domains",
+      "Lightweight and easy Docker deployment"
+    ],
+    "proof_points": [
+      "GitHub stars badge shown in README",
+      "Live demo available at demo.kuma.pet",
+      "Screenshot of dashboard UI in README",
+      "Docker pull count badge in README"
+    ],
+    "tech_stack": [
+      "Node.js",
+      "Vue 3",
+      "Express",
+      "Socket.IO",
+      "SQLite",
+      "Docker"
+    ],
+    "pricing_current": "none found",
+    "voice": {
+      "tone": [
+        "friendly",
+        "technical",
+        "clear",
+        "approachable"
+      ],
+      "sample_phrase": "Uptime Kuma is an easy-to-use self-hosted monitoring tool."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Version 2.5.3 released",
+        "Active GitHub repository",
+        "Live demo available",
+        "Docker image published"
+      ]
+    },
+    "gaps": [
+      "No pricing page"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence based on detailed README and live site. Pricing information not available."
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, features, install"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Tech stack and dependencies"
+      },
+      {
+        "source": "https://uptime.kuma.pet/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Live site homepage content"
+      },
+      {
+        "source": "https://uptime.kuma.pet/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Pricing page not found"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

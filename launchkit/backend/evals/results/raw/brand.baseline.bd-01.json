@@ -1,0 +1,115 @@
+{
+  "output": {
+    "brand_name": "Plausible Analytics",
+    "tagline_observed": "Simple, privacy-friendly Google Analytics alternative",
+    "voice": {
+      "tone_words": [
+        "simple",
+        "friendly",
+        "transparent",
+        "confident",
+        "ethical",
+        "straightforward"
+      ],
+      "sentence_style": "short declaratives, second person, minimal jargon",
+      "vocabulary": [
+        "privacy-friendly",
+        "lightweight",
+        "open-source",
+        "independent",
+        "no cookies",
+        "GDPR-compliant",
+        "no data ownership",
+        "ethical analytics",
+        "simple setup",
+        "site owners"
+      ],
+      "avoid": [
+        "enterprise-grade",
+        "AI-powered",
+        "leverage",
+        "synergy",
+        "complex"
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Simple, lightweight alternative to Google Analytics",
+        "Privacy-first: no cookies, no personal data, GDPR compliant by design",
+        "Open-source and independently owned",
+        "Easy setup in minutes with no tracking code customization"
+      ],
+      "key_messages": [
+        "Plausible is a lightweight and open-source Google Analytics alternative.",
+        "We don’t use cookies and we don’t collect any personal data.",
+        "Our analytics are 45 times lighter than Google Analytics.",
+        "You keep ownership of your data.",
+        "Built with privacy in mind — no cookie banners required."
+      ],
+      "proof_points_observed": [
+        "Analytics script is 45 times lighter than Google Analytics",
+        "No cookies used, no personal data collected",
+        "Open-source on GitHub",
+        "Used by over 50,000 websites",
+        "Independent company based in the EU"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#0F172A",
+          "role": "primary",
+          "evidence": "CSS variable --color-primary in inline style on homepage"
+        },
+        {
+          "value": "#64748B",
+          "role": "text",
+          "evidence": "CSS class 'text-gray-500' used for body text"
+        },
+        {
+          "value": "#F8FAFC",
+          "role": "background",
+          "evidence": "CSS class 'bg-gray-50' used for section backgrounds"
+        },
+        {
+          "value": "#10B981",
+          "role": "accent",
+          "evidence": "Used for CTA buttons and pricing highlights"
+        }
+      ],
+      "typography": {
+        "headings": "Inter, sans-serif",
+        "body": "Inter, sans-serif",
+        "evidence": "font-family declaration in CSS: 'font-sans' class maps to Inter"
+      },
+      "imagery_style": "illustration",
+      "logo_url": "https://plausible.io/images/ee/logo_dark-4ce532ac105c4615d6a2.png"
+    },
+    "audience_language": "You talk directly to website owners and developers, using plain language to explain how Plausible makes ethical analytics easy and fast.",
+    "dos_and_donts": {
+      "do": [
+        "Use clear, concise language",
+        "Highlight privacy and simplicity",
+        "Emphasize open-source and independence",
+        "Speak directly to developers and site owners",
+        "Show concrete performance comparisons"
+      ],
+      "dont": [
+        "Use marketing fluff or vague claims",
+        "Reference AI or machine learning",
+        "Suggest data ownership by Plausible",
+        "Imply compliance with all regulations without qualification",
+        "Use complex sentences or jargon"
+      ]
+    },
+    "sources_read": [
+      "https://plausible.io/#pricing",
+      "https://plausible.io/about",
+      "https://plausible.io/blog"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "All visual and voice elements observed directly from scraped content. Colors and fonts confirmed via CSS. Logo URL found in header image source. No external domains scraped."
+    }
+  }
+}

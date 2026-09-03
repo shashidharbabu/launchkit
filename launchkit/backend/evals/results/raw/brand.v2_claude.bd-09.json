@@ -1,0 +1,103 @@
+{
+  "output": {
+    "brand_name": "Hoppscotch",
+    "tagline_observed": "Open source API development ecosystem",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "developer-focused",
+        "efficiency-oriented",
+        "open"
+      ],
+      "sentence_style": "Short, action-oriented phrases in second person, no marketing fluff, developer vocabulary throughout",
+      "vocabulary": [
+        "open source",
+        "API development ecosystem",
+        "requests",
+        "faster",
+        "precious time on development",
+        "quickstarts",
+        "API references",
+        "guides",
+        "REST",
+        "environment"
+      ],
+      "avoid": [
+        "corporate superlatives",
+        "vague benefit statements",
+        "non-technical metaphors",
+        "lengthy prose paragraphs",
+        "sales-heavy language"
+      ],
+      "evidence_quotes": [
+        "Helps you create requests faster, saving precious time on development.",
+        "Open source API development ecosystem",
+        "Official Hoppscotch documentation with guides, quickstarts, API references, and more."
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Create API requests faster and save development time",
+        "Fully open source API development ecosystem",
+        "Comprehensive docs with quickstarts and API references"
+      ],
+      "key_messages": [
+        "Helps you create requests faster, saving precious time on development.",
+        "Open source API development ecosystem",
+        "Guides, quickstarts, API references, and more"
+      ],
+      "proof_points_observed": []
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#0D9373",
+          "role": "primary",
+          "evidence": "msapplication-TileColor on docs.hoppscotch.io"
+        },
+        {
+          "value": "#181818",
+          "role": "background",
+          "evidence": "msapplication-TileColor and theme-color (dark) on hoppscotch.io"
+        },
+        {
+          "value": "#ffffff",
+          "role": "background",
+          "evidence": "theme-color (light) on hoppscotch.io"
+        }
+      ],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown without CSS; no font-family declarations observed"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": ""
+    },
+    "audience_language": "The site addresses developers directly with task-focused language, assuming technical fluency and valuing their time above all.",
+    "dos_and_donts": {
+      "do": [
+        "Lead with the developer action or outcome",
+        "Use open source and ecosystem framing",
+        "Keep copy short and task-oriented",
+        "Reference API, requests, and development workflows",
+        "Respect developer time as the core value"
+      ],
+      "dont": [
+        "Use vague business-speak or marketing superlatives",
+        "Write long paragraphs without technical substance",
+        "Claim features without grounding them in developer workflow",
+        "Ignore the open-source identity",
+        "Use non-technical analogies"
+      ]
+    },
+    "sources_read": [
+      "https://hoppscotch.io",
+      "https://docs.hoppscotch.io"
+    ],
+    "confidence": {
+      "overall": 0.55,
+      "notes": "Homepage rendered as UI chrome with minimal marketing copy; about, pricing, blog, and customer-stories pages all returned 404 or empty content. Docs landing returned only a brief description. No font-family declarations or logo img/SVG URLs were present in the markdown scrapes. Colors derived from meta tags only, not from CSS stylesheets. Tone and vocabulary inferred from the limited text available in meta descriptions and docs landing copy."
+    }
+  }
+}

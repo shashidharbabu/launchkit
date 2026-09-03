@@ -1,0 +1,34 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "github",
+        "url": "https://github.com/dominictarr/event-stream/issues/116",
+        "title_or_quote": "I don't know what to say. (event-stream/flatmap-stream supply-chain attack disclosure)",
+        "why_relevant": "The canonical supply-chain attack discussion — hundreds of developers realizing CVE feeds gave no warning.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread discusses the event-stream supply-chain attack, which involved malicious install scripts and maintainer access changes, directly aligning with the app's focus on detecting such behavioral risks in dependencies."
+        },
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "github",
+      "url": "https://github.com/dominictarr/event-stream/issues/116",
+      "title_or_quote": "I don't know what to say. (event-stream/flatmap-stream supply-chain attack disclosure)",
+      "why_relevant": "The canonical supply-chain attack discussion — hundreds of developers realizing CVE feeds gave no warning.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread discusses the event-stream supply-chain attack, which involved malicious install scripts and maintainer access changes, directly aligning with the app's focus on detecting such behavioral risks in dependencies."
+      },
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

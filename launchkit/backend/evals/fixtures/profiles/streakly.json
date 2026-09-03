@@ -1,0 +1,58 @@
+{
+  "one_liner": "A habit tracker that forgives missed days — streak repair and weekly targets instead of daily guilt.",
+  "description": "Streakly is an iOS habit tracker built around a simple observation: people quit habit apps the day they break a streak. Streakly lets you repair a missed day by doubling up within the week, scores habits against weekly targets rather than unbroken daily chains, and keeps everything private on-device. No social feed, no leaderboards, no shame mechanics.",
+  "category": "Consumer / Health & Productivity",
+  "target_user": "People who have abandoned two or three habit apps already",
+  "icp": {
+    "who": "Adults 25-45 who keep restarting habit systems every January and abandoning them by February",
+    "pain": "One missed day breaks the streak, the streak was the motivation, and the app gets deleted in the guilt spiral that follows",
+    "current_alternatives": [
+      "Habitica",
+      "Streaks",
+      "Loop Habit Tracker",
+      "Habitify"
+    ],
+    "buying_trigger": "A fresh-start moment — new year, new job, post-vacation — combined with memory of the last abandoned tracker"
+  },
+  "differentiators": [
+    "Streak repair: make up a missed day within the week and the chain survives",
+    "Weekly-target scoring designed around behavior-change research, not gamified guilt",
+    "Private by default — on-device data, no accounts, no social feed"
+  ],
+  "proof_points": [
+    "41% of an 800-person TestFlight cohort still tracking at day 30",
+    "4.8-star average across 96 TestFlight reviews",
+    "Most-requested feature (streak repair) shipped as the core mechanic, not an IAP"
+  ],
+  "tech_stack": [
+    "Swift",
+    "SwiftUI",
+    "CloudKit"
+  ],
+  "pricing_current": "free during beta (premium tier planned at $29/year)",
+  "voice": {
+    "tone": [
+      "warm",
+      "encouraging",
+      "lightly playful"
+    ],
+    "sample_phrase": "Missed a day? Repair it. Your streak survives real life."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "TestFlight beta with 800 participants",
+      "App Store listing in review",
+      "Weekly beta builds with release notes"
+    ]
+  },
+  "gaps": [
+    "No Android version",
+    "No website beyond a one-page waitlist",
+    "Retention numbers not independently verified"
+  ],
+  "confidence": {
+    "overall": 0.75,
+    "notes": "Mechanic and voice are well evidenced from the beta. Retention stats are self-reported from a single cohort."
+  }
+}

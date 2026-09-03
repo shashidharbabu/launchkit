@@ -1,0 +1,221 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Help Scout",
+        "url": "https://www.helpscout.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 5+ comparison lists incl. G2 shared inbox category and alternativeto.net",
+        "mentions": 5,
+        "pricing_model": "freemium + per-seat subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "month",
+            "key_limits": "5 users, 1 inbox, 1 docs site"
+          },
+          {
+            "name": "Standard",
+            "price": "$25",
+            "period": "user/month",
+            "key_limits": "Multiple inboxes, live chat, AI assistant"
+          },
+          {
+            "name": "Plus",
+            "price": "$45",
+            "period": "user/month",
+            "key_limits": "Advanced workflows, Salesforce/HubSpot, SLAs"
+          }
+        ],
+        "source_url": "https://www.helpscout.com/pricing/"
+      },
+      {
+        "name": "Front",
+        "url": "https://front.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 4+ comparison lists incl. G2 shared inbox and Capterra",
+        "mentions": 4,
+        "pricing_model": "per-seat subscription",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$25",
+            "period": "seat/month",
+            "key_limits": "Up to 10 seats, single channel, basic analytics"
+          },
+          {
+            "name": "Professional",
+            "price": "$65",
+            "period": "seat/month",
+            "key_limits": "Up to 50 seats, omnichannel, advanced analytics"
+          },
+          {
+            "name": "Enterprise",
+            "price": "$105",
+            "period": "seat/month",
+            "key_limits": "Unlimited rules, custom roles, AI Copilot included"
+          }
+        ],
+        "source_url": "https://front.com/pricing"
+      },
+      {
+        "name": "Zendesk",
+        "url": "https://www.zendesk.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 4+ comparison lists; dominant in G2 help desk category",
+        "mentions": 4,
+        "pricing_model": "per-agent subscription (annual)",
+        "tiers": [
+          {
+            "name": "Support Team",
+            "price": "$19",
+            "period": "agent/month annual",
+            "key_limits": "Email and ticketing only, prebuilt dashboards"
+          },
+          {
+            "name": "Suite Team",
+            "price": "$55",
+            "period": "agent/month annual",
+            "key_limits": "Omnichannel, AI agents, knowledge base"
+          },
+          {
+            "name": "Suite Professional",
+            "price": "$115",
+            "period": "agent/month annual",
+            "key_limits": "Advanced AI, skills routing, custom reports"
+          }
+        ],
+        "source_url": "https://www.zendesk.com/pricing/"
+      },
+      {
+        "name": "Hiver",
+        "url": "https://hiverhq.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 3+ comparison lists for Gmail-based shared inbox tools",
+        "mentions": 3,
+        "pricing_model": "per-user subscription",
+        "tiers": [
+          {
+            "name": "Growth",
+            "price": "$25",
+            "period": "user/month annual",
+            "key_limits": "Shared inbox, omnichannel, AI agents, basic analytics"
+          },
+          {
+            "name": "Pro",
+            "price": "$55",
+            "period": "user/month annual",
+            "key_limits": "SLAs, CSAT, advanced analytics, premium integrations"
+          },
+          {
+            "name": "Elite",
+            "price": "$85",
+            "period": "user/month annual",
+            "key_limits": "AI QA, skill-based routing, SSO, HIPAA"
+          }
+        ],
+        "source_url": "https://hiverhq.com/pricing/hiver-omni"
+      },
+      {
+        "name": "Intercom",
+        "url": "https://www.intercom.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 3+ comparison lists; listed in ICP alternatives by buyers",
+        "mentions": 3,
+        "pricing_model": "per-seat subscription (pricing page not scraped)",
+        "tiers": [],
+        "source_url": "https://www.intercom.com/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Keeping",
+        "url": "https://www.keeping.com/helpscout-alternative/",
+        "why": "Single hit on own comparison page; no independent mentions found"
+      },
+      {
+        "name": "initdesk",
+        "url": "https://www.initdesk.com/",
+        "why": "Single search hit on own homepage; no independent mentions"
+      },
+      {
+        "name": "G2 Shared Inbox Category",
+        "url": "https://www.g2.com/categories/shared-inbox",
+        "why": "Aggregator review page, not a product"
+      },
+      {
+        "name": "Comms Advisor",
+        "url": "https://commsadvisor.com/best-shared-inbox-software/",
+        "why": "Listicle directory page, not a product"
+      },
+      {
+        "name": "get-alfred.ai blog",
+        "url": "https://get-alfred.ai/blog/best-shared-inbox-software",
+        "why": "Listicle blog post, not a competing product"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium trial + flat per-seat subscription",
+      "tiers": [
+        {
+          "name": "Free Trial",
+          "price_usd_month": 0,
+          "who_its_for": "Teams evaluating before committing",
+          "includes": [
+            "14-day full access",
+            "All features included",
+            "Up to 10 seats"
+          ],
+          "rationale": "Matches Help Scout and Front free trial; removes friction for small-team buyers."
+        },
+        {
+          "name": "Standard",
+          "price_usd_month": 29,
+          "who_its_for": "Small support teams of 2-10 agents",
+          "includes": [
+            "All features, no gating",
+            "AI drafts trained on own tickets",
+            "Collision detection",
+            "Slack bridge",
+            "SOC 2 Type I"
+          ],
+          "rationale": "$4 above Help Scout/Front/Hiver floor; premium justified by own-voice AI and zero config."
+        },
+        {
+          "name": "Growth",
+          "price_usd_month": 49,
+          "who_its_for": "Teams scaling past 10 agents or needing priority support",
+          "includes": [
+            "Everything in Standard",
+            "Priority email support",
+            "Extended AI draft history",
+            "Dedicated onboarding call"
+          ],
+          "rationale": "Captures teams growing toward Front Professional territory; adds service, not feature gates."
+        }
+      ],
+      "anchor_competitors": [
+        "Help Scout",
+        "Front",
+        "Hiver"
+      ],
+      "positioning_note": "Price sits $4 above the $25 floor set by Help Scout, Front, and Hiver; own-voice AI and five-minute setup justify the delta.",
+      "risks": [
+        "$29 may read as too cheap vs. Intercom/Front enterprise; test $39 if conversion is high but expansion is low",
+        "No free tier (only trial) means buyers who want permanent free must go to Help Scout",
+        "Flat pricing caps revenue per seat; large accounts at 20k tickets/month are underpriced relative to value delivered"
+      ]
+    },
+    "search_queries_used": [
+      "best shared inbox software for small support teams comparison",
+      "alternative to Help Scout customer support inbox",
+      "site:g2.com shared inbox customer support software",
+      "shared inbox customer support tool reddit recommendations"
+    ],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "4 established competitors confirmed across 3+ independent sources each; Help Scout, Front, Hiver, and Zendesk pricing scraped directly from own domains. Intercom pricing page not scraped due to budget limit — excluded from tiers but retained as established based on search recurrence. Recommendation anchored only on scraped established competitors."
+    }
+  }
+}

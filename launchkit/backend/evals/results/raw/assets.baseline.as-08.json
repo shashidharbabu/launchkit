@@ -1,0 +1,10 @@
+{
+  "output": {
+    "title": "I built an API-first uptime monitor and status page tool for self-hosted services",
+    "body": "I'm a developer who runs a few production services for clients, and I got tired of configuring monitors through web UIs that don't version with my infrastructure. So I built PingDeck: a monitoring tool where everything — endpoints, alerts, status pages — is managed via REST API or Terraform. It checks HTTP, TCP, and cron jobs every 30 seconds (even on the free tier), alerts via Slack/email/webhooks, and generates clean public status pages. The Terraform provider is in the official registry, so monitors live in code alongside the systems they watch. I run it myself for 12 services, and it's now used across 640 accounts monitoring 11,000 endpoints. I'd love feedback from others running self-hosted setups: what monitoring gaps are you still solving manually? What would make this fit better in your stack? Built with Go, PostgreSQL, and ClickHouse. {APP_URL}",
+    "suggested_flair": "Showcase",
+    "warnings": [
+      "This could be perceived as self-promotion; r/selfhosted values technical transparency and open discussion over promotion. The post avoids hype and focuses on architecture and builder intent to comply."
+    ]
+  }
+}

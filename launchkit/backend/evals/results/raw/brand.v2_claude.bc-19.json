@@ -1,0 +1,166 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "One Source of Truth",
+        "objective": "awareness — put schemaguard in front of TypeScript developers who are actively maintaining duplicate Zod schemas",
+        "big_idea": "A Show HN post that frames schemaguard as the answer to a concrete, shared pain: the moment a Zod schema drifts from the TypeScript interface it was supposed to mirror. The post leads with the benchmark numbers and the 2.1 kB runtime, letting reproducible evidence do the talking.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: schemaguard — runtime validators compiled from your TypeScript types, no separate schema to maintain",
+        "sample_copy": {
+          "headline": "Your types are already the schema.",
+          "body": "schemaguard is a compiler plugin that reads your existing TypeScript interfaces at build time and emits tiny, fast validators — no Zod schema to write, no drift to debug. The runtime core is 2.1 kB gzipped. Benchmark suite in the repo shows ~5.5x throughput over an equivalent Zod schema on the same payloads. MIT-licensed, works with esbuild and Vite today. Webpack support is an open issue — contributions welcome.",
+          "cta": "Read the README and run the benchmarks yourself."
+        },
+        "assets_needed": [
+          "Show HN title and body text",
+          "Benchmark chart or table from the repo",
+          "README section linking to benchmark suite"
+        ],
+        "effort": "small",
+        "success_metric": "Number of GitHub stars in the 48 hours after the HN post goes live",
+        "why_on_brand": "Leads with reproducible proof (benchmarks, bundle size) and developer-first framing — matches the technical, matter-of-fact, benchmark-driven voice and the 'one source of truth' key message."
+      },
+      {
+        "name": "Drift Incident Thread",
+        "objective": "awareness — reach TypeScript developers on X who have experienced or fear a production incident caused by schema drift",
+        "big_idea": "A short thread that walks through the exact failure mode schemaguard prevents: an API response changes, the TypeScript types are updated, but the hand-written Zod schema is not — and a production bug slips through. No invented story; the thread describes the pattern and shows how a compiled validator eliminates the gap.",
+        "channels": [
+          "X (Twitter)"
+        ],
+        "asset_types": [
+          "x_post"
+        ],
+        "hook": "Your TypeScript types said one thing. Your Zod schema said another. Production agreed with neither.",
+        "sample_copy": {
+          "headline": "Schema drift is a build-time problem. Solve it at build time.",
+          "body": "Every interface you write eventually gets a hand-written Zod schema next to it. Then the interface changes. The schema doesn't. schemaguard compiles validators directly from your types — at build time, not at runtime authoring time. One source of truth. The runtime core is 2.1 kB gzipped. Benchmarks in the repo.",
+          "cta": "github.com/your-org/schemaguard — run the benchmarks, open an issue."
+        },
+        "assets_needed": [
+          "3-5 tweet thread draft",
+          "Code snippet showing a TypeScript interface and the zero-config validator output"
+        ],
+        "effort": "small",
+        "success_metric": "Click-throughs to the GitHub repo from the thread",
+        "why_on_brand": "Uses the exact buying trigger from the ICP (production incident from schema drift) and the 'one source of truth' vocabulary without marketing superlatives."
+      },
+      {
+        "name": "Benchmark or It Didn't Happen",
+        "objective": "community — spark a technical discussion on r/typescript about runtime validation performance and bundle cost",
+        "big_idea": "Post the benchmark methodology and raw numbers to r/typescript as a transparent technical writeup, not a product pitch. Invite the community to challenge the setup, suggest payloads, or run it against their own schemas. The repo is the CTA.",
+        "channels": [
+          "Reddit"
+        ],
+        "asset_types": [
+          "reddit_post"
+        ],
+        "hook": "I benchmarked schemaguard vs Zod on the same payloads — here's the methodology and the numbers (repo linked, reproduce it yourself)",
+        "sample_copy": {
+          "headline": "Runtime validation benchmarks: compiled-from-types vs hand-written Zod schemas",
+          "body": "schemaguard generates validators from your TypeScript interfaces at build time. I ran a benchmark suite against equivalent Zod schemas on the same object shapes. Results are in the repo — the suite is reproducible. Happy to be challenged on the methodology. Also curious whether anyone has tried io-ts or typia on the same payloads. Runtime core is 2.1 kB gzipped, MIT-licensed, alpha (0.4.x, API unstable).",
+          "cta": "Repo and benchmark suite linked in comments."
+        },
+        "assets_needed": [
+          "Reddit post body",
+          "Benchmark table or screenshot from the repo",
+          "Comment template addressing common methodology questions"
+        ],
+        "effort": "small",
+        "success_metric": "Number of comments engaging with the benchmark methodology",
+        "why_on_brand": "Benchmark-driven voice, transparent about alpha status, no marketing claims beyond what the repo proves — matches dos_and_donts and proof_points."
+      },
+      {
+        "name": "Zero Duplication, Zero Drift",
+        "objective": "signups — drive npm installs and GitHub stars from TypeScript newsletter readers who maintain typed API contracts",
+        "big_idea": "A newsletter pitch to TypeScript-focused newsletters (e.g. TypeScript Weekly, Bytes) framing schemaguard as a build-time answer to a workflow problem every reader has felt. Short, technical, links directly to the README and benchmark suite.",
+        "channels": [
+          "Newsletter"
+        ],
+        "asset_types": [
+          "newsletter_pitch"
+        ],
+        "hook": "A TypeScript compiler plugin that writes your runtime validators so you don't have to.",
+        "sample_copy": {
+          "headline": "schemaguard: validators compiled from your types at build time",
+          "body": "If you maintain a Zod schema next to every TypeScript interface, you have two sources of truth. schemaguard is a compiler plugin (esbuild + Vite) that reads your existing type declarations and emits validators at build time. The runtime core is 2.1 kB gzipped. Benchmark suite in the repo shows ~5.5x throughput over equivalent Zod schemas. MIT-licensed, alpha (0.4.x). Webpack support is an open issue.",
+          "cta": "Star the repo and run the benchmarks."
+        },
+        "assets_needed": [
+          "Newsletter pitch email (150 words max)",
+          "One-paragraph blurb for newsletter editors",
+          "Link to benchmark suite in README"
+        ],
+        "effort": "small",
+        "success_metric": "npm installs in the week following newsletter publication",
+        "why_on_brand": "Task-oriented, proof-backed, respects the reader's time — mirrors the technical and matter-of-fact tone and the 'precious time on development' framing from the DNA vocabulary."
+      },
+      {
+        "name": "Migrate in 10 Minutes",
+        "objective": "signups — convert Zod users who are curious but blocked by migration uncertainty",
+        "big_idea": "A short video walkthrough (screen recording, no face cam needed) showing a real TypeScript project replacing a Zod schema with schemaguard in a single build step. The video is posted to YouTube and linked from the README, Reddit, and X. It directly addresses the 'no migration guide' gap in the APP_PROFILE.",
+        "channels": [
+          "YouTube",
+          "X (Twitter)",
+          "Reddit"
+        ],
+        "asset_types": [
+          "video_script",
+          "x_post",
+          "reddit_post"
+        ],
+        "hook": "Watch a Zod schema get deleted. The validator still runs.",
+        "sample_copy": {
+          "headline": "From Zod to schemaguard: a real migration, step by step",
+          "body": "No migration guide existed, so I recorded one. Start with a typed API boundary and a hand-written Zod schema. Add the schemaguard esbuild plugin. Delete the Zod schema. The compiled validator covers the same interface — and the benchmark numbers hold. Video is under 10 minutes, repo linked in description. Alpha software, API is unstable, but the migration path is straightforward.",
+          "cta": "Watch the migration walkthrough — link in repo README."
+        },
+        "assets_needed": [
+          "Screen-recorded video (8-10 min)",
+          "Video script",
+          "README section: Migration from Zod",
+          "X post linking the video",
+          "Reddit comment in r/typescript thread"
+        ],
+        "effort": "medium",
+        "success_metric": "Video watch-through rate and GitHub stars attributed to the video link",
+        "why_on_brand": "Addresses a documented gap (no migration guide), uses action-oriented framing, and lets the working code be the proof — consistent with benchmark-driven, developer-focused voice."
+      },
+      {
+        "name": "Alpha Access, Open Issues",
+        "objective": "community — build a contributor base and surface real-world feedback during the alpha phase",
+        "big_idea": "A Product Hunt launch framed explicitly as an alpha seeking feedback, not a finished product. The listing leads with the benchmark numbers and the open Webpack issue, inviting the PH developer community to try it, break it, and open issues. Transparency about alpha status is the differentiator.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "schemaguard — runtime validators compiled from your TypeScript types (alpha, benchmarks in repo, Webpack support wanted)",
+        "sample_copy": {
+          "headline": "Your TypeScript types are already the schema. schemaguard compiles the validators.",
+          "body": "schemaguard is a compiler plugin for esbuild and Vite that reads your existing TypeScript interfaces and emits runtime validators at build time. No separate Zod schema. No drift. The runtime core is 2.1 kB gzipped. Benchmark suite shows ~5.5x throughput over equivalent Zod schemas — reproduce it from the repo. This is a 0.4.x alpha: API is unstable, breaking changes happen between minor versions. Webpack support is an open issue. We want your edge cases.",
+          "cta": "Try it, break it, open an issue."
+        },
+        "assets_needed": [
+          "Product Hunt listing copy",
+          "Tagline (under 60 chars)",
+          "Gallery image: benchmark table or code diff showing schema deletion",
+          "First comment from maker explaining alpha status and open issues"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of GitHub issues opened in the week after the PH launch",
+        "why_on_brand": "Open, direct, benchmark-driven — matches the technical and matter-of-fact tone; transparency about alpha status respects the developer audience and avoids vague benefit statements."
+      }
+    ],
+    "confidence": {
+      "overall": 0.78,
+      "notes": "BRAND_DNA was extracted from Hoppscotch, not schemaguard itself (schemaguard has no documentation site, README only). Campaigns are written in schemaguard's own stated voice (technical, matter-of-fact, benchmark-driven) from APP_PROFILE, using Hoppscotch DNA structural guidance (developer-first, open-source framing, proof over claims). All numeric claims (5.5x, 2.1 kB, 3 startups) come directly from APP_PROFILE.proof_points. No metrics, users, or testimonials were invented."
+    }
+  }
+}

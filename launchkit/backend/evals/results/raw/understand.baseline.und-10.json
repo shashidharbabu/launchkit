@@ -1,0 +1,91 @@
+{
+  "output": {
+    "one_liner": "Open source API development ecosystem for developers to test, document, and collaborate on APIs.",
+    "description": "Hoppscotch is a lightweight, open-source API development ecosystem that enables developers to send requests, view responses, and collaborate in real time. It supports REST, GraphQL, WebSocket, and more, with features like environments, collections, and team workspaces.",
+    "category": "Developer Tools",
+    "target_user": "API developers and engineers",
+    "icp": {
+      "who": "Developers building or consuming APIs",
+      "pain": "Manual API testing is slow and error-prone; existing tools are heavy or lack collaboration",
+      "current_alternatives": [
+        "Postman",
+        "Insomnia",
+        "curl"
+      ],
+      "buying_trigger": "Need for faster, collaborative, and open-source API testing"
+    },
+    "differentiators": [
+      "Supports multiple protocols (REST, GraphQL, WebSocket, SSE, MQTT)",
+      "Real-time cloud sync across devices",
+      "Open source with PWA and desktop apps",
+      "Built-in proxy to bypass CORS and access HTTP endpoints"
+    ],
+    "proof_points": [
+      "Over 43k GitHub stars (from README badges)",
+      "Available as PWA and desktop apps (from README)",
+      "Supports 10+ code snippet languages (from README)",
+      "Team collaboration with role-based access (from README)"
+    ],
+    "tech_stack": [
+      "Vue.js",
+      "TypeScript",
+      "pnpm",
+      "GitHub Actions",
+      "PWA"
+    ],
+    "pricing_current": "none found",
+    "voice": {
+      "tone": [
+        "friendly",
+        "technical",
+        "minimalist",
+        "inclusive"
+      ],
+      "sample_phrase": "Helps you create requests faster, saving precious time on development."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public website live",
+        "GitHub repo with active commits",
+        "Multiple client platforms (web, desktop)",
+        "Documentation site available"
+      ]
+    },
+    "gaps": [
+      "No pricing page found",
+      "No testimonials or user quotes on site"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; data from live site and GitHub repo. Pricing page missing."
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "App features, description, and links"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Tech stack and project metadata"
+      },
+      {
+        "source": "https://hoppscotch.io",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Live site content and metadata"
+      },
+      {
+        "source": "https://hoppscotch.io/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Pricing page not found"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

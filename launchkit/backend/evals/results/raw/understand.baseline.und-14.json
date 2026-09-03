@@ -1,0 +1,76 @@
+{
+  "output": {
+    "one_liner": "Raycast is a productivity launcher for macOS and Windows that lets users control apps, automate tasks, and access AI tools via keyboard shortcuts.",
+    "description": "Raycast is an extendable productivity launcher that provides fast, keyboard-first access to tools, commands, and AI features. It streamlines workflows with clipboard history, snippets, window management, and thousands of community-built extensions. Designed for professionals, it integrates deeply into the OS for reliable, ergonomic use.",
+    "category": "Productivity",
+    "target_user": "Software developers and technical professionals",
+    "icp": {
+      "who": "Developers, engineers, and designers who rely on keyboard efficiency and automation",
+      "pain": "Switching between apps and repeating manual tasks wastes time and breaks focus",
+      "current_alternatives": [
+        "Alfred",
+        "Spotlight",
+        "LaunchBar"
+      ],
+      "buying_trigger": "Need for deeper automation, AI integration, or team collaboration features"
+    },
+    "differentiators": [
+      "AI deeply integrated into the OS workflow",
+      "Extensive library of community-built extensions",
+      "Cross-platform support for macOS and Windows",
+      "Free tier with full core functionality"
+    ],
+    "proof_points": [
+      "99.8% crash-free rate cited on homepage",
+      "Over 90k followers on X/Twitter as shown on site",
+      "Testimonials from known figures like Guillermo Rauch (Vercel) and Wes Bos",
+      "37k-member Slack community mentioned on homepage"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Electron",
+      "Node.js"
+    ],
+    "pricing_current": "Free tier available; Pro at $8/month or $96/year; Pro + Advanced AI at $16/month; Teams from $12/user/month",
+    "voice": {
+      "tone": [
+        "fast",
+        "ergonomic",
+        "reliable",
+        "personal",
+        "professional"
+      ],
+      "sample_phrase": "A collection of powerful productivity tools all within an extendable launcher. Fast, ergonomic and reliable."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing page",
+        "Active community with 37k+ Slack members",
+        "Regular YouTube content and changelog updates",
+        "Enterprise offering with SOC2 compliance"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "Profile built from live site; no repo access but site is comprehensive"
+    },
+    "sources_read": [
+      {
+        "source": "https://www.raycast.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content and features"
+      },
+      {
+        "source": "https://www.raycast.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing plans and feature comparisons"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

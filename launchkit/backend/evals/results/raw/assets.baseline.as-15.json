@@ -1,0 +1,7 @@
+{
+  "output": {
+    "title": "Show HN: depsentry – behavioral dependency scanner for npm and PyPI",
+    "body": "I built depsentry to catch supply-chain attacks by analyzing what dependencies actually do—like new install scripts, maintainer changes, or unexpected network calls—not just known CVEs. It runs in CI, scans a 1,200-dependency lockfile in ~40 seconds, and comments directly on the PR that introduces risk.\n\nWe retro-analyzed the event-stream/flatmap-stream attack: depsentry would have flagged it 11 days before public disclosure. That’s the core idea: detect behavioral red flags that precede most real-world breaches.\n\nIt’s built in Rust for speed, integrates with GitHub Actions, and is free for open-source (already used by 300+ public repos). Current limitations: no GitLab support yet, and Python coverage is newer than npm.\n\nWould love feedback on detection accuracy, false positive rate, and what signals you’d want to see next.",
+    "warnings": []
+  }
+}

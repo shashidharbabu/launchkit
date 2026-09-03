@@ -1,0 +1,94 @@
+{
+  "output": {
+    "one_liner": "Open-source collaborative whiteboard with hand-drawn style, end-to-end encryption, and real-time collaboration for teams and individuals.",
+    "description": "Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams, wireframes, and visual ideas with a hand-drawn aesthetic. It supports real-time collaboration, end-to-end encryption, and works offline as a PWA. The app autosaves to your browser and allows shareable links for readonly access.",
+    "category": "Productivity",
+    "target_user": "Product managers, UX designers, developers, and remote teams",
+    "icp": {
+      "who": "Remote or hybrid teams needing lightweight visual collaboration",
+      "pain": "Existing whiteboard tools are overly complex, lack privacy, or require accounts for collaborators",
+      "current_alternatives": [
+        "Miro",
+        "Figma",
+        "Microsoft Whiteboard",
+        "manual sketching on paper"
+      ],
+      "buying_trigger": "Need to quickly share visual ideas securely without onboarding collaborators to a new platform"
+    },
+    "differentiators": [
+      "End-to-end encrypted collaboration without login",
+      "Truly open-source with MIT license",
+      "Hand-drawn aesthetic that reduces design pressure",
+      "Fully functional offline via PWA"
+    ],
+    "proof_points": [
+      "Over 50k GitHub stars (README badge)",
+      "Used by Google Cloud, Meta, CodeSandbox, and Notion (README)",
+      "npm package with active downloads (README badge)",
+      "PWA with offline support (site and README)"
+    ],
+    "tech_stack": [
+      "React",
+      "TypeScript",
+      "Yarn",
+      "Vite",
+      "PWA"
+    ],
+    "pricing_current": "Free with optional Excalidraw+ paid tier (site mentions Excalidraw+ signup)",
+    "voice": {
+      "tone": [
+        "friendly",
+        "approachable",
+        "technical",
+        "minimalist"
+      ],
+      "sample_phrase": "An open source virtual hand-drawn style whiteboard. Collaborative and end-to-end encrypted."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public GitHub repo with 50k+ stars",
+        "Live product at excalidraw.com",
+        "Multiple integrations listed",
+        "Active sponsorships on Open Collective"
+      ]
+    },
+    "gaps": [
+      "No detailed pricing page found for Excalidraw+",
+      "No product demo video on site",
+      "No user testimonials with names/quotes",
+      "No feature comparison matrix"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; data from both repo and live site align"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project features, license, integrations"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Tech stack: React, TypeScript, Yarn"
+      },
+      {
+        "source": "https://excalidraw.com",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Live site confirms PWA, collaboration"
+      },
+      {
+        "source": "https://excalidraw.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Redirects to main site; no separate pricing"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

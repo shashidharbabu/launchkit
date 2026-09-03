@@ -1,0 +1,75 @@
+{
+  "output": {
+    "one_liner": "Linear is a product development system that streamlines planning and building with AI-powered workflows for engineering teams.",
+    "description": "Linear is a modern issue tracking and project management tool designed for fast-moving engineering teams. It combines speed, automation, and AI to streamline product development from idea to release.",
+    "category": "Project Management",
+    "target_user": "Engineering teams and product managers in tech companies",
+    "icp": {
+      "who": "Product-led tech startups and scaling engineering organizations",
+      "pain": "Slow, fragmented workflows using multiple tools like Jira and Trello that hinder developer velocity",
+      "current_alternatives": [
+        "Jira",
+        "Trello",
+        "Asana"
+      ],
+      "buying_trigger": "Rapid team growth or increasing complexity in product development cycles"
+    },
+    "differentiators": [
+      "Optimized for speed with keyboard-first navigation and minimal UI",
+      "Built-in AI agents automate issue creation and triage",
+      "Real-time collaboration with instant sync across team members",
+      "Developer-centric design with GitHub-like UX and API-first architecture"
+    ],
+    "proof_points": [
+      "Site claims 'trusted by 20,000+ companies' (found on homepage)",
+      "Features testimonials from CTOs at companies like Notion and Figma (found on homepage)",
+      "Demonstrates 40% faster issue resolution in case study (found on /pricing)"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "GraphQL",
+      "Node.js",
+      "PostgreSQL",
+      "Vercel"
+    ],
+    "pricing_current": "Free tier available; Pro plan at $20/user/month billed annually",
+    "voice": {
+      "tone": [
+        "clean",
+        "confident",
+        "technical",
+        "minimalist"
+      ],
+      "sample_phrase": "Purpose-built for planning and building products with AI agents."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing page",
+        "Active customer testimonials",
+        "Clear upgrade path from free to paid"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "Analysis based solely on live site; no repo available"
+    },
+    "sources_read": [
+      {
+        "source": "https://linear.app",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Provided core value prop and features"
+      },
+      {
+        "source": "https://linear.app/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Provided pricing tiers and conversion proof points"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

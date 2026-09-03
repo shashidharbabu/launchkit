@@ -1,0 +1,76 @@
+{
+  "output": {
+    "one_liner": "Zed is a high-performance, multiplayer code editor with integrated AI features for developers.",
+    "description": "Zed is a minimal code editor crafted for speed and collaboration with humans and AI. Built from scratch in Rust, it offers fast performance, agentic editing, and real-time multiplayer collaboration. It supports AI-powered features like edit prediction and inline assistance while remaining open source.",
+    "category": "Developer Tools",
+    "target_user": "Software developers",
+    "icp": {
+      "who": "Professional software developers and engineering teams",
+      "pain": "Slow, fragmented development environments that lack seamless AI integration and real-time collaboration",
+      "current_alternatives": [
+        "VS Code",
+        "JetBrains IDEs",
+        "Atom",
+        "manual configuration of AI tools"
+      ],
+      "buying_trigger": "Need for faster coding workflows with integrated AI assistance and team collaboration"
+    },
+    "differentiators": [
+      "Written in Rust for high performance",
+      "Native support for agentic editing with AI",
+      "True multiplayer collaboration in real time",
+      "Open source with community contributions"
+    ],
+    "proof_points": [
+      "85,060 stars on GitHub (from site footer)",
+      "> Yes! Now I can have shortcuts to run and debug tests. Ever since snippets were added, Zed has all of the features I could ask for in an editor. - José Valim, Creator of Elixir (from site testimonials)",
+      "Testimonial from Dan Abramov: 'My god it is so fast. Boot time, UI interaction, typing latency. I feel it.' (from site)"
+    ],
+    "tech_stack": [
+      "Rust",
+      "GPUI",
+      "LSP",
+      "DAP",
+      "Vim"
+    ],
+    "pricing_current": "Personal: $0 forever; Pro: $10/month with $5 tokens included; Business: $30 per seat/month",
+    "voice": {
+      "tone": [
+        "confident",
+        "technical",
+        "innovative",
+        "developer-focused"
+      ],
+      "sample_phrase": "Zed is a minimal code editor crafted for speed and collaboration with humans and AI."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Publicly available download",
+        "Pricing tiers defined",
+        "Active community with 2,089 contributors",
+        "Weekly releases mentioned on site"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "Profile built from live site content; no repo access but site is comprehensive"
+    },
+    "sources_read": [
+      {
+        "source": "https://zed.dev",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content, features, testimonials"
+      },
+      {
+        "source": "https://zed.dev/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and plan comparisons"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

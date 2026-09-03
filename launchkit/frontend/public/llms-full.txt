@@ -1,0 +1,117 @@
+# Launch Kit — full reference for language models
+
+Launch Kit is go-to-market software for people who publish apps. It takes an app that
+already exists — a repo and a live site — and produces the launch: profile, pricing,
+store listing, ranked venues, platform-native posts, verified demand signals, a
+sequenced plan with tracked links, and signup attribution afterwards.
+
+Made by RocketRide (https://rocketride.ai). Product law: assisted, never autonomous;
+three human approval gates; quality over volume; no invented demand.
+
+## Who it is for
+
+Indie developers, small teams and app publishers who have shipped something real and
+dread marketing. They trust documents, checklists and evidence, and distrust hype.
+Typical situation: the app works, it is listed in an app store, and nobody knows it
+exists.
+
+## What "go-to-market for an app" means here
+
+A GTM plan for an app answers four questions:
+
+1. Who is it for, and why is it different from the alternatives?
+2. What does it cost, relative to what comparable tools actually charge?
+3. Where does it launch — which specific communities, directories and platforms?
+4. What gets posted in each of those places, in that place's own voice?
+
+Launch Kit produces all four, then closes the loop by attributing signups to venues.
+
+## The six-stage procedure
+
+### 01 Profile (Gate 1)
+Reads the public repo (README, package metadata) and the live site, then drafts the
+app profile: one-liner, category, ICP (who, pain, current alternatives),
+differentiators, proof points, current pricing, tech stack, maturity, voice, and gaps.
+Every source it read is listed with a verified/failed flag, so the builder can check
+each claim. If there is no public repo, the analysis runs site-only and is flagged as
+degraded rather than presented as complete.
+
+**Gate 1:** the builder edits any field and approves. Until then, every downstream
+stage is blocked — not merely discouraged, blocked.
+
+### 02 Commercial
+Two jobs, both grounded in scraped evidence:
+- **Pricing** — finds comparable products, reads their actual pricing pages, and
+  recommends a tier ladder against those real numbers.
+- **Listing** — rewrites the app store tagline and description around the approved
+  differentiators and proof points.
+
+### 03 Assets (Gate 2)
+Writes one platform-native post per venue type, following each platform's conventions:
+Reddit post (community voice, no marketing register), Show HN (title convention, honest
+framing that survives Hacker News), Product Hunt tagline and description, X post,
+LinkedIn post, newsletter pitch, and a demo video script. Conventions are enforced in
+code, not left to the model's discretion.
+
+**Gate 2:** the builder approves each asset individually, and can regenerate any of
+them with written feedback.
+
+### 04 Targets (Gate 3)
+Ranks the venues where this specific app should launch — niche subreddits,
+directories, communities, newsletters — each with a rationale, its posting rules, and
+its submission link. It draws on a curated venue pool and writes newly discovered
+venues back into it, so the pool improves with use.
+
+**Gate 3:** the builder ticks the venues that make the plan.
+
+### 05 Signals
+Searches public places (Hacker News, GitHub issues, Stack Overflow, community-scoped
+web search) for people describing the problem the app solves. Every candidate thread is
+then fetched and judged for real relevance in a second pass; stale threads (for example
+Hacker News threads too old to reply to) are rejected in code. What survives is a reply
+queue with a drafted, genuinely helpful reply for each thread. When nothing survives,
+the queue is empty and says so — no fabricated demand.
+
+### 06 Plan
+The approved assets across the selected venues, in a recommended order, each with its
+own tracked link. After the launch, signups arriving through those links are attributed
+to the venue that produced them: "r/reactjs produced 3 subscribers."
+
+## What Launch Kit does not do
+
+- It does not post anything for you. Every artifact is a draft you approve and publish
+  yourself.
+- It does not scrape social networks or build connection graphs.
+- It does not promise same-day subscribers. It promises launch-ready today.
+- It does not cold-prospect. The mechanisms in scope are your own audience and public
+  intent signals.
+
+## Common questions
+
+**What is a go-to-market plan for an app?**
+Who it is for, what it costs, where it launches, and what gets posted in each place.
+
+**How do I launch an app I just published?**
+Write the profile, set pricing against real competitors, pick a handful of venues whose
+rules you have read, write one native post per venue, and post across several days
+rather than all at once.
+
+**Where should I launch my app?**
+In the niche venues where your specific users already ask for what you built, plus the
+directories that accept your category. Five right venues beat fifty.
+
+**Does Launch Kit post to Reddit, Hacker News or Product Hunt for me?**
+No. It drafts; you approve and post.
+
+**How do I know which launch channel got me signups?**
+Per-venue tracked links; each signup is attributed to the venue whose link produced it.
+
+**What if nobody is asking for my app yet?**
+The signals queue returns empty and says so.
+
+## Canonical links
+
+- Product: https://launchkit.rocketride.ai
+- Procedure: https://launchkit.rocketride.ai/#procedure
+- FAQ: https://launchkit.rocketride.ai/#questions
+- RocketRide (runtime it is built on): https://rocketride.ai

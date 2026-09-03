@@ -1,0 +1,176 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=35993842",
+        "title_or_quote": "Ask HN: Open-Source Retool Workflows Alternatives",
+        "posted_when": "2023-05-18T20:49:34Z",
+        "why_relevant": "Seeks open-source Retool alternative for internal tools",
+        "intent_strength": "high",
+        "drafted_reply": "Open-source Retool alternatives can help avoid per-user pricing and keep data in-house. I've been working on stackbuilt, which self-hosts via Docker and generates admin panels directly from your Postgres schema. It's free to self-host, with RBAC included. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/stlim0727/stash/issues/687",
+        "title_or_quote": "Admin dashboard: monitor sync, AI-enrich, and app-distribution health per user",
+        "posted_when": "2026-08-04T05:32:07Z",
+        "why_relevant": "Needs admin dashboard for monitoring, aligns with auto-generated UI from schema",
+        "intent_strength": "medium",
+        "drafted_reply": "For monitoring sync and app health per user, generating a dashboard from your Postgres schema could save time. stackbuilt auto-generates CRUD interfaces from Postgres and supports custom views. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.15,
+          "why": "The thread is a GitHub issue scoping an admin monitoring dashboard for an existing app's internal health metrics, and the author has already recommended Metabase as the solution — they are not shopping for an internal tool builder."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/cloudsforge-online/micro-org/issues/214",
+        "title_or_quote": "Backup and restore for the estate, visible in the admin panel",
+        "posted_when": "2026-08-05T16:06:20Z",
+        "why_relevant": "Requests admin panel visibility for backup/restore, a CRUD use case",
+        "intent_strength": "medium",
+        "drafted_reply": "Exposing backup and restore in an admin panel is a common need. If you're using Postgres, tools like stackbuilt can generate that UI directly from your schema. Self-hosted, so data stays internal. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub issue describing a custom-built backup and restore system for a multi-database estate, not a request for an internal tool builder or admin panel scaffolding solution."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=48844528",
+        "title_or_quote": "Looking for a Postgres admin panel solution with remote team access",
+        "posted_when": "2026-07-09T12:02:48Z",
+        "why_relevant": "Direct need for Postgres admin panel with access control",
+        "intent_strength": "medium",
+        "drafted_reply": "A Postgres-backed admin panel with remote access can be scaffolded quickly if you self-host. stackbuilt generates one from your schema and includes role-based access. Free for self-hosted use. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/rebasepro/rebase/issues/5",
+        "title_or_quote": "Create and alter collections against a running backend",
+        "posted_when": "2026-08-21T17:34:17Z",
+        "why_relevant": "Describes need for dynamic schema changes with UI support",
+        "intent_strength": "low",
+        "drafted_reply": "If your backend uses Postgres, generating a UI from schema can simplify collection management. stackbuilt creates CRUD interfaces on the fly and supports role-based views. Self-hosted, so data stays private. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is a GitHub issue about building a schema migration and collection management service inside an open-source backend framework, not about finding an internal tools platform to sit on top of Postgres."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "alternative to retool self hosted",
+      "does anyone know a tool that generates admin panels from postgres schema",
+      "struggling with retool pricing for internal tools",
+      "site:reddit.com \"tired of building custom admin panels by hand\"",
+      "site:reddit.com \"open source retool alternative postgres\"",
+      "site:reddit.com/r/selfhosted self-hosted retool alternative postgres",
+      "site:reddit.com/r/devops open source admin panel generator postgres",
+      "site:reddit.com/r/nocode bypass retool pricing self hosted",
+      "site:reddit.com/r/PostgreSQL generate crud ui from schema automatically",
+      "retool alternative",
+      "postgres admin panel",
+      "admin panel generator postgres",
+      "generate admin panel from postgres schema",
+      "postgres admin panel generator open source"
+    ],
+    "coverage_notes": "No results from StackOverflow or Reddit despite multiple queries. PASS B returned no hits. Focused on GitHub and HN for replyable signals.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong signals from HN and GitHub. Lack of Reddit and StackOverflow results may indicate niche audience or query mismatch."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=35993842",
+      "title_or_quote": "Ask HN: Open-Source Retool Workflows Alternatives",
+      "posted_when": "2023-05-18T20:49:34Z",
+      "why_relevant": "Seeks open-source Retool alternative for internal tools",
+      "intent_strength": "high",
+      "drafted_reply": "Open-source Retool alternatives can help avoid per-user pricing and keep data in-house. I've been working on stackbuilt, which self-hosts via Docker and generates admin panels directly from your Postgres schema. It's free to self-host, with RBAC included. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/stlim0727/stash/issues/687",
+      "title_or_quote": "Admin dashboard: monitor sync, AI-enrich, and app-distribution health per user",
+      "posted_when": "2026-08-04T05:32:07Z",
+      "why_relevant": "Needs admin dashboard for monitoring, aligns with auto-generated UI from schema",
+      "intent_strength": "medium",
+      "drafted_reply": "For monitoring sync and app health per user, generating a dashboard from your Postgres schema could save time. stackbuilt auto-generates CRUD interfaces from Postgres and supports custom views. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.15,
+        "why": "The thread is a GitHub issue scoping an admin monitoring dashboard for an existing app's internal health metrics, and the author has already recommended Metabase as the solution — they are not shopping for an internal tool builder."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/cloudsforge-online/micro-org/issues/214",
+      "title_or_quote": "Backup and restore for the estate, visible in the admin panel",
+      "posted_when": "2026-08-05T16:06:20Z",
+      "why_relevant": "Requests admin panel visibility for backup/restore, a CRUD use case",
+      "intent_strength": "medium",
+      "drafted_reply": "Exposing backup and restore in an admin panel is a common need. If you're using Postgres, tools like stackbuilt can generate that UI directly from your schema. Self-hosted, so data stays internal. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub issue describing a custom-built backup and restore system for a multi-database estate, not a request for an internal tool builder or admin panel scaffolding solution."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=48844528",
+      "title_or_quote": "Looking for a Postgres admin panel solution with remote team access",
+      "posted_when": "2026-07-09T12:02:48Z",
+      "why_relevant": "Direct need for Postgres admin panel with access control",
+      "intent_strength": "medium",
+      "drafted_reply": "A Postgres-backed admin panel with remote access can be scaffolded quickly if you self-host. stackbuilt generates one from your schema and includes role-based access. Free for self-hosted use. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/rebasepro/rebase/issues/5",
+      "title_or_quote": "Create and alter collections against a running backend",
+      "posted_when": "2026-08-21T17:34:17Z",
+      "why_relevant": "Describes need for dynamic schema changes with UI support",
+      "intent_strength": "low",
+      "drafted_reply": "If your backend uses Postgres, generating a UI from schema can simplify collection management. stackbuilt creates CRUD interfaces on the fly and supports role-based views. Self-hosted, so data stays private. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is a GitHub issue about building a schema migration and collection management service inside an open-source backend framework, not about finding an internal tools platform to sit on top of Postgres."
+      }
+    }
+  ]
+}

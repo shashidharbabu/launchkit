@@ -1,0 +1,185 @@
+{
+  "components": [
+    {
+      "id": "chat_1",
+      "provider": "chat",
+      "name": "Chat",
+      "config": {
+        "hideForm": true,
+        "mode": "Source",
+        "parameters": {},
+        "type": "chat"
+      },
+      "ui": {
+        "position": {
+          "x": 20,
+          "y": 200
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "agent_rocketride_1",
+      "provider": "agent_rocketride",
+      "name": "RocketRide Wave",
+      "config": {
+        "agent_description": "Launch Kit app-profile analyst",
+        "instructions": [
+          "You are Launch Kit's app analyst. You are given a GitHub repository URL and a live product URL for an app published on the RocketRide App Store. Your job is to produce a complete, accurate APP PROFILE as strict JSON.",
+          "PROCESS: 1) If a repository URL is given, use the GitHub tool to read it: the README, package manifests (package.json / pyproject.toml / etc.), directory structure, and any docs/ or landing copy. A repo may be ABSENT (none supplied) or UNREACHABLE (404 — private or moved); that is normal, not an error: say so in confidence.notes, set analysis_degraded true, and build the profile from the site alone. 2) Use the FireCrawl tool to scrape the live product URL (and its /pricing page if one exists). 3) Record EVERY source you actually read in sources_read as you go — this is the builder's evidence trail for reviewing your work. 4) Synthesize both sources into the profile. Prefer evidence from the repo and site over guesses; when you must infer, mark confidence accordingly.",
+          "OUTPUT CONTRACT: Respond with ONLY a single RFC 8259 JSON object — double-quoted keys and strings, no single quotes, no Python dict syntax, no markdown fences, no commentary before or after. The JSON must have exactly these keys:",
+          "{\"one_liner\": string (max 140 chars, what the app does and for whom), \"description\": string (2-3 sentences), \"category\": string, \"target_user\": string (specific role/persona, not 'everyone'), \"icp\": {\"who\": string, \"pain\": string, \"current_alternatives\": [string] (NAME the actual products people use today, e.g. 'Otter.ai', not categories like 'manual note-taking' — a named alternative is the seed the pricing and targeting stages search from, and a generic category gives them nothing to work with; include a manual/DIY habit only if you have already named 2+ real products), \"buying_trigger\": string}, \"differentiators\": [string] (max 4, only real ones with evidence), \"proof_points\": [string] (benchmarks, stars, testimonials, screenshots found — cite where each was found), \"tech_stack\": [string], \"pricing_current\": string (what pricing exists today, or 'none found'), \"voice\": {\"tone\": [string] (3-5 adjectives describing how the builder writes, inferred from README + site copy), \"sample_phrase\": string (one representative sentence quoted from their copy)}, \"maturity\": {\"stage\": one of 'idea'|'alpha'|'beta'|'launched', \"signals\": [string]}, \"gaps\": [string] (missing conversion essentials: no demo, no pricing page, no screenshots, etc.), \"confidence\": {\"overall\": number 0-1, \"notes\": string}, \"sources_read\": [{\"source\": string (the exact URL or repo file path you read, e.g. \"README.md\" or \"https://app.com/pricing\"), \"via\": \"github\"|\"firecrawl\", \"ok\": boolean (false if the fetch failed), \"note\": string (max 12 words: what it gave you, or why it failed)}], \"analysis_degraded\": boolean (true if the repo or the site could not be read at all)}",
+          "RULES: Every claim in differentiators and proof_points must be traceable to something you actually read, and every source you read MUST appear in sources_read (including failed fetches, with ok=false) — an empty or padded sources_read makes the profile unreviewable. If the repo or site is unreachable, still return the JSON with what you could gather, set analysis_degraded true, and explain in confidence.notes. Never invent testimonials, user counts, or benchmarks. Leave a list empty rather than filling it with guesses.",
+          "HONESTY GUARDS: (1) If ANY entry in sources_read has ok=false, confidence.overall must not exceed 0.8, confidence.notes must name the failed source, and no claim may rest solely on that source — a price you could not scrape is a price you do not know. (2) gaps must NEVER be empty: if you found no product gaps, list what you could NOT verify (unreachable pages, claims without evidence, missing pricing) instead — an empty gaps array reads as \"nothing to check\", which is never true."
+        ],
+        "max_waves": 20,
+        "parameters": {}
+      },
+      "ui": {
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "chat_1"
+        }
+      ]
+    },
+    {
+      "id": "llm_openai_api_1",
+      "provider": "llm_openai_api",
+      "name": "OpenAI-Compatible API",
+      "config": {
+        "profile": "custom",
+        "custom": {
+          "apikey": "${ROCKETRIDE_GMI_KEY}",
+          "base_url": "https://api.gmi-serving.com/v1",
+          "model": "Qwen/Qwen3-235B-A22B-Instruct-2507-FP8",
+          "modelTotalTokens": 262144
+        },
+        "parameters": {}
+      },
+      "ui": {
+        "position": {
+          "x": 60,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "llm",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    },
+    {
+      "id": "memory_internal_1",
+      "provider": "memory_internal",
+      "name": "Memory (Internal)",
+      "config": {
+        "type": "memory_internal"
+      },
+      "ui": {
+        "position": {
+          "x": 240,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "memory",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    },
+    {
+      "id": "tool_github_1",
+      "provider": "tool_github",
+      "name": "GitHub",
+      "config": {
+        "type": "tool_github",
+        "token": "${ROCKETRIDE_GITHUB_TOKEN}",
+        "readOnly": true,
+        "defaultRepo": ""
+      },
+      "ui": {
+        "position": {
+          "x": 420,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "tool",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    },
+    {
+      "id": "tool_firecrawl_1",
+      "provider": "tool_firecrawl",
+      "name": "Firecrawl",
+      "config": {
+        "type": "tool_firecrawl",
+        "apikey": "${ROCKETRIDE_FIRECRAWL_KEY}"
+      },
+      "ui": {
+        "position": {
+          "x": 600,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "control": [
+        {
+          "classType": "tool",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    },
+    {
+      "id": "response_answers_1",
+      "provider": "response_answers",
+      "name": "Return Answers",
+      "config": {
+        "laneName": "answers"
+      },
+      "ui": {
+        "position": {
+          "x": 460,
+          "y": 200
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "answers",
+          "from": "agent_rocketride_1"
+        }
+      ]
+    }
+  ],
+  "project_id": "131bbf6b-8e52-4bdb-b8a6-d279d0c99882",
+  "version": 1,
+  "isLocked": false,
+  "snapToGrid": true,
+  "snapGridSize": [
+    10,
+    10
+  ],
+  "docRevision": 2
+}

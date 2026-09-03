@@ -1,0 +1,62 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/JoshCLWren/comic-pile/issues/1943",
+        "title_or_quote": "The Roll desktop cockpit uses CSS Grid, but it is currently over-specified and not responsive enough.",
+        "posted_when": "2026-08-27T00:11:29Z",
+        "why_relevant": "Author describes CSS Grid layout issues in handoff, matching gridframe's core solution.",
+        "intent_strength": "high",
+        "drafted_reply": "You're right that over-specified CSS Grid can hurt responsiveness. One approach is to use auto-placement and minmax() for fluid containers. I'm building gridframe, a tool that turns wireframes into responsive CSS Grid layouts without absolute positioning. I'd be curious if an automated layout-first system would help your workflow. I'm the creator and happy to give you early access.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.15,
+          "why": "The thread is about fixing an over-specified CSS Grid layout in an existing codebase (rigid coordinates, dead regions, above-the-fold placement) — a code-level refactoring task, not a design-to-code handoff or wireframing workflow that gridframe addresses."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that converts wireframes to responsive CSS Grid site:reddit.com",
+      "struggling with Figma to engineer handoff due to absolute positioning site:reddit.com",
+      "alternative to Figma for clean CSS export",
+      "how do you handle responsive layout bugs at handoff",
+      "tired of engineers rebuilding layouts from scratch site:reddit.com",
+      "does anyone know a design tool without absolute positioning reddit",
+      "site:reddit.com/r/web_design struggling with absolute positioning layout handoff",
+      "site:reddit.com/r/Frontend engineers rebuilding layouts from scratch",
+      "site:reddit.com/r/css alternative to Figma for clean CSS Grid export",
+      "site:reddit.com/r/UI_Design responsive layout bugs at handoff",
+      "layout handoff",
+      "CSS Grid export",
+      "Figma alternative",
+      "CSS Grid layout handoff",
+      "responsive layout handoff without absolute positioning",
+      "CSS Grid responsive layout handoff"
+    ],
+    "coverage_notes": "StackOverflow returned no results despite multiple keyword variations; limited by API rate limits and low question volume.",
+    "confidence": {
+      "overall": 0.65,
+      "notes": "One high-intent GitHub signal found; broader search coverage achieved but forum engagement was low."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/JoshCLWren/comic-pile/issues/1943",
+      "title_or_quote": "The Roll desktop cockpit uses CSS Grid, but it is currently over-specified and not responsive enough.",
+      "posted_when": "2026-08-27T00:11:29Z",
+      "why_relevant": "Author describes CSS Grid layout issues in handoff, matching gridframe's core solution.",
+      "intent_strength": "high",
+      "drafted_reply": "You're right that over-specified CSS Grid can hurt responsiveness. One approach is to use auto-placement and minmax() for fluid containers. I'm building gridframe, a tool that turns wireframes into responsive CSS Grid layouts without absolute positioning. I'd be curious if an automated layout-first system would help your workflow. I'm the creator and happy to give you early access.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.15,
+        "why": "The thread is about fixing an over-specified CSS Grid layout in an existing codebase (rigid coordinates, dead regions, above-the-fold placement) — a code-level refactoring task, not a design-to-code handoff or wireframing workflow that gridframe addresses."
+      }
+    }
+  ]
+}

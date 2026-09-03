@@ -1,0 +1,58 @@
+{
+  "one_liner": "Dependency scanner that catches supply-chain attacks — install scripts, maintainer changes, typosquats — not just known CVEs.",
+  "description": "depsentry watches what dependencies do, not just what CVE databases say about them. It flags new install scripts, sudden maintainer handoffs, typosquat-adjacent names, obfuscated payloads, and network calls added in minor versions — the behavioral signals that preceded attacks like event-stream. It runs in CI, comments on the PR that introduces the risk, and scans a 1,200-dependency lockfile in about 40 seconds.",
+  "category": "Infrastructure / Security",
+  "target_user": "Security-conscious engineering teams shipping JavaScript and Python",
+  "icp": {
+    "who": "Platform and security engineers at companies with large npm or PyPI dependency trees",
+    "pain": "CVE scanners only alert after disclosure, which is weeks too late for supply-chain attacks that live in install scripts and hijacked maintainer accounts",
+    "current_alternatives": [
+      "Snyk",
+      "Dependabot",
+      "Socket"
+    ],
+    "buying_trigger": "A supply-chain incident in the news that maps uncomfortably well onto the team's own dependency tree"
+  },
+  "differentiators": [
+    "Behavioral analysis of packages: install scripts, maintainer changes, added network calls — signals CVE scanners don't model",
+    "Retro-test shows it would have flagged the event-stream attack 11 days before public disclosure",
+    "PR-level comments on the exact change that introduces risk, not a weekly digest of noise"
+  ],
+  "proof_points": [
+    "Retro-analysis: flags the event-stream/flatmap-stream attack 11 days before disclosure",
+    "Scans a 1,200-dependency lockfile in 40 seconds in CI",
+    "Free for open-source repositories, already running on 300 public projects"
+  ],
+  "tech_stack": [
+    "Rust",
+    "Node.js",
+    "GitHub Actions",
+    "PostgreSQL"
+  ],
+  "pricing_current": "free for open source; team plan $199/month",
+  "voice": {
+    "tone": [
+      "sober",
+      "security-serious",
+      "evidence-led"
+    ],
+    "sample_phrase": "CVE feeds tell you about last month's attack. We watch what your dependencies do today."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "GitHub App in public beta",
+      "Free OSS tier live with public installs",
+      "Team pricing published but onboarding is white-glove"
+    ]
+  },
+  "gaps": [
+    "No GitLab support yet",
+    "Python coverage newer than npm coverage",
+    "No public detection-rate benchmark against Socket"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "The retro-test claim is specific and falsifiable. Detection quality relative to competitors is not yet independently measured."
+  }
+}

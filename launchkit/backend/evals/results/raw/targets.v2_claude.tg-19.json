@@ -1,0 +1,204 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Rust-built CI tool with behavioral supply-chain detection and a falsifiable retro-test claim is exactly what HN engineers upvote.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "r/devsecops",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/devsecops/",
+        "submission_url": "https://www.reddit.com/r/devsecops/submit",
+        "why_fit": "ICP is platform and security engineers; r/devsecops is explicitly for DevSecOps practitioners, not a place to sell.",
+        "rules_summary": "Commercial advertisement discouraged to keep engagement high; low-engagement posts may be removed at mod discretion.",
+        "rules_url": "https://old.reddit.com/r/devsecops/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "bureado/awesome-software-supply-chain-security",
+        "kind": "awesome_list",
+        "url": "https://github.com/bureado/awesome-software-supply-chain-security",
+        "submission_url": "https://github.com/bureado/awesome-software-supply-chain-security",
+        "why_fit": "depsentry detects behavioral supply-chain signals (install scripts, maintainer hijacks) — the exact threat class this list curates.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "lirantal/awesome-nodejs-security",
+        "kind": "awesome_list",
+        "url": "https://github.com/lirantal/awesome-nodejs-security",
+        "submission_url": "https://github.com/lirantal/awesome-nodejs-security",
+        "why_fit": "App targets npm dependency trees; this list is the canonical Node.js security resource read by the exact ICP.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 5,
+        "name": "r/netsec",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/netsec/",
+        "submission_url": "https://www.reddit.com/r/netsec/submit",
+        "why_fit": "event-stream retro-test (11 days pre-disclosure) is the kind of technical, evidence-led security content r/netsec values.",
+        "rules_summary": "No tool posts in main feed — post in monthly tool thread. Commercial ads require 6+ months membership and personal stake. Must link original source.",
+        "rules_url": "https://old.reddit.com/r/netsec/about/rules",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 6,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "CI-integrated security tool built in Rust targeting engineering teams is a strong fit for DevHunt's developer-tool audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "r/devops",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/devops/",
+        "submission_url": "https://www.reddit.com/r/devops/submit",
+        "why_fit": "Platform engineers managing large npm/PyPI dependency trees in CI pipelines are core r/devops members.",
+        "rules_summary": "Self-promotion goes in the weekly self-promotion thread only; disclose affiliation; not a space to funnel traffic.",
+        "rules_url": "https://old.reddit.com/r/devops/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 8,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Developer-focused launch platform; GitHub Actions integration and Rust stack resonate with Peerlist's engineering audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "S3C Weekly",
+        "kind": "newsletter",
+        "url": "https://s3cweekly.substack.com/",
+        "submission_url": "https://s3cweekly.substack.com/",
+        "why_fit": "Newsletter covers software supply chain security — the exact threat category depsentry addresses with behavioral detection.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 10,
+        "name": "BetaList",
+        "kind": "launch_platform",
+        "url": "https://betalist.com",
+        "submission_url": "https://betalist.com/submit",
+        "why_fit": "depsentry is in public beta with white-glove onboarding; BetaList targets early adopters seeking beta tools.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "Product Hunt",
+        "kind": "launch_platform",
+        "url": "https://www.producthunt.com",
+        "submission_url": "https://www.producthunt.com/posts/new",
+        "why_fit": "Security-tool category on PH reaches CTOs and engineering leads who are the buying trigger audience for depsentry.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "StackShare",
+        "kind": "directory",
+        "url": "https://stackshare.io",
+        "submission_url": "https://stackshare.io/submit",
+        "why_fit": "Rust, Node.js, GitHub Actions stack is discoverable by engineers browsing StackShare for CI security tooling.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 13,
+        "name": "SaaSHub",
+        "kind": "directory",
+        "url": "https://www.saashub.com",
+        "submission_url": "https://www.saashub.com/submit",
+        "why_fit": "Evergreen SEO listing as alternative to Snyk and Dependabot captures teams actively searching for CVE-scanner alternatives.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 14,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Free OSS tier on 300 public projects and indie beta stage fits r/SideProject's showcase-your-build culture.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "Submit PRs to bureado/awesome-software-supply-chain-security and lirantal/awesome-nodejs-security first — zero-cost, permanent SEO, and establishes credibility before launch day.",
+      "Post Show HN on a Tuesday or Wednesday morning US time with the event-stream retro-test as the lede; link the public GitHub App.",
+      "On the same week, pitch S3C Weekly newsletter with the retro-test data point — newsletter readers are the exact ICP buying trigger audience.",
+      "Use r/devsecops weekly and r/devops weekly self-promo thread in the days after Show HN while momentum is live; disclose affiliation explicitly.",
+      "Submit to DevHunt, Peerlist Launchpad, and BetaList in the same launch week for dev-audience breadth.",
+      "Add SaaSHub and StackShare listings as evergreen SEO; list as alternative to Snyk and Dependabot on AlternativeTo."
+    ],
+    "search_queries_used": [
+      "supply chain security dependency scanning DevSecOps subreddit community newsletter",
+      "awesome list supply chain security GitHub npm dependency scanning"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Niche venues verified via Exa; subreddit rules verified via FireCrawl except SideProject and AlphaAndBetaUsers."
+    }
+  }
+}

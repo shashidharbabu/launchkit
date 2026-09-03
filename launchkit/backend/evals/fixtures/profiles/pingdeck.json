@@ -1,0 +1,59 @@
+{
+  "one_liner": "API-first uptime monitoring and status pages for indie devs and small teams — Terraform provider from day one.",
+  "description": "pingdeck monitors HTTP endpoints, cron jobs, and TCP ports with 30-second intervals, then feeds alerts to Slack, email, or webhooks and renders clean public status pages. Everything is manageable through a full REST API and an official Terraform provider, so monitors live in code next to the infrastructure they watch.",
+  "category": "Infrastructure / Monitoring",
+  "target_user": "Indie developers and small platform teams running production services",
+  "icp": {
+    "who": "Developers and 1-5 person platform teams operating 10-500 endpoints",
+    "pain": "UptimeRobot-class tools are click-ops with bolted-on APIs, while Datadog-class synthetic monitoring is priced for enterprises",
+    "current_alternatives": [
+      "UptimeRobot",
+      "Better Stack",
+      "Pingdom",
+      "Uptime Kuma (self-hosted)"
+    ],
+    "buying_trigger": "An outage nobody noticed for an hour, or an infra-as-code migration that makes click-configured monitors feel like debt"
+  },
+  "differentiators": [
+    "Full REST API and official Terraform provider shipped from day one — monitors as code, not click-ops",
+    "30-second check intervals on the free tier, where most competitors gate fast checks behind paid plans",
+    "Status pages, cron monitoring, and alerting included in one flat price"
+  ],
+  "proof_points": [
+    "Monitors 11,000 endpoints across 640 accounts",
+    "Official Terraform provider published in the Terraform Registry",
+    "30-second intervals free, verified on the public pricing page"
+  ],
+  "tech_stack": [
+    "Go",
+    "PostgreSQL",
+    "ClickHouse",
+    "Terraform"
+  ],
+  "pricing_current": "freemium (free for 10 monitors at 30s intervals, $10/month team plan)",
+  "voice": {
+    "tone": [
+      "technical",
+      "no-nonsense",
+      "reliability-obsessed"
+    ],
+    "sample_phrase": "Monitors as code. Alerts before your customers notice."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Self-serve signup and billing live",
+      "Terraform provider in the public registry",
+      "Public status page with historical uptime"
+    ]
+  },
+  "gaps": [
+    "No mobile app for alerts",
+    "Only three alert integrations beyond webhooks",
+    "No SSO for team plan"
+  ],
+  "confidence": {
+    "overall": 0.85,
+    "notes": "API-first claims verifiable via docs and registry. Endpoint counts self-reported."
+  }
+}

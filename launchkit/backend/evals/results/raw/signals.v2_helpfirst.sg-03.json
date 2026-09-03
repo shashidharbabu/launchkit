@@ -1,0 +1,181 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/stellar-vortex-protocol/vortex-frontend/issues/326",
+        "title_or_quote": "Add automated CHANGELOG generation from conventional commits",
+        "posted_when": "2026-08-29T11:41:02Z",
+        "why_relevant": "Project enforces Conventional Commits but lacks automated changelog generation.",
+        "intent_strength": "high",
+        "drafted_reply": "You're already enforcing Conventional Commits via commitlint — the next step is automating changelog updates from those structured messages. I built gitwhisper, which drafts both commit messages and PR descriptions from staged diffs, including changelog entries. It supports local Ollama models for privacy. I'm the builder and use it daily. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is asking for automated CHANGELOG generation tooling (conventional-changelog, release-please, etc.) wired into CI, not for help writing commit messages — gitwhisper addresses commit message authoring, not changelog generation pipelines."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/jarl-hoyem/pyrigor/issues/94",
+        "title_or_quote": "Draft changelog content generator from Conventional Commits",
+        "posted_when": "2026-08-21T12:25:37Z",
+        "why_relevant": "Project wants to generate changelogs from Conventional Commits but finds raw commit dumps noisy.",
+        "intent_strength": "high",
+        "drafted_reply": "You're right that raw commit dumps make noisy changelogs. Since your project already uses Conventional Commits, a tool can group them by type (feat, fix, etc.) into a clean draft. I built gitwhisper to do this — it drafts changelogs and PR descriptions from diffs, with local Ollama support. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is a feature request for a changelog-generation script that groups existing Conventional Commits by type since the last tag — not about writing commit messages, which is what the app does."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/stablyai/orca/issues/15801",
+        "title_or_quote": "AI commit message reports \\UnknownError\\ while opencode succeeds",
+        "posted_when": "2026-08-21T15:58:21Z",
+        "why_relevant": "User is trying to generate AI commit messages but facing integration errors with local models.",
+        "intent_strength": "medium",
+        "drafted_reply": "You're close — your local model can generate conventional commit messages, but the UI is masking the success. I built gitwhisper for VS Code that handles this cleanly, using either cloud or local Ollama models to draft messages from diffs. It learns your repo's style and avoids content filters. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a bug report about Orca's internal parse/render error when consuming opencode's output — not a request for a different commit message tool or help with writing commit messages."
+        }
+      },
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/microsoft/vscode/issues/316204",
+        "title_or_quote": "Commit message generation fails with promptFiltered (422) on innocuous diff",
+        "posted_when": "2026-05-13T09:27:14Z",
+        "why_relevant": "User hit a content filter trying to generate a commit message for a whitespace-only change.",
+        "intent_strength": "medium",
+        "drafted_reply": "The promptFiltered 422 on gpt-4o-mini is a known Copilot content-filter false-positive — it fires on diffs containing certain tokens (SQL keywords, file paths, even some variable names) that trip the RAI filter regardless of intent. Until Microsoft fixes the classifier, the practical workaround is to stage smaller, more focused hunks so the prompt stays below whatever threshold is triggering it. You can also try switching to a model you can select manually in Copilot settings, since the commit generator is hardcoded to gpt-4o-mini which may have a stricter filter profile. If you want to sidestep the cloud filter entirely, I built gitwhisper ({APP_URL}), a VS Code extension that can run against a local Ollama model so your diff never leaves the machine.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The author is directly struggling with GitHub Copilot's commit message generation failing due to content filter errors (422 promptFiltered), which is exactly the pain point this app solves by offering an alternative commit message generator including a local-model path."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/dboeckli/opencode-sandbox-kit/issues/24",
+        "title_or_quote": "GitMuse + Ollama: lokale AI-Commit-Messages für IntelliJ",
+        "posted_when": "2026-08-10T09:12:07Z",
+        "why_relevant": "User documents a local AI commit message setup for IntelliJ, showing demand for private, local alternatives.",
+        "intent_strength": "low",
+        "drafted_reply": "You're right that local AI commit messages are valuable for privacy and speed. I built gitwhisper for VS Code with the same goal — it uses Ollama or cloud models to draft conventional commits and PR descriptions from diffs. It learns your repo's style and works offline. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is specifically about documenting GitMuse + Ollama for IntelliJ/JetBrains, not VS Code — the app only works in VS Code, making it a poor fit for the author's actual toolchain."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that writes conventional commit messages from staged dif...",
+      "struggling with writing good git commit messages, tired of 'fix' and 'wip'",
+      "alternative to GitHub Copilot for commit messages",
+      "site:reddit.com how do you handle conventional commits in VS Code",
+      "site:reddit.com tired of writing commit messages by hand",
+      "site:reddit.com/r/vscode commit messages conventional",
+      "site:reddit.com/r/git struggling with commit messages",
+      "site:reddit.com/r/programming tired of writing commit messages by hand",
+      "commit messages",
+      "conventional commits",
+      "git hygiene",
+      "git hygiene",
+      "conventional commits message generator is:issue is:open",
+      "git commit message tool ai local model is:issue is:open"
+    ],
+    "coverage_notes": "No relevant Reddit or HN threads found. Focused on GitHub issues which are evergreen and replyable.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "GitHub issues show clear intent but no recent Reddit or HN activity. PASS D provided the most relevant signals."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/microsoft/vscode/issues/316204",
+      "title_or_quote": "Commit message generation fails with promptFiltered (422) on innocuous diff",
+      "posted_when": "2026-05-13T09:27:14Z",
+      "why_relevant": "User hit a content filter trying to generate a commit message for a whitespace-only change.",
+      "intent_strength": "medium",
+      "drafted_reply": "The promptFiltered 422 on gpt-4o-mini is a known Copilot content-filter false-positive — it fires on diffs containing certain tokens (SQL keywords, file paths, even some variable names) that trip the RAI filter regardless of intent. Until Microsoft fixes the classifier, the practical workaround is to stage smaller, more focused hunks so the prompt stays below whatever threshold is triggering it. You can also try switching to a model you can select manually in Copilot settings, since the commit generator is hardcoded to gpt-4o-mini which may have a stricter filter profile. If you want to sidestep the cloud filter entirely, I built gitwhisper ({APP_URL}), a VS Code extension that can run against a local Ollama model so your diff never leaves the machine.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The author is directly struggling with GitHub Copilot's commit message generation failing due to content filter errors (422 promptFiltered), which is exactly the pain point this app solves by offering an alternative commit message generator including a local-model path."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/stellar-vortex-protocol/vortex-frontend/issues/326",
+      "title_or_quote": "Add automated CHANGELOG generation from conventional commits",
+      "posted_when": "2026-08-29T11:41:02Z",
+      "why_relevant": "Project enforces Conventional Commits but lacks automated changelog generation.",
+      "intent_strength": "high",
+      "drafted_reply": "You're already enforcing Conventional Commits via commitlint — the next step is automating changelog updates from those structured messages. I built gitwhisper, which drafts both commit messages and PR descriptions from staged diffs, including changelog entries. It supports local Ollama models for privacy. I'm the builder and use it daily. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is asking for automated CHANGELOG generation tooling (conventional-changelog, release-please, etc.) wired into CI, not for help writing commit messages — gitwhisper addresses commit message authoring, not changelog generation pipelines."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/jarl-hoyem/pyrigor/issues/94",
+      "title_or_quote": "Draft changelog content generator from Conventional Commits",
+      "posted_when": "2026-08-21T12:25:37Z",
+      "why_relevant": "Project wants to generate changelogs from Conventional Commits but finds raw commit dumps noisy.",
+      "intent_strength": "high",
+      "drafted_reply": "You're right that raw commit dumps make noisy changelogs. Since your project already uses Conventional Commits, a tool can group them by type (feat, fix, etc.) into a clean draft. I built gitwhisper to do this — it drafts changelogs and PR descriptions from diffs, with local Ollama support. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is a feature request for a changelog-generation script that groups existing Conventional Commits by type since the last tag — not about writing commit messages, which is what the app does."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/stablyai/orca/issues/15801",
+      "title_or_quote": "AI commit message reports \\UnknownError\\ while opencode succeeds",
+      "posted_when": "2026-08-21T15:58:21Z",
+      "why_relevant": "User is trying to generate AI commit messages but facing integration errors with local models.",
+      "intent_strength": "medium",
+      "drafted_reply": "You're close — your local model can generate conventional commit messages, but the UI is masking the success. I built gitwhisper for VS Code that handles this cleanly, using either cloud or local Ollama models to draft messages from diffs. It learns your repo's style and avoids content filters. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a bug report about Orca's internal parse/render error when consuming opencode's output — not a request for a different commit message tool or help with writing commit messages."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/dboeckli/opencode-sandbox-kit/issues/24",
+      "title_or_quote": "GitMuse + Ollama: lokale AI-Commit-Messages für IntelliJ",
+      "posted_when": "2026-08-10T09:12:07Z",
+      "why_relevant": "User documents a local AI commit message setup for IntelliJ, showing demand for private, local alternatives.",
+      "intent_strength": "low",
+      "drafted_reply": "You're right that local AI commit messages are valuable for privacy and speed. I built gitwhisper for VS Code with the same goal — it uses Ollama or cloud models to draft conventional commits and PR descriptions from diffs. It learns your repo's style and works offline. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is specifically about documenting GitMuse + Ollama for IntelliJ/JetBrains, not VS Code — the app only works in VS Code, making it a poor fit for the author's actual toolchain."
+      }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/codustry/khaopad/issues/160",
+        "title_or_quote": "Shopify gap analysis v2 (post-v3.13): findings + phased plan A–E to a credible alternative",
+        "posted_when": "2026-08-10T07:06:38Z",
+        "why_relevant": "Discusses native in-cart experience gaps in Shopify, relevant to cartnudge's core value",
+        "intent_strength": "high",
+        "drafted_reply": "Your analysis of Shopify's native in-cart limitations is spot on. We built cartnudge to solve exactly this by adding basket-aware upsells directly in the cart without popups or theme edits. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a technical gap analysis of Shopify's feature coverage in Thailand for an open-source alternative platform project, with no mention of upsell optimization, AOV improvement, or cart monetization."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/creativeghq/material-kai-vision-platform/issues/386",
+        "title_or_quote": "Commerce Channels — Skroutz, Shopify, WooCommerce as separate modules under `integrations`",
+        "posted_when": "2026-08-25T18:39:49Z",
+        "why_relevant": "Mentions Shopify commerce integration needs, indicating active development in this space",
+        "intent_strength": "medium",
+        "drafted_reply": "You're working on deep Shopify commerce integration, which is a complex space. Our tool cartnudge adds native in-cart upsells without popups or revenue share. I'm the builder. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a GitHub issue about building commerce channel integration modules (Skroutz, Shopify, WooCommerce) for a platform — it is a software architecture and development task, not a Shopify merchant seeking to improve AOV or upsell performance."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool for Shopify cart upsells without popups",
+      "struggling with popup-based upsells hurting conversion site:reddit.com",
+      "tired of revenue-share pricing for Shopify upsell apps site:reddit.com",
+      "alternative to Rebuy Shopify upsell app",
+      "alternative to Zipify OneClickUpsell",
+      "site:reddit.com/r/shopify Shopify cart upsells without popups",
+      "site:reddit.com/r/ecommerce struggling with popup upsells conversion",
+      "site:reddit.com/r/dropship revenue-share pricing Shopify upsell apps",
+      "site:reddit.com/r/smallbusiness basket-aware cart offers Shopify",
+      "Shopify upsell",
+      "popup conversion",
+      "revenue share pricing",
+      "Shopify cart upsell native no popup",
+      "Shopify basket-aware upsell alternative",
+      "Shopify cart upsell without popup",
+      "revenue share pricing alternative"
+    ],
+    "coverage_notes": "No relevant Reddit or HN threads found within freshness window. StackOverflow returned no results. GitHub provided two relevant, recent issues.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "GitHub issues are relevant and fresh, but no results from Reddit, HN, or StackOverflow limit coverage."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/codustry/khaopad/issues/160",
+      "title_or_quote": "Shopify gap analysis v2 (post-v3.13): findings + phased plan A–E to a credible alternative",
+      "posted_when": "2026-08-10T07:06:38Z",
+      "why_relevant": "Discusses native in-cart experience gaps in Shopify, relevant to cartnudge's core value",
+      "intent_strength": "high",
+      "drafted_reply": "Your analysis of Shopify's native in-cart limitations is spot on. We built cartnudge to solve exactly this by adding basket-aware upsells directly in the cart without popups or theme edits. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a technical gap analysis of Shopify's feature coverage in Thailand for an open-source alternative platform project, with no mention of upsell optimization, AOV improvement, or cart monetization."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/creativeghq/material-kai-vision-platform/issues/386",
+      "title_or_quote": "Commerce Channels — Skroutz, Shopify, WooCommerce as separate modules under `integrations`",
+      "posted_when": "2026-08-25T18:39:49Z",
+      "why_relevant": "Mentions Shopify commerce integration needs, indicating active development in this space",
+      "intent_strength": "medium",
+      "drafted_reply": "You're working on deep Shopify commerce integration, which is a complex space. Our tool cartnudge adds native in-cart upsells without popups or revenue share. I'm the builder. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a GitHub issue about building commerce channel integration modules (Skroutz, Shopify, WooCommerce) for a platform — it is a software architecture and development task, not a Shopify merchant seeking to improve AOV or upsell performance."
+      }
+    }
+  ]
+}

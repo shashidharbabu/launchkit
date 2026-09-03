@@ -1,0 +1,56 @@
+{
+  "output": {
+    "title": "termdiff — Terminal Git Diff Viewer",
+    "tagline": "Side-by-side git diffs with word-level highlighting in 38ms",
+    "description_short": "Rust CLI that replaces git's pager with side-by-side, word-level diffs. Renders a 10k-line monorepo diff in 38ms. Single binary, zero config.",
+    "description_long": "**termdiff** is a Rust-powered CLI that replaces git's default pager with a readable, fast diff view built for engineers who review code all day.\n\n**What it does differently**\n\n- **True side-by-side view** in the terminal — not just intra-line color smears, but word-level change highlighting on both sides simultaneously.\n- **38ms on a 10,000-line diff** (M1 MacBook Air). Monorepo-scale changes that choke other pagers render instantly.\n- **Single static binary.** Drop it in, point `core.pager` at it, done. No config files, no runtime dependencies.\n\n**Who it's for**\n\nSenior engineers and OSS maintainers who live in the terminal and hit `git diff` dozens of times a day. If you've ever squinted at a wall of red and green trying to find the actual change, termdiff fixes that.\n\n**Proven in the wild**\n\n4,200 GitHub stars in year one. Packaged in Homebrew core. 30+ external contributors. Tagged 1.x releases with a maintained changelog.\n\nMIT-licensed and open source. Works with your existing git aliases today.",
+    "keywords": [
+      "git diff viewer",
+      "terminal diff tool",
+      "side by side diff CLI",
+      "git pager replacement",
+      "delta alternative",
+      "difftastic alternative",
+      "rust git tool",
+      "monorepo diff viewer",
+      "word level diff",
+      "syntax highlighted diff terminal",
+      "git diff syntax highlight",
+      "CLI developer tools",
+      "homebrew git tools"
+    ],
+    "screenshot_order": [
+      "1st: Side-by-side diff of a large file showing word-level highlighting — proves the core claim visually and immediately.",
+      "2nd: Terminal output of a monorepo-scale diff rendering with a visible timestamp or benchmark line — reinforces the 38ms speed claim.",
+      "3rd: One-line git alias or core.pager config snippet showing zero-config setup — removes the 'is it hard to install?' objection."
+    ],
+    "faq": [
+      {
+        "q": "How is this different from delta or diff-so-fancy?",
+        "a": "termdiff renders true side-by-side columns with word-level diffs, not just colorized unified output. On a 10k-line diff it's an order of magnitude faster than existing fancy pagers."
+      },
+      {
+        "q": "Do I have to change my git workflow?",
+        "a": "No. Set core.pager once or add a git alias. termdiff reads standard git diff output — nothing else changes."
+      },
+      {
+        "q": "Does it work on Windows?",
+        "a": "Windows Terminal support has not been formally tested and documented yet. Linux and macOS (including Apple Silicon) are fully supported."
+      },
+      {
+        "q": "Is it free? Will it stay free?",
+        "a": "Yes. termdiff is MIT-licensed open source. The source is on GitHub and will remain open."
+      },
+      {
+        "q": "How do I install it?",
+        "a": "brew install termdiff via Homebrew core, or download the single static binary from the releases page — no runtime dependencies required."
+      }
+    ],
+    "cta": "brew install termdiff — your first side-by-side diff in under a minute.",
+    "changes_from_current": [],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "Profile is detailed and consistent. Proof points are strong. Confidence docked slightly because adoption data beyond star count is self-reported, and no demo GIF exists to anchor screenshot guidance against actual UI."
+    }
+  }
+}

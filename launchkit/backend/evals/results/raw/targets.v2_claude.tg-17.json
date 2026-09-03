@@ -1,0 +1,188 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "r/selfhosted",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/selfhosted/",
+        "submission_url": "https://www.reddit.com/r/selfhosted/submit",
+        "why_fit": "Single-command Docker self-hosting is the exact use case this community celebrates; production-ready with docs qualifies.",
+        "rules_summary": "Self-promotion allowed if you follow Reddit self-promo guidelines; app must be production-ready with docs. New projects under 3 months old only in the New Project Megathread. Tools allowed on Wednesdays.",
+        "rules_url": "https://old.reddit.com/r/selfhosted/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Go+Docker+Postgres dev tool with a public beta; technical ICP of backend engineers matches HN's core audience exactly.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "r/PostgreSQL",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/PostgreSQL/",
+        "submission_url": "https://www.reddit.com/r/PostgreSQL/submit",
+        "why_fit": "App reads Postgres schema and scaffolds CRUD UI — directly solves a pain Postgres users face; niche audience match.",
+        "rules_summary": "Rules only require posts to be nice and helpful. No explicit self-promotion restriction found in scraped rules.",
+        "rules_url": "https://old.reddit.com/r/PostgreSQL/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "DevHunt",
+        "kind": "launch_platform",
+        "url": "https://devhunt.org",
+        "submission_url": "https://devhunt.org",
+        "why_fit": "Developer-tool launch platform; stackbuilt targets backend engineers — exact audience DevHunt serves.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 5,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Dev-focused launch platform; Go/Docker/Postgres stack and engineer ICP align with Peerlist's technical builder community.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 6,
+        "name": "awesome-selfhosted",
+        "kind": "awesome_list",
+        "url": "https://awesome-selfhosted.net",
+        "submission_url": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+        "why_fit": "Single-Docker-command self-hosted app fits the awesome-selfhosted list's exact inclusion criteria; evergreen SEO traffic.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 7,
+        "name": "awesome-postgres",
+        "kind": "awesome_list",
+        "url": "https://github.com/dhamaniasad/awesome-postgres",
+        "submission_url": "https://github.com/dhamaniasad/awesome-postgres",
+        "why_fit": "App is Postgres-native — reads schema, scaffolds UI from it; fits the tools section of awesome-postgres directly.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 8,
+        "name": "AlternativeTo",
+        "kind": "directory",
+        "url": "https://alternativeto.net",
+        "submission_url": "https://alternativeto.net/manage-item/",
+        "why_fit": "ICP pain is Retool pricing; listing stackbuilt as a Retool/Appsmith/Budibase alternative captures high-intent comparison traffic.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 9,
+        "name": "SaaSHub",
+        "kind": "directory",
+        "url": "https://www.saashub.com",
+        "submission_url": "https://www.saashub.com/submit",
+        "why_fit": "Evergreen directory; stackbuilt competes with Retool/Appsmith — SaaSHub surfaces it in those alternative searches.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "StackShare",
+        "kind": "directory",
+        "url": "https://stackshare.io",
+        "submission_url": "https://stackshare.io/submit",
+        "why_fit": "Go, PostgreSQL, Docker stack is exactly what StackShare indexes; backend engineers browsing stack alternatives will find it.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Promo-tolerant showcase subreddit; stackbuilt's demo video and Docker-in-60s story makes a compelling post.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "r/alphaandbetausers",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/alphaandbetausers/",
+        "submission_url": "https://www.reddit.com/r/alphaandbetausers/submit",
+        "why_fit": "App is in public beta; subreddit exists specifically for beta testers — matches maturity stage and need for early feedback.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 13,
+        "name": "BetaList",
+        "kind": "launch_platform",
+        "url": "https://betalist.com",
+        "submission_url": "https://betalist.com/submit",
+        "why_fit": "App is in public beta with Docker Hub image; BetaList targets early adopters who try new dev tools before GA.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      }
+    ],
+    "sequencing_advice": [
+      "Start with awesome-selfhosted and awesome-postgres PRs immediately — evergreen SEO compounds from day one and takes time to merge.",
+      "Launch Show HN and r/selfhosted on the same day (Wednesday for tools flair on selfhosted); these two drive the highest-intent technical traffic and reinforce each other.",
+      "Submit to AlternativeTo, SaaSHub, and StackShare the same week — low-effort directories that capture Retool-comparison search traffic permanently.",
+      "Follow with DevHunt and Peerlist Launchpad for dev-community exposure, then r/PostgreSQL with a value-first post framing the Postgres schema-to-UI workflow."
+    ],
+    "search_queries_used": [
+      "self-hosted tools community Discord Slack forum Postgres internal tools devops engineers"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "r/selfhosted and r/PostgreSQL rules verified. Other subreddit rules unverified — treat as high-effort."
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "Clipping your podcast by hand is killing your week.",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "Screen recording: a timeline in a video editor with a 60-minute podcast episode loaded — hundreds of cuts, manual markers everywhere",
+        "voiceover": "Clipping your podcast by hand is killing your week."
+      },
+      {
+        "seconds": "3-10",
+        "visual": "Screen recording: podclip dashboard — user pastes an episode URL or uploads an audio file, hits 'Generate Clips'",
+        "voiceover": "podclip ingests your episode and finds the moments worth sharing — not random 60-second windows, actual narrative hooks."
+      },
+      {
+        "seconds": "10-20",
+        "visual": "Screen recording: progress bar moving fast — a timer overlay showing roughly 90 seconds elapsing — then a grid of 4-6 captioned vertical clips appearing",
+        "voiceover": "Its model was trained on 40,000 manually rated clips. A 60-minute episode renders into a full clip set in about 90 seconds."
+      },
+      {
+        "seconds": "20-32",
+        "visual": "Side-by-side: two vertical clips playing — one with bold, on-brand captions matching a show's color palette; another with a different show's style — both look polished, no editor needed",
+        "voiceover": "Every clip comes out captioned and vertically framed — with your show's style baked in. Ready for TikTok, Reels, Shorts, and X."
+      },
+      {
+        "seconds": "32-42",
+        "visual": "podclip showcase page scrolling — clips from different shows, all captioned, all vertical",
+        "voiceover": "120 shows are already generating clips every week. Start free — three clips a month, no credit card."
+      },
+      {
+        "seconds": "42-45",
+        "visual": "podclip homepage with URL visible: {APP_URL}",
+        "voiceover": "Your best 40 seconds, found for you."
+      }
+    ],
+    "cta": "Try podclip free at {APP_URL} — three clips a month, no credit card needed.",
+    "production_notes": [
+      "Record a screen capture of the podclip dashboard: uploading or pasting a real episode URL and clicking Generate Clips.",
+      "Capture the render progress bar in real time — show the actual ~90-second countdown so the speed claim is visually verifiable.",
+      "Record the clip results grid appearing after render: show at least 4 captioned vertical clips with visible captions and framing.",
+      "Record two different shows' clips side by side to demonstrate per-show caption style differentiation — use real clips from the showcase page if available.",
+      "Capture a scroll of the podclip showcase page showing variety of shows and clip styles.",
+      "Capture the podclip homepage with the URL clearly visible for the final frame.",
+      "Do NOT use stock footage or mockups — all visuals must be real app screens to maintain credibility.",
+      "Keep the voiceover delivery punchy and fast-paced to match the energetic brand voice — no slow reads."
+    ],
+    "warnings": [
+      "The '120 shows generate clips weekly' proof point is used as stated in the profile — do not inflate or round up this number in production.",
+      "The model training claim (40,000 manually rated clips) is not externally documented per the profile's own confidence notes — avoid framing it as a third-party verified benchmark.",
+      "The 90-second render time is an average for a 60-minute episode — add a brief disclaimer in description copy if platform policies require accuracy disclosures.",
+      "No direct TikTok publishing exists yet — do not imply one-click publishing to TikTok in visuals; show download/export flow instead."
+    ]
+  }
+}

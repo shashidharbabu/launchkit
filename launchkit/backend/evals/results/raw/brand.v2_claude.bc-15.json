@@ -1,0 +1,173 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Show HN: lettercraft",
+        "objective": "awareness — put lettercraft in front of developers who run newsletters and are actively looking for alternatives to Substack or beehiiv",
+        "big_idea": "A Show HN post that leads with the technical differentiator: code blocks that actually render across 14 email clients, with the public test matrix as proof. Developers trust reproducible evidence over marketing copy, so the post links straight to the matrix and invites the community to poke holes in it.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Write in Markdown. Publish with git push. Own every subscriber.",
+        "sample_copy": {
+          "headline": "Show HN: lettercraft — newsletter platform for developers, posts are Markdown files in a Git repo you own",
+          "body": "Code blocks in newsletters are broken everywhere. We built lettercraft to fix that. Posts are Markdown files in a Git repo you own. Code blocks render with syntax highlighting in 14 email clients — the test matrix is public. Publishing is a git push or a click. Your subscriber list exports in one click. No lock-in. Free up to 1,000 subscribers.",
+          "cta": "Read the test matrix or sign up for the beta at lettercraft.dev"
+        },
+        "assets_needed": [
+          "Show HN post draft",
+          "Public email-client test matrix page (already exists per APP_PROFILE)",
+          "Landing page that loads fast and shows the Git workflow clearly"
+        ],
+        "effort": "small",
+        "success_metric": "Number of beta signups attributed to the HN post within 72 hours",
+        "why_on_brand": "Leads with the Git-ownership and code-rendering proof points in the same plainspoken, developer-native voice as the sample phrase 'Write in Markdown. Publish with git push. Own every subscriber.'"
+      },
+      {
+        "name": "The Broken Code Block Thread",
+        "objective": "community — spark a conversation on Reddit and X where developers share their worst code-formatting failures in newsletters, positioning lettercraft as the fix",
+        "big_idea": "Ask developers to post screenshots or stories of mangled code blocks from their newsletters. The thread surfaces real pain, generates organic reach, and lets lettercraft reply with the test matrix as a concrete answer. No invented testimonials — the community provides the proof.",
+        "channels": [
+          "Reddit (r/devops, r/programming, r/ExperiencedDevs)",
+          "X/Twitter"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "x_post"
+        ],
+        "hook": "What's the worst code block your newsletter tool has ever mangled?",
+        "sample_copy": {
+          "headline": "What's the worst code block your newsletter tool has ever mangled?",
+          "body": "Substack strips syntax highlighting. beehiiv wraps long lines into unreadable mush. If you write about code, you've shipped at least one issue you were embarrassed by. Drop your horror story below. We built lettercraft because we got tired of fighting our tools every single issue. Posts are Markdown files in a Git repo you own. Code renders correctly — we tested 14 email clients and published the matrix.",
+          "cta": "See the test matrix or try the beta: lettercraft.dev"
+        },
+        "assets_needed": [
+          "Reddit post copy",
+          "X/Twitter thread (3-5 posts)",
+          "Link to the public test matrix",
+          "One or two before/after screenshots of code block rendering"
+        ],
+        "effort": "small",
+        "success_metric": "Total comments or replies on the Reddit thread within one week",
+        "why_on_brand": "Anti-lock-in, plainspoken framing; uses the real pain point ('fight their tools every single issue') directly from the APP_PROFILE without inventing metrics or testimonials"
+      },
+      {
+        "name": "Git Push to Inbox",
+        "objective": "signups — convert developers who are already curious about lettercraft by showing the exact git-based publishing workflow in a short video",
+        "big_idea": "A 90-second screen-recording that shows the full loop: write a post in VS Code as a Markdown file, git push, and watch the email land in an inbox with syntax-highlighted code. No voiceover hype — just the terminal, the editor, and the result. Posted on X and linked from the landing page.",
+        "channels": [
+          "X/Twitter",
+          "YouTube (unlisted, embedded on landing page)"
+        ],
+        "asset_types": [
+          "x_post",
+          "video_script"
+        ],
+        "hook": "This is what publishing a newsletter looks like when your workflow is git push.",
+        "sample_copy": {
+          "headline": "Write in your editor. Push to publish. Code renders everywhere.",
+          "body": "No proprietary editor. No copy-paste into a web form. No broken code blocks. lettercraft stores your posts as Markdown files in a Git repo you own. Publishing is a git push. Code blocks come out syntax-highlighted and copyable in every major email client — we tested 14 and published the matrix. Your subscriber list exports in one click. Leaving is a git clone.",
+          "cta": "Try the beta free up to 1,000 subscribers — lettercraft.dev"
+        },
+        "assets_needed": [
+          "90-second screen recording (terminal + editor + inbox result)",
+          "Video script",
+          "X post with embedded video or GIF preview",
+          "Caption copy"
+        ],
+        "effort": "medium",
+        "success_metric": "Click-through rate from the X post to the signup page",
+        "why_on_brand": "Shows the Git workflow and code-rendering proof in action, matching the developer-native voice and the 'write in your editor, publish with git push' differentiator"
+      },
+      {
+        "name": "Migration Monday",
+        "objective": "signups — target developers actively frustrated with Substack or beehiiv by offering a clear, low-risk migration path and emphasizing that leaving lettercraft is equally easy",
+        "big_idea": "A direct post series (Reddit + newsletter pitch to developer-focused newsletters) that addresses the lock-in fear head-on: your content is already in Git, your list exports in one click, and if you ever want to leave lettercraft, it's a git clone. The anti-lock-in message is the campaign.",
+        "channels": [
+          "Reddit (r/SideProject, r/Entrepreneur, r/devops)",
+          "Newsletter pitch to developer-focused newsletters"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "newsletter_pitch"
+        ],
+        "hook": "Your content should live in Git, not in someone else's database.",
+        "sample_copy": {
+          "headline": "Your newsletter content belongs in Git, not locked in a platform.",
+          "body": "If you write about code, you've probably shipped a broken code block. And if you've ever tried to leave Substack or beehiiv, you know how much they make it hurt. lettercraft stores every post as a Markdown file in a Git repo you own. Your subscriber list exports in one click. Leaving is a git clone. Code blocks render with syntax highlighting across 14 email clients — the test matrix is public. Free up to 1,000 subscribers.",
+          "cta": "Import your list and publish your first post today — lettercraft.dev"
+        },
+        "assets_needed": [
+          "Reddit post copy",
+          "Newsletter pitch email (150 words)",
+          "One-page migration guide (how to move from Substack or beehiiv in under 10 minutes)"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of newsletter signups from developers who indicate they migrated from another platform",
+        "why_on_brand": "Directly expresses the anti-lock-in differentiator ('leaving is a git clone') and the plainspoken, no-hedging voice of the APP_PROFILE"
+      },
+      {
+        "name": "Test Matrix Drop",
+        "objective": "awareness — use the published 14-client email rendering test matrix as a standalone piece of content that earns trust and backlinks from the developer community",
+        "big_idea": "Publish a detailed write-up of how lettercraft tested code block rendering across 14 email clients, what broke, and how it was fixed. Post it on Product Hunt as a standalone resource and pitch it to developer newsletters. The matrix is already built — this campaign just puts it in front of the right people.",
+        "channels": [
+          "Product Hunt",
+          "Developer newsletters (DevRel Weekly, TLDR, Console)"
+        ],
+        "asset_types": [
+          "producthunt",
+          "newsletter_pitch"
+        ],
+        "hook": "We tested code block rendering in 14 email clients. Here's what we found.",
+        "sample_copy": {
+          "headline": "We tested code block rendering in 14 email clients so you don't have to.",
+          "body": "Syntax highlighting breaks in Outlook. Long lines wrap in Gmail. Monospace fonts fall back silently in Apple Mail. We ran every combination and published the full matrix. lettercraft uses those results to render code blocks correctly everywhere — syntax-highlighted and copyable. If you write about code, this is the data you've been missing. The matrix is public. No signup required to read it.",
+          "cta": "Read the test matrix — lettercraft.dev/email-client-matrix"
+        },
+        "assets_needed": [
+          "Product Hunt listing copy and tagline",
+          "Newsletter pitch email (100 words)",
+          "Test matrix page (already exists — confirm it's publicly accessible without login)",
+          "One header image showing a code block rendering correctly vs. broken"
+        ],
+        "effort": "medium",
+        "success_metric": "Unique visitors to the test matrix page within two weeks of the Product Hunt launch",
+        "why_on_brand": "Grounds the campaign in the one proof point developers trust most — reproducible, published test data — matching the developer-native, plainspoken voice and the 'code blocks tested across 14 email clients' differentiator"
+      },
+      {
+        "name": "Beta Writer Spotlight",
+        "objective": "community — activate the 1,100 beta writers by giving them a reason to talk publicly about lettercraft, generating authentic word-of-mouth in developer spaces without inventing testimonials",
+        "big_idea": "Invite beta writers to share one thing they shipped with lettercraft that they couldn't ship cleanly before — a code-heavy post, a syntax-highlighted tutorial, a long-form technical deep-dive. Collect these as short posts on X and in the Discord, then amplify the ones that resonate. The writers provide the proof; lettercraft provides the platform.",
+        "channels": [
+          "X/Twitter",
+          "Discord (existing beta community)"
+        ],
+        "asset_types": [
+          "x_post"
+        ],
+        "hook": "1,100 writers are publishing technical newsletters in Markdown. What are they shipping?",
+        "sample_copy": {
+          "headline": "What have you shipped with lettercraft that you couldn't ship cleanly before?",
+          "body": "We have 1,100 writers in beta publishing newsletters about code. We want to know what you've built. Share a post you're proud of — a syntax-highlighted tutorial, a code walkthrough, a technical deep-dive that actually rendered correctly in your readers' inboxes. Tag us or drop it in Discord. We'll amplify the ones that show what's possible when your tools get out of the way.",
+          "cta": "Join the beta and start writing — lettercraft.dev"
+        },
+        "assets_needed": [
+          "X post inviting beta writers to share",
+          "Discord announcement copy",
+          "Simple curation process for selecting posts to amplify",
+          "Reply templates for engaging with shared posts"
+        ],
+        "effort": "small",
+        "success_metric": "Number of public posts from beta writers mentioning lettercraft within two weeks",
+        "why_on_brand": "Uses the real proof point (1,100 beta writers) without inventing testimonials, and keeps the plainspoken, developer-native voice — letting the community speak rather than the brand"
+      }
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "All proof points used are from APP_PROFILE.proof_points. No numeric claims invented. Campaigns are distinct by channel and mechanic. Voice matches APP_PROFILE.voice (plainspoken, developer-native, anti-lock-in) throughout. BRAND_DNA provided was for beehiiv (a competitor) — lettercraft's own DNA was derived from APP_PROFILE.voice and differentiators, which is the correct source for this product's campaigns."
+    }
+  }
+}

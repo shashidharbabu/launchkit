@@ -1,0 +1,93 @@
+{
+  "output": {
+    "one_liner": "PostHog is an open-source platform for building self-driving products with product analytics, feature flags, session replay, and AI-powered insights.",
+    "description": "PostHog provides a complete suite of product development tools including analytics, feature flags, A/B testing, session replay, error tracking, and surveys. It captures user behavior and product data to power AI-driven insights and automated improvements. The platform enables teams to understand user behavior, ship features safely, and diagnose issues proactively.",
+    "category": "Product Analytics",
+    "target_user": "Product managers and engineering teams",
+    "icp": {
+      "who": "Product managers and engineering leads at tech companies",
+      "pain": "Difficulty understanding user behavior, slow feature iteration, and reactive bug fixing",
+      "current_alternatives": [
+        "Amplitude",
+        "Mixpanel",
+        "Google Analytics",
+        "LaunchDarkly",
+        "Sentry"
+      ],
+      "buying_trigger": "Need for integrated product analytics and feature delivery with AI-powered insights"
+    },
+    "differentiators": [
+      "Open-source with MIT license",
+      "Self-driving mode that automatically generates pull requests",
+      "Integrated suite replacing multiple point tools",
+      "Generous free tier with 97% of companies using it for free"
+    ],
+    "proof_points": [
+      "500,000+ teams using PostHog (from site copy)",
+      "GitHub repository with 20k+ stars (inferred from badge in README)",
+      "Transparent pricing with 97% of companies paying $0 (from site copy)",
+      "Demo video available on homepage (from README)"
+    ],
+    "tech_stack": [
+      "JavaScript",
+      "Python",
+      "Node.js",
+      "React",
+      "Docker",
+      "PostgreSQL",
+      "ClickHouse"
+    ],
+    "pricing_current": "Usage-based pricing with generous free tiers: 1M events/month, 5K recordings/month, 1M flag requests/month, and more. Paid plans start at $0.00005/event.",
+    "voice": {
+      "tone": [
+        "transparent",
+        "technical",
+        "confident",
+        "approachable",
+        "developer-friendly"
+      ],
+      "sample_phrase": "PostHog is the open source platform for building self-driving products"
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public website with pricing",
+        "Active GitHub repository",
+        "Customer testimonials",
+        "Regular changelog updates"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence based on comprehensive documentation from both GitHub repository and live site"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview and features"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Tech stack information"
+      },
+      {
+        "source": "https://posthog.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content and value proposition"
+      },
+      {
+        "source": "https://posthog.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and free tier information"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

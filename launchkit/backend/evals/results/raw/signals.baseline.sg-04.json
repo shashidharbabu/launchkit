@@ -1,0 +1,144 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Practitionist/elluminar_web/issues/12",
+        "title_or_quote": "PostHog product analytics + creator analytics dashboards",
+        "posted_when": "2026-07-03T04:23:19Z",
+        "why_relevant": "Team building analytics dashboards without SQL.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: funnelscope auto-captures events and lets you define funnels by pointing at UI elements, no SQL needed. It's free up to 50k events/month. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread explicitly discusses implementing PostHog for product and creator analytics, indicating the team has already chosen a solution and is actively integrating it, so offering an alternative analytics tool is not genuinely helpful."
+        }
+      },
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/D-Indexer/Indexer-Backend/issues/134",
+        "title_or_quote": "[Product Readiness] Add analytics requirements",
+        "posted_when": "2026-08-14T09:11:42Z",
+        "why_relevant": "Team needs product analytics without compromising privacy.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: funnelscope captures events automatically and builds funnels via point-and-click, with all data in the EU. It's free up to 50k events/month. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.85,
+          "why": "The thread is explicitly about adding analytics requirements for a product, which aligns with the app's offering of easy-to-setup product analytics for early-stage SaaS teams."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/ukma-cs-ssdm-2025/rate-ukma/issues/620",
+        "title_or_quote": "Setup Metabase for Product Analytics",
+        "posted_when": "2026-06-20T09:45:52Z",
+        "why_relevant": "Team wants product analytics setup without complex tooling.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: funnelscope sets up auto-captured funnels in minutes via a snippet and point-and-click UI, no SQL or data hire needed. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.9,
+          "why": "The thread is about setting up Metabase for product analytics, which is a self-hosted BI tool, while the app offers hosted product analytics with auto-captured funnels, indicating a different use case and setup approach."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=41789831",
+        "title_or_quote": "How do you handle SaaS product analytics without a dedicated data team?",
+        "posted_when": "2024-10-09T16:36:15Z",
+        "why_relevant": "Founder asks how to do product analytics without data team.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: funnelscope gives working funnels in minutes via auto-capture and point-and-click setup, no data hire needed. Free up to 50k events/month. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that sets up product analytics funnels without SQL or tr...",
+      "struggling with Mixpanel setup too time-consuming for small team",
+      "alternative to PostHog that's simpler and faster to set up",
+      "tired of waiting weeks to get funnel data from Amplitude",
+      "product analytics",
+      "funnels",
+      "Mixpanel alternative",
+      "product analytics funnels setup is:issue is:open",
+      "product analytics setup without SQL is:issue is:open"
+    ],
+    "coverage_notes": "Stack Overflow queries returned no relevant results; no Reddit signals found despite community queries.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub and HN signals found; lack of Reddit and SO results limits coverage."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/D-Indexer/Indexer-Backend/issues/134",
+      "title_or_quote": "[Product Readiness] Add analytics requirements",
+      "posted_when": "2026-08-14T09:11:42Z",
+      "why_relevant": "Team needs product analytics without compromising privacy.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: funnelscope captures events automatically and builds funnels via point-and-click, with all data in the EU. It's free up to 50k events/month. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.85,
+        "why": "The thread is explicitly about adding analytics requirements for a product, which aligns with the app's offering of easy-to-setup product analytics for early-stage SaaS teams."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Practitionist/elluminar_web/issues/12",
+      "title_or_quote": "PostHog product analytics + creator analytics dashboards",
+      "posted_when": "2026-07-03T04:23:19Z",
+      "why_relevant": "Team building analytics dashboards without SQL.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: funnelscope auto-captures events and lets you define funnels by pointing at UI elements, no SQL needed. It's free up to 50k events/month. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread explicitly discusses implementing PostHog for product and creator analytics, indicating the team has already chosen a solution and is actively integrating it, so offering an alternative analytics tool is not genuinely helpful."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/ukma-cs-ssdm-2025/rate-ukma/issues/620",
+      "title_or_quote": "Setup Metabase for Product Analytics",
+      "posted_when": "2026-06-20T09:45:52Z",
+      "why_relevant": "Team wants product analytics setup without complex tooling.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: funnelscope sets up auto-captured funnels in minutes via a snippet and point-and-click UI, no SQL or data hire needed. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.9,
+        "why": "The thread is about setting up Metabase for product analytics, which is a self-hosted BI tool, while the app offers hosted product analytics with auto-captured funnels, indicating a different use case and setup approach."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=41789831",
+      "title_or_quote": "How do you handle SaaS product analytics without a dedicated data team?",
+      "posted_when": "2024-10-09T16:36:15Z",
+      "why_relevant": "Founder asks how to do product analytics without data team.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: funnelscope gives working funnels in minutes via auto-capture and point-and-click setup, no data hire needed. Free up to 50k events/month. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

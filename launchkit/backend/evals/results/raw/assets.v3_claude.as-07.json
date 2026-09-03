@@ -1,0 +1,12 @@
+{
+  "output": {
+    "title": "I built a terminal diff viewer in Rust — side-by-side, word-level highlighting, renders a 10k-line diff in 38ms",
+    "body": "I got tired of squinting at git's default pager on monorepo PRs. delta and difftastic are both good, but I wanted true side-by-side columns in the terminal with word-level (not just line-level) highlighting, and I wanted it to stay fast on large diffs without misaligning.\n\nSo I wrote termdiff — a single static binary that replaces your pager. Drop it into core.pager or a git alias and it just works. No config file required.\n\nWhat it does:\n- Side-by-side view with word-level change highlighting\n- Hunk navigation via single keystrokes\n- Renders a 10,000-line diff in 38ms on an M1 MacBook Air (benchmark is in the README)\n- Ships as one static binary; packaged in Homebrew core\n\nIt's MIT-licensed and has picked up 4,200 GitHub stars in its first year, which I'm grateful for — but stars don't tell me what's actually broken or missing.\n\nHonest gaps I know about: there's no demo GIF on the site yet, I haven't documented Windows Terminal behavior, and there's no side-by-side comparison page against delta or difftastic.\n\nIf you live in the terminal and review diffs daily, I'd genuinely like to know what doesn't work for your setup. Feedback on edge cases — wide diffs, binary files, merge conflicts — especially useful.\n\n{APP_URL}\n\n(I'm the builder.)",
+    "suggested_flair": "Project / Tool",
+    "warnings": [
+      "r/commandline generally welcomes genuine builder posts but is sensitive to self-promotion that reads as marketing. The post discloses the builder relationship and leads with honest limitations — keep any follow-up comments equally candid.",
+      "Avoid posting the same content to multiple subreddits simultaneously; r/commandline moderators may check post history.",
+      "The 38ms benchmark is self-reported from the README on an M1 MacBook Air — be prepared to share methodology if asked, as HN/Reddit engineers will probe it."
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "output": {
+    "title": "Show HN: schemaguard – TypeScript runtime validators compiled from your existing types, no separate schemas",
+    "body": "I got tired of maintaining Zod schemas that slowly drifted away from the TypeScript interfaces they were supposed to mirror. schemaguard is a compiler plugin (esbuild and Vite today, Webpack still open) that reads your existing type declarations at build time using ts-morph and emits tiny, fast runtime validators. You keep one source of truth: the types you already wrote.\n\nHow it works: the plugin walks your TypeScript AST at build time, generates validator functions for annotated types, and tree-shakes everything else. The runtime core is 2.1 kB gzipped. On the benchmark suite in the repo it validates roughly 1M objects/sec versus ~180k/sec for an equivalent Zod schema — about 5.5x throughput on the same payloads.\n\nHonest limitations: this is v0.4.x alpha, the API has broken between minor versions and will again, there is no documentation site yet (README only), no migration guide from Zod, and Webpack support is not done. I would not call it production-stable, though a few seed-stage teams are using it and named in the README.\n\nLooking for feedback on: the plugin API surface, edge cases in complex generic types, and whether the esbuild integration feels ergonomic. Repo and npm package are linked. {APP_URL}",
+    "warnings": [
+      "Alpha software with unstable API — be explicit about this in any HN comment thread or risk credibility damage.",
+      "Production adoption claim rests on README statements; if HN users ask for details, be prepared to share or soften the claim.",
+      "No docs site may draw criticism; acknowledge it proactively in comments.",
+      "Typia is a direct competitor with similar compile-time approach — HN will ask how schemaguard differs; prepare a clear answer."
+    ]
+  }
+}

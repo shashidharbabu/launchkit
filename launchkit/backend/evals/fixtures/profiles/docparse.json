@@ -1,0 +1,59 @@
+{
+  "one_liner": "Document parsing API that turns invoices, receipts, and purchase orders into clean JSON at 99.2% field accuracy.",
+  "description": "DocParse is a layout-aware document parsing API for financial operations documents. It extracts line items, totals, tax fields, and vendor data from invoices, receipts, and purchase orders into structured JSON, with per-field confidence scores and an optional human-review fallback below a configurable threshold. Designed for AP automation and ERP integration workloads at volume.",
+  "category": "Niche SaaS / API Service",
+  "target_user": "Engineering teams building AP automation and back-office document workflows",
+  "icp": {
+    "who": "Engineers at fintechs, ERPs, and AP-automation vendors processing 10k-10M documents a month",
+    "pain": "Generic OCR breaks on layout variety, and cloud-vendor document AI needs weeks of tuning per document type to reach production accuracy",
+    "current_alternatives": [
+      "AWS Textract",
+      "Google Document AI",
+      "Rossum",
+      "Unstructured"
+    ],
+    "buying_trigger": "An AP-automation feature commitment with an accuracy SLA that in-house OCR pipelines keep missing"
+  },
+  "differentiators": [
+    "99.2% field-level accuracy on a 5,000-document invoice benchmark, methodology published",
+    "Per-field confidence scores with human-in-the-loop fallback below your threshold",
+    "p95 latency of 1.8 seconds per page at any volume tier"
+  ],
+  "proof_points": [
+    "99.2% field-level accuracy on the published 5,000-invoice benchmark",
+    "p95 latency of 1.8s per page, tracked on a public metrics page",
+    "SOC 2 Type II audit in progress; Type I report available under NDA"
+  ],
+  "tech_stack": [
+    "Python",
+    "PyTorch",
+    "FastAPI",
+    "Kubernetes"
+  ],
+  "pricing_current": "usage-based ($0.01/page with volume tiers; 500 free pages)",
+  "voice": {
+    "tone": [
+      "precise",
+      "assured",
+      "formal"
+    ],
+    "sample_phrase": "Documents in. Decisions out. 99.2% of fields, exactly right."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Production API with published SLA",
+      "Public benchmark and metrics pages",
+      "SOC 2 program underway"
+    ]
+  },
+  "gaps": [
+    "No named customer logos yet",
+    "Benchmark covers invoices only, not receipts or POs",
+    "No EU data residency option yet"
+  ],
+  "confidence": {
+    "overall": 0.85,
+    "notes": "Accuracy and latency claims come with published methodology, which is rare in the category. Customer proof is thin."
+  }
+}

@@ -1,0 +1,41 @@
+# Launch Kit
+
+> Go-to-market in a box for app publishers. Launch Kit turns a shipped app into a signed launch plan: it reads your repo and live site, recommends pricing against real competitors, rewrites your store listing, ranks the venues where your app should launch, writes platform-native posts, finds people publicly asking for what you built, and attributes every signup to the venue that produced it.
+
+Launch Kit is made by RocketRide (https://rocketride.ai) for builders who have shipped an app and now have to market it. It is **assisted, never autonomous**: it drafts, a human approves, and nothing publishes on its own.
+
+## What it produces
+
+- **App profile** — who the app is for, why it is different, what can be proved. Drafted from the repo and the live site, with every source listed and marked verified or not.
+- **Pricing recommendation** — tiers chosen against competitors' real, scraped pricing pages.
+- **Store listing** — tagline and description rewritten around the approved differentiators.
+- **Ranked launch venues** — the subreddits, directories and communities where this specific app should launch, each with its posting rules and submission link.
+- **Platform-native posts** — Reddit that reads like Reddit, a Show HN that survives Hacker News, plus Product Hunt, X, LinkedIn, newsletter pitches and a demo video script.
+- **Reply queue** — public threads where people are asking for what you built, each verified before it is shown. Empty when nobody is asking; it says so instead of inventing demand.
+- **Launch plan** — approved posts across selected venues in sequence, each with a tracked link, and signup attribution after liftoff.
+
+## The procedure (six stages, three gates)
+
+1. **Profile** — reads repo + site, drafts the profile. *Gate 1: you approve it; nothing downstream runs until you do.*
+2. **Commercial** — competitor pricing → tiers; store listing rewrite.
+3. **Assets** — one native post per venue, in your voice. *Gate 2: you approve each post.*
+4. **Targets** — ranked venues with each venue's rules. *Gate 3: you tick the ones that make the plan.*
+5. **Signals** — verified public threads asking for what you built, with drafted replies.
+6. **Plan** — the sequenced launch, tracked links, attribution.
+
+## Questions it answers
+
+- What is a go-to-market plan for an app? Who it is for, what it costs, where it launches, what gets posted in each place.
+- How do I launch an app I just published? Profile, price, choose venues, write one native post per venue, post over several days — in that order.
+- Where should I launch my app? Niche venues where your users already ask for what you built. Five right venues beat fifty.
+- Does it post for me? No. You approve and post yourself.
+- How do I know which channel produced signups? Per-venue tracked links attribute each signup to its venue.
+- What if nobody is asking for my app yet? The signals queue comes back empty and says so.
+
+## Links
+
+- [Launch Kit](https://launchkit.rocketride.ai): the product and the six-stage procedure
+- [The procedure](https://launchkit.rocketride.ai/#procedure): the six stages and three approval gates
+- [Questions, answered](https://launchkit.rocketride.ai/#questions): FAQ
+- [RocketRide](https://rocketride.ai): the AI pipeline runtime Launch Kit is built on
+- [Full text for models](https://launchkit.rocketride.ai/llms-full.txt)

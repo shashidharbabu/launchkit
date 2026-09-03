@@ -1,0 +1,178 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/FRIKKern/barkpark/issues/11595",
+        "title_or_quote": "code_block_html escapes the whole value into one pre — no lang, no highlight, no...",
+        "posted_when": "2026-08-12T18:47:01Z",
+        "why_relevant": "User struggles with code blocks losing syntax highlighting in emails.",
+        "intent_strength": "high",
+        "drafted_reply": "Rendering code blocks with proper syntax highlighting in email is tough due to limited HTML/CSS support. One approach is using inlined CSS with fallbacks and testing across clients. I'm building a newsletter tool called lettercraft that handles this automatically — posts are Markdown in Git, and code renders correctly everywhere. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub issue about implementing line-emphasis ranges in code block rendering across web, TUI, and email surfaces within a specific codebase — it is a software engineering task, not a request for a newsletter platform."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/anthropics/claude-code/issues/77920",
+        "title_or_quote": "[BUG] Markdown code block syntax highlighting uses basic ANSI colors instead of...",
+        "posted_when": "2026-07-15T19:40:49Z",
+        "why_relevant": "Direct complaint about broken syntax highlighting in code blocks for email.",
+        "intent_strength": "high",
+        "drafted_reply": "Email clients often strip out advanced styling, forcing syntax highlighters to fall back to basic ANSI colors. A robust solution uses pre-rendered HTML with broad client compatibility. I built lettercraft, a developer newsletter tool that ensures code blocks render correctly across all major email clients using tested, inlined styles. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a bug report about Claude Code's terminal markdown renderer using ANSI colors instead of true color in fenced code blocks — a CLI rendering issue unrelated to newsletter platforms or email code block formatting."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/awdeorio/mailmerge/issues/175",
+        "title_or_quote": "Feature request: allow configuring Markdown extensions",
+        "posted_when": "2026-07-09T06:10:58Z",
+        "why_relevant": "User wants better Markdown handling, including code formatting in emails.",
+        "intent_strength": "medium",
+        "drafted_reply": "Configurable Markdown extensions can help tailor rendering for different outputs, especially email. For reliable code block formatting, combining custom extensions with pre-rendered syntax highlighting works well. I created lettercraft, which uses Markdown in Git and ensures code renders correctly in every email client. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is a feature request for the mailmerge CLI tool to support configurable Python-Markdown extensions — a code contribution/configuration issue, not a search for a newsletter platform."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=43231964",
+        "title_or_quote": "Ask HN: Where are the good Markdown to PDF tools (that meet these requirements)?",
+        "posted_when": "2025-03-02T16:18:44Z",
+        "why_relevant": "User converting Markdown to PDF implies need for reliable code block rendering.",
+        "intent_strength": "medium",
+        "drafted_reply": "If you're converting Markdown with code blocks to PDF, consider using Pandoc with a syntax-highlighting theme or a headless browser to render HTML first. For email delivery, similar rendering challenges apply. I built lettercraft, a newsletter tool that ensures code blocks render perfectly across email clients using Git-backed Markdown. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "forum",
+        "url": "https://stackoverflow.com/questions/34180355/pandoc-syntax-highlighting-in-pdf-not-working",
+        "title_or_quote": "Pandoc Syntax Highlighting in PDF not working",
+        "posted_when": "2015-12-09T15:05:23Z",
+        "why_relevant": "Longstanding issue with code formatting in document conversion, related to email.",
+        "intent_strength": "low",
+        "drafted_reply": "Pandoc's syntax highlighting requires specifying a highlighting style or using --highlight-style. For email, similar principles apply but with more constraints. I built lettercraft, a newsletter platform that handles syntax highlighting reliably by pre-rendering code blocks for email clients. I'm the builder. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is about a Pandoc LaTeX/PDF compilation error with the Shaded environment undefined — a local toolchain problem completely unrelated to newsletter platforms or email rendering."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that renders code blocks correctly in email newsletters",
+      "struggling with code blocks getting mangled in Substack emails",
+      "site:reddit.com r/webdev alternative to beehiiv for technical newsletters",
+      "tired of fighting Substack editor for code formatting in newsletters",
+      "site:reddit.com r/Blogging how do you handle code samples in developer newsletters",
+      "site:reddit.com/r/webdev code blocks mangled in email newsletter",
+      "site:reddit.com/r/programming syntax highlighting broken in Substack",
+      "site:reddit.com/r/Blogging markdown email newsletter formatting issues",
+      "code blocks email",
+      "syntax highlighting newsletter",
+      "markdown formatting",
+      "code blocks email is:issue is:open",
+      "syntax highlighting markdown email is:issue is:open",
+      "q=code+blocks+email&tags=ask_hn"
+    ],
+    "coverage_notes": "No relevant Reddit threads found; queries returned no results. HN and GitHub provided most signals.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "GitHub and StackOverflow yielded strong signals. Reddit returned no results, limiting community coverage."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/FRIKKern/barkpark/issues/11595",
+      "title_or_quote": "code_block_html escapes the whole value into one pre — no lang, no highlight, no...",
+      "posted_when": "2026-08-12T18:47:01Z",
+      "why_relevant": "User struggles with code blocks losing syntax highlighting in emails.",
+      "intent_strength": "high",
+      "drafted_reply": "Rendering code blocks with proper syntax highlighting in email is tough due to limited HTML/CSS support. One approach is using inlined CSS with fallbacks and testing across clients. I'm building a newsletter tool called lettercraft that handles this automatically — posts are Markdown in Git, and code renders correctly everywhere. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub issue about implementing line-emphasis ranges in code block rendering across web, TUI, and email surfaces within a specific codebase — it is a software engineering task, not a request for a newsletter platform."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/anthropics/claude-code/issues/77920",
+      "title_or_quote": "[BUG] Markdown code block syntax highlighting uses basic ANSI colors instead of...",
+      "posted_when": "2026-07-15T19:40:49Z",
+      "why_relevant": "Direct complaint about broken syntax highlighting in code blocks for email.",
+      "intent_strength": "high",
+      "drafted_reply": "Email clients often strip out advanced styling, forcing syntax highlighters to fall back to basic ANSI colors. A robust solution uses pre-rendered HTML with broad client compatibility. I built lettercraft, a developer newsletter tool that ensures code blocks render correctly across all major email clients using tested, inlined styles. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a bug report about Claude Code's terminal markdown renderer using ANSI colors instead of true color in fenced code blocks — a CLI rendering issue unrelated to newsletter platforms or email code block formatting."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/awdeorio/mailmerge/issues/175",
+      "title_or_quote": "Feature request: allow configuring Markdown extensions",
+      "posted_when": "2026-07-09T06:10:58Z",
+      "why_relevant": "User wants better Markdown handling, including code formatting in emails.",
+      "intent_strength": "medium",
+      "drafted_reply": "Configurable Markdown extensions can help tailor rendering for different outputs, especially email. For reliable code block formatting, combining custom extensions with pre-rendered syntax highlighting works well. I created lettercraft, which uses Markdown in Git and ensures code renders correctly in every email client. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is a feature request for the mailmerge CLI tool to support configurable Python-Markdown extensions — a code contribution/configuration issue, not a search for a newsletter platform."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=43231964",
+      "title_or_quote": "Ask HN: Where are the good Markdown to PDF tools (that meet these requirements)?",
+      "posted_when": "2025-03-02T16:18:44Z",
+      "why_relevant": "User converting Markdown to PDF implies need for reliable code block rendering.",
+      "intent_strength": "medium",
+      "drafted_reply": "If you're converting Markdown with code blocks to PDF, consider using Pandoc with a syntax-highlighting theme or a headless browser to render HTML first. For email delivery, similar rendering challenges apply. I built lettercraft, a newsletter tool that ensures code blocks render perfectly across email clients using Git-backed Markdown. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "forum",
+      "url": "https://stackoverflow.com/questions/34180355/pandoc-syntax-highlighting-in-pdf-not-working",
+      "title_or_quote": "Pandoc Syntax Highlighting in PDF not working",
+      "posted_when": "2015-12-09T15:05:23Z",
+      "why_relevant": "Longstanding issue with code formatting in document conversion, related to email.",
+      "intent_strength": "low",
+      "drafted_reply": "Pandoc's syntax highlighting requires specifying a highlighting style or using --highlight-style. For email, similar principles apply but with more constraints. I built lettercraft, a newsletter platform that handles syntax highlighting reliably by pre-rendering code blocks for email clients. I'm the builder. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is about a Pandoc LaTeX/PDF compilation error with the Shaded environment undefined — a local toolchain problem completely unrelated to newsletter platforms or email rendering."
+      }
+    }
+  ]
+}

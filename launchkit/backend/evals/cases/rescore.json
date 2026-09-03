@@ -1,0 +1,242 @@
+[
+  {
+    "id": "rs-01",
+    "profile_ref": "termdiff",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=36159270",
+      "title_or_quote": "Show HN: JuxtaCode – native Git diff tool for macOS",
+      "why_relevant": "A Show HN for a git diff tool draws exactly the audience actively evaluating diff tooling that termdiff serves."
+    },
+    "label": "relevant",
+    "label_why": "The thread is a live discussion among developers comparing git diff tools, which is precisely the need termdiff addresses."
+  },
+  {
+    "id": "rs-02",
+    "profile_ref": "pingdeck",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=490114",
+      "title_or_quote": "Ask HN: Know of any good server uptime monitoring tools?",
+      "why_relevant": "Someone is directly asking HN for uptime monitoring tool recommendations."
+    },
+    "label": "relevant",
+    "label_why": "An explicit request for uptime monitoring recommendations is a direct expression of the need pingdeck solves."
+  },
+  {
+    "id": "rs-03",
+    "profile_ref": "togglr",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=41054800",
+      "title_or_quote": "Ask HN: What feature flags platform do you use?",
+      "why_relevant": "Engineers comparing feature flag platforms are in-market for exactly what togglr sells."
+    },
+    "label": "relevant",
+    "label_why": "The asker is surveying feature-flag platforms, which is a direct buying-stage conversation for a feature-flag product."
+  },
+  {
+    "id": "rs-04",
+    "profile_ref": "lettercraft",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=44657201",
+      "title_or_quote": "No-bullshit, essential newsletter platform?",
+      "why_relevant": "The asker wants a minimal newsletter platform without platform bloat — lettercraft's exact pitch."
+    },
+    "label": "relevant",
+    "label_why": "A request for a minimal, no-nonsense newsletter platform matches lettercraft's anti-bloat, own-your-content positioning."
+  },
+  {
+    "id": "rs-05",
+    "profile_ref": "stackbuilt",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=32339641",
+      "title_or_quote": "Show HN: Extensible OSS Retool Alternative",
+      "why_relevant": "The comment thread on a Retool-alternative launch is full of people weighing self-hostable internal tool builders."
+    },
+    "label": "relevant",
+    "label_why": "The thread's audience is actively comparing open-source Retool alternatives, the exact category stackbuilt competes in."
+  },
+  {
+    "id": "rs-06",
+    "profile_ref": "docparse",
+    "signal": {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/28532770",
+      "title_or_quote": "Extract / Identify Tables from PDF python",
+      "why_relevant": "A developer trying to extract tabular data from PDFs in code is docparse's core use case."
+    },
+    "label": "relevant",
+    "label_why": "The asker is hand-rolling PDF table extraction, the exact problem docparse's API productizes."
+  },
+  {
+    "id": "rs-07",
+    "profile_ref": "streakly",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=33842599",
+      "title_or_quote": "Ask HN: What do you want in a habit tracker?",
+      "why_relevant": "A thread collecting unmet needs in habit trackers, including frustration with streak-breaking mechanics."
+    },
+    "label": "relevant",
+    "label_why": "People articulating what existing habit trackers get wrong is direct demand evidence for Streakly's forgiveness-first design."
+  },
+  {
+    "id": "rs-08",
+    "profile_ref": "depsentry",
+    "signal": {
+      "platform": "github",
+      "url": "https://github.com/dominictarr/event-stream/issues/116",
+      "title_or_quote": "I don't know what to say. (event-stream/flatmap-stream supply-chain attack disclosure)",
+      "why_relevant": "The canonical supply-chain attack discussion — hundreds of developers realizing CVE feeds gave no warning."
+    },
+    "label": "relevant",
+    "label_why": "The thread is the archetypal incident depsentry exists to catch, with participants explicitly asking how such attacks could be detected earlier."
+  },
+  {
+    "id": "rs-09",
+    "profile_ref": "schemaguard",
+    "signal": {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/14425568",
+      "title_or_quote": "Interface type check with Typescript",
+      "why_relevant": "A heavily-upvoted question about checking TypeScript interfaces at runtime — the gap schemaguard fills."
+    },
+    "label": "relevant",
+    "label_why": "The question is literally about validating data against TypeScript types at runtime, which is schemaguard's entire purpose."
+  },
+  {
+    "id": "rs-10",
+    "profile_ref": "pingdeck",
+    "signal": {
+      "platform": "github",
+      "url": "https://github.com/louislam/uptime-kuma/issues/118",
+      "title_or_quote": "API functionality (feature request on Uptime Kuma)",
+      "why_relevant": "Dozens of users asking a competitor for a management API — pingdeck's headline differentiator."
+    },
+    "label": "relevant",
+    "label_why": "Users requesting API-driven monitor management from a competitor are underserved prospects for API-first pingdeck."
+  },
+  {
+    "id": "rs-11",
+    "profile_ref": "quietpage",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=200603",
+      "title_or_quote": "Barriers and journaling filesystems",
+      "why_relevant": "Contains the keyword 'journaling'."
+    },
+    "label": "irrelevant",
+    "label_why": "This is about filesystem write-journaling (ext3 barriers), not personal journaling — pure keyword collision."
+  },
+  {
+    "id": "rs-12",
+    "profile_ref": "termdiff",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=39697520",
+      "title_or_quote": "The Myers diff algorithm: part 1",
+      "why_relevant": "High-scoring thread about diffs."
+    },
+    "label": "irrelevant",
+    "label_why": "The thread is an algorithms deep-dive for people implementing diff, not developers looking for a better diff viewing tool."
+  },
+  {
+    "id": "rs-13",
+    "profile_ref": "streakly",
+    "signal": {
+      "platform": "github",
+      "url": "https://github.com/anuraghazra/github-readme-stats/issues/3209",
+      "title_or_quote": "Feature Request: Designing a new stat card for showing GitHub streak",
+      "why_relevant": "Active feature request mentioning streaks."
+    },
+    "label": "irrelevant",
+    "label_why": "The 'streak' here is GitHub commit activity on a profile README card, nothing to do with personal habit tracking."
+  },
+  {
+    "id": "rs-14",
+    "profile_ref": "togglr",
+    "signal": {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/8447",
+      "title_or_quote": "What does the [Flags] Enum Attribute mean in C#?",
+      "why_relevant": "Very high-traffic question mentioning flags."
+    },
+    "label": "irrelevant",
+    "label_why": "This is about C# bitwise enum flags, a language feature entirely unrelated to feature-flag release management."
+  },
+  {
+    "id": "rs-15",
+    "profile_ref": "podclip",
+    "signal": {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/18444194",
+      "title_or_quote": "Cutting multimedia files based on start and end time using ffmpeg",
+      "why_relevant": "Discusses cutting clips from audio/video files."
+    },
+    "label": "irrelevant",
+    "label_why": "The asker is a developer scripting ffmpeg cuts, not a podcaster seeking automated social clip selection — wrong persona and job."
+  },
+  {
+    "id": "rs-16",
+    "profile_ref": "pipewright",
+    "signal": {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/44099851",
+      "title_or_quote": "How do I pass variables between stages in a declarative Jenkins pipeline?",
+      "why_relevant": "Popular question about pipelines."
+    },
+    "label": "irrelevant",
+    "label_why": "Jenkins CI/CD pipelines share only the word 'pipeline' with ELT data pipelines; this asker has no data-integration need."
+  },
+  {
+    "id": "rs-17",
+    "profile_ref": "cartnudge",
+    "signal": {
+      "platform": "github",
+      "url": "https://github.com/medusajs/medusa/issues/6331",
+      "title_or_quote": "You cannot complete a cart without a payment session.",
+      "why_relevant": "High-engagement issue about carts in an e-commerce framework."
+    },
+    "label": "irrelevant",
+    "label_why": "This is a developer debugging a Medusa framework checkout bug, not a Shopify merchant who could install an upsell app."
+  },
+  {
+    "id": "rs-18",
+    "profile_ref": "pingdeck",
+    "signal": {
+      "platform": "github",
+      "url": "https://github.com/louislam/uptime-kuma/issues/275",
+      "title_or_quote": "Lots of 'timeout of 48000ms exceeded' during the day, but the site is still up?",
+      "why_relevant": "Uptime monitoring discussion in a competitor's tracker."
+    },
+    "label": "irrelevant",
+    "label_why": "This is a self-hosting user troubleshooting network timeouts in their own setup — a support thread, not purchase intent or unmet need."
+  },
+  {
+    "id": "rs-19",
+    "profile_ref": "gitwhisper",
+    "signal": {
+      "platform": "github",
+      "url": "https://github.com/cli/cli/issues/1023",
+      "title_or_quote": "Allow editing the commit message when squash-merging a PR",
+      "why_relevant": "Well-commented issue about commit messages."
+    },
+    "label": "irrelevant",
+    "label_why": "The request is about GitHub CLI merge UX for editing messages, not about generating commit messages — adjacent keyword, different job."
+  },
+  {
+    "id": "rs-20",
+    "profile_ref": "stackbuilt",
+    "signal": {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=18874707",
+      "title_or_quote": "Ask HN: Which Wiki or internal documentation tools do you use?",
+      "why_relevant": "Popular Ask HN about internal tools."
+    },
+    "label": "irrelevant",
+    "label_why": "The asker wants wiki and documentation software; 'internal tools' here does not mean database admin-panel builders like stackbuilt."
+  }
+]

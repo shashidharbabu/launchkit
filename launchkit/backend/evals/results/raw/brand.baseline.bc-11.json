@@ -1,0 +1,121 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Diff at Warp Speed",
+        "objective": "awareness — introduce termdiff to engineers frustrated with slow diff tools",
+        "big_idea": "Highlight termdiff's 38ms rendering speed on massive diffs as a game-changer for terminal-first developers. Position it as the inevitable upgrade for those who live in git log -p and monorepos.",
+        "channels": [
+          "Reddit (r/programming, r/rust)",
+          "X (formerly Twitter)",
+          "Hacker News"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post",
+          "show_hn"
+        ],
+        "hook": "Your diffs, side by side, in 38 milliseconds.",
+        "sample_copy": {
+          "headline": "termdiff: Side-by-side diffs in 38ms",
+          "body": "Renders 10k-line diffs instantly. Zero config. Static binary. Drops into your existing git aliases. Built in Rust for speed you can measure.",
+          "cta": "See the benchmark"
+        },
+        "assets_needed": [
+          "Benchmark GIF (terminal showing 38ms render)",
+          "Short X thread explaining the speed win"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of GitHub stars gained in one week",
+        "why_on_brand": "Uses terse, precise language and real metrics from the brand voice, focusing on measurable latency and zero-config deployment."
+      },
+      {
+        "name": "Drop-In Upgrade",
+        "objective": "signups — convert users of delta and diff-so-fancy to termdiff",
+        "big_idea": "Position termdiff as the drop-in replacement for existing diff tools that doesn’t require retraining or config changes — just faster, clearer output.",
+        "channels": [
+          "GitHub Discussions",
+          "Reddit (r/git)",
+          "Newsletter (Changelog, Rust Weekly)"
+        ],
+        "asset_types": [
+          "newsletter_pitch",
+          "reddit_post"
+        ],
+        "hook": "Same git aliases. Same workflow. Just better diffs.",
+        "sample_copy": {
+          "headline": "Upgrade your pager without changing a thing",
+          "body": "termdiff respects core.pager and git aliases. No config needed. Just replace your current pager and get side-by-side, word-level highlighting today.",
+          "cta": "Install via Homebrew"
+        },
+        "assets_needed": [
+          "Side-by-side comparison screenshot (termdiff vs delta)",
+          "Homebrew install command snippet"
+        ],
+        "effort": "small",
+        "success_metric": "Number of pull requests opened to replace delta with termdiff in public dotfiles",
+        "why_on_brand": "Uses the brand’s precise tone and vocabulary like 'zero-config' and 'core.pager', while avoiding hype and focusing on real workflow integration."
+      },
+      {
+        "name": "Hunk Hero",
+        "objective": "community — engage OSS maintainers and senior engineers who review large PRs daily",
+        "big_idea": "Celebrate the unsung heroes of code review with a campaign that speaks their language — hunks, latency, and terminal fidelity.",
+        "channels": [
+          "LinkedIn",
+          "Hacker News",
+          "X"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "x_post",
+          "show_hn"
+        ],
+        "hook": "You review hunks all day. Shouldn’t your tool keep up?",
+        "sample_copy": {
+          "headline": "For the maintainers who read every hunk",
+          "body": "termdiff gives you word-level clarity and instant rendering so you can move faster. No setup. No noise. Just diffs, side by side, in 38ms.",
+          "cta": "Join the 4,200+ engineers already using it"
+        },
+        "assets_needed": [
+          "Testimonial quote from an OSS maintainer (can be self-submitted)",
+          "Hacker News post with benchmark data"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of mentions in OSS maintainer dotfiles or config repos",
+        "why_on_brand": "Speaks directly to the ICP using their language like 'hunk' and 'dotfiles', and reflects the confident, engineer-to-engineer tone."
+      },
+      {
+        "name": "Static Binary Showdown",
+        "objective": "awareness — emphasize the simplicity and reliability of a single binary",
+        "big_idea": "In a world of dependency hell, termdiff ships as one file that just works — no Node, no Python, no config.",
+        "channels": [
+          "X",
+          "Reddit (r/selfhosted, r/rust)",
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post",
+          "producthunt"
+        ],
+        "hook": "One binary. No dependencies. No config. Just diffs.",
+        "sample_copy": {
+          "headline": "The diff pager that doesn’t need npm install",
+          "body": "Built in Rust. Ships as a static binary. Runs anywhere. termdiff works out of the box — no runtime, no config, no excuses.",
+          "cta": "Download and drop in"
+        },
+        "assets_needed": [
+          "Terminal demo showing binary execution",
+          "Comparison table: termdiff vs others (dependencies, install size, speed)"
+        ],
+        "effort": "large",
+        "success_metric": "Number of direct downloads from GitHub releases",
+        "why_on_brand": "Uses brand vocabulary like 'static binary' and 'zero-config', avoids hype, and sticks to factual, declarative statements in the true voice of the brand."
+      }
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "All campaigns are grounded in observed brand voice, vocabulary, and proof points. No invented claims or metrics."
+    }
+  }
+}

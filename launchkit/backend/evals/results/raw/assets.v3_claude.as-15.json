@@ -1,0 +1,12 @@
+{
+  "output": {
+    "title": "Show HN: depsentry – behavioral dependency scanner that catches supply-chain attacks before CVE disclosure",
+    "body": "depsentry watches what your dependencies do, not just what CVE databases say about them.\n\nMost scanners (Snyk, Dependabot, Socket) are disclosure-driven: they alert after a CVE is filed. Supply-chain attacks like event-stream lived in an install script and a hijacked maintainer account for weeks before any CVE existed. We wanted something that catches the behavioral signals instead.\n\nWhat it flags:\n- New or changed install scripts (preinstall/postinstall)\n- Sudden maintainer handoffs on packages you depend on\n- Typosquat-adjacent package names in your lockfile\n- Obfuscated payloads or new outbound network calls added in minor/patch versions\n\nHow it works: a Rust scanner pulls package metadata and release diffs from npm and PyPI registries, runs heuristic and AST-based checks, and posts a PR comment on the exact change that introduced the risk. It runs as a GitHub Action.\n\nRetro-test: we ran it against the event-stream/flatmap-stream incident timeline and it would have flagged the malicious version 11 days before public disclosure. That's a specific, falsifiable claim — happy to share the methodology.\n\nPerf: 1,200-dependency lockfile scans in ~40 seconds in CI.\n\nCurrent state: public beta, free for open-source repos (running on ~300 public projects now), $199/month team plan.\n\nKnown gaps: no GitLab support yet, Python coverage is newer and less battle-tested than npm, no independent benchmark against competitors.\n\nLooking for feedback on the detection heuristics, false-positive rate in real codebases, and whether the PR-comment UX is actually useful or just noise. {APP_URL}",
+    "warnings": [
+      "The retro-test claim (11 days before disclosure) is specific and should be verifiable — be prepared for HN to ask for the methodology and raw data; have it ready to share in comments.",
+      "'~300 public projects' is a soft number — if HN asks for precision, clarify it's approximate.",
+      "Do not overstate detection completeness vs. Socket; the profile explicitly notes no independent benchmark exists.",
+      "HN will likely ask about false-positive rates — have real data ready or acknowledge you don't yet have a published benchmark."
+    ]
+  }
+}

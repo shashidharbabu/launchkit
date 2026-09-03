@@ -1,0 +1,220 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Airbyte",
+        "url": "https://airbyte.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 5 independent results incl. G2 ETL category and multiple comparison lists",
+        "mentions": 5,
+        "pricing_model": "freemium + usage-based cloud + capacity-based Pro",
+        "tiers": [
+          {
+            "name": "Core",
+            "price": "Free",
+            "period": "forever",
+            "key_limits": "Self-hosted, community support only"
+          },
+          {
+            "name": "Standard",
+            "price": "Usage-based (MAR/volume)",
+            "period": "monthly",
+            "key_limits": "Cloud-hosted, 1-hr sync frequency"
+          },
+          {
+            "name": "Pro",
+            "price": "Custom (Data Workers capacity)",
+            "period": "monthly",
+            "key_limits": "15-min syncs, SSO, RBAC, multi-workspace"
+          }
+        ],
+        "source_url": "https://airbyte.com/pricing"
+      },
+      {
+        "name": "Fivetran",
+        "url": "https://www.fivetran.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 3+ independent results incl. G2 ETL category and alternativeto comparisons",
+        "mentions": 3,
+        "pricing_model": "freemium + usage-based MAR",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "monthly",
+            "key_limits": "500K MAR, 3.5K activation MAR"
+          },
+          {
+            "name": "Standard",
+            "price": "~$0.50 per 1K MAR",
+            "period": "monthly",
+            "key_limits": "700+ connectors, 15-min syncs, unlimited users"
+          },
+          {
+            "name": "Enterprise",
+            "price": "Custom",
+            "period": "monthly",
+            "key_limits": "1-min syncs, enterprise DB connectors, VPN"
+          }
+        ],
+        "source_url": "https://www.fivetran.com/pricing"
+      },
+      {
+        "name": "Meltano",
+        "url": "https://meltano.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in 3 independent results incl. direct comparison posts and open-source ELT lists",
+        "mentions": 3,
+        "pricing_model": "open-source free + managed cloud tiers (compute-hour based)",
+        "tiers": [
+          {
+            "name": "Open",
+            "price": "Free",
+            "period": "forever",
+            "key_limits": "Self-hosted, no managed infra"
+          },
+          {
+            "name": "Starter",
+            "price": "Custom (200 compute hrs/mo)",
+            "period": "monthly",
+            "key_limits": "25 workspaces, 600+ connectors, managed infra"
+          },
+          {
+            "name": "Scale",
+            "price": "Custom (5000 compute hrs/mo)",
+            "period": "monthly",
+            "key_limits": "Unlimited workspaces, dedicated account mgmt"
+          }
+        ],
+        "source_url": "https://meltano.com/pricing"
+      },
+      {
+        "name": "Stitch",
+        "url": "https://www.stitchdata.com",
+        "notability": "emerging",
+        "evidence_of_standing": "Named in 2 independent ELT comparison results",
+        "mentions": 2,
+        "pricing_model": "usage-based (rows)",
+        "tiers": [],
+        "source_url": ""
+      },
+      {
+        "name": "Hevo Data",
+        "url": "https://hevodata.com",
+        "notability": "emerging",
+        "evidence_of_standing": "Named in 2 independent ELT comparison results",
+        "mentions": 2,
+        "pricing_model": "usage-based",
+        "tiers": [],
+        "source_url": ""
+      }
+    ],
+    "rejected": [
+      {
+        "name": "dlt (dlthub)",
+        "url": "https://dlthub.com",
+        "why": "Open-source Python library, no commercial pricing page of its own"
+      },
+      {
+        "name": "Talend",
+        "url": "https://www.talend.com",
+        "why": "Single mention only, niche; not a recognised buyer comparison"
+      },
+      {
+        "name": "Matillion",
+        "url": "https://www.matillion.com",
+        "why": "Single mention only, niche; enterprise-only, different buyer segment"
+      },
+      {
+        "name": "AWS Glue",
+        "url": "https://aws.amazon.com/glue",
+        "why": "Single mention, niche; cloud-native infra, not a direct SaaS competitor"
+      },
+      {
+        "name": "atlan.com/elt-tools",
+        "url": "https://atlan.com/elt-tools/",
+        "why": "Listicle/directory page, not a product"
+      },
+      {
+        "name": "domo.com fivetran-alternatives",
+        "url": "https://www.domo.com/learn/article/fivetran-alternatives",
+        "why": "Vendor comparison page, not a product"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium (14-day trial) + flat-rate subscription",
+      "tiers": [
+        {
+          "name": "Trial",
+          "price_usd_month": 0,
+          "who_its_for": "Engineers evaluating before committing",
+          "includes": [
+            "Full feature access",
+            "All 60+ connectors",
+            "VPC deployment",
+            "14 days"
+          ],
+          "rationale": "Removes friction; lets engineers prove value before finance sees an invoice"
+        },
+        {
+          "name": "Solo",
+          "price_usd_month": 99,
+          "who_its_for": "1-2 person data team, single warehouse",
+          "includes": [
+            "Unlimited rows",
+            "60+ connectors",
+            "VPC deployment",
+            "Python pipelines in your repo",
+            "Email support"
+          ],
+          "rationale": "Fivetran median connector costs $17-424/mo; 10 connectors easily hits $500+. $99 flat is a clear win."
+        },
+        {
+          "name": "Team",
+          "price_usd_month": 299,
+          "who_its_for": "Growing data team, multiple warehouses or environments",
+          "includes": [
+            "Everything in Solo",
+            "Multiple warehouse targets",
+            "Priority support",
+            "SSO"
+          ],
+          "rationale": "Captures teams that outgrow solo but still want flat pricing; anchors below Fivetran Enterprise"
+        },
+        {
+          "name": "Enterprise",
+          "price_usd_month": 0,
+          "who_its_for": "Companies needing SLA, audit logs, custom connectors",
+          "includes": [
+            "Custom contract",
+            "SLA guarantee",
+            "Dedicated support",
+            "Custom connectors"
+          ],
+          "rationale": "Placeholder for regulated or large customers; price on conversation"
+        }
+      ],
+      "anchor_competitors": [
+        "Fivetran",
+        "Airbyte",
+        "Meltano"
+      ],
+      "positioning_note": "$99 flat undercuts Fivetran MAR pricing by 5-20x at moderate volume; price is the story.",
+      "risks": [
+        "$99 may be too low for high-volume customers who would pay $500+ on Fivetran — consider usage ceiling or Team tier uplift",
+        "Meltano and Airbyte both offer free self-hosted tiers; pipewright must justify managed VPC value clearly",
+        "No SOC 2 blocks enterprise deals; note gap in sales conversations"
+      ]
+    },
+    "search_queries_used": [
+      "best ELT data pipeline tools comparison 2024",
+      "site:g2.com ELT data pipeline software",
+      "alternative to Fivetran data pipeline ELT tool comparison",
+      "Airbyte vs Meltano vs dlt ELT pipeline tool reddit"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "3 established competitors confirmed with scraped pricing pages. Fivetran MAR pricing examples give concrete anchors. Meltano and Airbyte cloud prices are sales-led with no public dollar amounts, so tier prices are structural only. Stitch and Hevo pricing pages not scraped due to budget limit."
+    }
+  }
+}

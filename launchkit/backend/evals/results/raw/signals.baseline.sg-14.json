@@ -1,0 +1,116 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/estimadorpt/estimador-web/issues/20",
+        "title_or_quote": "✍️ Implement git-based editorial workflow for content management",
+        "posted_when": "2025-08-28T17:45:28Z",
+        "why_relevant": "Seeks Git-based content workflow for newsletters.",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: lettercraft lets you write in Markdown, store posts in your own Git repo, and publish with a git push. Code blocks render perfectly across email clients. It's free up to 1,000 subscribers.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly seeks a git-based editorial workflow for content management using Markdown and version control, which directly aligns with the app's core functionality of storing posts in Git and publishing via git push."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/uuaisociety/uuais/issues/55",
+        "title_or_quote": "Blog content workflow: self-hosted editor, headless CMS, Medium, or email-first?",
+        "posted_when": "2026-05-28T14:56:30Z",
+        "why_relevant": "Evaluating workflows for technical newsletters.",
+        "intent_strength": "medium",
+        "drafted_reply": "For code-heavy newsletters, I built lettercraft: write in Markdown, store in your Git repo, and get syntax-highlighted code blocks in every email client. Publish via git push or web editor. Free up to 1,000 subs.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread is focused on evaluating blog content workflows and CMS options for a website, not on solving issues related to writing technical newsletters with code blocks or using Git for content storage."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=35237689",
+        "title_or_quote": "My personal blogs/newsletters are in Markdown files in a Git repo...",
+        "posted_when": "2023-03-20T19:58:07Z",
+        "why_relevant": "Describes using Git and Markdown for newsletters.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: lettercraft supports writing in Markdown, storing in your Git repo, and renders code blocks correctly in all major email clients. Publish with git push or click. Free up to 1,000 subscribers.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "alternative to Substack for code-heavy newsletters",
+      "alternative to beehiiv with Markdown and Git support",
+      "alternative to Substack with Git versioning",
+      "site:reddit.com/r/webdev \"code blocks\" \"newsletter\"",
+      "site:reddit.com/r/programming \"Markdown newsletter\" \"git\"",
+      "site:reddit.com/r/Blogging \"struggling with\" \"code formatting\"",
+      "code blocks newsletter",
+      "git markdown newsletter",
+      "Git-based newsletter publishing is:issue",
+      "newsletter code formatting email is:issue",
+      "code formatting in email newsletter"
+    ],
+    "coverage_notes": "No relevant Reddit threads found; HN results were older than 14 days except one comment thread. StackOverflow returned no results.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "GitHub issues show clear intent for Git-based newsletter tools. HN result is slightly old but still relevant. Lack of recent Reddit and StackOverflow signals lowers confidence slightly."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/estimadorpt/estimador-web/issues/20",
+      "title_or_quote": "✍️ Implement git-based editorial workflow for content management",
+      "posted_when": "2025-08-28T17:45:28Z",
+      "why_relevant": "Seeks Git-based content workflow for newsletters.",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: lettercraft lets you write in Markdown, store posts in your own Git repo, and publish with a git push. Code blocks render perfectly across email clients. It's free up to 1,000 subscribers.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly seeks a git-based editorial workflow for content management using Markdown and version control, which directly aligns with the app's core functionality of storing posts in Git and publishing via git push."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/uuaisociety/uuais/issues/55",
+      "title_or_quote": "Blog content workflow: self-hosted editor, headless CMS, Medium, or email-first?",
+      "posted_when": "2026-05-28T14:56:30Z",
+      "why_relevant": "Evaluating workflows for technical newsletters.",
+      "intent_strength": "medium",
+      "drafted_reply": "For code-heavy newsletters, I built lettercraft: write in Markdown, store in your Git repo, and get syntax-highlighted code blocks in every email client. Publish via git push or web editor. Free up to 1,000 subs.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread is focused on evaluating blog content workflows and CMS options for a website, not on solving issues related to writing technical newsletters with code blocks or using Git for content storage."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=35237689",
+      "title_or_quote": "My personal blogs/newsletters are in Markdown files in a Git repo...",
+      "posted_when": "2023-03-20T19:58:07Z",
+      "why_relevant": "Describes using Git and Markdown for newsletters.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: lettercraft supports writing in Markdown, storing in your Git repo, and renders code blocks correctly in all major email clients. Publish with git push or click. Free up to 1,000 subscribers.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

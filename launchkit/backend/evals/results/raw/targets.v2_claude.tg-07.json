@@ -1,0 +1,203 @@
+{
+  "output": {
+    "targets": [
+      {
+        "rank": 1,
+        "name": "Show HN",
+        "kind": "launch_platform",
+        "url": "https://news.ycombinator.com/show",
+        "submission_url": "https://news.ycombinator.com/submit",
+        "why_fit": "Python/FastAPI/pgvector stack and citation-forced RAG architecture is a technical story HN founders and engineers will scrutinize and respect.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 2,
+        "name": "Product Hunt",
+        "kind": "launch_platform",
+        "url": "https://www.producthunt.com",
+        "submission_url": "https://www.producthunt.com/posts/new",
+        "why_fit": "Launched freemium AI chatbot builder with named customer (Pixelhaven 61% deflection) and concrete proof points — strong PH story.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 3,
+        "name": "There's An AI For That",
+        "kind": "directory",
+        "url": "https://theresanaiforthat.com",
+        "submission_url": "https://theresanaiforthat.com/get-featured/",
+        "why_fit": "AI chatbot builder category with citation-forced answers is a clear differentiator for buyers searching AI support tools.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 4,
+        "name": "r/SaaS",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SaaS/",
+        "submission_url": "https://www.reddit.com/r/SaaS/submit",
+        "why_fit": "ICP is heads of support at SaaS companies; sub is for SaaS owners discussing ops and tooling — direct audience match.",
+        "rules_summary": "Promotion allowed max 1 mention or 3 links per 60 days; must disclose affiliation; content must add value. No naked links. No selling/soliciting.",
+        "rules_url": "https://old.reddit.com/r/SaaS/about/rules",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "high"
+      },
+      {
+        "rank": 5,
+        "name": "Indie Hackers",
+        "kind": "launch_platform",
+        "url": "https://www.indiehackers.com",
+        "submission_url": "https://www.indiehackers.com/new-post",
+        "why_fit": "Bootstrapped SaaS with published deflection metrics (61% Pixelhaven) and freemium pricing fits IH milestone-sharing culture.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "medium",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 6,
+        "name": "r/CustomerSuccess",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/customersuccess/",
+        "submission_url": "https://www.reddit.com/r/customersuccess/submit",
+        "why_fit": "Heads of support/CS are the exact ICP; hallucination-free escalation directly addresses their pain with deflection metrics.",
+        "rules_summary": "No self-promotion for lead gen; occasional blog post ok if you work in CS tech; follow Reddit self-promotion guidelines. No AI-generated content.",
+        "rules_url": "https://old.reddit.com/r/customersuccess/about/rules",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 7,
+        "name": "AlternativeTo",
+        "kind": "directory",
+        "url": "https://alternativeto.net",
+        "submission_url": "https://alternativeto.net/manage-item/",
+        "why_fit": "ICP already evaluates Chatbase and Intercom Fin; listing botsmith as alternative captures that comparison traffic directly.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 8,
+        "name": "SaaSHub",
+        "kind": "directory",
+        "url": "https://www.saashub.com",
+        "submission_url": "https://www.saashub.com/submit",
+        "why_fit": "Evergreen B2B SaaS directory; support chatbot category with Chatbase/Intercom Fin as named alternatives drives comparison SEO.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 9,
+        "name": "awesome-llm-apps",
+        "kind": "awesome_list",
+        "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+        "submission_url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+        "why_fit": "RAG-based support chatbot built on OpenAI API and pgvector fits the 100+ AI Agents and RAG Apps list directly.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 10,
+        "name": "Awesome-RAG",
+        "kind": "awesome_list",
+        "url": "https://github.com/Danielskry/Awesome-RAG",
+        "submission_url": "https://github.com/Danielskry/Awesome-RAG",
+        "why_fit": "botsmith is a production RAG application with pgvector and citation-forced retrieval — textbook entry for an RAG awesome list.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 11,
+        "name": "r/Chatbots",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/chatbots/",
+        "submission_url": "https://www.reddit.com/r/chatbots/submit",
+        "why_fit": "Chatbot builder with citation-forced answers and confidence-gated escalation is a technically interesting architecture for this community.",
+        "rules_summary": "No spam or excessive self-promotion; high-value projects (especially open-source) may get a pass. Modmail to check before posting.",
+        "rules_url": "https://old.reddit.com/r/chatbots/about/rules",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 12,
+        "name": "Peerlist Launchpad",
+        "kind": "launch_platform",
+        "url": "https://peerlist.io/launchpad",
+        "submission_url": "https://peerlist.io/launchpad",
+        "why_fit": "Dev-focused launch platform; Python/FastAPI/pgvector stack and technical differentiators appeal to Peerlist's builder audience.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "medium"
+      },
+      {
+        "rank": 13,
+        "name": "BetaList",
+        "kind": "launch_platform",
+        "url": "https://betalist.com",
+        "submission_url": "https://betalist.com/submit",
+        "why_fit": "Freemium tier and self-serve signup make botsmith a natural BetaList candidate for early adopters seeking no-hallucination support bots.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "low",
+        "expected_impact": "low"
+      },
+      {
+        "rank": 14,
+        "name": "r/SideProject",
+        "kind": "subreddit",
+        "url": "https://www.reddit.com/r/SideProject/",
+        "submission_url": "https://www.reddit.com/r/SideProject/submit",
+        "why_fit": "Indie SaaS with named customer metrics and freemium launch fits the side-project showcase format.",
+        "rules_summary": "not verified",
+        "rules_url": "",
+        "audience_signal": "unknown",
+        "effort": "high",
+        "expected_impact": "low"
+      }
+    ],
+    "sequencing_advice": [
+      "1. Launch Show HN first — technical RAG/citation architecture story earns credibility with founders and engineers who are the secondary ICP.",
+      "2. Follow with Product Hunt the next day — HN upvotes and comments provide social proof for the PH launch page.",
+      "3. Submit to There's An AI For That, AlternativeTo (vs Chatbase/Intercom Fin), and SaaSHub immediately after launch week for evergreen SEO.",
+      "4. Open PRs to awesome-llm-apps and Awesome-RAG — low effort, permanent inbound from developer researchers.",
+      "5. After 2 weeks of community participation, post value-first threads in r/SaaS and r/CustomerSuccess citing the Pixelhaven 61% deflection stat."
+    ],
+    "search_queries_used": [
+      "github awesome-list RAG chatbot customer support LLM",
+      "newsletter community customer success support SaaS AI chatbot helpdesk automation"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Subreddit rules verified for r/SaaS and r/CustomerSuccess; Show HN and PH rules not scraped but well-known."
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/spcsorg/daylens/issues/189",
+        "title_or_quote": "FRD — Cited answers over approved sources",
+        "posted_when": "2026-08-12T15:56:07Z",
+        "why_relevant": "Requests cited answers from sources, matching app's core feature.",
+        "intent_strength": "high",
+        "drafted_reply": "REQ-KIV-ANS-003 is the hardest one to get right in practice — most RAG pipelines will still generate a plausible-sounding answer even when retrieval confidence is low, so your acceptance criteria should include explicit tests where the approved source set contains no supporting passage and the system must return a refusal rather than a hedged answer. For REQ-KIV-ANS-002 and -004, binding citations to a specific page or section locator (not just document title) is what makes them actually inspectable and auditable. I built a support chatbot layer called botsmith ({APP_URL}) that enforces this same pattern — every answer must carry a source passage citation or it doesn't ship — which might be worth reviewing as a reference implementation for your acceptance criteria.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The thread is a formal requirements document explicitly specifying citation-forced answers, refusal when no approved source supports a claim, and inspectable source excerpts — exactly the behavior botsmith is built around."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/spcsorg/daylens/issues/225",
+        "title_or_quote": "Ask a public question and inspect citations",
+        "posted_when": "2026-08-12T15:56:57Z",
+        "why_relevant": "Directly asks for citation inspection, aligning with app's citation guardrails.",
+        "intent_strength": "high",
+        "drafted_reply": "Being able to inspect citations for public questions is key for trust and accuracy. Our tool botsmith ensures every answer includes source citations and escalates when confidence is low. I'm the builder, and I'd be happy to discuss how this could support your project. Check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.07,
+          "why": "This thread is a GitHub work-order issue for building a frontend UI component with citation inspection in a Next.js app — it is a software engineering task, not a request for a support chatbot tool."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/Abhiram-Mangde/Course-Azure-for-SREs/issues/178",
+        "title_or_quote": "Build AI Playzone Chatbot (Repo-Restricted Azure SRE Assistant)",
+        "posted_when": "2026-02-25T07:54:39Z",
+        "why_relevant": "Building a restricted chatbot aligns with app's grounded response model.",
+        "intent_strength": "medium",
+        "drafted_reply": "Creating a chatbot restricted to specific repo content is a great way to ensure accurate responses. Our tool botsmith builds support chatbots that only answer from your docs and cite sources, or escalate if unsure. I'm the builder, and you can see how it works at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub issue for building a fully local, open-source, repo-restricted RAG chatbot using Ollama and LlamaIndex — explicitly avoiding paid APIs — which is the opposite of botsmith's hosted SaaS product."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/Waref-007/Waref-Alaghbar/issues/1",
+        "title_or_quote": "AI Tutor MVP — Grounded, Ethical, Multi-Modal Learning Assistant",
+        "posted_when": "2026-01-07T01:01:14Z",
+        "why_relevant": "Seeks grounded AI responses, matching app's anti-hallucination focus.",
+        "intent_strength": "medium",
+        "drafted_reply": "A grounded AI tutor that avoids hallucinations is a critical goal. Our tool botsmith ensures every answer is backed by source material or escalates to a human. I'm the builder, and I'd love to hear how you're approaching this. You can explore botsmith at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread describes an educational AI tutor MVP with RAG and pedagogical logic for students, not a support chatbot for SaaS helpdesks — the app's target use case does not match."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that makes a support chatbot with cited sources from doc...",
+      "struggling with chatbots that hallucinate wrong answers to customer questions",
+      "tired of support bots making up answers instead of citing docs",
+      "site:reddit.com \"alternative to Chatbase\" for support chatbot with source citati...",
+      "site:reddit.com \"alternative to Intercom Fin\" that doesn't hallucinate answers",
+      "site:reddit.com/r/SaaS struggling with support chatbot hallucinations",
+      "site:reddit.com/r/LangChain alternative to Chatbase that cites sources",
+      "site:reddit.com/r/artificial tired of AI support bots making up answers",
+      "site:reddit.com/r/Entrepreneur does anyone know a tool that builds a chatbot fro...",
+      "chatbot hallucinations",
+      "source citations chatbot",
+      "support bot confidence",
+      "source+citations+support+chatbot+is:issue+is:open",
+      "prevent+chatbot+hallucinations+citations+is:issue+is:open",
+      "source+citations+support+chatbot+is:issue+is:open",
+      "prevent+chatbot+hallucinations+citations+is:issue+is:open"
+    ],
+    "coverage_notes": "StackOverflow returned no results; all other passes completed as required.",
+    "confidence": {
+      "overall": 0.8,
+      "notes": "GitHub issues show clear intent for cited, grounded chatbots. No recent HN or Reddit threads found."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/spcsorg/daylens/issues/189",
+      "title_or_quote": "FRD — Cited answers over approved sources",
+      "posted_when": "2026-08-12T15:56:07Z",
+      "why_relevant": "Requests cited answers from sources, matching app's core feature.",
+      "intent_strength": "high",
+      "drafted_reply": "REQ-KIV-ANS-003 is the hardest one to get right in practice — most RAG pipelines will still generate a plausible-sounding answer even when retrieval confidence is low, so your acceptance criteria should include explicit tests where the approved source set contains no supporting passage and the system must return a refusal rather than a hedged answer. For REQ-KIV-ANS-002 and -004, binding citations to a specific page or section locator (not just document title) is what makes them actually inspectable and auditable. I built a support chatbot layer called botsmith ({APP_URL}) that enforces this same pattern — every answer must carry a source passage citation or it doesn't ship — which might be worth reviewing as a reference implementation for your acceptance criteria.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The thread is a formal requirements document explicitly specifying citation-forced answers, refusal when no approved source supports a claim, and inspectable source excerpts — exactly the behavior botsmith is built around."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/spcsorg/daylens/issues/225",
+      "title_or_quote": "Ask a public question and inspect citations",
+      "posted_when": "2026-08-12T15:56:57Z",
+      "why_relevant": "Directly asks for citation inspection, aligning with app's citation guardrails.",
+      "intent_strength": "high",
+      "drafted_reply": "Being able to inspect citations for public questions is key for trust and accuracy. Our tool botsmith ensures every answer includes source citations and escalates when confidence is low. I'm the builder, and I'd be happy to discuss how this could support your project. Check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.07,
+        "why": "This thread is a GitHub work-order issue for building a frontend UI component with citation inspection in a Next.js app — it is a software engineering task, not a request for a support chatbot tool."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/Abhiram-Mangde/Course-Azure-for-SREs/issues/178",
+      "title_or_quote": "Build AI Playzone Chatbot (Repo-Restricted Azure SRE Assistant)",
+      "posted_when": "2026-02-25T07:54:39Z",
+      "why_relevant": "Building a restricted chatbot aligns with app's grounded response model.",
+      "intent_strength": "medium",
+      "drafted_reply": "Creating a chatbot restricted to specific repo content is a great way to ensure accurate responses. Our tool botsmith builds support chatbots that only answer from your docs and cite sources, or escalate if unsure. I'm the builder, and you can see how it works at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub issue for building a fully local, open-source, repo-restricted RAG chatbot using Ollama and LlamaIndex — explicitly avoiding paid APIs — which is the opposite of botsmith's hosted SaaS product."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/Waref-007/Waref-Alaghbar/issues/1",
+      "title_or_quote": "AI Tutor MVP — Grounded, Ethical, Multi-Modal Learning Assistant",
+      "posted_when": "2026-01-07T01:01:14Z",
+      "why_relevant": "Seeks grounded AI responses, matching app's anti-hallucination focus.",
+      "intent_strength": "medium",
+      "drafted_reply": "A grounded AI tutor that avoids hallucinations is a critical goal. Our tool botsmith ensures every answer is backed by source material or escalates to a human. I'm the builder, and I'd love to hear how you're approaching this. You can explore botsmith at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread describes an educational AI tutor MVP with RAG and pedagogical logic for students, not a support chatbot for SaaS helpdesks — the app's target use case does not match."
+      }
+    }
+  ]
+}

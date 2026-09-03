@@ -1,0 +1,59 @@
+{
+  "one_liner": "Self-hostable no-code internal tools on top of your Postgres — schema in, working admin panel out.",
+  "description": "stackbuilt connects to an existing Postgres database, reads the schema, and scaffolds CRUD interfaces, dashboards, and approval flows in under a minute. It self-hosts with a single Docker command so data never leaves your network, includes role-based access control in the free tier, and charges per builder — viewers are always free.",
+  "category": "Infrastructure / No-code Internal Tools",
+  "target_user": "Engineers who keep getting asked to build one more admin panel",
+  "icp": {
+    "who": "Backend engineers and eng leads at 20-500 person companies with a growing pile of internal tool requests",
+    "pain": "Retool pricing scales per user until it hurts, and compliance teams balk at piping production data through someone else's cloud",
+    "current_alternatives": [
+      "Retool",
+      "Appsmith",
+      "Budibase",
+      "ToolJet"
+    ],
+    "buying_trigger": "A Retool renewal quote, or a security review that rules out cloud-hosted internal tools touching production data"
+  },
+  "differentiators": [
+    "Single-command Docker self-hosting — production data never leaves your network",
+    "Reads your Postgres schema and scaffolds a working CRUD UI in under a minute",
+    "Viewers are free forever; only builders pay"
+  ],
+  "proof_points": [
+    "Schema-to-working-UI in under 60 seconds, shown unedited in the demo video",
+    "Runs in production at a 200-person logistics company",
+    "RBAC included in the free self-hosted tier"
+  ],
+  "tech_stack": [
+    "Go",
+    "PostgreSQL",
+    "React",
+    "Docker"
+  ],
+  "pricing_current": "free self-hosted; cloud at $25/builder/month with unlimited free viewers",
+  "voice": {
+    "tone": [
+      "pragmatic",
+      "engineer-first",
+      "anti-bloat"
+    ],
+    "sample_phrase": "Point it at Postgres. Ship the admin panel before standup ends."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "Public beta, Docker image on Docker Hub",
+      "Cloud tier in early access",
+      "Named production deployment referenced on site"
+    ]
+  },
+  "gaps": [
+    "Postgres-only; no MySQL or REST sources yet",
+    "No audit log export",
+    "Documentation covers setup but few advanced guides"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Core workflow is verifiable from the demo. Enterprise-readiness claims are early-stage."
+  }
+}

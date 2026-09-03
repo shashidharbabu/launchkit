@@ -1,0 +1,80 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/jduffie/ford-lightning/issues/2",
+        "title_or_quote": "Cost pipeline (consumes home-charging data)",
+        "posted_when": "2026-06-14T00:47:36Z",
+        "why_relevant": "Seeks a data pipeline with flat pricing, matching the app's core offering.",
+        "intent_strength": "high",
+        "drafted_reply": "You can replace flat-rate estimates with a real pipeline using plain Python scripts that pull canonical data sources. I built a tool for exactly this: it runs in your VPC and costs a flat $99/month regardless of row volume. {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.85,
+          "why": "The thread author is building a data pipeline to consume home-charging data and reconcile energy costs, which aligns with Pipewright's capability to create reliable, versioned ELT pipelines with Python and managed connectors."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/stackql/stackql-devel/issues/101",
+        "title_or_quote": "Use Case: VPC deployment plus PKI",
+        "posted_when": "2024-09-20T22:08:40Z",
+        "why_relevant": "Requests VPC deployment for data infrastructure, aligning with the app's VPC capability.",
+        "intent_strength": "high",
+        "drafted_reply": "Running data infrastructure in your VPC ensures credentials and data stay within your network. I built a tool for exactly this: it supports VPC deployment and uses flat $99/month pricing. {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread discusses VPC deployment and PKI in the context of stackql for transactional infrastructure changes, but does not mention data pipelines, ETL/ELT, or pricing concerns, which are central to the app's value proposition."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "data pipeline flat pricing",
+      "ELT VPC",
+      "data sync flat rate"
+    ],
+    "coverage_notes": "StackOverflow query returned one result but was not relevant. No Reddit or HN signals found due to zero results in searches.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "High relevance of GitHub issues compensates for lack of signals from other platforms."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/jduffie/ford-lightning/issues/2",
+      "title_or_quote": "Cost pipeline (consumes home-charging data)",
+      "posted_when": "2026-06-14T00:47:36Z",
+      "why_relevant": "Seeks a data pipeline with flat pricing, matching the app's core offering.",
+      "intent_strength": "high",
+      "drafted_reply": "You can replace flat-rate estimates with a real pipeline using plain Python scripts that pull canonical data sources. I built a tool for exactly this: it runs in your VPC and costs a flat $99/month regardless of row volume. {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.85,
+        "why": "The thread author is building a data pipeline to consume home-charging data and reconcile energy costs, which aligns with Pipewright's capability to create reliable, versioned ELT pipelines with Python and managed connectors."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/stackql/stackql-devel/issues/101",
+      "title_or_quote": "Use Case: VPC deployment plus PKI",
+      "posted_when": "2024-09-20T22:08:40Z",
+      "why_relevant": "Requests VPC deployment for data infrastructure, aligning with the app's VPC capability.",
+      "intent_strength": "high",
+      "drafted_reply": "Running data infrastructure in your VPC ensures credentials and data stay within your network. I built a tool for exactly this: it supports VPC deployment and uses flat $99/month pricing. {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread discusses VPC deployment and PKI in the context of stackql for transactional infrastructure changes, but does not mention data pipelines, ETL/ELT, or pricing concerns, which are central to the app's value proposition."
+      }
+    }
+  ]
+}

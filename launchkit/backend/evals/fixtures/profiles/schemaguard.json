@@ -1,0 +1,59 @@
+{
+  "one_liner": "TypeScript runtime validation compiled directly from your types — no duplicate schema definitions.",
+  "description": "schemaguard is a TypeScript library that generates runtime validators from your existing type declarations at build time. Instead of maintaining a Zod schema alongside every interface, you keep one source of truth: the types you already wrote. The compiler plugin emits tiny, fast validators for API boundaries, forms, and untrusted JSON.",
+  "category": "Developer Tools / Library",
+  "target_user": "TypeScript developers validating untrusted data at API boundaries",
+  "icp": {
+    "who": "TypeScript-heavy product teams with typed API contracts between services or client and server",
+    "pain": "Every interface gets duplicated as a hand-written Zod or Yup schema that drifts out of sync with the real types",
+    "current_alternatives": [
+      "Zod",
+      "Yup",
+      "io-ts",
+      "typia"
+    ],
+    "buying_trigger": "A production incident caused by an API response that no longer matched the TypeScript types the client assumed"
+  },
+  "differentiators": [
+    "Zero schema duplication: validators are compiled from existing TypeScript types, not written by hand",
+    "2.1 kB gzipped runtime core",
+    "Benchmark: validates 1M objects/sec versus roughly 180k/sec for an equivalent Zod schema"
+  ],
+  "proof_points": [
+    "Benchmark suite in repo shows ~5.5x throughput over Zod on the same payloads",
+    "Runtime core measured at 2.1 kB gzipped",
+    "Adopted in production by three seed-stage startups named in the README"
+  ],
+  "tech_stack": [
+    "TypeScript",
+    "ts-morph",
+    "esbuild plugin",
+    "Vite plugin"
+  ],
+  "pricing_current": "free (MIT-licensed open source)",
+  "voice": {
+    "tone": [
+      "technical",
+      "matter-of-fact",
+      "benchmark-driven"
+    ],
+    "sample_phrase": "One source of truth: the types you already wrote."
+  },
+  "maturity": {
+    "stage": "alpha",
+    "signals": [
+      "Version 0.4.x on npm, API marked unstable in docs",
+      "Breaking changes noted between minor versions",
+      "Active weekly commits, small contributor base"
+    ]
+  },
+  "gaps": [
+    "No documentation site, README only",
+    "No migration guide from Zod",
+    "Webpack support still open as an issue"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Benchmarks and bundle size are reproducible from the repo. Production adoption claims rest on README statements."
+  }
+}

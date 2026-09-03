@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "stackoverflow",
+        "url": "https://stackoverflow.com/questions/8447",
+        "title_or_quote": "What does the [Flags] Enum Attribute mean in C#?",
+        "why_relevant": "Very high-traffic question mentioning flags.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.99,
+          "why": "The thread is about the C# [Flags] enum attribute and bitwise operations, which has nothing to do with feature flag management or deployment tooling."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/8447",
+      "title_or_quote": "What does the [Flags] Enum Attribute mean in C#?",
+      "why_relevant": "Very high-traffic question mentioning flags.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.99,
+        "why": "The thread is about the C# [Flags] enum attribute and bitwise operations, which has nothing to do with feature flag management or deployment tooling."
+      }
+    }
+  ]
+}

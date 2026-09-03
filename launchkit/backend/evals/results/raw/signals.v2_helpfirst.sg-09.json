@@ -1,0 +1,141 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/aaryan498/WiseMindOS/issues/292",
+        "title_or_quote": "[Feature]: Habit Tracker has no streak freeze / grace period — one missed day resets an entire streak with no recovery option",
+        "posted_when": "2026-07-23T18:41:05Z",
+        "why_relevant": "User explicitly requests a grace period for missed days in habit tracking.",
+        "intent_strength": "high",
+        "drafted_reply": "The distinction you're drawing between 'forgot to log' and 'actively missed' is exactly the right framing — the data model needs to treat those differently before any grace period UI makes sense. One practical approach is scoring against a weekly target rather than an unbroken daily chain, which sidesteps the binary reset problem entirely and maps better to how behavior-change research actually defines consistency. That also makes 'planned rest day' a non-issue since the week absorbs it naturally. I built an iOS app called Streakly that ships this as its core mechanic if you want to see one implementation: {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The thread author is explicitly requesting a streak freeze/grace period feature for a habit tracker, which is the core mechanic Streakly is built around."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/Fwkkk666/Atomic-_Habits/issues/1",
+        "title_or_quote": "Habit Tracker v1 — 原子习惯 PWA",
+        "posted_when": "2026-08-18T13:13:32Z",
+        "why_relevant": "The spec discusses a habit tracker that uses an escalating penalty for missed days, which aligns with the need for a more forgiving system.",
+        "intent_strength": "medium",
+        "drafted_reply": "Your spec for an escalating penalty system is interesting. I've built Streakly, an iOS habit tracker that allows you to repair a missed day within the week, so your streak survives. It's designed to be forgiving and private, focusing on weekly targets instead of daily guilt. I'm the builder, and you can check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is a detailed technical spec for building a PWA habit tracker from scratch, not someone struggling with streak guilt or looking for an existing app — it is a developer writing code requirements, not a potential user."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/msarmento42/life-os/issues/94",
+        "title_or_quote": "feat: implement habit streak visualization in Habits module",
+        "posted_when": "2026-07-08T19:08:58Z",
+        "why_relevant": "The issue discusses visualizing habit streaks, which is a core feature of Streakly.",
+        "intent_strength": "medium",
+        "drafted_reply": "Visualizing habit streaks is a great way to stay motivated. I've built Streakly, an iOS habit tracker that allows you to repair a missed day within the week, so your streak survives. It's designed to be forgiving and private, focusing on weekly targets instead of daily guilt. I'm the builder, and you can check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread is a GitHub issue requesting frontend implementation of streak visualization in a personal life-OS project, not someone struggling with habit tracking motivation or looking for a habit app."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/khawarizmi02/expense-tracker-v2/issues/11",
+        "title_or_quote": "T11 — Streak + No-Spend Day + self-healing",
+        "posted_when": "2026-07-26T06:11:23Z",
+        "why_relevant": "The issue discusses a self-healing streak system, which is similar to the streak repair feature in Streakly.",
+        "intent_strength": "medium",
+        "drafted_reply": "A self-healing streak system is a great idea. I've built Streakly, an iOS habit tracker that allows you to repair a missed day within the week, so your streak survives. It's designed to be forgiving and private, focusing on weekly targets instead of daily guilt. I'm the builder, and you can check it out at {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "This thread is a GitHub issue spec for building streak and self-healing logic inside an expense tracker app — it is a software engineering task, not someone struggling with or seeking a habit tracking app."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "habit tracker missed day",
+      "habit streak repair",
+      "habit tracker grace period",
+      "habit tracker streak freeze"
+    ],
+    "coverage_notes": "All four passes were completed. No additional communities or sources were available.",
+    "confidence": {
+      "overall": 0.8,
+      "notes": "The signals are highly relevant and directly address the core pain point of missed days breaking streaks."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/aaryan498/WiseMindOS/issues/292",
+      "title_or_quote": "[Feature]: Habit Tracker has no streak freeze / grace period — one missed day resets an entire streak with no recovery option",
+      "posted_when": "2026-07-23T18:41:05Z",
+      "why_relevant": "User explicitly requests a grace period for missed days in habit tracking.",
+      "intent_strength": "high",
+      "drafted_reply": "The distinction you're drawing between 'forgot to log' and 'actively missed' is exactly the right framing — the data model needs to treat those differently before any grace period UI makes sense. One practical approach is scoring against a weekly target rather than an unbroken daily chain, which sidesteps the binary reset problem entirely and maps better to how behavior-change research actually defines consistency. That also makes 'planned rest day' a non-issue since the week absorbs it naturally. I built an iOS app called Streakly that ships this as its core mechanic if you want to see one implementation: {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The thread author is explicitly requesting a streak freeze/grace period feature for a habit tracker, which is the core mechanic Streakly is built around."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/Fwkkk666/Atomic-_Habits/issues/1",
+      "title_or_quote": "Habit Tracker v1 — 原子习惯 PWA",
+      "posted_when": "2026-08-18T13:13:32Z",
+      "why_relevant": "The spec discusses a habit tracker that uses an escalating penalty for missed days, which aligns with the need for a more forgiving system.",
+      "intent_strength": "medium",
+      "drafted_reply": "Your spec for an escalating penalty system is interesting. I've built Streakly, an iOS habit tracker that allows you to repair a missed day within the week, so your streak survives. It's designed to be forgiving and private, focusing on weekly targets instead of daily guilt. I'm the builder, and you can check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is a detailed technical spec for building a PWA habit tracker from scratch, not someone struggling with streak guilt or looking for an existing app — it is a developer writing code requirements, not a potential user."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/msarmento42/life-os/issues/94",
+      "title_or_quote": "feat: implement habit streak visualization in Habits module",
+      "posted_when": "2026-07-08T19:08:58Z",
+      "why_relevant": "The issue discusses visualizing habit streaks, which is a core feature of Streakly.",
+      "intent_strength": "medium",
+      "drafted_reply": "Visualizing habit streaks is a great way to stay motivated. I've built Streakly, an iOS habit tracker that allows you to repair a missed day within the week, so your streak survives. It's designed to be forgiving and private, focusing on weekly targets instead of daily guilt. I'm the builder, and you can check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread is a GitHub issue requesting frontend implementation of streak visualization in a personal life-OS project, not someone struggling with habit tracking motivation or looking for a habit app."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/khawarizmi02/expense-tracker-v2/issues/11",
+      "title_or_quote": "T11 — Streak + No-Spend Day + self-healing",
+      "posted_when": "2026-07-26T06:11:23Z",
+      "why_relevant": "The issue discusses a self-healing streak system, which is similar to the streak repair feature in Streakly.",
+      "intent_strength": "medium",
+      "drafted_reply": "A self-healing streak system is a great idea. I've built Streakly, an iOS habit tracker that allows you to repair a missed day within the week, so your streak survives. It's designed to be forgiving and private, focusing on weekly targets instead of daily guilt. I'm the builder, and you can check it out at {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "This thread is a GitHub issue spec for building streak and self-healing logic inside an expense tracker app — it is a software engineering task, not someone struggling with or seeking a habit tracking app."
+      }
+    }
+  ]
+}

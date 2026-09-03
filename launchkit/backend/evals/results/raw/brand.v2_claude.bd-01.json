@@ -1,0 +1,103 @@
+{
+  "output": {
+    "brand_name": "Plausible Analytics",
+    "tagline_observed": "Easy to use and privacy-friendly Google Analytics alternative",
+    "voice": {
+      "tone_words": [
+        "direct",
+        "transparent",
+        "principled",
+        "candid",
+        "understated"
+      ],
+      "sentence_style": "Short declaratives, second person, no jargon, willing to state what the product is NOT good for",
+      "vocabulary": [
+        "privacy-friendly",
+        "open source",
+        "lightweight",
+        "no cookies",
+        "EU-hosted",
+        "bootstrapped",
+        "subscription",
+        "surveillance capitalism",
+        "independent",
+        "privacy-first"
+      ],
+      "avoid": [
+        "growth-hacking language",
+        "vague superlatives",
+        "corporate mission statements",
+        "ad-tech framing",
+        "FOMO-driven copy",
+        "buzzword stacking"
+      ],
+      "evidence_quotes": [
+        "Plausible grows because people recommend it when they have no reason to other than that it works. That kind of trust cannot be bought.",
+        "We built Plausible to prove that useful web analytics and visitor privacy are not mutually exclusive.",
+        "Google Analytics is frustrating to use, difficult to understand, slow to load and privacy-invasive.",
+        "We are self-funded and profitable, with no outside investors and no plans to sell."
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "No cookies, no personal data, no GDPR consent banners required",
+        "One-page dashboard — essential insights in one minute, no training needed",
+        "Script is 54x smaller than Google Analytics, keeping your site fast",
+        "EU-hosted, open source, and subscription-funded — no lock-in, no surveillance model"
+      ],
+      "key_messages": [
+        "No cookies, just insights.",
+        "Check your site traffic and get the essential insights on one page in one minute.",
+        "We choose the subscription business model rather than surveillance capitalism.",
+        "Our code is open source too, so you're never locked in.",
+        "Google Analytics is frustrating to use, difficult to understand, slow to load and privacy-invasive. That's why we built Plausible Analytics."
+      ],
+      "proof_points_observed": [
+        "20,000 paying subscribers",
+        "313B tracked pageviews",
+        "99.99% uptime over the last 90 days",
+        "Crossed $1 million in annual recurring revenue in 2022",
+        "Team of 10, running since 2018, self-funded and profitable",
+        "Script is 54 times smaller than Google Analytics",
+        "Every visitor downloads 135KB less JavaScript",
+        "Never spent a cent on advertising, affiliates or paid endorsements",
+        "Customers include Basecamp, Ghost, Hugging Face, Home Assistant, MongoDB, Python Software Foundation, and Harvard University"
+      ]
+    },
+    "visual": {
+      "colors": [],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown without HTML/CSS; no font-family declarations or font CDN links were observable."
+      },
+      "imagery_style": "screenshots",
+      "logo_url": "https://plausible.io/assets/images/icon/plausible_logo_dark.svg"
+    },
+    "audience_language": "Talks directly to site owners and developers as peers — honest about trade-offs, never condescending, assumes the reader is frustrated with GA and values their visitors' privacy.",
+    "dos_and_donts": {
+      "do": [
+        "State trade-offs honestly, including when the product is not the right fit",
+        "Lead with privacy and independence as core values, not features",
+        "Use short, declarative sentences with concrete specifics",
+        "Reference open source and EU hosting as accountability mechanisms, not just selling points",
+        "Let customer outcomes and word-of-mouth speak rather than making claims about growth"
+      ],
+      "dont": [
+        "Use surveillance-capitalism or ad-tech vocabulary",
+        "Make vague superlative claims without evidence",
+        "Adopt corporate or VC-growth-team tone",
+        "Oversell — the brand explicitly says when it is not a fit",
+        "Invent metrics or testimonials not present in the scraped content"
+      ]
+    },
+    "sources_read": [
+      "https://plausible.io/",
+      "https://plausible.io/about"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Colors could not be observed — scrape returned markdown without inline styles, CSS variables, or meta theme-color tags. Typography could not be observed for the same reason. Logo URL is an SVG img src found in the about page footer, not a favicon. Pricing page returned 404 so pricing copy was not available as a third source; pricing details were read from the homepage content instead."
+    }
+  }
+}

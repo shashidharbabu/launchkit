@@ -1,0 +1,204 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/dasomel/narwhal-portal/issues/66",
+        "title_or_quote": "[P0][Security][Supply Chain] Harden Node/PNPM Build Against Malicious Dependency...",
+        "posted_when": "2026-08-21T06:29:09Z",
+        "why_relevant": "Seeks protection against malicious dependencies during build.",
+        "intent_strength": "high",
+        "drafted_reply": "You can detect unexpected install scripts and maintainer changes in CI by analyzing package behavior, not just CVEs. I built a tool for exactly this — it flags risks like new network calls or obfuscated code at PR time. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly addresses hardening against malicious dependency and build-script releases in a Node/PNPM environment, which directly aligns with the app's capability to detect supply-chain attacks via install scripts and behavioral changes in dependencies."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/dasomel/narwhal/issues/164",
+        "title_or_quote": "[P0][Security][Supply Chain] Harden Build-Time Dependency Trust Boundary Against...",
+        "posted_when": "2026-08-21T06:28:56Z",
+        "why_relevant": "Describes need to secure build-time dependencies against supply chain attacks.",
+        "intent_strength": "high",
+        "drafted_reply": "Behavioral analysis of dependencies — like install scripts or sudden maintainer changes — can catch these issues before they hit production. I built a tool that does this in CI and comments directly on risky PRs. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread discusses a supply-chain attack involving malicious build-time dependencies in Rust, specifically highlighting risks from install scripts and dependency resolution, which directly aligns with the app's focus on detecting supply-chain attacks through behavioral signals like install scripts and typosquatting."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "forum",
+        "url": "https://stackoverflow.com/questions/45846172/does-npm-install-run-in-a-sandbox",
+        "title_or_quote": "Does NPM install run in a sandbox?",
+        "posted_when": "2017-08-23T14:59:28Z",
+        "why_relevant": "Asks about isolation during npm install, indicating concern over script execution.",
+        "intent_strength": "medium",
+        "drafted_reply": "npm install runs with full user privileges and is not sandboxed. To detect malicious behavior, you can monitor for unexpected network calls or file system changes during installation. I built a tool for exactly this. {APP_URL}",
+        "rescore": {
+          "verdict": "unverified",
+          "why": "fetch failed: HTTP Error 403: Forbidden"
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=41259900",
+        "title_or_quote": "Ask HN: Pragmatic way to avoid supply chain attacks as a developer",
+        "posted_when": "2024-08-15T20:15:08Z",
+        "why_relevant": "Direct ask for tools to prevent supply chain attacks in development.",
+        "intent_strength": "medium",
+        "drafted_reply": "One approach is monitoring behavioral signals: new install scripts, maintainer handoffs, or typosquatting patterns. These often appear before CVEs are published. I built a tool that scans dependencies for these signs during CI and reports directly on the PR. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/chatmcp/mcpso/issues/2869",
+        "title_or_quote": "[Submit] npm-guardian — npm supply-chain audit (CVE/OSV + typosquat + malicious ...",
+        "posted_when": "2026-06-22T16:14:56Z",
+        "why_relevant": "User is building a tool for detecting malicious npm install scripts.",
+        "intent_strength": "medium",
+        "drafted_reply": "You're working on a similar problem — I've already implemented detection for suspicious install scripts, maintainer swaps, and typosquatting in depsentry. It runs in CI and comments on PRs. I'd be happy to share what we've learned. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread discusses an npm supply-chain audit tool that checks for typosquatting and malicious scripts before installation, which directly aligns with the app's functionality of detecting supply-chain attacks through behavioral analysis of dependencies."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/elastic/detection-rules/issues/6600",
+        "title_or_quote": "[New Rule] Composer Install Script Execution",
+        "posted_when": "2026-08-05T21:46:38Z",
+        "why_relevant": "Focuses on detecting install script execution in package managers.",
+        "intent_strength": "medium",
+        "drafted_reply": "Monitoring install script execution is critical for catching supply-chain attacks early. Our tool automatically flags such behaviors when they appear in new versions. I built a tool for exactly this use case — runs in CI, no manual rule writing needed. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread discusses detecting malicious Composer install scripts in PHP, which aligns directly with the app's capability to catch supply-chain attacks via install script execution, a core function of depsentry."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that detects malicious install scripts in npm packages",
+      "struggling with supply chain attacks from dependency maintainer changes",
+      "alternative to Snyk for detecting typosquatting in PyPI",
+      "site:reddit.com how do you handle obfuscated code in node modules",
+      "tired of waiting for CVEs to catch dependency supply chain attacks",
+      "supply chain attack",
+      "dependency risk",
+      "install script",
+      "dependency supply chain",
+      "malicious install script dependency",
+      "detect malicious npm install script"
+    ],
+    "coverage_notes": "No valid Reddit results found. HN comment search returned older items; only one Ask HN thread was recent enough to include.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub issue signals and relevant StackOverflow post. Missing fresh Reddit threads and some HN coverage due to rate limiting."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/dasomel/narwhal-portal/issues/66",
+      "title_or_quote": "[P0][Security][Supply Chain] Harden Node/PNPM Build Against Malicious Dependency...",
+      "posted_when": "2026-08-21T06:29:09Z",
+      "why_relevant": "Seeks protection against malicious dependencies during build.",
+      "intent_strength": "high",
+      "drafted_reply": "You can detect unexpected install scripts and maintainer changes in CI by analyzing package behavior, not just CVEs. I built a tool for exactly this — it flags risks like new network calls or obfuscated code at PR time. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly addresses hardening against malicious dependency and build-script releases in a Node/PNPM environment, which directly aligns with the app's capability to detect supply-chain attacks via install scripts and behavioral changes in dependencies."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/dasomel/narwhal/issues/164",
+      "title_or_quote": "[P0][Security][Supply Chain] Harden Build-Time Dependency Trust Boundary Against...",
+      "posted_when": "2026-08-21T06:28:56Z",
+      "why_relevant": "Describes need to secure build-time dependencies against supply chain attacks.",
+      "intent_strength": "high",
+      "drafted_reply": "Behavioral analysis of dependencies — like install scripts or sudden maintainer changes — can catch these issues before they hit production. I built a tool that does this in CI and comments directly on risky PRs. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread discusses a supply-chain attack involving malicious build-time dependencies in Rust, specifically highlighting risks from install scripts and dependency resolution, which directly aligns with the app's focus on detecting supply-chain attacks through behavioral signals like install scripts and typosquatting."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "forum",
+      "url": "https://stackoverflow.com/questions/45846172/does-npm-install-run-in-a-sandbox",
+      "title_or_quote": "Does NPM install run in a sandbox?",
+      "posted_when": "2017-08-23T14:59:28Z",
+      "why_relevant": "Asks about isolation during npm install, indicating concern over script execution.",
+      "intent_strength": "medium",
+      "drafted_reply": "npm install runs with full user privileges and is not sandboxed. To detect malicious behavior, you can monitor for unexpected network calls or file system changes during installation. I built a tool for exactly this. {APP_URL}",
+      "rescore": {
+        "verdict": "unverified",
+        "why": "fetch failed: HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/chatmcp/mcpso/issues/2869",
+      "title_or_quote": "[Submit] npm-guardian — npm supply-chain audit (CVE/OSV + typosquat + malicious ...",
+      "posted_when": "2026-06-22T16:14:56Z",
+      "why_relevant": "User is building a tool for detecting malicious npm install scripts.",
+      "intent_strength": "medium",
+      "drafted_reply": "You're working on a similar problem — I've already implemented detection for suspicious install scripts, maintainer swaps, and typosquatting in depsentry. It runs in CI and comments on PRs. I'd be happy to share what we've learned. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread discusses an npm supply-chain audit tool that checks for typosquatting and malicious scripts before installation, which directly aligns with the app's functionality of detecting supply-chain attacks through behavioral analysis of dependencies."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/elastic/detection-rules/issues/6600",
+      "title_or_quote": "[New Rule] Composer Install Script Execution",
+      "posted_when": "2026-08-05T21:46:38Z",
+      "why_relevant": "Focuses on detecting install script execution in package managers.",
+      "intent_strength": "medium",
+      "drafted_reply": "Monitoring install script execution is critical for catching supply-chain attacks early. Our tool automatically flags such behaviors when they appear in new versions. I built a tool for exactly this use case — runs in CI, no manual rule writing needed. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread discusses detecting malicious Composer install scripts in PHP, which aligns directly with the app's capability to catch supply-chain attacks via install script execution, a core function of depsentry."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=41259900",
+      "title_or_quote": "Ask HN: Pragmatic way to avoid supply chain attacks as a developer",
+      "posted_when": "2024-08-15T20:15:08Z",
+      "why_relevant": "Direct ask for tools to prevent supply chain attacks in development.",
+      "intent_strength": "medium",
+      "drafted_reply": "One approach is monitoring behavioral signals: new install scripts, maintainer handoffs, or typosquatting patterns. These often appear before CVEs are published. I built a tool that scans dependencies for these signs during CI and reports directly on the PR. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

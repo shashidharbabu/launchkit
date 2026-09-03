@@ -1,0 +1,46 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "Your Figma designs are lying to engineers.",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "Close-up of a Figma canvas with overlapping absolute-positioned rectangles.",
+        "voiceover": "Your Figma designs are lying to engineers."
+      },
+      {
+        "seconds": "3-12",
+        "visual": "Side-by-side: left shows developer rewriting layout in code, right shows GridFrame's layout-first canvas with structured frames.",
+        "voiceover": "Design tools export absolute rectangles. Engineers rebuild every layout from scratch. GridFrame starts with structure — not pixels."
+      },
+      {
+        "seconds": "12-24",
+        "visual": "GridFrame interface resolving a wireframe into responsive grid tracks and breakpoints.",
+        "voiceover": "Sketch rough frames. It generates responsive CSS Grid and Flexbox — no absolute positioning. The code passes stylelint with zero warnings."
+      },
+      {
+        "seconds": "24-36",
+        "visual": "Layout audit panel highlighting overflow issues and breakpoint failures in a real design file.",
+        "voiceover": "It audits your designs before handoff. Caught 140 real overflow and breakpoint bugs across alpha users' sites."
+      },
+      {
+        "seconds": "36-42",
+        "visual": "Export panel showing clean CSS output and a GitHub repo with passing CI checks.",
+        "voiceover": "Engineers keep the output. No rework. No surprises."
+      },
+      {
+        "seconds": "42-45",
+        "visual": "GridFrame logo with tagline and {APP_URL}.",
+        "voiceover": "Layouts that ship, not rectangles that lie."
+      }
+    ],
+    "cta": "Join 3,400 others on the waitlist at {APP_URL}",
+    "production_notes": [
+      "Record screen of GridFrame resolving a wireframe into grid tracks and breakpoints",
+      "Capture layout audit panel flagging overflow and breakpoint issues",
+      "Show export of clean CSS Grid/Flexbox code",
+      "Include GitHub repo view with stylelint passing"
+    ],
+    "warnings": []
+  }
+}

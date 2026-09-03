@@ -1,0 +1,237 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Rossum",
+        "url": "https://www.rossum.ai",
+        "notability": "established",
+        "evidence_of_standing": "Named in APP_PROFILE, Fintract comparison page, lido.app alternatives article, wave-2 search results",
+        "mentions": 4,
+        "pricing_model": "subscription annual",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$18,000/yr",
+            "period": "annual",
+            "key_limits": "one-year minimum, sales cycle required"
+          },
+          {
+            "name": "Business",
+            "price": "custom",
+            "period": "annual",
+            "key_limits": "custom workflows, master data matching"
+          },
+          {
+            "name": "Enterprise",
+            "price": "custom",
+            "period": "annual",
+            "key_limits": "SSO, sandbox, translation, millions of docs"
+          }
+        ],
+        "source_url": "https://fintract.ai/compare/rossum/"
+      },
+      {
+        "name": "Mindee",
+        "url": "https://www.mindee.com",
+        "notability": "established",
+        "evidence_of_standing": "Named in docuparseapi.com blog, Fintract comparison page, and Fintract teardown link",
+        "mentions": 3,
+        "pricing_model": "subscription credit-based per page",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "$53/mo",
+            "period": "monthly (billed annually)",
+            "key_limits": "1 seat, community support, 6k+ credits/mo"
+          },
+          {
+            "name": "Pro",
+            "price": "$134/mo",
+            "period": "monthly (billed annually)",
+            "key_limits": "unlimited seats, data localization, live chat"
+          },
+          {
+            "name": "Enterprise",
+            "price": "custom",
+            "period": "annual",
+            "key_limits": "500k+ credits, custom SLAs, dedicated AM"
+          }
+        ],
+        "source_url": "https://www.mindee.com/pricing"
+      },
+      {
+        "name": "Google Document AI",
+        "url": "https://cloud.google.com/document-ai",
+        "notability": "emerging",
+        "evidence_of_standing": "Named in APP_PROFILE current alternatives and lido.app alternatives article",
+        "mentions": 2,
+        "pricing_model": "usage per page",
+        "tiers": [
+          {
+            "name": "Pay-as-you-go",
+            "price": "not scraped",
+            "period": "monthly",
+            "key_limits": "GCP pricing, custom model training required"
+          }
+        ],
+        "source_url": "https://cloud.google.com/document-ai/pricing"
+      },
+      {
+        "name": "Veryfi",
+        "url": "https://www.veryfi.com",
+        "notability": "niche",
+        "evidence_of_standing": "Named in docuparseapi.com invoice parsing API comparison blog",
+        "mentions": 1,
+        "pricing_model": "freemium plus usage",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "$0",
+            "period": "monthly",
+            "key_limits": "100 docs/mo, all doc types"
+          },
+          {
+            "name": "Starter",
+            "price": "$500+/mo",
+            "period": "monthly",
+            "key_limits": "$0.16/invoice, $0.08/receipt, 12-mo commit"
+          },
+          {
+            "name": "Growth",
+            "price": "custom",
+            "period": "annual",
+            "key_limits": "volume discounts, model fine-tuning, SLA"
+          }
+        ],
+        "source_url": "https://www.veryfi.com/pricing/"
+      },
+      {
+        "name": "Nanonets",
+        "url": "https://www.nanonets.com",
+        "notability": "niche",
+        "evidence_of_standing": "Named in lido.app Rossum alternatives article at $0.30/page",
+        "mentions": 1,
+        "pricing_model": "usage per page",
+        "tiers": [
+          {
+            "name": "Pay-as-you-go",
+            "price": "from $0.30/page",
+            "period": "monthly",
+            "key_limits": "no-code, approval workflows, model training"
+          }
+        ],
+        "source_url": "https://nanonets.com/pricing"
+      },
+      {
+        "name": "ABBYY Vantage",
+        "url": "https://www.abbyy.com",
+        "notability": "niche",
+        "evidence_of_standing": "Named in lido.app Rossum alternatives article at $8,000/yr",
+        "mentions": 1,
+        "pricing_model": "subscription annual",
+        "tiers": [
+          {
+            "name": "Enterprise",
+            "price": "from $8,000/yr",
+            "period": "annual",
+            "key_limits": "on-premise option, 150+ pre-trained skills, RPA"
+          }
+        ],
+        "source_url": "https://www.abbyy.com/vantage/pricing/"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "ocr.link",
+        "url": "https://ocr.link/invoice-ocr-api-comparison-line-items-totals-and-vendor-fields",
+        "why": "Buyer guide aggregator page, not a product competitor"
+      },
+      {
+        "name": "docuparseapi.com",
+        "url": "https://docuparseapi.com/blog/invoice-parsing-api-comparison",
+        "why": "Comparison listicle blog, not a product competitor"
+      },
+      {
+        "name": "lido.app",
+        "url": "https://www.lido.app/blog/rossum-alternative",
+        "why": "Spreadsheet extraction tool, not a document parsing API"
+      },
+      {
+        "name": "Fintract",
+        "url": "https://fintract.ai",
+        "why": "Single self-controlled comparison page; no independent mentions"
+      },
+      {
+        "name": "UiPath IXP",
+        "url": "https://ai.g2.com",
+        "why": "Enterprise RPA platform, not a document parsing API"
+      },
+      {
+        "name": "Parseur",
+        "url": "https://parseur.com",
+        "why": "Template-based email parser, single mention, different category"
+      }
+    ],
+    "recommendation": {
+      "model": "usage-based (pay-per-page) with freemium entry",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Developers evaluating accuracy on real documents",
+          "includes": [
+            "500 pages/mo free",
+            "Full JSON output with confidence scores",
+            "REST API access",
+            "Community support"
+          ],
+          "rationale": "Matches current offering; enough pages to validate on a real invoice batch"
+        },
+        {
+          "name": "Growth",
+          "price_usd_month": 0,
+          "who_its_for": "Teams in production processing up to 100k pages/mo",
+          "includes": [
+            "$0.04/page, no monthly minimum",
+            "Per-field confidence scores",
+            "Human-review fallback webhook",
+            "Email support"
+          ],
+          "rationale": "$0.04/page is 26% below Mindee's $0.054; justified by published accuracy benchmark"
+        },
+        {
+          "name": "Scale",
+          "price_usd_month": 0,
+          "who_its_for": "AP-automation vendors processing 100k+ pages/mo",
+          "includes": [
+            "$0.025/page at 100k+ pages/mo",
+            "SLA with uptime guarantee",
+            "Dedicated Slack channel",
+            "SOC 2 Type II report on release"
+          ],
+          "rationale": "Volume discount anchors against Rossum enterprise; keeps cost well below $1,500/mo floor"
+        }
+      ],
+      "anchor_competitors": [
+        "Rossum",
+        "Mindee"
+      ],
+      "positioning_note": "Current $0.01/page is 5x below Mindee; raise to $0.04 to signal quality without losing developer adoption.",
+      "risks": [
+        "Raising price before customer logos risks stalling early traction",
+        "Benchmark covers invoices only; buyers testing receipts or POs may churn",
+        "No EU data residency blocks GDPR-sensitive enterprise deals"
+      ]
+    },
+    "search_queries_used": [
+      "best invoice document parsing API tools comparison 2024",
+      "site:g2.com intelligent document processing IDP software",
+      "alternative to Rossum document parsing invoice OCR API comparison",
+      "site:capterra.com intelligent document processing software"
+    ],
+    "confidence": {
+      "overall": 0.65,
+      "notes": "Only 2 established competitors confirmed (Rossum, Mindee). AWS Textract and Google Document AI appear in APP_PROFILE but could not be established via independent comparison sources within budget. Mindee pricing scraped directly. Rossum pricing confirmed via Fintract comparison page. Veryfi pricing scraped directly. Google Document AI pricing page not scraped. Nanonets and ABBYY prices sourced from lido.app article only, not from their own pricing pages."
+    }
+  }
+}

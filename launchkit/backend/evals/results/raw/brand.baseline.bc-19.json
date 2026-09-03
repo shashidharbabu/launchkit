@@ -1,0 +1,126 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "One Source of Truth",
+        "objective": "awareness — educate TypeScript developers about schema duplication pain and how SchemaGuard solves it",
+        "big_idea": "Position SchemaGuard as the inevitable evolution beyond Zod and Yup by eliminating redundant schema definitions. Highlight that your types are your schema — no more drift, no more duplication. Use benchmark data to show superior performance.",
+        "channels": [
+          "Twitter",
+          "Reddit",
+          "Dev.to"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post",
+          "newsletter_pitch"
+        ],
+        "hook": "Your TypeScript types are already perfect. Why write them twice?",
+        "sample_copy": {
+          "headline": "One source of truth: the types you already wrote.",
+          "body": "Stop maintaining Zod schemas that drift from your TypeScript interfaces. SchemaGuard generates runtime validators directly from your types — no duplication, no drift, 5.5x faster than Zod.",
+          "cta": "See how it works"
+        },
+        "assets_needed": [
+          "short explainer video",
+          "comparison table: SchemaGuard vs Zod",
+          "benchmark result screenshot"
+        ],
+        "effort": "medium",
+        "success_metric": "number of GitHub stars gained",
+        "why_on_brand": "Uses the brand's technical, matter-of-fact tone and builds directly on the key message 'One source of truth: the types you already wrote.'"
+      },
+      {
+        "name": "TypeScript, Trusted",
+        "objective": "signups — drive developers to install SchemaGuard for API validation",
+        "big_idea": "Focus on production reliability: show how SchemaGuard prevents runtime errors caused by API contract drift. Frame it as essential for teams that depend on accurate type validation at runtime.",
+        "channels": [
+          "LinkedIn",
+          "Twitter",
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "x_post",
+          "producthunt"
+        ],
+        "hook": "A production incident revealed your API response didn’t match your types. SchemaGuard prevents that.",
+        "sample_copy": {
+          "headline": "Trust your types in production.",
+          "body": "APIs change. Your frontend types shouldn’t lie. SchemaGuard compiles your TypeScript types into runtime validators so you catch mismatches early — not in production.",
+          "cta": "Install now via npm"
+        },
+        "assets_needed": [
+          "npm install snippet",
+          "architecture diagram",
+          "production incident anecdote (generic)"
+        ],
+        "effort": "small",
+        "success_metric": "number of npm downloads",
+        "why_on_brand": "Reflects the benchmark-driven, technical tone and addresses the ICP's buying trigger: a production incident due to type/schema drift."
+      },
+      {
+        "name": "The 2.1 kB Challenge",
+        "objective": "awareness — highlight SchemaGuard’s minimal runtime footprint",
+        "big_idea": "Challenge developers to consider how much they’re shipping: compare SchemaGuard’s 2.1 kB gzipped core to Zod’s larger bundle size. Turn bundle efficiency into a competitive advantage.",
+        "channels": [
+          "Twitter",
+          "Reddit",
+          "Hacker News"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post",
+          "show_hn"
+        ],
+        "hook": "Your validation library shouldn’t weigh down your bundle. Ours is 2.1 kB gzipped.",
+        "sample_copy": {
+          "headline": "Runtime validation under 2.1 kB.",
+          "body": "Most validation libraries add bulk. SchemaGuard’s core is 2.1 kB gzipped — smaller, faster, and compiled from your types. See the benchmark.",
+          "cta": "Check the numbers"
+        },
+        "assets_needed": [
+          "bundle size comparison chart",
+          "gzip size verification script",
+          "CDN link to minified core"
+        ],
+        "effort": "small",
+        "success_metric": "social shares of bundle size claim",
+        "why_on_brand": "Leverages the brand’s fact-based, performance-oriented voice and emphasizes a proven differentiator: minimal bundle size."
+      },
+      {
+        "name": "No More Drift",
+        "objective": "community — engage developers frustrated with schema maintenance",
+        "big_idea": "Start a conversation around schema drift — a silent killer in TypeScript apps. Invite developers to share their stories and discover SchemaGuard as the solution.",
+        "channels": [
+          "Dev.to",
+          "Reddit",
+          "Twitter"
+        ],
+        "asset_types": [
+          "reddit_post",
+          "newsletter_pitch",
+          "x_post"
+        ],
+        "hook": "When was the last time your Zod schema got out of sync with your API?",
+        "sample_copy": {
+          "headline": "Schema drift is costing you time.",
+          "body": "You update a type, forget the Zod schema, and ship a bug. SchemaGuard eliminates this — your types are the source. No sync needed.",
+          "cta": "Join the movement"
+        },
+        "assets_needed": [
+          "community discussion thread",
+          "drift scenario examples",
+          "migration teaser snippet"
+        ],
+        "effort": "medium",
+        "success_metric": "number of community comments and replies",
+        "why_on_brand": "Speaks directly to the ICP’s pain point using the brand’s clear, technical tone and avoids marketing fluff."
+      }
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Campaigns are grounded in APP_PROFILE proof points and BRAND_DNA voice. No invented metrics or testimonials used."
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/hashicorp/terraform-provider-google/issues/28764",
+        "title_or_quote": "google_monitoring_uptime_check_config: make the cost of an unset selected_regions visible",
+        "posted_when": "2026-08-12",
+        "why_relevant": "User managing GCP uptime checks via Terraform — exact IaC-first monitoring workflow pingdeck's Terraform provider targets.",
+        "intent_strength": "high",
+        "drafted_reply": "The footgun here is that omitting selected_regions silently defaults to all regions, which inflates check costs without any warning in the plan output. A workaround until the provider surfaces this: add a lifecycle precondition that asserts length(selected_regions) > 0. If you're open to managing uptime checks outside GCP's native monitoring, I'm the builder of pingdeck ({APP_URL}) — it has an official Terraform provider so monitors live in your repo alongside the infra, and the resource schema makes selected regions explicit. Happy to share the provider docs if useful.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is a Terraform provider bug/enhancement request about making hidden cost of an unset field visible at plan time — it's a provider internals issue, not a search for uptime monitoring tooling."
+        }
+      },
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/kaufrickpro/spb-ai-v1/issues/105",
+        "title_or_quote": "Step 17: Add staging monitoring, budget alerts, and domain outputs",
+        "posted_when": "2026-05-20",
+        "why_relevant": "Developer setting up staging monitoring and alerting infrastructure — direct use case for pingdeck's endpoint and alert management.",
+        "intent_strength": "low",
+        "drafted_reply": "Your acceptance criteria call for Terraform-defined uptime checks for the web and API endpoints — that's a clean fit for a provider-native approach rather than wiring GCP's built-in uptime checks, which can be fiddly to configure for Cloud Run URLs and don't give you a status page out of the box. If you want monitors to live in the same root as your Cloud Run and Cloud Tasks resources, an external provider keeps the concern separate and avoids coupling your alert logic to GCP's monitoring quotas. I built pingdeck for exactly this pattern — monitors as Terraform resources, 30-second intervals, with alerting and status pages included — one resource block per endpoint: {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The thread's acceptance criteria explicitly require Terraform-defined uptime checks for web and API endpoints in staging, which is exactly what pingdeck's Terraform provider enables."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "site:reddit.com how do you manage uptime monitors as code terraform infrastructure",
+      "site:reddit.com/r/selfhosted uptime monitoring status page self-hosted alternative",
+      "site:reddit.com/r/devops cron job monitoring alerting dead man snitch",
+      "site:reddit.com alternative to UptimeRobot infrastructure as code monitors terraform",
+      "site:reddit.com/r/sysadmin uptime monitoring cheap alternative Datadog too expensive",
+      "HN Algolia: uptime monitoring terraform (ask_hn)",
+      "HN Algolia: status page monitoring (comment, search_by_date)",
+      "HN Algolia: uptime monitor api (ask_hn)",
+      "HN Algolia: cron monitoring (ask_hn)",
+      "GitHub issues: uptime monitoring terraform provider is:issue is:open",
+      "GitHub issues: status page monitoring alerting is:issue is:open",
+      "StackOverflow: uptime monitoring terraform api"
+    ],
+    "coverage_notes": "Reddit Exa searches returned 0 results across all 4 community subreddits. All HN hits were either >14 days old (locked) or pre-2026. StackOverflow returned 0 items. Only 2 replyable GitHub signals found.",
+    "confidence": {
+      "overall": 0.25,
+      "notes": "Very low signal volume. Reddit Exa searches consistently returned empty — likely a domain-scoping issue with Exa. HN had no fresh relevant threads. Only GitHub produced replyable candidates, both borderline. Builder should try direct Reddit searches manually."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/kaufrickpro/spb-ai-v1/issues/105",
+      "title_or_quote": "Step 17: Add staging monitoring, budget alerts, and domain outputs",
+      "posted_when": "2026-05-20",
+      "why_relevant": "Developer setting up staging monitoring and alerting infrastructure — direct use case for pingdeck's endpoint and alert management.",
+      "intent_strength": "low",
+      "drafted_reply": "Your acceptance criteria call for Terraform-defined uptime checks for the web and API endpoints — that's a clean fit for a provider-native approach rather than wiring GCP's built-in uptime checks, which can be fiddly to configure for Cloud Run URLs and don't give you a status page out of the box. If you want monitors to live in the same root as your Cloud Run and Cloud Tasks resources, an external provider keeps the concern separate and avoids coupling your alert logic to GCP's monitoring quotas. I built pingdeck for exactly this pattern — monitors as Terraform resources, 30-second intervals, with alerting and status pages included — one resource block per endpoint: {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The thread's acceptance criteria explicitly require Terraform-defined uptime checks for web and API endpoints in staging, which is exactly what pingdeck's Terraform provider enables."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/hashicorp/terraform-provider-google/issues/28764",
+      "title_or_quote": "google_monitoring_uptime_check_config: make the cost of an unset selected_regions visible",
+      "posted_when": "2026-08-12",
+      "why_relevant": "User managing GCP uptime checks via Terraform — exact IaC-first monitoring workflow pingdeck's Terraform provider targets.",
+      "intent_strength": "high",
+      "drafted_reply": "The footgun here is that omitting selected_regions silently defaults to all regions, which inflates check costs without any warning in the plan output. A workaround until the provider surfaces this: add a lifecycle precondition that asserts length(selected_regions) > 0. If you're open to managing uptime checks outside GCP's native monitoring, I'm the builder of pingdeck ({APP_URL}) — it has an official Terraform provider so monitors live in your repo alongside the infra, and the resource schema makes selected regions explicit. Happy to share the provider docs if useful.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is a Terraform provider bug/enhancement request about making hidden cost of an unset field visible at plan time — it's a provider internals issue, not a search for uptime monitoring tooling."
+      }
+    }
+  ]
+}

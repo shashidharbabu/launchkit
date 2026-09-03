@@ -1,0 +1,102 @@
+{
+  "output": {
+    "one_liner": "Open source, privacy-first web analytics alternative to Google Analytics for website owners and developers.",
+    "description": "Plausible is a lightweight, cookie-free web analytics tool that provides simple, real-time insights while respecting user privacy. It is GDPR, CCPA, and PECR compliant, with all data processed in the EU. Available as a managed cloud service or self-hosted community edition.",
+    "category": "Web Analytics",
+    "target_user": "Website owners, developers, and digital agencies",
+    "icp": {
+      "who": "Privacy-conscious website owners and small to mid-sized businesses",
+      "pain": "Google Analytics is complex, slow, and invasive, requiring cookie banners and raising compliance risks.",
+      "current_alternatives": [
+        "Google Analytics",
+        "Matomo",
+        "Cloudflare Web Analytics"
+      ],
+      "buying_trigger": "Switching from GA4 due to complexity or privacy compliance requirements"
+    },
+    "differentiators": [
+      "Lightweight script (54x smaller than GA)",
+      "No cookies or personal data collection",
+      "Built-in bot filtering",
+      "EU-hosted and GDPR compliant"
+    ],
+    "proof_points": [
+      "20k paying subscribers (from site)",
+      "313B tracked pageviews (from site)",
+      "99.99% uptime (from site)",
+      "Testimonials from Hugging Face, Basecamp, Ghost (from site)",
+      "28.8k GitHub stars (from repo)",
+      "Open source under AGPLv3 (from README)",
+      "Real-time dashboard updates every 30 seconds (from site)"
+    ],
+    "tech_stack": [
+      "Elixir",
+      "Phoenix",
+      "PostgreSQL",
+      "ClickHouse",
+      "React",
+      "TailwindCSS"
+    ],
+    "pricing_current": "Starter: $9/month, Growth: $14/month, Business: $19/month, Enterprise: custom pricing",
+    "voice": {
+      "tone": [
+        "clear",
+        "confident",
+        "friendly",
+        "professional"
+      ],
+      "sample_phrase": "Plausible is powerful, lightweight analytics. No cookies, just insights."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "20k+ paying customers",
+        "313B pageviews tracked",
+        "public roadmap",
+        "active GitHub repo with 28.8k stars"
+      ]
+    },
+    "gaps": [
+      "Pricing page returns 404 but pricing is visible on homepage",
+      "No demo video available",
+      "No free plan for cloud version"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "Pricing page returned 404 but pricing visible on main site"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, features, license"
+      },
+      {
+        "source": "mix.exs",
+        "via": "github",
+        "ok": true,
+        "note": "Elixir dependencies and project config"
+      },
+      {
+        "source": "https://github.com/plausible/analytics",
+        "via": "github",
+        "ok": true,
+        "note": "Repo metadata, stars, forks"
+      },
+      {
+        "source": "https://plausible.io",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content, features, testimonials"
+      },
+      {
+        "source": "https://plausible.io/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "Pricing page returned 404"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

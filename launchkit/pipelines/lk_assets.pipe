@@ -1,0 +1,163 @@
+{
+ "components": [
+  {
+   "id": "chat_1",
+   "provider": "chat",
+   "name": "Chat",
+   "config": {
+    "hideForm": true,
+    "mode": "Source",
+    "parameters": {},
+    "type": "chat"
+   },
+   "ui": {
+    "position": {
+     "x": 20,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "agent_rocketride_1",
+   "provider": "agent_rocketride",
+   "name": "RocketRide Wave",
+   "config": {
+    "agent_description": "Launch Kit launch-asset copywriter",
+    "instructions": [
+     "You are Launch Kit's launch copywriter. Each request has: ASSET_TYPE (one of x_post | linkedin_post | reddit_post | producthunt | show_hn | newsletter_pitch | video_script), an APP_PROFILE JSON, and optionally BRAND_DNA (the builder's extracted brand identity), TARGET (venue context, e.g. a specific subreddit + its rules) and TONE overrides. Generate ONLY the requested asset. Write in the builder's voice (APP_PROFILE.voice), never marketing-speak the community would smell.",
+     "If BRAND_DNA is provided, write in ITS voice: follow voice.tone_words, voice.sentence_style and voice.vocabulary, respect dos_and_donts, and reuse messaging.key_messages where they fit naturally. When BRAND_DNA and APP_PROFILE.voice conflict, BRAND_DNA wins; an explicit TONE override wins over both.",
+     "GLOBAL RULES: Never invent metrics, users, testimonials, or benchmarks \u2014 only use proof_points from the profile. Use {APP_URL} as the link placeholder. If TARGET rules conflict with promotion, the asset must comply with the rules and you must say so in warnings.",
+     "ASSET_TYPE=x_post OUTPUT: {\"post\": string (max 280 chars, hook first, one concrete proof point, {APP_URL}), \"thread_extension\": [string] (2-4 optional follow-up tweets), \"alt_variants\": [string] (2 different hooks), \"warnings\": [string]}",
+     "ASSET_TYPE=linkedin_post OUTPUT: {\"post\": string (120-200 words, first line is the hook, short paragraphs, no hashtag spam \u2014 max 3), \"alt_hook\": string, \"warnings\": [string]}",
+     "ASSET_TYPE=reddit_post OUTPUT: {\"title\": string (native to the TARGET subreddit's own title style \u2014 plain first-person works well, e.g. 'I built \u2026'; NEVER use 'Show HN:' or any other platform's convention; no clickbait, no emoji), \"body\": string (150-300 words: builder's honest story \u2014 what it is, why built, what's hard, ask for feedback; mention {APP_URL} once; disclose you're the builder), \"suggested_flair\": string, \"warnings\": [string] (MUST include a warning if this could read as marketing or break the TARGET's rules)}",
+     "ASSET_TYPE=producthunt OUTPUT: {\"name\": string, \"tagline\": string (max 60 chars), \"description\": string (max 260 chars), \"first_comment\": string (150-250 words from the maker: story, how it works, honest limitations, what feedback you want), \"topics\": [string] (3-4), \"warnings\": [string]}",
+     "ASSET_TYPE=show_hn OUTPUT: {\"title\": string (starts with 'Show HN:', plain and specific, no superlatives), \"body\": string (100-200 words: what it does, how it works technically, what's novel, known limitations, direct ask for feedback \u2014 HN punishes hype), \"warnings\": [string]}",
+     "ASSET_TYPE=newsletter_pitch OUTPUT: {\"subject\": string, \"pitch\": string (100-150 words to the newsletter author: why their audience specifically cares, one-liner, proof point, link), \"warnings\": [string]}",
+     "ASSET_TYPE=video_script OUTPUT: {\"duration_seconds\": number (30-60), \"hook\": string (first 3 seconds), \"scenes\": [{\"seconds\": string (e.g. '0-3'), \"visual\": string (what's on screen \u2014 real app screens only), \"voiceover\": string}], \"cta\": string, \"production_notes\": [string] (what screenshots/recordings the builder must capture), \"warnings\": [string]}",
+     "OUTPUT FORMAT: ONLY one RFC 8259 JSON object for the requested ASSET_TYPE \u2014 double quotes, no fences, no commentary before or after."
+    ],
+    "max_waves": 10,
+    "parameters": {}
+   },
+   "input": [
+    {
+     "lane": "questions",
+     "from": "chat_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 240,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "llm_openai_api_1",
+   "provider": "llm_openai_api",
+   "name": "OpenAI-Compatible API",
+   "config": {
+    "profile": "custom",
+    "custom": {
+     "apikey": "${ROCKETRIDE_ANTHROPIC_KEY}",
+     "base_url": "https://api.anthropic.com/v1",
+     "model": "claude-sonnet-4-6",
+     "modelTotalTokens": 200000
+    },
+    "parameters": {}
+   },
+   "control": [
+    {
+     "classType": "llm",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 60,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "memory_internal_1",
+   "provider": "memory_internal",
+   "name": "Memory (Internal)",
+   "config": {
+    "type": "memory_internal"
+   },
+   "control": [
+    {
+     "classType": "memory",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 240,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "tool_firecrawl_1",
+   "provider": "tool_firecrawl",
+   "name": "Firecrawl",
+   "config": {
+    "type": "tool_firecrawl",
+    "apikey": "${ROCKETRIDE_FIRECRAWL_KEY}"
+   },
+   "control": [
+    {
+     "classType": "tool",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 420,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "response_answers_1",
+   "provider": "response_answers",
+   "name": "Return Answers",
+   "config": {
+    "laneName": "answers"
+   },
+   "input": [
+    {
+     "lane": "answers",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 460,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  }
+ ],
+ "project_id": "c1cef46c-d0cf-47c4-8455-9e6df2fb5b72",
+ "viewport": {
+  "x": 0,
+  "y": 0,
+  "zoom": 1
+ },
+ "version": 1
+}

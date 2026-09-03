@@ -1,0 +1,46 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "Missed a day? Your streak doesn’t have to die.",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "App icon appears, then fades into a calendar with a broken streak highlighted in red.",
+        "voiceover": "Missed a day? Your streak doesn’t have to die."
+      },
+      {
+        "seconds": "3-12",
+        "visual": "User taps 'Repair Streak' button; the red mark turns green and the streak continues.",
+        "voiceover": "Streakly lets you repair a missed day by doubling up within the week. No guilt. No reset. Just progress."
+      },
+      {
+        "seconds": "12-22",
+        "visual": "Weekly view showing habit completion targets, with checkmarks filling in across the week.",
+        "voiceover": "We score habits against weekly targets, not daily chains. Because real life doesn’t fit into perfect streaks."
+      },
+      {
+        "seconds": "22-32",
+        "visual": "Settings screen showing 'On-Device Only' and 'No Account Needed' toggles enabled.",
+        "voiceover": "Your data stays private, on your device. No social feed, no leaderboards, no shame."
+      },
+      {
+        "seconds": "32-40",
+        "visual": "App Store review popup showing a 5-star rating with comment: 'Finally, a habit tracker that gets me.'",
+        "voiceover": "Join 800+ beta users who’ve stuck with their habits longer — 41% still tracking at day 30."
+      },
+      {
+        "seconds": "40-45",
+        "visual": "App logo with tagline 'Habits that survive real life.' and {APP_URL} below.",
+        "voiceover": "Streakly. Habits that survive real life."
+      }
+    ],
+    "cta": "Download Streakly today and make your next fresh start the one that lasts.",
+    "production_notes": [
+      "Record screen demo of streak repair flow",
+      "Capture weekly target completion animation",
+      "Screenshot of on-device data settings",
+      "Export 5-star TestFlight review quote"
+    ],
+    "warnings": []
+  }
+}

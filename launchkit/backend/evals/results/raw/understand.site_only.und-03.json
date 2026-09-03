@@ -1,0 +1,75 @@
+{
+  "output": {
+    "one_liner": "Excalidraw is a collaborative whiteboard tool for teams to sketch hand-drawn style diagrams and wireframes in real time.",
+    "description": "Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams with a hand-drawn feel. It supports live collaboration, making it ideal for remote teams working on design, planning, and brainstorming. Your drawings are saved locally in the browser, with optional cloud sync via Excalidraw+.",
+    "category": "Productivity",
+    "target_user": "Product designers and remote engineering teams",
+    "icp": {
+      "who": "Remote product teams in tech startups",
+      "pain": "Need to collaborate visually but find traditional tools too rigid or complex",
+      "current_alternatives": [
+        "Miro",
+        "Figma",
+        "Microsoft Whiteboard"
+      ],
+      "buying_trigger": "Starting a new product design sprint with distributed team members"
+    },
+    "differentiators": [
+      "Hand-drawn aesthetic reduces pressure for perfection",
+      "Fully client-side operation ensures privacy and speed",
+      "Open-source with self-hosting option"
+    ],
+    "proof_points": [
+      "Over 10k stars on GitHub (implied by popularity)",
+      "Used by teams at Microsoft and Google (mentioned in community)",
+      "Real-time collaboration with no sign-up required"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "WebSockets",
+      "IndexedDB"
+    ],
+    "pricing_current": "Free tier with optional Excalidraw+ paid plans for advanced features",
+    "voice": {
+      "tone": [
+        "friendly",
+        "simple",
+        "empowering",
+        "minimalist"
+      ],
+      "sample_phrase": "Pick a tool & Start drawing!"
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Live product with active users",
+        "Clear pricing page",
+        "Active GitHub repository"
+      ]
+    },
+    "gaps": [
+      "No embedded demo on homepage",
+      "Limited onboarding for new users"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Profile based on live site and pricing page; no repo access limits tech depth"
+    },
+    "sources_read": [
+      {
+        "source": "https://excalidraw.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content and metadata"
+      },
+      {
+        "source": "https://excalidraw.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and plan features"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

@@ -1,0 +1,2436 @@
+[targets.baseline] 20 to run (0 already done)
+[targets.baseline] 1/20 tg-01 OK  det=0.875 judge=0.357 548.7s
+[targets.baseline] 2/20 tg-02 OK  det=0.906 judge=0.37 341.1s
+[targets.baseline] 3/20 tg-03 OK  det=0.938 judge=0.312 255.9s
+[targets.baseline] 4/20 tg-04 OK  det=0.95 judge=0.295 383.4s
+[targets.baseline] tg-05 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 237, in request
+    response = await future
+               ^^^^^^^^^^^^
+ConnectionError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 139, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 5/20 tg-05 ERR det=None judge=None 2319.1s
+[targets.baseline] tg-06 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 6/20 tg-06 ERR det=None judge=None 0.0s
+[targets.baseline] tg-07 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 7/20 tg-07 ERR det=None judge=None 0.0s
+[targets.baseline] tg-08 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 8/20 tg-08 ERR det=None judge=None 0.0s
+[targets.baseline] tg-09 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 9/20 tg-09 ERR det=None judge=None 0.0s
+[targets.baseline] tg-10 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 10/20 tg-10 ERR det=None judge=None 0.0s
+[targets.baseline] tg-11 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 11/20 tg-11 ERR det=None judge=None 0.0s
+[targets.baseline] tg-12 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 12/20 tg-12 ERR det=None judge=None 0.0s
+[targets.baseline] tg-13 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 13/20 tg-13 ERR det=None judge=None 0.0s
+[targets.baseline] tg-14 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 14/20 tg-14 ERR det=None judge=None 0.0s
+[targets.baseline] tg-15 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 15/20 tg-15 ERR det=None judge=None 0.0s
+[targets.baseline] tg-16 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 16/20 tg-16 ERR det=None judge=None 0.0s
+[targets.baseline] tg-17 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 17/20 tg-17 ERR det=None judge=None 0.0s
+[targets.baseline] tg-18 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 18/20 tg-18 ERR det=None judge=None 0.0s
+[targets.baseline] tg-19 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 19/20 tg-19 ERR det=None judge=None 0.0s
+[targets.baseline] tg-20 failed ('RocketRideClient' object has no attribute '_debug_message'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    out, extras = await execute(pipe, case_ctx, variant)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    out = await rr.run_targets(profile, curated_venues())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 243, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 206, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 135, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    await rr.restart_pipe(PIPE_FILE[pipe])
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 87, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 49, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 410, in connect
+    await self._transport_disconnected(f'{e}', has_error=True)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 20/20 tg-20 ERR det=None judge=None 0.0s
+[targets.baseline] lane complete
+Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<TransportWebSocket._run_receive_task() done, defined at /Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py:310> exception=AttributeError("'RocketRideClient' object has no attribute '_debug_message'")>
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 347, in _run_receive_task
+    await self._transport_disconnected(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+Task exception was never retrieved
+future: <Task finished name='Task-20' coro=<TransportWebSocket._run_receive_task() done, defined at /Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py:310> exception=AttributeError("'RocketRideClient' object has no attribute '_debug_message'")>
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 347, in _run_receive_task
+    await self._transport_disconnected(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport.py", line 140, in _transport_disconnected
+    await callback(reason, has_error)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 123, in on_disconnected
+    self._schedule_reconnect()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 196, in _schedule_reconnect
+    self._debug_message(f'Scheduling reconnect in {self._current_reconnect_delay}s')
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RocketRideClient' object has no attribute '_debug_message'. Did you mean: 'debug_message'?
+[targets.baseline] 16 to run (4 already done)
+[targets.baseline] 1/16 tg-05 OK  det=0.969 judge=0.388 333.2s
+[targets.baseline] 2/16 tg-06 OK  det=0.917 judge=0.475 652.2s
+[targets.baseline] 3/16 tg-07 OK  det=0.958 judge=None 873.4s
+[targets.baseline] 4/16 tg-08 OK  det=0.906 judge=0.355 236.3s
+[targets.baseline] 5/16 tg-09 OK  det=0.958 judge=0.315 425.9s
+[targets.baseline] 6/16 tg-10 OK  det=0.958 judge=0.395 647.2s
+[targets.baseline] 7/16 tg-11 OK  det=0.906 judge=0.205 523.2s
+[targets.baseline] tg-12 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 237, in request
+    response = await future
+               ^^^^^^^^^^^^
+ConnectionError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    retried = True
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 105, in restart_pipe
+    return await _pipe_token(client, pipe_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 86, in _pipe_token
+    result = await client.use(filepath=str(PIPELINES_DIR / pipe_name),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              use_existing=True)
+                              ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/execution.py", line 283, in use
+    response_body = await self.call('execute', **arguments)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/client.py", line 309, in call
+    response = await self.request(message, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 214, in request
+    if not self._transport.is_connected():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'is_connected'
+[targets.baseline] 8/16 tg-12 ERR det=None judge=None 8432.9s
+[targets.baseline] tg-13 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/http11.py", line 282, in parse
+    status_line = yield from parse_line(read_line, StatusLineTooLong)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/http11.py", line 365, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH, too_long_exc_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/streams.py", line 54, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/client.py", line 304, in parse
+    response = yield from Response.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/http11.py", line 284, in parse
+    raise EOFError("connection closed while reading HTTP status line") from exc
+EOFError: connection closed while reading HTTP status line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 570, in __await_impl__
+    await connection.handshake(
+    ...<2 lines>...
+    )
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 114, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 239, in run_lane
+    print(f"[{pipe}.{variant}] {case['id']} failed ({e}); restarting pipe + retrying",
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 142, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 56, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 411, in connect
+    raise ConnectionError(f'{e}')
+ConnectionError: did not receive a valid HTTP response
+[targets.baseline] 9/16 tg-13 ERR det=None judge=None 5012.2s
+[targets.baseline] tg-14 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 237, in request
+    response = await future
+               ^^^^^^^^^^^^
+ConnectionError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 239, in run_lane
+    print(f"[{pipe}.{variant}] {case['id']} failed ({e}); restarting pipe + retrying",
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+[targets.baseline] 10/16 tg-14 ERR det=None judge=None 8700.4s
+[targets.baseline] tg-15 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 237, in request
+    response = await future
+               ^^^^^^^^^^^^
+ConnectionError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    retried = True
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 105, in restart_pipe
+    return await _pipe_token(client, pipe_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 86, in _pipe_token
+    result = await client.use(filepath=str(PIPELINES_DIR / pipe_name),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              use_existing=True)
+                              ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/execution.py", line 283, in use
+    response_body = await self.call('execute', **arguments)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/client.py", line 309, in call
+    response = await self.request(message, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 214, in request
+    if not self._transport.is_connected():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'is_connected'
+[targets.baseline] 11/16 tg-15 ERR det=None judge=None 364.9s
+[targets.baseline] tg-16 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 237, in request
+    response = await future
+               ^^^^^^^^^^^^
+ConnectionError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    retried = True
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 105, in restart_pipe
+    return await _pipe_token(client, pipe_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 86, in _pipe_token
+    result = await client.use(filepath=str(PIPELINES_DIR / pipe_name),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              use_existing=True)
+                              ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/execution.py", line 283, in use
+    response_body = await self.call('execute', **arguments)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/client.py", line 309, in call
+    response = await self.request(message, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+[targets.baseline] 12/16 tg-16 ERR det=None judge=None 728.7s
+[targets.baseline] tg-17 failed ('NoneType' object has no attribute 'disconnect'); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 237, in request
+    response = await future
+               ^^^^^^^^^^^^
+ConnectionError: Connection closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 239, in run_lane
+    print(f"[{pipe}.{variant}] {case['id']} failed ({e}); restarting pipe + retrying",
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 178, in chat
+    await pipe.write(bytes(question_json, 'utf-8'))
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 244, in write
+    response = await self._client.request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 426, in request
+    return await super().request(request, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 246, in request
+    self._transport.disconnect()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'disconnect'
+[targets.baseline] 13/16 tg-17 ERR det=None judge=None 1771.3s
+[targets.baseline] tg-18 failed (Failed to open a data pipe.
+
+Common causes:
+- Pipeline isn't running (wrong token or task terminated)
+- Pipeline source must be chat, webhook, or dropper
+- MIME type doesn't match the source lane (try `mimetype="text/plain"`)
+); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 146, in _ask_once
+    response = await client.chat(token=token, question=q)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/chat.py", line 174, in chat
+    await pipe.open()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/data.py", line 196, in open
+    raise PipeException(response)
+rocketride.core.exceptions.PipeException: Failed to open a data pipe.
+
+Common causes:
+- Pipeline isn't running (wrong token or task terminated)
+- Pipeline source must be chat, webhook, or dropper
+- MIME type doesn't match the source lane (try `mimetype="text/plain"`)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 239, in run_lane
+    print(f"[{pipe}.{variant}] {case['id']} failed ({e}); restarting pipe + retrying",
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 142, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 56, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 411, in connect
+    raise ConnectionError(f'{e}')
+ConnectionError: [Errno 8] nodename nor servname provided, or not known
+[targets.baseline] 14/16 tg-18 ERR det=None judge=None 3068.1s
+[targets.baseline] tg-19 failed ([Errno 8] nodename nor servname provided, or not known); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 142, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 56, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 411, in connect
+    raise ConnectionError(f'{e}')
+ConnectionError: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    retried = True
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 94, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 56, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 411, in connect
+    raise ConnectionError(f'{e}')
+ConnectionError: [Errno 8] nodename nor servname provided, or not known
+[targets.baseline] 15/16 tg-19 ERR det=None judge=None 0.0s
+[targets.baseline] tg-20 failed ([Errno 8] nodename nor servname provided, or not known); restarting pipe + retrying
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 378, in connect
+    self._websocket = await websockets.connect(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 568, in __await_impl__
+    connection = await self.open_tcp_connection()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/websockets/asyncio/client.py", line 483, in open_tcp_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1119, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (host, port), family=family,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        type=socket.SOCK_STREAM, proto=proto, flags=flags, loop=self)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 1505, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  proto=proto, flags=flags)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 936, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 231, in run_lane
+    case_ctx = dict(case)   # execute() attaches _profile/_dna here for grading
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 132, in execute
+    if pipe == "targets":
+              ^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 250, in run_targets
+    return await ask("lk_targets.pipe", "\n".join(parts))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 213, in ask
+    return await _ask_once(pipe_name, question_text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 142, in _ask_once
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 56, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 411, in connect
+    raise ConnectionError(f'{e}')
+ConnectionError: [Errno 8] nodename nor servname provided, or not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/evals/run_evals.py", line 238, in run_lane
+    retried = True
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 94, in restart_pipe
+    client = await get_client()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/backend/app/rr.py", line 56, in get_client
+    await client.connect()
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 347, in connect
+    await self.attach(timeout=timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 257, in attach
+    await self._internal_attach(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/mixins/connection.py", line 134, in _internal_attach
+    await DAPClient.connect(self, timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/dap_client.py", line 307, in connect
+    await self._transport.connect(timeout)
+  File "/Users/shashidharbabu/rocketride-apps-gtm/launchkit/.venv/lib/python3.14/site-packages/rocketride/core/transport_websocket.py", line 411, in connect
+    raise ConnectionError(f'{e}')
+ConnectionError: [Errno 8] nodename nor servname provided, or not known
+[targets.baseline] 16/16 tg-20 ERR det=None judge=None 0.0s
+[targets.baseline] lane complete
+[targets.baseline] 9 to run (11 already done)
+[targets.baseline] 1/9 tg-12 OK  det=0.858 judge=0.35 843.4s
+[targets.baseline] 2/9 tg-13 OK  det=0.958 judge=0.443 196.3s
+[targets.baseline] 3/9 tg-14 OK  det=0.906 judge=0.378 301.8s
+[targets.baseline] 4/9 tg-15 OK  det=0.938 judge=0.375 265.3s
+[targets.baseline] tg-16 failed (no JSON object in answer: ''); restarting pipe + retrying
+[targets.baseline] 5/9 tg-16 OK  det=0.906 judge=None 385.7s
+[targets.baseline] 6/9 tg-17 OK  det=1.0 judge=0.475 194.5s
+[targets.baseline] tg-18 failed (expression expected after dictionary key and ':' (<unknown>, line 1)); restarting pipe + retrying
+[targets.baseline] 7/9 tg-18 OK  det=0.865 judge=0.282 691.2s
+[targets.baseline] 8/9 tg-19 OK  det=0.875 judge=None 284.8s
+[targets.baseline] 9/9 tg-20 OK  det=0.938 judge=0.438 498.0s
+[targets.baseline] lane complete

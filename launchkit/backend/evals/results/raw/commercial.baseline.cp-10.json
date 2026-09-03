@@ -1,0 +1,242 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "HubSpot",
+        "url": "https://www.hubspot.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 5 comparison lists incl. G2 CRM",
+        "mentions": 5,
+        "pricing_model": "freemium subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly",
+            "key_limits": "Up to 1M contacts, basic CRM"
+          },
+          {
+            "name": "Starter",
+            "price": "20",
+            "period": "monthly per user",
+            "key_limits": "Deal & contact management, email tracking"
+          },
+          {
+            "name": "Professional",
+            "price": "800",
+            "period": "monthly for 5 users",
+            "key_limits": "Marketing hub, automation, reporting"
+          }
+        ],
+        "source_url": "https://www.hubspot.com/products/crm/pricing"
+      },
+      {
+        "name": "Pipedrive",
+        "url": "https://www.pipedrive.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. G2 CRM",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Essential",
+            "price": "14.90",
+            "period": "monthly per user",
+            "key_limits": "Sales pipeline, email integration, mobile"
+          },
+          {
+            "name": "Advanced",
+            "price": "24.90",
+            "period": "monthly per user",
+            "key_limits": "Automation, custom reports, multi-currency"
+          },
+          {
+            "name": "Professional",
+            "price": "49.90",
+            "period": "monthly per user",
+            "key_limits": "Lead booster, web visitor identification"
+          }
+        ],
+        "source_url": "https://www.pipedrive.com/pricing"
+      },
+      {
+        "name": "Salesforce",
+        "url": "https://www.salesforce.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. G2 CRM",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Starter",
+            "price": "25",
+            "period": "monthly per user",
+            "key_limits": "Basic CRM, 10 custom objects"
+          },
+          {
+            "name": "Professional",
+            "price": "75",
+            "period": "monthly per user",
+            "key_limits": "Workflow rules, email integration, reports"
+          },
+          {
+            "name": "Enterprise",
+            "price": "150",
+            "period": "monthly per user",
+            "key_limits": "Advanced automation, sandbox, audit trail"
+          }
+        ],
+        "source_url": "https://www.salesforce.com/products/sales-cloud/pricing/"
+      },
+      {
+        "name": "Attio",
+        "url": "https://www.attio.com",
+        "notability": "emerging",
+        "evidence_of_standing": "named in 3 alternative lists incl. Copper",
+        "mentions": 3,
+        "pricing_model": "freemium subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly",
+            "key_limits": "Unlimited rows, 1 workspace"
+          },
+          {
+            "name": "Pro",
+            "price": "12",
+            "period": "monthly per user",
+            "key_limits": "Synced email, automations, API access"
+          },
+          {
+            "name": "Team",
+            "price": "24",
+            "period": "monthly per user",
+            "key_limits": "Shared views, audit log, SSO"
+          }
+        ],
+        "source_url": "https://www.attio.com/pricing"
+      },
+      {
+        "name": "Zoho CRM",
+        "url": "https://www.zoho.com/crm",
+        "notability": "established",
+        "evidence_of_standing": "named in 3 comparison lists incl. G2 CRM",
+        "mentions": 3,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly for up to 3 users",
+            "key_limits": "Basic CRM, email integration"
+          },
+          {
+            "name": "Standard",
+            "price": "14",
+            "period": "monthly per user",
+            "key_limits": "Sales automation, web forms, SLA management"
+          },
+          {
+            "name": "Professional",
+            "price": "23",
+            "period": "monthly per user",
+            "key_limits": "Custom functions, forecasting, analytics"
+          }
+        ],
+        "source_url": "https://www.zoho.com/crm/pricing.html"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Notion",
+        "url": "https://www.notion.so",
+        "why": "Used as database, not a CRM product"
+      },
+      {
+        "name": "Reddit CRM Tool",
+        "url": "https://www.syndr.ai/reddit-analytics-tool/reddit-crm-tool",
+        "why": "Aggregator page, not a product"
+      },
+      {
+        "name": "Indie Compass",
+        "url": "https://eliteai.tools/tool/indie-compass",
+        "why": "Directory listing, not a CRM"
+      },
+      {
+        "name": "Copper CRM",
+        "url": "https://www.copper.com",
+        "why": "Only appeared once in Attio alternatives"
+      },
+      {
+        "name": "Ember AI",
+        "url": "https://withember.ai",
+        "why": "Only appeared once in Attio alternatives"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium subscription",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Founders with <10 active deals",
+          "includes": [
+            "One-page pipeline",
+            "Keyboard navigation",
+            "Gmail sync",
+            "Up to 1,000 contacts"
+          ],
+          "rationale": "Matches Attio and HubSpot entry points; lowers barrier to adoption"
+        },
+        {
+          "name": "Founder",
+          "price_usd_month": 19,
+          "who_its_for": "Solo founders scaling to 50+ deals",
+          "includes": [
+            "Everything in Free",
+            "Unlimited contacts",
+            "p95 <100ms latency",
+            "Import from HubSpot/Pipedrive"
+          ],
+          "rationale": "Matches current price; positioned below HubSpot Starter and Pipedrive Advanced"
+        },
+        {
+          "name": "Team",
+          "price_usd_month": 39,
+          "who_its_for": "Founding teams adding first sales hires",
+          "includes": [
+            "Everything in Founder",
+            "Team pipeline view",
+            "Shared notes & templates",
+            "Admin audit log"
+          ],
+          "rationale": "Premium tier just below Salesforce Professional; justifies added collaboration"
+        }
+      ],
+      "anchor_competitors": [
+        "HubSpot",
+        "Pipedrive",
+        "Salesforce"
+      ],
+      "positioning_note": "Price at parity with Pipedrive Essential but include Gmail sync and speed as differentiators. Avoid underpricing: $19 is fair for a focused, fast tool.",
+      "risks": [
+        "Free tier may cannibalize paid if not limited enough",
+        "No Outlook sync limits enterprise appeal",
+        "Team tier must justify $20 jump with clear collaboration value"
+      ]
+    },
+    "search_queries_used": [
+      "best CRM tools",
+      "CRM software comparison",
+      "alternative to HubSpot",
+      "alternative to Pipedrive",
+      "alternative to Attio",
+      "site:g2.com CRM"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "3+ established competitors confirmed via G2 and multiple comparison lists. Pricing pages scraped successfully."
+    }
+  }
+}

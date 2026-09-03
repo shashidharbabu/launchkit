@@ -1,0 +1,182 @@
+[
+  {
+    "id": "tg-01",
+    "profile_ref": "termdiff",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "newsletter", "community"],
+      "plausible_venues": ["r/commandline", "Terminal Trove", "Console.dev", "Hacker News"]
+    }
+  },
+  {
+    "id": "tg-02",
+    "profile_ref": "schemaguard",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community"],
+      "plausible_venues": ["r/typescript", "JavaScript Weekly", "Bytes", "dev.to"]
+    }
+  },
+  {
+    "id": "tg-03",
+    "profile_ref": "gitwhisper",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "community"],
+      "plausible_venues": ["r/vscode", "r/git", "VS Code Marketplace", "Product Hunt"]
+    }
+  },
+  {
+    "id": "tg-04",
+    "profile_ref": "funnelscope",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "community", "directory", "newsletter"],
+      "plausible_venues": ["r/SaaS", "Indie Hackers", "Product Hunt"]
+    }
+  },
+  {
+    "id": "tg-05",
+    "profile_ref": "dealpage",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "community", "directory"],
+      "plausible_venues": ["r/startups", "Indie Hackers", "Product Hunt", "r/sales"]
+    }
+  },
+  {
+    "id": "tg-06",
+    "profile_ref": "replydeck",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "community", "directory"],
+      "plausible_venues": ["Support Driven", "r/smallbusiness", "Product Hunt"]
+    }
+  },
+  {
+    "id": "tg-07",
+    "profile_ref": "botsmith",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "newsletter"],
+      "plausible_venues": ["r/SaaS", "There's An AI For That", "Ben's Bites"]
+    }
+  },
+  {
+    "id": "tg-08",
+    "profile_ref": "pixelmuse",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "community"],
+      "plausible_venues": ["r/ecommerce", "r/shopify", "Product Hunt", "Futurepedia"]
+    }
+  },
+  {
+    "id": "tg-09",
+    "profile_ref": "streakly",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "community"],
+      "plausible_venues": ["r/productivity", "r/getdisciplined", "Product Hunt"]
+    }
+  },
+  {
+    "id": "tg-10",
+    "profile_ref": "quietpage",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "community"],
+      "plausible_venues": ["r/privacy", "r/Journaling", "AlternativeTo"]
+    }
+  },
+  {
+    "id": "tg-11",
+    "profile_ref": "pingdeck",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community", "directory"],
+      "plausible_venues": ["r/selfhosted", "r/devops", "Console.dev", "Hacker News"]
+    }
+  },
+  {
+    "id": "tg-12",
+    "profile_ref": "togglr",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community"],
+      "plausible_venues": ["r/devops", "Console.dev", "Hacker News", "r/webdev"]
+    }
+  },
+  {
+    "id": "tg-13",
+    "profile_ref": "podclip",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community", "directory"],
+      "plausible_venues": ["r/podcasting", "Podnews", "Product Hunt"]
+    }
+  },
+  {
+    "id": "tg-14",
+    "profile_ref": "lettercraft",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "community", "newsletter"],
+      "plausible_venues": ["Hacker News", "Indie Hackers", "dev.to", "r/webdev"]
+    }
+  },
+  {
+    "id": "tg-15",
+    "profile_ref": "cartnudge",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "community"],
+      "plausible_venues": ["r/shopify", "Shopify App Store", "r/ecommerce", "eCommerceFuel"]
+    }
+  },
+  {
+    "id": "tg-16",
+    "profile_ref": "gridframe",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "directory", "community"],
+      "plausible_venues": ["r/web_design", "r/Frontend", "Product Hunt", "Dense Discovery"]
+    }
+  },
+  {
+    "id": "tg-17",
+    "profile_ref": "stackbuilt",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "directory", "community"],
+      "plausible_venues": ["r/selfhosted", "Hacker News", "AlternativeTo", "r/devops"]
+    }
+  },
+  {
+    "id": "tg-18",
+    "profile_ref": "docparse",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community"],
+      "plausible_venues": ["r/dataengineering", "Hacker News", "Ben's Bites"]
+    }
+  },
+  {
+    "id": "tg-19",
+    "profile_ref": "depsentry",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community"],
+      "plausible_venues": ["r/netsec", "tl;dr sec", "Hacker News", "r/devops"]
+    }
+  },
+  {
+    "id": "tg-20",
+    "profile_ref": "pipewright",
+    "expect": {
+      "min_targets": 8,
+      "expected_venue_kinds": ["subreddit", "newsletter", "community"],
+      "plausible_venues": ["r/dataengineering", "Data Engineering Weekly", "Locally Optimistic", "dbt Community Slack"]
+    }
+  }
+]

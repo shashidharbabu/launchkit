@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "stackoverflow",
+        "url": "https://stackoverflow.com/questions/28532770",
+        "title_or_quote": "Extract / Identify Tables from PDF python",
+        "why_relevant": "A developer trying to extract tabular data from PDFs in code is docparse's core use case.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is about open-source Python libraries for PDF table extraction and structure identification, not about invoice/receipt parsing APIs or AP automation workflows that DocParse targets."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/28532770",
+      "title_or_quote": "Extract / Identify Tables from PDF python",
+      "why_relevant": "A developer trying to extract tabular data from PDFs in code is docparse's core use case.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is about open-source Python libraries for PDF table extraction and structure identification, not about invoice/receipt parsing APIs or AP automation workflows that DocParse targets."
+      }
+    }
+  ]
+}

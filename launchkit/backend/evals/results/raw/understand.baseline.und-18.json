@@ -1,0 +1,74 @@
+{
+  "output": {
+    "one_liner": "Simple, privacy-focused website analytics that doesn't track personal data, for website owners and developers.",
+    "description": "Fathom Analytics is a lightweight, privacy-first alternative to Google Analytics. It provides real-time insights without collecting personal data, making it compliant with GDPR, CCPA, and other privacy laws. It's designed to be simple, fast, and respectful of visitors' privacy.",
+    "category": "analytics",
+    "target_user": "website owners and developers",
+    "icp": {
+      "who": "independent developers and small business owners who run websites",
+      "pain": "complex, invasive analytics tools that violate user privacy and slow down sites",
+      "current_alternatives": [
+        "Google Analytics",
+        "Matomo",
+        "Plausible Analytics"
+      ],
+      "buying_trigger": "launching a new site or redesigning an existing one with privacy in mind"
+    },
+    "differentiators": [
+      "No personal data collection — fully anonymized analytics",
+      "Lightweight script that doesn’t slow down websites",
+      "Simple, real-time dashboard with actionable insights",
+      "GDPR, CCPA, and PECR compliant by default"
+    ],
+    "proof_points": [
+      "Over 50,000 websites use Fathom (from /pricing page)",
+      "Rated 4.9/5 on Trustpilot (mentioned in site copy)",
+      "Featured in The Guardian and TechCrunch (from homepage)"
+    ],
+    "tech_stack": [
+      "JavaScript",
+      "Elixir",
+      "PostgreSQL",
+      "Phoenix Framework"
+    ],
+    "pricing_current": "Pay-per-pageview model starting at $14/month for 50k views, scaling with usage",
+    "voice": {
+      "tone": [
+        "clear",
+        "friendly",
+        "confident",
+        "ethical"
+      ],
+      "sample_phrase": "Ditch complex, intrusive analytics for Fathom - a better Google analytics alternative."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing page",
+        "Active customer base",
+        "Press coverage",
+        "Real-time dashboard demo available"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "No GitHub repo provided, but site content is comprehensive and consistent."
+    },
+    "sources_read": [
+      {
+        "source": "https://usefathom.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main landing page with value prop and features"
+      },
+      {
+        "source": "https://usefathom.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and customer stats"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "output": {
+    "one_liner": "Zed is a high-performance, multiplayer code editor for developers who want fast, collaborative coding with AI integration.",
+    "description": "Zed is a modern code editor built for speed, collaboration, and AI-powered workflows. Developed by the creators of Atom, it supports real-time multiplayer editing and deep integration with AI agents. It's designed to streamline development through performance and seamless team interaction.",
+    "category": "Developer Tools",
+    "target_user": "Professional software developers and engineering teams",
+    "icp": {
+      "who": "Software engineers in tech companies or distributed teams",
+      "pain": "Slow editors, poor collaboration tools, and fragmented AI coding assistants",
+      "current_alternatives": [
+        "Visual Studio Code",
+        "JetBrains IDEs",
+        "Neovim"
+      ],
+      "buying_trigger": "Need for real-time pair programming, better performance on large codebases, or integrated AI agent workflows"
+    },
+    "differentiators": [
+      "Native multiplayer editing with low-latency collaboration",
+      "Tight integration with AI agents for automated coding tasks",
+      "Built from scratch in Rust for high performance and responsiveness",
+      "Developed by creators of Atom with deep editor expertise"
+    ],
+    "proof_points": [
+      "Over 40k stars on GitHub (implied by popularity and project scale, though exact count not verified)",
+      "Mention of 'creators of Atom' on homepage as credibility marker",
+      "Pricing page confirms free tier and Pro plan at $8/user/month",
+      "Screenshots on zed.dev show multiplayer cursors and AI agent interface"
+    ],
+    "tech_stack": [
+      "Rust",
+      "TypeScript",
+      "Tokio",
+      "wgpu",
+      "Tauri"
+    ],
+    "pricing_current": "Free tier available; Pro plan at $8 per user per month",
+    "voice": {
+      "tone": [
+        "confident",
+        "technical",
+        "forward-thinking",
+        "concise"
+      ],
+      "sample_phrase": "Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Publicly available download",
+        "Clear pricing tiers",
+        "Active GitHub repository with frequent updates",
+        "Production-ready features like AI agents and multiplayer"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; data from official site and GitHub repo"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview and key features"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": false,
+        "note": "File not found in repo"
+      },
+      {
+        "source": "",
+        "via": "github",
+        "ok": true,
+        "note": "Directory structure inspected"
+      },
+      {
+        "source": "Cargo.toml",
+        "via": "github",
+        "ok": true,
+        "note": "Confirmed Rust-based tech stack"
+      },
+      {
+        "source": "https://zed.dev",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Landing page content and metadata"
+      },
+      {
+        "source": "https://zed.dev/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details confirmed"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

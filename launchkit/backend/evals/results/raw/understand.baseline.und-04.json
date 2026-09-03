@@ -1,0 +1,101 @@
+{
+  "output": {
+    "one_liner": "Open-source scheduling infrastructure that lets individuals and teams manage bookings with full customization and API access.",
+    "description": "Cal.com is a fully customizable scheduling solution that enables users to manage online appointments, events, and meetings. It supports deep integrations, white-labeling, and self-hosting, making it ideal for developers and organizations needing control over their scheduling workflows.",
+    "category": "Scheduling & Calendar",
+    "target_user": "Developers, technical founders, and product-led teams",
+    "icp": {
+      "who": "Technical founders and engineering leads at startups or product teams",
+      "pain": "Lack of control, customization, and data ownership with existing scheduling tools",
+      "current_alternatives": [
+        "Calendly",
+        "Acuity Scheduling",
+        "Google Calendar (manual sharing)"
+      ],
+      "buying_trigger": "Need to embed scheduling into a product or automate workflows without vendor lock-in"
+    },
+    "differentiators": [
+      "Fully open-source with self-hosting option for full data control",
+      "Extensive API and webhook support for deep integrations",
+      "White-label capable with full UI customization",
+      "Monorepo architecture enabling modular feature development"
+    ],
+    "proof_points": [
+      "47,961 GitHub stars as of 2026-08-28 (from GitHub repo)",
+      "Free tier with unlimited events and bookings (from /pricing page)",
+      "\"Trusted by 10,000+ teams\" stated on homepage (from https://cal.com)"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+      "tRPC"
+    ],
+    "pricing_current": "Free tier available; Teams plan at $12/user/month; Enterprise pricing custom (from https://cal.com/pricing)",
+    "voice": {
+      "tone": [
+        "clear",
+        "developer-friendly",
+        "confident",
+        "minimalist"
+      ],
+      "sample_phrase": "A fully customizable scheduling software for individuals, businesses taking calls, and teams who want to ship fast."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Publicly available live product",
+        "Detailed pricing tiers",
+        "Over 47k GitHub stars",
+        "Active repository updates in 2026"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.98,
+      "notes": "High confidence; both repo and site accessible with rich data"
+    },
+    "sources_read": [
+      {
+        "source": "https://github.com/calcom/cal.diy",
+        "via": "github",
+        "ok": true,
+        "note": "Repo metadata: stars, forks, description"
+      },
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview and warning notice"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Revealed monorepo structure and tech stack"
+      },
+      {
+        "source": "docs/api-reference",
+        "via": "github",
+        "ok": true,
+        "note": "Confirmed API documentation directory"
+      },
+      {
+        "source": "https://cal.com",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Homepage copy, title, and metadata"
+      },
+      {
+        "source": "https://cal.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing tiers and free plan details"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

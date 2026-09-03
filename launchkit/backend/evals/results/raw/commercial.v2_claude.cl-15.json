@@ -1,0 +1,68 @@
+{
+  "output": {
+    "title": "botsmith – Docs-Grounded Support Chatbot",
+    "tagline": "Every answer cites its source — or hands off to a human.",
+    "description_short": "Build a citation-enforced support chatbot from your docs in 5 minutes. Resolves tickets without hallucinating. Free up to 200 chats/month.",
+    "description_long": "**botsmith** turns your docs, help articles, and past tickets into a support chatbot that cannot make things up.\n\nPaste a sitemap URL and your bot is answering questions in about **5 minutes** — no training UI to babysit, no prompt engineering required.\n\n**What makes botsmith different:**\n- **Citation-forced answers.** Every reply links the exact source passage it drew from. If retrieval confidence is too low, the bot refuses to guess and escalates to a human instead.\n- **Confidence-gated handoff.** No more bots that confidently invent wrong answers. botsmith hands off rather than hallucinate — protecting customer trust, not just deflection rates.\n- **Proven deflection.** Pixelhaven resolved 61% of inbound chats end-to-end. 100% of shipped answers carry source citations by construction.\n\nEmbeds as a website widget or plugs into your existing helpdesk. Built for support and product teams at SaaS companies with substantial documentation.\n\n**Note:** Multilingual support and voice channels are not yet available. Enterprise security documentation is in progress.\n\nStart free — up to 200 chats/month, no credit card required.",
+    "keywords": [
+      "AI support chatbot",
+      "docs-trained chatbot",
+      "chatbot builder for SaaS",
+      "no hallucination chatbot",
+      "helpdesk automation",
+      "support ticket deflection",
+      "chatbot with citations",
+      "AI customer support bot",
+      "chatbase alternative",
+      "intercom fin alternative",
+      "support bot from documentation",
+      "human handoff chatbot",
+      "RAG chatbot builder",
+      "website support widget",
+      "automated ticket deflection"
+    ],
+    "screenshot_order": [
+      "1st: The citation UI — show a live chat answer with the source passage highlighted and linked. This is the core differentiator and must be the first thing a buyer sees.",
+      "2nd: Setup flow — the sitemap URL input field and the 5-minute onboarding sequence, proving the speed claim visually.",
+      "3rd: Escalation handoff screen — show the confidence-gated human handoff in action, reinforcing the no-hallucination guarantee for skeptical buyers."
+    ],
+    "faq": [
+      {
+        "q": "How does botsmith prevent hallucinated answers?",
+        "a": "Every answer must cite the source passage it came from. If retrieval confidence falls below threshold, the bot escalates to a human instead of improvising — by architectural design, not a setting."
+      },
+      {
+        "q": "How long does setup actually take?",
+        "a": "Paste your sitemap URL and botsmith indexes your docs automatically. Median time from sitemap to first answered question is 5 minutes. No training UI, no manual tagging."
+      },
+      {
+        "q": "Does it work with my existing helpdesk?",
+        "a": "Yes. botsmith embeds as a website widget or integrates with existing helpdesk tools. Check the integrations page for the current connector list."
+      },
+      {
+        "q": "What happens when the bot can't answer confidently?",
+        "a": "It says so and hands the conversation to a human agent. It will not guess. This is the core trust guarantee — your customers never get a confident wrong answer."
+      },
+      {
+        "q": "Is multilingual or voice support available?",
+        "a": "Not yet. botsmith currently supports English-language text chat. Multilingual and voice channels are on the roadmap."
+      }
+    ],
+    "cta": "Start free — your first 200 chats are on us.",
+    "changes_from_current": [
+      "Title now names the product category (support chatbot) and the key differentiator (docs-grounded), replacing the generic action phrase.",
+      "Tagline replaced with the brand's own sample phrase, which is concrete and trust-focused rather than a vague benefit claim.",
+      "Description short adds the citation-enforcement and no-hallucination angle; original said nothing about what makes botsmith different.",
+      "Description long adds named proof point (Pixelhaven 61% deflection), the 100% citation construction claim, and the confidence-gated handoff mechanic — none of which appeared in the original.",
+      "Gaps (no multilingual, no voice, thin security page) disclosed plainly as required by listing rules.",
+      "Keywords expanded from zero to 15 search phrases targeting real buyer queries including named competitor alternatives.",
+      "Screenshot order added with rationale anchored to the citation differentiator — original had no screenshot guidance.",
+      "FAQ added to handle the hallucination objection, setup-time skepticism, and missing-feature questions — original had none.",
+      "Removed: '24/7', 'No coding required', and 'Plans start free' as the sole selling points — these are table stakes, not differentiators."
+    ],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "All proof points come directly from APP_PROFILE. Deflection stat (61%) is from a single named customer (Pixelhaven) — listing reflects this accurately. Citation guarantee is architectural and verifiable. Gaps disclosed. No invented benchmarks or testimonials."
+    }
+  }
+}

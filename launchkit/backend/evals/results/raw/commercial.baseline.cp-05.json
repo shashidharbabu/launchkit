@@ -1,0 +1,174 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "Zendesk",
+        "url": "https://www.zendesk.com/service/",
+        "notability": "established",
+        "evidence_of_standing": "named in 5 comparison lists incl. G2 customer support",
+        "mentions": 5,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Suite Team",
+            "price": "49",
+            "period": "monthly",
+            "key_limits": "per agent, includes ticketing, knowledge base, and basic automation"
+          },
+          {
+            "name": "Suite Growth",
+            "price": "79",
+            "period": "monthly",
+            "key_limits": "per agent, adds AI-powered automation and advanced analytics"
+          }
+        ],
+        "source_url": "https://www.zendesk.com/pricing/"
+      },
+      {
+        "name": "Intercom",
+        "url": "https://www.intercom.com/",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. Capterra customer support",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Essential",
+            "price": "74",
+            "period": "monthly",
+            "key_limits": "per seat, includes shared inbox, automation, and basic help center"
+          },
+          {
+            "name": "Advance",
+            "price": "109",
+            "period": "monthly",
+            "key_limits": "per seat, adds AI assistant and custom bots"
+          }
+        ],
+        "source_url": "https://www.intercom.com/pricing"
+      },
+      {
+        "name": "Help Scout",
+        "url": "https://www.helpscout.com/",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. AlternativeTo customer support",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Standard",
+            "price": "20",
+            "period": "monthly",
+            "key_limits": "per seat, includes shared inbox, knowledge base, and reporting"
+          },
+          {
+            "name": "Plus",
+            "price": "40",
+            "period": "monthly",
+            "key_limits": "per seat, adds automation, workflows, and custom reporting"
+          }
+        ],
+        "source_url": "https://www.helpscout.com/pricing/"
+      },
+      {
+        "name": "Front",
+        "url": "https://front.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 3 comparison lists incl. G2 customer support",
+        "mentions": 3,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Collaborate",
+            "price": "19",
+            "period": "monthly",
+            "key_limits": "per seat, includes shared inbox, rules, and integrations"
+          },
+          {
+            "name": "Scale",
+            "price": "49",
+            "period": "monthly",
+            "key_limits": "per seat, adds automation, analytics, and SLA management"
+          }
+        ],
+        "source_url": "https://front.com/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Chatwoot",
+        "url": "https://www.chatwoot.com/",
+        "why": "open-source with no commercial pricing page"
+      },
+      {
+        "name": "Crisp",
+        "url": "https://crisp.chat/en/alternatives/intercom/",
+        "why": "only mentioned as Intercom alternative once"
+      },
+      {
+        "name": "SupportCore",
+        "url": "https://supportcore.io/",
+        "why": "only one search result, no pricing evidence"
+      },
+      {
+        "name": "Selvo",
+        "url": "https://selvo.co/",
+        "why": "only one search result, no pricing page found"
+      },
+      {
+        "name": "AppDash",
+        "url": "https://appdash.io/",
+        "why": "directory listing, not a support tool"
+      },
+      {
+        "name": "Fluid Chat",
+        "url": "https://withfluid.com/",
+        "why": "Slack alternative, not support inbox"
+      },
+      {
+        "name": "Interkom",
+        "url": "https://interkom.app/",
+        "why": "Slack alternative, off-topic"
+      }
+    ],
+    "recommendation": {
+      "model": "subscription",
+      "tiers": [
+        {
+          "name": "Starter",
+          "price_usd_month": 29,
+          "who_its_for": "small teams of 2-5 agents handling under 5k tickets/month",
+          "includes": [
+            "AI reply drafts trained on your resolved tickets",
+            "Shared inbox with collision detection",
+            "Email, widget, and Slack integration",
+            "All features included"
+          ],
+          "rationale": "Matches Help Scout's entry tier while offering AI differentiation; below Front and Zendesk to position as lean alternative"
+        }
+      ],
+      "anchor_competitors": [
+        "Zendesk",
+        "Intercom",
+        "Help Scout"
+      ],
+      "positioning_note": "Price at $29/seat to undercut Zendesk and Intercom by 40-60% while matching Help Scout's value; emphasize AI trained on real team voice as key differentiator.",
+      "risks": [
+        "May be perceived as too expensive vs Help Scout Standard at $20",
+        "Lack of phone/live-chat could limit upsell"
+      ]
+    },
+    "search_queries_used": [
+      "best customer support tools",
+      "customer support software comparison",
+      "alternative to Zendesk",
+      "alternative to Intercom",
+      "alternative to Front",
+      "alternative to Help Scout"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "3+ established competitors confirmed via multiple independent sources and pricing pages scraped; Help Scout, Zendesk, Intercom, and Front all listed on G2/Capterra."
+    }
+  }
+}

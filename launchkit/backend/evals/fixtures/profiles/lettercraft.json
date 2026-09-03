@@ -1,0 +1,59 @@
+{
+  "one_liner": "Newsletter platform for developers: write in Markdown, store posts in Git, and code blocks that render everywhere.",
+  "description": "lettercraft is a newsletter platform built for people who write about code. Posts are Markdown files in a Git repository you own, code blocks come out syntax-highlighted and copyable in every major email client, and the subscriber list exports in one click with no lock-in. Publishing is a git push or a click — your choice.",
+  "category": "Niche SaaS / Newsletter Tools",
+  "target_user": "Developers and technical writers running programming newsletters",
+  "icp": {
+    "who": "Developers, DevRel professionals, and technical bloggers with newsletters between 100 and 50,000 subscribers",
+    "pain": "Substack and beehiiv mangle code blocks and trap content in their editors, so technical writers fight their tools every single issue",
+    "current_alternatives": [
+      "beehiiv",
+      "Substack",
+      "Buttondown",
+      "Kit (formerly ConvertKit)"
+    ],
+    "buying_trigger": "One more issue shipped with broken code formatting, or a platform pricing change that makes lock-in feel dangerous"
+  },
+  "differentiators": [
+    "Posts are Markdown files in a Git repo you own — write in your editor, publish with git push",
+    "Code blocks tested to render with syntax highlighting across 14 email clients",
+    "Full list and content export at any time; leaving is a git clone"
+  ],
+  "proof_points": [
+    "Code rendering verified across 14 email clients, with the test matrix published",
+    "1,100 writers publishing during beta",
+    "Median send-to-inbox time under 60 seconds for lists under 10k"
+  ],
+  "tech_stack": [
+    "TypeScript",
+    "Next.js",
+    "PostgreSQL",
+    "Amazon SES"
+  ],
+  "pricing_current": "freemium (free up to 1,000 subscribers, then $9/month)",
+  "voice": {
+    "tone": [
+      "plainspoken",
+      "developer-native",
+      "anti-lock-in"
+    ],
+    "sample_phrase": "Write in Markdown. Publish with git push. Own every subscriber."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "Open beta with self-serve signup",
+      "Public email-client test matrix",
+      "Active Discord of beta writers"
+    ]
+  },
+  "gaps": [
+    "No paid-subscription monetization yet",
+    "No referral program feature",
+    "Deliverability stats not yet published"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Positioning and rendering claims are verifiable from the published test matrix. Growth numbers are beta-stage."
+  }
+}

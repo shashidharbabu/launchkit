@@ -1,0 +1,62 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/sumanthrangausa-06/Rekrut_AI_v2/issues/51",
+        "title_or_quote": "We have no external uptime monitoring. If Render suspends services and we don't notice, customers suffer.",
+        "posted_when": "2026-08-06T22:56:03Z",
+        "why_relevant": "User needs uptime monitoring as code, which PingDeck provides via Terraform.",
+        "intent_strength": "high",
+        "drafted_reply": "Since you're already weighing UptimeRobot vs Pingdom, one thing worth knowing: UptimeRobot's 60-second interval is their minimum on free plans, and the API is limited enough that managing monitors as code is painful. If your Rekrut_AI infra is Terraform-managed, keeping monitors in a separate click-ops tool creates drift over time. For the status page at status.rekrutai.com and the /api/health check, a tool with a native Terraform provider lets you version-control the whole setup alongside your Render config. I built pingdeck ({APP_URL}) to cover exactly this stack — 30-second intervals, Slack webhooks, and an official Terraform provider — if that fits your workflow.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The thread author is explicitly setting up external uptime monitoring with status pages, Slack alerting, and 60-second ping intervals — exactly what this app provides, and they are actively evaluating UptimeRobot and Pingdom as options."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "uptime monitoring with Terraform integration",
+      "struggling with uptime monitoring that doesn't support infrastructure as code",
+      "tired of click-ops for status pages and monitors",
+      "alternative to UptimeRobot with real API and Terraform support",
+      "site:reddit.com/r/selfhosted uptime monitoring Terraform",
+      "site:reddit.com/r/devops monitors as code",
+      "site:reddit.com/r/sysadmin click-ops uptime",
+      "site:reddit.com/r/homelab status page as code",
+      "uptime monitoring",
+      "terraform provider",
+      "status page as code",
+      "monitors as code",
+      "uptime monitoring terraform is:issue is:open",
+      "uptime monitoring as code is:issue is:open",
+      "status page as code is:issue is:open",
+      "terraform-provider-gcp google-cloud-monitoring uptime-monitoring"
+    ],
+    "coverage_notes": "Reddit queries returned no results; HN queries were limited by rate limits.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Some platforms yielded no results; reliance on GitHub and StackOverflow."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/sumanthrangausa-06/Rekrut_AI_v2/issues/51",
+      "title_or_quote": "We have no external uptime monitoring. If Render suspends services and we don't notice, customers suffer.",
+      "posted_when": "2026-08-06T22:56:03Z",
+      "why_relevant": "User needs uptime monitoring as code, which PingDeck provides via Terraform.",
+      "intent_strength": "high",
+      "drafted_reply": "Since you're already weighing UptimeRobot vs Pingdom, one thing worth knowing: UptimeRobot's 60-second interval is their minimum on free plans, and the API is limited enough that managing monitors as code is painful. If your Rekrut_AI infra is Terraform-managed, keeping monitors in a separate click-ops tool creates drift over time. For the status page at status.rekrutai.com and the /api/health check, a tool with a native Terraform provider lets you version-control the whole setup alongside your Render config. I built pingdeck ({APP_URL}) to cover exactly this stack — 30-second intervals, Slack webhooks, and an official Terraform provider — if that fits your workflow.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The thread author is explicitly setting up external uptime monitoring with status pages, Slack alerting, and 60-second ping intervals — exactly what this app provides, and they are actively evaluating UptimeRobot and Pingdom as options."
+      }
+    }
+  ],
+  "rejected": []
+}

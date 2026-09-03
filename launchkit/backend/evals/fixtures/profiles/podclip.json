@@ -1,0 +1,59 @@
+{
+  "one_liner": "Turns full podcast episodes into captioned social clips automatically — and actually picks the good moments.",
+  "description": "podclip ingests a podcast episode and returns a set of captioned, vertically-framed clips ready for TikTok, Reels, Shorts, and X. Its hook-detection model was tuned on tens of thousands of manually rated clips, so it selects moments with narrative tension rather than random 60-second windows. Renders arrive in minutes with per-show caption styles baked in.",
+  "category": "Niche SaaS / Podcast Tools",
+  "target_user": "Podcasters and the producers who clip their shows",
+  "icp": {
+    "who": "Independent podcasters and small production agencies publishing weekly shows",
+    "pain": "Clipping an episode by hand takes hours per week, and generic auto-clippers pick moments nobody would ever share",
+    "current_alternatives": [
+      "Opus Clip",
+      "Descript",
+      "Riverside Magic Clips",
+      "Headliner"
+    ],
+    "buying_trigger": "A clip goes viral (or a competitor's does) and clips become a weekly obligation the host has no time for"
+  },
+  "differentiators": [
+    "Hook-detection model tuned on 40,000 manually rated clips, not generic scene detection",
+    "Per-show caption styles and framing presets so every clip is on-brand without an editor",
+    "60-minute episode processed into a clip set in about 90 seconds of render time"
+  ],
+  "proof_points": [
+    "Clip selection model trained on 40,000 manually rated podcast clips",
+    "Average render time of 90 seconds for a 60-minute episode",
+    "120 shows generate clips weekly"
+  ],
+  "tech_stack": [
+    "Python",
+    "FFmpeg",
+    "WhisperX",
+    "Next.js"
+  ],
+  "pricing_current": "freemium (3 free clips/month, $15/month Creator plan)",
+  "voice": {
+    "tone": [
+      "energetic",
+      "creator-savvy",
+      "punchy"
+    ],
+    "sample_phrase": "Your best 40 seconds, found for you."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Public pricing and self-serve signup",
+      "Weekly active shows metric on site",
+      "Showcase page of customer clips"
+    ]
+  },
+  "gaps": [
+    "No team seats or agency plan",
+    "No direct publishing to TikTok",
+    "Training-data claim not externally documented"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Feature set and speed claims are demo-verifiable. Model-quality claims rest on vendor description."
+  }
+}

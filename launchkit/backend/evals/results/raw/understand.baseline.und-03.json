@@ -1,0 +1,91 @@
+{
+  "output": {
+    "one_liner": "Excalidraw is a collaborative virtual whiteboard for teams to sketch, diagram, and brainstorm ideas in real time.",
+    "description": "Excalidraw is an open-source virtual whiteboard tool that mimics the feel of paper sketches with a hand-drawn aesthetic. It supports real-time collaboration, making it ideal for remote teams designing diagrams, wireframes, and visual notes.",
+    "category": "Productivity & Collaboration",
+    "target_user": "Product managers, UX designers, and engineering teams",
+    "icp": {
+      "who": "Remote or hybrid technical teams needing visual collaboration",
+      "pain": "Difficulty communicating complex ideas through text or formal tools",
+      "current_alternatives": [
+        "Miro",
+        "Figma",
+        "Microsoft Whiteboard",
+        "manual sketching on paper"
+      ],
+      "buying_trigger": "Onboarding new team members remotely or starting a new product design cycle"
+    },
+    "differentiators": [
+      "Hand-drawn aesthetic makes diagrams feel less formal and more approachable",
+      "Fully client-side operation ensures privacy and offline use",
+      "Open-source with self-hosting options for enterprise control",
+      "Lightweight and fast with no login required to start"
+    ],
+    "proof_points": [
+      "Over 48k GitHub stars (found in README.md)",
+      "Used by companies like Facebook, GitHub, and Figma (mentioned in README.md)",
+      "Real-time collaboration demonstrated on homepage (https://excalidraw.com)"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Yarn",
+      "Docker",
+      "WebSocket"
+    ],
+    "pricing_current": "Free with optional self-hosted enterprise deployment; no public paid tier found",
+    "voice": {
+      "tone": [
+        "clear",
+        "friendly",
+        "technical",
+        "minimalist"
+      ],
+      "sample_phrase": "Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that look like they were drawn by hand."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Publicly available at excalidraw.com",
+        "Over 48k GitHub stars",
+        "Used by major tech companies",
+        "Active GitHub repository with recent commits"
+      ]
+    },
+    "gaps": [
+      "No clear pricing page for enterprise offerings",
+      "No embedded demo video on homepage"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; strong evidence from GitHub and live site"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, features, and adoption proof"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Revealed tech stack: TypeScript, React, Yarn"
+      },
+      {
+        "source": "https://excalidraw.com",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Confirmed live product, core value prop"
+      },
+      {
+        "source": "https://excalidraw.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "No pricing details found, confirms free tier"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

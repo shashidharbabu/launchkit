@@ -1,0 +1,182 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Synapse-bridgez/synapse-core/issues/1204",
+        "title_or_quote": "[High] Build a governance dashboard for feature flag audit trail review",
+        "posted_when": "2026-08-26T15:21:02Z",
+        "why_relevant": "Requests audit trail for feature flags, core to togglr's PR-based review model",
+        "intent_strength": "high",
+        "drafted_reply": "A governance dashboard with full audit trail would help track who changed what in production. I'm building togglr, where every flag change is a pull request with attribution and rollback. I'd love to learn from your use case.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.35,
+          "why": "The thread is a GitHub issue requesting a governance dashboard built on top of an existing audit SQL schema — it's a feature-build task for their own codebase, not a search for a third-party feature flag tool."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/RevoraOrg/Revora-Backend/issues/875",
+        "title_or_quote": "Integrate KYC/AML provider with retry, status callbacks, and replayable audit trail",
+        "posted_when": "2026-08-28T08:02:54Z",
+        "why_relevant": "Mentions replayable audit trail, aligning with togglr's git-backed change history",
+        "intent_strength": "medium",
+        "drafted_reply": "Replayable audit trails ensure traceability for compliance and debugging. At togglr, we implement this via git-backed flag configs where every change is a PR. I'm the builder and would value your feedback on our approach.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.07,
+          "why": "The thread is about integrating a KYC/AML provider with webhooks, retry logic, and audit trails — not about feature flag management, review workflows, or flag evaluation latency."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/Bermos/Kitchen/issues/79",
+        "title_or_quote": "Edge config and feature flags",
+        "posted_when": "2026-08-15T11:37:25Z",
+        "why_relevant": "Combines edge evaluation and feature flags, matching togglr's sub-5ms edge execution",
+        "intent_strength": "medium",
+        "drafted_reply": "Edge-based feature flags can reduce latency and improve reliability. togglr evaluates flags at the edge in under 5ms p99 using Cloudflare Workers. I'm the creator and would be glad to share how we handle config sync and rollout safety.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.15,
+          "why": "The thread is an architectural scoping discussion about whether a Kubernetes deployment tool called Kitchen should build its own feature flag system or defer to existing solutions — the author is explicitly parking this as out of scope, not seeking a feature flag tool to adopt."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/singi-labs/sifa-workspace/issues/223",
+        "title_or_quote": "Feature Flags",
+        "posted_when": "2026-07-06T13:03:13Z",
+        "why_relevant": "Team exploring feature flag implementation, early stage but relevant",
+        "intent_strength": "low",
+        "drafted_reply": "When adopting feature flags, consider how changes are reviewed and rolled back. togglr treats flag updates as pull requests with full history. I'm the builder and happy to discuss safe rollout patterns.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread author has already made a firm decision to use Flipt v2 self-hosted with git-native YAML flags, so recommending an alternative feature flag tool would not be helpful."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=47946850",
+        "title_or_quote": "If coding gets faster, where should architecture happen? A feature works. The team ships it. But Ralph has problems when you move beyond one-off tasks: 1. Overcooking",
+        "posted_when": "2026-04-29T11:30:02Z",
+        "why_relevant": "Discusses feature delivery risks, context where unreviewed flags cause issues",
+        "intent_strength": "low",
+        "drafted_reply": "As features ship faster, unreviewed flag changes become risk hotspots. We built togglr to require PR review for every toggle change, with edge evaluation under 5ms. I'm the founder and believe safety shouldn't slow velocity.",
+        "rescore": {
+          "verdict": "rejected",
+          "why": "HN thread locked (older than 14 days) — cannot reply"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that puts feature flags through pull request review?",
+      "is there an open source feature flag system with git-backed config?",
+      "struggling with unreviewed feature flag changes causing outages",
+      "tired of using LaunchDarkly with no audit trail for flag changes",
+      "alternative to LaunchDarkly with pull request workflow",
+      "site:reddit.com/r/devops \"how do you handle feature flags without PR review\"",
+      "site:reddit.com/r/programming \"our feature flag dashboard drifts with no history\"",
+      "site:reddit.com/r/devops feature flags PR review audit trail",
+      "site:reddit.com/r/webdev feature flags git-backed config",
+      "site:reddit.com/r/ExperiencedDevs unreviewed feature flag changes",
+      "site:reddit.com/r/programming feature flag dashboard no history",
+      "feature flags PR review",
+      "feature flag audit trail",
+      "git feature flags",
+      "feature flags pr review audit trail",
+      "git feature flags audit trail",
+      "feature flags git audit",
+      "feature flags pull request review"
+    ],
+    "coverage_notes": "All four passes completed. No Reddit results found; HN and GitHub provided signals. StackOverflow returned no relevant threads.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub signals on audit and PR review. Lack of Reddit and StackOverflow results slightly reduces coverage."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Synapse-bridgez/synapse-core/issues/1204",
+      "title_or_quote": "[High] Build a governance dashboard for feature flag audit trail review",
+      "posted_when": "2026-08-26T15:21:02Z",
+      "why_relevant": "Requests audit trail for feature flags, core to togglr's PR-based review model",
+      "intent_strength": "high",
+      "drafted_reply": "A governance dashboard with full audit trail would help track who changed what in production. I'm building togglr, where every flag change is a pull request with attribution and rollback. I'd love to learn from your use case.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.35,
+        "why": "The thread is a GitHub issue requesting a governance dashboard built on top of an existing audit SQL schema — it's a feature-build task for their own codebase, not a search for a third-party feature flag tool."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/RevoraOrg/Revora-Backend/issues/875",
+      "title_or_quote": "Integrate KYC/AML provider with retry, status callbacks, and replayable audit trail",
+      "posted_when": "2026-08-28T08:02:54Z",
+      "why_relevant": "Mentions replayable audit trail, aligning with togglr's git-backed change history",
+      "intent_strength": "medium",
+      "drafted_reply": "Replayable audit trails ensure traceability for compliance and debugging. At togglr, we implement this via git-backed flag configs where every change is a PR. I'm the builder and would value your feedback on our approach.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.07,
+        "why": "The thread is about integrating a KYC/AML provider with webhooks, retry logic, and audit trails — not about feature flag management, review workflows, or flag evaluation latency."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/Bermos/Kitchen/issues/79",
+      "title_or_quote": "Edge config and feature flags",
+      "posted_when": "2026-08-15T11:37:25Z",
+      "why_relevant": "Combines edge evaluation and feature flags, matching togglr's sub-5ms edge execution",
+      "intent_strength": "medium",
+      "drafted_reply": "Edge-based feature flags can reduce latency and improve reliability. togglr evaluates flags at the edge in under 5ms p99 using Cloudflare Workers. I'm the creator and would be glad to share how we handle config sync and rollout safety.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.15,
+        "why": "The thread is an architectural scoping discussion about whether a Kubernetes deployment tool called Kitchen should build its own feature flag system or defer to existing solutions — the author is explicitly parking this as out of scope, not seeking a feature flag tool to adopt."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/singi-labs/sifa-workspace/issues/223",
+      "title_or_quote": "Feature Flags",
+      "posted_when": "2026-07-06T13:03:13Z",
+      "why_relevant": "Team exploring feature flag implementation, early stage but relevant",
+      "intent_strength": "low",
+      "drafted_reply": "When adopting feature flags, consider how changes are reviewed and rolled back. togglr treats flag updates as pull requests with full history. I'm the builder and happy to discuss safe rollout patterns.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread author has already made a firm decision to use Flipt v2 self-hosted with git-native YAML flags, so recommending an alternative feature flag tool would not be helpful."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=47946850",
+      "title_or_quote": "If coding gets faster, where should architecture happen? A feature works. The team ships it. But Ralph has problems when you move beyond one-off tasks: 1. Overcooking",
+      "posted_when": "2026-04-29T11:30:02Z",
+      "why_relevant": "Discusses feature delivery risks, context where unreviewed flags cause issues",
+      "intent_strength": "low",
+      "drafted_reply": "As features ship faster, unreviewed flag changes become risk hotspots. We built togglr to require PR review for every toggle change, with edge evaluation under 5ms. I'm the founder and believe safety shouldn't slow velocity.",
+      "rescore": {
+        "verdict": "rejected",
+        "why": "HN thread locked (older than 14 days) — cannot reply"
+      }
+    }
+  ]
+}

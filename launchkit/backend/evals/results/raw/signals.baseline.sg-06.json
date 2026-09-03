@@ -1,0 +1,165 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/Techhackontime999/wacrm/issues/12",
+        "title_or_quote": "[Feature] Multi-agent shared inbox with collision detection",
+        "posted_when": "2026-08-26T17:49:05Z",
+        "why_relevant": "Requests shared inbox with collision detection for team support",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: ReplyDeck handles multi-agent shared inboxes with real-time collision detection and AI drafts trained on your team's past replies. It avoids reply conflicts by showing who's handling what and prevents duplicates. I'd love to get your feedback on it: {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly requests a multi-agent shared inbox with collision detection and team collaboration features, which directly aligns with the core functionality of the app described."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/naman616/leadcat/issues/31",
+        "title_or_quote": "WhatsApp shared inbox + templates",
+        "posted_when": "2026-08-22T07:21:41Z",
+        "why_relevant": "Needs team shared inbox for WhatsApp support",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: ReplyDeck supports shared inboxes for WhatsApp with AI drafts trained on your team's resolved conversations. It handles team collaboration seamlessly and avoids reply collisions. Happy to share how it works: {APP_URL}.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.7,
+          "why": "The thread is focused on WhatsApp Business API integration with a shared inbox and message templates, while the app specializes in email-first support with AI drafts, making it not directly relevant to the specific needs expressed."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/Sudharsan2618/Kadai-Official/issues/37",
+        "title_or_quote": "K-37 — Shared team inbox / multi-agent",
+        "posted_when": "2026-08-06T15:27:55Z",
+        "why_relevant": "Team needs shared inbox as they grow beyond single-user",
+        "intent_strength": "high",
+        "drafted_reply": "I built a tool for exactly this: ReplyDeck enables shared team inboxes with simple assignment and collision detection. It learns your team's voice to draft replies and scales from 2 to 10 agents without configuration. Here's how it works: {APP_URL}.",
+        "rescore": {
+          "verdict": "unverified",
+          "why": "judge failed: 'RocketRideClient' object has no attribute '_debug_message'"
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=18493790",
+        "title_or_quote": "Ask HN: How to manage shared Email inboxes?",
+        "posted_when": "2018-11-20T14:00:04Z",
+        "why_relevant": "Seeks solution for managing shared email inboxes with multiple people",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: ReplyDeck handles shared email inboxes with AI drafts trained on your team's past replies. It shows who's handling what and prevents duplicate responses. No complex setup needed—just forward your address. More here: {APP_URL}.",
+        "rescore": {
+          "verdict": "unverified",
+          "why": "fetch failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=26011880",
+        "title_or_quote": "Ask HN: Team/Shared Inbox Solutions",
+        "posted_when": "2021-02-03T09:01:32Z",
+        "why_relevant": "Looking for effective team shared inbox solution",
+        "intent_strength": "medium",
+        "drafted_reply": "I built a tool for exactly this: ReplyDeck provides a shared inbox for teams with collision detection and AI drafts in your team's voice. It's designed to be simple and effective without heavy configuration. I'd love to hear your thoughts: {APP_URL}.",
+        "rescore": {
+          "verdict": "unverified",
+          "why": "fetch failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        }
+      }
+    ],
+    "search_queries_used": [
+      "shared inbox customer support team",
+      "shared inbox team",
+      "alternative to Zendesk",
+      "customer support tool"
+    ],
+    "coverage_notes": "StackOverflow queries returned irrelevant results despite multiple attempts.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong GitHub signals; HN results are older but still relevant. StackOverflow coverage limited."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/Techhackontime999/wacrm/issues/12",
+      "title_or_quote": "[Feature] Multi-agent shared inbox with collision detection",
+      "posted_when": "2026-08-26T17:49:05Z",
+      "why_relevant": "Requests shared inbox with collision detection for team support",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: ReplyDeck handles multi-agent shared inboxes with real-time collision detection and AI drafts trained on your team's past replies. It avoids reply conflicts by showing who's handling what and prevents duplicates. I'd love to get your feedback on it: {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly requests a multi-agent shared inbox with collision detection and team collaboration features, which directly aligns with the core functionality of the app described."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/Sudharsan2618/Kadai-Official/issues/37",
+      "title_or_quote": "K-37 — Shared team inbox / multi-agent",
+      "posted_when": "2026-08-06T15:27:55Z",
+      "why_relevant": "Team needs shared inbox as they grow beyond single-user",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: ReplyDeck enables shared team inboxes with simple assignment and collision detection. It learns your team's voice to draft replies and scales from 2 to 10 agents without configuration. Here's how it works: {APP_URL}.",
+      "rescore": {
+        "verdict": "unverified",
+        "why": "judge failed: 'RocketRideClient' object has no attribute '_debug_message'"
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=18493790",
+      "title_or_quote": "Ask HN: How to manage shared Email inboxes?",
+      "posted_when": "2018-11-20T14:00:04Z",
+      "why_relevant": "Seeks solution for managing shared email inboxes with multiple people",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: ReplyDeck handles shared email inboxes with AI drafts trained on your team's past replies. It shows who's handling what and prevents duplicate responses. No complex setup needed—just forward your address. More here: {APP_URL}.",
+      "rescore": {
+        "verdict": "unverified",
+        "why": "fetch failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=26011880",
+      "title_or_quote": "Ask HN: Team/Shared Inbox Solutions",
+      "posted_when": "2021-02-03T09:01:32Z",
+      "why_relevant": "Looking for effective team shared inbox solution",
+      "intent_strength": "medium",
+      "drafted_reply": "I built a tool for exactly this: ReplyDeck provides a shared inbox for teams with collision detection and AI drafts in your team's voice. It's designed to be simple and effective without heavy configuration. I'd love to hear your thoughts: {APP_URL}.",
+      "rescore": {
+        "verdict": "unverified",
+        "why": "fetch failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/naman616/leadcat/issues/31",
+      "title_or_quote": "WhatsApp shared inbox + templates",
+      "posted_when": "2026-08-22T07:21:41Z",
+      "why_relevant": "Needs team shared inbox for WhatsApp support",
+      "intent_strength": "high",
+      "drafted_reply": "I built a tool for exactly this: ReplyDeck supports shared inboxes for WhatsApp with AI drafts trained on your team's resolved conversations. It handles team collaboration seamlessly and avoids reply collisions. Happy to share how it works: {APP_URL}.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.7,
+        "why": "The thread is focused on WhatsApp Business API integration with a shared inbox and message templates, while the app specializes in email-first support with AI drafts, making it not directly relevant to the specific needs expressed."
+      }
+    }
+  ]
+}

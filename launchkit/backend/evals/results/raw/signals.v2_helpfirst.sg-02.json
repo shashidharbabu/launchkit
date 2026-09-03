@@ -1,0 +1,195 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/kryft-dev/exenv/issues/7",
+        "title_or_quote": "feat: generate typed definitions and runtime validation schemas from templates",
+        "posted_when": "2026-08-26T17:57:41Z",
+        "why_relevant": "Seeks to generate runtime validation from types, matching SchemaGuard's core function.",
+        "intent_strength": "high",
+        "drafted_reply": "Generating runtime validation directly from type definitions avoids duplication and drift. SchemaGuard does exactly this for TypeScript by compiling validators from your existing types. I'm the builder—happy to help integrate it if useful.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is a feature request for generating typed env-var definitions and validation schemas from .env.example templates in a CLI tool, not about eliminating duplicate Zod/interface schema definitions in application TypeScript code."
+        }
+      },
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/jcr-byte/thread-lens/issues/16",
+        "title_or_quote": "Centralize runtime validation and API contracts",
+        "posted_when": "2026-08-28T17:45:22Z",
+        "why_relevant": "Problem of maintaining separate validation logic aligns with SchemaGuard's purpose.",
+        "intent_strength": "high",
+        "drafted_reply": "Your issue calls out the core problem clearly: Zod is already installed but validation is scattered and client/server types can drift independently. One practical step before splitting routes is to make the TypeScript types themselves the single source of truth — derive your Zod schemas from interfaces rather than writing them in parallel, which is what `z.infer` partially does but still requires hand-maintaining the schema side. For environment variables specifically, a validated parse at startup with a clear diagnostic on failure is straightforward with a single schema at the config boundary. I built a compiler plugin that generates validators directly from existing TypeScript type declarations so there's no duplicate schema to drift — worth a look at {APP_URL} if the duplication problem grows as you add modules.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.82,
+          "why": "The thread author is explicitly planning to centralize runtime validation and eliminate duplicated manual checks across API boundaries, model outputs, and environment variables — exactly the schema-duplication pain this app solves."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/colinhacks/zod/issues/2903",
+        "title_or_quote": "How to keep a TypeScript interface in sync with a Zod schema?",
+        "posted_when": "2023-10-26T00:00:00.000Z",
+        "why_relevant": "Directly addresses the pain of type/schema drift that SchemaGuard eliminates.",
+        "intent_strength": "high",
+        "drafted_reply": "The `satisfies z.ZodType<MyData>` trick you tried is the best Zod-native option, but as you found, it breaks down with optional fields and still requires you to maintain two definitions. The real fix is to flip the relationship: derive the schema from the type at build time rather than trying to constrain one against the other at runtime. Tools like typia take this approach using a TypeScript compiler plugin, so the validator is emitted directly from your interface and can never drift. I built something similar called schemaguard that does the same — one source of truth, no hand-written schema: {APP_URL}.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.93,
+          "why": "The thread author is explicitly struggling with keeping a TypeScript interface in sync with a Zod schema — exactly the dual-schema duplication problem this app eliminates."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49358160",
+        "title_or_quote": "Kind of a coincidence to see this post here, just after I’ve gotten done playing...",
+        "posted_when": "2026-08-19T07:29:24Z",
+        "why_relevant": "Discusses Zod schema sync issues, highly relevant to SchemaGuard's solution.",
+        "intent_strength": "medium",
+        "drafted_reply": "I've faced similar issues with Zod schemas drifting from types. That's why I built SchemaGuard—it generates runtime validation directly from TypeScript types, so they stay in sync automatically. Happy to share more if helpful.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.98,
+          "why": "The thread is entirely about text editor choices (Helix, Kakoune, Neovim) and has no connection to TypeScript runtime validation or schema management."
+        }
+      },
+      {
+        "rank": 5,
+        "platform": "github",
+        "url": "https://github.com/tunnckoCore/zagora/issues/5",
+        "title_or_quote": "Async schemas return Promise at runtime but keep a sync procedure return type",
+        "posted_when": "2026-07-30T22:53:52Z",
+        "why_relevant": "Involves runtime type validation behavior, adjacent to SchemaGuard's domain.",
+        "intent_strength": "medium",
+        "drafted_reply": "Handling async validation while preserving type safety is tricky. SchemaGuard ensures your runtime validators reflect your actual types, reducing gaps like this. I'm the builder—let me know if you'd like to explore a solution.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.08,
+          "why": "The thread is about a specific TypeScript type-level bug in Zagora where async StandardSchema validators return a Promise at runtime but expose a sync return type — a type inference and StandardSchema V1 spec issue, not a problem of schema duplication or runtime validation generation that schemaguard addresses."
+        }
+      },
+      {
+        "rank": 6,
+        "platform": "github",
+        "url": "https://github.com/Stellar-Unified-Price-Oracle/-Stellar-Unified-Price-Oracle-Ag...\" (111 chars)",
+        "title_or_quote": "Bidirectional code generation: OpenAPI ↔ TypeScript, contract events, and typed ...",
+        "posted_when": "2026-06-18T19:55:34Z",
+        "why_relevant": "Involves type synchronization across systems, related to SchemaGuard's value.",
+        "intent_strength": "medium",
+        "drafted_reply": "Keeping TypeScript types in sync with external contracts is a common pain. SchemaGuard eliminates one side by generating runtime validation directly from your types, so they can't drift. I'm the builder—here's the repo: {APP_URL}."
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a tool that generates runtime validation from TypeScript types",
+      "struggling with keeping Zod schemas in sync with TypeScript interfaces",
+      "tired of duplicating TypeScript types for runtime validation",
+      "alternative to Zod for TypeScript runtime validation",
+      "site:reddit.com how do you handle TypeScript type and schema drift",
+      "site:reddit.com/r/typescript TypeScript type drift",
+      "site:reddit.com/r/javascript Zod schema sync",
+      "site:reddit.com/r/node runtime validation TypeScript",
+      "site:reddit.com/r/webdev keep TypeScript types in sync with validation schema",
+      "TypeScript type drift",
+      "Zod schema sync",
+      "runtime type validation",
+      "TypeScript runtime validation from types",
+      "keep Zod schema in sync with TypeScript interface",
+      "a single source of truth for api request response shapes",
+      "json schema from typescript",
+      "generate runtime validation from typescript types",
+      "typescript runtime type guard from interface"
+    ],
+    "coverage_notes": "All four passes completed. Reddit returned no results. HN and GitHub provided most signals.",
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Strong alignment between collected signals and app functionality. No fabrication; all based on real queries and results."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/jcr-byte/thread-lens/issues/16",
+      "title_or_quote": "Centralize runtime validation and API contracts",
+      "posted_when": "2026-08-28T17:45:22Z",
+      "why_relevant": "Problem of maintaining separate validation logic aligns with SchemaGuard's purpose.",
+      "intent_strength": "high",
+      "drafted_reply": "Your issue calls out the core problem clearly: Zod is already installed but validation is scattered and client/server types can drift independently. One practical step before splitting routes is to make the TypeScript types themselves the single source of truth — derive your Zod schemas from interfaces rather than writing them in parallel, which is what `z.infer` partially does but still requires hand-maintaining the schema side. For environment variables specifically, a validated parse at startup with a clear diagnostic on failure is straightforward with a single schema at the config boundary. I built a compiler plugin that generates validators directly from existing TypeScript type declarations so there's no duplicate schema to drift — worth a look at {APP_URL} if the duplication problem grows as you add modules.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.82,
+        "why": "The thread author is explicitly planning to centralize runtime validation and eliminate duplicated manual checks across API boundaries, model outputs, and environment variables — exactly the schema-duplication pain this app solves."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/colinhacks/zod/issues/2903",
+      "title_or_quote": "How to keep a TypeScript interface in sync with a Zod schema?",
+      "posted_when": "2023-10-26T00:00:00.000Z",
+      "why_relevant": "Directly addresses the pain of type/schema drift that SchemaGuard eliminates.",
+      "intent_strength": "high",
+      "drafted_reply": "The `satisfies z.ZodType<MyData>` trick you tried is the best Zod-native option, but as you found, it breaks down with optional fields and still requires you to maintain two definitions. The real fix is to flip the relationship: derive the schema from the type at build time rather than trying to constrain one against the other at runtime. Tools like typia take this approach using a TypeScript compiler plugin, so the validator is emitted directly from your interface and can never drift. I built something similar called schemaguard that does the same — one source of truth, no hand-written schema: {APP_URL}.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.93,
+        "why": "The thread author is explicitly struggling with keeping a TypeScript interface in sync with a Zod schema — exactly the dual-schema duplication problem this app eliminates."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/kryft-dev/exenv/issues/7",
+      "title_or_quote": "feat: generate typed definitions and runtime validation schemas from templates",
+      "posted_when": "2026-08-26T17:57:41Z",
+      "why_relevant": "Seeks to generate runtime validation from types, matching SchemaGuard's core function.",
+      "intent_strength": "high",
+      "drafted_reply": "Generating runtime validation directly from type definitions avoids duplication and drift. SchemaGuard does exactly this for TypeScript by compiling validators from your existing types. I'm the builder—happy to help integrate it if useful.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is a feature request for generating typed env-var definitions and validation schemas from .env.example templates in a CLI tool, not about eliminating duplicate Zod/interface schema definitions in application TypeScript code."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49358160",
+      "title_or_quote": "Kind of a coincidence to see this post here, just after I’ve gotten done playing...",
+      "posted_when": "2026-08-19T07:29:24Z",
+      "why_relevant": "Discusses Zod schema sync issues, highly relevant to SchemaGuard's solution.",
+      "intent_strength": "medium",
+      "drafted_reply": "I've faced similar issues with Zod schemas drifting from types. That's why I built SchemaGuard—it generates runtime validation directly from TypeScript types, so they stay in sync automatically. Happy to share more if helpful.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.98,
+        "why": "The thread is entirely about text editor choices (Helix, Kakoune, Neovim) and has no connection to TypeScript runtime validation or schema management."
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "github",
+      "url": "https://github.com/tunnckoCore/zagora/issues/5",
+      "title_or_quote": "Async schemas return Promise at runtime but keep a sync procedure return type",
+      "posted_when": "2026-07-30T22:53:52Z",
+      "why_relevant": "Involves runtime type validation behavior, adjacent to SchemaGuard's domain.",
+      "intent_strength": "medium",
+      "drafted_reply": "Handling async validation while preserving type safety is tricky. SchemaGuard ensures your runtime validators reflect your actual types, reducing gaps like this. I'm the builder—let me know if you'd like to explore a solution.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.08,
+        "why": "The thread is about a specific TypeScript type-level bug in Zagora where async StandardSchema validators return a Promise at runtime but expose a sync return type — a type inference and StandardSchema V1 spec issue, not a problem of schema duplication or runtime validation generation that schemaguard addresses."
+      }
+    }
+  ]
+}

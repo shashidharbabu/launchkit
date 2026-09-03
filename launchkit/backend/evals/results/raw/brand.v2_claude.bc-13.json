@@ -1,0 +1,140 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Benchmark Drop",
+        "objective": "awareness — put DocParse's published accuracy methodology in front of engineers who distrust vendor accuracy claims",
+        "big_idea": "Release a detailed write-up of the 5,000-invoice benchmark methodology on Hacker News as a Show HN. The post leads with the methodology, not the product, earning credibility with engineers who have been burned by inflated OCR accuracy numbers. The product is the proof, not the pitch.",
+        "channels": [
+          "Hacker News",
+          "X / Twitter"
+        ],
+        "asset_types": [
+          "show_hn",
+          "x_post"
+        ],
+        "hook": "We published the full methodology behind our 99.2% field-level accuracy claim — dataset, evaluation criteria, and failure modes included.",
+        "sample_copy": {
+          "headline": "Show HN: DocParse — 5,000-invoice accuracy benchmark, methodology open",
+          "body": "Most document AI vendors quote accuracy without defining it. We defined it: field-level exact match on a 5,000-invoice set spanning 47 layout templates. The benchmark covers line items, totals, tax fields, and vendor data. Failures are logged, not hidden. p95 latency is tracked on a public metrics page. If you are building an AP automation feature with an accuracy SLA, the methodology is worth reading before you choose a parser.",
+          "cta": "Read the benchmark methodology"
+        },
+        "assets_needed": [
+          "Long-form benchmark write-up (methodology, dataset description, failure analysis)",
+          "Public metrics page URL",
+          "Show HN post draft",
+          "Two X posts linking to the write-up"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of GitHub stars or direct API sign-ups attributed to the Show HN thread within 7 days",
+        "why_on_brand": "Leads with the published 5,000-document benchmark and p95 latency claim — the two proof points the DNA identifies as rare in the category — in a precise, number-backed voice with no rhetorical inflation."
+      },
+      {
+        "name": "SLA Pressure Test",
+        "objective": "signups — convert engineers who are mid-evaluation and have an accuracy SLA commitment they cannot meet with in-house OCR",
+        "big_idea": "A LinkedIn post series framed as a technical decision guide: what to check before committing to an accuracy SLA on a document ingestion pipeline. Each post surfaces a concrete evaluation criterion (field-level vs. document-level accuracy, confidence scores, latency at volume) and links to DocParse's public metrics page. The series positions DocParse as the vendor that has already done the work engineers are about to do.",
+        "channels": [
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "linkedin_post"
+        ],
+        "hook": "Before you commit to an accuracy SLA on your AP automation feature, check whether your parser reports field-level or document-level accuracy. The difference matters.",
+        "sample_copy": {
+          "headline": "Accuracy SLAs and document parsing: what to verify before you ship",
+          "body": "Document-level accuracy hides field-level failures. A parser that gets 95% of documents \"right\" can still drop tax fields or misread line-item totals at a rate that breaks three-way match. When evaluating a parser for production AP automation, ask for: field-level exact-match rates, per-field confidence scores, and p95 latency at your expected volume. DocParse publishes all three. The benchmark methodology is open.",
+          "cta": "Review the public metrics page"
+        },
+        "assets_needed": [
+          "3-post LinkedIn series (one post per evaluation criterion)",
+          "Link to public metrics page",
+          "Optional: one-page PDF evaluation checklist for AP automation parsers"
+        ],
+        "effort": "small",
+        "success_metric": "Click-throughs to the public metrics page or free-tier sign-ups from LinkedIn UTM links over 30 days",
+        "why_on_brand": "Uses the DNA's vocabulary (field-level accuracy, confidence score, three-way match, SLA) and the assured, formal sentence style to address the exact buying trigger identified in the ICP."
+      },
+      {
+        "name": "Human-in-the-Loop Explainer",
+        "objective": "awareness — educate engineers on why a configurable human-review fallback is an architectural decision, not a workaround",
+        "big_idea": "Publish a technical newsletter pitch or blog post explaining how to design a document ingestion pipeline with a confidence-threshold fallback. The content is genuinely useful to any engineer building AP automation, and DocParse's human-in-the-loop feature is the worked example. Pitch to developer-focused newsletters (TLDR, Pointer, Software Lead Weekly).",
+        "channels": [
+          "Developer newsletters",
+          "Company blog"
+        ],
+        "asset_types": [
+          "newsletter_pitch"
+        ],
+        "hook": "A confidence score without a fallback path is a number with nowhere to go.",
+        "sample_copy": {
+          "headline": "Designing a document ingestion pipeline with a confidence-threshold fallback",
+          "body": "When a parser returns a confidence score below your threshold, the question is not whether to flag the document — it is what happens next. This post covers how to wire a human-review queue into an AP automation pipeline: where to set the threshold, how to route flagged documents, and how to measure the cost of review against the cost of downstream errors. DocParse exposes per-field confidence scores and a configurable fallback so the routing logic stays in your code, not ours.",
+          "cta": "Read the full post"
+        },
+        "assets_needed": [
+          "1,500-word technical blog post with architecture diagram",
+          "Newsletter pitch email (150 words)",
+          "Diagram: pipeline flow with confidence-threshold branch"
+        ],
+        "effort": "medium",
+        "success_metric": "Newsletter referral traffic to the blog post and free-tier sign-ups from that source over 14 days",
+        "why_on_brand": "Builds directly on the human-in-the-loop and confidence score vocabulary from the DNA, and the formal, number-backed sentence style matches the audience's expectation for technical content."
+      },
+      {
+        "name": "Reddit Accuracy Audit",
+        "objective": "community — participate in engineering communities where OCR and document AI frustrations surface, without pitching",
+        "big_idea": "Monitor r/devops, r/fintech, and r/MachineLearning for threads about OCR accuracy, AP automation, or document parsing failures. Contribute technically precise answers that reference DocParse's published benchmark only when directly relevant. The goal is to build a reputation for straight answers in communities where engineers are actively evaluating tools.",
+        "channels": [
+          "Reddit"
+        ],
+        "asset_types": [
+          "reddit_post"
+        ],
+        "hook": "The accuracy number your OCR vendor quotes is probably document-level. Here is what field-level accuracy means and why it changes the calculation.",
+        "sample_copy": {
+          "headline": "Field-level vs. document-level OCR accuracy — why the distinction matters for AP automation",
+          "body": "Document-level accuracy counts a document as correct if most fields parse correctly. Field-level accuracy counts every field independently. For AP automation, the relevant metric is field-level: a missed tax field or a transposed line-item total causes a downstream reconciliation failure regardless of how the rest of the document parsed. When evaluating parsers, ask for field-level exact-match rates on a dataset that matches your document mix. We published ours on a 5,000-invoice set if you want a reference point.",
+          "cta": "Benchmark methodology is linked in our profile"
+        },
+        "assets_needed": [
+          "Saved Reddit search alerts for target keywords",
+          "3-5 pre-drafted technically precise answer templates covering common OCR/AP automation questions",
+          "Link to benchmark methodology for reference"
+        ],
+        "effort": "small",
+        "success_metric": "Upvotes on substantive comments and inbound profile visits or direct messages over 60 days",
+        "why_on_brand": "Precise, formal, number-backed — no promotional language, just the kind of straight technical answer the DNA's voice demands and the ICP trusts."
+      },
+      {
+        "name": "Product Hunt Launch",
+        "objective": "signups — generate a concentrated spike of sign-ups and developer attention on launch day",
+        "big_idea": "Launch DocParse on Product Hunt with a maker post that leads with the benchmark methodology and the public metrics page rather than feature lists. The description is written in the same precise, formal voice as the site. The first comment from the maker explains the accuracy measurement approach in detail, which differentiates DocParse from other document AI listings that lead with marketing language.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "Documents in. Decisions out. 99.2% of fields, exactly right — and the methodology is published.",
+        "sample_copy": {
+          "headline": "DocParse — layout-aware document parsing API with a published accuracy benchmark",
+          "body": "DocParse extracts line items, totals, tax fields, and vendor data from invoices, receipts, and purchase orders into structured JSON. Field-level accuracy: 99.2% on a published 5,000-document benchmark. p95 latency: 1.8 seconds per page, tracked on a public metrics page. Per-field confidence scores with a configurable human-review fallback. Usage-based pricing with 500 free pages to start. Built for AP automation and ERP integration at volume.",
+          "cta": "Start with 500 free pages"
+        },
+        "assets_needed": [
+          "Product Hunt listing copy and tagline",
+          "Product screenshots showing JSON output and confidence scores",
+          "Maker first-comment explaining benchmark methodology (300 words)",
+          "Gallery images: input document → structured JSON output"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of free-tier sign-ups on launch day and the following 48 hours",
+        "why_on_brand": "Opens with the observed tagline verbatim, leads with the two published proof points, and uses structured output and confidence score vocabulary throughout — consistent with the DNA's assured, formal register."
+      }
+    ],
+    "confidence": {
+      "overall": 0.88,
+      "notes": "BRAND_DNA was provided without scrape confirmation so tone and vocabulary are taken as given. No named customer logos exist yet, so no social proof beyond published benchmark and metrics page is used. Benchmark covers invoices only — campaigns avoid claiming receipt or PO accuracy. EU data residency gap is not surfaced in any campaign to avoid drawing attention to an unresolved limitation."
+    }
+  }
+}

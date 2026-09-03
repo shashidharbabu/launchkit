@@ -1,0 +1,91 @@
+{
+  "output": {
+    "one_liner": "Open source DocuSign alternative for secure, compliant document signing with self-hosting and embedded workflows.",
+    "description": "Documenso is an open source document signing platform that enables individuals and teams to create, send, and sign documents securely. It supports self-hosting, enterprise compliance (including 21 CFR Part 11), and seamless integration via API or embeds. The platform emphasizes transparency, speed, and ease of use for both casual and large-scale signing needs.",
+    "category": "Document Signing",
+    "target_user": "Engineering leads and DevOps teams at tech companies",
+    "icp": {
+      "who": "Tech startups and regulated enterprises needing compliant, auditable e-signatures",
+      "pain": "Lack of control, high cost, and compliance risks with closed-source signing tools",
+      "current_alternatives": [
+        "DocuSign",
+        "Adobe Sign",
+        "PandaDoc"
+      ],
+      "buying_trigger": "Need to reduce SaaS costs or meet strict data residency and compliance requirements"
+    },
+    "differentiators": [
+      "Fully open source with self-hosting option",
+      "Built-in compliance with 21 CFR Part 11, HIPAA, SOC2",
+      "Embedded signing and API-first design for developers",
+      "Fair-use pricing with generous free tier"
+    ],
+    "proof_points": [
+      "Over 23,000 GitHub stars (from README)",
+      "Featured on Product Hunt (from README)",
+      "Testimonials from COO of Prisma Inc. and CEO of Vial Inc. (from homepage)",
+      "Supports enterprise compliance standards like 21 CFR Part 11 (from homepage)"
+    ],
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Hono",
+      "Prisma",
+      "Tailwind CSS",
+      "tRPC",
+      "PostgreSQL",
+      "Stripe"
+    ],
+    "pricing_current": "Free tier + paid plans from $25/month (billed yearly); enterprise and self-hosted options available",
+    "voice": {
+      "tone": [
+        "clear",
+        "confident",
+        "developer-focused",
+        "transparent"
+      ],
+      "sample_phrase": "Fully compliant signatures out of the box. Ready to use or ready to be built upon."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Public pricing",
+        "Live product",
+        "Active GitHub repository",
+        "Customer testimonials"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence; data from both repo and live site align"
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview, tech, community"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Dependencies and dev tools"
+      },
+      {
+        "source": "https://documenso.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Homepage content and value prop"
+      },
+      {
+        "source": "https://documenso.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing tiers and plans"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

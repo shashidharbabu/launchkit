@@ -1,0 +1,150 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/aodh-code/mira-journal/issues/15",
+        "title_or_quote": "Explore local and open-weight AI for private journaling",
+        "posted_when": "2026-06-06T23:23:23Z",
+        "why_relevant": "Seeks private journaling with local AI, matching quietpage's core features.",
+        "intent_strength": "high",
+        "drafted_reply": "I built quietpage, a journal app with on-device encryption and local AI reflections that never leave your phone. It requires no account and keeps everything private by design. Your thoughts stay on your device. Full stop. {APP_URL}",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.95,
+          "why": "The thread explicitly explores local and open-weight AI for private journaling, which directly aligns with the app's core features of on-device encryption and AI reflections that never leave the phone."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/fjrevoredo/mini-diarium/issues/275",
+        "title_or_quote": "Improve CJK (Chinese/Japanese/Korean) support for word count and in-memory search",
+        "posted_when": "2026-08-28T06:12:34Z",
+        "why_relevant": "User actively using a local journal app, indicating interest in private tools.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built quietpage, a journal app focused on privacy with no account and on-device encryption. It supports Markdown export and runs entirely on your phone. If you value local-first journaling, it might fit. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread is focused on improving CJK language support for word count and search in a specific app, not on seeking a private, AI-powered journaling solution with on-device encryption."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49412916",
+        "title_or_quote": "As office building vacancies jeopardize urban fiscal health and downtowns...",
+        "posted_when": "2026-08-23T21:42:09Z",
+        "why_relevant": "Mentions 'offline journal app' in context of personal tooling needs.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built quietpage, an offline journal app with no account and on-device encryption. Entries never leave your phone, and AI reflections run locally. It's designed for people who want true privacy. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.95,
+          "why": "The thread discusses commercial real estate vacancies and remote work trends, which are unrelated to private journaling or on-device encrypted AI reflections."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=49315854",
+        "title_or_quote": "Which ones? The most humble meters come free in a kit, since you're really buying the test strips",
+        "posted_when": "2026-08-16T01:05:31Z",
+        "why_relevant": "Comment references 'offline journal app' in discussion about personal logging.",
+        "intent_strength": "medium",
+        "drafted_reply": "I built quietpage, a journal app that works offline with no account. It encrypts entries on-device and uses local AI for reflections—nothing is sent anywhere. Built for privacy-first users. {APP_URL}",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.2,
+          "why": "The thread discusses a glucose tracking app for health data logging, which is unrelated to the private journaling app's focus on encrypted personal reflections and on-device AI."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "does anyone know a journal app without account or cloud",
+      "struggling with private journaling no cloud sync",
+      "tired of giving my journal to the cloud",
+      "site:reddit.com alternative to Day One no account",
+      "site:reddit.com alternative to Journey app local only",
+      "site:reddit.com/r/Journaling private journaling no cloud",
+      "site:reddit.com/r/privacy journal app without account",
+      "site:reddit.com/r/productivity local journal encryption",
+      "site:reddit.com/r/Mindfulness offline journal app",
+      "private journaling",
+      "offline journal app",
+      "private+journaling+no+cloud+is:issue+is:open",
+      "offline+journal+app+local+encryption+is:issue+is:open"
+    ],
+    "coverage_notes": "Reddit queries returned no results; likely due to low activity or archived threads. HN and GitHub provided recent, replyable signals.",
+    "confidence": {
+      "overall": 0.75,
+      "notes": "Strong signals from GitHub and HN with clear intent. Reddit communities did not yield results despite relevant queries."
+    }
+  },
+  "kept": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/aodh-code/mira-journal/issues/15",
+      "title_or_quote": "Explore local and open-weight AI for private journaling",
+      "posted_when": "2026-06-06T23:23:23Z",
+      "why_relevant": "Seeks private journaling with local AI, matching quietpage's core features.",
+      "intent_strength": "high",
+      "drafted_reply": "I built quietpage, a journal app with on-device encryption and local AI reflections that never leave your phone. It requires no account and keeps everything private by design. Your thoughts stay on your device. Full stop. {APP_URL}",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.95,
+        "why": "The thread explicitly explores local and open-weight AI for private journaling, which directly aligns with the app's core features of on-device encryption and AI reflections that never leave the phone."
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/fjrevoredo/mini-diarium/issues/275",
+      "title_or_quote": "Improve CJK (Chinese/Japanese/Korean) support for word count and in-memory search",
+      "posted_when": "2026-08-28T06:12:34Z",
+      "why_relevant": "User actively using a local journal app, indicating interest in private tools.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built quietpage, a journal app focused on privacy with no account and on-device encryption. It supports Markdown export and runs entirely on your phone. If you value local-first journaling, it might fit. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread is focused on improving CJK language support for word count and search in a specific app, not on seeking a private, AI-powered journaling solution with on-device encryption."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49412916",
+      "title_or_quote": "As office building vacancies jeopardize urban fiscal health and downtowns...",
+      "posted_when": "2026-08-23T21:42:09Z",
+      "why_relevant": "Mentions 'offline journal app' in context of personal tooling needs.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built quietpage, an offline journal app with no account and on-device encryption. Entries never leave your phone, and AI reflections run locally. It's designed for people who want true privacy. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.95,
+        "why": "The thread discusses commercial real estate vacancies and remote work trends, which are unrelated to private journaling or on-device encrypted AI reflections."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "hackernews",
+      "url": "https://news.ycombinator.com/item?id=49315854",
+      "title_or_quote": "Which ones? The most humble meters come free in a kit, since you're really buying the test strips",
+      "posted_when": "2026-08-16T01:05:31Z",
+      "why_relevant": "Comment references 'offline journal app' in discussion about personal logging.",
+      "intent_strength": "medium",
+      "drafted_reply": "I built quietpage, a journal app that works offline with no account. It encrypts entries on-device and uses local AI for reflections—nothing is sent anywhere. Built for privacy-first users. {APP_URL}",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.2,
+        "why": "The thread discusses a glucose tracking app for health data logging, which is unrelated to the private journaling app's focus on encrypted personal reflections and on-device AI."
+      }
+    }
+  ]
+}

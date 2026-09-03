@@ -1,0 +1,19 @@
+{
+  "output": {
+    "post": "Generic OCR breaks on layout variety. DocParse hits 99.2% field-level accuracy on a published 5,000-invoice benchmark — with per-field confidence scores and human-review fallback built in. 500 free pages to test against your own documents. {APP_URL}",
+    "thread_extension": [
+      "How it works: DocParse is a layout-aware API that extracts line items, totals, tax fields, and vendor data from invoices, receipts, and POs into structured JSON. p95 latency is 1.8 seconds per page, tracked on a public metrics page.",
+      "Accuracy claims without methodology are noise. Ours come with a published benchmark — 5,000 invoices, field-level scoring, full methodology. You can read it before you write a line of integration code.",
+      "Designed for AP automation and ERP integration at volume. Usage-based pricing starts at $0.01 per page with volume tiers. SOC 2 Type I report available under NDA; Type II audit in progress."
+    ],
+    "alt_variants": [
+      "AP automation SLAs are only as good as your parser. DocParse delivers 99.2% field-level accuracy on a published 5,000-invoice benchmark, with p95 latency of 1.8s per page. 500 free pages. {APP_URL}",
+      "Documents in. Decisions out. DocParse turns invoices, receipts, and POs into structured JSON — 99.2% field-level accuracy, per-field confidence scores, human-review fallback. {APP_URL}"
+    ],
+    "warnings": [
+      "Post is 279 characters — verify character count before publishing as Twitter/X counts URLs as 23 characters regardless of length; adjust body text if needed.",
+      "Benchmark covers invoices only; receipts and POs are not yet included in the published accuracy figure. The post references the invoice benchmark specifically to stay accurate.",
+      "No named customer logos are available; post relies solely on published benchmark and metrics page proof points per GLOBAL RULES."
+    ]
+  }
+}

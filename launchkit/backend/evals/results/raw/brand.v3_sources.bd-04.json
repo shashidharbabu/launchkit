@@ -1,0 +1,109 @@
+{
+  "output": {
+    "brand_name": "Resend",
+    "tagline_observed": "Email for developers",
+    "voice": {
+      "tone_words": [
+        "developer-centric",
+        "direct",
+        "craft-focused",
+        "candid",
+        "action-oriented"
+      ],
+      "sentence_style": "Short declaratives, second person, code-first examples, no marketing jargon",
+      "vocabulary": [
+        "reach humans",
+        "spam folders",
+        "transactional",
+        "deliver",
+        "open source",
+        "developer experience",
+        "ship",
+        "craft",
+        "inbox",
+        "integrate"
+      ],
+      "avoid": [
+        "passive voice",
+        "vague superlatives",
+        "corporate mission statements",
+        "buzzword-heavy copy",
+        "feature lists without context"
+      ],
+      "evidence_quotes": [
+        "The best way to reach humans instead of spam folders.",
+        "We are a team of engineers who love building tools for other engineers.",
+        "We believe that the best tools meet you where you already are.",
+        "Three builders who care about craft, attention to detail, and quality."
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "Deliver transactional and marketing emails at scale without landing in spam",
+        "First-class developer experience with SDKs, React Email, and a CLI that fits your workflow",
+        "Start for free and scale as you grow — no lock-in, no daily limits on paid plans",
+        "Built for humans and AI agents alike"
+      ],
+      "key_messages": [
+        "Email for developers",
+        "The best way to reach humans instead of spam folders.",
+        "Our goal is to create the email platform we've always wished we had — one that just works.",
+        "Integrate this weekend.",
+        "Built for humans and AI agents. Manage your emails from the terminal."
+      ],
+      "proof_points_observed": [
+        "99.99% uptime SLA on Enterprise tier",
+        "SOC 2 Type II certification",
+        "Official CLI with 53 commands across 13 resources",
+        "Open source react-email component library",
+        "Backed by Y Combinator, a16z, and SV Angel",
+        "Trusted by Warner Bros and Gumroad",
+        "Free tier includes 3,000 emails per month"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#000000",
+          "role": "background",
+          "evidence": "meta theme-color=#000000 and color-scheme=dark observed in HTML metadata on all five scraped pages"
+        }
+      ],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrapes returned markdown without CSS; no font-family declarations or font CDN links were observable"
+      },
+      "imagery_style": "screenshots",
+      "logo_url": ""
+    },
+    "audience_language": "The site speaks directly to engineers and developers, using code snippets, CLI commands, and API references as primary communication, assuming technical fluency and respecting the reader's time.",
+    "dos_and_donts": {
+      "do": [
+        "Lead with code examples and concrete commands",
+        "Use short, direct sentences that respect the reader's time",
+        "Acknowledge real developer pain points (spam folders, table layouts, tuning time)",
+        "Celebrate craft, quality, and shipping fast",
+        "Reference open source contributions as proof of commitment"
+      ],
+      "dont": [
+        "Use vague superlatives or corporate mission language",
+        "Write long paragraphs without a concrete payoff",
+        "Claim benefits without showing how (no code, no example)",
+        "Use passive voice or hedge with 'may' and 'might'",
+        "Ignore the developer audience by writing for a general business reader"
+      ]
+    },
+    "sources_read": [
+      "https://resend.com/",
+      "https://resend.com/pricing",
+      "https://resend.com/blog",
+      "https://resend.com/changelog/cli",
+      "https://resend.com/about"
+    ],
+    "confidence": {
+      "overall": 0.72,
+      "notes": "Colors: scrapes returned markdown only; the sole color observed is #000000 from meta theme-color — no CSS variables, inline styles, or SVG fills were accessible, so the full palette is unknown. Typography: no font-family declarations or CDN font links observed in any scrape. Logo URL: only Next.js processed image URLs and a favicon were present — no canonical logo src was found. The APP_PROFILE describes DocParse, not Resend; this DNA reflects the scraped site (Resend) as instructed."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=39697520",
+        "title_or_quote": "The Myers diff algorithm: part 1",
+        "why_relevant": "High-scoring thread about diffs.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.05,
+          "why": "The thread is a deep technical discussion about diff algorithms (Myers, Tichy, tree-based diffs) and their implementation theory, not about terminal diff viewing tools or readability of git output."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=39697520",
+      "title_or_quote": "The Myers diff algorithm: part 1",
+      "why_relevant": "High-scoring thread about diffs.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.05,
+        "why": "The thread is a deep technical discussion about diff algorithms (Myers, Tichy, tree-based diffs) and their implementation theory, not about terminal diff viewing tools or readability of git output."
+      }
+    }
+  ]
+}

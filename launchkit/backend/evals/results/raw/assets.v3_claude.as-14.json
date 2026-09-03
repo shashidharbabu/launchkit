@@ -1,0 +1,12 @@
+{
+  "output": {
+    "title": "Show HN: stackbuilt – self-hosted admin panels from your Postgres schema, no code",
+    "body": "stackbuilt connects to an existing Postgres database, reads the schema, and scaffolds CRUD interfaces, dashboards, and approval flows. The whole thing runs with a single Docker command so production data never leaves your network.\n\nHow it works: point it at your Postgres instance, it introspects the schema, and generates a working CRUD UI. The demo video shows schema-to-working-UI in under 60 seconds, unedited. It's running in production at a 200-person logistics company.\n\nTech stack: Go backend, React frontend, ships as a Docker image on Docker Hub.\n\nRole-based access control is included in the free self-hosted tier. Viewers are always free; only builders pay ($25/builder/month on the cloud tier).\n\nKnown limitations right now: Postgres only — no MySQL or REST sources yet. No audit log export. Documentation covers setup but advanced guides are thin. It's in public beta.\n\nI built this because engineers kept getting pulled into \"one more admin panel\" requests, and the usual options either price per viewer until it hurts or require routing production data through someone else's cloud.\n\nHappy to answer questions about the architecture or the self-hosting setup. Honest feedback on the gaps is especially welcome.",
+    "warnings": [
+      "HN readers will scrutinize the 'under 60 seconds' claim — ensure the unedited demo video is prominently linked in comments.",
+      "The single named production deployment ('200-person logistics company') is thin social proof for HN; be prepared to discuss it honestly if asked.",
+      "Postgres-only limitation should be disclosed upfront (it is), but expect questions about MySQL/SQLite support — have a clear roadmap answer ready.",
+      "'No audit log export' may be a blocker for compliance-focused commenters; acknowledge it and share timeline if possible."
+    ]
+  }
+}

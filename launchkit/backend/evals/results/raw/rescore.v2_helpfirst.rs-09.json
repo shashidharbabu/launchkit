@@ -1,0 +1,36 @@
+{
+  "output": {
+    "kept": [
+      {
+        "platform": "stackoverflow",
+        "url": "https://stackoverflow.com/questions/14425568",
+        "title_or_quote": "Interface type check with Typescript",
+        "why_relevant": "A heavily-upvoted question about checking TypeScript interfaces at runtime — the gap schemaguard fills.",
+        "rescore": {
+          "verdict": "relevant",
+          "confidence": 0.72,
+          "why": "The thread author is struggling with runtime interface validation in TypeScript — exactly the problem schemaguard solves by generating validators from types at build time, though the thread is older and already has accepted answers."
+        },
+        "drafted_reply": "The core issue is that TypeScript interfaces are erased at compile time, so there is nothing left for instanceof to check at runtime. The custom type guard approach shown in the answers works well for simple cases, but hand-writing `instanceOfA` for every interface means you are essentially duplicating your type definitions in logic that can drift. For complex or frequently changing interfaces, a build-time approach that compiles validators directly from your TypeScript types avoids that drift entirely. I built something that does exactly that — schemaguard at {APP_URL} — if you want validators generated automatically rather than maintained by hand.",
+        "rank": 1
+      }
+    ],
+    "rejected": []
+  },
+  "kept": [
+    {
+      "platform": "stackoverflow",
+      "url": "https://stackoverflow.com/questions/14425568",
+      "title_or_quote": "Interface type check with Typescript",
+      "why_relevant": "A heavily-upvoted question about checking TypeScript interfaces at runtime — the gap schemaguard fills.",
+      "rescore": {
+        "verdict": "relevant",
+        "confidence": 0.72,
+        "why": "The thread author is struggling with runtime interface validation in TypeScript — exactly the problem schemaguard solves by generating validators from types at build time, though the thread is older and already has accepted answers."
+      },
+      "drafted_reply": "The core issue is that TypeScript interfaces are erased at compile time, so there is nothing left for instanceof to check at runtime. The custom type guard approach shown in the answers works well for simple cases, but hand-writing `instanceOfA` for every interface means you are essentially duplicating your type definitions in logic that can drift. For complex or frequently changing interfaces, a build-time approach that compiles validators directly from your TypeScript types avoids that drift entirely. I built something that does exactly that — schemaguard at {APP_URL} — if you want validators generated automatically rather than maintained by hand.",
+      "rank": 1
+    }
+  ],
+  "rejected": []
+}

@@ -1,0 +1,59 @@
+{
+  "one_liner": "ELT for small data teams: pipelines as Python, 60+ connectors, runs in your VPC, flat $99/month — no per-row pricing.",
+  "description": "pipewright moves data from SaaS tools and databases into your warehouse with pipelines defined as plain Python — versioned, testable, reviewable. It ships 60+ maintained connectors, deploys inside your own VPC so credentials and data never transit a vendor cloud, and charges a flat monthly price instead of Fivetran-style monthly-active-rows pricing that punishes growth.",
+  "category": "Infrastructure / Data Pipelines",
+  "target_user": "Data engineers and analytics engineers at companies without a platform team",
+  "icp": {
+    "who": "The one-or-two-person data team at a 50-500 person company running a warehouse on Snowflake, BigQuery, or Postgres",
+    "pain": "Fivetran's MAR pricing explodes unpredictably as usage grows, while self-hosted Airbyte becomes a part-time job of babysitting broken syncs",
+    "current_alternatives": [
+      "Fivetran",
+      "Airbyte",
+      "Meltano",
+      "dlt"
+    ],
+    "buying_trigger": "A shocking Fivetran invoice, or the third weekend spent repairing a self-hosted Airbyte deployment"
+  },
+  "differentiators": [
+    "Flat $99/month regardless of row volume — no monthly-active-rows meter",
+    "Pipelines are plain Python in your repo: diffable, testable, code-reviewed",
+    "Runs inside your VPC, so data and credentials never leave your infrastructure"
+  ],
+  "proof_points": [
+    "Syncs 40 million rows nightly for a fintech customer on the flat plan",
+    "60+ maintained connectors with public source",
+    "Median connector setup time of 12 minutes, measured across onboarding cohort"
+  ],
+  "tech_stack": [
+    "Python",
+    "Kubernetes",
+    "Terraform",
+    "DuckDB"
+  ],
+  "pricing_current": "$99/month flat, 14-day free trial",
+  "voice": {
+    "tone": [
+      "anti-hype",
+      "cost-transparent",
+      "practitioner-to-practitioner"
+    ],
+    "sample_phrase": "Your bill shouldn't grow faster than your data team."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Public pricing with self-serve trial",
+      "Connector catalog published with source links",
+      "Production reference customer cited"
+    ]
+  },
+  "gaps": [
+    "No reverse-ETL",
+    "No SOC 2 yet",
+    "Smaller connector catalog than Airbyte's long tail"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Pricing model and VPC deployment are clearly documented. Scale claims trace to one named-industry customer."
+  }
+}

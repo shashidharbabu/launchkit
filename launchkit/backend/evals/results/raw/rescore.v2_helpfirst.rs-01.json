@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=36159270",
+        "title_or_quote": "Show HN: JuxtaCode – native Git diff tool for macOS",
+        "why_relevant": "A Show HN for a git diff tool draws exactly the audience actively evaluating diff tooling that termdiff serves.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is about a native macOS GUI diff tool with 3-way merge and branch comparison, not a terminal/CLI pager — the author's pain and audience are GUI-focused, making a terminal CLI replacement a poor fit."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=36159270",
+      "title_or_quote": "Show HN: JuxtaCode – native Git diff tool for macOS",
+      "why_relevant": "A Show HN for a git diff tool draws exactly the audience actively evaluating diff tooling that termdiff serves.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is about a native macOS GUI diff tool with 3-way merge and branch comparison, not a terminal/CLI pager — the author's pain and audience are GUI-focused, making a terminal CLI replacement a poor fit."
+      }
+    }
+  ]
+}

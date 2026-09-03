@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "github",
+        "url": "https://github.com/louislam/uptime-kuma/issues/275",
+        "title_or_quote": "Lots of 'timeout of 48000ms exceeded' during the day, but the site is still up?",
+        "why_relevant": "Uptime monitoring discussion in a competitor's tracker.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.85,
+          "why": "The thread is a bug report about Uptime Kuma producing false timeout alerts due to Docker/WSL2 or SNAT exhaustion, not a request for an alternative monitoring tool."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "github",
+      "url": "https://github.com/louislam/uptime-kuma/issues/275",
+      "title_or_quote": "Lots of 'timeout of 48000ms exceeded' during the day, but the site is still up?",
+      "why_relevant": "Uptime monitoring discussion in a competitor's tracker.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.85,
+        "why": "The thread is a bug report about Uptime Kuma producing false timeout alerts due to Docker/WSL2 or SNAT exhaustion, not a request for an alternative monitoring tool."
+      }
+    }
+  ]
+}

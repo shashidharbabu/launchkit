@@ -1,0 +1,12 @@
+{
+  "output": {
+    "title": "I built an API-first uptime monitor with a Terraform provider because UptimeRobot felt like click-ops debt",
+    "body": "Hey r/selfhosted — I know this community leans toward self-hosted software, and I want to be upfront: pingdeck is a hosted service, not something you run yourself. I'm posting here because a lot of you are running production infra and have probably felt the same frustration I did.\n\nI was migrating everything to Terraform and realized my uptime monitors were the one thing still living outside version control — configured by hand in a UI, invisible to code review, impossible to reproduce cleanly. UptimeRobot and similar tools have APIs, but they're clearly afterthoughts bolted onto click-first products. Datadog synthetic monitoring solves it properly but costs enterprise money for a 3-person team.\n\nSo I built pingdeck. It monitors HTTP endpoints, cron jobs, and TCP ports at 30-second intervals, sends alerts to Slack, email, or webhooks, and renders public status pages. The whole thing is manageable through a REST API, and there's an official Terraform provider in the registry so your monitors can live in the same repo as the infrastructure they watch.\n\nFree tier covers 10 monitors at 30-second intervals — most competitors gate fast checks behind paid plans. Team plan is $10/month flat.\n\nHonest gaps: no mobile push alerts yet, only three alert integrations beyond webhooks, and no SSO on the team plan.\n\nIf you're running your own stack and have opinions on what a monitoring tool absolutely must get right — or wrong — I'd genuinely like to hear it. {APP_URL}",
+    "suggested_flair": "Monitoring",
+    "warnings": [
+      "r/selfhosted primarily focuses on self-hostable software. pingdeck is a hosted SaaS product, which may not align with the subreddit's core focus and could be removed by moderators or downvoted by the community. Consider whether r/devops, r/sysadmin, or r/webdev might be a better fit.",
+      "The post discloses the hosted nature upfront to reduce the risk of appearing deceptive, but the subreddit rules should be reviewed before posting to confirm promotional content from builders is permitted.",
+      "Endpoint and account counts (11,000 endpoints, 640 accounts) are self-reported by the builder and noted as such in the APP_PROFILE confidence notes."
+    ]
+  }
+}

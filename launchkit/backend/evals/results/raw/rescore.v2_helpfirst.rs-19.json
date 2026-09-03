@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "github",
+        "url": "https://github.com/cli/cli/issues/1023",
+        "title_or_quote": "Allow editing the commit message when squash-merging a PR",
+        "why_relevant": "Well-commented issue about commit messages.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is a GitHub CLI feature request to allow editing squash-merge commit messages in the terminal editor, not about generating or writing commit messages from diffs, which is what the app does."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "github",
+      "url": "https://github.com/cli/cli/issues/1023",
+      "title_or_quote": "Allow editing the commit message when squash-merging a PR",
+      "why_relevant": "Well-commented issue about commit messages.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is a GitHub CLI feature request to allow editing squash-merge commit messages in the terminal editor, not about generating or writing commit messages from diffs, which is what the app does."
+      }
+    }
+  ]
+}

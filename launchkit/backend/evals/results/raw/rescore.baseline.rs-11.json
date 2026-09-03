@@ -1,0 +1,32 @@
+{
+  "output": {
+    "kept": [],
+    "rejected": [
+      {
+        "platform": "hn",
+        "url": "https://news.ycombinator.com/item?id=200603",
+        "title_or_quote": "Barriers and journaling filesystems",
+        "why_relevant": "Contains the keyword 'journaling'.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.3,
+          "why": "The thread title mentions 'journaling filesystems,' which refers to computer science data systems, not personal journaling apps, so the app's private journaling features are not relevant to the technical topic discussed."
+        }
+      }
+    ]
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "platform": "hn",
+      "url": "https://news.ycombinator.com/item?id=200603",
+      "title_or_quote": "Barriers and journaling filesystems",
+      "why_relevant": "Contains the keyword 'journaling'.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.3,
+        "why": "The thread title mentions 'journaling filesystems,' which refers to computer science data systems, not personal journaling apps, so the app's private journaling features are not relevant to the technical topic discussed."
+      }
+    }
+  ]
+}

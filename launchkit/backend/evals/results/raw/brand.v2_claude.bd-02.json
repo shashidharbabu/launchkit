@@ -1,0 +1,107 @@
+{
+  "output": {
+    "brand_name": "beehiiv",
+    "tagline_observed": "NEWSLETTERS. PODCASTS. COMMUNITY. ONE PLATFORM.",
+    "voice": {
+      "tone_words": [
+        "aspirational",
+        "direct",
+        "ambitious",
+        "founder-voiced",
+        "growth-oriented"
+      ],
+      "sentence_style": "Short declaratives and imperative phrases, second person implied, no technical jargon, confident and action-oriented",
+      "vocabulary": [
+        "publish",
+        "grow",
+        "earn",
+        "audience",
+        "creators",
+        "brands",
+        "monetize",
+        "deliverability",
+        "scale",
+        "platform"
+      ],
+      "avoid": [
+        "technical jargon",
+        "developer-native framing",
+        "anti-lock-in rhetoric",
+        "hedging language",
+        "passive voice",
+        "long explanatory sentences"
+      ],
+      "evidence_quotes": [
+        "The all-in-one platform helping the world's best newsletters publish, grow and earn.",
+        "email was just the beginning.",
+        "Build like the best.",
+        "The next great audience-led businesses won't be determined by who has the biggest team or the deepest pockets."
+      ]
+    },
+    "messaging": {
+      "value_props": [
+        "All-in-one platform covering newsletters, podcasts, websites, and community",
+        "Monetization tools including ad network, paid subscriptions, and digital products",
+        "Pricing that is simple, predictable, and built to scale",
+        "Trusted by top publishers, creators, and brands worldwide"
+      ],
+      "key_messages": [
+        "The all-in-one platform helping the world's best newsletters publish, grow and earn.",
+        "email was just the beginning.",
+        "Build like the best.",
+        "Pricing that's simple, predictable, and built to scale.",
+        "If you have something worth sharing, we'll give you everything you need to make it succeed."
+      ],
+      "proof_points_observed": [
+        "4.9/5 from 28,479 customers",
+        "75B+ emails sent all time (as of Q2 2026)",
+        "450M+ unique readers (as of Q2 2026)",
+        "$60M+ earned by users via beehiiv (as of Q2 2026)",
+        "170K+ publications on beehiiv (as of Q2 2026)",
+        "Trusted by TIME, Newsweek, TechCrunch, VICE, The Ringer, Boston Globe, Pinterest, Adobe"
+      ]
+    },
+    "visual": {
+      "colors": [
+        {
+          "value": "#fff",
+          "role": "background",
+          "evidence": "meta theme-color tag on homepage, pricing, and about pages"
+        }
+      ],
+      "typography": {
+        "headings": "",
+        "body": "",
+        "evidence": "Scrape returned markdown format without CSS; no font-family declarations or font CDN links were observable"
+      },
+      "imagery_style": "photography",
+      "logo_url": ""
+    },
+    "audience_language": "beehiiv speaks directly to ambitious creators and brands who want to grow an audience-led business, framing them as the next generation of top publishers rather than beginners.",
+    "dos_and_donts": {
+      "do": [
+        "Lead with growth and earning outcomes",
+        "Reference top-tier publishers and brands as aspirational peers",
+        "Use short, punchy declaratives and action verbs",
+        "Emphasize the all-in-one nature of the platform",
+        "Ground claims in specific proof points from the site"
+      ],
+      "dont": [
+        "Use technical or developer-native language",
+        "Emphasize lock-in or data portability (not part of beehiiv's messaging)",
+        "Use hedging or passive constructions",
+        "Position the product as a beginner tool or starter option",
+        "Invent metrics or testimonials not present on the site"
+      ]
+    },
+    "sources_read": [
+      "https://www.beehiiv.com",
+      "https://www.beehiiv.com/pricing",
+      "https://www.beehiiv.com/about"
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Colors: only #fff observed via meta theme-color; scrape returned markdown so no CSS hex values, color variables, or inline styles were accessible — colors array is intentionally minimal. Typography: no font-family declarations or font CDN links observed in markdown output — headings and body fields left empty. Logo: no direct <img> or SVG logo URL found in scraped content; favicon and og-image are not logos per evidence rules — logo_url left empty. Homepage content beyond the first 8000 chars was not re-peeked but key messaging was captured in the initial peek."
+    }
+  }
+}

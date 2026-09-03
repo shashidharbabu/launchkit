@@ -1,0 +1,225 @@
+{
+  "output": {
+    "competitors": [
+      {
+        "name": "beehiiv",
+        "url": "https://www.beehiiv.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 5 comparison lists incl. G2 newsletter",
+        "mentions": 5,
+        "pricing_model": "freemium",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly",
+            "key_limits": "Up to 2,500 subscribers, basic analytics"
+          },
+          {
+            "name": "Pro",
+            "price": "29",
+            "period": "monthly",
+            "key_limits": "Unlimited subscribers, advanced analytics, custom templates"
+          },
+          {
+            "name": "Scale",
+            "price": "99",
+            "period": "monthly",
+            "key_limits": "Everything in Pro, plus API access, dedicated IP"
+          }
+        ],
+        "source_url": "https://www.beehiiv.com/pricing"
+      },
+      {
+        "name": "Substack",
+        "url": "https://substack.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 6 comparison lists incl. Capterra newsletter",
+        "mentions": 6,
+        "pricing_model": "freemium",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly",
+            "key_limits": "Unlimited subscribers, basic monetization"
+          },
+          {
+            "name": "Pro",
+            "price": "8",
+            "period": "monthly per subscriber",
+            "key_limits": "Includes monetization, analytics, custom domain"
+          }
+        ],
+        "source_url": "https://substack.com/pricing"
+      },
+      {
+        "name": "Buttondown",
+        "url": "https://buttondown.email",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. AlternativeTo",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly",
+            "key_limits": "Up to 1,000 subscribers"
+          },
+          {
+            "name": "Basic",
+            "price": "9",
+            "period": "monthly",
+            "key_limits": "Up to 5,000 subscribers, basic integrations"
+          },
+          {
+            "name": "Pro",
+            "price": "25",
+            "period": "monthly",
+            "key_limits": "Up to 15,000 subscribers, API access"
+          }
+        ],
+        "source_url": "https://buttondown.email/pricing"
+      },
+      {
+        "name": "Ghost",
+        "url": "https://ghost.org",
+        "notability": "established",
+        "evidence_of_standing": "named in 4 comparison lists incl. G2 newsletter",
+        "mentions": 4,
+        "pricing_model": "subscription",
+        "tiers": [
+          {
+            "name": "Basic",
+            "price": "19",
+            "period": "monthly",
+            "key_limits": "Up to 5,000 members, standard support"
+          },
+          {
+            "name": "Standard",
+            "price": "49",
+            "period": "monthly",
+            "key_limits": "Up to 10,000 members, custom domain, SEO"
+          },
+          {
+            "name": "Advanced",
+            "price": "199",
+            "period": "monthly",
+            "key_limits": "Up to 50,000 members, multiple authors, analytics"
+          }
+        ],
+        "source_url": "https://ghost.org/pricing/"
+      },
+      {
+        "name": "ConvertKit",
+        "url": "https://convertkit.com",
+        "notability": "established",
+        "evidence_of_standing": "named in 5 comparison lists incl. Capterra",
+        "mentions": 5,
+        "pricing_model": "freemium",
+        "tiers": [
+          {
+            "name": "Free",
+            "price": "0",
+            "period": "monthly",
+            "key_limits": "Up to 1,000 subscribers"
+          },
+          {
+            "name": "Creator",
+            "price": "9",
+            "period": "monthly",
+            "key_limits": "Up to 3,000 subscribers, basic automation"
+          },
+          {
+            "name": "Creator Pro",
+            "price": "29",
+            "period": "monthly",
+            "key_limits": "Up to 10,000 subscribers, advanced tools"
+          }
+        ],
+        "source_url": "https://convertkit.com/pricing"
+      }
+    ],
+    "rejected": [
+      {
+        "name": "Kit",
+        "url": "https://convertkit.com",
+        "why": "same product as ConvertKit"
+      },
+      {
+        "name": "mohitSharma74/contentseed",
+        "url": "https://github.com/mohitSharma74/contentseed",
+        "why": "GitHub repo, no commercial pricing"
+      },
+      {
+        "name": "unknown-studio-dev/dev-blog-writer",
+        "url": "https://github.com/unknown-studio-dev/dev-blog-writer",
+        "why": "GitHub repo, no commercial pricing"
+      }
+    ],
+    "recommendation": {
+      "model": "freemium",
+      "tiers": [
+        {
+          "name": "Free",
+          "price_usd_month": 0,
+          "who_its_for": "Developers with under 1,000 subscribers testing the platform",
+          "includes": [
+            "Markdown + Git workflow",
+            "Syntax-highlighted code blocks",
+            "git push publishing",
+            "List export"
+          ],
+          "rationale": "Matches Buttondown and ConvertKit entry point; lowers barrier for technical users to adopt."
+        },
+        {
+          "name": "Pro",
+          "price_usd_month": 15,
+          "who_its_for": "Growing technical newsletters needing reliability and ownership",
+          "includes": [
+            "Everything in Free",
+            "Unlimited subscribers",
+            "Enhanced deliverability reporting",
+            "Priority support"
+          ],
+          "rationale": "Priced 33% below beehiiv Pro to position as developer-first value alternative."
+        },
+        {
+          "name": "Team",
+          "price_usd_month": 39,
+          "who_its_for": "DevRel teams and multi-author technical blogs",
+          "includes": [
+            "Multiple authors",
+            "Shared Git repo access",
+            "Advanced analytics",
+            "Custom onboarding"
+          ],
+          "rationale": "Fills gap between Ghost Standard and beehiiv Scale for technical teams."
+        }
+      ],
+      "anchor_competitors": [
+        "beehiiv",
+        "Buttondown",
+        "ConvertKit"
+      ],
+      "positioning_note": "Position as the only newsletter tool that treats code as first-class content and gives full ownership via Git.",
+      "risks": [
+        "Pricing below beehiiv may undervalue deliverability investment",
+        "Lack of monetization features limits appeal to creators"
+      ]
+    },
+    "search_queries_used": [
+      "best newsletter tools",
+      "newsletter software comparison",
+      "alternative to beehiiv",
+      "alternative to Substack",
+      "alternative to Buttondown",
+      "write code blog newsletter tool reddit"
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "3+ established competitors confirmed via G2, Capterra, and multiple comparison articles. Pricing pages scraped and validated."
+    }
+  }
+}

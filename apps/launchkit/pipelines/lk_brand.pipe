@@ -1,0 +1,158 @@
+{
+  "components": [
+    {
+      "id": "chat_1",
+      "provider": "chat",
+      "name": "Chat",
+      "config": {
+        "hideForm": true,
+        "mode": "Source",
+        "parameters": {},
+        "type": "chat"
+      },
+      "ui": {
+        "position": {
+          "x": 20,
+          "y": 200
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "agent_rocketride_1",
+      "provider": "agent_rocketride",
+      "name": "RocketRide Wave",
+      "config": {
+        "agent_description": "Launch Kit brand-DNA extractor and campaign generator",
+        "instructions": [
+          "You are Launch Kit's brand analyst. Each request has: TASK (dna | campaigns), an APP_PROFILE JSON, and depending on the task a SITE_URL, a BRAND_DNA JSON, and optionally BUILDER_FEEDBACK. Do ONLY the requested task.",
+          "TASK=dna — extract the app's Business DNA from its live site. PROCESS: 1) Use the FireCrawl tool to scrape SITE_URL. 2) From links found on that page, scrape up to TWO more pages that reveal brand identity (about, pricing, blog, docs landing) — no more, and never external domains. 3) Record every URL you actually scraped in sources_read. EVIDENCE RULES — this is the builder's brand, invented details poison everything downstream: report tone, vocabulary, and messaging ONLY from language actually present in the scraped content; report colors ONLY as hex/rgb values literally present in the scraped HTML/CSS (inline styles, CSS variables, meta theme-color, SVG fills) — if the scrape returns markdown without styling, return an empty colors array and say why in confidence.notes, NEVER guess hex codes; report typography ONLY from font-family declarations or font CDN links actually observed, else empty with a note; logo_url ONLY if an <img>/SVG logo URL appears in the scraped content — a favicon or apple-touch-icon is NOT a logo; leave logo_url empty rather than substituting one. TONE WORDS: never use generic filler adjectives (modern, clean, professional, innovative, user-friendly, simple, powerful) unless the site itself uses that word; every tone_word must be defensible by actual language on the page, and put 2-4 short verbatim quotes that justify your tone_words into voice.evidence_quotes.",
+          "TASK=dna OUTPUT: ONLY one RFC 8259 JSON object: {\"brand_name\": string, \"tagline_observed\": string (the site's own words, empty if none), \"voice\": {\"tone_words\": [string] (3-6 adjectives describing the writing), \"sentence_style\": string (one sentence, e.g. 'short declaratives, second person, no jargon'), \"vocabulary\": [string] (5-10 words/phrases the brand actually uses), \"avoid\": [string] (styles/phrases that would read off-brand, derived from what the site does NOT do), \"evidence_quotes\": [string] (2-4 verbatim phrases from the site that justify the tone_words)}, \"messaging\": {\"value_props\": [string] (2-4), \"key_messages\": [string] (3-5 verbatim or near-verbatim lines worth reusing), \"proof_points_observed\": [string] (only claims the site itself makes)}, \"visual\": {\"colors\": [{\"value\": string (hex/rgb as observed), \"role\": string (primary | background | accent | text | unknown), \"evidence\": string (where it was observed)}], \"typography\": {\"headings\": string, \"body\": string, \"evidence\": string}, \"imagery_style\": string (screenshots | illustration | photography | abstract | none — as observed), \"logo_url\": string}, \"audience_language\": string (one sentence: how the site talks to its reader), \"dos_and_donts\": {\"do\": [string] (3-5), \"dont\": [string] (3-5)}, \"sources_read\": [string], \"confidence\": {\"overall\": number 0-1, \"notes\": string (name anything you could not observe)}}",
+          "TASK=campaigns — generate marketing campaign ideas that fit this brand. INPUT: BRAND_DNA (the extracted Business DNA) + APP_PROFILE. Produce 4-6 distinct campaign concepts a solo builder could actually run. DISTINCT means different primary channel AND different mechanic — if two concepts share both, merge them and invent a genuinely different play instead. If neither BRAND_DNA.messaging.proof_points_observed nor APP_PROFILE.proof_points has numbers, campaigns must contain NO numeric claims at all. Hooks and sample_copy must reuse actual DNA vocabulary; never use: game-changer, revolutionize, excited to announce, next level, unleash, supercharge, seamless, cutting-edge, say goodbye to, the ultimate, effortlessly. Every campaign must be written in the DNA's voice (tone_words, sentence_style, vocabulary), respect dos_and_donts, and build on messaging.key_messages. Never invent metrics, users, or testimonials — proof may come only from BRAND_DNA.messaging.proof_points_observed or APP_PROFILE.proof_points. Prefer channels that reach APP_PROFILE.icp; where a channel matches a Launch Kit asset type use exactly these ids in asset_types: x_post, linkedin_post, reddit_post, producthunt, show_hn, newsletter_pitch, video_script.",
+          "TASK=campaigns OUTPUT: ONLY one RFC 8259 JSON object: {\"campaigns\": [{\"name\": string (short, memorable), \"objective\": string (awareness | signups | community | retention — plus one sentence), \"big_idea\": string (2-3 sentences), \"channels\": [string], \"asset_types\": [string] (Launch Kit asset ids this campaign needs, [] if none apply), \"hook\": string (the opening line, in brand voice), \"sample_copy\": {\"headline\": string, \"body\": string (max 80 words, in brand voice), \"cta\": string}, \"assets_needed\": [string] (concrete things the builder must produce), \"effort\": string (small | medium | large), \"success_metric\": string (one measurable thing), \"why_on_brand\": string (one sentence citing the DNA)}], \"confidence\": {\"overall\": number 0-1, \"notes\": string}}",
+          "OUTPUT FORMAT: ONLY one RFC 8259 JSON object for the requested TASK — double quotes, no fences, no commentary before or after. KEEP THE OBJECT COMPACT — no markdown anywhere; strings stay within their stated caps."
+        ],
+        "max_waves": 10,
+        "parameters": {}
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "chat_1"
+        }
+      ],
+      "ui": {
+        "position": {
+          "x": 240,
+          "y": 200
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "llm_openai_api_1",
+      "provider": "llm_openai_api",
+      "name": "OpenAI-Compatible API",
+      "config": {
+        "profile": "custom",
+        "custom": {
+          "apikey": "${ROCKETRIDE_ANTHROPIC_KEY}",
+          "base_url": "https://api.anthropic.com/v1",
+          "model": "claude-sonnet-4-6",
+          "modelTotalTokens": 200000
+        },
+        "parameters": {}
+      },
+      "control": [
+        {
+          "classType": "llm",
+          "from": "agent_rocketride_1"
+        }
+      ],
+      "ui": {
+        "position": {
+          "x": 60,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "memory_internal_1",
+      "provider": "memory_internal",
+      "name": "Memory (Internal)",
+      "config": {
+        "type": "memory_internal"
+      },
+      "control": [
+        {
+          "classType": "memory",
+          "from": "agent_rocketride_1"
+        }
+      ],
+      "ui": {
+        "position": {
+          "x": 240,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "tool_firecrawl_1",
+      "provider": "tool_firecrawl",
+      "name": "Firecrawl",
+      "config": {
+        "type": "tool_firecrawl",
+        "apikey": "${ROCKETRIDE_FIRECRAWL_KEY}"
+      },
+      "control": [
+        {
+          "classType": "tool",
+          "from": "agent_rocketride_1"
+        }
+      ],
+      "ui": {
+        "position": {
+          "x": 420,
+          "y": 360
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "response_answers_1",
+      "provider": "response_answers",
+      "name": "Return Answers",
+      "config": {
+        "laneName": "answers"
+      },
+      "input": [
+        {
+          "lane": "answers",
+          "from": "agent_rocketride_1"
+        }
+      ],
+      "ui": {
+        "position": {
+          "x": 460,
+          "y": 200
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    }
+  ],
+  "project_id": "769dfe86-c694-432e-b0f1-646df3915a97",
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "version": 1
+}

@@ -1,0 +1,124 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Ship Before Standup",
+        "objective": "signups — drive engineers to try stackbuilt for their next internal tool request",
+        "big_idea": "Position stackbuilt as the fastest way to deliver an admin panel, emphasizing it works in under a minute and requires no data exposure. Leverage the urgency of standup deadlines as a motivator.",
+        "channels": [
+          "Reddit",
+          "Hacker News",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "show_hn",
+          "reddit_post",
+          "linkedin_post"
+        ],
+        "hook": "Point it at Postgres. Ship the admin panel before standup ends.",
+        "sample_copy": {
+          "headline": "Self-hosted admin panels in under 60 seconds",
+          "body": "Tired of bloated internal tool platforms? stackbuilt reads your Postgres schema and scaffolds a working CRUD UI in under a minute. Self-host with Docker, keep data in-network, and stop paying per viewer.",
+          "cta": "Try it in your stack today"
+        },
+        "assets_needed": [
+          "60-second unedited demo video",
+          "Docker quickstart guide",
+          "comparison table vs Retool/Appsmith"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of Docker pulls from verified users",
+        "why_on_brand": "Uses the brand's own phrase 'Ship the admin panel before standup ends' and emphasizes speed, self-hosting, and engineer-first pragmatism."
+      },
+      {
+        "name": "Free Viewers, Forever",
+        "objective": "awareness — highlight the unique pricing model that makes scaling internal tools cost-effective",
+        "big_idea": "Engineers can build with stackbuilt and share with unlimited viewers at no cost. This removes a major friction point from Retool and similar tools.",
+        "channels": [
+          "Twitter",
+          "LinkedIn",
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "x_post",
+          "linkedin_post",
+          "producthunt"
+        ],
+        "hook": "Why are you still paying per viewer for internal tools?",
+        "sample_copy": {
+          "headline": "Unlimited free viewers, forever",
+          "body": "stackbuilt believes everyone on your team should see internal tools without costing you a dime. Only builders pay. Self-host with Docker, protect your data, and scale freely across your org.",
+          "cta": "Launch your first tool free"
+        },
+        "assets_needed": [
+          "pricing explainer graphic",
+          "side-by-side cost calculator",
+          "testimonials from beta users"
+        ],
+        "effort": "small",
+        "success_metric": "Number of shares of the pricing message",
+        "why_on_brand": "Reflects the brand's anti-bloat and pragmatic tone by directly challenging overpriced alternatives."
+      },
+      {
+        "name": "Schema to UI in 60 Seconds",
+        "objective": "signups — demonstrate the core product magic with a high-impact visual demo",
+        "big_idea": "Show an unedited screen recording of connecting to Postgres and generating a full CRUD interface in under a minute. Make the speed undeniable.",
+        "channels": [
+          "YouTube Shorts",
+          "Twitter",
+          "Hacker News"
+        ],
+        "asset_types": [
+          "video_script",
+          "x_post",
+          "show_hn"
+        ],
+        "hook": "Watch it turn your schema into a working UI — no cuts, no scripts.",
+        "sample_copy": {
+          "headline": "From Postgres schema to working UI in 60 seconds",
+          "body": "No magic. No cloud. Just connect your database, run the Docker image, and see stackbuilt generate a full admin panel instantly. Data never leaves your network.",
+          "cta": "See it work in 60 seconds"
+        },
+        "assets_needed": [
+          "unlisted YouTube video",
+          "transcript",
+          "link to Docker image"
+        ],
+        "effort": "medium",
+        "success_metric": "Video completion rate and Docker pull conversions",
+        "why_on_brand": "Mirrors the brand's confident, engineer-first voice by showing raw capability without fluff."
+      },
+      {
+        "name": "The Compliance Escape Plan",
+        "objective": "community — help engineers advocate for stackbuilt when cloud tools fail security review",
+        "big_idea": "Create a ready-to-use kit for engineers to pitch stackbuilt as the secure, self-hosted alternative when Retool or Appsmith get blocked.",
+        "channels": [
+          "LinkedIn",
+          "Email",
+          "Reddit"
+        ],
+        "asset_types": [
+          "newsletter_pitch"
+        ],
+        "hook": "When your security team says no to Retool, what's your backup?",
+        "sample_copy": {
+          "headline": "Internal tools that pass security review",
+          "body": "stackbuilt runs entirely in your network. No data ever leaves. Full RBAC in the free tier. Give your compliance team peace of mind while shipping fast.",
+          "cta": "Download the security justification kit"
+        },
+        "assets_needed": [
+          "security justification PDF",
+          "comparison matrix",
+          "engineer-to-security talking points"
+        ],
+        "effort": "large",
+        "success_metric": "Downloads of the compliance kit",
+        "why_on_brand": "Speaks directly to the target audience's pain point with a pragmatic, secure, and anti-bloat message."
+      }
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "All campaigns are grounded in APP_PROFILE proof points and aligned with BRAND_DNA voice and dos/donts. No invented claims or metrics."
+    }
+  }
+}

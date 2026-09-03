@@ -1,0 +1,59 @@
+{
+  "one_liner": "Shared inbox for small support teams with AI drafts trained on your own past replies.",
+  "description": "replydeck is a shared support inbox for teams of two to ten agents. It drafts replies in your team's actual voice by learning from resolved conversations, keeps assignment and collision detection dead simple, and skips the enterprise workflow machinery that makes Zendesk feel heavy. Email-first, with a widget and a Slack bridge.",
+  "category": "B2B SaaS / Customer Support",
+  "target_user": "Support leads at small SaaS and e-commerce companies",
+  "icp": {
+    "who": "Support leads and founders handling 500-20,000 tickets a month with a small team",
+    "pain": "Zendesk and Intercom price and configure like enterprise software, while plain Gmail collapses once two people answer the same inbox",
+    "current_alternatives": [
+      "Zendesk",
+      "Intercom",
+      "Front",
+      "Help Scout"
+    ],
+    "buying_trigger": "Second support hire starts and reply collisions or missed tickets become a weekly embarrassment"
+  },
+  "differentiators": [
+    "AI drafts are trained on your own resolved tickets, so they sound like your team, not a generic bot",
+    "Five-minute setup by forwarding an address — no workflow configuration required",
+    "Flat, predictable per-seat pricing with every feature included"
+  ],
+  "proof_points": [
+    "Cut first-response time 40% on average across a 9-team pilot cohort",
+    "Largest customer handles 20,000 tickets/month on the standard plan",
+    "SOC 2 Type I report available"
+  ],
+  "tech_stack": [
+    "Ruby on Rails",
+    "PostgreSQL",
+    "Sidekiq",
+    "OpenAI API"
+  ],
+  "pricing_current": "$29/seat/month, 14-day free trial, no feature gating",
+  "voice": {
+    "tone": [
+      "warm",
+      "professional",
+      "reassuring"
+    ],
+    "sample_phrase": "Answer faster, in your own voice — not a bot's."
+  },
+  "maturity": {
+    "stage": "launched",
+    "signals": [
+      "Self-serve signup and billing live",
+      "SOC 2 Type I completed",
+      "Public status page and changelog"
+    ]
+  },
+  "gaps": [
+    "No phone or live-chat channel",
+    "No public API",
+    "Only two published case studies"
+  ],
+  "confidence": {
+    "overall": 0.85,
+    "notes": "Pilot metrics are specific and dated on the site. SOC 2 claim verifiable via trust page."
+  }
+}

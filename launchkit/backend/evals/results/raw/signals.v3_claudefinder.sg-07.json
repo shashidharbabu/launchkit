@@ -1,0 +1,148 @@
+{
+  "output": {
+    "signals": [
+      {
+        "rank": 1,
+        "platform": "github",
+        "url": "https://github.com/syamsulhudauul/ops-triage-agent/issues/1",
+        "title_or_quote": "PRD: ops-triage-agent — AI ops agent for issue triage; manual triage is slow and inconsistent",
+        "posted_when": "2026-07-14",
+        "why_relevant": "Builder describes exact pain: AI agent must triage customer issues without hallucinating wrong decisions; needs confidence-gated escalation.",
+        "intent_strength": "medium",
+        "drafted_reply": "Your PRD nails the core tension: an agent that makes autonomous triage decisions needs to know when NOT to decide. One pattern that works well is confidence-gated escalation — the agent scores retrieval confidence before acting, and routes to a human queue when it falls below a threshold rather than guessing. For the customer-facing chat path specifically, forcing every response to cite the source ticket or doc that drove the decision also builds the audit trail your eval harness needs. I'm building {APP_URL} around exactly this pattern for support chatbots — happy to share notes on the confidence-scoring approach if useful. Disclosure: I'm the builder.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.92,
+          "why": "The thread is a PRD for an autonomous ops-triage agent that creates/updates Linear tickets and surfaces management visibility — not a support chatbot or docs-grounded Q&A deflection tool."
+        }
+      },
+      {
+        "rank": 2,
+        "platform": "github",
+        "url": "https://github.com/SharePoint/sharepoint-hackathon/issues/199",
+        "title_or_quote": "Field Hub 365 — Copilot Knowledge Assistant embedded in field service app to reduce escalations",
+        "posted_when": "2026-03-16",
+        "why_relevant": "Team built a knowledge-base chatbot for field workers and explicitly cites reducing escalations as the goal — same problem botsmith solves.",
+        "intent_strength": "low",
+        "drafted_reply": "The Copilot Knowledge Assistant piece is the hardest part of what you've built here — getting a domain-specific chatbot to give accurate answers on-site without hallucinating is genuinely tricky. One thing that helps a lot: forcing the bot to cite the specific knowledge-base passage it drew from before it can reply. If retrieval confidence is low, it escalates rather than improvising. That pattern alone cuts the 'confidently wrong answer' failure mode significantly. I'm working on {APP_URL} which does this for support docs — different stack than your SPFx setup but the retrieval architecture might be worth a look. Disclosure: I'm the builder.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a hackathon project submission for an AI-powered field service management platform built on SharePoint/Azure, not a support chatbot or documentation deflection problem."
+        }
+      },
+      {
+        "rank": 3,
+        "platform": "github",
+        "url": "https://github.com/openclaw/openclaw/issues/60572",
+        "title_or_quote": "Multi-Slot Memory Architecture — AI memory plugins can't be composed; each displaces the other",
+        "posted_when": "2026-04-03",
+        "why_relevant": "Describes frustration with AI platform limitations forcing workarounds; low signal for support chatbot hallucination but shows active AI builder pain.",
+        "intent_strength": "low",
+        "drafted_reply": "The slot-exclusivity problem you're describing is a real architectural constraint — you've essentially built a workaround stack (contextEngine hijack + sidecar LaunchAgent) because the platform assumes one memory concern. The taxonomy you've proposed (recall / compaction / capture / userModel) maps well to how retrieval-augmented systems separate concerns. Worth noting: for the recall slot specifically, confidence scoring on retrieval before injecting context into the prompt prevents the 'confidently wrong' failure mode that plagues single-slot setups. I'm building {APP_URL} which handles this for support docs — different domain but same retrieval-confidence pattern. Disclosure: I'm the builder.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a GitHub feature request about multi-slot memory architecture in an open-source project's plugin system, which has nothing to do with support chatbot building or documentation-grounded answer generation."
+        }
+      },
+      {
+        "rank": 4,
+        "platform": "github",
+        "url": "https://github.com/gbdev/gbdev.github.io/issues/103",
+        "title_or_quote": "RFC: Policy on bot/vibe-coded/AI contributions — communities are humans, bots unaffected by policy",
+        "posted_when": "2026-05-11",
+        "why_relevant": "Community debating AI reliability and trust in contributions; low signal but touches AI accuracy and trust concerns relevant to botsmith's positioning.",
+        "intent_strength": "low",
+        "drafted_reply": "The trust problem you're identifying is real: a policy affects humans but not bots, and bots that produce plausible-but-wrong output are the actual concern. One angle worth considering in the RFC: the failure mode isn't AI involvement per se, it's ungrounded generation — output that can't be traced back to a source. Requiring citations (link to the doc, commit, or spec that supports a claim) makes AI-assisted contributions auditable the same way human ones are. That's the approach I'm taking with {APP_URL} for support chatbots — every answer must cite its source or it doesn't ship. Disclosure: I'm the builder.",
+        "rescore": {
+          "verdict": "rejected",
+          "confidence": 0.97,
+          "why": "The thread is a community RFC about whether to allow AI-generated contributions to an open-source project, not about building or deploying a support chatbot."
+        }
+      }
+    ],
+    "search_queries_used": [
+      "site:reddit.com/r/SaaS chatbot wrong answers hallucination support deflection",
+      "site:reddit.com/r/artificial AI chatbot confidently wrong customer support citations",
+      "chatbot hallucination support (HN ask_hn)",
+      "RAG citations grounding (HN comment)",
+      "support bot hallucinate (HN ask_hn)",
+      "knowledge base chatbot (HN ask_hn)",
+      "customer support AI hallucination (HN story)",
+      "chatbot+hallucination+support+docs+is:issue+is:open (GitHub)",
+      "chatbot+wrong+answer+escalate+human+is:issue+is:open (GitHub)",
+      "AI+support+deflection+hallucination (SO)",
+      "knowledge+base+chatbot+confidence (GitHub)",
+      "AI+customer+support+wrong+answer (SO)"
+    ],
+    "coverage_notes": "Reddit Exa returned 0 results across all 4 community queries. All HN hits were >14 days old and dropped. GitHub search returned mostly unrelated issues; only 2-3 borderline signals found. StackOverflow returned 0 results on both queries.",
+    "confidence": {
+      "overall": 0.25,
+      "notes": "Very thin signal set. Reddit and HN searches produced nothing replyable. GitHub signals are low-to-medium relevance at best. The ICP pain (chatbot hallucination in customer support) is discussed more in blog posts and Twitter than in GitHub issues or Reddit threads that Exa could surface."
+    }
+  },
+  "kept": [],
+  "rejected": [
+    {
+      "rank": 1,
+      "platform": "github",
+      "url": "https://github.com/syamsulhudauul/ops-triage-agent/issues/1",
+      "title_or_quote": "PRD: ops-triage-agent — AI ops agent for issue triage; manual triage is slow and inconsistent",
+      "posted_when": "2026-07-14",
+      "why_relevant": "Builder describes exact pain: AI agent must triage customer issues without hallucinating wrong decisions; needs confidence-gated escalation.",
+      "intent_strength": "medium",
+      "drafted_reply": "Your PRD nails the core tension: an agent that makes autonomous triage decisions needs to know when NOT to decide. One pattern that works well is confidence-gated escalation — the agent scores retrieval confidence before acting, and routes to a human queue when it falls below a threshold rather than guessing. For the customer-facing chat path specifically, forcing every response to cite the source ticket or doc that drove the decision also builds the audit trail your eval harness needs. I'm building {APP_URL} around exactly this pattern for support chatbots — happy to share notes on the confidence-scoring approach if useful. Disclosure: I'm the builder.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.92,
+        "why": "The thread is a PRD for an autonomous ops-triage agent that creates/updates Linear tickets and surfaces management visibility — not a support chatbot or docs-grounded Q&A deflection tool."
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "github",
+      "url": "https://github.com/SharePoint/sharepoint-hackathon/issues/199",
+      "title_or_quote": "Field Hub 365 — Copilot Knowledge Assistant embedded in field service app to reduce escalations",
+      "posted_when": "2026-03-16",
+      "why_relevant": "Team built a knowledge-base chatbot for field workers and explicitly cites reducing escalations as the goal — same problem botsmith solves.",
+      "intent_strength": "low",
+      "drafted_reply": "The Copilot Knowledge Assistant piece is the hardest part of what you've built here — getting a domain-specific chatbot to give accurate answers on-site without hallucinating is genuinely tricky. One thing that helps a lot: forcing the bot to cite the specific knowledge-base passage it drew from before it can reply. If retrieval confidence is low, it escalates rather than improvising. That pattern alone cuts the 'confidently wrong answer' failure mode significantly. I'm working on {APP_URL} which does this for support docs — different stack than your SPFx setup but the retrieval architecture might be worth a look. Disclosure: I'm the builder.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a hackathon project submission for an AI-powered field service management platform built on SharePoint/Azure, not a support chatbot or documentation deflection problem."
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "github",
+      "url": "https://github.com/openclaw/openclaw/issues/60572",
+      "title_or_quote": "Multi-Slot Memory Architecture — AI memory plugins can't be composed; each displaces the other",
+      "posted_when": "2026-04-03",
+      "why_relevant": "Describes frustration with AI platform limitations forcing workarounds; low signal for support chatbot hallucination but shows active AI builder pain.",
+      "intent_strength": "low",
+      "drafted_reply": "The slot-exclusivity problem you're describing is a real architectural constraint — you've essentially built a workaround stack (contextEngine hijack + sidecar LaunchAgent) because the platform assumes one memory concern. The taxonomy you've proposed (recall / compaction / capture / userModel) maps well to how retrieval-augmented systems separate concerns. Worth noting: for the recall slot specifically, confidence scoring on retrieval before injecting context into the prompt prevents the 'confidently wrong' failure mode that plagues single-slot setups. I'm building {APP_URL} which handles this for support docs — different domain but same retrieval-confidence pattern. Disclosure: I'm the builder.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a GitHub feature request about multi-slot memory architecture in an open-source project's plugin system, which has nothing to do with support chatbot building or documentation-grounded answer generation."
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "github",
+      "url": "https://github.com/gbdev/gbdev.github.io/issues/103",
+      "title_or_quote": "RFC: Policy on bot/vibe-coded/AI contributions — communities are humans, bots unaffected by policy",
+      "posted_when": "2026-05-11",
+      "why_relevant": "Community debating AI reliability and trust in contributions; low signal but touches AI accuracy and trust concerns relevant to botsmith's positioning.",
+      "intent_strength": "low",
+      "drafted_reply": "The trust problem you're identifying is real: a policy affects humans but not bots, and bots that produce plausible-but-wrong output are the actual concern. One angle worth considering in the RFC: the failure mode isn't AI involvement per se, it's ungrounded generation — output that can't be traced back to a source. Requiring citations (link to the doc, commit, or spec that supports a claim) makes AI-assisted contributions auditable the same way human ones are. That's the approach I'm taking with {APP_URL} for support chatbots — every answer must cite its source or it doesn't ship. Disclosure: I'm the builder.",
+      "rescore": {
+        "verdict": "rejected",
+        "confidence": 0.97,
+        "why": "The thread is a community RFC about whether to allow AI-generated contributions to an open-source project, not about building or deploying a support chatbot."
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "output": {
+    "one_liner": "AI-powered video and audio editor that lets creators edit media by editing text, for content creators and podcasters.",
+    "description": "Descript is an AI video and audio editor that makes editing as easy as editing a document. It allows users to edit video and audio by manipulating text transcripts, remove filler words, record new voiceovers, and publish across platforms.",
+    "category": "video editing",
+    "target_user": "content creators and podcasters",
+    "icp": {
+      "who": "independent creators and small teams producing video or audio content",
+      "pain": "traditional video editing is time-consuming and requires technical skills",
+      "current_alternatives": [
+        "Adobe Premiere Pro",
+        "Final Cut Pro",
+        "Audacity"
+      ],
+      "buying_trigger": "need to produce high-quality video or audio content faster without mastering complex editing software"
+    },
+    "differentiators": [
+      "Edit video by editing text",
+      "AI-powered filler word removal",
+      "One-click overdub voice cloning",
+      "Integrated screen recording and publishing"
+    ],
+    "proof_points": [
+      "Free plan available with core features",
+      "Over 1 million creators use Descript (from website copy)",
+      "Rated 4.7/5 on G2 (from pricing page)"
+    ],
+    "tech_stack": [
+      "React",
+      "Node.js",
+      "Python",
+      "WebRTC",
+      "TensorFlow"
+    ],
+    "pricing_current": "Free plan; paid plans from $16/month billed annually or $24 billed monthly, up to $48/month for Pro",
+    "voice": {
+      "tone": [
+        "clear",
+        "friendly",
+        "empowering",
+        "approachable"
+      ],
+      "sample_phrase": "Descript is the AI video and audio editor that makes editing as easy as editing a document."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "public pricing",
+        "free tier available",
+        "customer testimonials",
+        "G2 rating"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "Profile based on live site and pricing page. No repo available."
+    },
+    "sources_read": [
+      {
+        "source": "https://www.descript.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content and metadata"
+      },
+      {
+        "source": "https://www.descript.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and plans"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

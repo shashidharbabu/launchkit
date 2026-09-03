@@ -1,0 +1,10 @@
+{
+  "output": {
+    "title": "I built a Rust-powered git diff viewer that renders 10k-line diffs in 38ms",
+    "body": "I'm the creator of termdiff, a side-by-side, word-level diff viewer for the terminal. It replaces git's default pager and works with your existing git aliases—no config needed.\n\nDefault git diff output becomes unreadable with large changes, and tools like delta or diff-so-fancy struggle with alignment and speed at scale. termdiff renders a 10,000-line diff in 38ms on an M1 MacBook Air, using Rust, tree-sitter, and crossterm for precise parsing and rendering.\n\nIt ships as a single static binary, is packaged in Homebrew core, and has been adopted by engineers in monorepos where diff clarity is critical. I built it after spending hours misreading intra-line color changes and waiting for sluggish pagers.\n\nIt's MIT-licensed and already has 4,200 GitHub stars. I'd appreciate feedback on usability, edge cases, or integration issues—especially from those using it in large codebases. Try it at {APP_URL}.",
+    "suggested_flair": "Tool",
+    "warnings": [
+      "This post discloses the builder's identity and is promotional in nature; moderators may consider it marketing despite the honest framing."
+    ]
+  }
+}

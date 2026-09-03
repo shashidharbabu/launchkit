@@ -1,0 +1,7 @@
+{
+  "output": {
+    "title": "Show HN: Self-hostable no-code internal tools on top of your Postgres — schema in, working admin panel out",
+    "body": "I built StackBuilt, a self-hostable no-code tool that connects to your Postgres database, reads the schema, and instantly scaffolds CRUD interfaces, dashboards, and approval flows. It runs with a single Docker command, so production data never leaves your network.\n\nThe UI generates in under 60 seconds — shown unedited in the demo video. We include role-based access control in the free self-hosted tier, and only charge per builder; viewers are always free.\n\nIt's currently in beta, with a 200-person logistics company running it in production. Built with Go, React, and Docker, it's designed for engineers tired of rebuilding admin panels or justifying Retool's per-user cost.\n\nWould love feedback on the scaffolding accuracy and edge cases in complex schemas.",
+    "warnings": []
+  }
+}

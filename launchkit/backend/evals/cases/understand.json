@@ -1,0 +1,306 @@
+[
+  {
+    "id": "und-01",
+    "name": "Plausible Analytics (repo + site)",
+    "repo_url": "https://github.com/plausible/analytics",
+    "site_url": "https://plausible.io",
+    "expect": {
+      "category_hint": "web analytics",
+      "must_mention": [
+        "privacy-friendly Google Analytics alternative",
+        "open-source",
+        "Your website data is 100% yours"
+      ],
+      "degraded_expected": false,
+      "notes": "Strings verified 2026-08-27 in homepage title, meta description, and H1."
+    }
+  },
+  {
+    "id": "und-02",
+    "name": "PostHog (repo + site)",
+    "repo_url": "https://github.com/PostHog/posthog",
+    "site_url": "https://posthog.com",
+    "expect": {
+      "category_hint": "product analytics / developer platform",
+      "must_mention": [
+        "PostHog",
+        "diagnoses problems, fixes bugs"
+      ],
+      "degraded_expected": false,
+      "notes": "Homepage is JS-heavy; only title/meta reliably present in static HTML. Meta copy currently pitches AI agent features, verified 2026-08-27. Repo README is the richer source for this case."
+    }
+  },
+  {
+    "id": "und-03",
+    "name": "Excalidraw (repo + site)",
+    "repo_url": "https://github.com/excalidraw/excalidraw",
+    "site_url": "https://excalidraw.com",
+    "expect": {
+      "category_hint": "whiteboard / diagramming",
+      "must_mention": [
+        "virtual collaborative whiteboard",
+        "hand-drawn feel"
+      ],
+      "degraded_expected": false,
+      "notes": "Both phrases verified in the meta description 2026-08-27. Site is the app itself, not a marketing page."
+    }
+  },
+  {
+    "id": "und-04",
+    "name": "Cal.com (repo + site)",
+    "repo_url": "https://github.com/calcom/cal.com",
+    "site_url": "https://cal.com",
+    "expect": {
+      "category_hint": "scheduling",
+      "must_mention": [
+        "fully customizable scheduling software",
+        "Online Bookings"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in meta description and title tag 2026-08-27."
+    }
+  },
+  {
+    "id": "und-05",
+    "name": "Zed (repo + site)",
+    "repo_url": "https://github.com/zed-industries/zed",
+    "site_url": "https://zed.dev",
+    "expect": {
+      "category_hint": "code editor",
+      "must_mention": [
+        "high-performance, multiplayer code editor",
+        "Your last next editor",
+        "creators of Atom"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in meta description, title, and H1 2026-08-27."
+    }
+  },
+  {
+    "id": "und-06",
+    "name": "Biome (repo + site)",
+    "repo_url": "https://github.com/biomejs/biome",
+    "site_url": "https://biomejs.dev",
+    "expect": {
+      "category_hint": "linter / formatter toolchain",
+      "must_mention": [
+        "Format, lint",
+        "toolchain of the web",
+        "Prettier"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in meta description, title, and H2 ('Format code like Prettier, save time') 2026-08-27."
+    }
+  },
+  {
+    "id": "und-07",
+    "name": "Astro (repo + site)",
+    "repo_url": "https://github.com/withastro/astro",
+    "site_url": "https://astro.build",
+    "expect": {
+      "category_hint": "web framework",
+      "must_mention": [
+        "web framework for content-driven websites",
+        "content-driven"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in H1 and H2 2026-08-27."
+    }
+  },
+  {
+    "id": "und-08",
+    "name": "tldraw (repo + site)",
+    "repo_url": "https://github.com/tldraw/tldraw",
+    "site_url": "https://www.tldraw.com",
+    "expect": {
+      "category_hint": "whiteboard / canvas SDK",
+      "must_mention": [
+        "collaborative whiteboarding",
+        "No signup required"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in H1 and meta description 2026-08-27."
+    }
+  },
+  {
+    "id": "und-09",
+    "name": "Uptime Kuma (repo + site)",
+    "repo_url": "https://github.com/louislam/uptime-kuma",
+    "site_url": "https://uptime.kuma.pet",
+    "expect": {
+      "category_hint": "uptime monitoring",
+      "must_mention": [
+        "self-hosted monitoring tool",
+        "Uptime Kuma"
+      ],
+      "degraded_expected": false,
+      "notes": "Site is intentionally minimal; meta description 'A self-hosted monitoring tool' verified 2026-08-27. Repo README carries most of the substance."
+    }
+  },
+  {
+    "id": "und-10",
+    "name": "Hoppscotch (repo + site)",
+    "repo_url": "https://github.com/hoppscotch/hoppscotch",
+    "site_url": "https://hoppscotch.io",
+    "expect": {
+      "category_hint": "API development / testing",
+      "must_mention": [
+        "Open source API development ecosystem",
+        "create requests faster"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in title and meta description 2026-08-27."
+    }
+  },
+  {
+    "id": "und-11",
+    "name": "Documenso (repo + site)",
+    "repo_url": "https://github.com/documenso/documenso",
+    "site_url": "https://documenso.com",
+    "expect": {
+      "category_hint": "e-signature / document signing",
+      "must_mention": [
+        "Open Source DocuSign Alternative",
+        "Sign everywhere"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in title and meta description 2026-08-27."
+    }
+  },
+  {
+    "id": "und-12",
+    "name": "Dub (repo + site)",
+    "repo_url": "https://github.com/dubinc/dub",
+    "site_url": "https://dub.co",
+    "expect": {
+      "category_hint": "link management / attribution",
+      "must_mention": [
+        "link attribution platform",
+        "short links",
+        "conversion tracking"
+      ],
+      "degraded_expected": false,
+      "notes": "Verified in title and meta description 2026-08-27. Positioning has shifted from 'link shortener' to 'attribution platform'."
+    }
+  },
+  {
+    "id": "und-13",
+    "name": "Linear (site only)",
+    "repo_url": null,
+    "site_url": "https://linear.app",
+    "expect": {
+      "category_hint": "project management / product development",
+      "must_mention": [
+        "product development",
+        "planning and building products"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in title and meta description 2026-08-27. Meta currently emphasizes AI agents."
+    }
+  },
+  {
+    "id": "und-14",
+    "name": "Raycast (site only)",
+    "repo_url": null,
+    "site_url": "https://www.raycast.com",
+    "expect": {
+      "category_hint": "productivity launcher",
+      "must_mention": [
+        "Your shortcut to everything",
+        "extendable launcher"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in title/H1 and meta description 2026-08-27. Extensions repo exists but the product itself is closed-source, so treated as site-only."
+    }
+  },
+  {
+    "id": "und-15",
+    "name": "Resend (site only)",
+    "repo_url": null,
+    "site_url": "https://resend.com",
+    "expect": {
+      "category_hint": "email API",
+      "must_mention": [
+        "Email for developers",
+        "transactional and marketing emails"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in title/H1 and meta description 2026-08-27. SDK repos exist but the platform is closed-source."
+    }
+  },
+  {
+    "id": "und-16",
+    "name": "Retool (site only)",
+    "repo_url": null,
+    "site_url": "https://retool.com",
+    "expect": {
+      "category_hint": "internal tools / low-code",
+      "must_mention": [
+        "internal tools",
+        "Connect to any database, API, or LLM"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in meta description 2026-08-27. Homepage hero currently pitches AI ('Secure your vibe-coded apps') and changes frequently."
+    }
+  },
+  {
+    "id": "und-17",
+    "name": "beehiiv (site only)",
+    "repo_url": null,
+    "site_url": "https://www.beehiiv.com",
+    "expect": {
+      "category_hint": "newsletter platform",
+      "must_mention": [
+        "Create, grow, and monetize your newsletter",
+        "newsletter"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in meta description and title 2026-08-27."
+    }
+  },
+  {
+    "id": "und-18",
+    "name": "Fathom Analytics (site only)",
+    "repo_url": null,
+    "site_url": "https://usefathom.com",
+    "expect": {
+      "category_hint": "web analytics",
+      "must_mention": [
+        "Google Analytics alternative",
+        "privacy-first"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in title and H1 2026-08-27."
+    }
+  },
+  {
+    "id": "und-19",
+    "name": "Tally (site only)",
+    "repo_url": null,
+    "site_url": "https://tally.so",
+    "expect": {
+      "category_hint": "form builder",
+      "must_mention": [
+        "The simplest way to create forms",
+        "Unlimited forms"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in title, meta description, and H1 2026-08-27."
+    }
+  },
+  {
+    "id": "und-20",
+    "name": "Descript (site only)",
+    "repo_url": null,
+    "site_url": "https://www.descript.com",
+    "expect": {
+      "category_hint": "audio/video editing",
+      "must_mention": [
+        "AI video and audio editor",
+        "editing as easy as editing text"
+      ],
+      "degraded_expected": true,
+      "notes": "Verified in meta description 2026-08-27."
+    }
+  }
+]

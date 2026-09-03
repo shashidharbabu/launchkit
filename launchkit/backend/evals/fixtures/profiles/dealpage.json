@@ -1,0 +1,59 @@
+{
+  "one_liner": "A founder's CRM that fits on one keyboard-driven page — pipeline, notes, and email in sub-100ms.",
+  "description": "dealpage is a CRM for founders doing their own sales. The entire pipeline lives on a single keyboard-navigable page: move deals, log notes, and send synced email without touching the mouse or configuring a single workflow. It imports from HubSpot and Pipedrive in minutes and refuses to grow admin screens.",
+  "category": "B2B SaaS / CRM",
+  "target_user": "Founders and first sales hires at early-stage startups",
+  "icp": {
+    "who": "Founders at pre-seed to Series A B2B startups running 10-100 active deals themselves",
+    "pain": "HubSpot and Salesforce are built for sales ops teams; founders end up tracking deals in Notion or spreadsheets because real CRMs feel like ERP software",
+    "current_alternatives": [
+      "HubSpot",
+      "Pipedrive",
+      "Attio",
+      "Notion databases"
+    ],
+    "buying_trigger": "Deal volume outgrows the Notion table right as a fundraise or first sales hire demands a real pipeline view"
+  },
+  "differentiators": [
+    "Every action is keyboard-first and lands in under 100ms — built like Linear, not like Salesforce",
+    "Zero setup: no pipelines to configure, no required fields, no admin console",
+    "Two-way Gmail sync included in the base price, not an add-on"
+  ],
+  "proof_points": [
+    "Founders at 40 companies use it as their primary CRM",
+    "Customer quote on site: migrated 12,000 contacts out of HubSpot in one afternoon",
+    "p95 interaction latency under 100ms, measured and published on the site"
+  ],
+  "tech_stack": [
+    "TypeScript",
+    "Next.js",
+    "PostgreSQL",
+    "Gmail API"
+  ],
+  "pricing_current": "$19/user/month with a 14-day free trial",
+  "voice": {
+    "tone": [
+      "direct",
+      "founder-to-founder",
+      "slightly opinionated"
+    ],
+    "sample_phrase": "Your pipeline on one page. Your hands never leave the keyboard."
+  },
+  "maturity": {
+    "stage": "beta",
+    "signals": [
+      "Invite-gated beta with a waitlist",
+      "Stripe billing live for beta customers",
+      "Public roadmap page"
+    ]
+  },
+  "gaps": [
+    "No Outlook sync",
+    "No mobile app",
+    "No reporting beyond pipeline totals"
+  ],
+  "confidence": {
+    "overall": 0.8,
+    "notes": "Positioning and latency claims are consistent and specific. Customer counts are small-sample and self-reported."
+  }
+}

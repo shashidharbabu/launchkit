@@ -1,0 +1,104 @@
+{
+  "output": {
+    "one_liner": "PostHog is an open-source platform for building self-driving products with AI-powered analytics, session replay, feature flags, and more.",
+    "description": "PostHog provides a comprehensive suite of developer tools including product analytics, session replay, feature flags, experiments, error tracking, logs, and AI observability. It captures product data to proactively diagnose problems, uncover opportunities, and generate pull requests. The platform is designed to help teams build self-driving products by automating insights and improvements.",
+    "category": "Product Analytics",
+    "target_user": "Product managers and developers",
+    "icp": {
+      "who": "Product managers and engineering teams at tech companies",
+      "pain": "Manual analysis of user behavior and product performance is time-consuming and reactive.",
+      "current_alternatives": [
+        "Amplitude",
+        "Mixpanel",
+        "Google Analytics"
+      ],
+      "buying_trigger": "Need to automate product insights and improve user experience without manual data analysis."
+    },
+    "differentiators": [
+      "Open-source platform with MIT license",
+      "Self-driving mode that generates pull requests",
+      "Generous free tier covering 97% of companies",
+      "Integrated AI observability and analytics"
+    ],
+    "proof_points": [
+      "39,490 GitHub stars (from GitHub repo)",
+      "97% of companies use PostHog for free (from pricing page)",
+      "\"Join 500,000+ teams already shipping with PostHog\" (from homepage)"
+    ],
+    "tech_stack": [
+      "Python",
+      "JavaScript",
+      "Django",
+      "React",
+      "PostgreSQL",
+      "ClickHouse"
+    ],
+    "pricing_current": "Usage-based pricing with generous free tiers: 1M events, 5K recordings, 1M flag requests, 100K exceptions, 1500 survey responses monthly. Paid usage starts at $0.00005/event, $0.005/recording, $0.0001/request.",
+    "voice": {
+      "tone": [
+        "confident",
+        "developer-focused",
+        "transparent",
+        "friendly"
+      ],
+      "sample_phrase": "PostHog automatically diagnoses problems, fixes bugs, and generates pull request you review and merge."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Publicly available product",
+        "Active GitHub repository with 39k+ stars",
+        "Documented pricing and free tier",
+        "Customer testimonials and case studies"
+      ]
+    },
+    "gaps": [
+      "No direct demo video embedded on homepage",
+      "No explicit user count or growth metrics provided",
+      "No third-party review scores (e.g., G2, Capterra) displayed"
+    ],
+    "confidence": {
+      "overall": 0.95,
+      "notes": "High confidence due to comprehensive documentation, active GitHub repository, and transparent pricing."
+    },
+    "sources_read": [
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Provided overview of features and setup"
+      },
+      {
+        "source": "package.json",
+        "via": "github",
+        "ok": true,
+        "note": "Revealed frontend dependencies and tooling"
+      },
+      {
+        "source": "pyproject.toml",
+        "via": "github",
+        "ok": true,
+        "note": "Confirmed Python backend with Django"
+      },
+      {
+        "source": "docs/README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Explained documentation structure"
+      },
+      {
+        "source": "https://posthog.com",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Provided homepage content and value proposition"
+      },
+      {
+        "source": "https://posthog.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Detailed pricing model and free tier information"
+      }
+    ],
+    "analysis_degraded": false
+  }
+}

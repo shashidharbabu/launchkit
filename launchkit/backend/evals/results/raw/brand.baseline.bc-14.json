@@ -1,0 +1,128 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "6-Minute Funnel Fix",
+        "objective": "signups — drive free tier signups from founders needing quick funnel insights before investor meetings.",
+        "big_idea": "Position funnelscope as the fastest path from zero to actionable funnel data for early-stage SaaS founders. Highlight the 6-minute median setup time as a competitive advantage over complex tools like Mixpanel. Use real beta metrics to build credibility.",
+        "channels": [
+          "Twitter (X)",
+          "LinkedIn",
+          "Product Hunt",
+          "Show HN"
+        ],
+        "asset_types": [
+          "x_post",
+          "linkedin_post",
+          "producthunt",
+          "show_hn"
+        ],
+        "hook": "Know where signups drop off before your next investor update.",
+        "sample_copy": {
+          "headline": "Your funnel in 6 minutes — no SQL, no tracking plan, no hassle.",
+          "body": "Founders: stop wrestling with analytics. Install funnelscope, point at your UI, and see where users drop off — all in under 6 minutes. Built for early-stage SaaS teams who need answers fast, not another dashboard full of noise.",
+          "cta": "Start your free workspace →"
+        },
+        "assets_needed": [
+          "Short demo video (60 sec)",
+          "Screenshot of first funnel built in <6 min",
+          "Tweet thread script"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of new free-tier signups during campaign week",
+        "why_on_brand": "Uses plainspoken, founder-friendly tone and emphasizes speed and simplicity, directly reflecting the APP_PROFILE voice and Plausible-like clarity from BRAND_DNA."
+      },
+      {
+        "name": "EU-First Analytics",
+        "objective": "awareness — establish funnelscope as the default analytics choice for EU-based startups concerned with GDPR.",
+        "big_idea": "Leverage the default EU data residency as a core differentiator. Target technical founders in Europe who want compliance without negotiation. Contrast with Mixpanel/Amplitude where GDPR features are enterprise-only.",
+        "channels": [
+          "LinkedIn",
+          "Reddit (r/SaaS, r/startups)",
+          "Newsletter outreach"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "reddit_post",
+          "newsletter_pitch"
+        ],
+        "hook": "Analytics that respects GDPR by default — not as a $50k add-on.",
+        "sample_copy": {
+          "headline": "Built in the EU, for the EU: analytics that just works with GDPR.",
+          "body": "No cookie banners. No data transfers. All events processed and stored in Frankfurt. If you're a founder in Europe, why trust your funnel data to a US-based vendor? funnelscope gives you clarity without compliance risk.",
+          "cta": "See how it works (no PII collected)"
+        },
+        "assets_needed": [
+          "Infographic: data flow diagram (client → EU server)",
+          "LinkedIn post series on GDPR pain points",
+          "Pitch email to EU-focused SaaS newsletters"
+        ],
+        "effort": "medium",
+        "success_metric": "Number of newsletter signups from EU domains",
+        "why_on_brand": "Focuses on ethical data handling and transparency, aligning with Plausible's privacy-first messaging and avoiding enterprise jargon as per dos_and_donts."
+      },
+      {
+        "name": "No Data Engineer Needed",
+        "objective": "community — build community trust by showing how non-experts can use funnelscope effectively.",
+        "big_idea": "Celebrate the solo founder who ships fast. Create relatable content showing how to answer key product questions without a data team. Use point-and-click funnel building as the hero feature.",
+        "channels": [
+          "Twitter (X)",
+          "Reddit",
+          "Show HN"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post",
+          "show_hn"
+        ],
+        "hook": "You don’t need a data engineer to understand your funnel.",
+        "sample_copy": {
+          "headline": "Point. Click. Understand. No SQL required.",
+          "body": "Most analytics tools assume you have a team. We built funnelscope for when it’s just you. Auto-capture every event. Build funnels by clicking on UI elements. Get answers in minutes — not days.",
+          "cta": "Try it free — no credit card needed"
+        },
+        "assets_needed": [
+          "GIF of point-and-click funnel creation",
+          "Tweet thread: 'How I found our biggest drop-off in 8 minutes'",
+          "Reddit AMA announcement"
+        ],
+        "effort": "small",
+        "success_metric": "Engagement rate on social posts (likes, shares, replies)",
+        "why_on_brand": "Uses short declaratives and second-person address, avoids jargon, and emphasizes simplicity — all core to the brand voice and Plausible's tone_words like 'simple' and 'straightforward'."
+      },
+      {
+        "name": "Funnels in the Wild",
+        "objective": "retention — keep beta users engaged by showcasing real use cases from their peers.",
+        "big_idea": "Feature anonymized funnel insights from real beta workspaces (e.g., 'One founder found 70% drop-off at pricing page'). Normalize sharing and learning without exposing sensitive data.",
+        "channels": [
+          "Email newsletter",
+          "Twitter",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "x_post",
+          "linkedin_post",
+          "newsletter_pitch"
+        ],
+        "hook": "What one founder learned about their signup flow in 6 minutes.",
+        "sample_copy": {
+          "headline": "Real funnel insights from real founders — no data science degree required.",
+          "body": "We’re sharing anonymized wins from our beta: where teams found drop-offs, what they changed, and how conversion improved. All using just the free tier. Because better funnels shouldn’t wait for funding.",
+          "cta": "Read the first case (and submit yours)"
+        },
+        "assets_needed": [
+          "Monthly 'Funnels in the Wild' email template",
+          "Social cards with anonymized stats",
+          "Call-for-submissions post"
+        ],
+        "effort": "medium",
+        "success_metric": "Percentage of active beta users who submit a funnel story",
+        "why_on_brand": "Builds on key_messages like 'Know where signups drop off' and uses plainspoken language, staying true to the founder-friendly, no-jargon voice."
+      }
+    ],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "All campaigns derived from verified APP_PROFILE differentiators and BRAND_DNA voice. No invented testimonials or metrics. Channels match ICP presence. Asset types align with Launch Kit capabilities."
+    }
+  }
+}

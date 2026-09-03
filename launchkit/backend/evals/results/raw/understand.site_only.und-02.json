@@ -1,0 +1,78 @@
+{
+  "output": {
+    "one_liner": "PostHog is a self-driving product platform that automatically diagnoses issues, fixes bugs, and generates pull requests for engineering and product teams.",
+    "description": "PostHog integrates product analytics, session replay, feature flags, and AI to automate product improvements. It diagnoses user issues, suggests fixes, and creates pull requests without manual prompting. Built for teams that want to ship faster using data and automation.",
+    "category": "Product Analytics & AI Automation",
+    "target_user": "Product managers and full-stack engineers in tech teams",
+    "icp": {
+      "who": "Product and engineering leads at startups and mid-sized tech companies",
+      "pain": "Spending too much time diagnosing user issues and writing repetitive code instead of building new features",
+      "current_alternatives": [
+        "Amplitude",
+        "Mixpanel",
+        "Sentry",
+        "LaunchDarkly",
+        "manual bug tracking in Jira"
+      ],
+      "buying_trigger": "Launching a new product or feature and needing real-time user insights and automated fixes"
+    },
+    "differentiators": [
+      "Automatically generates pull requests to fix bugs without prompting",
+      "Combines product analytics, feature flags, and AI in one platform",
+      "97% of companies use it for free with generous usage-based tiers",
+      "Fully transparent with open company handbook and pricing"
+    ],
+    "proof_points": [
+      "500,000+ teams use PostHog (from homepage)",
+      "97% of companies use PostHog for free (from pricing page)",
+      "G2 badge shown on site indicating positive reviews",
+      "Example PR fixing a broken link shown in Slack workflow demo"
+    ],
+    "tech_stack": [
+      "JavaScript",
+      "Python",
+      "PostgreSQL",
+      "React",
+      "AI/ML models for automated diagnostics"
+    ],
+    "pricing_current": "Usage-based pricing with free tiers: 1M events/mo, 5K recordings/mo, 1M flag requests/mo, 1M warehouse rows/mo. Pay-per-use beyond that.",
+    "voice": {
+      "tone": [
+        "confident",
+        "transparent",
+        "slightly irreverent",
+        "technical"
+      ],
+      "sample_phrase": "Our whole philosophy is that you shouldn't have to worry about pricing."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Live product with public pricing",
+        "600k+ companies using",
+        "Detailed changelog and documentation",
+        "Active customer stories and community"
+      ]
+    },
+    "gaps": [],
+    "confidence": {
+      "overall": 0.9,
+      "notes": "Profile built from live site and pricing page. No repo available."
+    },
+    "sources_read": [
+      {
+        "source": "https://posthog.com/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Main site content and value proposition"
+      },
+      {
+        "source": "https://posthog.com/pricing",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Pricing details and free tier info"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "The 90-Second Dare",
+        "objective": "awareness — show skeptical podcasters exactly how fast podclip works by making the render time the hero of the story",
+        "big_idea": "Drop a real-time screen recording: upload a 60-minute episode, hit go, watch the clip set land in 90 seconds. No voiceover needed — the clock does the talking. Seed it on X and YouTube Shorts where podcasters already scroll.",
+        "channels": [
+          "X (Twitter)",
+          "YouTube Shorts",
+          "Reddit (r/podcasting, r/podcasters)"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post",
+          "video_script"
+        ],
+        "hook": "I uploaded a 60-minute episode. Here's what happened 90 seconds later.",
+        "sample_copy": {
+          "headline": "90 seconds. A full episode. A clip set ready to post.",
+          "body": "No timeline scrubbing. No guessing which moment lands. podclip's hook-detection model — trained on 40,000 manually rated clips — finds the moments worth sharing and renders them, captioned and framed, before your coffee cools. Watch the whole thing happen in real time.",
+          "cta": "Try your first episode free."
+        },
+        "assets_needed": [
+          "Screen-recorded demo video of a real upload-to-clips workflow timed to 90 seconds",
+          "X post thread with timestamp screenshots",
+          "Reddit post with honest context and link to demo"
+        ],
+        "effort": "small",
+        "success_metric": "Number of free signups in the 72 hours after posting",
+        "why_on_brand": "Leads with the outcome before the feature, names the pain (timeline scrubbing, guessing), and lets a concrete proof point do the heavy lifting — exactly the DNA's 'outcome first, dry confidence' playbook."
+      },
+      {
+        "name": "Bad Clip Hall of Fame",
+        "objective": "community — build rapport with podcasters by roasting the generic auto-clipper problem they already hate",
+        "big_idea": "Invite podcasters to share the worst auto-generated clip they ever got from a competitor — the random 60-second window that starts mid-sentence and ends on dead air. Curate the funniest submissions in a weekly thread. podclip's hook-detection angle writes itself without a single feature bullet.",
+        "channels": [
+          "X (Twitter)",
+          "Reddit (r/podcasting)"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post"
+        ],
+        "hook": "Show me the worst auto-clip you've ever received. I'll start.",
+        "sample_copy": {
+          "headline": "Generic auto-clippers have given us some real gifts.",
+          "body": "Mid-sentence cuts. Clips that open on 'um.' Sixty seconds of someone pouring water. We've all been there. Drop your worst auto-clip horror story below. We're collecting them — partly for science, mostly for catharsis. podclip exists because nobody should have to post that.",
+          "cta": "Share your worst. Then try the alternative."
+        },
+        "assets_needed": [
+          "Seed post with a real (or clearly labeled mock) bad-clip example",
+          "Response template for engaging with submissions",
+          "Weekly recap graphic of top submissions"
+        ],
+        "effort": "small",
+        "success_metric": "Thread replies and quote-posts in the first 48 hours",
+        "why_on_brand": "Uses dry humor and self-aware asides to build rapport, names the pain before the solution, and trusts the reader to connect the dots — core DNA dos."
+      },
+      {
+        "name": "Show Your Clips",
+        "objective": "signups — turn podclip's existing 120 weekly shows into social proof by spotlighting real clips in the wild",
+        "big_idea": "Feature one clip per week from a show already using podclip — no testimonial copy, just the clip itself with a one-line caption crediting the show. The clip quality is the pitch. Rotate across X, LinkedIn, and the podclip site's showcase page.",
+        "channels": [
+          "X (Twitter)",
+          "LinkedIn",
+          "podclip website showcase"
+        ],
+        "asset_types": [
+          "x_post",
+          "linkedin_post"
+        ],
+        "hook": "This clip came out of a 60-minute episode. podclip found it.",
+        "sample_copy": {
+          "headline": "Real shows. Real clips. No editor required.",
+          "body": "Every week, 120 shows use podclip to turn full episodes into clips worth sharing. This one's from [Show Name]. The hook-detection model flagged it. The caption style was already set. The host just posted it. That's the whole workflow.",
+          "cta": "See what podclip finds in your episode."
+        },
+        "assets_needed": [
+          "Permission emails to featured show hosts",
+          "Clip export files from participating shows",
+          "Branded one-line caption template for each post"
+        ],
+        "effort": "medium",
+        "success_metric": "Click-throughs to the signup page from showcase posts week-over-week",
+        "why_on_brand": "Proof comes only from observed proof points (120 weekly shows), leads with outcome, uses active second-person voice — respects the DNA's 'outcome before feature' and 'no invented metrics' rules."
+      },
+      {
+        "name": "The Clipping Hour",
+        "objective": "community — build a recurring touchpoint with indie podcasters by hosting a live teardown of what makes a clip actually shareable",
+        "big_idea": "A monthly 30-minute live session on X Spaces or LinkedIn Audio where the podclip team plays three clips — one great, one mediocre, one bad — and explains what the hook-detection model looks for. No sales pitch. Just craft talk that podcasters actually want.",
+        "channels": [
+          "X Spaces",
+          "LinkedIn Audio",
+          "Newsletter (post-session recap)"
+        ],
+        "asset_types": [
+          "linkedin_post",
+          "x_post",
+          "newsletter_pitch"
+        ],
+        "hook": "What makes a podcast clip actually worth sharing? Let's find out live.",
+        "sample_copy": {
+          "headline": "We're playing three clips. You tell us which one lands — then we'll tell you why.",
+          "body": "Every month we pull three real clips, strip the show names, and break down what makes one shareable and another forgettable. It's the same judgment call our hook-detection model makes — trained on 40,000 manually rated clips. Come argue with us. Bring your own examples.",
+          "cta": "Set a reminder. First session is free to attend (they all are)."
+        },
+        "assets_needed": [
+          "X Spaces or LinkedIn Audio event setup",
+          "Three clip examples (anonymized or with permission)",
+          "Post-session recap newsletter draft",
+          "Reminder post 24 hours before each session"
+        ],
+        "effort": "medium",
+        "success_metric": "Live attendees per session, growing month-over-month",
+        "why_on_brand": "Addresses the audience as peers who care about craft, uses dry confidence without overselling, and builds on the 40,000-clip proof point as a credibility anchor."
+      },
+      {
+        "name": "Launch on Product Hunt — The Honest Way",
+        "objective": "signups — reach early-adopter creators and indie hackers who influence podcaster tool choices",
+        "big_idea": "A Product Hunt launch that leads with the hook-detection angle and the 90-second render stat — no hype, just the two facts that make podclip different from every other clipper. The maker comment does the heavy lifting with a candid explanation of why generic scene detection fails.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "Auto-clippers pick random moments. We trained a model on 40,000 manually rated clips to find the ones worth sharing.",
+        "sample_copy": {
+          "headline": "podclip — hook-detection for podcasts, not random 60-second windows",
+          "body": "Every other clipper cuts your episode into chunks and hopes one lands. podclip's model was tuned on 40,000 manually rated clips to find narrative tension — the moment a listener would actually share. Upload a 60-minute episode. Get a branded clip set in about 90 seconds. Three clips free, no card required.",
+          "cta": "Try it on your next episode."
+        },
+        "assets_needed": [
+          "Product Hunt listing copy and tagline",
+          "Demo GIF or short video showing upload-to-clips flow",
+          "Maker comment explaining the hook-detection model in plain language",
+          "Outreach list of podcaster communities to notify on launch day"
+        ],
+        "effort": "large",
+        "success_metric": "Upvotes and free signups on launch day",
+        "why_on_brand": "Direct, no-hype framing with proof points front and center — matches the DNA's 'lead with outcome, name the pain, trust the reader' approach and avoids every forbidden phrase."
+      },
+      {
+        "name": "Show HN: We Trained a Clip-Selection Model on 40k Rated Clips",
+        "objective": "awareness — reach technical founders and indie hackers who influence tool adoption and can amplify the model-quality story",
+        "big_idea": "A Show HN post that explains the actual problem with generic scene detection, how the training data was assembled, and what the model looks for — written as a builder talking to builders. No marketing copy. The comments become the distribution.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: podclip — we rated 40,000 podcast clips by hand to teach a model what's actually worth sharing",
+        "sample_copy": {
+          "headline": "Show HN: podclip — we rated 40,000 podcast clips by hand to teach a model what's actually worth sharing",
+          "body": "Generic auto-clippers use scene detection or fixed windows. We wanted something that understood narrative tension — the moment a listener leans in. So we rated 40,000 clips manually and trained on that signal. The result: a 60-minute episode becomes a branded clip set in about 90 seconds. Happy to talk about the model, the data pipeline, or why FFmpeg is both a gift and a curse.",
+          "cta": "Try it free — three clips, no card."
+        },
+        "assets_needed": [
+          "HN post draft with honest builder framing",
+          "Prepared responses to likely technical questions (model architecture, data labeling process, render pipeline)",
+          "Link to a public demo or loom walkthrough"
+        ],
+        "effort": "small",
+        "success_metric": "HN points and number of comments in the first 6 hours",
+        "why_on_brand": "Candid, direct, zero jargon — the DNA's conversational confidence applied to a technical audience that rewards honesty over polish."
+      }
+    ],
+    "confidence": {
+      "overall": 0.82,
+      "notes": "Brand DNA is from Descript (a competitor/adjacent tool), not podclip's own site — voice calibration is an approximation based on APP_PROFILE.voice and DNA tone_words applied to podclip's context. Proof points used are from APP_PROFILE.proof_points only; no additional claims invented. No numeric claims appear beyond the three stated proof points."
+    }
+  }
+}

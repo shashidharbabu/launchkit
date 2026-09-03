@@ -1,0 +1,54 @@
+{
+  "output": {
+    "duration_seconds": 45,
+    "hook": "Figma hands engineers a pile of absolutely-positioned rectangles. gridframe hands them CSS Grid that actually works.",
+    "scenes": [
+      {
+        "seconds": "0-3",
+        "visual": "Screen recording: a Figma inspect panel showing a component with 'position: absolute; left: 240px; top: 128px' — the classic handoff nightmare",
+        "voiceover": "Every Figma handoff looks like this. Absolute positions. Magic numbers. Engineers rebuild the whole layout from scratch."
+      },
+      {
+        "seconds": "3-10",
+        "visual": "gridframe canvas: designer sketching rough frame boxes — loose, imprecise strokes resolving in real time into a structured grid overlay with column and row guides snapping into place",
+        "voiceover": "gridframe starts with structure, not rectangles. Sketch a rough frame and it resolves into a real responsive grid system — breakpoints included."
+      },
+      {
+        "seconds": "10-20",
+        "visual": "Split screen: left side shows the gridframe layout audit panel lighting up with flagged overflow and breakpoint issues; right side shows a count badge reading '140 bugs caught'",
+        "voiceover": "Before you even hand off, the layout audit runs. In alpha, it caught 140 overflow bugs across real production sites. Bugs that would've lived in the sprint backlog for weeks."
+      },
+      {
+        "seconds": "20-32",
+        "visual": "gridframe export panel: clicking 'Export CSS' — then a code editor showing clean CSS Grid and Flexbox output, no absolute positioning, stylelint running and returning zero warnings",
+        "voiceover": "Hit export. You get clean CSS Grid and Flexbox — zero absolute positioning, zero stylelint warnings. Code engineers will actually keep."
+      },
+      {
+        "seconds": "32-42",
+        "visual": "Waitlist landing page at {APP_URL} with the headline and a simple email signup field",
+        "voiceover": "3,400 designers are already on the waitlist. If layout handoff is eating your sprints, come join them."
+      },
+      {
+        "seconds": "42-45",
+        "visual": "gridframe wordmark on a clean background with {APP_URL} beneath it",
+        "voiceover": "gridframe. Layouts that ship, not rectangles that lie."
+      }
+    ],
+    "cta": "Join the waitlist at {APP_URL}",
+    "production_notes": [
+      "Capture a real Figma inspect panel showing absolute-position values on a multi-column component — do not mock this up, authenticity matters to the design-engineer audience",
+      "Record the gridframe canvas live: rough sketch strokes resolving into a grid system with visible breakpoint markers — this is the core 'aha' moment and needs to be smooth",
+      "Record the layout audit panel in action, ideally on a real alpha user's design file showing multiple flagged issues; the '140 bugs' stat must come from the on-screen count, not just voiceover",
+      "Record the CSS export flow end-to-end: export click → code output in a real editor (VS Code preferred) → stylelint terminal run returning zero warnings — do not cut before the terminal result appears",
+      "Capture the waitlist page at {APP_URL} with a real browser address bar visible — builds trust that the product exists",
+      "Keep all recordings at 1x zoom or slightly zoomed in — no tiny UI that viewers can't read on mobile",
+      "No background music that competes with voiceover; subtle ambient or silence preferred given the quality-obsessed brand voice"
+    ],
+    "warnings": [
+      "No public demo or sandbox exists yet — do not promise or imply viewers can try the product immediately; the CTA correctly directs to the waitlist only",
+      "The '140 overflow bugs' proof point is self-reported from alpha users — do not add any qualifier beyond what the profile states, but avoid framing it as an independent benchmark",
+      "The '3,400 waitlist signups' figure is pre-launch and self-reported — use it as social proof but do not imply it represents paying customers or active users",
+      "No Figma import integration exists yet — do not show or imply any Figma file import flow in the canvas recording"
+    ]
+  }
+}

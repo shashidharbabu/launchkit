@@ -1,0 +1,7 @@
+{
+  "output": {
+    "title": "Show HN: schemaguard – TypeScript runtime validation compiled directly from your types",
+    "body": "schemaguard generates runtime validators from your existing TypeScript types at build time. Instead of writing and maintaining Zod or Yup schemas alongside your interfaces, you keep one source of truth: the types you already wrote.\n\nThe compiler plugin (esbuild/Vite) emits tiny, fast validators for API boundaries, forms, and untrusted JSON. It's 2.1 kB gzipped and benchmarks show ~5.5x throughput over Zod on equivalent payloads.\n\nI built this because hand-written schemas drift out of sync with types, causing runtime errors. Three seed-stage startups are using it in production (listed in the README). It's MIT-licensed and currently in alpha (0.4.x), with breaking changes between minors.\n\nLimitations: no Webpack support yet, no dedicated docs site (just README), and no migration guide from Zod. Would appreciate feedback on usability and edge cases in real-world codebases.",
+    "warnings": []
+  }
+}

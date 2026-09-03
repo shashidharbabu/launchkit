@@ -1,0 +1,168 @@
+{
+  "output": {
+    "campaigns": [
+      {
+        "name": "Show HN: termdiff",
+        "objective": "awareness — drive developer discovery and GitHub star growth among terminal-first engineers on Hacker News",
+        "big_idea": "Post a Show HN that leads with the benchmark and the single-binary install story. No pitch deck, no screenshots — just the numbers and a curl command. Let the comments do the comparison work.",
+        "channels": [
+          "Hacker News"
+        ],
+        "asset_types": [
+          "show_hn"
+        ],
+        "hook": "Show HN: termdiff — side-by-side word-level git diffs, 10k lines in 38ms, single static binary",
+        "sample_copy": {
+          "headline": "Show HN: termdiff — side-by-side word-level git diffs, 10k lines in 38ms",
+          "body": "termdiff replaces your git pager with a true side-by-side, word-level diff view. It renders a 10,000-line diff in 38ms on an M1 MacBook Air. Ships as a single static binary. Zero config — respects core.pager and existing git aliases. MIT-licensed. Packaged in Homebrew core. Drop it in and your next diff review looks different.",
+          "cta": "brew install termdiff"
+        },
+        "assets_needed": [
+          "Show HN post text",
+          "README benchmark section polished and linkable",
+          "Terminal recording or ASCII cast showing hunk navigation on a large diff"
+        ],
+        "effort": "small",
+        "success_metric": "GitHub stars gained in the 48 hours after posting",
+        "why_on_brand": "Leads with the 38ms proof point and zero-config value prop — numbers over adjectives, exactly the DNA's sentence style"
+      },
+      {
+        "name": "Diff Tax",
+        "objective": "awareness — reach engineers on Reddit who feel the daily pain of unreadable diffs in large codebases",
+        "big_idea": "Frame slow, misaligned diff output as a hidden daily tax on code review. Post in r/rust, r/programming, and r/commandline with a concrete before/after terminal recording. No hype — just show the hunk navigation and word-level highlighting on a real monorepo diff.",
+        "channels": [
+          "Reddit"
+        ],
+        "asset_types": [
+          "reddit_post"
+        ],
+        "hook": "Every large diff review costs you time you don't track. Here's what we did about it.",
+        "sample_copy": {
+          "headline": "termdiff: side-by-side word-level diffs in the terminal, zero config",
+          "body": "Default git diff output breaks down on large hunks. Existing pagers misalign or choke on monorepo-scale changes. termdiff renders a 10k-line diff in 38ms, shows true side-by-side word-level highlighting, and ships as a single static binary. No config file. Drops into your existing git aliases. MIT-licensed, in Homebrew core. Recording in comments.",
+          "cta": "github.com/termdiff/termdiff"
+        },
+        "assets_needed": [
+          "Terminal recording (asciinema or GIF) of a large diff with hunk navigation",
+          "Reddit post text for r/rust, r/programming, r/commandline"
+        ],
+        "effort": "small",
+        "success_metric": "Upvotes and comments across the three subreddits within one week",
+        "why_on_brand": "Speaks engineer-to-engineer about a concrete pain (monorepo-scale diffs), uses vocabulary from the DNA (hunk, pager, word-level, zero-config)"
+      },
+      {
+        "name": "Pager Swap",
+        "objective": "signups — convert engineers already using delta or difftastic by publishing a direct, factual comparison",
+        "big_idea": "Publish a comparison page or gist that puts termdiff, delta, and difftastic side by side on the same benchmark diff. No marketing copy — just a table of observable facts: render time, binary size, config required, side-by-side support. Let the data speak. Distribute via X and the Changelog newsletter.",
+        "channels": [
+          "X (Twitter)",
+          "Newsletter"
+        ],
+        "asset_types": [
+          "x_post",
+          "newsletter_pitch"
+        ],
+        "hook": "delta, difftastic, termdiff. Same 10k-line diff. Here are the numbers.",
+        "sample_copy": {
+          "headline": "termdiff vs delta vs difftastic — a factual comparison",
+          "body": "Three diff pagers. One benchmark diff. termdiff renders 10k lines in 38ms, ships as a single static binary, needs zero config. The comparison table covers render latency, side-by-side support, word-level highlighting, and install size. No opinions — just what each tool does. Read it and decide.",
+          "cta": "Read the comparison → [link]"
+        },
+        "assets_needed": [
+          "Comparison page or gist with benchmark table",
+          "X post thread linking to the comparison",
+          "Newsletter pitch to Changelog or TLDR Dev"
+        ],
+        "effort": "medium",
+        "success_metric": "Click-through rate from X post to comparison page",
+        "why_on_brand": "Fills the identified gap (no comparison page) using the DNA's numbers-over-adjectives approach and precise vocabulary"
+      },
+      {
+        "name": "Dotfiles Drop",
+        "objective": "community — embed termdiff in the dotfiles and terminal-setup community by making the one-line git alias snippet shareable",
+        "big_idea": "Publish a single-file gist — one shell snippet that wires termdiff into core.pager and a git diff alias. Post it to r/unixporn, r/commandline, and X with the framing: one line, zero config, your diffs change. Encourage engineers to link it from their own dotfiles repos.",
+        "channels": [
+          "Reddit",
+          "X (Twitter)",
+          "GitHub Gists"
+        ],
+        "asset_types": [
+          "x_post",
+          "reddit_post"
+        ],
+        "hook": "One line in your gitconfig. Your diffs, side by side.",
+        "sample_copy": {
+          "headline": "Add termdiff to your dotfiles in one line",
+          "body": "git config --global core.pager termdiff. That's the install. termdiff is a single static binary — no dependencies, no config file. It reads your existing git aliases and respects core.pager. Word-level highlighting, true side-by-side view, hunk navigation with single keystrokes. Drop it in your dotfiles and move on.",
+          "cta": "Gist: one-line gitconfig snippet → [link]"
+        },
+        "assets_needed": [
+          "Polished gist with the gitconfig snippet and a short README",
+          "X post with the snippet inline",
+          "Reddit posts for r/unixporn and r/commandline"
+        ],
+        "effort": "small",
+        "success_metric": "Number of gist forks or stars within two weeks",
+        "why_on_brand": "Speaks directly in the audience's language (dotfiles, core.pager, gitconfig) and reinforces the zero-config value prop"
+      },
+      {
+        "name": "Monorepo Minute",
+        "objective": "awareness — reach senior engineers and OSS maintainers through a short video script showing termdiff on a real monorepo-scale diff",
+        "big_idea": "Record a 60-second terminal screencast: open a 10k-line diff, navigate hunks with single keystrokes, call out word-level changes. No voiceover fluff — just keystrokes and a text overlay with the render time. Distribute as a video post on X and LinkedIn.",
+        "channels": [
+          "X (Twitter)",
+          "LinkedIn"
+        ],
+        "asset_types": [
+          "video_script",
+          "x_post",
+          "linkedin_post"
+        ],
+        "hook": "60 seconds. One 10,000-line diff. Watch the latency.",
+        "sample_copy": {
+          "headline": "termdiff on a monorepo-scale diff — 60 seconds",
+          "body": "This is termdiff on a 10,000-line diff. Side-by-side. Word-level highlighting. Hunk navigation with a single keystroke. Render time: 38ms. Single static binary. Zero config. If you review large diffs daily, this is what your terminal can look like.",
+          "cta": "Install: brew install termdiff"
+        },
+        "assets_needed": [
+          "60-second terminal screencast (asciinema exported to video or GIF)",
+          "Text overlays showing render time and keystrokes",
+          "X video post and LinkedIn post copy"
+        ],
+        "effort": "medium",
+        "success_metric": "Video views and click-throughs to the GitHub repo within one week",
+        "why_on_brand": "Uses the 38ms proof point and monorepo framing from the DNA; terse, precise narration with no filler"
+      },
+      {
+        "name": "Product Hunt Launch",
+        "objective": "signups — drive a concentrated wave of installs and GitHub stars through a coordinated Product Hunt listing",
+        "big_idea": "Launch termdiff on Product Hunt with a maker comment that leads with the benchmark and the zero-config install story. The tagline is the existing one. Gallery shows the terminal recording. No marketing copy in the description — just what it does and how fast.",
+        "channels": [
+          "Product Hunt"
+        ],
+        "asset_types": [
+          "producthunt"
+        ],
+        "hook": "Your diffs, side by side, in 38 milliseconds.",
+        "sample_copy": {
+          "headline": "termdiff — side-by-side word-level git diffs for the terminal",
+          "body": "termdiff replaces your git pager. It renders a 10,000-line diff in 38ms, shows true side-by-side word-level highlighting, and ships as a single static binary. Zero config — drop it into core.pager or a git alias. MIT-licensed. Packaged in Homebrew core. Built for engineers who review large diffs every day.",
+          "cta": "brew install termdiff"
+        },
+        "assets_needed": [
+          "Product Hunt listing copy",
+          "Terminal recording or GIF for the gallery",
+          "Maker comment with benchmark context and install instructions",
+          "Outreach list of supporters to notify on launch day"
+        ],
+        "effort": "large",
+        "success_metric": "Product Hunt ranking and GitHub stars on launch day",
+        "why_on_brand": "Opens with the observed tagline verbatim; the entire listing uses numbers and facts, matching the DNA's confident, terse voice"
+      }
+    ],
+    "confidence": {
+      "overall": 0.92,
+      "notes": "All proof points used are from APP_PROFILE.proof_points or BRAND_DNA.proof_points_observed. No metrics were invented. Comparison page content (Pager Swap) depends on the builder running actual benchmarks against delta and difftastic — results may differ from the README benchmark."
+    }
+  }
+}

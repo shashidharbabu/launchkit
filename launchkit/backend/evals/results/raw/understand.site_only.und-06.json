@@ -1,0 +1,86 @@
+{
+  "output": {
+    "one_liner": "Biome is a high-performance toolchain for web projects that formats, lints, and analyzes code instantly for JavaScript and TypeScript developers.",
+    "description": "Biome is a modern toolchain for web development that combines formatting, linting, and static analysis in one fast, zero-configuration tool. Built in Rust, it's designed to be a drop-in replacement for tools like ESLint and Prettier. It supports JavaScript, TypeScript, JSX, and more with deep editor integration and minimal setup.",
+    "category": "Developer Tools",
+    "target_user": "Frontend and full-stack web developers",
+    "icp": {
+      "who": "Web developers working on JavaScript or TypeScript projects",
+      "pain": "Slow toolchains, complex configuration, and fragmented workflows using multiple tools like ESLint, Prettier, and Babel",
+      "current_alternatives": [
+        "ESLint",
+        "Prettier",
+        "Biome",
+        "manual configuration of multiple tools"
+      ],
+      "buying_trigger": "Starting a new project or seeking to improve build performance and developer experience in an existing codebase"
+    },
+    "differentiators": [
+      "All-in-one toolchain combining formatting, linting, and analysis",
+      "Extremely fast performance due to Rust implementation",
+      "Zero configuration with sensible defaults",
+      "Drop-in replacement for ESLint and Prettier"
+    ],
+    "proof_points": [
+      "Over 500 lint rules available (found on homepage)",
+      "Built in Rust for high performance (stated in README)",
+      "25,663 GitHub stars (from GitHub repo metadata)",
+      "Supports zero-config setup (stated in README and homepage)"
+    ],
+    "tech_stack": [
+      "Rust",
+      "JavaScript",
+      "TypeScript",
+      "Astro",
+      "Starlight"
+    ],
+    "pricing_current": "none found",
+    "voice": {
+      "tone": [
+        "technical",
+        "confident",
+        "concise",
+        "developer-focused"
+      ],
+      "sample_phrase": "More than 500 lint rules with no configuration."
+    },
+    "maturity": {
+      "stage": "launched",
+      "signals": [
+        "Publicly available at biomejs.dev",
+        "Over 25k GitHub stars",
+        "Active development with recent commits",
+        "Documentation and installation guide available"
+      ]
+    },
+    "gaps": [
+      "No pricing page found",
+      "No demo or interactive walkthrough"
+    ],
+    "confidence": {
+      "overall": 0.85,
+      "notes": "Analysis based on live site and GitHub repo; no repo URL supplied"
+    },
+    "sources_read": [
+      {
+        "source": "https://biomejs.dev/",
+        "via": "firecrawl",
+        "ok": true,
+        "note": "Homepage content and metadata"
+      },
+      {
+        "source": "https://biomejs.dev/pricing",
+        "via": "firecrawl",
+        "ok": false,
+        "note": "404 Not Found"
+      },
+      {
+        "source": "README.md",
+        "via": "github",
+        "ok": true,
+        "note": "Project overview and features"
+      }
+    ],
+    "analysis_degraded": true
+  }
+}
