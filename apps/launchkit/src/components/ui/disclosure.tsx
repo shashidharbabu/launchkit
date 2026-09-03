@@ -4,7 +4,7 @@ import { DUR, EASE_STANDARD, EASE_EXIT } from '../../lib/motion';
 
 /**
  * Inline expand/collapse (regenerate-with-notes wells, failed-run errors).
- * Animates the wrapper only — height to 'auto' at --duration-base; exits
+ * Animates the wrapper only, height to 'auto' at --duration-base; exits
  * use --ease-exit and are never longer than enters (motion.md).
  */
 export function Disclosure({

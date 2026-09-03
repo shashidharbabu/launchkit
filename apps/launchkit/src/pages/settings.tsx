@@ -67,7 +67,7 @@ export default function SettingsPage() {
           {backendUp === false && (
             <p className="border border-nogo bg-nogo/10 p-3 text-body">
               Couldn&rsquo;t reach the RocketRide store. This is the app&rsquo;s data layer, not a
-              local server — nothing to start. Retry in a moment; if it persists, the store pipeline
+              local server: nothing to start. Retry in a moment; if it persists, the store pipeline
               may need attention.
             </p>
           )}
@@ -136,7 +136,7 @@ export default function SettingsPage() {
             className="mb-2 hidden dark:block"
           />
           <p className="text-body">
-            Launch Kit — GTM-in-a-box for RocketRide App Store publishers.
+            Launch Kit: GTM-in-a-box for RocketRide App Store publishers.
           </p>
           <p className="text-body text-muted-foreground">
             AI drafts everything; you approve everything. Three gates, seven stages, honest

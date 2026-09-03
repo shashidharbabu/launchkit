@@ -1,7 +1,7 @@
 /**
  * Brand assets, bundled with the app so they resolve from the MF remote's own
  * origin (a bare "/brand/…" path would 404 against the shell origin). rsbuild
- * emits hashed asset URLs for these imports — platform-canonical, no custom
+ * emits hashed asset URLs for these imports, platform-canonical, no custom
  * loader involved.
  */
 import iconColor from './rocketride-icon-color.svg';

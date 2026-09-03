@@ -5,7 +5,7 @@ import { cn } from '../../lib/utils';
 /**
  * Single KPI = stat tile, not a chart (dataviz.md): NumberFlow value in
  * Display type, meta label above, delta/attribution in Data mono below.
- * Numbers are always attributed — pass `attribution` (voice.md).
+ * Numbers are always attributed, pass `attribution` (voice.md).
  * `countUp` rolls the digits from 0 on first paint (NumberFlow only
  * animates on change and respects reduced motion natively).
  */

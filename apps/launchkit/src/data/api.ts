@@ -1,5 +1,5 @@
 /**
- * The api facade — the EXACT surface of frontend/lib/api.ts, backed by the
+ * The api facade: the EXACT surface of frontend/lib/api.ts, backed by the
  * in-memory document store + pipeline runner instead of the FastAPI backend.
  * The provider and every stage component consume this unchanged; each method
  * mirrors its main.py handler one-to-one (same shapes, same gate errors,
@@ -43,7 +43,7 @@ export function normUrl(raw: string, kind: 'site' | 'repo' | 'app', required: bo
   }
   if (kind === 'repo' && !/^https:\/\/(www\.)?github\.com\/[^/]+\/[^/]+/i.test(url)) {
     throw new Error('repo URL must be a public GitHub repo '
-      + '(https://github.com/owner/name) — or leave it blank for site-only analysis');
+      + '(https://github.com/owner/name), or leave it blank for site-only analysis');
   }
   return url;
 }
@@ -258,7 +258,7 @@ export const api = {
             });
           }
           for (const v of applied.newVenues) {
-            // ON CONFLICT (url) DO NOTHING — only insert an unseen url
+            // ON CONFLICT (url) DO NOTHING: only insert an unseen url
             if (!selectOne('venues', { url: v.url })) {
               insert('venues', {
                 id: uid(), name: v.name, kind: v.kind, url: v.url,
@@ -271,7 +271,7 @@ export const api = {
         });
       return { job_id: jobId };
     }
-    // signals — finder, deterministic gate, then re-score pass (main.py signals_flow)
+    // signals: finder, deterministic gate, then re-score pass (main.py signals_flow)
     const targetRows = byNumber(select('targets', { project_id: id }), 'rank');
     const subs = subredditsFromTargets(targetRows.map((r) => r.data as TargetData));
     const jobId = await runJob(id, 'signals',

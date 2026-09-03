@@ -1,5 +1,5 @@
 /**
- * The store — a per-user document store over the shell's workspace appState
+ * The store: a per-user document store over the shell's workspace appState
  * (server-persisted, identity-scoped, opaque to the shell). Replaces the
  * rocketride_sql pipe, which cannot be driven on-demand from an app: the SQL
  * node needs a signed-in cloud identity injected server-side, and neither

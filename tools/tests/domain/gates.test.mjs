@@ -20,7 +20,7 @@ const gates = require('./.build/gates.js');
 const GATE_SIGNALS_GOLDEN = {"kept": [{"url": "https://news.ycombinator.com/item?id=1", "title": "a", "rank": 1}, {"url": "https://reddit.com/r/rust/comments/abc/xyz/", "title": "b", "rank": 2}, {"url": "https://stackoverflow.com/questions/123/how", "title": "d", "rank": 3}, {"url": "https://forum.rust-lang.org/t/diffs/99", "title": "e", "rank": 4}], "dropped": [{"url": "https://termdiff.dev/blog/post", "reason": "app's own content"}, {"url": "https://github.com/acme/termdiff/issues/5", "reason": "app's own content"}, {"url": "not-a-url", "reason": "not a url"}, {"url": "https://example.com/article", "reason": "not a discussion thread"}]};
 
 // G2 (2026-09-03): golden regenerated from the TS gate after adding the dash warning (no em/en dash on any platform). Verified: stripping only dash warnings reproduces the Python golden exactly, so parity holds; the divergence is intentional.
-const GATE_ASSET_WARNINGS_GOLDEN = [["post exceeds 280 chars — trim before publishing"],[],["post exceeds 280 chars — trim before publishing"],[],["pre-existing","tagline exceeds 60 chars — trim before publishing"],["title contains an em/en dash — forbidden on every platform","title must start with 'Show HN:'"],[],["title uses HN convention — rewrite for Reddit"],[]];
+const GATE_ASSET_WARNINGS_GOLDEN = [["post exceeds 280 chars: trim before publishing"],[],["post exceeds 280 chars: trim before publishing"],[],["pre-existing","tagline exceeds 60 chars: trim before publishing"],["title contains an em/en dash, forbidden on every platform","title must start with 'Show HN:'"],[],["title uses HN convention, rewrite for Reddit"],[]];
 
 function signalsInput() {
   return [
@@ -84,7 +84,7 @@ test('hnLockCheck: HN thread older than 14 days is rejected, younger/other kept'
                                      now - 15 * 86400, now);
   assert.deepEqual(rejected, {
     verdict: 'rejected',
-    why: 'HN thread locked (older than 14 days) — cannot reply',
+    why: 'HN thread locked (older than 14 days), cannot reply',
   });
   assert.equal(gates.hnLockCheck('https://news.ycombinator.com/item?id=1',
                                  now - 13 * 86400, now), null);

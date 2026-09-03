@@ -10,8 +10,8 @@ import { cn } from '../../lib/utils';
 /**
  * Home: a conversation is the landing surface (ChatGPT-shaped).
  *
- * Two states, one column. EMPTY — the composer sits at optical centre under a
- * single question, with starters drawn from the user's real launches. ACTIVE —
+ * Two states, one column. EMPTY, the composer sits at optical centre under a
+ * single question, with starters drawn from the user's real launches. ACTIVE
  * the thread takes the column and the composer docks to the bottom. The thread
  * is the shell's MessageList (markdown + scroll-locked autoscroll); everything
  * else is ours, because the shell's ChatView has no room for a greeting or

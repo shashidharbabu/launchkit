@@ -2,7 +2,7 @@ import { byNewest, flush, insert, isReady, remove, select, uid } from './blobsto
 
 /**
  * Pipeline tracing (layer 1): every pipeline call the runner makes records one
- * trace row — pipe, timing, the question sent, the outcome/error, and the
+ * trace row: pipe, timing, the question sent, the outcome/error, and the
  * engine's step-level `_trace` (lane writes + invokes, requested via
  * `pipelineTraceLevel: 'summary'` on use()). Rows link to the run that
  * triggered them so the Runs page can map a failed action to the exact

@@ -57,7 +57,7 @@ export default function RunsPage() {
   const running = (jobs ?? []).filter((j) => j.status === 'running').length;
   const queued = (jobs ?? []).filter((j) => j.status === 'queued').length;
   const failed = (jobs ?? []).filter((j) => j.status === 'error').length;
-  // the fetch is capped at 100 — scope the header claim to what is shown
+  // the fetch is capped at 100, scope the header claim to what is shown
   const atCap = (jobs?.length ?? 0) >= 100;
 
   return (
@@ -80,7 +80,7 @@ export default function RunsPage() {
       {jobs !== null && !apiError && jobs.length === 0 && (
         <HonestEmpty
           fact="No runs yet."
-          reason="Every pipeline run across all your launches lands here with its result and timing — analysis, drafts, venue ranking, signal searches."
+          reason="Every pipeline run across all your launches lands here with its result and timing; analysis, drafts, venue ranking, signal searches."
           action={
             <a
               href={href({ view: 'new-launch' })}
@@ -131,11 +131,11 @@ export default function RunsPage() {
                           {j.project_name ?? j.project_id}
                         </a>
                       ) : (
-                        '—'
+                        '-'
                       )}
                     </Td>
-                    <Td numeric>{j.elapsed_seconds ? elapsedLabel(j.elapsed_seconds) : '—'}</Td>
-                    <Td numeric>{j.created_at ? age(j.created_at) : '—'}</Td>
+                    <Td numeric>{j.elapsed_seconds ? elapsedLabel(j.elapsed_seconds) : '-'}</Td>
+                    <Td numeric>{j.created_at ? age(j.created_at) : '-'}</Td>
                     <Td>
                       {(j.error || tracesForRun(j.id).length > 0) && (
                         <button

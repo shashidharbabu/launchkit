@@ -46,7 +46,7 @@ export function HonestEmpty({
         <p className="mt-2 flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
           <Clock size={13} strokeWidth={1.5} aria-hidden />
           <span>Takes {etaLabel(runKind)}.</span>
-          <span>Runs in the background — you can leave this page.</span>
+          <span>Runs in the background; you can leave this page.</span>
         </p>
       )}
     </div>
@@ -76,7 +76,7 @@ export function Orient({
         <p className="mt-1 flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
           <Clock size={13} strokeWidth={1.5} aria-hidden />
           <span>Takes {etaLabel(runKind)}.</span>
-          <span>Runs in the background — you can leave this page.</span>
+          <span>Runs in the background; you can leave this page.</span>
         </p>
       )}
     </Card>
@@ -86,7 +86,7 @@ export function Orient({
 /**
  * The raw pipeline output, demoted to a debugging affordance. Builders review
  * structured views; the JSON exists for support and for the curious, folded
- * shut at the bottom of a card — never at eye level.
+ * shut at the bottom of a card, never at eye level.
  */
 export function RawData({ data, label = 'Raw data' }: { data: unknown; label?: string }) {
   const [open, setOpen] = React.useState(false);
@@ -131,7 +131,7 @@ export function LockedGate() {
   return (
     <HonestEmpty
       fact="Locked until you approve the profile."
-      reason="Everything downstream is built from it — pricing, assets, venues, and signal search all read the approved profile."
+      reason="Everything downstream is built from it, pricing, assets, venues, and signal search all read the approved profile."
       action={
         <a
           href={href({ view: 'workspace', projectId: id, stage: 'profile' })}

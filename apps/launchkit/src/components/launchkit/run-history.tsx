@@ -17,7 +17,7 @@ function stampFor(status: string): StampKind {
 }
 
 /**
- * Run history panel (components.md): side sheet, reverse-chron rows —
+ * Run history panel (components.md): side sheet, reverse-chron rows
  * stamp, stage name, duration + timestamp in Data mono. Auto-refreshes
  * while a job runs; failed rows expand to the error in a mono well.
  */

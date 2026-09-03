@@ -1,5 +1,5 @@
 /**
- * Launch plan assembly + attribution rollup — byte-faithful port of
+ * Launch plan assembly + attribution rollup, byte-faithful port of
  * _ref_code, _ref_url, get_plan's assembly, _plan_markdown, and
  * get_attribution's rollup join from launchkit/backend/app/main.py.
  *
@@ -40,10 +40,10 @@ export interface Plan {
 }
 
 /**
- * main._ref_code — deterministic per-venue ref code: the attribution key.
+ * main._ref_code: deterministic per-venue ref code: the attribution key.
  * `lk_<kind>_<slug>`; slug = re.sub(r"[^a-z0-9]+", "_", name.lower())
  * .strip("_")[:32]. Defaults ('venue' / 'x') apply only when the key is ABSENT
- * — a present-but-null name renders as 'none' (str(None).lower()), exactly as
+ *: a present-but-null name renders as 'none' (str(None).lower()), exactly as
  * in Python.
  */
 export function refCode(targetData: TargetData): string {
@@ -65,11 +65,11 @@ export function refUrl(project: Pick<PlanProject, "app_url" | "site_url">, ref: 
  *
  * - approvedAssets: every asset row with status "approved" for the project.
  *   Ordered here exactly like the SQL (asset_type ASC, version DESC), then the
- *   FIRST row per type wins — newest approved version per type, with the
+ *   FIRST row per type wins, newest approved version per type, with the
  *   assets dict keyed in asset_type order.
  * - selectedTargets: rows with selected=true; ordered by rank here.
  * - targetsMeta: latest commercial_results row of kind "targets_meta"
- *   (its parsed data), or null — sequencing_advice falls back to [].
+ *   (its parsed data), or null, sequencing_advice falls back to [].
  *
  * Mutates each selected target's data (adds ref / ref_url), as Python does.
  */
@@ -112,11 +112,11 @@ function fmtGet(t: Dict, key: string): string {
 }
 
 /**
- * main._plan_markdown — VERBATIM markdown export format. Non-string asset
+ * main._plan_markdown: VERBATIM markdown export format. Non-string asset
  * values serialize via db.dumps = json.dumps(obj, ensure_ascii=False).
  */
 export function planMarkdown(plan: Plan): string {
-  const lines: string[] = [`# Launch Plan — ${pyStr(plan.project.name)}`, ""];
+  const lines: string[] = [`# Launch Plan: ${pyStr(plan.project.name)}`, ""];
   if (pyTruthy(plan.sequencing)) {
     lines.push("## Sequence");
     plan.sequencing.forEach((s, idx) => lines.push(`${idx + 1}. ${pyStr(s)}`));
@@ -126,7 +126,7 @@ export function planMarkdown(plan: Plan): string {
   for (const t of plan.targets) {
     const sub = pyGet(t, "submission_url", null);
     const link = pyTruthy(sub) ? sub : pyGet(t, "url", null);
-    lines.push(`- **${fmtGet(t, "name")}** (${fmtGet(t, "kind")}) — ` +
+    lines.push(`- **${fmtGet(t, "name")}** (${fmtGet(t, "kind")}): ` +
                `${pyStr(link)}\n` +
                `  - why: ${fmtGet(t, "why_fit")}\n` +
                `  - rules: ${fmtGet(t, "rules_summary")}\n` +
@@ -134,7 +134,7 @@ export function planMarkdown(plan: Plan): string {
   }
   lines.push("");
   for (const [atype, a] of Object.entries(plan.assets)) {
-    lines.push(`## Asset — ${atype}`);
+    lines.push(`## Asset: ${atype}`);
     for (const [k, v] of Object.entries(a)) {
       if (k === "warnings") continue;
       lines.push(`**${k}:**\n\n${typeof v === "string" ? v : pyJsonDumps(v, { ensureAscii: false })}\n`);

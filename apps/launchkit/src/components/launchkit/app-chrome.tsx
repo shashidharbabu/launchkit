@@ -8,7 +8,7 @@ import { useNav } from '../../nav';
 /**
  * App chrome: the main menu is a single top bar on every view. (It lived in the
  * shell's sidebar slot briefly; that slot renders outside the app's React tree,
- * and the workspace drew its own copy underneath — two menus. One bar, rendered
+ * and the workspace drew its own copy underneath, two menus. One bar, rendered
  * once, here.) The workspace supplies its own left rail for the seven stages.
  */
 export function AppChrome({ children }: { children: React.ReactNode }) {

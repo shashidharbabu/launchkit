@@ -26,7 +26,7 @@ function TextShimmerComponent({
     return children.length * spread;
   }, [children, spread]);
 
-  // Reduced motion: render the finished state outright (motion.md) —
+  // Reduced motion: render the finished state outright (motion.md)
   // plain text in the base color, no gradient sweep.
   if (reduced) {
     return (
@@ -40,7 +40,7 @@ function TextShimmerComponent({
     <MotionComponent
       className={cn(
         'relative inline-block bg-[length:250%_100%,auto] bg-clip-text',
-        // token-derived shimmer colors — the .dark cascade themes both modes
+        // token-derived shimmer colors, the .dark cascade themes both modes
         'text-transparent [--base-color:var(--color-muted-foreground)] [--base-gradient-color:var(--color-foreground)]',
         '[background-repeat:no-repeat,padding-box] [--bg:linear-gradient(90deg,#0000_calc(50%-var(--spread)),var(--base-gradient-color),#0000_calc(50%+var(--spread)))]',
         className

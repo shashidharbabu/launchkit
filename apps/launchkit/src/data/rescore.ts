@@ -1,10 +1,10 @@
 /**
- * Signal re-scoring — TS mirror of rr.rescore_signals: fetch each candidate
+ * Signal re-scoring: TS mirror of rr.rescore_signals: fetch each candidate
  * thread's REAL content, enforce HN replyability in code, then have the
  * lk_rescore pipe judge relevance AND write the final help-first reply.
  *
  * Fetches run in the browser; HN (Algolia), StackExchange, and GitHub APIs
- * are CORS-open. A fetch failure keeps the signal marked unverified — network
+ * are CORS-open. A fetch failure keeps the signal marked unverified, network
  * flakiness must not silently empty the queue (same rule as the Python).
  */
 import { buildRescoreQuestion, buildRescoreSummary } from '../domain/questions';

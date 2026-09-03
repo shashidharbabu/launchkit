@@ -40,7 +40,7 @@ test('profileToApprove: latest version regardless of status; 404 message when no
   ];
   assert.equal(status.profileToApprove(profiles).version, 3);
   assert.equal(status.profileToApprove([]), null);
-  assert.equal(status.NO_PROFILE_TO_APPROVE_ERROR, 'no profile to approve — run understand first');
+  assert.equal(status.NO_PROFILE_TO_APPROVE_ERROR, 'no profile to approve, run understand first');
 });
 
 test('brand_campaigns prerequisite: 409 without DNA (empty dict blocks too)', () => {
@@ -49,7 +49,7 @@ test('brand_campaigns prerequisite: 409 without DNA (empty dict blocks too)', ()
   assert.equal(status.canRunBrandCampaigns({}), false);
   assert.equal(status.canRunBrandCampaigns({ palette: [] }), true);
   assert.equal(status.BRAND_CAMPAIGNS_PREREQ_ERROR,
-               'extract Brand DNA first — campaigns are generated from it');
+               'extract Brand DNA first, campaigns are generated from it');
 });
 
 test('profile versioning: edit/understand create a NEW draft version (1 + count)', () => {
@@ -66,7 +66,7 @@ test('asset semantics: job kind, versioning per type, edit re-gates and marks ed
   assert.equal(status.nextAssetVersion(2), 3);
   const { data, status: st } = status.applyAssetEdit('x_post', { post: 'z'.repeat(281) });
   assert.equal(st, 'edited');
-  assert.deepEqual(data.warnings, ['post exceeds 280 chars — trim before publishing']);
+  assert.deepEqual(data.warnings, ['post exceeds 280 chars: trim before publishing']);
   const clean = status.applyAssetEdit('x_post', { post: 'short' });
   assert.deepEqual(clean.data.warnings, []);
 });

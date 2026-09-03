@@ -67,7 +67,7 @@ export function CommandPalette() {
           />
           <Command.List className="max-h-80 overflow-y-auto p-2">
             <Command.Empty className="px-2 py-3 text-body text-muted-foreground">
-              Nothing matches. Try a page or stage name — Dashboard, Runs, Assets…
+              Nothing matches. Try a page or stage name, Dashboard, Runs, Assets…
             </Command.Empty>
 
             <Command.Group heading="Go to" className={GROUP_CLS}>
@@ -113,7 +113,7 @@ export function CommandPalette() {
                     }
                     className={ITEM_CLS}
                   >
-                    Copy ref link — {t.name}
+                    Copy ref link, {t.name}
                     <span className="ml-auto font-mono text-data text-muted-foreground">{t.ref}</span>
                   </Command.Item>
                 ))}
@@ -145,7 +145,7 @@ export function CommandPalette() {
                   }
                   className={ITEM_CLS}
                 >
-                  Restart pipe — understand (dev)
+                  Restart pipe: understand (dev)
                 </Command.Item>
               </Command.Group>
             )}

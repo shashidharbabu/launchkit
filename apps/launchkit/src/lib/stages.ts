@@ -1,5 +1,5 @@
 /**
- * The seven-stage procedure line (01-direction.md). A true sequence — numbered
+ * The seven-stage procedure line (01-direction.md). A true sequence, numbered
  * labels are earned here and used nowhere else. Names are fixed vocabulary
  * (voice.md): no synonyms. Brand sits right after Profile: its DNA feeds
  * every stage that writes copy.

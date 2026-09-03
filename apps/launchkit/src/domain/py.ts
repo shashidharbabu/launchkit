@@ -122,15 +122,15 @@ function jsonStringEscape(s: string, ensureAscii: boolean): string {
 }
 
 /**
- * json.dumps(value) with CPython's DEFAULT formatting — this is the wire
+ * json.dumps(value) with CPython's DEFAULT formatting; this is the wire
  * contract with the deployed pipes, so the differences from JSON.stringify
  * are load-bearing:
  *   - item separator ", " and key separator ": " (JSON.stringify uses none)
  *   - ensure_ascii=True by default: every non-ASCII char becomes \uXXXX
  *     (astral chars as surrogate pairs, exactly like CPython)
- *   - keys NOT sorted — insertion order preserved
+ *   - keys NOT sorted: insertion order preserved
  *   - NaN/Infinity/-Infinity emitted bare (allow_nan=True default)
- * db.dumps() in main.py is json.dumps(obj, ensure_ascii=False) — pass
+ * db.dumps() in main.py is json.dumps(obj, ensure_ascii=False): pass
  * { ensureAscii: false } for that call site (plan markdown export).
  */
 export function pyJsonDumps(value: unknown, opts?: { ensureAscii?: boolean }): string {

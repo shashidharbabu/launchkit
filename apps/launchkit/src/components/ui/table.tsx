@@ -3,7 +3,7 @@ import { cn } from '../../lib/utils';
 
 /**
  * Ruled-paper table visuals (components.md): meta mono headers, 40px rows,
- * horizontal hairlines only — no vertical rules, no zebra. Numbers
+ * horizontal hairlines only: no vertical rules, no zebra. Numbers
  * right-aligned in Data mono with tabular figures.
  */
 export function Table({ className, ...props }: React.TableHTMLAttributes<HTMLTableElement>) {

@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
 import { DUR, EASE_STANDARD, EASE_EXIT } from '../../lib/motion';
 
 /**
- * The Gate Slip — the signature element (01-direction.md). A bordered sheet
+ * The Gate Slip: the signature element (01-direction.md). A bordered sheet
  * on the desk (no shadow). Approving fires the stamp: GO lands with
  * scale 1.15 → 1.0 over --duration-stamp, then the slip collapses to a
  * signed row. While the stamp plays, nothing else moves.
@@ -21,7 +21,7 @@ export function GateSlip({
   reopenActions,
   children,
 }: {
-  gateLabel: string; // "GATE 01 — PROFILE"
+  gateLabel: string; // "GATE 01: PROFILE"
   stamp: StampKind;
   signed: boolean;
   signedLine: string; // "profile approved · aug 11"

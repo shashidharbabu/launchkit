@@ -2,11 +2,11 @@ import * as React from 'react';
 import type { StageSlug } from './lib/stages';
 
 /**
- * In-app navigation — the shell-app replacement for the Next.js router.
+ * In-app navigation: the shell-app replacement for the Next.js router.
  *
  * The shell owns the browser URL (doc 03 B2), so Launch Kit navigates by
  * state: one NavState names the visible view. Links keep their exact
- * markup/classNames and become buttons semantically — `href(next)` returns
+ * markup/classNames and become buttons semantically, `href(next)` returns
  * '#' and the click handler calls `go(next)` with preventDefault.
  *
  * TODO(useWorkspace appState): persistence moves to the shell's
@@ -53,7 +53,7 @@ function readStoredNav(): NavState {
       }
     }
   } catch {
-    // storage unavailable or corrupt — fall through to the default view
+    // storage unavailable or corrupt, fall through to the default view
   }
   return { view: 'home' };
 }
@@ -66,7 +66,7 @@ export function NavProvider({ children }: { children: React.ReactNode }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     } catch {
-      // storage unavailable — navigation still works for this session
+      // storage unavailable: navigation still works for this session
     }
   }, []);
 

@@ -6,7 +6,7 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'destructive';
 type Size = 'default' | 'compact';
 
 const VARIANTS: Record<Variant, string> = {
-  // The one ember verb per view — carries real weight and a press.
+  // The one ember verb per view, carries real weight and a press.
   primary:
     'bg-primary text-primary-foreground shadow-[0_1px_2px_oklch(0.209_0.01_268/0.25),inset_0_1px_0_oklch(1_0_0/0.15)] ' +
     'hover:bg-primary-hover hover:shadow-[0_2px_6px_oklch(0.209_0.01_268/0.3),inset_0_1px_0_oklch(1_0_0/0.15)] ' +

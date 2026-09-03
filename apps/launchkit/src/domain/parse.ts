@@ -1,14 +1,14 @@
 /**
- * parse_json_loose — byte-faithful port from launchkit/backend/app/rr.py.
+ * parse_json_loose: byte-faithful port from launchkit/backend/app/rr.py.
  *
  * Mirrors each fallback step in order:
  *   1. dict/list input passes through untouched
- *   2. str() + strip(), then find("{") / rfind("}") — anything outside the
+ *   2. str() + strip(), then find("{") / rfind("}"): anything outside the
  *      outermost braces (code fences, prose, junk) is discarded
  *   3. strict JSON parse of the blob
  *   4. on JSON failure, ast.literal_eval-equivalent Python-literal parse
  *      (single quotes, True/False/None, tuples, escapes, adjacent string
- *      concatenation) — models sometimes emit Python-dict style
+ *      concatenation): models sometimes emit Python-dict style
  *
  * Documented divergences (both practically unreachable for pipe output, which
  * is contractually RFC 8259): Python's json.loads accepts bare NaN/Infinity
@@ -214,7 +214,7 @@ export function pyLiteralEval(src: string): unknown {
         return err("expected ',' or '}'");
       }
     }
-    // set literal — ast.literal_eval returns a set; closest JSON mirror: array
+    // set literal: ast.literal_eval returns a set; closest JSON mirror: array
     const items: unknown[] = [first];
     for (;;) {
       ws();

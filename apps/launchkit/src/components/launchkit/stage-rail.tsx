@@ -21,7 +21,7 @@ const DOT_TITLE: Record<StageDot, string> = {
 /**
  * The seven-stage procedure line, vertical: one step at a time down the left of
  * the workspace. A true sequence, so it reads as a numbered list rather than
- * tabs — the current step is the only highlighted row, finished steps carry
+ * tabs: the current step is the only highlighted row, finished steps carry
  * their verdict dot, and locked steps stay visible with the reason.
  */
 export function StageRail() {
@@ -66,7 +66,7 @@ export function StageRail() {
           return (
             <li key={s.slug}>
               {locked ? (
-                <Tooltip content="Approve the profile first — every later stage is written from it.">
+                <Tooltip content="Approve the profile first, every later stage is written from it.">
                   <span className="block cursor-not-allowed">{row}</span>
                 </Tooltip>
               ) : (

@@ -1,4 +1,4 @@
-// GENERATED from launchkit/backend/seed_venues.py — do not edit by hand.
+// GENERATED from launchkit/backend/seed_venues.py, do not edit by hand.
 // Config-as-data: these are SEED DEFAULTS; the live set lives in the
 // venues table and is editable in Settings.
 export const VENUE_SEED = [
@@ -16,7 +16,7 @@ export const VENUE_SEED = [
   "kind": "launch_platform",
   "url": "https://www.uneed.best",
   "submission_url": "https://www.uneed.best/submit-a-tool",
-  "rules_summary": "Curated daily launches — team selects, fairer for good products.",
+  "rules_summary": "Curated daily launches: team selects, fairer for good products.",
   "audience_signal": "medium",
   "tags": "indie,saas"
  },
@@ -34,7 +34,7 @@ export const VENUE_SEED = [
   "kind": "launch_platform",
   "url": "https://smollaunch.com",
   "submission_url": "https://smollaunch.com/submit",
-  "rules_summary": "7-day visibility window — forgiving for first launches.",
+  "rules_summary": "7-day visibility window, forgiving for first launches.",
   "audience_signal": "small",
   "tags": "indie"
  },
@@ -52,7 +52,7 @@ export const VENUE_SEED = [
   "kind": "launch_platform",
   "url": "https://betalist.com",
   "submission_url": "https://betalist.com/submit",
-  "rules_summary": "Pre-launch/beta only — waitlist building audience.",
+  "rules_summary": "Pre-launch/beta only, waitlist building audience.",
   "audience_signal": "medium",
   "tags": "prelaunch,beta"
  },
@@ -70,7 +70,7 @@ export const VENUE_SEED = [
   "kind": "launch_platform",
   "url": "https://devhunt.org",
   "submission_url": "https://devhunt.org",
-  "rules_summary": "Dev tools specifically — high fit for developer products.",
+  "rules_summary": "Dev tools specifically: high fit for developer products.",
   "audience_signal": "medium",
   "tags": "dev,tools"
  },
@@ -79,7 +79,7 @@ export const VENUE_SEED = [
   "kind": "launch_platform",
   "url": "https://news.ycombinator.com/show",
   "submission_url": "https://news.ycombinator.com/submit",
-  "rules_summary": "Title must start 'Show HN:'. Hostile to marketing — technical, honest, limitations included.",
+  "rules_summary": "Title must start 'Show HN:'. Hostile to marketing: technical, honest, limitations included.",
   "audience_signal": "large",
   "tags": "dev,technical"
  },
@@ -151,7 +151,7 @@ export const VENUE_SEED = [
   "kind": "directory",
   "url": "https://www.g2.com",
   "submission_url": "https://sell.g2.com/list-your-product",
-  "rules_summary": "B2B software reviews — needs real reviews to matter. B2B apps only.",
+  "rules_summary": "B2B software reviews: needs real reviews to matter. B2B apps only.",
   "audience_signal": "large",
   "tags": "b2b,reviews"
  },
@@ -223,7 +223,7 @@ export const VENUE_SEED = [
   "kind": "subreddit",
   "url": "https://www.reddit.com/r/startups/",
   "submission_url": "https://www.reddit.com/r/startups/submit",
-  "rules_summary": "Strict self-promo rules — Share Your Startup thread.",
+  "rules_summary": "Strict self-promo rules, Share Your Startup thread.",
   "audience_signal": "large",
   "tags": "startup"
  },
@@ -259,7 +259,7 @@ export const VENUE_SEED = [
   "kind": "community",
   "url": "https://dev.to",
   "submission_url": "https://dev.to/new",
-  "rules_summary": "Dev blogging — technical writeups with the tool inside outperform announcements.",
+  "rules_summary": "Dev blogging: technical writeups with the tool inside outperform announcements.",
   "audience_signal": "large",
   "tags": "dev,content"
  },
@@ -286,7 +286,7 @@ export const VENUE_SEED = [
   "kind": "community",
   "url": "https://news.ycombinator.com/ask",
   "submission_url": "https://news.ycombinator.com/submit",
-  "rules_summary": "Tell HN / comments — only when genuinely contributing.",
+  "rules_summary": "Tell HN / comments: only when genuinely contributing.",
   "audience_signal": "large",
   "tags": "dev"
  },
@@ -313,7 +313,7 @@ export const VENUE_SEED = [
   "kind": "newsletter",
   "url": "https://bensbites.co",
   "submission_url": "https://bensbites.co",
-  "rules_summary": "166K+, indie-maker lens on AI — best free-mention odds for indie AI apps.",
+  "rules_summary": "166K+, indie-maker lens on AI, best free-mention odds for indie AI apps.",
   "audience_signal": "large",
   "tags": "ai,indie"
  },
@@ -331,7 +331,7 @@ export const VENUE_SEED = [
   "kind": "directory",
   "url": "https://appsumo.com",
   "submission_url": "https://sell.appsumo.com",
-  "rules_summary": "Lifetime-deal marketplace — real revenue, brutal margins; list only deliberately.",
+  "rules_summary": "Lifetime-deal marketplace: real revenue, brutal margins; list only deliberately.",
   "audience_signal": "large",
   "tags": "deals,revenue"
  }

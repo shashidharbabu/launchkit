@@ -7,7 +7,7 @@ export function Skeleton({ className }: { className?: string }) {
 
 /**
  * Loading rule (motion.md): ops >300ms show a skeleton; sub-300ms show
- * nothing — a flash of skeleton is worse than a wait.
+ * nothing: a flash of skeleton is worse than a wait.
  */
 export function DelayedSkeleton({
   className,

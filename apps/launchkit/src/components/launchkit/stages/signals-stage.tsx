@@ -47,7 +47,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
       {/* 1 — source row */}
       <div className="flex flex-wrap items-center gap-2">
         <Globe size={14} strokeWidth={1.5} className="shrink-0 text-muted-foreground" aria-hidden />
-        <span className="font-mono text-data text-muted-foreground">{String(d.platform ?? '—')}</span>
+        <span className="font-mono text-data text-muted-foreground">{String(d.platform ?? '-')}</span>
         <a
           href={String(d.url ?? '#')}
           target="_blank"
@@ -86,7 +86,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
       />
       {!verified && (
         <p className="mt-2 text-body text-muted-foreground">
-          Couldn&rsquo;t fetch this thread, so we can&rsquo;t verify it. It stays marked UNVERIFIED —
+          Couldn&rsquo;t fetch this thread, so we can&rsquo;t verify it. It stays marked UNVERIFIED
           judge it yourself before replying.
         </p>
       )}
@@ -127,7 +127,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
 
 export function SignalsStage() {
   const { project, gate1, signals, running, runJob } = useProject();
-  // the last scan's report (queries, coverage, drop reasons) — an empty result must be explainable
+  // the last scan's report (queries, coverage, drop reasons), an empty result must be explainable
   const [meta, setMeta] = React.useState<Record<string, unknown> | null>(null);
   const projectId = project?.id;
   React.useEffect(() => {
@@ -155,12 +155,12 @@ export function SignalsStage() {
           runKind="signals"
           lead={
             <>
-              Real people, publicly asking for what you built — right now.{' '}
+              Real people, publicly asking for what you built, right now.{' '}
               <strong className="font-medium">Reply in your own words</strong>, mark replied, or
               dismiss.
             </>
           }
-          detail="Launch Kit never fabricates demand — every signal was found live, so an empty queue honestly means nobody is asking yet."
+          detail="Launch Kit never fabricates demand, every signal was found live, so an empty queue honestly means nobody is asking yet."
         />
       )}
 
@@ -186,7 +186,7 @@ export function SignalsStage() {
         <HonestEmpty
           runKind="signals"
           fact="No signals yet."
-          reason="Nobody is publicly asking for what your app does right now — that's common before launch. Re-run after your first posts, or widen the pain phrasing in your profile."
+          reason="Nobody is publicly asking for what your app does right now; that's common before launch. Re-run after your first posts, or widen the pain phrasing in your profile."
           action={
             <Button
               variant="secondary"
@@ -205,7 +205,7 @@ export function SignalsStage() {
       {signals.length > 0 && queue.length === 0 && (
         <HonestEmpty
           fact="Queue clear."
-          reason={`Every signal is handled — ${replied} replied · ${
+          reason={`Every signal is handled, ${replied} replied · ${
             signals.length - replied
           } dismissed. Re-run the search after your first posts to find new asks.`}
           action={

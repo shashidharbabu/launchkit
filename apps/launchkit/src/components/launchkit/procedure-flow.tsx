@@ -19,7 +19,7 @@ import { cn } from '../../lib/utils';
 /**
  * How the product works, drawn as what it is: one continuous procedure. Three
  * typographic moves up top (give → drafted → signed), then the seven stages
- * as a single flight sequence down a rail — no card grid. Gates read as
+ * as a single flight sequence down a rail, no card grid. Gates read as
  * stamped moments on the line (01-direction.md: approval is a physical act).
  */
 
@@ -33,7 +33,7 @@ const STAGES = [
   {
     name: 'Brand',
     Icon: Fingerprint,
-    line: 'Your site’s voice, colors, and messages — extracted, not invented.',
+    line: 'Your site’s voice, colors, and messages, extracted, not invented.',
   },
   {
     name: 'Commercial',
@@ -49,7 +49,7 @@ const STAGES = [
   {
     name: 'Targets',
     Icon: Target,
-    line: 'Where to launch, ranked — with each venue’s rules.',
+    line: 'Where to launch, ranked, with each venue’s rules.',
     gate: 'Gate 3',
   },
   {
@@ -138,7 +138,7 @@ export function ProcedureFlow() {
           <Move
             step="Launch Kit drafts"
             headline="The whole launch."
-            line="Profile, pricing, listing, venues — and a post written for each platform."
+            line="Profile, pricing, listing, venues, and a post written for each platform."
           >
             <FloatingPlatforms />
           </Move>
@@ -158,7 +158,7 @@ export function ProcedureFlow() {
         </div>
       </Reveal>
 
-      {/* the seven stages, one flight sequence down a rail — the ledger keeps
+      {/* the seven stages, one flight sequence down a rail, the ledger keeps
           the honest arithmetic beside it */}
       <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
         <div className="relative max-w-2xl">
@@ -235,7 +235,7 @@ export function ProcedureFlow() {
 const LEDGER: { n: string; label: string; accent?: boolean }[] = [
   { n: '2', label: 'links you paste in' },
   { n: '7', label: 'stages drafted for you' },
-  { n: '3', label: 'signatures — all yours', accent: true },
+  { n: '3', label: 'signatures: all yours', accent: true },
   { n: '0', label: 'posts sent without you' },
   { n: '1', label: 'signed launch plan out' },
 ];

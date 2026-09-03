@@ -56,7 +56,7 @@ export function useProjectMaybe() {
 export function pipelineError(kind: string, detail: string): string {
   const label = jobLabel(kind);
   if (/fetch|network|ECONNREFUSED|reach/i.test(detail)) {
-    return `Couldn't reach the pipeline while running ${label}. It restarts automatically — retry in about a minute.`;
+    return `Couldn't reach the pipeline while running ${label}. It restarts automatically; retry in about a minute.`;
   }
   return `${label} failed: ${detail}`;
 }
@@ -113,7 +113,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
     refresh();
   }, [refresh]);
 
-  // A run started elsewhere — autorun on create, or before a reload — must
+  // A run started elsewhere, autorun on create, or before a reload, must
   // still show progress here, or the workspace looks idle mid-analysis.
   React.useEffect(() => {
     let cancelled = false;

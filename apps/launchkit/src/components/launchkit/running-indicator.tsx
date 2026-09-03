@@ -25,7 +25,7 @@ function runningLine(kind: string, secs: number): string {
 
 /**
  * Running state (components.md): RUNNING stamp + shimmer status line + elapsed
- * against a measured typical time, plus the one fact people actually need —
+ * against a measured typical time, plus the one fact people actually need
  * the run continues if they navigate away.
  */
 export function RunningIndicator({ kind, since }: { kind: string; since: number }) {
@@ -44,7 +44,7 @@ export function RunningIndicator({ kind, since }: { kind: string; since: number 
       <span className="font-mono text-data tabular text-muted-foreground">
         {elapsedLabel(secs)} · {etaLabel(kind)}
       </span>
-      <span className="text-data text-muted-foreground">Runs in the background — you can keep working.</span>
+      <span className="text-data text-muted-foreground">Runs in the background; you can keep working.</span>
     </span>
   );
 }

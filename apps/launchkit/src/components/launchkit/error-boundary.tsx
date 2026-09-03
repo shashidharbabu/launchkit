@@ -37,7 +37,7 @@ export class LkErrorBoundary extends React.Component<
           </p>
           <h1 style={{ fontSize: 22, fontWeight: 600, marginTop: 8 }}>The app hit an error while rendering.</h1>
           <p style={{ marginTop: 8, color: '#6B6862' }}>
-            This is the app failing to render, not a blank page with no cause. The error is below — reload to retry.
+            This is the app failing to render, not a blank page with no cause. The error is below, reload to retry.
           </p>
           <pre style={{ marginTop: 16, overflow: 'auto', border: '1px solid #E4E1DA', background: '#F1EFE9', padding: 12, fontFamily: 'IBM Plex Mono, monospace', fontSize: 12, lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>
             {String(error?.stack || error?.message || error)}

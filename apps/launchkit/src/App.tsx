@@ -1,10 +1,10 @@
 /**
- * Launch Kit — root component rendered by the RocketRide shell.
+ * Launch Kit: root component rendered by the RocketRide shell.
  *
  * The app is a Module Federation remote living inside the shell's page, so it
  * owns exactly one DOM subtree: <div id="lk-root">. The entire Flight
  * Paperwork design system (compiled + scoped by tools/gen-styles.mjs) applies
- * only under that id — the shell's chrome cannot be touched by our styles,
+ * only under that id, the shell's chrome cannot be touched by our styles,
  * and the shell's styles cannot restyle our surface beyond inheritance.
  */
 import React from 'react';
@@ -77,7 +77,7 @@ function ActiveView() {
 /**
  * Wires the data layer to the shell:
  *  - the store is the workspace appState (per-user, server-persisted, no cloud
- *    identity needed — unlike rocketride_sql, which the app cannot drive
+ *    identity needed: unlike rocketride_sql, which the app cannot drive
  *    on-demand);
  *  - the runner uses the shared client for the AI pipelines (understand,
  *    brand, commercial, targets, assets, signals, rescore).
@@ -124,7 +124,7 @@ const ConnectedApp: React.FC = () => {
         <p className="p-10 text-body text-muted-foreground">Connecting to RocketRide…</p>
         {slow && (
           <p className="px-10 text-body text-muted-foreground">
-            Still connecting. If this persists, the shell hasn’t handed the app a workspace yet —
+            Still connecting. If this persists, the shell hasn’t handed the app a workspace yet
             client: {client ? 'ready' : 'none'}, workspace loaded: {String(Boolean(workspace?.loaded))}.
           </p>
         )}

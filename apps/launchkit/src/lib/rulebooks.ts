@@ -1,5 +1,5 @@
 /**
- * Platform rulebooks — config-as-data. These defaults seed the `platform_rules`
+ * Platform rulebooks: config-as-data. These defaults seed the `platform_rules`
  * table on first run; the owner edits them in Settings and every draft is
  * written against the stored version. The GLOBAL rules apply to every
  * platform and are also enforced in code (sanitizer + gate), because the two

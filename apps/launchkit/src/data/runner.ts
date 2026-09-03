@@ -1,11 +1,11 @@
 /**
- * Pipe execution engine — the TS mirror of rr.py's ask() machinery, running
+ * Pipe execution engine: the TS mirror of rr.py's ask() machinery, running
  * over the shell-owned client against app-local pipeline copies.
  *
  * Faithfully ported semantics (rr.py 2026-08 fix-pass state):
  *  - one task per pipe per session, `useExisting: true`
  *  - answers extracted via result_types → answers lane
- *  - engine failures arrive as ANSWER TEXT ("LLM error…") — checked BEFORE
+ *  - engine failures arrive as ANSWER TEXT ("LLM error…"): checked BEFORE
  *    parsing, retried in 3 bounded attempts
  *  - stale-task errors terminate + re-register once
  *  - signals: the no-tools death signature (empty queries + empty signals)
@@ -50,7 +50,7 @@ function pipeProjectId(pipeName: string): string | null {
 }
 
 function requireClient(): RocketRideClient {
-  if (!client) throw new Error('runner not initialized — no shell connection yet');
+  if (!client) throw new Error('runner not initialized: no shell connection yet');
   return client;
 }
 
@@ -119,13 +119,13 @@ async function askOnceInner(pipeName: string, questionText: string): Promise<{ d
   }
   const raw = extractAnswer(response ?? {});
   if (raw == null) throw new Error('pipeline returned no answers');
-  // engine failures come back as ANSWER TEXT — check BEFORE parsing (rr.py fix)
+  // engine failures come back as ANSWER TEXT, check BEFORE parsing (rr.py fix)
   if (typeof raw === 'string' && raw.trim().replace(/^\*+\s*/, '').startsWith('LLM error')) {
     throw new Error(String(raw));
   }
   // Peel up to 3 layers: the staging engine has been observed to hand back
   // answers as (JSON-quoted) STRINGS of python-dict text. rr.py's parse can
-  // only ever return dict/list; mirror that guarantee — a string result is a
+  // only ever return dict/list; mirror that guarantee, a string result is a
   // parse failure, never data.
   let parsed: unknown = raw;
   for (let peel = 0; peel < 3 && typeof parsed === 'string'; peel++) {

@@ -91,3 +91,12 @@ Hardened preview verification with real engine events; tracing-first triage; eve
 
 ## 1d. Social Launch (2026-09-03)
 Assets stage renamed Social Launch. Per-platform rulebooks stored in the app database and editable in Settings; every draft is written to them. Hard no-dash rule enforced by rulebook, pipe instruction, sanitizer and gate. Share-intent buttons open each platform's composer with the draft. Regenerate-with-feedback always visible. Video generation via reel-creation parked as a future deployed service (needs Gemini + ElevenLabs keys). See MIGRATION-ISSUES-LOG G1 to G6.
+
+## Decisions taken 2026-09-03 (owner)
+- **Launches are per user.** A user can invite teammates and maintain a shared workspace: the next feature to integrate, develop and test (see 1e).
+- **Free vs Pro: decided later.** Until billing is wired, the app bypasses payment and runs Pro for everyone via `lib/plan.ts#PLAN_OVERRIDE = 'pro'`. Every plan read goes through `effectivePlan()`; the cut-over is flipping the override to null.
+- **Demo date: 2026-09-04.** One development day left; quality is not negotiable.
+- **Em dashes:** removed from the app's own copy as well as drafts (hyphens are fine, only the em dash is banned). Code comments and the two dash-matching regexes keep the character on purpose.
+
+## 1e. Team workspaces (in progress)
+Workspace = a RocketRide team. Members and invites come from the SDK account API (`listTeams`, `getTeamDetail`, `inviteMember`, `addTeamMember`, role-checked server-side). Shared launch data needs a store every member can read; see the design note in MIGRATION-ISSUES-LOG section I once chosen.

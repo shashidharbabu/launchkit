@@ -1,7 +1,7 @@
 /**
  * Typical run times, measured from real runs on 2026-09-02/03 (Claude for every
  * stage). Used to set expectations before a run starts and to keep the running
- * indicator honest — never a promise, always "about".
+ * indicator honest: never a promise, always "about".
  */
 export const RUN_ETA_SECONDS: Record<string, number> = {
   understand: 110,

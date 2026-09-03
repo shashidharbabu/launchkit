@@ -12,7 +12,7 @@ import visorLaunch from '../brand/visor-launch.jpg';
 
 const HEADLINE = 'You built the app. Launch Kit turns the launch into paperwork you can sign.';
 const SUBHEAD =
-  'Profile, pricing, listing, venues, native posts, and live demand — drafted from your repo and site, verified where possible, and nothing ships without your approval.';
+  'Profile, pricing, listing, venues, native posts, and live demand, drafted from your repo and site, verified where possible, and nothing ships without your approval.';
 
 export default function HomePage() {
   const { go, href } = useNav();
@@ -120,7 +120,7 @@ export default function HomePage() {
               </h2>
               <p className="mt-3 max-w-xl text-read leading-[1.625rem] text-muted-foreground">
                 Every draft states where it came from and whether it was verified. Every count says
-                what it counts. When nobody is asking for what you built yet, Launch Kit says so —
+                what it counts. When nobody is asking for what you built yet, Launch Kit says so
                 and after you post, tracked links attribute every signup to the venue that produced
                 it.
               </p>

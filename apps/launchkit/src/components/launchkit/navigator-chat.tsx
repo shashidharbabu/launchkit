@@ -17,7 +17,7 @@ export function NavigatorChat() {
   const { isConnected } = useShellConnection();
   const [messages, setMessages] = React.useState<ChatMessage[]>([{
     id: 1, sender: 'bot', timestamp: new Date().toISOString(),
-    text: "Hi — I'm the Launch Kit navigator. Ask where to go, what a gate means, or what to do next.",
+    text: "Hi. I'm the Launch Kit navigator. Ask where to go, what a gate means, or what to do next.",
   }]);
   const [typing, setTyping] = React.useState(false);
   const history = React.useRef<NavTurn[]>([]);

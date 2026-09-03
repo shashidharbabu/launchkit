@@ -46,7 +46,7 @@ export default function NewLaunchPage() {
     setCreating(true);
     setFormError('');
     try {
-      // analysis starts server-side on create — the workspace picks up the job
+      // analysis starts server-side on create, the workspace picks up the job
       const p = await api.createProject({ ...form, autorun: true });
       go({ view: 'workspace', projectId: p.id, stage: 'profile' });
     } catch (err) {
@@ -97,7 +97,7 @@ export default function NewLaunchPage() {
           label="GitHub repo"
           htmlFor="nl-repo"
           helper={
-            repoError ? undefined : 'Optional — public repos only. A repo gives a much stronger profile.'
+            repoError ? undefined : 'Optional: public repos only. A repo gives a much stronger profile.'
           }
           error={repoError}
         >
@@ -112,7 +112,7 @@ export default function NewLaunchPage() {
 
         {duplicate && (
           <p className="border border-border bg-muted p-3 text-body">
-            You already have a launch for this site —{' '}
+            You already have a launch for this site, {' '}
             <a
               href={href({ view: 'workspace', projectId: duplicate.id, stage: 'profile' })}
               onClick={(e) => {
@@ -136,7 +136,7 @@ export default function NewLaunchPage() {
         <p className="flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
           <Clock size={13} strokeWidth={1.5} aria-hidden />
           <span>Reading your repo and site takes {etaLabel('understand')}.</span>
-          <span>It runs in the background — you can leave this page and come back.</span>
+          <span>It runs in the background; you can leave this page and come back.</span>
         </p>
         <div className="flex items-center gap-2">
           <Button type="submit" variant="primary" loading={creating} loadingLabel="Starting analysis…">

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 /**
- * Launch Kit theme provider — the shell-app replacement for next-themes.
+ * Launch Kit theme provider, the shell-app replacement for next-themes.
  *
  * Holds 'light' | 'dark' | 'system'; resolves 'system' via
  * `prefers-color-scheme` with a live change listener. Applies/removes the
- * `dark` class on the element with id `lk-root` (NOT documentElement) —
+ * `dark` class on the element with id `lk-root` (NOT documentElement)
  * every Launch Kit style is scoped under .lk-root (a class on BOTH the app root and the hoisted sidebar root), and the shell owns the
  * document root.
  *
@@ -30,7 +30,7 @@ function readStoredTheme(): LkTheme {
     const v = window.localStorage.getItem(STORAGE_KEY);
     if (v === 'light' || v === 'dark' || v === 'system') return v;
   } catch {
-    // storage unavailable — fall through to 'system'
+    // storage unavailable: fall through to 'system'
   }
   return 'system';
 }
@@ -54,7 +54,7 @@ export function LkThemeProvider({ children }: { children: React.ReactNode }) {
   const resolvedTheme: 'light' | 'dark' =
     theme === 'system' ? (systemDark ? 'dark' : 'light') : theme;
 
-  // Apply the `dark` class on #lk-root — all styles are scoped under it.
+  // Apply the `dark` class on #lk-root, all styles are scoped under it.
   React.useEffect(() => {
     const root = document.getElementById('lk-root');
     if (!root) return;
@@ -66,7 +66,7 @@ export function LkThemeProvider({ children }: { children: React.ReactNode }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, t);
     } catch {
-      // storage unavailable — theme still applies for this session
+      // storage unavailable: theme still applies for this session
     }
   }, []);
 

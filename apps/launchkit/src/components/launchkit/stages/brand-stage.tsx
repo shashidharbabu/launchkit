@@ -42,7 +42,7 @@ function Chips({ items }: { items: unknown[] }) {
 }
 
 /** Observed brand colors as swatches. Values come straight from the scraped
- * site's CSS — never invented — so an empty set is honest, not a bug. */
+ * site's CSS, never invented, so an empty set is honest, not a bug. */
 function Swatches({ colors }: { colors: unknown[] }) {
   if (colors.length === 0) return null;
   return (
@@ -105,7 +105,7 @@ export function BrandStage() {
       {neither && !runningKind && (
         <HonestEmpty
           fact="No Business DNA yet."
-          reason="Launch Kit reads your live site and extracts the brand — voice, vocabulary, observed colors and type, key messages. Every asset and campaign after this is written in that voice."
+          reason="Launch Kit reads your live site and extracts the brand, voice, vocabulary, observed colors and type, key messages. Every asset and campaign after this is written in that voice."
           action={
             <Button
               variant="secondary"
@@ -123,13 +123,13 @@ export function BrandStage() {
           runKind="brand_dna"
           lead={
             <>
-              Launch Kit read your live site and wrote down your brand — the voice every post and
+              Launch Kit read your live site and wrote down your brand, the voice every post and
               campaign will be written in.{' '}
-              <strong className="font-medium">Check it sounds like you</strong> — re-extract if it
+              <strong className="font-medium">Check it sounds like you</strong>, re-extract if it
               doesn&rsquo;t.
             </>
           }
-          detail="Everything here was observed on your site — voice, colors, and type come with evidence, never invention."
+          detail="Everything here was observed on your site, voice, colors, and type come with evidence, never invention."
         />
       )}
 
@@ -202,7 +202,7 @@ export function BrandStage() {
                     <Swatches colors={asArr(visual.colors)} />
                   ) : (
                     <p className="mt-1 text-body text-muted-foreground">
-                      None observable in the scraped pages — see confidence notes.
+                      None observable in the scraped pages, see confidence notes.
                     </p>
                   )}
                 </div>
@@ -245,7 +245,7 @@ export function BrandStage() {
                 )}
                 {asArr(dna.sources_read).length > 0 && (
                   <div>
-                    <MetaLabel>Sources read — {asArr(dna.sources_read).length}</MetaLabel>
+                    <MetaLabel>Sources read, {asArr(dna.sources_read).length}</MetaLabel>
                     <ul className="mt-1 grid gap-0.5">
                       {asArr(dna.sources_read).map((u, i) => (
                         <li key={i}>
@@ -264,7 +264,7 @@ export function BrandStage() {
                 )}
                 <ProvenanceLine
                   parts={[
-                    'extracted from the live site only — nothing invented',
+                    'extracted from the live site only; nothing invented',
                     asStr(confidence.notes) || undefined,
                   ].filter(Boolean) as string[]}
                 />
@@ -377,7 +377,7 @@ export function BrandStage() {
                 fact="No campaigns yet."
                 reason={
                   dna
-                    ? 'Launch Kit turns the Business DNA into 4–6 campaign concepts a solo builder can run — each in your brand voice.'
+                    ? 'Launch Kit turns the Business DNA into 4–6 campaign concepts a solo builder can run, each in your brand voice.'
                     : 'Campaigns are generated from the Business DNA. Extract it first.'
                 }
                 action={

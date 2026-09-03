@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils';
 /**
  * The vertical feature rail, rendered into the shell's AppLayout `sidebar`
  * slot. CRITICAL: the real shell renders this slot in ITS OWN sidebar column,
- * OUTSIDE the app's React tree — so nothing here may call an app context hook
+ * OUTSIDE the app's React tree: so nothing here may call an app context hook
  * (useNav / useLkTheme throw "must be used within ...Provider"). Everything
  * this rail needs arrives as props from AppChrome, which lives inside the
  * providers. Keep this component context-free.

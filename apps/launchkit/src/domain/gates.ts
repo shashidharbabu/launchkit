@@ -1,10 +1,10 @@
 /**
- * Deterministic quality gates — byte-faithful port of gate_signals, gate_asset,
+ * Deterministic quality gates: byte-faithful port of gate_signals, gate_asset,
  * THREAD_PAT, ASSET_LIMITS and HN_LOCK_SECONDS from launchkit/backend/app/rr.py.
  *
  * Identical regexes, identical re-ranking (gate_signals mutates kept signals'
  * rank in place, 1-based), identical warning strings. Note the gate writes a
- * `warnings` array onto the asset data — that key name comes straight from
+ * `warnings` array onto the asset data; that key name comes straight from
  * rr.py's gate_asset.
  */
 
@@ -18,14 +18,14 @@ export const THREAD_PAT = new RegExp(
   "/t/|/thread|forum)");
 
 /**
- * rr.gate_signals — keep only real discussion threads; drop the app's own
+ * rr.gate_signals: keep only real discussion threads; drop the app's own
  * content. `ownUrls` is [repo_url, site_url, app_url] at the caller
  * (main.py's signals flow). Mutates kept signals: rank = 1-based position.
  *
  * Own-content matching: for the app's OWN hosts (its site/app domains) the
  * hostname is a drop-substring; for SHARED hosts (github.com, reddit.com, …)
  * only the app's own path on that host is (host/owner/name), because a shared
- * host is never "own" — the original rule dropped every github.com signal for
+ * host is never "own", the original rule dropped every github.com signal for
  * any GitHub-hosted app (F4). The last path segment of each own URL (e.g. the
  * repo name) remains a drop-substring, as before.
  */
@@ -81,7 +81,7 @@ export const ASSET_LIMITS: Record<string, [string, number]> = {
 };
 
 /**
- * rr.gate_asset — attach code-checked warnings the model can't be trusted to
+ * rr.gate_asset: attach code-checked warnings the model can't be trusted to
  * self-report. Mutates and returns `data` (data.warnings replaced by the
  * gated list). Length checks count CODE POINTS, matching Python len().
  */
@@ -94,19 +94,19 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
   if (limit) {
     const [field, maxLen] = limit;
     if (pyLen(pyStr(pyGet(data, field, ""))) > maxLen) {
-      warnings.push(`${field} exceeds ${maxLen} chars — trim before publishing`);
+      warnings.push(`${field} exceeds ${maxLen} chars: trim before publishing`);
     }
   }
   for (const [k, v] of Object.entries(data as Record<string, unknown>)) {
     if (typeof v === "string" && /[—–]/.test(v)) {
-      warnings.push(`${k} contains an em/en dash — forbidden on every platform`);
+      warnings.push(`${k} contains an em/en dash, forbidden on every platform`);
     }
   }
   if (assetType === "show_hn" && !pyStr(pyGet(data, "title", "")).startsWith("Show HN:")) {
     warnings.push("title must start with 'Show HN:'");
   }
   if (assetType === "reddit_post" && pyStr(pyGet(data, "title", "")).startsWith("Show HN")) {
-    warnings.push("title uses HN convention — rewrite for Reddit");
+    warnings.push("title uses HN convention, rewrite for Reddit");
   }
   data["warnings"] = warnings;
   return data;
@@ -116,7 +116,7 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
 export const HN_LOCK_SECONDS = 14 * 86400;
 
 /** Rejection text used by rescore_signals when the HN lock trips. */
-export const HN_LOCK_REJECTION_WHY = "HN thread locked (older than 14 days) — cannot reply";
+export const HN_LOCK_REJECTION_WHY = "HN thread locked (older than 14 days), cannot reply";
 
 /**
  * The HN-lock check from rr.rescore_signals as a pure predicate:

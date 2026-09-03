@@ -62,13 +62,13 @@ export function gate1Passed(profiles: ProfileRow[]): boolean {
 
 /** 409 detail when brand_campaigns runs without extracted DNA. */
 export const BRAND_CAMPAIGNS_PREREQ_ERROR =
-  "extract Brand DNA first — campaigns are " +
+  "extract Brand DNA first, campaigns are " +
   "generated from it";
 
 /**
  * main.run_stage: brand_campaigns 409s when no brand_dna commercial result
  * exists (checked BEFORE creating a job row, so the failure never lands in
- * run history). Python `if not dna` — an empty dict also blocks.
+ * run history). Python `if not dna`, an empty dict also blocks.
  */
 export function canRunBrandCampaigns(dna: Dict | null | undefined): boolean {
   return dna != null && Object.keys(dna).length > 0;
@@ -84,7 +84,7 @@ export function nextProfileVersion(existingProfileCount: number): number {
 export const MANUAL_EDIT_JOB_ID = "manual-edit";
 
 /**
- * main.edit_profile: an edit never mutates a profile row — it creates a NEW
+ * main.edit_profile: an edit never mutates a profile row; it creates a NEW
  * draft version attributed to "manual-edit".
  */
 export function newProfileRowOnEdit(existingProfileCount: number, data: Dict): {
@@ -118,7 +118,7 @@ export function newProfileRowOnUnderstand(existingProfileCount: number, data: Di
 }
 
 /** 404 detail when there is no profile to approve. */
-export const NO_PROFILE_TO_APPROVE_ERROR = "no profile to approve — run understand first";
+export const NO_PROFILE_TO_APPROVE_ERROR = "no profile to approve, run understand first";
 
 /**
  * main.approve_profile approves the LATEST version regardless of its status
@@ -167,7 +167,7 @@ export function isValidSignalStatus(status: string): status is SignalStatus {
 }
 
 /**
- * main.run_stage signals branch: community-scoped recall — subreddit names
+ * main.run_stage signals branch: community-scoped recall, subreddit names
  * mined from this project's ranked targets (ordered by rank), deduped, max 5.
  * An empty result means the caller falls back to SIGNAL_FALLBACK_COMMUNITIES
  * (rr.run_signals receives null).
@@ -200,7 +200,7 @@ export interface NewSignalRow {
 
 /**
  * main.run_stage signals on_done: a re-scan must not resurrect threads the
- * builder already replied to or dismissed — status carries across by URL
+ * builder already replied to or dismissed, status carries across by URL
  * (ids regenerate every run). Only non-"new" statuses carry.
  */
 export function carrySignalStatusByUrl(prevSignals: PrevSignalRow[],
@@ -248,7 +248,7 @@ export interface NewVenueRow {
 
 /**
  * main.run_stage targets on_done. Gate 3 is an approval: re-running the stage
- * must not silently revoke it — the builder's picks carry across the rebuild
+ * must not silently revoke it, the builder's picks carry across the rebuild
  * by URL (stable identity; ids and ranks both change between runs).
  * Discovered http URLs not already in the venue pool become new venues (with
  * the exact Python field defaults and code-point truncations); everything in

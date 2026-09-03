@@ -1,5 +1,5 @@
 /**
- * "Share on <platform>" — the standard share-intent pattern: open the
+ * "Share on <platform>", the standard share-intent pattern: open the
  * platform's own composer with the draft already in it, the way referral
  * links do. Where a platform has no composer intent, we copy the text and open
  * the right page. Every builder replaces the {APP_URL} placeholder first.

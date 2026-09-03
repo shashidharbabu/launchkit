@@ -1,7 +1,7 @@
 import { cn } from '../../lib/utils';
 
 /**
- * The provenance line — every AI-drafted artifact carries one (components.md).
+ * The provenance line: every AI-drafted artifact carries one (components.md).
  * The one lowercase mono use in the system. Sits 8px under its content.
  */
 export function ProvenanceLine({
