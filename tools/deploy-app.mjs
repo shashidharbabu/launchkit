@@ -34,7 +34,7 @@ for (let i = 0; i < 90; i++) {
   const versions = await client.deploy.versions(appId).catch(() => null);
   const rows = versions?.rows ?? [];
   const latest = rows.reduce((a, b) => ((a?.version ?? 0) >= (b?.version ?? 0) ? a : b), null);
-  const status = latest?.build?.status ?? latest?.snapshot?.build?.status ?? 'unknown';
+  const status = latest?.metadata?.build?.status ?? latest?.build?.status ?? latest?.snapshot?.build?.status ?? 'unknown';
   console.log(`build poll ${i}: v${latest?.version} ${status}`);
   if (status === 'ok') { console.log('BUILD OK — version', latest.version); break; }
   if (String(status).includes('fail') || String(status).includes('error')) {
