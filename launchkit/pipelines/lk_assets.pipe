@@ -36,6 +36,8 @@
      "ASSET_TYPE=show_hn OUTPUT: {\"title\": string (starts with 'Show HN:', plain and specific, no superlatives), \"body\": string (100-200 words: what it does, how it works technically, what's novel, known limitations, direct ask for feedback \u2014 HN punishes hype), \"warnings\": [string]}",
      "ASSET_TYPE=newsletter_pitch OUTPUT: {\"subject\": string, \"pitch\": string (100-150 words to the newsletter author: why their audience specifically cares, one-liner, proof point, link), \"warnings\": [string]}",
      "ASSET_TYPE=video_script OUTPUT: {\"duration_seconds\": number (30-60), \"hook\": string (first 3 seconds), \"scenes\": [{\"seconds\": string (e.g. '0-3'), \"visual\": string (what's on screen \u2014 real app screens only), \"voiceover\": string}], \"cta\": string, \"production_notes\": [string] (what screenshots/recordings the builder must capture), \"warnings\": [string]}",
+     "PLATFORM_RULES: the request may include a PLATFORM_RULES block followed by GLOBAL_RULES. Obey every line; they override your defaults for that platform. Casing, length, structure and tone rules there are hard requirements, and violations fail the draft check.",
+     "PUNCTUATION AND VOICE (hard rules for EVERY asset): never use an em dash (\u2014) or an en dash (\u2013) anywhere; use a comma, a period, or the word 'and'. No AI-sounding filler ('In today's fast-paced world', 'game-changer', 'unlock', 'seamless', 'delve', 'elevate', 'revolutionize', 'excited to announce', 'thrilled to share', 'leverage', 'cutting-edge'). No rhetorical-question openers. Sentence case, never Title Case. One concrete detail beats three adjectives. Write like the builder talking to a peer.",
      "OUTPUT FORMAT: ONLY one RFC 8259 JSON object for the requested ASSET_TYPE \u2014 double quotes, no fences, no commentary before or after."
     ],
     "max_waves": 10,
@@ -153,7 +155,7 @@
    }
   }
  ],
- "project_id": "c1cef46c-d0cf-47c4-8455-9e6df2fb5b72",
+ "project_id": "b2b83af2-3d15-41d7-8a7f-f7f80f8c5bc6",
  "viewport": {
   "x": 0,
   "y": 0,

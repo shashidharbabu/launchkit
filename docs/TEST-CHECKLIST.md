@@ -66,3 +66,12 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 
 ## L. External user (Phase 6)
 28. Fresh account, different org: install from the team rung, add keys in Settings, complete steps 6–20 with no help.
+
+## Social Launch (stage 04, 2026-09-03)
+- [ ] Stage rail and flow strip say "Social Launch"; no "Assets" anywhere in the UI (run labels read "Social Launch — <platform>").
+- [ ] Picker shows seven platform cards, each with its rulebook summary; Draft/Redraft label reflects whether a draft exists.
+- [ ] Every draft card has a visible "Regenerate with feedback" section with a textarea and a primary Regenerate button (no toggle).
+- [ ] Action row: "Share on X" opens x.com/intent/post with the post prefilled; LinkedIn, Reddit, HN, email open their composers; Product Hunt copies the listing and opens new-post; video has Copy only.
+- [ ] New drafts contain no em/en dash; if the model slipped one in, the card says "N dashes replaced by the punctuation rule" and no dash warning remains.
+- [ ] Settings → "Platform rulebooks": switching platforms swaps the text; saving shows a toast; the next draft for that platform follows the edited rules.
+- [ ] Drive: `cd launchkit/frontend && node drive.social.mjs` → prints SOCIAL_OK (runs one real LinkedIn draft).

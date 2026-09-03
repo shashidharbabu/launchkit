@@ -105,7 +105,7 @@ export default function LaunchesPage() {
                   <Th>Site</Th>
                   <Th>Repo</Th>
                   <Th>Profile</Th>
-                  <Th numeric>Assets</Th>
+                  <Th numeric>Posts</Th>
                   <Th numeric>Venues</Th>
                   <Th numeric>Signals</Th>
                 </tr>

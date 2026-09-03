@@ -224,3 +224,23 @@ Last updated: 2026-09-02.
 
 - Reddit Data API self-serve is closed (2026) — manual approval only; note the alternative flows.
 - Observability: the platform exposes task/flow/output events via the SDK monitor + `pipelineTraceLevel` on runs — document as the standard app-tracing mechanism (see the tracing work in progress).
+
+## G. Social Launch (renamed from Assets), 2026-09-03
+
+| # | Issue | Fix |
+|---|-------|-----|
+| G1 | Drafts read the same on every platform: one prompt, no platform rules. | Rulebooks are data. `platform_rules` table (blobstore), seeded from `lib/rulebooks.ts` on first run, edited in Settings ("Platform rulebooks"; saving appends a version, newest wins). `data/rules.ts#rulesBlock` injects `PLATFORM_RULES` + `GLOBAL_RULES` into `buildAssetQuestion` after TONE and before BUILDER_FEEDBACK. |
+| G2 | Em/en dashes in drafts (the strongest reject criterion). A prompt rule alone is not a guarantee. | Three layers: rulebook + pipe instruction (lk_assets, id rotated), `domain/sanitize.ts#sanitizeDraft` runs on every result before the gate (em dash → comma, en dash between digits → hyphen, count kept as `punctuation_fixed` and shown on the card), and `gateAsset` warns on any dash that survives. Node tests: `tools/tests/domain/sanitize.test.mjs`. |
+| G3 | No way to post from the app. | Share intents (`lib/share.ts`): X `x.com/intent/post`, LinkedIn `feed/?shareActive=true&text=`, Reddit `r/<sub>/submit?title&text`, HN `submitlink?u&t` (body to clipboard), Product Hunt (no prefill: listing to clipboard, opens new-post), newsletter `mailto:`. `{APP_URL}` is filled from the project's first http field; left as-is when none. Tests: `share.test.mjs`. |
+| G4 | "Regenerate with feedback" hidden behind a toggle. | Its own always-visible section on every draft card, above the action row, primary button. |
+| G5 | Feature called "Assets". | Display name "Social Launch" everywhere (stage list, flow strip, run labels, navigator prompt). The stage slug stays `assets` so links and stored runs keep working. |
+| G6 | Video script quality; can `vendor/reel-creation` help? | Verdict: it is a server-side Python + ffmpeg + Node toolchain (Gemini for clips at 60 to 180 s each, ElevenLabs for voice, HyperFrames for kinetic type). Not embeddable in the browser app. Usable later as a deployed pipeline/service with `GEMINI_API_KEY` and `ELEVENLABS_API_KEY`, taking the approved script and returning an mp4 to the file store. Parked; the script itself is now written to the "Short video" rulebook. |
+
+## H. Tooling gotchas found while shipping v15, 2026-09-03
+
+| # | Issue | Fix / rule |
+|---|-------|-----------|
+| H1 | Generated `.pipe` files get a fresh top-level `project_id` (two-space JSON) within a second of `gen-pipes` writing them, so they never match `tools/pipe-ids.json`. No script under `tools/` does this; it is consistent with the RocketRide extension's workspace watcher assigning ids to pipe files. | Do not chase id mismatches between generated files and the pin file. The effect is benign (always a fresh pipeline, never a stale config). To force a fresh pipeline after a source edit, rotating the pinned id is still the right habit for the preview and for documentation, but the deployed bundle carries whatever id is on disk at deploy time. |
+| H2 | Killing `deploy-app.mjs` after its `addApp` call leaves a private registry version behind, so the next deploy's label and registry version diverge ("v15" label became registry version 16). | Let a deploy finish, or expect to publish by registry version, not by label. `publish-team.mjs` / `publish-me.mjs` take the registry version. |
+| H3 | Node 25's test runner uses the spec reporter here; grepping for `# pass` prints nothing. | Run with `--test-reporter=tap` when a script needs counts. |
+| H4 | The stage's "Drafting…" loading label is always in the DOM (hidden), so waiting for it to disappear never completes. | Drives wait on the app's real in-flight signal: action buttons disabled while a run is live, enabled when it ends (`drive.social.mjs`). |

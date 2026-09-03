@@ -11,7 +11,7 @@ export function jobLabel(kind: string): string {
   if (kind === 'signals') return 'Signals — search';
   if (kind.startsWith('asset:')) {
     const t = kind.slice('asset:'.length);
-    return `Assets — ${ASSET_LABELS[t] ?? t}`;
+    return `Social Launch — ${ASSET_LABELS[t] ?? t}`;
   }
   return kind;
 }

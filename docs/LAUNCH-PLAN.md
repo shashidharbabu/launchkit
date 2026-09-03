@@ -88,3 +88,6 @@ Phase 1a → 1b → 1c → 2 → 3 → 4 → 5 → 6, about **8–11 working day
 ## 9. How the work runs (unchanged)
 
 Hardened preview verification with real engine events; tracing-first triage; every issue and fix logged for the owner docs; `gen-styles` runs inside every deploy; deploys through the `.env.deploy` overlay; one deploy per verified unit.
+
+## 1d. Social Launch (2026-09-03)
+Assets stage renamed Social Launch. Per-platform rulebooks stored in the app database and editable in Settings; every draft is written to them. Hard no-dash rule enforced by rulebook, pipe instruction, sanitizer and gate. Share-intent buttons open each platform's composer with the draft. Regenerate-with-feedback always visible. Video generation via reel-creation parked as a future deployed service (needs Gemini + ElevenLabs keys). See MIGRATION-ISSUES-LOG G1 to G6.

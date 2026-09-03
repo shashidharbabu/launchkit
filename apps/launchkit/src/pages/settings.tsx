@@ -5,6 +5,7 @@ import { AnimatedBackground } from '../components/motion-primitives/animated-bac
 import { Button } from '../components/ui/button';
 import { StatusStamp } from '../components/ui/status-stamp';
 import { Card } from '../components/launchkit/stage-common';
+import { RulebookEditor } from '../components/launchkit/rulebook-editor';
 import { DUR, EASE_STANDARD } from '../lib/motion';
 import { api } from '../data/api';
 import { cn } from '../lib/utils';
@@ -78,6 +79,7 @@ export default function SettingsPage() {
         </div>
       </Card>
 
+      <RulebookEditor />
       <Card>
         <div className="px-4 py-3">
           <MetaLabel>Console theme</MetaLabel>

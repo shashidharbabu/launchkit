@@ -17,7 +17,7 @@ import { LkThemeProvider, useLkTheme } from './theme';
 import { NavProvider, useNav } from './nav';
 import { initBlobStore } from './data/blobstore';
 import { ingestShellEvent } from './data/trace';
-import { seedVenuesIfEmpty } from './data/seed';
+import { seedRulebooksIfEmpty, seedVenuesIfEmpty } from './data/seed';
 import { initRunner } from './data/runner';
 import { AppChrome } from './components/launchkit/app-chrome';
 import { LkErrorBoundary } from './components/launchkit/error-boundary';
@@ -110,6 +110,7 @@ const ConnectedApp: React.FC = () => {
       identity?.displayName ?? identity?.email ?? 'user',
     );
     seedVenuesIfEmpty();
+    seedRulebooksIfEmpty();
     initRunner(c);
     setReady(true);
     // appState is re-read only on the initial load; live writes go through

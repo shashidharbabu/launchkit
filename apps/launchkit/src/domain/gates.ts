@@ -97,6 +97,11 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
       warnings.push(`${field} exceeds ${maxLen} chars — trim before publishing`);
     }
   }
+  for (const [k, v] of Object.entries(data as Record<string, unknown>)) {
+    if (typeof v === "string" && /[—–]/.test(v)) {
+      warnings.push(`${k} contains an em/en dash — forbidden on every platform`);
+    }
+  }
   if (assetType === "show_hn" && !pyStr(pyGet(data, "title", "")).startsWith("Show HN:")) {
     warnings.push("title must start with 'Show HN:'");
   }

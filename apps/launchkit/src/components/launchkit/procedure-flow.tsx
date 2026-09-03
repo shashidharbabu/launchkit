@@ -41,7 +41,7 @@ const STAGES = [
     line: 'Tiers set against real competitor prices. Listing rewritten.',
   },
   {
-    name: 'Assets',
+    name: 'Social Launch',
     Icon: PenLine,
     line: 'One post per platform, in that platform’s voice.',
     gate: 'Gate 2',

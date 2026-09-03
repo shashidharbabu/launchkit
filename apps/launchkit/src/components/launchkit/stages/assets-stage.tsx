@@ -1,16 +1,6 @@
 import * as React from 'react';
 import { toast } from 'sonner';
-import {
-  AtSign,
-  Briefcase,
-  Clapperboard,
-  FileText,
-  Mail,
-  MessagesSquare,
-  Newspaper,
-  Rocket,
-  type LucideIcon,
-} from 'lucide-react';
+import { AtSign, Briefcase, Clapperboard, ExternalLink, FileText, Mail, MessagesSquare, Newspaper, RefreshCw, Rocket, type LucideIcon } from 'lucide-react';
 import { useProject } from '../project-provider';
 import {
   Card,
@@ -23,7 +13,6 @@ import { Button } from '../../ui/button';
 import { CopyButton } from '../../ui/copy-button';
 import { StatusStamp } from '../../ui/status-stamp';
 import { ProvenanceLine } from '../../ui/provenance-line';
-import { Disclosure } from '../../ui/disclosure';
 import { Textarea, Label } from '../../ui/field';
 import { TextShimmer } from '../../motion-primitives/text-shimmer';
 import {
@@ -38,6 +27,8 @@ import { useReducedMotion } from 'motion/react';
 import { AnimatedGroup } from '../../motion-primitives/animated-group';
 import { api } from '../../../data/api';
 import { ASSET_LABELS, ASSET_TYPES } from '../../../lib/asset-types';
+import { pickUrl, shareLinks, type ShareLink } from '../../../lib/share';
+import { rulesFor } from '../../../data/rules';
 import { actionError } from '../../../lib/errors';
 import { DUR, EASE_STANDARD } from '../../../lib/motion';
 import type { AssetRow } from '../../../lib/types';
@@ -119,7 +110,6 @@ function AssetCard({
   emberApprove: boolean;
 }) {
   const { project, runJob, refresh, setError, running } = useProject();
-  const [notesOpen, setNotesOpen] = React.useState(false);
   const [feedback, setFeedback] = React.useState('');
   const [approving, setApproving] = React.useState(false);
   if (!project) return null;
@@ -128,6 +118,26 @@ function AssetCard({
   const warnings = Array.isArray(asset.data.warnings) ? asset.data.warnings.map(asStr) : [];
   const label = ASSET_LABELS[asset.asset_type] ?? asset.asset_type.toUpperCase();
   const Icon = ASSET_ICONS[asset.asset_type] ?? FileText;
+  const data = asset.data as Record<string, unknown>;
+  const fixed = typeof data.punctuation_fixed === 'number' ? data.punctuation_fixed : 0;
+  const links = shareLinks(
+    asset.asset_type,
+    data,
+    pickUrl(project as unknown as Record<string, unknown>),
+    typeof data.subreddit === 'string' ? data.subreddit : undefined,
+  );
+  // the referral-button pattern: open the platform's composer with the draft in it
+  const share = async (l: ShareLink) => {
+    if (l.copyFirst) {
+      try {
+        await navigator.clipboard.writeText(l.copyFirst);
+      } catch {
+        /* clipboard blocked: the composer still opens */
+      }
+    }
+    window.open(l.href, '_blank', 'noopener,noreferrer');
+    if (l.note) toast(l.note);
+  };
 
   return (
     <Card>
@@ -141,31 +151,6 @@ function AssetCard({
       </div>
 
       <div className="border-t border-border px-4 py-4">
-        <Disclosure open={notesOpen}>
-          <div className="mb-3 grid gap-2 border border-border bg-muted p-3">
-            <Label htmlFor={`fb-${asset.id}`}>What should change?</Label>
-            <Textarea
-              id={`fb-${asset.id}`}
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              placeholder="e.g. shorter, lead with the benchmark"
-            />
-            <div>
-              <Button
-                variant="secondary"
-                disabled={Boolean(running)}
-                onClick={() => {
-                  setNotesOpen(false);
-                  runJob(`asset:${asset.asset_type}`, () =>
-                    api.runAsset(project.id, asset.asset_type, undefined, feedback),
-                  ).then(() => setFeedback(''));
-                }}
-              >
-                Regenerate
-              </Button>
-            </div>
-          </div>
-        </Disclosure>
 
         {warnings.length > 0 && (
           <div className="mb-3 border border-hold bg-hold/10 p-3">
@@ -210,6 +195,41 @@ function AssetCard({
         </div>
       </div>
 
+      {/* regenerate: always visible, its own section; the feedback is the point of the review */}
+      <div className="border-t border-border bg-muted px-4 py-4">
+        <div className="mb-1 flex items-center gap-2">
+          <RefreshCw size={14} strokeWidth={1.5} aria-hidden className="text-muted-foreground" />
+          <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-foreground">
+            Regenerate with feedback
+          </span>
+        </div>
+        <p className="mb-3 text-body text-muted-foreground">
+          Not right? Say what should change. The {label} rulebook and the no-dash rule still apply
+          to the new draft.
+        </p>
+          <div className="grid gap-2">
+            <Label htmlFor={`fb-${asset.id}`}>What should change?</Label>
+            <Textarea
+              id={`fb-${asset.id}`}
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              placeholder="e.g. shorter, lead with the benchmark, drop the second paragraph"
+            />
+            <div>
+              <Button
+                variant="primary"
+                disabled={Boolean(running)}
+                onClick={() => {
+                  runJob(`asset:${asset.asset_type}`, () =>
+                    api.runAsset(project.id, asset.asset_type, undefined, feedback),
+                  ).then(() => setFeedback(''));
+                }}
+              >
+                Regenerate
+              </Button>
+            </div>
+          </div>
+      </div>
       {/* actions row: below body + provenance, like the Gate Slip */}
       <div className="flex flex-wrap items-center gap-2 border-t border-border px-4 py-3">
         {!approved && (
@@ -233,10 +253,18 @@ function AssetCard({
             Approve
           </Button>
         )}
+        {links.map((l) => (
+          <Button key={l.platform} variant={approved ? 'primary' : 'secondary'} onClick={() => share(l)}>
+            <ExternalLink size={14} strokeWidth={1.5} aria-hidden />
+            {l.label}
+          </Button>
+        ))}
         <CopyButton text={assetCopyText(asset.data)} label="Copy" />
-        <Button variant="secondary" onClick={() => setNotesOpen(!notesOpen)}>
-          Regenerate with feedback
-        </Button>
+        {fixed > 0 && (
+          <span className="font-mono text-data text-muted-foreground">
+            {fixed} {fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule
+          </span>
+        )}
       </div>
     </Card>
   );
@@ -270,21 +298,37 @@ export function AssetsStage() {
         />
       )}
 
-      <div className="flex flex-wrap items-center gap-2">
-        {ASSET_TYPES.map((t) => (
-          <Button
-            key={t}
-            variant="secondary"
-            size="compact"
-            disabled={Boolean(running)}
-            loading={runningAsset === t}
-            loadingLabel="Drafting…"
-            onClick={() => runJob(`asset:${t}`, () => api.runAsset(project.id, t))}
-            className="font-mono text-meta uppercase tracking-[0.08em]"
-          >
-            {existing.has(t) ? `Redraft ${ASSET_LABELS[t]}` : `Draft ${ASSET_LABELS[t]}`}
-          </Button>
-        ))}
+      {/* platform picker: each option shows what its rulebook optimises for */}
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-label="Platforms">
+        {ASSET_TYPES.map((t) => {
+          const rb = rulesFor(t);
+          const PIcon = ASSET_ICONS[t] ?? FileText;
+          const has = existing.has(t);
+          return (
+            <div key={t} role="listitem" className="flex flex-col gap-2 border border-border bg-background p-4">
+              <div className="flex items-center gap-2">
+                <PIcon size={14} strokeWidth={1.5} aria-hidden className="shrink-0 text-muted-foreground" />
+                <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-foreground">
+                  {rb.name}
+                </span>
+                {has && <span className="font-mono text-data text-muted-foreground">drafted</span>}
+              </div>
+              <p className="flex-1 text-body text-muted-foreground">{rb.summary}</p>
+              <div>
+                <Button
+                  variant={has ? 'secondary' : 'primary'}
+                  size="compact"
+                  disabled={Boolean(running)}
+                  loading={runningAsset === t}
+                  loadingLabel="Drafting…"
+                  onClick={() => runJob(`asset:${t}`, () => api.runAsset(project.id, t))}
+                >
+                  {has ? `Redraft for ${rb.name}` : `Draft for ${rb.name}`}
+                </Button>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {assets.length > 0 && (

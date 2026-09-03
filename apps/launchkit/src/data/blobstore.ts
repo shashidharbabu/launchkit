@@ -15,7 +15,7 @@ type Tables = Record<string, Row[]>;
 
 const TABLES = [
   'projects', 'profiles', 'assets', 'targets', 'signals',
-  'commercial_results', 'venues', 'runs', 'signups', 'settings', 'traces',
+  'commercial_results', 'venues', 'runs', 'signups', 'settings', 'traces', 'platform_rules',
 ] as const;
 export type TableName = (typeof TABLES)[number];
 

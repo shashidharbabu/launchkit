@@ -71,7 +71,7 @@ export function buildBrandQuestion(task: string, profile: Profile, siteUrl = "",
 /** rr.run_asset — section order (BRAND_DNA → TARGET → TONE → feedback) is contractual. */
 export function buildAssetQuestion(assetType: string, profile: Profile,
                                    target?: TargetData | null, tone = "",
-                                   feedback = "", brandDna?: BrandDna | null): string {
+                                   feedback = "", brandDna?: BrandDna | null, rules = ""): string {
   const parts = [`ASSET_TYPE: ${assetType}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
   if (pyTruthy(brandDna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(brandDna)}`);
@@ -81,6 +81,9 @@ export function buildAssetQuestion(assetType: string, profile: Profile,
   }
   if (tone) {
     parts.push(`TONE: ${tone}`);
+  }
+  if (rules) {
+    parts.push(rules);
   }
   if (feedback) {
     parts.push("BUILDER_FEEDBACK (the builder reviewed a previous draft " +

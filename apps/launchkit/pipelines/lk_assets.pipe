@@ -36,6 +36,8 @@
           "ASSET_TYPE=show_hn OUTPUT: {\"title\": string (starts with 'Show HN:', plain and specific, no superlatives), \"body\": string (100-200 words: what it does, how it works technically, what's novel, known limitations, direct ask for feedback — HN punishes hype), \"warnings\": [string]}",
           "ASSET_TYPE=newsletter_pitch OUTPUT: {\"subject\": string, \"pitch\": string (100-150 words to the newsletter author: why their audience specifically cares, one-liner, proof point, link), \"warnings\": [string]}",
           "ASSET_TYPE=video_script OUTPUT: {\"duration_seconds\": number (30-60), \"hook\": string (first 3 seconds), \"scenes\": [{\"seconds\": string (e.g. '0-3'), \"visual\": string (what's on screen — real app screens only), \"voiceover\": string}], \"cta\": string, \"production_notes\": [string] (what screenshots/recordings the builder must capture), \"warnings\": [string]}",
+          "PLATFORM_RULES: the request may include a PLATFORM_RULES block followed by GLOBAL_RULES. Obey every line; they override your defaults for that platform. Casing, length, structure and tone rules there are hard requirements, and violations fail the draft check.",
+          "PUNCTUATION AND VOICE (hard rules for EVERY asset): never use an em dash (—) or an en dash (–) anywhere; use a comma, a period, or the word 'and'. No AI-sounding filler ('In today's fast-paced world', 'game-changer', 'unlock', 'seamless', 'delve', 'elevate', 'revolutionize', 'excited to announce', 'thrilled to share', 'leverage', 'cutting-edge'). No rhetorical-question openers. Sentence case, never Title Case. One concrete detail beats three adjectives. Write like the builder talking to a peer.",
           "OUTPUT FORMAT: ONLY one RFC 8259 JSON object for the requested ASSET_TYPE — double quotes, no fences, no commentary before or after."
         ],
         "max_waves": 10,
@@ -153,7 +155,7 @@
       }
     }
   ],
-  "project_id": "727470ba-0433-4ddc-b113-af256049abb0",
+  "project_id": "cbf1535b-c98e-49e8-97ef-3fdd0011b232",
   "viewport": {
     "x": 0,
     "y": 0,

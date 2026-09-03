@@ -26,6 +26,7 @@ import {
   select, selectOne, uid, update, type Row,
 } from './blobstore';
 import { getCurrentRun, setCurrentRun } from './trace';
+import { rulesBlock, sanitizeDraft } from './rules';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
 
@@ -319,9 +320,11 @@ export const api = {
     const brandDna = await latestCommercial(id, 'brand_dna');
     const jobId = await runJob(id, assetJobKind(asset_type),
       () => ask('lk_assets.pipe',
-        buildAssetQuestion(asset_type, profile, target, '', feedback, brandDna)),
+        buildAssetQuestion(asset_type, profile, target, '', feedback, brandDna, rulesBlock(asset_type))),
       async (result) => {
-        const gated = gateAsset(asset_type, result);
+        const { data: clean, changed } = sanitizeDraft(result);
+        const gated = gateAsset(asset_type, clean) as Record<string, unknown>;
+        if (changed) gated.punctuation_fixed = changed;
         const n = count('assets', { project_id: id, asset_type });
         insert('assets', {
           id: uid(), project_id: id, asset_type, version: n + 1,
