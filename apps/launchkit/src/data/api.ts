@@ -26,7 +26,8 @@ import {
   select, selectOne, uid, update, type Row,
 } from './blobstore';
 import { getCurrentRun, setCurrentRun } from './trace';
-import { rulesBlock, sanitizeDraft } from './rules';
+import { rulesBlock } from './rules';
+import { punctuationFixed } from './runner';
 import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
@@ -324,8 +325,8 @@ export const api = {
       () => ask('lk_assets.pipe',
         buildAssetQuestion(asset_type, profile, target, '', feedback, brandDna, rulesBlock(asset_type))),
       async (result) => {
-        const { data: clean, changed } = sanitizeDraft(result);
-        const gated = gateAsset(asset_type, clean) as Record<string, unknown>;
+        const changed = punctuationFixed(result);
+        const gated = gateAsset(asset_type, result) as Record<string, unknown>;
         if (changed) gated.punctuation_fixed = changed;
         const n = count('assets', { project_id: id, asset_type });
         insert('assets', {

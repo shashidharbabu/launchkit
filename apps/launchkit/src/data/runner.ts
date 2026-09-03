@@ -11,6 +11,7 @@
  *  - signals: the no-tools death signature (empty queries + empty signals)
  *    restarts the pipe and retries once
  */
+import { sanitizeDraft } from '../domain/sanitize';
 import { clearLive, getCurrentRun, normalizeTrace, recordTrace, takeLive } from './trace';
 import type { PipelineConfig, RocketRideClient } from 'rocketride';
 import { Question } from 'rocketride';
@@ -26,6 +27,12 @@ import assetsPipe from '../../pipelines/lk_assets.pipe';
 import signalsPipe from '../../pipelines/lk_signals.pipe';
 import rescorePipe from '../../pipelines/lk_rescore.pipe';
 import navigatorPipe from '../../pipelines/lk_navigator.pipe';
+
+/** Dashes the sanitiser replaced in a result object (the asset card shows the count). */
+const fixedCounts = new WeakMap<object, number>();
+export function punctuationFixed(data: unknown): number {
+  return data && typeof data === 'object' ? fixedCounts.get(data as object) ?? 0 : 0;
+}
 
 const PIPES: Record<string, unknown> = {
   'lk_understand.pipe': understandPipe,
@@ -156,7 +163,10 @@ async function askOnce(pipeName: string, questionText: string): Promise<Dict> {
   const pid = pipeProjectId(pipeName);
   if (pid) clearLive(pid);
   try {
-    const { data, trace } = await askOnceInner(pipeName, questionText);
+    const { data: raw, trace } = await askOnceInner(pipeName, questionText);
+    // no model output reaches the UI or the clipboard with an em/en dash (owner rule, every pipe)
+    const { data, changed } = sanitizeDraft(raw);
+    if (changed) fixedCounts.set(data as object, changed);
     const inline = normalizeTrace(trace);
     recordTrace({ run_id: runId, pipe: pipeName, ok: true, ms: Date.now() - t0, error: null, question: questionText, entries: inline.length ? inline : (pid ? takeLive(pid) : []) });
     return data;
