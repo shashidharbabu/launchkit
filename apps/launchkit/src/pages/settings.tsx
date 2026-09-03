@@ -6,6 +6,7 @@ import { Button } from '../components/ui/button';
 import { StatusStamp } from '../components/ui/status-stamp';
 import { Card } from '../components/launchkit/stage-common';
 import { RulebookEditor } from '../components/launchkit/rulebook-editor';
+import { WorkspaceCard } from '../components/launchkit/workspace-card';
 import { DUR, EASE_STANDARD } from '../lib/motion';
 import { api } from '../data/api';
 import { cn } from '../lib/utils';
@@ -79,6 +80,7 @@ export default function SettingsPage() {
         </div>
       </Card>
 
+      <WorkspaceCard />
       <RulebookEditor />
       <Card>
         <div className="px-4 py-3">

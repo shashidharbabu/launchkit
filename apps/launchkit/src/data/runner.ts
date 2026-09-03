@@ -18,6 +18,7 @@ import { parseJsonLoose } from '../domain/parse';
 import type { Dict } from '../domain/types';
 
 import understandPipe from '../../pipelines/lk_understand.pipe';
+import storePipe from '../../pipelines/lk_store.pipe';
 import brandPipe from '../../pipelines/lk_brand.pipe';
 import commercialPipe from '../../pipelines/lk_commercial.pipe';
 import targetsPipe from '../../pipelines/lk_targets.pipe';
@@ -35,6 +36,7 @@ const PIPES: Record<string, unknown> = {
   'lk_signals.pipe': signalsPipe,
   'lk_rescore.pipe': rescorePipe,
   'lk_navigator.pipe': navigatorPipe,
+  'lk_store.pipe': storePipe,
 };
 
 let client: RocketRideClient | null = null;
@@ -53,6 +55,10 @@ function requireClient(): RocketRideClient {
   if (!client) throw new Error('runner not initialized: no shell connection yet');
   return client;
 }
+
+/** Token for a pipe by file name (team store, diagnostics). */
+export const getPipeToken = (pipeName: string) => pipeToken(pipeName);
+export function getClient(): RocketRideClient { return requireClient(); }
 
 async function pipeToken(pipeName: string): Promise<string> {
   const cached = tokens.get(pipeName);

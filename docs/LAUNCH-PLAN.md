@@ -99,4 +99,4 @@ Assets stage renamed Social Launch. Per-platform rulebooks stored in the app dat
 - **Em dashes:** removed from the app's own copy as well as drafts (hyphens are fine, only the em dash is banned). Code comments and the two dash-matching regexes keep the character on purpose.
 
 ## 1e. Team workspaces (in progress)
-Workspace = a RocketRide team. Members and invites come from the SDK account API (`listTeams`, `getTeamDetail`, `inviteMember`, `addTeamMember`, role-checked server-side). Shared launch data needs a store every member can read; see the design note in MIGRATION-ISSUES-LOG section I once chosen.
+Built 2026-09-03: workspace = a RocketRide team; shared snapshot row in the store pipe with optimistic versions and 30 s polling; switcher in the top bar; Settings card for teams, members, invites and a store check. Verified on the preview (directory, error paths). **Must be verified in the deployed app before the demo** (store check, cross-member visibility). Design: MIGRATION-ISSUES-LOG I1 to I4.

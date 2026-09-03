@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { BRAND } from '../../brand/assets';
 import { AnimatedBackground } from '../motion-primitives/animated-background';
 import { ThemeToggle } from '../ui/theme-toggle';
+import { WorkspaceSwitcher } from './workspace-switcher';
 import { Button } from '../ui/button';
 import { DUR, EASE_STANDARD } from '../../lib/motion';
 import { cn } from '../../lib/utils';
@@ -121,7 +122,8 @@ export function AppNav() {
             })}
           </AnimatedBackground>
         </nav>
-        <span className="ml-auto flex items-center gap-1">
+        <span className="ml-auto flex items-center gap-3">
+          <WorkspaceSwitcher />
           <Button variant="ghost" onClick={openPalette} aria-label="Open command palette">
             Search
             <span className="font-mono text-data text-muted-foreground">⌘K</span>

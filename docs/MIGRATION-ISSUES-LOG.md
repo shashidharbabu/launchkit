@@ -245,3 +245,12 @@ Last updated: 2026-09-02.
 | H3 | Node 25's test runner uses the spec reporter here; grepping for `# pass` prints nothing. | Run with `--test-reporter=tap` when a script needs counts. |
 | H4 | The stage's "Drafting…" loading label is always in the DOM (hidden), so waiting for it to disappear never completes. | Drives wait on the app's real in-flight signal: action buttons disabled while a run is live, enabled when it ends (`drive.social.mjs`). |
 | H5 | `deploy-app.mjs` polled `latest.build.status` but the registry now returns it under `metadata.build.status`, so every poll printed "unknown" and the client gave up after 89 polls while the server build had finished in 12 s. | Poll reads `metadata.build.status` first. Confirm with `node tools/check-build.mjs` (it lists registry versions with build state; it is a probe, not a build). |
+
+## I. Team workspaces, 2026-09-03
+
+| # | Issue | Design / fix |
+|---|-------|--------------|
+| I1 | Launches are per user; teammates need a shared workspace. The shell exposes only per-user appState, the file store is private per account, and env scopes are secrets. The only shared data path is a database node in a pipeline. | Workspace = a RocketRide team. Personal keeps the per-user appState. A team workspace is one row in `lk_workspaces` (store pipe `lk_store`, `rocketride_sql_1`): the whole blobstore snapshot as JSON plus a version. `data/teamstore.ts` loads/saves it; `blobstore.mountTables` swaps the backing tables; `WorkspaceProvider` bumps an `epoch` that remounts every page. Writes are optimistic (stale version = conflict → reload + toast); the provider polls the version every 30 s and reloads on a teammate's save. |
+| I2 | The SQL node needs the signed-in shell identity; the API-key preview cannot pass it, and port 3992 is only the app's own dev bundle, not a signed-in shell. | Settings → Workspace has "Check store" (dialect + select + DDL) so the deployed app verifies the path in one click. On the preview the check fails with the server's message and a team switch falls back to Personal with the error shown. Manual verification in the deployed app is a required step before the demo. |
+| I3 | Invites and team membership. | `client.account`: `listTeams`, `getTeamDetail` (members), `createTeam`, `inviteMember` with `teamAssignments` (one call invites and assigns), all role-checked server-side; errors shown verbatim. |
+| I4 | Where the choice lives. | Active workspace is saved per user in appState (`launchkit_ws`) and restored on open; new launches carry `workspace_id`. |

@@ -20,6 +20,7 @@ import { ingestShellEvent } from './data/trace';
 import { seedRulebooksIfEmpty, seedVenuesIfEmpty } from './data/seed';
 import { initRunner } from './data/runner';
 import { AppChrome } from './components/launchkit/app-chrome';
+import { WorkspaceProvider, useLkWorkspace } from './components/launchkit/workspace-provider';
 import { LkErrorBoundary } from './components/launchkit/error-boundary';
 import HomePage from './pages/home';
 import { NavigatorHome } from './components/launchkit/navigator-home';
@@ -72,6 +73,12 @@ function ActiveView() {
     case 'workspace':
       return <WorkspacePage />;
   }
+}
+
+/** Remount every page when the workspace changes or a teammate's save lands. */
+function WorkspaceView() {
+  const { epoch } = useLkWorkspace();
+  return <ActiveView key={epoch} />;
 }
 
 /**
@@ -134,9 +141,11 @@ const ConnectedApp: React.FC = () => {
 
   return (
     <NavProvider>
-      <AppChrome>
-        <ActiveView />
-      </AppChrome>
+      <WorkspaceProvider>
+        <AppChrome>
+          <WorkspaceView />
+        </AppChrome>
+      </WorkspaceProvider>
     </NavProvider>
   );
 };

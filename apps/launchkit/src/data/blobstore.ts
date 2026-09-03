@@ -40,6 +40,18 @@ export function initBlobStore(
   persist = (snapshot) => updateAppState((prev) => ({ ...prev, [APP_STATE_KEY]: snapshot }));
 }
 
+/** Swap the backing tables and persister (team workspace ↔ personal). */
+export function mountTables(saved: Record<string, Row[]> | null, persister: (snapshot: Record<string, unknown>) => void): void {
+  if (flushTimer) { clearTimeout(flushTimer); flushTimer = null; }
+  tables = Object.fromEntries(TABLES.map((t) => [t, (saved?.[t] as Row[] | undefined) ?? []])) as Tables;
+  persist = persister;
+}
+
+/** The mounted tables as one plain object (what a team row stores). */
+export function snapshotTables(): Record<string, unknown> {
+  return snapshot();
+}
+
 export function isReady(): boolean {
   return persist !== null;
 }

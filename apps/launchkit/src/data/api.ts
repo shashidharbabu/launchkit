@@ -27,6 +27,7 @@ import {
 } from './blobstore';
 import { getCurrentRun, setCurrentRun } from './trace';
 import { rulesBlock, sanitizeDraft } from './rules';
+import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
 
@@ -173,6 +174,7 @@ export const api = {
     const id = uid();
     insert('projects', {
       id, name, repo_url: repo, site_url: site, app_url: appUrl, created_by: currentActor(),
+      workspace_id: activeWorkspaceId(),
     });
     const p = { id, name, repo_url: repo, site_url: site };
     const jobId = (body.autorun ?? true) ? await startUnderstand(p) : null;
