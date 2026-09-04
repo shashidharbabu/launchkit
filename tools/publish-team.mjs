@@ -13,7 +13,7 @@ const res = await client.connect();
 console.log('key belongs to user:', JSON.stringify(res?.user ?? res?.email ?? '(not in payload)').slice(0, 120));
 for (const team of res?.organization?.teams ?? []) {
   try {
-    const out = await client.publishApp('rocketride_sb.launchkit', 20, `@team/${team.id}`);
+    const out = await client.publishApp('rocketride_sb.launchkit', 21, `@team/${team.id}`);
     console.log(`published v2 -> @team/${team.name}:`, JSON.stringify(out.publish?.state ?? out).slice(0, 80));
   } catch (e) {
     console.log(`team ${team.name} FAILED:`, String(e?.message ?? e).slice(0, 160));
