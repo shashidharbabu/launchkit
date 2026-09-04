@@ -1,184 +1,184 @@
 {
-  "components": [
-    {
-      "id": "chat_1",
-      "provider": "chat",
-      "name": "Chat",
-      "config": {
-        "hideForm": true,
-        "mode": "Source",
-        "parameters": {},
-        "type": "chat"
-      },
-      "ui": {
-        "position": {
-          "x": 20,
-          "y": 200
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
+ "components": [
+  {
+   "id": "chat_1",
+   "provider": "chat",
+   "name": "Chat",
+   "config": {
+    "hideForm": true,
+    "mode": "Source",
+    "parameters": {},
+    "type": "chat"
+   },
+   "ui": {
+    "position": {
+     "x": 20,
+     "y": 200
     },
-    {
-      "id": "agent_rocketride_1",
-      "provider": "agent_rocketride",
-      "name": "RocketRide Wave",
-      "config": {
-        "agent_description": "Launch Kit launch-venue targeting strategist",
-        "instructions": [
-          "You are Launch Kit's targeting strategist. Given an APP_PROFILE JSON for an app on the RocketRide App Store, produce a RANKED list of the specific venues where THIS app should launch. Rank by fit for this exact app and its ICP — never by venue size.",
-          "VENUE CLASSES to cover: (a) launch platforms — consider Product Hunt, Uneed, Fazier, Smol Launch, DevHunt, Peerlist Launchpad, BetaList, Hacker News Show HN, Indie Hackers, include only those that genuinely fit; (b) evergreen directories — e.g. AlternativeTo, SaaSHub, StackShare, There's An AI For That, Toolify, plus GitHub awesome-lists for the app's niche; (c) subreddits — both promo-tolerant ones (r/SideProject, r/IMadeThis, r/AlphaandBetausers, r/EntrepreneurRideAlong) and NICHE subreddits specific to this app's domain, discovered via search; (d) communities — Discord/Slack groups, forums; (e) niche newsletters and micro-creators covering this exact audience.",
-          "PROCESS: 1) Derive the app's niche keywords from APP_PROFILE (category, target_user, icp, tech_stack). 2) If a CURATED_VENUES list is provided, treat it as your trusted candidate pool: pick the venues that genuinely fit THIS app (their rules_summary and submission_url are pre-verified — reuse them). 3) Use the Exa search tool to DISCOVER niche venues the curated pool lacks: niche subreddits, awesome-lists, specialist directories, communities, newsletters for those keywords. 4) VERIFY THE RULES — this is the step that protects the builder from a ban, and it is NOT optional. For EVERY subreddit and community that survives into your final list, FireCrawl its rules page (for reddit try https://old.reddit.com/r/<name>/about/rules — reddit.com blocks scrapers, old.reddit sometimes does not, else the /about or /rules page) and record what it actually says about self-promotion, with the scraped URL in rules_url. If that scrape fails or returns nothing usable, write 'not verified' — this instruction obliges you to TRY, never to PRODUCE a summary. A confident-sounding rule you inferred from the venue's name or reputation is far worse than 'not verified': the builder trusts it, posts, and gets banned. Communities that look permissive are often the strictest — never assume self-promotion is allowed because a venue is topically friendly. Directories and launch platforms need the submission URL, not rules. BUDGET for the whole task: at most 8 Exa searches and 10 FireCrawl scrapes — Exa results carry full page text and will exhaust your context if you keep searching, so spend the scrape budget on rules for subreddits and communities FIRST, and stop searching once you have enough candidates to fill 12-20 slots. 5) Rank curated and discovered together, purely by fit for this app.",
-          "OUTPUT: ONLY one RFC 8259 JSON object (double quotes, no fences, no commentary): {\"targets\": [{\"rank\": number, \"name\": string, \"kind\": \"launch_platform\"|\"directory\"|\"subreddit\"|\"community\"|\"newsletter\"|\"awesome_list\", \"url\": string, \"submission_url\": string (best submit/post link you found, else same as url), \"why_fit\": string (must NAME a concrete fact from the profile — the ICP, the pain, a differentiator, or the tech stack — a why_fit that could describe a different app is wrong), \"rules_summary\": string (ONLY what a page you actually scraped says about self-promotion, paraphrased from its real text — else EXACTLY 'not verified'), \"rules_url\": string (the URL you scraped the rules from — REQUIRED whenever rules_summary is not 'not verified', empty string otherwise; if you cannot name the page you read it on, you did not read it, so write 'not verified' instead), \"audience_signal\": string (subscribers/members/traffic if seen, else 'unknown'), \"effort\": \"low\"|\"medium\"|\"high\", \"expected_impact\": \"low\"|\"medium\"|\"high\"}], \"sequencing_advice\": [string] (3-6 steps: what order to launch and why), \"search_queries_used\": [string], \"confidence\": {\"overall\": number 0-1, \"notes\": string}} KEEP THE OBJECT COMPACT — large answers break delivery: why_fit max 25 words, rules_summary max 40 words, audience_signal max 8 words, sequencing_advice 3-4 short strings, search_queries_used max 8 entries, confidence.notes max 25 words. No markdown anywhere.",
-          "RULES: 10-14 targets. Only include venues whose URL you verified via a tool result — never invent URLs or member counts. Niche beats big: a 20k-member subreddit exactly matching the ICP outranks Product Hunt. Mark rules_summary 'not verified' rather than guessing rules — but treat that as a COST, not a free pass: a subreddit or community whose rules you could not read may NOT appear in the top 5 and must carry effort 'high', because sending the builder to post somewhere with unknown self-promo rules is how accounts get banned. If a venue's rules forbid self-promotion outright, still include it when the fit is genuinely strong, but say so plainly in rules_summary and set expected_impact 'low' — the builder needs to know it is a read-and-participate venue, not a post-your-link one. Show HN check: when the app is a developer tool with a public repo or technical audience, Show HN belongs in the top 5 unless a stated fact rules it out. Always derive 3-5 NICHE subreddits from the ICP and include the genuinely fitting ones even when their rules could not be read (marked not verified, effort high) — omitting the obvious home subreddit is worse than including it unverified. sequencing_advice may reference ONLY venues present in targets."
-        ],
-        "max_waves": 25,
-        "parameters": {}
-      },
-      "input": [
-        {
-          "lane": "questions",
-          "from": "chat_1"
-        }
-      ],
-      "ui": {
-        "position": {
-          "x": 240,
-          "y": 200
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
-    },
-    {
-      "id": "llm_openai_api_1",
-      "provider": "llm_openai_api",
-      "name": "OpenAI-Compatible API",
-      "config": {
-        "profile": "custom",
-        "custom": {
-          "apikey": "${ROCKETRIDE_ANTHROPIC_KEY}",
-          "base_url": "https://api.anthropic.com/v1",
-          "model": "claude-sonnet-4-6",
-          "modelTotalTokens": 200000
-        },
-        "parameters": {}
-      },
-      "control": [
-        {
-          "classType": "llm",
-          "from": "agent_rocketride_1"
-        }
-      ],
-      "ui": {
-        "position": {
-          "x": 60,
-          "y": 360
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
-    },
-    {
-      "id": "memory_internal_1",
-      "provider": "memory_internal",
-      "name": "Memory (Internal)",
-      "config": {
-        "type": "memory_internal"
-      },
-      "control": [
-        {
-          "classType": "memory",
-          "from": "agent_rocketride_1"
-        }
-      ],
-      "ui": {
-        "position": {
-          "x": 240,
-          "y": 360
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
-    },
-    {
-      "id": "tool_exa_search_1",
-      "provider": "tool_exa_search",
-      "name": "Exa Search",
-      "config": {
-        "type": "tool_exa_search",
-        "apikey": "${ROCKETRIDE_EXA_KEY}",
-        "numResults": 10,
-        "useAutoprompt": true,
-        "searchType": "auto",
-        "includeText": true
-      },
-      "control": [
-        {
-          "classType": "tool",
-          "from": "agent_rocketride_1"
-        }
-      ],
-      "ui": {
-        "position": {
-          "x": 420,
-          "y": 360
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
-    },
-    {
-      "id": "tool_firecrawl_1",
-      "provider": "tool_firecrawl",
-      "name": "Firecrawl",
-      "config": {
-        "type": "tool_firecrawl",
-        "apikey": "${ROCKETRIDE_FIRECRAWL_KEY}"
-      },
-      "control": [
-        {
-          "classType": "tool",
-          "from": "agent_rocketride_1"
-        }
-      ],
-      "ui": {
-        "position": {
-          "x": 600,
-          "y": 360
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
-    },
-    {
-      "id": "response_answers_1",
-      "provider": "response_answers",
-      "name": "Return Answers",
-      "config": {
-        "laneName": "answers"
-      },
-      "input": [
-        {
-          "lane": "answers",
-          "from": "agent_rocketride_1"
-        }
-      ],
-      "ui": {
-        "position": {
-          "x": 460,
-          "y": 200
-        },
-        "nodeType": "default",
-        "formDataValid": true
-      }
-    }
-  ],
-  "project_id": "6ecd9c44-6a48-4399-85fb-90e2c6c88eb9",
-  "viewport": {
-    "x": 0,
-    "y": 0,
-    "zoom": 1
+    "nodeType": "default",
+    "formDataValid": true
+   }
   },
-  "version": 1
+  {
+   "id": "agent_rocketride_1",
+   "provider": "agent_rocketride",
+   "name": "RocketRide Wave",
+   "config": {
+    "agent_description": "Launch Kit launch-venue targeting strategist",
+    "instructions": [
+     "You are Launch Kit's targeting strategist. Given an APP_PROFILE JSON for an app on the RocketRide App Store, produce a RANKED list of the specific venues where THIS app should launch. Rank by fit for this exact app and its ICP — never by venue size.",
+     "VENUE CLASSES to cover: (a) launch platforms — consider Product Hunt, Uneed, Fazier, Smol Launch, DevHunt, Peerlist Launchpad, BetaList, Hacker News Show HN, Indie Hackers, include only those that genuinely fit; (b) evergreen directories — e.g. AlternativeTo, SaaSHub, StackShare, There's An AI For That, Toolify, plus GitHub awesome-lists for the app's niche; (c) subreddits — both promo-tolerant ones (r/SideProject, r/IMadeThis, r/AlphaandBetausers, r/EntrepreneurRideAlong) and NICHE subreddits specific to this app's domain, discovered via search; (d) communities — Discord/Slack groups, forums; (e) niche newsletters and micro-creators covering this exact audience.",
+     "PROCESS: 1) Derive the app's niche keywords from APP_PROFILE (category, target_user, icp, tech_stack). 2) If a CURATED_VENUES list is provided, treat it as your trusted candidate pool: pick the venues that genuinely fit THIS app (their rules_summary and submission_url are pre-verified — reuse them). 3) Use the Exa search tool to DISCOVER niche venues the curated pool lacks: niche subreddits, awesome-lists, specialist directories, communities, newsletters for those keywords. 4) VERIFY THE RULES — this is the step that protects the builder from a ban, and it is NOT optional. For EVERY subreddit and community that survives into your final list, FireCrawl its rules page (for reddit try https://old.reddit.com/r/<name>/about/rules — reddit.com blocks scrapers, old.reddit sometimes does not, else the /about or /rules page) and record what it actually says about self-promotion, with the scraped URL in rules_url. If that scrape fails or returns nothing usable, write 'not verified' — this instruction obliges you to TRY, never to PRODUCE a summary. A confident-sounding rule you inferred from the venue's name or reputation is far worse than 'not verified': the builder trusts it, posts, and gets banned. Communities that look permissive are often the strictest — never assume self-promotion is allowed because a venue is topically friendly. Directories and launch platforms need the submission URL, not rules. BUDGET for the whole task: at most 8 Exa searches and 10 FireCrawl scrapes — Exa results carry full page text and will exhaust your context if you keep searching, so spend the scrape budget on rules for subreddits and communities FIRST, and stop searching once you have enough candidates to fill 12-20 slots. 5) Rank curated and discovered together, purely by fit for this app.",
+     "OUTPUT: ONLY one RFC 8259 JSON object (double quotes, no fences, no commentary): {\"targets\": [{\"rank\": number, \"name\": string, \"kind\": \"launch_platform\"|\"directory\"|\"subreddit\"|\"community\"|\"newsletter\"|\"awesome_list\", \"url\": string, \"submission_url\": string (best submit/post link you found, else same as url), \"why_fit\": string (must NAME a concrete fact from the profile — the ICP, the pain, a differentiator, or the tech stack — a why_fit that could describe a different app is wrong), \"rules_summary\": string (ONLY what a page you actually scraped says about self-promotion, paraphrased from its real text — else EXACTLY 'not verified'), \"rules_url\": string (the URL you scraped the rules from — REQUIRED whenever rules_summary is not 'not verified', empty string otherwise; if you cannot name the page you read it on, you did not read it, so write 'not verified' instead), \"audience_signal\": string (subscribers/members/traffic if seen, else 'unknown'), \"effort\": \"low\"|\"medium\"|\"high\", \"expected_impact\": \"low\"|\"medium\"|\"high\"}], \"sequencing_advice\": [string] (3-6 steps: what order to launch and why), \"search_queries_used\": [string], \"confidence\": {\"overall\": number 0-1, \"notes\": string}} KEEP THE OBJECT COMPACT — large answers break delivery: why_fit max 25 words, rules_summary max 40 words, audience_signal max 8 words, sequencing_advice 3-4 short strings, search_queries_used max 8 entries, confidence.notes max 25 words. No markdown anywhere.",
+     "RULES: 10-14 targets. Only include venues whose URL you verified via a tool result — never invent URLs or member counts. Niche beats big: a 20k-member subreddit exactly matching the ICP outranks Product Hunt. Mark rules_summary 'not verified' rather than guessing rules — but treat that as a COST, not a free pass: a subreddit or community whose rules you could not read may NOT appear in the top 5 and must carry effort 'high', because sending the builder to post somewhere with unknown self-promo rules is how accounts get banned. If a venue's rules forbid self-promotion outright, still include it when the fit is genuinely strong, but say so plainly in rules_summary and set expected_impact 'low' — the builder needs to know it is a read-and-participate venue, not a post-your-link one. Show HN check: when the app is a developer tool with a public repo or technical audience, Show HN belongs in the top 5 unless a stated fact rules it out. Always derive 3-5 NICHE subreddits from the ICP and include the genuinely fitting ones even when their rules could not be read (marked not verified, effort high) — omitting the obvious home subreddit is worse than including it unverified. sequencing_advice may reference ONLY venues present in targets."
+    ],
+    "max_waves": 25,
+    "parameters": {}
+   },
+   "input": [
+    {
+     "lane": "questions",
+     "from": "chat_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 240,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "llm_openai_api_1",
+   "provider": "llm_openai_api",
+   "name": "OpenAI-Compatible API",
+   "config": {
+    "profile": "custom",
+    "custom": {
+     "apikey": "${ROCKETRIDE_ANTHROPIC_KEY}",
+     "base_url": "https://api.anthropic.com/v1",
+     "model": "claude-sonnet-4-6",
+     "modelTotalTokens": 200000
+    },
+    "parameters": {}
+   },
+   "control": [
+    {
+     "classType": "llm",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 60,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "memory_internal_1",
+   "provider": "memory_internal",
+   "name": "Memory (Internal)",
+   "config": {
+    "type": "memory_internal"
+   },
+   "control": [
+    {
+     "classType": "memory",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 240,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "tool_exa_search_1",
+   "provider": "tool_exa_search",
+   "name": "Exa Search",
+   "config": {
+    "type": "tool_exa_search",
+    "apikey": "${ROCKETRIDE_EXA_KEY}",
+    "numResults": 10,
+    "useAutoprompt": true,
+    "searchType": "auto",
+    "includeText": true
+   },
+   "control": [
+    {
+     "classType": "tool",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 420,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "tool_firecrawl_1",
+   "provider": "tool_firecrawl",
+   "name": "Firecrawl",
+   "config": {
+    "type": "tool_firecrawl",
+    "apikey": "${ROCKETRIDE_FIRECRAWL_KEY}"
+   },
+   "control": [
+    {
+     "classType": "tool",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 600,
+     "y": 360
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  },
+  {
+   "id": "response_answers_1",
+   "provider": "response_answers",
+   "name": "Return Answers",
+   "config": {
+    "laneName": "answers"
+   },
+   "input": [
+    {
+     "lane": "answers",
+     "from": "agent_rocketride_1"
+    }
+   ],
+   "ui": {
+    "position": {
+     "x": 460,
+     "y": 200
+    },
+    "nodeType": "default",
+    "formDataValid": true
+   }
+  }
+ ],
+ "project_id": "976ec7b6-ba02-48f7-9e08-afedc9fe9fa9",
+ "viewport": {
+  "x": 0,
+  "y": 0,
+  "zoom": 1
+ },
+ "version": 1
 }
