@@ -1,6 +1,7 @@
 import { AlertCircle, ExternalLink } from 'lucide-react';
 import { useProject } from './project-provider';
 import { StageRail } from './stage-rail';
+import { StageNext } from './stage-next';
 import { RunningIndicator } from './running-indicator';
 import { RunHistory } from './run-history';
 import { Button } from '../ui/button';
@@ -84,7 +85,10 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
               <DelayedSkeleton className="h-24 w-full" />
             </div>
           ) : (
-            children
+            <>
+              {children}
+              <StageNext />
+            </>
           )}
         </main>
       </div>

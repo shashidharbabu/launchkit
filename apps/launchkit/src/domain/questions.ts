@@ -71,7 +71,8 @@ export function buildBrandQuestion(task: string, profile: Profile, siteUrl = "",
 /** rr.run_asset — section order (BRAND_DNA → TARGET → TONE → feedback) is contractual. */
 export function buildAssetQuestion(assetType: string, profile: Profile,
                                    target?: TargetData | null, tone = "",
-                                   feedback = "", brandDna?: BrandDna | null, rules = ""): string {
+                                   feedback = "", brandDna?: BrandDna | null, rules = "",
+                                   extras?: { commercial?: string; campaign?: string; previousDraft?: string }): string {
   const parts = [`ASSET_TYPE: ${assetType}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
   if (pyTruthy(brandDna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(brandDna)}`);
@@ -84,6 +85,15 @@ export function buildAssetQuestion(assetType: string, profile: Profile,
   }
   if (rules) {
     parts.push(rules);
+  }
+  if (extras?.campaign) {
+    parts.push(`CAMPAIGN_ANGLE (the builder chose this angle in the Brand stage; the post carries it): ${extras.campaign}`);
+  }
+  if (extras?.commercial) {
+    parts.push(`COMMERCIAL (approved pricing and listing copy; reuse the tagline and tier names, never invent prices): ${extras.commercial}`);
+  }
+  if (extras?.previousDraft) {
+    parts.push(`PREVIOUS_DRAFT (the last version of this same post; the builder's feedback below refers to it. Keep what worked, change what they ask): ${extras.previousDraft}`);
   }
   if (feedback) {
     parts.push("BUILDER_FEEDBACK (the builder reviewed a previous draft " +
@@ -109,6 +119,14 @@ export function buildSignalsQuestion(profile: Profile, communities?: unknown[] |
   const pain = isDict(icp) ? (Object.prototype.hasOwnProperty.call(icp, "pain") ? icp["pain"] : null) : null;
   if (pyTruthy(pain)) {
     parts.push(`ICP_PAIN: ${pyStr(pain)}`);
+  }
+  const hints: string[] = [];
+  for (const k of ["one_liner", "description", "use_cases", "differentiators", "category", "target_user"]) {
+    const v = profile[k];
+    if (pyTruthy(v)) hints.push(`${k}: ${typeof v === "string" ? v : pyJsonDumps(v)}`);
+  }
+  if (hints.length > 0) {
+    parts.push(`PAIN_HINTS (derive the ICP's own words for the problem from these; search the problem, not the product name):\n${hints.join("\n")}`);
   }
   parts.push(`COMMUNITIES: ${pyJsonDumps(pyTruthy(communities) ? communities : SIGNAL_FALLBACK_COMMUNITIES)}`);
   return parts.join("\n");

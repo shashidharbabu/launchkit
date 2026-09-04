@@ -9,7 +9,7 @@ import {
   buildAssetQuestion, buildBrandQuestion, buildCommercialQuestion,
   buildSignalsQuestion, buildTargetsQuestion, buildUnderstandQuestion,
 } from '../domain/questions';
-import { gateAsset, gateSignals } from '../domain/gates';
+import { gateAsset, gateSignals, gateTargets } from '../domain/gates';
 import { buildAttribution, buildPlan, planMarkdown } from '../domain/plan';
 import {
   BRAND_CAMPAIGNS_PREREQ_ERROR, GATE1_ERROR, NO_PROFILE_TO_APPROVE_ERROR,
@@ -246,11 +246,19 @@ export const api = {
       const jobId = await runJob(id, kind,
         () => ask('lk_targets.pipe', buildTargetsQuestion(profile, curated)),
         async (result) => {
+          // deterministic guardrails first: repo files out, listings below launch venues
+          const gatedTargets = gateTargets(Array.isArray((result as Dict).targets) ? ((result as Dict).targets as unknown[]) : []);
+          saveCommercial(id, 'targets_meta', {
+            kept: gatedTargets.kept.length,
+            dropped: gatedTargets.dropped.map((d) => ({ name: d.target.name, url: d.target.url, why: d.why })),
+            coverage_notes: (result as Dict).coverage_notes ?? null,
+          }, jobId);
+          const gatedResult = { ...(result as Dict), targets: gatedTargets.kept };
           const prevSel = select('targets', { project_id: id, selected: true });
           const venueRows = select('venues');
           const applied = applyTargetsRun(
             prevSel.map((r) => ({ data: r.data as TargetData, selected: true })),
-            result,
+            gatedResult,
             venueRows.map((v) => String(v.url)),
           );
           remove('targets', { project_id: id });
@@ -321,9 +329,26 @@ export const api = {
       if (row) target = row.data as TargetData;
     }
     const brandDna = await latestCommercial(id, 'brand_dna');
+    // context the draft is written against: approved commercial copy, the chosen angle, the last version
+    const compact = (v: unknown, n: number) => { const s = JSON.stringify(v ?? null); return s.length > n ? s.slice(0, n) + '…' : s; };
+    const pricing = await latestCommercial(id, 'pricing');
+    const listing = await latestCommercial(id, 'listing');
+    const commercialCtx = pricing || listing ? compact({ pricing, listing }, 3500) : '';
+    const projRow = selectOne('projects', { id });
+    const angles = Array.isArray(projRow?.selected_campaigns) ? (projRow.selected_campaigns as unknown[]).map(String) : [];
+    let campaignCtx = '';
+    if (angles.length > 0) {
+      const camps = await latestCommercial(id, 'brand_campaigns');
+      const list = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
+      const chosen = list.filter((c) => angles.includes(String(c.name))).map((c) => ({ name: c.name, big_idea: c.big_idea, hook: c.hook, objective: c.objective }));
+      campaignCtx = chosen.length > 0 ? compact(chosen, 2500) : angles.join('; ');
+    }
+    const prev = byNewest(select('assets', { project_id: id, asset_type }), 'version')[0];
+    const previousDraft = prev ? compact(prev.data, 3000) : '';
     const jobId = await runJob(id, assetJobKind(asset_type),
       () => ask('lk_assets.pipe',
-        buildAssetQuestion(asset_type, profile, target, '', feedback, brandDna, rulesBlock(asset_type))),
+        buildAssetQuestion(asset_type, profile, target, '', feedback, brandDna, rulesBlock(asset_type),
+          { commercial: commercialCtx, campaign: campaignCtx, previousDraft })),
       async (result) => {
         const changed = punctuationFixed(result);
         const gated = gateAsset(asset_type, result) as Record<string, unknown>;
@@ -426,6 +451,17 @@ export const api = {
     return rows.map((r) => ({
       id: r.id, rank: r.rank, selected: r.selected, data: r.data as Dict,
     }));
+  },
+
+  /** Choose a campaign angle from the Brand stage; Social Launch writes from it. */
+  selectCampaign: async (projectId: string, name: string, selected: boolean) => {
+    const row = selectOne('projects', { id: projectId });
+    if (!row) throw new Error('launch not found');
+    const cur = Array.isArray(row.selected_campaigns) ? (row.selected_campaigns as unknown[]).map(String) : [];
+    const next = selected ? Array.from(new Set([...cur, name])) : cur.filter((n) => n !== name);
+    update('projects', { id: projectId }, { selected_campaigns: next });
+    flush();
+    return { selected_campaigns: next };
   },
 
   selectTarget: async (targetId: string, selected: boolean) => {

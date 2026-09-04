@@ -2,6 +2,7 @@ import * as React from 'react';
 import { toast } from 'sonner';
 import { Check, ChevronRight, Pencil, X } from 'lucide-react';
 import { useProject } from '../project-provider';
+import { useNav } from '../../../nav';
 import { Card, HonestEmpty } from '../stage-common';
 import { GateSlip } from '../gate-slip';
 import { Button } from '../../ui/button';
@@ -234,6 +235,7 @@ function SourcesList({ sources }: { sources: SourceRow[] }) {
 }
 
 export function ProfileStage() {
+  const { go } = useNav();
   const { project, running, runJob, refresh, setError } = useProject();
   const initialProfile = project?.profile ?? null;
   const [draft, setDraft] = React.useState<Record<string, unknown> | null>(
@@ -408,8 +410,9 @@ export function ProfileStage() {
                 setApproving(true);
                 try {
                   await api.approveProfile(project.id);
-                  toast('Approved');
+                  toast('Profile approved. Next: Brand');
                   await refresh();
+                  go({ view: 'workspace', projectId: project.id, stage: 'brand' });
                 } catch (e) {
                   setError(actionError('approve the profile', e));
                 } finally {

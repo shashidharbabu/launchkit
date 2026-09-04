@@ -44,3 +44,11 @@ for (let i = 0; i < 90; i++) {
 }
 try { await client.disconnect?.(); } catch {}
 process.exit(0);
+
+// H6 guard: a deploy has been seen to rewrite launchkit/ (workspace materialisation). Shout if tracked files vanished.
+try {
+  const { execSync } = await import('node:child_process');
+  const missing = execSync('git status --short', { encoding: 'utf8' }).split('\n').filter((l) => /^ D /.test(l)).length;
+  if (missing > 0) console.error(`\n!!! ${missing} tracked files are missing from the working tree after this deploy. See MIGRATION-ISSUES-LOG H6 for recovery. Do NOT git add -A.`);
+  else console.log('tree check: no tracked files missing');
+} catch { /* not a git checkout */ }

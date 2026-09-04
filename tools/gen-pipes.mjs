@@ -1,7 +1,7 @@
 // Pipe generator (doc 03 §6): ONE owner for every .pipe the app ships.
 //
 // Sources of truth:
-//   - launchkit/pipelines/*.pipe        the tuned production pipes (templates)
+//   - launchkit-src/pipelines/*.pipe        the tuned production pipes (templates)
 //   - tools/pipe-ids.json               stable project_ids (created on first run,
 //                                       then NEVER regenerated — task addressing
 //                                       and deploy history key on them)
@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 
 import { join, basename } from 'node:path';
 
 const ROOT = new URL('..', import.meta.url).pathname;
-const SRC = join(ROOT, 'launchkit', 'pipelines');
+const SRC = join(ROOT, 'launchkit-src', 'pipelines');
 const IDS_FILE = join(ROOT, 'tools', 'pipe-ids.json');
 const OUT_WORKSPACE = join(ROOT, 'pipelines');
 const OUT_APP = join(ROOT, 'apps', 'launchkit', 'pipelines');

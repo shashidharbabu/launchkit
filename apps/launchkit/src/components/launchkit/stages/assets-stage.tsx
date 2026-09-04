@@ -27,7 +27,7 @@ import { useReducedMotion } from 'motion/react';
 import { AnimatedGroup } from '../../motion-primitives/animated-group';
 import { api } from '../../../data/api';
 import { ASSET_LABELS, ASSET_TYPES } from '../../../lib/asset-types';
-import { pickUrl, shareLinks, type ShareLink } from '../../../lib/share';
+import { fillDeep, pickUrl, shareLinks, type ShareLink } from '../../../lib/share';
 import { rulesFor } from '../../../data/rules';
 import { actionError } from '../../../lib/errors';
 import { DUR, EASE_STANDARD } from '../../../lib/motion';
@@ -118,12 +118,14 @@ function AssetCard({
   const warnings = Array.isArray(asset.data.warnings) ? asset.data.warnings.map(asStr) : [];
   const label = ASSET_LABELS[asset.asset_type] ?? asset.asset_type.toUpperCase();
   const Icon = ASSET_ICONS[asset.asset_type] ?? FileText;
-  const data = asset.data as Record<string, unknown>;
+  // the draft carries {APP_URL}; the card shows, copies and shares the real address
+  const appUrl = pickUrl(project as unknown as Record<string, unknown>);
+  const data = fillDeep(asset.data as Record<string, unknown>, appUrl);
   const fixed = typeof data.punctuation_fixed === 'number' ? data.punctuation_fixed : 0;
   const links = shareLinks(
     asset.asset_type,
     data,
-    pickUrl(project as unknown as Record<string, unknown>),
+    appUrl,
     typeof data.subreddit === 'string' ? data.subreddit : undefined,
   );
   // the referral-button pattern: open the platform's composer with the draft in it
@@ -171,7 +173,7 @@ function AssetCard({
         <MorphingDialog transition={{ duration: DUR.slow, ease: EASE_STANDARD }}>
           <MorphingDialogTrigger className="block w-full">
             <div className="bg-muted p-3">
-              <AssetBody data={asset.data} />
+              <AssetBody data={data} />
             </div>
           </MorphingDialogTrigger>
           <MorphingDialogContainer>
@@ -184,14 +186,14 @@ function AssetCard({
                 </MorphingDialogTitle>
                 <MorphingDialogClose />
               </div>
-              <AssetBody data={asset.data} full />
+              <AssetBody data={data} full />
             </MorphingDialogContent>
           </MorphingDialogContainer>
         </MorphingDialog>
 
         <ProvenanceLine parts={['drafted from approved profile', `v${asset.version}`]} />
         <div className="mt-3">
-          <RawData data={asset.data} />
+          <RawData data={data} />
         </div>
       </div>
 
@@ -259,7 +261,7 @@ function AssetCard({
             {l.label}
           </Button>
         ))}
-        <CopyButton text={assetCopyText(asset.data)} label="Copy" />
+        <CopyButton text={assetCopyText(data)} label="Copy" />
         {fixed > 0 && (
           <span className="font-mono text-data text-muted-foreground">
             {fixed} {fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule
@@ -277,6 +279,7 @@ export function AssetsStage() {
   if (!gate1) return <LockedGate />;
 
   const runningAsset = running?.kind.startsWith('asset:') ? running.kind.split(':')[1] : null;
+  const chosenAngles = (Array.isArray((project as unknown as Record<string, unknown>).selected_campaigns) ? ((project as unknown as Record<string, unknown>).selected_campaigns as unknown[]) : []).map(String);
   const existing = new Set(assets.map((a) => a.asset_type));
   const firstPendingId = assets.find((a) => a.status !== 'approved')?.id;
   const approvedCount = assets.filter((a) => a.status === 'approved').length;
@@ -290,7 +293,7 @@ export function AssetsStage() {
           lead={
             <>
               One post per platform, drafted in your brand voice.{' '}
-              <strong className="font-medium">Approve each one you&rsquo;d actually post</strong>
+              <strong className="font-medium">Approve each one you&rsquo;d actually post</strong>,{' '}
               or tell it what&rsquo;s wrong and regenerate.
             </>
           }
@@ -298,6 +301,16 @@ export function AssetsStage() {
         />
       )}
 
+      {chosenAngles.length > 0 ? (
+        <p className="text-body text-muted-foreground">
+          Writing from your chosen angle{chosenAngles.length === 1 ? '' : 's'}:{' '}
+          <span className="text-foreground">{chosenAngles.join(' · ')}</span>. Change it in Brand.
+        </p>
+      ) : (
+        <p className="text-body text-muted-foreground">
+          No campaign angle chosen yet. Posts are written from the profile and brand voice; choose an angle in Brand to steer them.
+        </p>
+      )}
       {/* platform picker: each option shows what its rulebook optimises for */}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-label="Platforms">
         {ASSET_TYPES.map((t) => {

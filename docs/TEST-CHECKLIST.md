@@ -74,11 +74,19 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 - [ ] Action row: "Share on X" opens x.com/intent/post with the post prefilled; LinkedIn, Reddit, HN, email open their composers; Product Hunt copies the listing and opens new-post; video has Copy only.
 - [ ] New drafts contain no em/en dash; if the model slipped one in, the card says "N dashes replaced by the punctuation rule" and no dash warning remains.
 - [ ] Settings → "Platform rulebooks": switching platforms swaps the text; saving shows a toast; the next draft for that platform follows the edited rules.
-- [ ] Drive: `cd launchkit/frontend && node drive.social.mjs` → prints SOCIAL_OK (runs one real LinkedIn draft).
+- [ ] Drive: `cd launchkit-src/frontend && node drive.social.mjs` → prints SOCIAL_OK (runs one real LinkedIn draft).
 
 ## Team workspaces (2026-09-03)
 - [ ] Top bar shows the workspace switcher with Personal and every team you belong to.
 - [ ] Settings → Workspace lists the organisation, teams (member counts), members of the selected team, and an invite form; a non-admin sees the server's "Admin role required" message, not a blank.
 - [ ] Deployed app: "Check store" reports ok with the dialect and a round-trip time. (Preview with an API key: it fails and says why.)
 - [ ] Deployed app: switch to a team, create a launch, switch to Personal (it is gone), back to the team (it is there). A teammate opening the same team sees it within 30 s; saving on both sides yields a "teammate saved first" reload, never a silent overwrite.
-- [ ] Drive: `cd launchkit/frontend && node drive.workspace.mjs` → WS_OK (preview-level checks only).
+- [ ] Drive: `cd launchkit-src/frontend && node drive.workspace.mjs` → WS_OK (preview-level checks only).
+
+## Flow and quality (2026-09-03 evening)
+- [ ] Every stage ends with a footer stating its state and a "Next: <stage>" button; Profile's button is disabled until approved; approving the profile lands on Brand.
+- [ ] Brand shows "Campaign angles" with "Use this angle"; Social Launch shows the chosen angle above the picker and the draft reflects it.
+- [ ] A draft card shows the real app URL, never `{APP_URL}`; Copy and Share carry the real URL.
+- [ ] Targets: no repository file appears as a venue; awesome-lists and directories never sit in the top 5; ranks are 1..N.
+- [ ] Signals scan report lists open-web queries (no `site:` filter) before Reddit ones; X, LinkedIn, dev.to posts are accepted when relevant.
+- [ ] Drive: `cd launchkit-src/frontend && node drive.flow.mjs` (real pipelines, about 12 minutes) → FLOW_DONE with TARGETS listingsInTop5 = 0 and repoFiles = 0.

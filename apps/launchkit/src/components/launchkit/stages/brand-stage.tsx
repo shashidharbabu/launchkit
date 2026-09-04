@@ -98,6 +98,7 @@ export function BrandStage() {
   const confidence = asObj(dna?.confidence);
   const typography = asObj(visual.typography);
   const campaigns = asArr(brandCampaigns?.campaigns) as Campaign[];
+  const chosenAngles = asArr((project as unknown as Record<string, unknown> | null)?.selected_campaigns).map(asStr);
   const neither = !dna && !brandCampaigns;
 
   return (
@@ -293,7 +294,7 @@ export function BrandStage() {
         {/* ---- Campaigns ---- */}
         <Card>
           <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Campaigns</MetaLabel>
+            <MetaLabel>Campaign angles</MetaLabel>
             <div className="flex items-center gap-2">
               {campaigns.length > 0 && <StatusStamp kind="hold" />}
               {campaigns.length > 0 && (
@@ -313,6 +314,11 @@ export function BrandStage() {
             </div>
           </div>
           <div className="border-t border-border px-4 py-4">
+            <p className="mb-3 text-body text-muted-foreground">
+              An angle is the story and where to tell it, not a post. Choose the angles you would
+              run; Social Launch writes each platform&rsquo;s post from your chosen angle, in this
+              brand voice. The sample copy is an illustration of the angle, never the post itself.
+            </p>
             {runningKind === 'brand_campaigns' ? (
               <TextShimmer duration={2} className="text-body">
                 Drafting campaign ideas in your brand voice…
@@ -331,6 +337,18 @@ export function BrandStage() {
                         <span className="font-mono text-meta uppercase tracking-[0.08em] text-muted-foreground">
                           {asStr(c.effort)}
                         </span>
+                        <Button
+                          variant={chosenAngles.includes(asStr(c.name)) ? 'primary' : 'secondary'}
+                          size="compact"
+                          disabled={Boolean(runningKind)}
+                          onClick={async () => {
+                            const on = !chosenAngles.includes(asStr(c.name));
+                            await api.selectCampaign(project.id, asStr(c.name), on);
+                            await refresh();
+                          }}
+                        >
+                          {chosenAngles.includes(asStr(c.name)) ? 'Chosen angle' : 'Use this angle'}
+                        </Button>
                       </div>
                       <p className="mt-1 text-body text-muted-foreground">{asStr(c.objective)}</p>
                       <p className="mt-2 text-read leading-[1.625rem]">{asStr(c.big_idea)}</p>
@@ -343,7 +361,7 @@ export function BrandStage() {
                       {copyText && (
                         <div className="mt-2 bg-muted p-2.5">
                           <div className="flex items-center justify-between gap-2">
-                            <MetaLabel>Sample copy</MetaLabel>
+                            <MetaLabel>Sample copy (illustration)</MetaLabel>
                             <CopyButton size="compact" text={copyText} label="Copy" />
                           </div>
                           {asStr(copy.headline) && (

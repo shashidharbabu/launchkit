@@ -3,7 +3,7 @@
 > Give this file to a fresh Claude Code session. It contains everything decided,
 > built, and tested as of 2026-08-11. Working directory:
 > `/Users/shashidharbabu/rocketride-apps-gtm/` (app lives in `launchkit/`).
-> Secrets are NOT in this file — they are in `launchkit/.env` (gitignored).
+> Secrets are NOT in this file — they are in `launchkit-src/.env` (gitignored).
 
 ---
 
@@ -62,7 +62,7 @@ Next.js 16.3 (frontend/, port 3200) ──► FastAPI (backend/app/, port 8090)
   `rr.gate_signals` (thread-URL + own-content filter), `rr.gate_asset`
   (length/convention checks), plus the signals re-scorer (below).
 
-## 3. The seven pipelines (`launchkit/pipelines/*.pipe`) — all tested on cloud
+## 3. The seven pipelines (`launchkit-src/pipelines/*.pipe`) — all tested on cloud
 
 Common shape: `chat → agent_rocketride → response_answers`, with
 `llm_openai_api` + `memory_internal` + tools attached via `control` arrays.
@@ -120,7 +120,7 @@ Common shape: `chat → agent_rocketride → response_answers`, with
    `/search.json` returns 403 even from residential IPs. Reddit recall REQUIRES
    the OAuth API (ROCKETRIDE_REDDIT_CLIENT_ID/SECRET, still empty in .env).
 
-## 4. Backend (`launchkit/backend/app/`)
+## 4. Backend (`launchkit-src/backend/app/`)
 
 - `main.py` — routes: projects CRUD · `/run/understand` (+feedback) ·
   `/run/asset` (MUST stay declared BEFORE generic `/run/{kind}` — route-order
@@ -143,7 +143,7 @@ Common shape: `chat → agent_rocketride → response_answers`, with
 - Venue flywheel: targets runs receive curated pool AND write discovered
   venues back (first real run learned 13 new venues).
 
-## 5. Frontend (`launchkit/frontend/`, Next 16.3 + Tailwind v4 + motion)
+## 5. Frontend (`launchkit-src/frontend/`, Next 16.3 + Tailwind v4 + motion)
 
 - Landing `/`: depth-layered z-parallax hero (3 planes, blurred far layer —
   `components/fx/parallax-hero.tsx`) + scroll-velocity skew wrapper

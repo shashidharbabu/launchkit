@@ -135,7 +135,7 @@ export function TargetsStage() {
           lead={
             <>
               Launch Kit ranked where this app should launch.{' '}
-              <strong className="font-medium">Tick the venues you&rsquo;ll actually do</strong>
+              <strong className="font-medium">Tick the venues you&rsquo;ll actually do</strong>:{' '}
               five right venues beat fifty.
             </>
           }

@@ -1,5 +1,5 @@
 // Golden-string parity tests for the ported question builders (questions.ts)
-// against the REAL Python builders in launchkit/backend/app/rr.py.
+// against the REAL Python builders in launchkit-src/backend/app/rr.py.
 //
 // Build + run from the repo root:
 //   (cd apps/launchkit && npx tsc src/domain/*.ts --outDir ../../tools/tests/domain/.build \
@@ -35,9 +35,12 @@ import { test } from 'node:test';
 
 const require = createRequire(import.meta.url);
 const q = require('./.build/questions.js');
+// 2026-09-03: the TS builder appends a PAIN_HINTS block (owner rule: search the problem, not the product);
+// the Python golden predates it. Parity is asserted on everything else.
+const stripHints = (s) => s.replace(/\nPAIN_HINTS[\s\S]*?(?=\nCOMMUNITIES:)/, '');
 
 const FIXTURE = new URL(
-  '../../../launchkit/backend/evals/fixtures/profiles/termdiff.json', import.meta.url);
+  '../../../launchkit-src/backend/evals/fixtures/profiles/termdiff.json', import.meta.url);
 const profile = JSON.parse(readFileSync(FIXTURE, 'utf8'));
 
 const GOLDENS = {
@@ -78,16 +81,16 @@ test('understand: repo + site, no feedback', () => {
 });
 
 test('signals: fallback communities + ICP_PAIN extraction', () => {
-  assert.equal(q.buildSignalsQuestion(profile), GOLDENS.signals_default);
+  assert.equal(stripHints(q.buildSignalsQuestion(profile)), GOLDENS.signals_default);
 });
 
 test('signals: explicit communities', () => {
-  assert.equal(q.buildSignalsQuestion(profile, ['rust', 'commandline']),
+  assert.equal(stripHints(q.buildSignalsQuestion(profile, ['rust', 'commandline'])),
                GOLDENS.signals_communities);
 });
 
 test('signals: empty communities list falls back (Python truthiness)', () => {
-  assert.equal(q.buildSignalsQuestion(profile, []), GOLDENS.signals_default);
+  assert.equal(stripHints(q.buildSignalsQuestion(profile, [])), GOLDENS.signals_default);
 });
 
 test('asset: full payload — brand dna, target, tone, feedback, section order', () => {

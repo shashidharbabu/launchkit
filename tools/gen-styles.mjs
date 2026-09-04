@@ -1,5 +1,5 @@
 // gen-styles: compiles the Flight Paperwork design system (Tailwind v4 +
-// launchkit/frontend/app/globals.css) into ONE scoped, self-contained CSS
+// launchkit-src/frontend/app/globals.css) into ONE scoped, self-contained CSS
 // string, emitted as a generated TS module the app injects at mount.
 //
 // Why this shape (doc 03 §8.1 "codegen instead of loaders"):
@@ -126,10 +126,10 @@ await ensureFonts();
 // ORIGINAL frontend keeps the utility set complete and identical — ported
 // components copy their className strings verbatim.
 writeFileSync(ENTRY, [
-  `@import '../launchkit/frontend/app/globals.css';`,
-  `@source '../launchkit/frontend/app';`,
-  `@source '../launchkit/frontend/components';`,
-  `@source '../launchkit/frontend/lib';`,
+  `@import '../launchkit-src/frontend/app/globals.css';`,
+  `@source '../launchkit-src/frontend/app';`,
+  `@source '../launchkit-src/frontend/components';`,
+  `@source '../launchkit-src/frontend/lib';`,
   `@source '../apps/launchkit/src';`,
   // the port sets the font vars the design system's tokens chain to
   `:root{--font-plex-sans:'IBM Plex Sans';--font-plex-mono:'IBM Plex Mono';}`,

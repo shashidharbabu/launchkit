@@ -9,9 +9,9 @@ approval gates, nothing published without you.
 | Path | What it is |
 |---|---|
 | `apps/launchkit/` | **The shipping app** — a RocketRide shell app (Module Federation remote). `src/` is the whole product; `pipelines/` holds the generated `.pipe` files it runs. |
-| `launchkit/pipelines/` | Pipeline sources of truth (edit here, then `node tools/gen-pipes.mjs`). |
-| `launchkit/frontend/` | The original Next.js app the shell app was ported from — the design system's source and the visual reference. |
-| `launchkit/backend/` | The pre-migration FastAPI backend plus the eval suite (`evals/`). |
+| `launchkit-src/pipelines/` | Pipeline sources of truth (edit here, then `node tools/gen-pipes.mjs`). |
+| `launchkit-src/frontend/` | The original Next.js app the shell app was ported from — the design system's source and the visual reference. |
+| `launchkit-src/backend/` | The pre-migration FastAPI backend plus the eval suite (`evals/`). |
 | `tools/` | Build, deploy and probe scripts (styles codegen, pipe codegen, deploy/publish, preview env). |
 | `docs/` | Launch plan, migration contract, issues log, manual test checklist, screenshots. |
 

@@ -12,7 +12,7 @@ export const fillUrl = (s: unknown, url: string) =>
 
 /** The launch's public URL, from whichever field the project record carries. */
 export function pickUrl(o: Record<string, unknown>): string {
-  for (const k of ['url', 'site_url', 'website', 'homepage', 'app_url', 'repo_url', 'repo']) {
+  for (const k of ['app_url', 'site_url', 'url', 'homepage', 'website', 'repo_url', 'repo']) {
     const v = o[k];
     if (typeof v === 'string' && /^https?:\/\//.test(v)) return v;
   }
@@ -42,4 +42,15 @@ export function shareLinks(assetType: string, data: Record<string, unknown>, app
     default:
       return [];
   }
+}
+
+/** Every string in a draft with the placeholder filled (display, copy, share). */
+export function fillDeep<T>(value: T, url: string): T {
+  const walk = (v: unknown): unknown => {
+    if (typeof v === 'string') return fillUrl(v, url);
+    if (Array.isArray(v)) return v.map(walk);
+    if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(([k, x]) => [k, walk(x)]));
+    return v;
+  };
+  return walk(value) as T;
 }

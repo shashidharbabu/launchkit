@@ -15,6 +15,8 @@ import type { AssetData, GateDropped, SignalData } from "./types";
 export const THREAD_PAT = new RegExp(
   "(reddit\\.com/r/.+/comments/|news\\.ycombinator\\.com/item|" +
   "github\\.com/.+/(discussions|issues)/|stackoverflow\\.com/questions/|" +
+  "(x|twitter)\\.com/[^/]+/status/|linkedin\\.com/posts/|dev\\.to/[^/]+/|" +
+  "indiehackers\\.com/post/|quora\\.com/|" +
   "/t/|/thread|forum)");
 
 /**
@@ -131,4 +133,46 @@ export function hnLockCheck(url: string, createdEpoch: number | null | undefined
     return { verdict: "rejected", why: HN_LOCK_REJECTION_WHY };
   }
   return null;
+}
+
+
+/** Venue kinds that are a launch (someone reads the post) vs a listing (passive discovery). */
+const PRIMARY_KINDS = new Set(["launch_platform", "subreddit", "community", "newsletter", "forum"]);
+const REPO_FILE = /github\.com\/[^/]+\/[^/]+\/(blob|tree|raw)\//i;
+
+export type TargetGateResult = { kept: Record<string, unknown>[]; dropped: { target: Record<string, unknown>; why: string }[] };
+
+/**
+ * gateTargets: deterministic guardrails on the model's venue ranking.
+ *  - a file inside a repository (README, Resources.md) is not a venue: dropped;
+ *  - awesome-lists and other GitHub listings rank after every real launch
+ *    venue and carry impact "low"; directories rank after primary venues with
+ *    impact capped at "medium";
+ *  - relative order within each band is the model's; ranks are renumbered 1..N.
+ */
+export function gateTargets(targets: unknown[]): TargetGateResult {
+  const dropped: TargetGateResult["dropped"] = [];
+  const bands: Record<number, Record<string, unknown>[]> = { 0: [], 1: [], 2: [] };
+  for (const raw of targets) {
+    if (!raw || typeof raw !== "object") continue;
+    const t = { ...(raw as Record<string, unknown>) };
+    const url = pyStr(pyGet(t, "url", ""));
+    const name = pyStr(pyGet(t, "name", "")).trim();
+    const kind = pyStr(pyGet(t, "kind", "")).toLowerCase();
+    if (!name || !url) { dropped.push({ target: t, why: "missing name or url" }); continue; }
+    if (REPO_FILE.test(url) || /\.md(\?|#|$)/i.test(url)) { dropped.push({ target: t, why: "a file inside a repository is not a venue" }); continue; }
+    const isGithub = /(^|\/\/)([a-z0-9-]+\.)?github\.com\//i.test(url);
+    if (kind === "awesome_list" || (isGithub && !PRIMARY_KINDS.has(kind))) {
+      t.kind = kind || "awesome_list";
+      t.expected_impact = "low";
+      bands[2].push(t);
+    } else if (kind === "directory") {
+      if (pyStr(pyGet(t, "expected_impact", "")).toLowerCase() === "high") t.expected_impact = "medium";
+      bands[1].push(t);
+    } else {
+      bands[0].push(t);
+    }
+  }
+  const kept = [...bands[0], ...bands[1], ...bands[2]].map((t, i) => ({ ...t, rank: i + 1 }));
+  return { kept, dropped };
 }
