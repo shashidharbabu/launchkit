@@ -88,5 +88,5 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 - [ ] Brand shows "Campaign angles" with "Use this angle"; Social Launch shows the chosen angle above the picker and the draft reflects it.
 - [ ] A draft card shows the real app URL, never `{APP_URL}`; Copy and Share carry the real URL.
 - [ ] Targets: no repository file appears as a venue; awesome-lists and directories never sit in the top 5; ranks are 1..N.
-- [ ] Signals scan report lists open-web queries (no `site:` filter) before Reddit ones; X, LinkedIn, dev.to posts are accepted when relevant.
+- [ ] Signals: the scan report lists open-web and LinkedIn/dev.to queries first and says Reddit is not searchable; LinkedIn and dev.to posts by people living the problem appear as signals with a problem-first drafted reply (hack-judge: 2 signals, about 13 minutes).
 - [ ] Drive: `cd launchkit-src/frontend && node drive.flow.mjs` (real pipelines, about 12 minutes) → FLOW_DONE with TARGETS listingsInTop5 = 0 and repoFiles = 0.
