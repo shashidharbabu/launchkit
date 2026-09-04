@@ -1,27 +1,30 @@
 import * as React from 'react';
 import { ChevronRight, Clock } from 'lucide-react';
-import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { Button } from '@launchkit/design-system/components/button';
+import { EmptyState } from '@launchkit/design-system/components/empty-state';
+import { CodeWell } from '@launchkit/design-system/components/card';
+import { Disclosure } from '@launchkit/design-system/components/disclosure';
+import { cn } from '@launchkit/design-system/lib/cn';
 import { useNav } from '../../nav';
 import { etaLabel } from '../../lib/run-eta';
 
-/** A sheet laid on the desk: bg-card, hairline border, sharp, no shadow. */
-export function Card({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+/** The package's surfaces, re-exported so every stage builds from the same sheet. */
+export { Card, CardHeader, CardBody, CardFooter, Well } from '@launchkit/design-system/components/card';
+
+/** How long a run takes and where it runs; the one line people ask for on an empty stage. */
+function RunLine({ runKind, className }: { runKind: string; className?: string }) {
   return (
-    <div
-      className={cn('rounded-sm border border-border bg-card', className)}
-      {...props}
-    />
+    <span className={cn('flex flex-wrap items-center gap-x-2 text-small text-muted-foreground', className)}>
+      <Clock size={14} strokeWidth={1.75} aria-hidden className="shrink-0" />
+      <span>Takes {etaLabel(runKind)}. Runs in the background; you can leave this page and come back.</span>
+    </span>
   );
 }
 
 /**
- * Honest-empty state (components.md / voice.md): fact → reason → next act.
- * Heading + faint body + one secondary action, left-aligned. Never a
- * centered illustration.
+ * Honest-empty state (feedback-states.md): fact, reason, next act. Keeps the
+ * older fact / reason prop names; renders the package's EmptyState, left-aligned
+ * inside a stage so it reads as content.
  */
 export function HonestEmpty({
   fact,
@@ -29,34 +32,36 @@ export function HonestEmpty({
   action,
   className,
   runKind,
+  align = 'start',
 }: {
   fact: string;
   reason: string;
   action?: React.ReactNode;
   className?: string;
-  /** Run kind the action starts — an empty state is exactly where "how long?" is asked. */
+  align?: 'start' | 'center';
+  /** Run kind the action starts: an empty state is exactly where "how long?" is asked. */
   runKind?: string;
 }) {
   return (
-    <div className={cn('max-w-xl', className)}>
-      <p className="text-heading font-semibold">{fact}</p>
-      <p className="mt-1 text-body text-muted-foreground">{reason}</p>
-      {action && <div className="mt-3">{action}</div>}
-      {runKind && (
-        <p className="mt-2 flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
-          <Clock size={13} strokeWidth={1.5} aria-hidden />
-          <span>Takes {etaLabel(runKind)}.</span>
-          <span>Runs in the background; you can leave this page.</span>
-        </p>
-      )}
-    </div>
+    <EmptyState
+      align={align}
+      title={fact}
+      description={
+        <>
+          {reason}
+          {runKind && <RunLine runKind={runKind} className="mt-2" />}
+        </>
+      }
+      action={action}
+      className={className}
+    />
   );
 }
 
 /**
- * The orienting card every stage opens with: what Launch Kit just did, what
- * the builder is being asked to do, and why it matters. A screen that starts
- * with data before purpose reads as a database, not a product.
+ * The stage intro (workspace-stage-anatomy.md): one lead sentence saying what
+ * Launch Kit did and what the person should do, with the ask in medium weight;
+ * one muted detail sentence. Not a card.
  */
 export function Orient({
   lead,
@@ -65,73 +70,46 @@ export function Orient({
 }: {
   lead: React.ReactNode;
   detail?: React.ReactNode;
-  /** Run kind this stage starts — adds a measured "how long / where it runs" line. */
+  /** Run kind this stage starts: adds the measured "how long / where it runs" line. */
   runKind?: string;
 }) {
   return (
-    <Card className="grid gap-1 p-4">
-      <p className="text-read leading-[1.625rem]">{lead}</p>
+    <div className="grid max-w-reading gap-1.5">
+      <p className="text-lead">{lead}</p>
       {detail && <p className="text-body text-muted-foreground">{detail}</p>}
-      {runKind && (
-        <p className="mt-1 flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
-          <Clock size={13} strokeWidth={1.5} aria-hidden />
-          <span>Takes {etaLabel(runKind)}.</span>
-          <span>Runs in the background; you can leave this page.</span>
-        </p>
-      )}
-    </Card>
+      {runKind && <RunLine runKind={runKind} />}
+    </div>
   );
 }
 
 /**
- * The raw pipeline output, demoted to a debugging affordance. Builders review
- * structured views; the JSON exists for support and for the curious, folded
- * shut at the bottom of a card, never at eye level.
+ * Raw output, folded shut at the bottom of a card (cards-surfaces.md: a CodeWell).
+ * People review the structured view; this exists for support and the curious.
  */
 export function RawData({ data, label = 'Raw data' }: { data: unknown; label?: string }) {
   const [open, setOpen] = React.useState(false);
   const isText = typeof data === 'string';
   return (
     <div>
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        className="inline-flex items-center gap-1 font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground hover:text-foreground"
-      >
-        <ChevronRight
-          size={12}
-          strokeWidth={1.5}
-          aria-hidden
-          className={cn(
-            'transition-transform motion-reduce:transition-none',
-            open && 'rotate-90',
-          )}
-        />
+      <Button variant="ghost" size="sm" onClick={() => setOpen(!open)} aria-expanded={open} className="-ml-2 text-muted-foreground">
+        <ChevronRight aria-hidden className={cn('transition-transform duration-(--duration-fast) motion-reduce:transition-none', open && 'rotate-90')} />
         {label}
-      </button>
-      {open && (
-        <pre
-          className={cn(
-            'mt-2 max-h-80 overflow-auto border border-border bg-muted p-3 font-mono text-data leading-5',
-            isText && 'whitespace-pre-wrap',
-          )}
-        >
-          {isText ? data : JSON.stringify(data, null, 2)}
-        </pre>
-      )}
+      </Button>
+      <Disclosure open={open}>
+        <CodeWell className="mt-2">{isText ? data : JSON.stringify(data, null, 2)}</CodeWell>
+      </Disclosure>
     </div>
   );
 }
 
-/** Locked gates say why (voice.md). A 409 is never a dead end. */
+/** Locked gates say why (voice.md); a locked stage is never a dead end. */
 export function LockedGate() {
   const { nav, go, href } = useNav();
   const id = nav.projectId;
   return (
     <HonestEmpty
       fact="Locked until you approve the profile."
-      reason="Everything downstream is built from it, pricing, assets, venues, and signal search all read the approved profile."
+      reason="Everything downstream is built from it: pricing, posts, venues and signal search all read the approved profile."
       action={
         <a
           href={href({ view: 'workspace', projectId: id, stage: 'profile' })}
@@ -140,7 +118,7 @@ export function LockedGate() {
             go({ view: 'workspace', projectId: id, stage: 'profile' });
           }}
         >
-          <Button variant="secondary">Review profile</Button>
+          <Button variant="secondary">Review the profile</Button>
         </a>
       }
     />

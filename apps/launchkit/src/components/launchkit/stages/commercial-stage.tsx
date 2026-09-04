@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { useProject } from '../project-provider';
-import {
-  Card,
-  HonestEmpty,
-  LockedGate,
-  Orient,
-  RawData,
-} from '../stage-common';
-import { Button } from '../../ui/button';
-import { CopyButton } from '../../ui/copy-button';
-import { StatusStamp } from '../../ui/status-stamp';
-import { ProvenanceLine } from '../../ui/provenance-line';
-import { TextShimmer } from '../../motion-primitives/text-shimmer';
-import { Table, Th, Tr, Td } from '../../ui/table';
+import { Card, CardHeader, CardBody, HonestEmpty, LockedGate, Orient, RawData } from '../stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { CopyButton } from '@launchkit/design-system/components/copy-button';
+import { StatusStamp, Badge, type BadgeTone } from '@launchkit/design-system/components/status-stamp';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
+import { Table, TableFrame, Th, Tr, Td } from '@launchkit/design-system/components/table';
 import { api } from '../../../data/api';
 
 const asStr = (v: unknown) => (v == null ? '' : String(v));
@@ -21,9 +14,7 @@ const asArr = (v: unknown): unknown[] => (Array.isArray(v) ? v : []);
 
 function MetaLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-      {children}
-    </p>
+    <p className="text-label text-muted-foreground">{children}</p>
   );
 }
 
@@ -37,14 +28,14 @@ function DataBlock({ data }: { data: unknown }) {
         {s}
       </a>
     ) : (
-      <p className="text-read leading-[1.625rem]">{s}</p>
+      <p className="text-read">{s}</p>
     );
   }
   if (Array.isArray(data)) {
     return (
       <ul className="grid list-disc gap-1 pl-5">
         {data.map((item, i) => (
-          <li key={i} className="text-read leading-[1.625rem]">
+          <li key={i} className="text-read">
             {typeof item === 'object' ? <DataBlock data={item} /> : String(item)}
           </li>
         ))}
@@ -81,7 +72,7 @@ function tierPrice(t: RecTier): string {
     return /^\d+(\.\d+)?$/.test(p) ? `$${p}` : p;
   }
   const key = Object.keys(t).find((k) => /price/i.test(k) && t[k] != null && asStr(t[k]) !== '');
-  if (!key) return '-';
+  if (!key) return '';
   const v = asStr(t[key]);
   const num = /^\d+(\.\d+)?$/.test(v);
   const perMonth = /month|mo\b|_mo/i.test(key);
@@ -111,13 +102,13 @@ function RecommendationView({ rec }: { rec: Record<string, unknown> }) {
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {tiers.map((t, i) => {
             const limits = Array.isArray(t.key_limits)
-              ? t.key_limits.map(String).join(' · ')
+              ? t.key_limits.map(String).join(', ')
               : asStr(t.key_limits);
             const audience = asStr(t.who_its_for);
             return (
-              <div key={i} className="grid content-start gap-2 rounded-sm border border-border p-3">
+              <div key={i} className="grid content-start gap-2 rounded-card border border-border p-5">
                 <MetaLabel>{asStr(t.name) || `Tier ${i + 1}`}</MetaLabel>
-                <p className="text-title font-semibold">{tierPrice(t)}</p>
+                <p className="text-title">{tierPrice(t)}</p>
                 {audience && <p className="text-body text-muted-foreground">{audience}</p>}
                 {asArr(t.includes).length > 0 && (
                   <ul className="grid gap-1">
@@ -134,11 +125,11 @@ function RecommendationView({ rec }: { rec: Record<string, unknown> }) {
           })}
         </div>
       )}
-      {rationale && <p className="text-read leading-[1.625rem]">{rationale}</p>}
+      {rationale && <p className="text-read">{rationale}</p>}
       {(model || anchors.length > 0) && (
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
           {model && (
-            <span className="bg-muted px-1.5 py-0.5 font-mono text-data">{model}</span>
+            <Badge tone="neutral" className="font-mono text-data">{model}</Badge>
           )}
           {anchors.length > 0 && (
             <span className="text-body text-muted-foreground">
@@ -189,21 +180,14 @@ function Standing({ notability, mentions, evidence }: {
   mentions?: number;
   evidence?: string;
 }) {
-  if (!notability) return <span className="text-muted-foreground">-</span>;
-  const tone =
-    notability === 'established' ? 'text-go'
-    : notability === 'emerging' ? 'text-hold'
-    : 'text-muted-foreground';
+  if (!notability) return null;
+  const tone: BadgeTone =
+    notability === 'established' ? 'go' : notability === 'emerging' ? 'hold' : 'neutral';
   return (
-    <span
-      title={evidence || undefined}
-      className={`font-mono text-meta font-medium uppercase tracking-[0.08em] ${tone}`}
-    >
-      {notability}
-      {typeof mentions === 'number' && (
-        <span className="ml-1 text-muted-foreground">·{mentions}</span>
-      )}
-    </span>
+    <Badge tone={tone} title={evidence || undefined}>
+      {notability.charAt(0).toUpperCase() + notability.slice(1)}
+      {typeof mentions === 'number' && <span className="ml-1 opacity-70">{mentions}</span>}
+    </Badge>
   );
 }
 
@@ -245,7 +229,7 @@ export function CommercialStage() {
           reason="Launch Kit reads real competitor pricing pages, recommends tiers, and rewrites your store listing from the approved profile."
           action={
             <Button variant="secondary" onClick={runBoth}>
-              Draft pricing & listing
+              Draft pricing and listing
             </Button>
           }
         />
@@ -269,27 +253,27 @@ export function CommercialStage() {
       <div className="grid items-start gap-4 lg:grid-cols-2">
         {/* ---- pricing ---- */}
         <Card>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Pricing</MetaLabel>
-            <div className="flex items-center gap-2">
+          <CardHeader
+            title="Pricing"
+            actions={
+              <>
               {pricing && <StatusStamp kind="hold" />}
               {pricing && (
                 <Button
                   variant="secondary"
-                  size="compact"
+                  size="sm"
                   disabled={Boolean(runningKind)}
                   onClick={() => runJob('pricing', () => api.runStage(project.id, 'pricing')).then(refresh)}
                 >
                   Regenerate
                 </Button>
               )}
-            </div>
-          </div>
-          <div className="border-t border-border px-4 py-4">
+              </>
+            }
+          />
+          <CardBody>
             {runningKind === 'pricing' ? (
-              <TextShimmer duration={2} className="text-body">
-                Reading competitor pricing pages…
-              </TextShimmer>
+              <span className="text-shimmer text-small">Reading competitor pricing pages</span>
             ) : pricing ? (
               <div className="grid gap-4">
                 {recommendation != null && (
@@ -307,7 +291,7 @@ export function CommercialStage() {
                 {competitors.length > 0 && (
                   <div>
                     <MetaLabel>Competitors read, {competitors.length}</MetaLabel>
-                    <div className="mt-1 overflow-x-auto">
+                    <TableFrame className="mt-2">
                       <Table>
                         <thead>
                           <tr>
@@ -330,7 +314,7 @@ export function CommercialStage() {
                                 />
                               </Td>
                               <Td className="text-muted-foreground">{asStr(c.pricing_model)}</Td>
-                              <Td numeric>{Array.isArray(c.tiers) ? c.tiers.length : '-'}</Td>
+                              <Td numeric>{Array.isArray(c.tiers) ? c.tiers.length : ''}</Td>
                               <Td>
                                 {(c.source_url || c.url) && (
                                   <a
@@ -340,7 +324,7 @@ export function CommercialStage() {
                                     aria-label={`Pricing page for ${asStr(c.name)}`}
                                     className="inline-flex items-center gap-1 font-mono text-data text-link hover:text-link-hover"
                                   >
-                                    page <ExternalLink size={12} strokeWidth={1.5} />
+                                    Pricing page <ExternalLink size={12} strokeWidth={1.75} aria-hidden />
                                   </a>
                                 )}
                               </Td>
@@ -348,7 +332,7 @@ export function CommercialStage() {
                           ))}
                         </tbody>
                       </Table>
-                    </div>
+                    </TableFrame>
                   </div>
                 )}
                 {rejected.length > 0 && (
@@ -365,10 +349,10 @@ export function CommercialStage() {
                 )}
                 <ProvenanceLine
                   parts={[
-                    'drafted from approved profile + competitor pricing pages',
+                    'Drafted from the approved profile and competitor pricing pages',
                     established.length > 0
-                      ? `anchored on ${established.length} established ${established.length === 1 ? 'competitor' : 'competitors'}`
-                      : 'no established competitor found, treat these numbers as weak',
+                      ? `Anchored on ${established.length} established ${established.length === 1 ? 'competitor' : 'competitors'}`
+                      : 'No established competitor found; treat these numbers as weak',
                   ]}
                 />
                 <RawData data={pricing} />
@@ -390,39 +374,39 @@ export function CommercialStage() {
                 />
               )
             )}
-          </div>
+          </CardBody>
         </Card>
 
         {/* ---- listing ---- */}
         <Card>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Listing</MetaLabel>
-            <div className="flex items-center gap-2">
+          <CardHeader
+            title="Listing"
+            actions={
+              <>
               {listing && <StatusStamp kind="hold" />}
-              {listing && <CopyButton size="compact" text={listingCopyText} label="Copy listing" />}
+              {listing && <CopyButton size="sm" text={listingCopyText} label="Copy listing" />}
               {listing && (
                 <Button
                   variant="secondary"
-                  size="compact"
+                  size="sm"
                   disabled={Boolean(runningKind)}
                   onClick={() => runJob('listing', () => api.runStage(project.id, 'listing')).then(refresh)}
                 >
                   Regenerate
                 </Button>
               )}
-            </div>
-          </div>
-          <div className="border-t border-border px-4 py-4">
+              </>
+            }
+          />
+          <CardBody>
             {runningKind === 'listing' ? (
-              <TextShimmer duration={2} className="text-body">
-                Rewriting your store listing…
-              </TextShimmer>
+              <span className="text-shimmer text-small">Rewriting your store listing</span>
             ) : listing ? (
               <div className="grid gap-4">
                 <div>
-                  <p className="text-heading font-semibold">{asStr(listing.title)}</p>
+                  <p className="text-heading">{asStr(listing.title)}</p>
                   {asStr(listing.tagline) && (
-                    <p className="mt-1 text-read italic leading-[1.625rem] text-muted-foreground">
+                    <p className="mt-1 text-read italic text-muted-foreground">
                       {asStr(listing.tagline)}
                     </p>
                   )}
@@ -430,13 +414,13 @@ export function CommercialStage() {
                 {asStr(listing.description_short) && (
                   <div>
                     <MetaLabel>Short description</MetaLabel>
-                    <p className="mt-0.5 text-read leading-[1.625rem]">{asStr(listing.description_short)}</p>
+                    <p className="mt-0.5 text-read">{asStr(listing.description_short)}</p>
                   </div>
                 )}
                 {asStr(listing.description_long) && (
                   <div>
                     <MetaLabel>Long description</MetaLabel>
-                    <p className="mt-0.5 whitespace-pre-wrap text-read leading-[1.625rem]">
+                    <p className="mt-0.5 whitespace-pre-wrap text-read">
                       {asStr(listing.description_long)}
                     </p>
                   </div>
@@ -446,9 +430,9 @@ export function CommercialStage() {
                     <MetaLabel>Keywords</MetaLabel>
                     <p className="mt-1 flex flex-wrap gap-1.5">
                       {(listing.keywords as unknown[]).map((k, i) => (
-                        <span key={i} className="bg-muted px-1.5 py-0.5 font-mono text-data">
+                        <Badge key={i} tone="neutral">
                           {String(k)}
-                        </span>
+                        </Badge>
                       ))}
                     </p>
                   </div>
@@ -460,7 +444,7 @@ export function CommercialStage() {
                       {(listing.faq as { q?: string; a?: string }[]).map((f, i) => (
                         <div key={i} className="border-l-2 border-border pl-3">
                           <p className="text-body font-medium">{asStr(f.q)}</p>
-                          <p className="text-read leading-[1.625rem] text-muted-foreground">{asStr(f.a)}</p>
+                          <p className="text-read text-muted-foreground">{asStr(f.a)}</p>
                         </div>
                       ))}
                     </div>
@@ -469,7 +453,7 @@ export function CommercialStage() {
                 {asStr(listing.cta) && (
                   <div>
                     <MetaLabel>Call to action</MetaLabel>
-                    <p className="mt-0.5 text-read leading-[1.625rem]">{asStr(listing.cta)}</p>
+                    <p className="mt-0.5 text-read">{asStr(listing.cta)}</p>
                   </div>
                 )}
                 {Array.isArray(listing.changes_from_current) && listing.changes_from_current.length > 0 && (
@@ -484,7 +468,7 @@ export function CommercialStage() {
                     </ul>
                   </div>
                 )}
-                <ProvenanceLine parts={['drafted from approved profile + current listing']} />
+                <ProvenanceLine parts={['Drafted from the approved profile and the current listing']} />
                 <RawData data={listing} />
               </div>
             ) : (
@@ -504,7 +488,7 @@ export function CommercialStage() {
                 />
               )
             )}
-          </div>
+          </CardBody>
         </Card>
       </div>
     </div>

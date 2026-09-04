@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Command } from 'cmdk';
 import { toast } from 'sonner';
-import { Dialog, DialogContent } from '../ui/dialog';
+import { Dialog, DialogContent } from '@launchkit/design-system/components/dialog';
 import { useProjectMaybe } from './project-provider';
 import { api } from '../../data/api';
 import { STAGES } from '../../lib/stages';
@@ -9,9 +9,9 @@ import type { ProjectRow } from '../../lib/types';
 import { useNav, type NavState } from '../../nav';
 
 const GROUP_CLS =
-  '[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-meta [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.08em] [&_[cmdk-group-heading]]:text-muted-foreground';
+  '[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-label [&_[cmdk-group-heading]]:text-muted-foreground';
 const ITEM_CLS =
-  'flex cursor-pointer items-center gap-2 rounded-sm px-2 py-2 text-body data-[selected=true]:bg-accent';
+  'flex cursor-pointer items-center gap-2 rounded-control px-2.5 py-2 text-body data-[selected=true]:bg-accent';
 
 const APP_PAGES: { href: string; label: string; to: NavState }[] = [
   { href: '/dashboard', label: 'Dashboard', to: { view: 'dashboard' } },
@@ -62,12 +62,12 @@ export function CommandPalette() {
       <DialogContent showClose={false} className="top-[20%] -translate-y-0 p-0" aria-label="Command palette">
         <Command label="Command palette" className="w-full">
           <Command.Input
-            placeholder="Jump to a page, stage, or launch…"
+            placeholder="Jump to a page, stage, or launch"
             className="h-11 w-full border-b border-border bg-transparent px-4 text-body placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-[color:var(--ring)] focus-visible:-outline-offset-2"
           />
           <Command.List className="max-h-80 overflow-y-auto p-2">
             <Command.Empty className="px-2 py-3 text-body text-muted-foreground">
-              Nothing matches. Try a page or stage name, Dashboard, Runs, Assets…
+              Nothing matches. Try a page or stage name: Dashboard, Runs, Social Launch.
             </Command.Empty>
 
             <Command.Group heading="Go to" className={GROUP_CLS}>
@@ -86,13 +86,11 @@ export function CommandPalette() {
                     onSelect={() => run(() => go({ view: 'workspace', projectId: id, stage: s.slug }))}
                     className={ITEM_CLS}
                   >
-                    <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                      {s.num}
-                    </span>
+                    <span className="font-mono text-data text-muted-foreground">{Number(s.num)}</span>
                     {s.name}
                     {!ctx.gate1 && s.slug !== 'profile' && (
-                      <span className="ml-auto font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                        locked
+                      <span className="ml-auto text-label text-muted-foreground">
+                        Locked
                       </span>
                     )}
                   </Command.Item>
@@ -129,8 +127,8 @@ export function CommandPalette() {
                 >
                   {p.name}
                   {p.id === id && (
-                    <span className="ml-auto font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                      current
+                    <span className="ml-auto text-label text-muted-foreground">
+                      Current
                     </span>
                   )}
                 </Command.Item>
@@ -145,7 +143,7 @@ export function CommandPalette() {
                   }
                   className={ITEM_CLS}
                 >
-                  Restart pipe: understand (dev)
+                  Restart analysis (dev)
                 </Command.Item>
               </Command.Group>
             )}

@@ -1,14 +1,17 @@
 import * as React from 'react';
 import { toast } from 'sonner';
-import { Button } from '../ui/button';
-import { Input, Label } from '../ui/field';
-import { Card } from './stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { Field, Input, Select } from '@launchkit/design-system/components/field';
+import { Card, CardHeader, CardBody } from '@launchkit/design-system/components/card';
+import { Segmented } from '@launchkit/design-system/components/segmented';
+import { Badge } from '@launchkit/design-system/components/status-stamp';
+import { Banner } from '@launchkit/design-system/components/banner';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
 import { useLkWorkspace, mountedSnapshotBytes, type Member } from './workspace-provider';
 import { workspaceLabel } from '../../data/workspace-state';
-import { cn } from '../../lib/utils';
 
 const Meta = ({ children }: { children: React.ReactNode }) => (
-  <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">{children}</span>
+  <p className="text-label text-muted-foreground">{children}</p>
 );
 const errMsg = (e: unknown) => (e instanceof Error ? e.message : String(e));
 
@@ -49,61 +52,57 @@ export function WorkspaceCard() {
 
   return (
     <Card>
-      <div className="flex flex-wrap items-center gap-3 px-4 py-3">
-        <Meta>Workspace</Meta>
-        <span className="text-body">
-          {ws.org ? ws.org.name : 'no organisation'} · {ws.me?.email ?? ''}
-        </span>
-      </div>
-      <div className="grid gap-5 border-t border-border px-4 py-4">
+      <CardHeader
+        title="Workspace"
+        description={`${ws.org ? ws.org.name : 'No organisation'}${ws.me?.email ? `, ${ws.me.email}` : ''}`}
+      />
+      <CardBody className="grid gap-6">
         <p className="text-body text-muted-foreground">
           Launches live in a workspace. Personal is yours alone. A team workspace is shared by every
           member of that RocketRide team: what they save, you see within half a minute.
         </p>
-        {ws.error && <p className="text-body text-nogo">{ws.error}</p>}
+        {ws.error && <Banner tone="nogo" title={ws.error} />}
 
         <div className="grid gap-2">
           <Meta>Open workspace</Meta>
-          <div className="flex flex-wrap items-center gap-2">
-            {[{ id: 'personal', name: 'Personal' }, ...ws.teams].map((t) => {
-              const isActive = (ws.active.kind === 'team' ? ws.active.teamId : 'personal') === t.id;
-              return (
-                <button
-                  key={t.id}
-                  type="button"
-                  disabled={ws.switching}
-                  onClick={() => { setSelected(t.id === 'personal' ? '' : t.id); void ws.switchTo(t.id === 'personal' ? { kind: 'personal' } : { kind: 'team', teamId: t.id, name: t.name }).catch(() => undefined); }}
-                  className={cn('rounded-sm border px-3 py-1.5 text-body', isActive ? 'border-foreground bg-muted font-medium text-foreground' : 'border-border text-muted-foreground hover:text-foreground')}
-                >
-                  {t.name}
-                </button>
-              );
-            })}
-          </div>
-          <p className="font-mono text-data text-muted-foreground">
-            {workspaceLabel(ws.active)} · {Math.round(bytes / 1024)} KB
-            {ws.active.kind === 'team' && ws.teamVersion != null ? ` · version ${ws.teamVersion}` : ''}
-            {ws.lastSync ? ` · synced ${new Date(ws.lastSync).toLocaleTimeString()}` : ''}
-          </p>
+          <Segmented
+            ariaLabel="Open workspace"
+            value={ws.active.kind === 'team' ? ws.active.teamId : 'personal'}
+            onChange={(id) => {
+              setSelected(id === 'personal' ? '' : id);
+              const team = ws.teams.find((t) => t.id === id);
+              void ws.switchTo(team ? { kind: 'team', teamId: team.id, name: team.name } : { kind: 'personal' }).catch(() => undefined);
+            }}
+            options={[{ value: 'personal', label: 'Personal' }, ...ws.teams.map((t) => ({ value: t.id, label: t.name }))]}
+            className={ws.switching ? 'pointer-events-none self-start opacity-60' : 'self-start'}
+          />
+          <ProvenanceLine
+            parts={[
+              workspaceLabel(ws.active),
+              `${Math.round(bytes / 1024)} KB`,
+              ws.active.kind === 'team' && ws.teamVersion != null ? `version ${ws.teamVersion}` : null,
+              ws.lastSync ? `synced ${new Date(ws.lastSync).toLocaleTimeString()}` : null,
+            ]}
+          />
         </div>
 
         <div className="grid gap-2">
           <Meta>Teams</Meta>
           {ws.teams.length === 0 && <p className="text-body text-muted-foreground">No teams in this organisation yet.</p>}
-          <div className="flex flex-wrap items-center gap-2">
-            {ws.teams.map((t) => (
-              <button key={t.id} type="button" onClick={() => setSelected(t.id)}
-                className={cn('rounded-sm border px-3 py-1.5 text-body', selected === t.id ? 'border-foreground text-foreground' : 'border-border text-muted-foreground hover:text-foreground')}>
-                {t.name}{t.memberCount != null ? ` · ${t.memberCount}` : ''}
-              </button>
-            ))}
-          </div>
+          {ws.teams.length > 0 && (
+            <Segmented
+              ariaLabel="Team"
+              value={selected}
+              onChange={setSelected}
+              options={ws.teams.map((t) => ({ value: t.id, label: t.memberCount != null ? `${t.name} (${t.memberCount})` : t.name }))}
+              className="self-start"
+            />
+          )}
           <div className="flex flex-wrap items-end gap-2">
-            <div className="grid gap-1">
-              <Label htmlFor="ws-new-team">New team</Label>
+            <Field label="New team" htmlFor="ws-new-team" className="min-w-56">
               <Input id="ws-new-team" value={newTeam} onChange={(e) => setNewTeam(e.target.value)} placeholder="e.g. Launch crew" />
-            </div>
-            <Button variant="secondary" loading={busy === 'create'} loadingLabel="Creating…" disabled={!newTeam.trim()}
+            </Field>
+            <Button variant="secondary" loading={busy === 'create'} loadingLabel="Creating" disabled={!newTeam.trim()}
               onClick={() => act('create', async () => { await ws.createTeam(newTeam.trim()); toast(`Team ${newTeam.trim()} created`); setNewTeam(''); })}>
               Create team
             </Button>
@@ -121,8 +120,8 @@ export function WorkspaceCard() {
                   <li key={m.userId || m.email} className="flex flex-wrap items-center gap-2 text-body">
                     <span className="text-foreground">{m.name || m.email}</span>
                     <span className="font-mono text-data text-muted-foreground">{m.email}</span>
-                    {m.role && <span className="font-mono text-data text-muted-foreground">{m.role}</span>}
-                    {m.status && <span className="font-mono text-data text-muted-foreground">{m.status}</span>}
+                    {m.role && <Badge tone="neutral">{m.role}</Badge>}
+                    {m.status && <Badge tone="neutral">{m.status}</Badge>}
                   </li>
                 ))}
               </ul>
@@ -133,29 +132,24 @@ export function WorkspaceCard() {
         <div className="grid gap-2">
           <Meta>Invite a teammate</Meta>
           <div className="grid gap-2 sm:grid-cols-4">
-            <div className="grid gap-1 sm:col-span-2">
-              <Label htmlFor="ws-inv-email">Email</Label>
+            <Field label="Email" htmlFor="ws-inv-email" className="sm:col-span-2">
               <Input id="ws-inv-email" type="email" value={inv.email} onChange={(e) => setInv({ ...inv, email: e.target.value })} placeholder="name@company.com" />
-            </div>
-            <div className="grid gap-1">
-              <Label htmlFor="ws-inv-given">First name</Label>
+            </Field>
+            <Field label="First name" htmlFor="ws-inv-given">
               <Input id="ws-inv-given" value={inv.givenName} onChange={(e) => setInv({ ...inv, givenName: e.target.value })} />
-            </div>
-            <div className="grid gap-1">
-              <Label htmlFor="ws-inv-family">Last name</Label>
+            </Field>
+            <Field label="Last name" htmlFor="ws-inv-family">
               <Input id="ws-inv-family" value={inv.familyName} onChange={(e) => setInv({ ...inv, familyName: e.target.value })} />
-            </div>
+            </Field>
           </div>
           <div className="flex flex-wrap items-end gap-2">
-            <div className="grid gap-1">
-              <Label htmlFor="ws-inv-role">Role</Label>
-              <select id="ws-inv-role" value={inv.role} onChange={(e) => setInv({ ...inv, role: e.target.value })}
-                className="rounded-sm border border-border bg-background px-2 py-2 text-body text-foreground">
-                <option value="member">member</option>
-                <option value="admin">admin</option>
-              </select>
-            </div>
-            <Button variant="primary" loading={busy === 'invite'} loadingLabel="Inviting…" disabled={!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inv.email)}
+            <Field label="Role" htmlFor="ws-inv-role">
+              <Select id="ws-inv-role" value={inv.role} onChange={(e) => setInv({ ...inv, role: e.target.value })} className="w-auto min-w-36">
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+              </Select>
+            </Field>
+            <Button variant="secondary" loading={busy === 'invite'} loadingLabel="Inviting" disabled={!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inv.email)}
               onClick={() => act('invite', async () => {
                 const msg = await ws.invite({ ...inv, teamId: selected || undefined });
                 toast(msg); setNote(msg); setInv({ email: '', givenName: '', familyName: '', role: 'member' });
@@ -169,24 +163,24 @@ export function WorkspaceCard() {
           </p>
         </div>
 
-        <div className="grid gap-2 border-t border-border pt-3">
+        <div className="grid gap-2">
           <Meta>Shared store</Meta>
           <div className="flex flex-wrap items-center gap-3">
-            <Button variant="secondary" loading={ws.storeChecking} loadingLabel="Checking…" onClick={() => void ws.runStoreCheck()}>
+            <Button variant="secondary" loading={ws.storeChecking} loadingLabel="Checking" onClick={() => void ws.runStoreCheck()}>
               Check store
             </Button>
             {ws.store && (
-              <span className={cn('font-mono text-data', ws.store.ok ? 'text-muted-foreground' : 'text-nogo')}>
-                {ws.store.ok ? `ok · ${ws.store.dialect} · ${ws.store.ms} ms` : `failed after ${ws.store.ms} ms: ${ws.store.error}`}
+              <span className={ws.store.ok ? 'text-small text-muted-foreground' : 'text-small text-nogo-text'}>
+                {ws.store.ok ? `Connected, ${ws.store.dialect}, ${ws.store.ms} ms` : `Failed after ${ws.store.ms} ms: ${ws.store.error}`}
               </span>
             )}
           </div>
           <p className="text-body text-muted-foreground">
-            Team workspaces are stored through the store pipeline, which needs your signed-in identity. Run this once in the deployed app; a preview opened with an API key cannot pass it.
+            Team workspaces are kept in the shared store, which needs your signed-in identity. Run this once in the deployed app; a preview opened with an API key cannot pass it.
           </p>
         </div>
-        {note && <p className="font-mono text-data text-muted-foreground">{note}</p>}
-      </div>
+        {note && <p className="text-small text-muted-foreground">{note}</p>}
+      </CardBody>
     </Card>
   );
 }

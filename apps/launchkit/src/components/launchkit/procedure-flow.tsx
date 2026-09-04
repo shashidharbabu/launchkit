@@ -13,8 +13,9 @@ import {
 } from 'lucide-react';
 import { Reveal } from './landing-motion';
 import { FloatingPlatforms } from './floating-platforms';
-import { PlatformIcon } from '../ui/platform-icons';
-import { cn } from '../../lib/utils';
+import { PlatformIcon } from './platform-icons';
+import { cn } from '@launchkit/design-system/lib/cn';
+import { Badge } from '@launchkit/design-system/components/status-stamp';
 
 /**
  * How the product works, drawn as what it is: one continuous procedure. Three
@@ -67,10 +68,10 @@ const STAGES = [
 /** The rubber stamp, worn as a chip. Slight rotation = hand-applied. */
 function GateChip({ label }: { label: string }) {
   return (
-    <span className="inline-flex w-fit -rotate-1 items-center gap-1 border border-primary px-1.5 py-0.5 font-mono text-meta font-medium uppercase tracking-[0.08em] text-primary">
-      <Stamp size={12} strokeWidth={1.5} aria-hidden />
-      {label} · you sign
-    </span>
+    <Badge tone="flare" className="gap-1">
+      <Stamp size={12} strokeWidth={2} aria-hidden />
+      {label}, you sign
+    </Badge>
   );
 }
 
@@ -89,15 +90,8 @@ function Move({
 }) {
   return (
     <div className="grid content-start gap-2.5">
-      <p
-        className={cn(
-          'font-mono text-meta font-medium uppercase tracking-[0.08em]',
-          accent ? 'text-primary' : 'text-muted-foreground',
-        )}
-      >
-        {step}
-      </p>
-      <p className="text-heading font-semibold">{headline}</p>
+      <p className={cn('text-label', accent ? 'text-flare-text' : 'text-muted-foreground')}>{step}</p>
+      <p className="text-heading">{headline}</p>
       {children}
       <p className="max-w-xs text-body text-muted-foreground">{line}</p>
     </div>
@@ -110,7 +104,7 @@ function Arrow() {
       <ArrowRight
         size={18}
         strokeWidth={1.5}
-        className="rotate-90 text-muted-foreground/70 sm:rotate-0"
+        className="rotate-90 text-faint-foreground sm:rotate-0"
       />
     </div>
   );
@@ -151,7 +145,7 @@ export function ProcedureFlow() {
             headline="Nothing ships unsigned."
             line="Three approvals. Tracked links show which venue produced each signup."
           >
-            <div className="flex items-center gap-3 py-1 text-primary">
+            <div className="flex items-center gap-3 py-1 text-flare-text">
               <Stamp size={20} strokeWidth={1.5} />
             </div>
           </Move>
@@ -162,7 +156,7 @@ export function ProcedureFlow() {
           the honest arithmetic beside it */}
       <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
         <div className="relative max-w-2xl">
-          <div aria-hidden className="absolute inset-y-2 left-[13px] w-px bg-border" />
+          <div aria-hidden className="absolute inset-y-2 left-[calc(0.875rem-0.5px)] w-px bg-border" />
           <ol className="grid gap-7">
             {STAGES.map((s, i) => (
               <li key={s.name} className="relative">
@@ -170,10 +164,10 @@ export function ProcedureFlow() {
                   <div className="grid grid-cols-[28px_1fr] gap-x-4">
                     <span
                       className={cn(
-                        'relative z-10 flex h-7 w-7 items-center justify-center rounded-sm border bg-background font-mono text-data font-medium tabular-nums',
+                        'relative z-10 flex size-7 items-center justify-center rounded-full border bg-background font-mono text-data tabular',
                         'gate' in s && s.gate
-                          ? 'border-primary text-primary'
-                          : 'border-border text-muted-foreground',
+                          ? 'border-flare text-flare-text'
+                          : 'border-border-strong text-muted-foreground',
                       )}
                     >
                       {i + 1}
@@ -186,7 +180,7 @@ export function ProcedureFlow() {
                           aria-hidden
                           className="text-muted-foreground"
                         />
-                        <p className="text-heading font-semibold">{s.name}</p>
+                        <p className="text-heading">{s.name}</p>
                         {'gate' in s && s.gate && <GateChip label={s.gate} />}
                       </div>
                       <p className="max-w-lg text-body text-muted-foreground">{s.line}</p>
@@ -200,9 +194,7 @@ export function ProcedureFlow() {
 
         <Reveal delay={0.15}>
           <aside className="self-start lg:sticky lg:top-24">
-            <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-              The arithmetic
-            </p>
+            <p className="text-label text-muted-foreground">The arithmetic</p>
             <dl className="mt-3">
               {LEDGER.map((row) => (
                 <div
@@ -211,8 +203,8 @@ export function ProcedureFlow() {
                 >
                   <dd
                     className={cn(
-                      'text-title font-semibold tabular-nums',
-                      row.accent && 'text-primary',
+                      'text-title tabular',
+                      row.accent && 'text-flare-text',
                     )}
                   >
                     {row.n}

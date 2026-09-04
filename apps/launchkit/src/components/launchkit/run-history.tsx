@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { History, ChevronDown, ChevronRight } from 'lucide-react';
-import { Dialog, DialogTrigger, SheetContent, DialogTitle } from '../ui/dialog';
-import { Button } from '../ui/button';
-import { StatusStamp, type StampKind } from '../ui/status-stamp';
-import { Disclosure } from '../ui/disclosure';
+import { Dialog, DialogTrigger, SheetContent, DialogTitle } from '@launchkit/design-system/components/dialog';
+import { Button } from '@launchkit/design-system/components/button';
+import { StatusStamp, type StampKind } from '@launchkit/design-system/components/status-stamp';
+import { Disclosure } from '@launchkit/design-system/components/disclosure';
+import { CodeWell } from '@launchkit/design-system/components/card';
 import { api } from '../../data/api';
 import { elapsedLabel, provDate } from '../../lib/format';
 import { jobLabel } from '../../lib/jobs';
@@ -46,7 +47,7 @@ export function RunHistory({
       <DialogTrigger
         render={
           <Button variant="secondary">
-            <History size={14} strokeWidth={1.5} />
+            <History aria-hidden />
             Run history
           </Button>
         }
@@ -58,7 +59,7 @@ export function RunHistory({
             <div>
               <p className="text-heading font-semibold">No runs yet.</p>
               <p className="mt-1 text-body text-muted-foreground">
-                Every pipeline run for this launch lands here with its result and timing.
+                Every run for this launch lands here with its result and timing.
               </p>
             </div>
           )}
@@ -69,28 +70,24 @@ export function RunHistory({
                 <span className="min-w-0 flex-1 truncate text-body">{jobLabel(j.kind)}</span>
                 <span className="shrink-0 font-mono text-data tabular text-muted-foreground">
                   {j.elapsed_seconds ? elapsedLabel(j.elapsed_seconds) : ''}
-                  {j.created_at ? ` · ${provDate(j.created_at)}` : ''}
+                  {j.created_at ? `${j.elapsed_seconds ? ', ' : ''}${provDate(j.created_at)}` : ''}
                 </span>
                 {j.error && (
-                  <button
-                    type="button"
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
                     aria-label={expanded === j.id ? 'Hide error' : 'Show error'}
+                    aria-expanded={expanded === j.id}
                     onClick={() => setExpanded(expanded === j.id ? null : j.id)}
-                    className="-my-2 inline-grid h-10 w-10 place-items-center text-muted-foreground hover:text-foreground"
+                    className="-my-1 text-muted-foreground"
                   >
-                    {expanded === j.id ? (
-                      <ChevronDown size={14} strokeWidth={1.5} />
-                    ) : (
-                      <ChevronRight size={14} strokeWidth={1.5} />
-                    )}
-                  </button>
+                    {expanded === j.id ? <ChevronDown aria-hidden /> : <ChevronRight aria-hidden />}
+                  </Button>
                 )}
               </div>
               {j.error && (
                 <Disclosure open={expanded === j.id}>
-                  <pre className="mb-2.5 overflow-x-auto whitespace-pre-wrap bg-muted p-3 font-mono text-data text-foreground">
-                    {j.error}
-                  </pre>
+                  <CodeWell className="mb-3">{j.error}</CodeWell>
                 </Disclosure>
               )}
             </div>

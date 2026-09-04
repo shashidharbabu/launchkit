@@ -2,20 +2,15 @@ import * as React from 'react';
 import { toast } from 'sonner';
 import { Bar, BarChart, Cell, LabelList, XAxis, YAxis, Tooltip as RechartsTooltip } from 'recharts';
 import { useProject } from '../project-provider';
-import {
-  Card,
-  HonestEmpty,
-  LockedGate,
-  Orient,
-  RawData,
-} from '../stage-common';
-import { Button } from '../../ui/button';
-import { CopyButton } from '../../ui/copy-button';
-import { ProvenanceLine } from '../../ui/provenance-line';
-import { RefChip } from '../../ui/ref-chip';
-import { StatTile } from '../../ui/stat-tile';
-import { ChartContainer, ChartTooltipContent, type ChartConfig } from '../../ui/chart';
-import { Table, Th, Tr, Td } from '../../ui/table';
+import { Card, CardHeader, CardBody, HonestEmpty, LockedGate, Orient, RawData } from '../stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { CopyButton } from '@launchkit/design-system/components/copy-button';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
+import { RefChip } from '@launchkit/design-system/components/ref-chip';
+import { Badge } from '@launchkit/design-system/components/status-stamp';
+import { StatTile } from '@launchkit/design-system/components/stat-tile';
+import { ChartContainer, ChartTooltipContent, type ChartConfig } from '@launchkit/design-system/components/chart';
+import { Table, Th, Tr, Td } from '@launchkit/design-system/components/table';
 import { api } from '../../../data/api';
 import { useNav } from '../../../nav';
 
@@ -33,14 +28,6 @@ const chartConfig = {
 // dev-only simulate-signup affordance stays compiled out, matching the
 // production default of the Next build.
 const DEV_TOOLS = false;
-
-function MetaLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-      {children}
-    </p>
-  );
-}
 
 export function PlanStage() {
   const { go, href } = useNav();
@@ -92,11 +79,16 @@ export function PlanStage() {
             toastMessage="Launch plan copied as markdown"
           />
         ) : null}
-        <span className="font-mono text-data text-muted-foreground">
-          {plan?.ready
-            ? `plan ready · ${plan.targets.length} venue${plan.targets.length === 1 ? '' : 's'}`
-            : 'plan not ready'}
-        </span>
+        {plan?.ready ? (
+          <>
+            <Badge tone="go">Plan ready</Badge>
+            <span className="text-small text-muted-foreground">
+              {plan.targets.length} venue{plan.targets.length === 1 ? '' : 's'}
+            </span>
+          </>
+        ) : (
+          <Badge tone="neutral">Plan not ready</Badge>
+        )}
       </div>
 
       {!plan?.ready &&
@@ -107,8 +99,8 @@ export function PlanStage() {
               fact="Plan not ready."
               reason={
                 needsAssets
-                  ? 'The plan assembles your approved assets across your selected venues with sequencing advice, approve at least one asset first, then tick venues in Targets.'
-                  : 'The plan assembles your approved assets across your selected venues with sequencing advice, your assets are approved; now tick at least one venue in Targets.'
+                  ? 'The plan assembles your approved posts across your selected venues with sequencing advice. Approve at least one post first, then tick venues in Targets.'
+                  : 'The plan assembles your approved posts across your selected venues with sequencing advice. Your posts are approved; now tick at least one venue in Targets.'
               }
               action={
                 <a
@@ -118,7 +110,7 @@ export function PlanStage() {
                     go({ view: 'workspace', projectId: project.id, stage: needsAssets ? 'assets' : 'targets' });
                   }}
                 >
-                  <Button variant="secondary">{needsAssets ? 'Review assets' : 'Choose targets'}</Button>
+                  <Button variant="secondary">{needsAssets ? 'Review posts' : 'Choose targets'}</Button>
                 </a>
               }
             />
@@ -127,14 +119,11 @@ export function PlanStage() {
 
       {plan && plan.targets.length > 0 && (
         <Card>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Tracked links: one per venue</MetaLabel>
-          </div>
-          <div className="border-t border-border px-4 py-1">
-            <p className="py-2 text-body text-muted-foreground">
-              Use each venue&rsquo;s link when you post there. The store records the ref code at
-              signup: that&rsquo;s how attribution below fills in.
-            </p>
+          <CardHeader
+            title="Tracked links"
+            description="One per venue. Use each venue's link when you post there; the store records the ref code at signup, which is how attribution below fills in."
+          />
+          <CardBody className="overflow-x-auto pt-0">
             <Table>
               <thead>
                 <tr>
@@ -160,7 +149,7 @@ export function PlanStage() {
                       <Td>
                         <Button
                           variant="ghost"
-                          size="compact"
+                          size="sm"
                           title="Dev only: posts a signup event to the mock store"
                           onClick={async () => {
                             await api.simulateSignup(project.id, t.ref);
@@ -176,7 +165,7 @@ export function PlanStage() {
                 ))}
               </tbody>
             </Table>
-          </div>
+          </CardBody>
         </Card>
       )}
 
@@ -187,26 +176,29 @@ export function PlanStage() {
           value={total}
           attribution={
             total > 0
-              ? `via ${attributedVenues} venue${attributedVenues === 1 ? '' : 's'} · mock store`
-              : 'none attributed yet · mock store'
+              ? `across ${attributedVenues} venue${attributedVenues === 1 ? '' : 's'}, via the mock store`
+              : 'none attributed yet'
           }
         />
         <Card className="lg:col-span-2">
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Attribution: which venue produced signups</MetaLabel>
-            {rows.length > 0 && total > 0 && (
-              <CopyButton
-                size="compact"
-                label="Copy as CSV"
-                toastMessage="Attribution copied as CSV"
-                text={[
-                  'venue,ref,signups',
-                  ...rows.map((r) => `${r.target ?? '(unknown ref)'},${r.ref},${r.signups}`),
-                ].join('\n')}
-              />
-            )}
-          </div>
-          <div className="border-t border-border px-4 py-4">
+          <CardHeader
+            title="Attribution"
+            description="Which venue produced signups."
+            actions={
+              rows.length > 0 && total > 0 ? (
+                <CopyButton
+                  size="sm"
+                  label="Copy as CSV"
+                  toastMessage="Attribution copied as CSV"
+                  text={[
+                    'venue,ref,signups',
+                    ...rows.map((r) => `${r.target ?? '(unknown ref)'},${r.ref},${r.signups}`),
+                  ].join('\n')}
+                />
+              ) : undefined
+            }
+          />
+          <CardBody>
             {rows.length === 0 || total === 0 ? (
               <HonestEmpty
                 fact="No signups attributed yet."
@@ -288,35 +280,38 @@ export function PlanStage() {
                 </Table>
               </div>
             )}
-          </div>
+          </CardBody>
         </Card>
       </div>
 
       {markdown && (
         <Card>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>The plan: markdown export</MetaLabel>
-            <CopyButton
-              size="compact"
-              text={markdown}
-              label="Copy markdown"
-              toastMessage="Launch plan copied as markdown"
-            />
-          </div>
-          <div className="border-t border-border px-4 py-3">
+          <CardHeader
+            title="The plan"
+            description="Markdown export."
+            actions={
+              <CopyButton
+                size="sm"
+                text={markdown}
+                label="Copy markdown"
+                toastMessage="Launch plan copied as markdown"
+              />
+            }
+          />
+          <CardBody>
             <ProvenanceLine
               className="mt-0"
               parts={[
-                'assembled from approved assets + selected venues',
+                'Assembled from approved posts and selected venues',
                 plan ? `${plan.targets.length} venue${plan.targets.length === 1 ? '' : 's'}` : null,
-                'sequencing advice drafted: not verified',
+                'Sequencing advice drafted, not verified',
               ]}
             />
             {/* the export is the deliverable; its source stays folded like raw data */}
             <div className="mt-3">
               <RawData data={markdown} label="Plan markdown" />
             </div>
-          </div>
+          </CardBody>
         </Card>
       )}
     </div>

@@ -29,12 +29,16 @@ const SCOPE = '.lk-root';
 
 // ---------------------------------------------------------------- fonts
 // Downloaded once and committed; re-fetched only if missing.
+// Gantry (design-system/foundations/typography.md): Instrument Sans for everything
+// people read, its italic for emphasis, Geist Mono for data.
 const FONTS = [
-  { family: 'IBM Plex Sans', weight: 400, file: 'plex-sans-400.woff2' },
-  { family: 'IBM Plex Sans', weight: 500, file: 'plex-sans-500.woff2' },
-  { family: 'IBM Plex Sans', weight: 600, file: 'plex-sans-600.woff2' },
-  { family: 'IBM Plex Mono', weight: 400, file: 'plex-mono-400.woff2' },
-  { family: 'IBM Plex Mono', weight: 500, file: 'plex-mono-500.woff2' },
+  { family: 'Instrument Sans', weight: 400, style: 'normal', file: 'instrument-sans-400.woff2' },
+  { family: 'Instrument Sans', weight: 500, style: 'normal', file: 'instrument-sans-500.woff2' },
+  { family: 'Instrument Sans', weight: 600, style: 'normal', file: 'instrument-sans-600.woff2' },
+  { family: 'Instrument Sans', weight: 700, style: 'normal', file: 'instrument-sans-700.woff2' },
+  { family: 'Instrument Sans', weight: 400, style: 'italic', file: 'instrument-sans-400i.woff2' },
+  { family: 'Geist Mono', weight: 400, style: 'normal', file: 'geist-mono-400.woff2' },
+  { family: 'Geist Mono', weight: 500, style: 'normal', file: 'geist-mono-500.woff2' },
 ];
 
 async function ensureFonts() {
@@ -42,9 +46,13 @@ async function ensureFonts() {
   const missing = FONTS.filter((f) => !existsSync(join(FONT_DIR, f.file)));
   if (missing.length === 0) return;
   const fam = (name) => name.replaceAll(' ', '+');
-  for (const family of ['IBM Plex Sans', 'IBM Plex Mono']) {
-    const weights = FONTS.filter((f) => f.family === family).map((f) => f.weight);
-    const url = `https://fonts.googleapis.com/css2?family=${fam(family)}:wght@${weights.join(';')}&display=swap`;
+  for (const family of [...new Set(FONTS.map((f) => f.family))]) {
+    // css2 axis list: ital,wght@0,400;0,500;1,400 (sorted, as Google requires)
+    const axes = FONTS.filter((f) => f.family === family)
+      .map((f) => `${f.style === 'italic' ? 1 : 0},${f.weight}`)
+      .sort()
+      .join(';');
+    const url = `https://fonts.googleapis.com/css2?family=${fam(family)}:ital,wght@${axes}&display=swap`;
     const css = await (await fetch(url, {
       // a modern UA gets woff2 sources
       headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36' },
@@ -52,10 +60,10 @@ async function ensureFonts() {
     for (const f of FONTS.filter((x) => x.family === family)) {
       // take the LATIN block for this weight
       const re = new RegExp(
-        `/\\* latin \\*/\\s*@font-face \\{[^}]*font-family: '${family}';[^}]*font-weight: ${f.weight};[^}]*url\\((https://[^)]+\\.woff2)\\)[^}]*\\}`,
+        `/\\* latin \\*/\\s*@font-face \\{[^}]*font-family: '${family}';[^}]*font-style: ${f.style};[^}]*font-weight: ${f.weight};[^}]*url\\((https://[^)]+\\.woff2)\\)[^}]*\\}`,
         's');
       const m = css.match(re);
-      if (!m) throw new Error(`no latin woff2 for ${family} ${f.weight}`);
+      if (!m) throw new Error(`no latin woff2 for ${family} ${f.style} ${f.weight}`);
       const buf = Buffer.from(await (await fetch(m[1])).arrayBuffer());
       writeFileSync(join(FONT_DIR, f.file), buf);
       console.log(`fetched ${f.file} (${(buf.length / 1024).toFixed(0)}KB)`);
@@ -66,7 +74,7 @@ async function ensureFonts() {
 function fontFaces() {
   return FONTS.map((f) => {
     const b64 = readFileSync(join(FONT_DIR, f.file)).toString('base64');
-    return `@font-face{font-family:'${f.family}';font-style:normal;font-weight:${f.weight};font-display:swap;` +
+    return `@font-face{font-family:'${f.family}';font-style:${f.style};font-weight:${f.weight};font-display:swap;` +
       `src:url(data:font/woff2;base64,${b64}) format('woff2');` +
       `unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}`;
   }).join('\n');
@@ -126,13 +134,20 @@ await ensureFonts();
 // ORIGINAL frontend keeps the utility set complete and identical — ported
 // components copy their className strings verbatim.
 writeFileSync(ENTRY, [
-  `@import '../launchkit-src/frontend/app/globals.css';`,
-  `@source '../launchkit-src/frontend/app';`,
-  `@source '../launchkit-src/frontend/components';`,
-  `@source '../launchkit-src/frontend/lib';`,
+  // the design system package is the whole token and base layer (ADOPT-SHELL-APP.md step 2)
+  `@import 'tailwindcss';`,
+  `@import 'tw-animate-css';`,
+  `@import '../design-system/src/tokens.css';`,
+  `@import '../design-system/src/base.css';`,
+  `@custom-variant dark (&:is(.dark *));`,
+  // both sources are scanned, or the package's classes are silently missing
+  `@source '../design-system/src';`,
   `@source '../apps/launchkit/src';`,
-  // the port sets the font vars the design system's tokens chain to
-  `:root{--font-plex-sans:'IBM Plex Sans';--font-plex-mono:'IBM Plex Mono';}`,
+  // the font variables the tokens chain to; :root is rewritten onto .lk-root below
+  `:root{--font-instrument-sans:'Instrument Sans';--font-geist-mono:'Geist Mono';}`,
+  // app layer: the Home hero photograph's slow drift (marketing surface only)
+  `@keyframes hero-drift{from{transform:scale(1.03) translateY(0)}to{transform:scale(1.1) translateY(-1.5%)}}`,
+  `.hero-drift{animation:hero-drift 36s ease-in-out infinite alternate;will-change:transform}`,
 ].join('\n'));
 
 execFileSync('npx', ['@tailwindcss/cli', '-i', ENTRY, '-o', RAW_OUT, '--minify'],
@@ -146,7 +161,7 @@ const finalCss = fontFaces() + '\n' + scoped + '\n' + rootFill;
 
 const banner =
   '// GENERATED by tools/gen-styles.mjs — DO NOT EDIT.\n' +
-  '// Flight Paperwork design system, compiled + scoped under .lk-root,\n' +
+  '// Gantry design system (@launchkit/design-system), compiled + scoped under .lk-root,\n' +
   '// fonts embedded. Regenerate: node tools/gen-styles.mjs\n';
 writeFileSync(TS_OUT, `${banner}export const LK_CSS: string = ${JSON.stringify(finalCss)};\n`);
 

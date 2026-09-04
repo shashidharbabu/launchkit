@@ -2,13 +2,13 @@
   "name": "rocketride_sb-launchkit",
   "version": "0.1.0",
   "private": true,
-  "description": "Launch Kit — a RocketRide app",
+  "description": "Launch Kit \u2014 a RocketRide app",
   "license": "MIT",
   "appManifest": {
     "id": "rocketride_sb.launchkit",
     "publisher": "rocketride_sb",
     "name": "Launch Kit",
-    "description": "GTM-in-a-box for shipped apps: app profile, pricing, listing, ranked launch venues, platform-native posts, and live demand signals — three human approval gates, nothing auto-publishes, tracked-link attribution.",
+    "description": "GTM-in-a-box for shipped apps: app profile, pricing, listing, ranked launch venues, platform-native posts, and live demand signals \u2014 three human approval gates, nothing auto-publishes, tracked-link attribution.",
     "icon": "./icon.svg",
     "readme": "./README.md",
     "categories": [
@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@launchkit/design-system": "workspace:*",
     "@number-flow/react": "~0.6.2",
     "@tanstack/react-table": "~9.1.2",
     "clsx": "^2.1.1",

@@ -3,18 +3,18 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { toast } from 'sonner';
 import { Check, ExternalLink, Globe } from 'lucide-react';
 import { useProject } from '../project-provider';
-import { Card, HonestEmpty, LockedGate, Orient } from '../stage-common';
-import { Button } from '../../ui/button';
-import { CopyButton } from '../../ui/copy-button';
-import { StatusStamp } from '../../ui/status-stamp';
-import { ProvenanceLine } from '../../ui/provenance-line';
+import { Card, HonestEmpty, LockedGate, Orient, Well } from '../stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { CopyButton } from '@launchkit/design-system/components/copy-button';
+import { StatusStamp } from '@launchkit/design-system/components/status-stamp';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogDescription,
   DialogClose,
-} from '../../ui/dialog';
+} from '@launchkit/design-system/components/dialog';
 import { api } from '../../../data/api';
 import { actionError } from '../../../lib/errors';
 import { age } from '../../../lib/format';
@@ -43,11 +43,11 @@ function SignalCard({ signal }: { signal: SignalRow }) {
   };
 
   return (
-    <Card className="p-4">
-      {/* 1 — source row */}
+    <Card className="p-6">
+      {/* 1: source row */}
       <div className="flex flex-wrap items-center gap-2">
         <Globe size={14} strokeWidth={1.5} className="shrink-0 text-muted-foreground" aria-hidden />
-        <span className="font-mono text-data text-muted-foreground">{String(d.platform ?? '-')}</span>
+        <span className="font-mono text-data text-muted-foreground">{String(d.platform ?? '')}</span>
         <a
           href={String(d.url ?? '#')}
           target="_blank"
@@ -55,7 +55,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
           className="inline-flex min-w-0 items-center gap-1 text-body font-medium text-link hover:text-link-hover"
         >
           <span className="truncate">{String(d.title_or_quote ?? 'thread')}</span>
-          <ExternalLink size={12} strokeWidth={1.5} className="shrink-0" />
+          <ExternalLink size={12} strokeWidth={1.75} aria-hidden className="shrink-0" />
         </a>
         <span className="ml-auto flex items-center gap-2">
           <span className="font-mono text-data tabular text-muted-foreground">{age(d.posted_when)}</span>
@@ -63,39 +63,39 @@ function SignalCard({ signal }: { signal: SignalRow }) {
         </span>
       </div>
 
-      {/* 2 — the ask */}
-      <blockquote className="mt-3 border-l-2 border-border pl-3 text-read leading-[1.625rem]">
+      {/* 2: the ask */}
+      <blockquote className="mt-3 border-l-2 border-border pl-3 text-read">
         “{String(d.title_or_quote ?? '')}”
       </blockquote>
       {d.why_relevant != null && (
         <p className="mt-2 text-body text-muted-foreground">
           {String(d.why_relevant)}
-          {d.intent_strength != null && ` · intent: ${String(d.intent_strength)}`}
+          {d.intent_strength != null && `, intent: ${String(d.intent_strength)}`}
         </p>
       )}
 
-      {/* 3 — drafted reply */}
-      <div className="mt-3 bg-muted p-3">
+      {/* 3: drafted reply */}
+      <Well className="mt-4">
         <p className="whitespace-pre-wrap text-body">{String(d.drafted_reply ?? '')}</p>
-      </div>
+      </Well>
       <ProvenanceLine
         parts={[
-          'drafted from approved profile',
-          verified ? 'verified against thread' : 'could not verify',
+          'Drafted from the approved profile',
+          verified ? 'Verified against the thread' : 'Could not verify',
         ]}
       />
       {!verified && (
         <p className="mt-2 text-body text-muted-foreground">
-          Couldn&rsquo;t fetch this thread, so we can&rsquo;t verify it. It stays marked UNVERIFIED
+          Launch Kit could not fetch this thread, so it cannot verify it. It stays marked unverified;
           judge it yourself before replying.
         </p>
       )}
 
-      {/* 4 — actions */}
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      {/* 4: actions */}
+      <div className="mt-4 flex flex-wrap items-center gap-2">
         <CopyButton text={String(d.drafted_reply ?? '')} label="Copy reply" toastMessage="Copied" />
         <Button variant="ghost" loading={marking} onClick={() => setStatus('replied')}>
-          <Check size={14} strokeWidth={1.5} className="text-go" />
+          <Check aria-hidden />
           Mark replied
         </Button>
         <Button variant="ghost" onClick={() => setConfirmDismiss(true)}>
@@ -167,17 +167,17 @@ export function SignalsStage() {
       {queue.length > 0 && (
         <div className="flex flex-wrap items-center gap-3">
           <Button
-            variant="primary"
+            variant="secondary"
             disabled={Boolean(running)}
             loading={running?.kind === 'signals'}
-            loadingLabel="Searching…"
+            loadingLabel="Searching"
             onClick={() => runJob('signals', () => api.runStage(project.id, 'signals'))}
           >
             Re-run signal search
           </Button>
-          <span className="font-mono text-data text-muted-foreground">
-            {verified} verified · {unverified} unverified
-            {replied > 0 ? ` · ${replied} replied` : ''}
+          <span className="text-small text-muted-foreground">
+            {verified} verified, {unverified} unverified
+            {replied > 0 ? `, ${replied} replied` : ''}
           </span>
         </div>
       )}
@@ -192,7 +192,7 @@ export function SignalsStage() {
               variant="secondary"
               disabled={Boolean(running)}
               loading={running?.kind === 'signals'}
-              loadingLabel="Searching…"
+              loadingLabel="Searching"
               onClick={() => runJob('signals', () => api.runStage(project.id, 'signals'))}
             >
               Scan for live demand
@@ -205,7 +205,7 @@ export function SignalsStage() {
       {signals.length > 0 && queue.length === 0 && (
         <HonestEmpty
           fact="Queue clear."
-          reason={`Every signal is handled, ${replied} replied · ${
+          reason={`Every signal is handled: ${replied} replied, ${
             signals.length - replied
           } dismissed. Re-run the search after your first posts to find new asks.`}
           action={
@@ -213,7 +213,7 @@ export function SignalsStage() {
               variant="secondary"
               disabled={Boolean(running)}
               loading={running?.kind === 'signals'}
-              loadingLabel="Searching…"
+              loadingLabel="Searching"
               onClick={() => runJob('signals', () => api.runStage(project.id, 'signals'))}
             >
               Re-run signal search
@@ -256,24 +256,24 @@ function ScanReport({ meta }: { meta: Record<string, unknown> }) {
   const notes = typeof meta.coverage_notes === 'string' ? meta.coverage_notes : '';
   if (!queries.length && !dropped.length && !notes && !rejected) return null;
   return (
-    <div className="mt-4 border border-border bg-background">
-      <p className="border-b border-border px-3 py-2 font-mono text-meta uppercase tracking-[0.08em] text-muted-foreground">Scan report</p>
+    <div className="mt-4 rounded-control border border-border bg-surface">
+      <p className="border-b border-border px-4 py-2 text-label text-muted-foreground">Scan report</p>
       {queries.length > 0 && (
-        <p className="border-b border-border px-3 py-2 font-mono text-data text-muted-foreground"><span className="text-foreground">Searched</span> {queries.join(' · ')}</p>
+        <p className="border-b border-border px-4 py-2 font-mono text-data text-muted-foreground"><span className="text-foreground">Searched</span> {queries.join(', ')}</p>
       )}
-      {notes && <p className="border-b border-border px-3 py-2 text-body text-muted-foreground">{notes}</p>}
+      {notes && <p className="border-b border-border px-4 py-2 text-body text-muted-foreground">{notes}</p>}
       {dropped.length > 0 && (
-        <div className="px-3 py-2 font-mono text-data text-muted-foreground">
+        <div className="px-4 py-2 font-mono text-data text-muted-foreground">
           <span className="text-foreground">Dropped by gate</span> ({dropped.length})
           <ul className="mt-1 space-y-1">
             {dropped.slice(0, 8).map((d, i) => (
-              <li key={i} className="truncate">{String(d.reason ?? '')} · {String(d.url ?? '')}</li>
+              <li key={i} className="truncate">{String(d.reason ?? '')}: {String(d.url ?? '')}</li>
             ))}
           </ul>
         </div>
       )}
       {rejected > 0 && (
-        <p className="px-3 py-2 font-mono text-data text-muted-foreground"><span className="text-foreground">Rejected by relevance check</span> {rejected}</p>
+        <p className="px-4 py-2 font-mono text-data text-muted-foreground"><span className="text-foreground">Rejected by relevance check</span> {rejected}</p>
       )}
     </div>
   );

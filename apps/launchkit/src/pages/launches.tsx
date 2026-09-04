@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Button } from '../components/ui/button';
-import { Input, Label } from '../components/ui/field';
-import { StatusStamp } from '../components/ui/status-stamp';
-import { Table, Th, Tr, Td } from '../components/ui/table';
-import { DelayedSkeleton } from '../components/ui/skeleton';
+import { Button } from '@launchkit/design-system/components/button';
+import { Field, Input } from '@launchkit/design-system/components/field';
+import { StatusStamp } from '@launchkit/design-system/components/status-stamp';
+import { Table, TableFrame, TableCaption, Th, Tr, Td } from '@launchkit/design-system/components/table';
+import { PageContainer } from '@launchkit/design-system/components/page-container';
+import { PageHeader } from '@launchkit/design-system/components/page-header';
+import { DelayedSkeleton } from '@launchkit/design-system/components/skeleton';
 import { HonestEmpty } from '../components/launchkit/stage-common';
 import { ConnectionBanner } from '../components/launchkit/connection-banner';
 import { api } from '../data/api';
@@ -48,28 +50,31 @@ export default function LaunchesPage() {
   );
 
   return (
-    <div className="grid gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <h1 className="text-display font-semibold tracking-[-0.01em]">Launches</h1>
-        <a
-          href={href({ view: 'new-launch' })}
-          onClick={(e) => {
-            e.preventDefault();
-            go({ view: 'new-launch' });
-          }}
-        >
-          <Button variant="primary">New launch</Button>
-        </a>
-      </div>
-
+    <PageContainer className="grid gap-8">
+      <PageHeader
+        title="Launches"
+        description="Every app you are taking to market, and how far each one has come."
+        actions={
+          <a
+            href={href({ view: 'new-launch' })}
+            onClick={(e) => {
+              e.preventDefault();
+              go({ view: 'new-launch' });
+            }}
+          >
+            <Button variant="primary">New launch</Button>
+          </a>
+        }
+      />
       <ConnectionBanner error={apiError} />
 
       {launches === null && <DelayedSkeleton className="h-64" />}
 
       {launches !== null && !apiError && launches.length === 0 && (
         <HonestEmpty
+          align="center"
           fact="No launches yet."
-          reason="A launch runs your shipped app through seven stages with your approval at every gate, start with your app's name, live site, and repo."
+          reason="A launch runs your shipped app through seven stages with your approval at every gate. Start with your app's name, live site, and repo."
           action={
             <a
               href={href({ view: 'new-launch' })}
@@ -86,18 +91,16 @@ export default function LaunchesPage() {
 
       {launches !== null && launches.length > 0 && (
         <>
-          <div className="max-w-xs">
-            <Label htmlFor="launch-filter">Filter</Label>
+          <div className="grid gap-3">
+          <Field label="Filter" htmlFor="launch-filter" className="max-w-xs">
             <Input
               id="launch-filter"
-              className="mt-1.5"
               placeholder="name or site"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             />
-          </div>
-
-          <div className="overflow-x-auto rounded-sm border border-border bg-card">
+          </Field>
+          <TableFrame>
             <Table>
               <thead>
                 <tr>
@@ -120,7 +123,7 @@ export default function LaunchesPage() {
                           e.preventDefault();
                           go({ view: 'workspace', projectId: row.id, stage: 'profile' });
                         }}
-                        className="font-medium text-link hover:text-link-hover"
+                        className="font-medium hover:text-link-hover"
                       >
                         {row.name}
                       </a>
@@ -129,7 +132,7 @@ export default function LaunchesPage() {
                       {row.site_url.replace(/^https?:\/\//, '')}
                     </Td>
                     <Td className="font-mono text-data text-muted-foreground">
-                      {row.repo_url ? row.repo_url.replace(/^https?:\/\/(github\.com\/)?/, '') : '-'}
+                      {row.repo_url ? row.repo_url.replace(/^https?:\/\/(github\.com\/)?/, '') : ''}
                     </Td>
                     <Td>
                       {row.profile_status === 'approved' ? (
@@ -137,25 +140,26 @@ export default function LaunchesPage() {
                       ) : row.profile_status ? (
                         <StatusStamp kind="hold" />
                       ) : (
-                        <span className="text-muted-foreground">-</span>
+                        <StatusStamp kind="none" />
                       )}
                     </Td>
-                    <Td numeric>{detail ? detail.counts.assets : '-'}</Td>
+                    <Td numeric>{detail ? detail.counts.assets : ''}</Td>
                     <Td numeric>
-                      {detail ? `${detail.counts.targets_selected}/${detail.counts.targets}` : '-'}
+                      {detail ? `${detail.counts.targets_selected} of ${detail.counts.targets}` : ''}
                     </Td>
-                    <Td numeric>{detail ? detail.counts.signals : '-'}</Td>
+                    <Td numeric>{detail ? detail.counts.signals : ''}</Td>
                   </Tr>
                 ))}
               </tbody>
             </Table>
-          </div>
-          <p className="font-mono text-data text-muted-foreground">
+          </TableFrame>
+          <TableCaption>
             {visible.length} of {launches.length} launch{launches.length === 1 ? '' : 'es'}
-            {q ? ` matching “${filter.trim()}”` : ''} · venues shown as selected/ranked
-          </p>
+            {q ? ` matching “${filter.trim()}”` : ''}. Venues are shown as selected of ranked.
+          </TableCaption>
+          </div>
         </>
       )}
-    </div>
+    </PageContainer>
   );
 }

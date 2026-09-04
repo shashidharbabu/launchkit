@@ -2,19 +2,13 @@ import * as React from 'react';
 import { toast } from 'sonner';
 import { AtSign, Briefcase, Clapperboard, ExternalLink, FileText, Mail, MessagesSquare, Newspaper, RefreshCw, Rocket, type LucideIcon } from 'lucide-react';
 import { useProject } from '../project-provider';
-import {
-  Card,
-  HonestEmpty,
-  LockedGate,
-  Orient,
-  RawData,
-} from '../stage-common';
-import { Button } from '../../ui/button';
-import { CopyButton } from '../../ui/copy-button';
-import { StatusStamp } from '../../ui/status-stamp';
-import { ProvenanceLine } from '../../ui/provenance-line';
-import { Textarea, Label } from '../../ui/field';
-import { TextShimmer } from '../../motion-primitives/text-shimmer';
+import { Card, CardFooter, HonestEmpty, LockedGate, Orient, RawData, Well } from '../stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { CopyButton } from '@launchkit/design-system/components/copy-button';
+import { StatusStamp, Badge } from '@launchkit/design-system/components/status-stamp';
+import { Banner } from '@launchkit/design-system/components/banner';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
+import { Field, Textarea } from '@launchkit/design-system/components/field';
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -22,9 +16,9 @@ import {
   MorphingDialogContent,
   MorphingDialogClose,
   MorphingDialogTitle,
-} from '../../motion-primitives/morphing-dialog';
+} from '@launchkit/design-system/motion/morphing-dialog';
 import { useReducedMotion } from 'motion/react';
-import { AnimatedGroup } from '../../motion-primitives/animated-group';
+import { AnimatedGroup } from '@launchkit/design-system/motion/animated-group';
 import { api } from '../../../data/api';
 import { ASSET_LABELS, ASSET_TYPES } from '../../../lib/asset-types';
 import { fillDeep, pickUrl, shareLinks, type ShareLink } from '../../../lib/share';
@@ -86,10 +80,8 @@ function AssetBody({ data, full }: { data: Record<string, unknown>; full?: boole
     <div className="grid gap-3">
       {shown.map((p) => (
         <div key={p.label}>
-          <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-            {p.label}
-          </p>
-          <p className="mt-0.5 whitespace-pre-wrap text-read leading-[1.625rem]">{p.text}</p>
+          <p className="text-label text-muted-foreground">{p.label}</p>
+          <p className="mt-1 whitespace-pre-wrap text-read">{p.text}</p>
         </div>
       ))}
       {!full && paras.length > 3 && (
@@ -143,46 +135,36 @@ function AssetCard({
 
   return (
     <Card>
-      {/* header: platform icon + asset-type meta label + stamp (components.md) */}
-      <div className="flex flex-wrap items-center gap-2 px-4 py-3">
-        <Icon size={14} strokeWidth={1.5} aria-hidden className="shrink-0 text-muted-foreground" />
-        <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-          {label}
-        </span>
+      {/* header: platform icon + post type + stamp; header and body share padding, no rule */}
+      <div className="flex flex-wrap items-center gap-2.5 px-6 pb-2 pt-5">
+        <Icon size={16} strokeWidth={1.75} aria-hidden className="shrink-0 text-muted-foreground" />
+        <span className="text-heading">{label}</span>
         <StatusStamp kind={approved ? 'go' : 'hold'} />
       </div>
 
-      <div className="border-t border-border px-4 py-4">
-
+      <div className="px-6 pb-5">
         {warnings.length > 0 && (
-          <div className="mb-3 border border-hold bg-hold/10 p-3">
-            <p className="text-body font-medium">
-              {warnings.length} warning{warnings.length === 1 ? '' : 's'} from the draft check
-            </p>
-            <ul className="mt-1 grid list-disc gap-1 pl-5">
+          <Banner tone="hold" title={`${warnings.length} warning${warnings.length === 1 ? '' : 's'} from the draft check`} className="mb-4">
+            <ul className="grid list-disc gap-1 pl-5">
               {warnings.map((w, i) => (
-                <li key={i} className="text-body text-muted-foreground">
-                  {w}
-                </li>
+                <li key={i}>{w}</li>
               ))}
             </ul>
-          </div>
+          </Banner>
         )}
 
         {/* draft in a muted well; opens to a full reading view */}
         <MorphingDialog transition={{ duration: DUR.slow, ease: EASE_STANDARD }}>
           <MorphingDialogTrigger className="block w-full">
-            <div className="bg-muted p-3">
+            <Well className="py-4 text-left">
               <AssetBody data={data} />
-            </div>
+            </Well>
           </MorphingDialogTrigger>
           <MorphingDialogContainer>
-            <MorphingDialogContent className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-lg border border-border bg-popover p-6 shadow-float">
+            <MorphingDialogContent className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-panel border border-border bg-surface-raised p-6 shadow-overlay">
               <div className="mb-4 flex items-start justify-between gap-3">
                 <MorphingDialogTitle>
-                  <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                    {label}
-                  </span>
+                  <span className="text-heading">{label}</span>
                 </MorphingDialogTitle>
                 <MorphingDialogClose />
               </div>
@@ -191,35 +173,33 @@ function AssetCard({
           </MorphingDialogContainer>
         </MorphingDialog>
 
-        <ProvenanceLine parts={['drafted from approved profile', `v${asset.version}`]} />
+        <ProvenanceLine parts={['Drafted from the approved profile', `v${asset.version}`]} />
         <div className="mt-3">
           <RawData data={data} />
         </div>
       </div>
 
       {/* regenerate: always visible, its own section; the feedback is the point of the review */}
-      <div className="border-t border-border bg-muted px-4 py-4">
-        <div className="mb-1 flex items-center gap-2">
-          <RefreshCw size={14} strokeWidth={1.5} aria-hidden className="text-muted-foreground" />
-          <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-foreground">
-            Regenerate with feedback
-          </span>
+      <Well className="mx-6 mb-5 grid gap-3 py-4">
+        <div className="flex items-center gap-2">
+          <RefreshCw size={16} strokeWidth={1.75} aria-hidden className="text-muted-foreground" />
+          <span className="text-body font-medium">Regenerate with feedback</span>
         </div>
-        <p className="mb-3 text-body text-muted-foreground">
+        <p className="text-body text-muted-foreground">
           Not right? Say what should change. The {label} rulebook and the no-dash rule still apply
           to the new draft.
         </p>
-          <div className="grid gap-2">
-            <Label htmlFor={`fb-${asset.id}`}>What should change?</Label>
+          <Field label="What should change?" htmlFor={`fb-${asset.id}`}>
             <Textarea
               id={`fb-${asset.id}`}
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
               placeholder="e.g. shorter, lead with the benchmark, drop the second paragraph"
             />
+          </Field>
             <div>
               <Button
-                variant="primary"
+                variant="secondary"
                 disabled={Boolean(running)}
                 onClick={() => {
                   runJob(`asset:${asset.asset_type}`, () =>
@@ -230,15 +210,14 @@ function AssetCard({
                 Regenerate
               </Button>
             </div>
-          </div>
-      </div>
-      {/* actions row: below body + provenance, like the Gate Slip */}
-      <div className="flex flex-wrap items-center gap-2 border-t border-border px-4 py-3">
+      </Well>
+      {/* actions row: below body and provenance, like the gate */}
+      <CardFooter className="flex flex-wrap items-center gap-2">
         {!approved && (
           <Button
-            variant={emberApprove ? 'primary' : 'secondary'}
+            variant={emberApprove ? 'flare' : 'secondary'}
             loading={approving}
-            loadingLabel="Approving…"
+            loadingLabel="Approving"
             onClick={async () => {
               setApproving(true);
               try {
@@ -256,18 +235,18 @@ function AssetCard({
           </Button>
         )}
         {links.map((l) => (
-          <Button key={l.platform} variant={approved ? 'primary' : 'secondary'} onClick={() => share(l)}>
-            <ExternalLink size={14} strokeWidth={1.5} aria-hidden />
+          <Button key={l.platform} variant="secondary" onClick={() => share(l)}>
+            <ExternalLink aria-hidden />
             {l.label}
           </Button>
         ))}
         <CopyButton text={assetCopyText(data)} label="Copy" />
         {fixed > 0 && (
-          <span className="font-mono text-data text-muted-foreground">
+          <span className="text-small text-muted-foreground">
             {fixed} {fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule
           </span>
         )}
-      </div>
+      </CardFooter>
     </Card>
   );
 }
@@ -297,14 +276,14 @@ export function AssetsStage() {
               or tell it what&rsquo;s wrong and regenerate.
             </>
           }
-          detail="Gate 2: only approved assets enter the launch plan."
+          detail="Gate 2: only approved posts enter the launch plan."
         />
       )}
 
       {chosenAngles.length > 0 ? (
         <p className="text-body text-muted-foreground">
           Writing from your chosen angle{chosenAngles.length === 1 ? '' : 's'}:{' '}
-          <span className="text-foreground">{chosenAngles.join(' · ')}</span>. Change it in Brand.
+          <span className="text-foreground">{chosenAngles.join(', ')}</span>. Change it in Brand.
         </p>
       ) : (
         <p className="text-body text-muted-foreground">
@@ -318,22 +297,20 @@ export function AssetsStage() {
           const PIcon = ASSET_ICONS[t] ?? FileText;
           const has = existing.has(t);
           return (
-            <div key={t} role="listitem" className="flex flex-col gap-2 border border-border bg-background p-4">
+            <div key={t} role="listitem" className="flex flex-col gap-2 rounded-card border border-border bg-surface p-5">
               <div className="flex items-center gap-2">
-                <PIcon size={14} strokeWidth={1.5} aria-hidden className="shrink-0 text-muted-foreground" />
-                <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-foreground">
-                  {rb.name}
-                </span>
-                {has && <span className="font-mono text-data text-muted-foreground">drafted</span>}
+                <PIcon size={16} strokeWidth={1.75} aria-hidden className="shrink-0 text-muted-foreground" />
+                <span className="text-body font-medium text-foreground">{rb.name}</span>
+                {has && <Badge tone="neutral">Drafted</Badge>}
               </div>
               <p className="flex-1 text-body text-muted-foreground">{rb.summary}</p>
               <div>
                 <Button
-                  variant={has ? 'secondary' : 'primary'}
-                  size="compact"
+                  variant="secondary"
+                  size="sm"
                   disabled={Boolean(running)}
                   loading={runningAsset === t}
-                  loadingLabel="Drafting…"
+                  loadingLabel="Drafting"
                   onClick={() => runJob(`asset:${t}`, () => api.runAsset(project.id, t))}
                 >
                   {has ? `Redraft for ${rb.name}` : `Draft for ${rb.name}`}
@@ -345,32 +322,30 @@ export function AssetsStage() {
       </div>
 
       {assets.length > 0 && (
-        <p className="font-mono text-data text-muted-foreground">
-          {approvedCount} approved · {assets.length - approvedCount} awaiting review
+        <p className="text-small text-muted-foreground">
+          {approvedCount} approved, {assets.length - approvedCount} awaiting review
         </p>
       )}
 
       {assets.length === 0 && !runningAsset && (
         <HonestEmpty
-          fact="No assets drafted yet."
-          reason="Each launch asset is drafted platform-native from your approved profile, Reddit that reads like Reddit, a Show HN that survives HN. Every draft needs your approval before it enters the plan."
+          fact="No posts drafted yet."
+          reason="Each post is drafted to its platform's rulebook from your approved profile. Every draft needs your approval before it enters the plan."
           action={
             <Button
               variant="secondary"
               disabled={Boolean(running)}
               onClick={() => runJob('asset:show_hn', () => api.runAsset(project.id, 'show_hn'))}
             >
-              Draft SHOW HN
+              Draft for {rulesFor('show_hn').name}
             </Button>
           }
         />
       )}
 
       {runningAsset && !existing.has(runningAsset) && (
-        <Card className="p-4">
-          <TextShimmer duration={2} className="text-body">
-            {`Drafting ${ASSET_LABELS[runningAsset]?.toLowerCase() ?? runningAsset}…`}
-          </TextShimmer>
+        <Card className="p-6">
+          <span className="text-shimmer text-small">{`Drafting ${ASSET_LABELS[runningAsset]?.toLowerCase() ?? runningAsset}`}</span>
         </Card>
       )}
 

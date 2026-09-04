@@ -1,6 +1,10 @@
-@import '../launchkit-src/frontend/app/globals.css';
-@source '../launchkit-src/frontend/app';
-@source '../launchkit-src/frontend/components';
-@source '../launchkit-src/frontend/lib';
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '../design-system/src/tokens.css';
+@import '../design-system/src/base.css';
+@custom-variant dark (&:is(.dark *));
+@source '../design-system/src';
 @source '../apps/launchkit/src';
-:root{--font-plex-sans:'IBM Plex Sans';--font-plex-mono:'IBM Plex Mono';}
+:root{--font-instrument-sans:'Instrument Sans';--font-geist-mono:'Geist Mono';}
+@keyframes hero-drift{from{transform:scale(1.03) translateY(0)}to{transform:scale(1.1) translateY(-1.5%)}}
+.hero-drift{animation:hero-drift 36s ease-in-out infinite alternate;will-change:transform}

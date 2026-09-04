@@ -33,7 +33,7 @@ export class LkErrorBoundary extends React.Component<
       <div style={{ minHeight: '100vh', background: '#FAF9F6', color: '#1A1917', padding: 32 }}>
         <div style={{ maxWidth: 720, margin: '0 auto', fontFamily: 'IBM Plex Sans, system-ui, sans-serif' }}>
           <p style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6862' }}>
-            Launch Kit · render error
+            Launch Kit: render error
           </p>
           <h1 style={{ fontSize: 22, fontWeight: 600, marginTop: 8 }}>The app hit an error while rendering.</h1>
           <p style={{ marginTop: 8, color: '#6B6862' }}>

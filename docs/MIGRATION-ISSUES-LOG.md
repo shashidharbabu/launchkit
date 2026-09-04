@@ -272,3 +272,50 @@ Last updated: 2026-09-02.
 | H7 | Second rewrite the same evening, without a deploy: `launchkit/` (backend, frontend drives, evals fixtures, docs) was deleted outright, 510 tracked files missing. Common factor with H6: the folder's name equals the app slug (`launchkit`), and the extension materialises an app workspace at `<root>/<slug>/`, so it owns that path and rewrites or cleans it. | Sources moved with `git mv` to `launchkit-src/` (pipelines, frontend drives, backend evals, docs); `/launchkit/` is gitignored so a re-materialised folder is never committed; `tools/gen-pipes.mjs`, `tools/gen-styles.mjs`, the test fixture path and the docs now point at `launchkit-src/`. Rule: **never keep project files in a folder named after an app slug at the repo root.** |
 | J9 | Third signals iteration, from ground truth (direct Exa probes): Exa has NO Reddit coverage (`site:reddit.com` and domain filters return zero), reddit.com answers 403 to every unauthenticated JSON request, and Exa does not index X. The demand for hack-judge exists as LinkedIn posts (hackathon plagiarism, "how do you judge a hackathon with 100 teams") and dev.to/Medium posts by organisers, which the old rule "an article is NEVER a signal" told the model to discard. | Pipe: sources are the open web (two unscoped, two `site:linkedin.com/posts`, one `site:dev.to`, one Medium/Indie Hackers), HN via Algolia, forums, then GitHub/StackOverflow last; Reddit declared unsearchable in coverage_notes instead of pretended; "replyable" redefined as any public post by a person where a comment is possible, with lived-pain posts as high intent; returning zero when any such post exists is named a recall failure. Exa node: full text on, 5 results, budget 12 (the node schema exposes no domain, date or highlight options). Id rotated. |
 | J10 | Outcome of J9 on hack-judge (preview, real pipelines, 13 min): 2 signals stored, both LinkedIn posts by people living the problem ("we just judged 200+ hackathon projects in under 4 hours", high; a builder of a judging tool, medium); 2 dropped by the gate, 1 rejected by the judge for being about a different tool (correct); drafted reply opens on the author's situation and mentions the app once. Coverage notes state Reddit is not searchable and that HN items were stale. | Shipped as v22. Known limits: the scan takes about 13 minutes with full page text; Reddit and X are out of reach without their APIs; volume for a narrow niche will stay small, so the stage's honesty copy ("nobody is asking yet") stays. |
+
+## K. Design-system adoption in the shell app (2026-09-04)
+
+The `@launchkit/design-system` package (repo `design-system/`, the Gantry system) now backs
+every screen of `apps/launchkit`. Issues met on the way, with the fix that landed.
+
+**K1. The package had no dependencies of its own.** It declares only peer dependencies, so
+after `pnpm install` nothing resolved from `design-system/src`. Fix: `design-system` is a
+workspace package (`pnpm-workspace.yaml`), the app depends on it as `workspace:*`, and the
+package's own `node_modules` is a gitignored symlink to the app's install so `react`,
+`motion` and `@base-ui/react` resolve to the app's single copy. Verified one React (18.3.1).
+
+**K2. `button.tsx` imports `next/link`.** The app has no router and never renders
+`LinkButton`, but the import must still resolve. Fix: `src/shims/next-link.tsx` (a plain
+anchor) mapped through `tsconfig` `paths`; rsbuild honours tsconfig paths, so the build and
+the typecheck agree. Navigation stays `Button` inside an anchor wired to `go()` from
+`nav.tsx`.
+
+**K3. Styles come from the package, scoped by the codegen.** `tools/gen-styles.mjs` now
+imports the package's `tokens.css` and `base.css`, adds `@source` globs for both the package
+and the app so Tailwind emits the classes the package's components use, and embeds Instrument
+Sans and Geist Mono instead of IBM Plex. The scoper still rewrites `:root` to `.lk-root` and
+`.dark` to `.lk-root.dark`, so the theme class stays on `#lk-root`. Re-run the script after
+any class change; the app injects `src/styles.generated.ts`, not a stylesheet.
+
+**K4. The package crashed the remote at import time.** `components/banner.tsx` read
+`process.env.NEXT_PUBLIC_API_URL` at module scope; a Module Federation remote has no `process`,
+so the whole app threw "process is not defined" before mounting. Fix in the package: the read
+is guarded with `typeof process !== 'undefined'`. Any package module a non-Next consumer
+imports must stay free of Node globals at module scope.
+
+**K5. The app's duplicated primitives are gone.** `src/components/ui/` and
+`src/components/motion-primitives/` were deleted; everything imports by file from
+`@launchkit/design-system/components/*` and `/motion/*`. The app keeps `platform-icons.tsx`
+(product content), `theme-toggle.tsx` (drives `theme.tsx`, restyled with the package Button)
+and its own `cn` re-export of the package's, which teaches tailwind-merge the tokens.
+The app's own gate slip was replaced by the package's `GateSlip`.
+
+**K6. Audits and drives run against `apps/launchkit`, not the old Next frontend.**
+`launchkit-src/frontend/` still holds the previous Next app and its copies of the old
+primitives; a class or copy audit run from there reports the wrong tree. The screenshot drive
+lives there because Playwright is installed there; run it from the repo root with
+`TAG=<tag> node launchkit-src/frontend/drive.shots.mjs` and it targets the preview on 3400.
+
+**K7. No eslint configuration exists in this repo.** The design system's checklist asks for
+`npx eslint .`; the app and the root have no config, so that line cannot run. Typecheck and
+the build are the gates that do run.

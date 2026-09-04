@@ -40,3 +40,6 @@ tools/tests/domain/.build-lib/
 
 # the extension materialises an app workspace at <root>/<app slug>/; our sources live in launchkit-src/
 /launchkit/
+
+# the package resolves its peers through the app install (ADOPT.md); never commit the link
+/design-system/node_modules

@@ -1,18 +1,11 @@
 import * as React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { Check, ExternalLink } from 'lucide-react';
 import { useProject } from '../project-provider';
-import {
-  Card,
-  HonestEmpty,
-  LockedGate,
-  Orient,
-  RawData,
-} from '../stage-common';
-import { Button } from '../../ui/button';
-import { CopyButton } from '../../ui/copy-button';
-import { StatusStamp } from '../../ui/status-stamp';
-import { ProvenanceLine } from '../../ui/provenance-line';
-import { TextShimmer } from '../../motion-primitives/text-shimmer';
+import { Card, CardHeader, CardBody, HonestEmpty, LockedGate, Orient, RawData, Well } from '../stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { CopyButton } from '@launchkit/design-system/components/copy-button';
+import { StatusStamp, Badge } from '@launchkit/design-system/components/status-stamp';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
 import { api } from '../../../data/api';
 
 const asStr = (v: unknown) => (v == null ? '' : String(v));
@@ -22,9 +15,7 @@ const asObj = (v: unknown): Record<string, unknown> =>
 
 function MetaLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-      {children}
-    </p>
+    <p className="text-label text-muted-foreground">{children}</p>
   );
 }
 
@@ -33,9 +24,9 @@ function Chips({ items }: { items: unknown[] }) {
   return (
     <p className="mt-1 flex flex-wrap gap-1.5">
       {items.map((k, i) => (
-        <span key={i} className="bg-muted px-1.5 py-0.5 font-mono text-data">
+        <Badge key={i} tone="neutral">
           {String(k)}
-        </span>
+        </Badge>
       ))}
     </p>
   );
@@ -54,14 +45,12 @@ function Swatches({ colors }: { colors: unknown[] }) {
           <div key={i} className="flex items-center gap-1.5" title={asStr(col.evidence)}>
             <span
               aria-hidden
-              className="h-5 w-5 rounded-sm border border-border"
+              className="size-5 rounded-full border border-border"
               style={{ background: value }}
             />
             <span className="font-mono text-data">{value}</span>
             {asStr(col.role) && (
-              <span className="font-mono text-meta uppercase tracking-[0.08em] text-muted-foreground">
-                {asStr(col.role)}
-              </span>
+              <span className="text-label text-muted-foreground">{asStr(col.role)}</span>
             )}
           </div>
         );
@@ -137,14 +126,15 @@ export function BrandStage() {
       <div className="grid items-start gap-4 lg:grid-cols-2">
         {/* ---- Business DNA ---- */}
         <Card>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Business DNA</MetaLabel>
-            <div className="flex items-center gap-2">
+          <CardHeader
+            title="Business DNA"
+            actions={
+              <>
               {dna && <StatusStamp kind="hold" />}
               {dna && (
                 <Button
                   variant="secondary"
-                  size="compact"
+                  size="sm"
                   disabled={Boolean(runningKind)}
                   onClick={() =>
                     runJob('brand_dna', () => api.runStage(project.id, 'brand_dna')).then(refresh)
@@ -153,19 +143,18 @@ export function BrandStage() {
                   Re-extract
                 </Button>
               )}
-            </div>
-          </div>
-          <div className="border-t border-border px-4 py-4">
+              </>
+            }
+          />
+          <CardBody>
             {runningKind === 'brand_dna' ? (
-              <TextShimmer duration={2} className="text-body">
-                Reading your site for brand voice, colors, and messaging…
-              </TextShimmer>
+              <span className="text-shimmer text-small">Reading your site for brand voice, colors, and messaging</span>
             ) : dna ? (
               <div className="grid gap-4">
                 <div>
-                  <p className="text-heading font-semibold">{asStr(dna.brand_name) || project.name}</p>
+                  <p className="text-heading">{asStr(dna.brand_name) || project.name}</p>
                   {asStr(dna.tagline_observed) && (
-                    <p className="mt-1 text-read italic leading-[1.625rem] text-muted-foreground">
+                    <p className="mt-1 text-read italic text-muted-foreground">
                       “{asStr(dna.tagline_observed)}”
                     </p>
                   )}
@@ -175,7 +164,7 @@ export function BrandStage() {
                     <MetaLabel>Voice</MetaLabel>
                     <Chips items={asArr(voice.tone_words)} />
                     {asStr(voice.sentence_style) && (
-                      <p className="mt-1 text-read leading-[1.625rem]">{asStr(voice.sentence_style)}</p>
+                      <p className="mt-1 text-read">{asStr(voice.sentence_style)}</p>
                     )}
                   </div>
                 )}
@@ -190,7 +179,7 @@ export function BrandStage() {
                     <MetaLabel>Key messages</MetaLabel>
                     <ul className="mt-1 grid list-disc gap-1 pl-5">
                       {asArr(messaging.key_messages).map((m, i) => (
-                        <li key={i} className="text-read leading-[1.625rem]">
+                        <li key={i} className="text-read">
                           {String(m)}
                         </li>
                       ))}
@@ -210,13 +199,13 @@ export function BrandStage() {
                 {(asStr(typography.headings) || asStr(typography.body)) && (
                   <div>
                     <MetaLabel>Typography</MetaLabel>
-                    <p className="mt-1 text-read leading-[1.625rem]">
+                    <p className="mt-1 text-read">
                       {[
                         asStr(typography.headings) && `Headings: ${asStr(typography.headings)}`,
                         asStr(typography.body) && `Body: ${asStr(typography.body)}`,
                       ]
                         .filter(Boolean)
-                        .join(' · ')}
+                        .join(', ')}
                     </p>
                   </div>
                 )}
@@ -256,7 +245,7 @@ export function BrandStage() {
                             rel="noreferrer"
                             className="inline-flex items-center gap-1 break-all font-mono text-data text-link hover:text-link-hover"
                           >
-                            {String(u)} <ExternalLink size={12} strokeWidth={1.5} />
+                            {String(u)} <ExternalLink size={12} strokeWidth={1.75} aria-hidden />
                           </a>
                         </li>
                       ))}
@@ -265,7 +254,7 @@ export function BrandStage() {
                 )}
                 <ProvenanceLine
                   parts={[
-                    'extracted from the live site only; nothing invented',
+                    'Extracted from the live site only; nothing invented',
                     asStr(confidence.notes) || undefined,
                   ].filter(Boolean) as string[]}
                 />
@@ -288,19 +277,20 @@ export function BrandStage() {
                 />
               )
             )}
-          </div>
+          </CardBody>
         </Card>
 
         {/* ---- Campaigns ---- */}
         <Card>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Campaign angles</MetaLabel>
-            <div className="flex items-center gap-2">
+          <CardHeader
+            title="Campaign angles"
+            actions={
+              <>
               {campaigns.length > 0 && <StatusStamp kind="hold" />}
               {campaigns.length > 0 && (
                 <Button
                   variant="secondary"
-                  size="compact"
+                  size="sm"
                   disabled={Boolean(runningKind)}
                   onClick={() =>
                     runJob('brand_campaigns', () =>
@@ -311,18 +301,17 @@ export function BrandStage() {
                   Regenerate
                 </Button>
               )}
-            </div>
-          </div>
-          <div className="border-t border-border px-4 py-4">
+              </>
+            }
+          />
+          <CardBody>
             <p className="mb-3 text-body text-muted-foreground">
               An angle is the story and where to tell it, not a post. Choose the angles you would
               run; Social Launch writes each platform&rsquo;s post from your chosen angle, in this
               brand voice. The sample copy is an illustration of the angle, never the post itself.
             </p>
             {runningKind === 'brand_campaigns' ? (
-              <TextShimmer duration={2} className="text-body">
-                Drafting campaign ideas in your brand voice…
-              </TextShimmer>
+              <span className="text-shimmer text-small">Drafting campaign ideas in your brand voice</span>
             ) : campaigns.length > 0 ? (
               <div className="grid gap-4">
                 {campaigns.map((c, i) => {
@@ -331,15 +320,14 @@ export function BrandStage() {
                     .filter(Boolean)
                     .join('\n');
                   return (
-                    <div key={i} className="border border-border p-3">
+                    <div key={i} className="rounded-card border border-border p-5">
                       <div className="flex items-start justify-between gap-2">
                         <p className="text-body font-semibold">{asStr(c.name)}</p>
-                        <span className="font-mono text-meta uppercase tracking-[0.08em] text-muted-foreground">
-                          {asStr(c.effort)}
-                        </span>
+                        {asStr(c.effort) && <Badge tone="neutral">{asStr(c.effort)}</Badge>}
                         <Button
-                          variant={chosenAngles.includes(asStr(c.name)) ? 'primary' : 'secondary'}
-                          size="compact"
+                          variant="secondary"
+                          aria-pressed={chosenAngles.includes(asStr(c.name))}
+                          size="sm"
                           disabled={Boolean(runningKind)}
                           onClick={async () => {
                             const on = !chosenAngles.includes(asStr(c.name));
@@ -347,22 +335,22 @@ export function BrandStage() {
                             await refresh();
                           }}
                         >
-                          {chosenAngles.includes(asStr(c.name)) ? 'Chosen angle' : 'Use this angle'}
+                          {chosenAngles.includes(asStr(c.name)) ? <><Check aria-hidden />Chosen angle</> : 'Use this angle'}
                         </Button>
                       </div>
                       <p className="mt-1 text-body text-muted-foreground">{asStr(c.objective)}</p>
-                      <p className="mt-2 text-read leading-[1.625rem]">{asStr(c.big_idea)}</p>
+                      <p className="mt-2 text-read">{asStr(c.big_idea)}</p>
                       <Chips items={asArr(c.channels)} />
                       {asStr(c.hook) && (
-                        <p className="mt-2 border-l-2 border-border pl-3 text-read italic leading-[1.625rem]">
+                        <p className="mt-2 border-l-2 border-border pl-3 text-read italic">
                           {asStr(c.hook)}
                         </p>
                       )}
                       {copyText && (
-                        <div className="mt-2 bg-muted p-2.5">
+                        <Well className="mt-3">
                           <div className="flex items-center justify-between gap-2">
                             <MetaLabel>Sample copy (illustration)</MetaLabel>
-                            <CopyButton size="compact" text={copyText} label="Copy" />
+                            <CopyButton size="sm" text={copyText} label="Copy" />
                           </div>
                           {asStr(copy.headline) && (
                             <p className="mt-1 text-body font-medium">{asStr(copy.headline)}</p>
@@ -373,7 +361,7 @@ export function BrandStage() {
                           {asStr(copy.cta) && (
                             <p className="mt-1 font-mono text-data">{asStr(copy.cta)}</p>
                           )}
-                        </div>
+                        </Well>
                       )}
                       {asStr(c.success_metric) && (
                         <p className="mt-2 text-body">
@@ -387,7 +375,7 @@ export function BrandStage() {
                     </div>
                   );
                 })}
-                <ProvenanceLine parts={['generated from the Business DNA + approved profile']} />
+                <ProvenanceLine parts={['Generated from the Business DNA and the approved profile']} />
                 <RawData data={brandCampaigns} />
               </div>
             ) : (
@@ -395,7 +383,7 @@ export function BrandStage() {
                 fact="No campaigns yet."
                 reason={
                   dna
-                    ? 'Launch Kit turns the Business DNA into 4–6 campaign concepts a solo builder can run, each in your brand voice.'
+                    ? 'Launch Kit turns the Business DNA into four to six campaign concepts a solo builder can run, each in your brand voice.'
                     : 'Campaigns are generated from the Business DNA. Extract it first.'
                 }
                 action={
@@ -413,7 +401,7 @@ export function BrandStage() {
                 }
               />
             )}
-          </div>
+          </CardBody>
         </Card>
       </div>
     </div>

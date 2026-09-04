@@ -2,7 +2,7 @@ import { AppLayout } from 'shell';
 import { AppNav } from './app-nav';
 import { CommandPalette } from './command-palette';
 import { LkErrorBoundary } from './error-boundary';
-import { TooltipProvider } from '../ui/tooltip';
+import { TooltipProvider } from '@launchkit/design-system/components/tooltip';
 import { useNav } from '../../nav';
 
 /**

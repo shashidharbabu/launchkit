@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { useReducedMotion } from 'motion/react';
-import { AnimatedGroup } from '../components/motion-primitives/animated-group';
-import { Button } from '../components/ui/button';
-import { StatTile } from '../components/ui/stat-tile';
-import { StatusStamp } from '../components/ui/status-stamp';
-import { Table, Th, Tr, Td } from '../components/ui/table';
-import { DelayedSkeleton } from '../components/ui/skeleton';
+import { Button } from '@launchkit/design-system/components/button';
+import { StatTile, StatRow } from '@launchkit/design-system/components/stat-tile';
+import { Badge } from '@launchkit/design-system/components/status-stamp';
+import { PageContainer } from '@launchkit/design-system/components/page-container';
+import { PageHeader } from '@launchkit/design-system/components/page-header';
+import { StatusStamp } from '@launchkit/design-system/components/status-stamp';
+import { Table, TableFrame, TableCaption, Th, Tr, Td } from '@launchkit/design-system/components/table';
+import { DelayedSkeleton } from '@launchkit/design-system/components/skeleton';
 import { HonestEmpty } from '../components/launchkit/stage-common';
 import { ConnectionBanner } from '../components/launchkit/connection-banner';
 import { api } from '../data/api';
@@ -23,7 +24,6 @@ export default function DashboardPage() {
   const { go, href } = useNav();
   const [launches, setLaunches] = React.useState<LaunchSummary[] | null>(null);
   const [apiError, setApiError] = React.useState<string | null>(null);
-  const reduced = useReducedMotion();
 
   React.useEffect(() => {
     let cancelled = false;
@@ -51,16 +51,33 @@ export default function DashboardPage() {
     };
   }, []);
 
+  const newLaunch = (
+    <a
+      href={href({ view: 'new-launch' })}
+      onClick={(e) => {
+        e.preventDefault();
+        go({ view: 'new-launch' });
+      }}
+    >
+      <Button variant="primary">New launch</Button>
+    </a>
+  );
+  const header = (
+    <PageHeader
+      title="Dashboard"
+      description="Every launch at a glance: profiles approved, plans ready, and signups attributed to their venues."
+      actions={newLaunch}
+    />
+  );
   if (launches === null) {
     return (
-      <div className="grid gap-4">
-        <div className="grid gap-4 sm:grid-cols-3">
+      <PageContainer className="grid gap-8">
+        {header}
+        <div className="grid gap-4">
           <DelayedSkeleton className="h-28" />
-          <DelayedSkeleton className="h-28" />
-          <DelayedSkeleton className="h-28" />
+          <DelayedSkeleton className="h-64" />
         </div>
-        <DelayedSkeleton className="h-64" />
-      </div>
+      </PageContainer>
     );
   }
 
@@ -73,26 +90,15 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="grid gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <h1 className="text-display font-semibold tracking-[-0.01em]">Dashboard</h1>
-        <a
-          href={href({ view: 'new-launch' })}
-          onClick={(e) => {
-            e.preventDefault();
-            go({ view: 'new-launch' });
-          }}
-        >
-          <Button variant="primary">New launch</Button>
-        </a>
-      </div>
-
+    <PageContainer className="grid gap-8">
+      {header}
       <ConnectionBanner error={apiError} />
 
       {!apiError && launches.length === 0 && (
         <HonestEmpty
+          align="center"
           fact="No launches yet."
-          reason="A launch runs your shipped app through seven stages, profile, brand, commercial, assets, targets, signals, plan, with your approval at every gate."
+          reason="A launch runs your shipped app through seven stages (profile, brand, commercial, posts, targets, signals, plan) with your approval at every gate. Start with your app's name, live site, and repo."
           action={
             <a
               href={href({ view: 'new-launch' })}
@@ -109,11 +115,7 @@ export default function DashboardPage() {
 
       {launches.length > 0 && (
         <>
-          <AnimatedGroup
-            preset={reduced ? undefined : 'fade'}
-            className="grid gap-4 sm:grid-cols-3"
-            variants={{ container: { visible: { transition: { staggerChildren: 0.06 } } } }}
-          >
+          <StatRow columns={3}>
             <StatTile
               countUp
               label="Launches"
@@ -134,13 +136,13 @@ export default function DashboardPage() {
               value={signups}
               attribution={
                 signups > 0
-                  ? `via ${signupVenues} venue${signupVenues === 1 ? '' : 's'} · mock store`
-                  : 'none yet · mock store'
+                  ? `across ${signupVenues} venue${signupVenues === 1 ? '' : 's'}, via the mock store`
+                  : 'none through tracked links yet'
               }
             />
-          </AnimatedGroup>
-
-          <div className="overflow-x-auto rounded-sm border border-border bg-card">
+          </StatRow>
+          <div className="grid gap-3">
+          <TableFrame>
             <Table>
               <thead>
                 <tr>
@@ -163,7 +165,7 @@ export default function DashboardPage() {
                           e.preventDefault();
                           go({ view: 'workspace', projectId: row.id, stage: 'profile' });
                         }}
-                        className="font-medium text-link hover:text-link-hover"
+                        className="font-medium hover:text-link-hover"
                       >
                         {row.name}
                       </a>
@@ -177,34 +179,28 @@ export default function DashboardPage() {
                       ) : row.profile_status ? (
                         <StatusStamp kind="hold" />
                       ) : (
-                        <span className="text-muted-foreground">-</span>
+                        <StatusStamp kind="none" />
                       )}
                     </Td>
                     <Td numeric>
-                      {detail
-                        ? `${detail.counts.targets_selected}/${detail.counts.targets}`
-                        : '-'}
+                      {detail ? `${detail.counts.targets_selected} of ${detail.counts.targets}` : ''}
                     </Td>
-                    <Td numeric>{detail ? detail.counts.signals : '-'}</Td>
-                    <Td numeric>{attribution ? attribution.total : '-'}</Td>
+                    <Td numeric>{detail ? detail.counts.signals : ''}</Td>
+                    <Td numeric>{attribution ? attribution.total : ''}</Td>
                     <Td>
-                      {plan?.ready ? (
-                        <StatusStamp kind="go" />
-                      ) : (
-                        <span className="font-mono text-data text-muted-foreground">not ready</span>
-                      )}
+                      {plan?.ready ? <StatusStamp kind="go" label="Ready" /> : <Badge tone="neutral">Not ready</Badge>}
                     </Td>
                   </Tr>
                 ))}
               </tbody>
             </Table>
+          </TableFrame>
+          <TableCaption>
+            {launches.length} launch{launches.length === 1 ? '' : 'es'}. Venues are shown as selected of ranked; signups come through the mock store.
+          </TableCaption>
           </div>
-          <p className="font-mono text-data text-muted-foreground">
-            {launches.length} launch{launches.length === 1 ? '' : 'es'} · venues shown as
-            selected/ranked · signups via mock store
-          </p>
         </>
       )}
-    </div>
+    </PageContainer>
   );
 }

@@ -1,8 +1,8 @@
 import { LandingHero, Reveal } from '../components/launchkit/landing-motion';
-import { AnimatedGroup } from '../components/motion-primitives/animated-group';
+import { AnimatedGroup } from '@launchkit/design-system/motion/animated-group';
 import { BrandMark } from '../components/launchkit/app-nav';
 import { ProcedureFlow } from '../components/launchkit/procedure-flow';
-import { Button } from '../components/ui/button';
+import { Button } from '@launchkit/design-system/components/button';
 import { FAQ } from '../lib/seo';
 import { useNav } from '../nav';
 // Bundled with the app like BRAND (assets.ts) so they resolve from the MF
@@ -20,7 +20,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
 
-      {/* hero — full-bleed launch-pad artwork with a slow drift */}
+      {/* hero: full-bleed launch-pad artwork with a slow drift */}
       <section className="relative flex min-h-[82vh] items-center overflow-hidden">
         {/* Next Image fill → plain img reproducing its inline fill styles */}
         <img
@@ -45,10 +45,7 @@ export default function HomePage() {
             background: 'linear-gradient(180deg, transparent, var(--background))',
           }}
         />
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-16 pt-28">
-          <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-            Launch paperwork for shipped apps
-          </p>
+        <div className="relative z-10 mx-auto w-full max-w-landing px-5 sm:px-8 pb-16 pt-28">
           <LandingHero headline={HEADLINE} subhead={SUBHEAD} />
           <AnimatedGroup
             preset="blur-slide"
@@ -83,23 +80,23 @@ export default function HomePage() {
       </section>
 
       {/* the seven-stage procedure, drawn as the flow it is (01-direction.md) */}
-      <section id="procedure" className="mx-auto w-full max-w-5xl px-4 py-14">
+      <section id="procedure" className="mx-auto w-full max-w-landing px-5 sm:px-8 py-14">
         <Reveal>
-          <h2 className="text-title font-semibold tracking-[-0.005em]">
-            Six stages. Three gates. Your signature on every one.
+          <h2 className="text-display-lg text-balance">
+            Seven stages. Three gates. Your signature on every one.
           </h2>
-          <p className="mt-2 max-w-xl text-read leading-[1.625rem] text-muted-foreground">
+          <p className="mt-3 max-w-xl text-read text-muted-foreground">
             Two links in. A signed launch plan out.
           </p>
         </Reveal>
         <ProcedureFlow />
       </section>
 
-      {/* telemetry band — the visor artwork beside the honest pitch */}
+      {/* telemetry band: the visor artwork beside the honest pitch */}
       <section className="border-t border-border">
-        <div className="mx-auto grid w-full max-w-5xl items-center gap-10 px-4 py-16 lg:grid-cols-[2fr_3fr]">
+        <div className="mx-auto grid w-full max-w-landing items-center gap-10 px-5 sm:px-8 py-16 lg:grid-cols-[2fr_3fr]">
           <Reveal>
-            <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-frame">
               {/* Next Image fill → plain img reproducing its inline fill styles */}
               <img
                 src={visorLaunch}
@@ -112,13 +109,8 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div>
-              <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                Telemetry after liftoff
-              </p>
-              <h2 className="mt-2 text-title font-semibold tracking-[-0.005em]">
-                Assisted, never autonomous.
-              </h2>
-              <p className="mt-3 max-w-xl text-read leading-[1.625rem] text-muted-foreground">
+              <h2 className="text-display-lg text-balance">Assisted, never autonomous.</h2>
+              <p className="mt-4 max-w-xl text-read text-muted-foreground">
                 Every draft states where it came from and whether it was verified. Every count says
                 what it counts. When nobody is asking for what you built yet, Launch Kit says so
                 and after you post, tracked links attribute every signup to the venue that produced
@@ -149,17 +141,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* answers, stated plainly — the questions builders actually type */}
-      <section id="questions" className="mx-auto w-full max-w-3xl px-4 py-14">
+      {/* answers, stated plainly: the questions builders actually type */}
+      <section id="questions" className="mx-auto w-full max-w-reading px-5 sm:px-8 py-14">
         <Reveal>
-          <h2 className="text-title font-semibold tracking-[-0.005em]">Questions, answered</h2>
+          <h2 className="text-display-lg">Questions, answered</h2>
         </Reveal>
         <div className="mt-5">
           {FAQ.map((item, i) => (
             <Reveal key={item.q} delay={(i % 3) * 0.05}>
               <div className="border-t border-border py-4 first:border-t-0 first:pt-0">
-                <h3 className="text-heading font-medium">{item.q}</h3>
-                <p className="mt-1.5 max-w-2xl text-body leading-[1.375rem] text-muted-foreground">
+                <h3 className="text-heading">{item.q}</h3>
+                <p className="mt-1.5 max-w-2xl text-body text-muted-foreground">
                   {item.a}
                 </p>
               </div>
@@ -169,11 +161,10 @@ export default function HomePage() {
       </section>
 
       <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-5xl items-center gap-2 px-4 py-4">
+        <div className="mx-auto flex w-full max-w-landing items-center gap-2.5 px-5 sm:px-8 py-4">
           <BrandMark size={16} />
-          <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-            Launch Kit · GTM-in-a-box for RocketRide App Store publishers · assisted, never
-            autonomous
+          <p className="text-small text-muted-foreground">
+            Launch Kit, GTM-in-a-box for RocketRide App Store publishers. Assisted, never autonomous.
           </p>
         </div>
       </footer>

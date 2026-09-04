@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { toast } from 'sonner';
-import { Button } from '../ui/button';
-import { Label } from '../ui/field';
-import { Textarea } from '../ui/field';
-import { Card } from './stage-common';
+import { Button } from '@launchkit/design-system/components/button';
+import { Field, Textarea } from '@launchkit/design-system/components/field';
+import { Card, CardHeader, CardBody } from '@launchkit/design-system/components/card';
+import { Segmented } from '@launchkit/design-system/components/segmented';
 import { insert } from '../../data/blobstore';
 import { rulesFor } from '../../data/rules';
 import { ASSET_TYPES } from '../../lib/asset-types';
 import { GLOBAL_RULES } from '../../lib/rulebooks';
-import { cn } from '../../lib/utils';
 
 /**
  * Platform rulebooks live in the app database (`platform_rules`); this edits
@@ -48,38 +47,20 @@ export function RulebookEditor() {
   };
   return (
     <Card>
-      <div className="px-4 py-3">
-        <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-          Platform rulebooks
-        </span>
-      </div>
-      <div className="grid gap-4 border-t border-border px-4 py-4">
-        <p className="text-body text-muted-foreground">
-          Every Social Launch draft is written to the rulebook of its platform. One rule per line.
-          Saving takes effect on the next draft.
-        </p>
-        <div className="flex flex-wrap gap-1" role="tablist" aria-label="Platform">
-          {ASSET_TYPES.map((p) => (
-            <button
-              key={p}
-              type="button"
-              role="tab"
-              aria-selected={p === platform}
-              onClick={() => pick(p)}
-              className={cn(
-                'rounded-sm border px-3 py-1.5 text-body',
-                p === platform
-                  ? 'border-foreground bg-muted font-medium text-foreground'
-                  : 'border-border text-muted-foreground hover:text-foreground',
-              )}
-            >
-              {rulesFor(p).name}
-            </button>
-          ))}
-        </div>
+      <CardHeader
+        title="Platform rulebooks"
+        description="Every Social Launch draft is written to the rulebook of its platform. One rule per line. Saving takes effect on the next draft."
+      />
+      <CardBody className="grid gap-4">
+        <Segmented
+          ariaLabel="Platform"
+          value={platform}
+          onChange={pick}
+          options={ASSET_TYPES.map((p) => ({ value: p, label: rulesFor(p).name }))}
+          className="self-start"
+        />
         <p className="text-body">{current.summary}</p>
-        <div className="grid gap-2">
-          <Label htmlFor="rulebook-text">{current.name} rules</Label>
+        <Field label={`${current.name} rules`} htmlFor="rulebook-text">
           <Textarea
             id="rulebook-text"
             value={text}
@@ -87,23 +68,21 @@ export function RulebookEditor() {
             rows={8}
             className="font-mono text-data"
           />
-        </div>
+        </Field>
         <div>
-          <Button variant="primary" loading={saving} loadingLabel="Saving…" onClick={save}>
+          <Button variant="secondary" loading={saving} loadingLabel="Saving" onClick={save}>
             Save {current.name} rulebook
           </Button>
         </div>
-        <div className="grid gap-1 border-t border-border pt-3">
-          <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-            Global rules (every platform, enforced in code)
-          </span>
+        <div className="grid gap-1.5">
+          <p className="text-label text-muted-foreground">Global rules, every platform, enforced in code</p>
           <ul className="grid gap-1 text-body text-muted-foreground">
             {GLOBAL_RULES.map((r) => (
               <li key={r}>{r}</li>
             ))}
           </ul>
         </div>
-      </div>
+      </CardBody>
     </Card>
   );
 }

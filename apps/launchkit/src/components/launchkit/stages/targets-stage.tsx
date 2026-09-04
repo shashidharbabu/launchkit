@@ -12,12 +12,12 @@ import {
 import { ChevronDown, ChevronRight, ChevronUp, ExternalLink } from 'lucide-react';
 import { useProject } from '../project-provider';
 import { HonestEmpty, LockedGate, Orient } from '../stage-common';
-import { Button } from '../../ui/button';
-import { ProvenanceLine } from '../../ui/provenance-line';
-import { Table, Th, Tr, Td } from '../../ui/table';
+import { Button } from '@launchkit/design-system/components/button';
+import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
+import { Table, TableFrame, Th, Tr, Td } from '@launchkit/design-system/components/table';
 import { api } from '../../../data/api';
 import { actionError } from '../../../lib/errors';
-import { cn } from '../../../lib/utils';
+import { cn } from '@launchkit/design-system/lib/cn';
 
 type Row = {
   id: string;
@@ -111,7 +111,7 @@ export function TargetsStage() {
         <button
           type="button"
           onClick={() => column?.toggleSorting?.()}
-          className="inline-flex items-center gap-1 uppercase"
+          className="inline-flex items-center gap-1"
         >
           {label}
           {dir === 'asc' ? (
@@ -146,15 +146,15 @@ export function TargetsStage() {
       {targets.length > 0 && (
         <div className="flex flex-wrap items-center gap-3">
           <Button
-            variant="primary"
+            variant="secondary"
             disabled={Boolean(running)}
             loading={running?.kind === 'targets'}
-            loadingLabel="Ranking venues…"
+            loadingLabel="Ranking venues"
             onClick={() => runJob('targets', () => api.runStage(project.id, 'targets'))}
           >
             Re-rank venues
           </Button>
-          <span className="font-mono text-data text-muted-foreground">
+          <span className="text-small text-muted-foreground">
             {selectedCount} selected of {targets.length} ranked
           </span>
         </div>
@@ -169,7 +169,7 @@ export function TargetsStage() {
               variant="secondary"
               disabled={Boolean(running)}
               loading={running?.kind === 'targets'}
-              loadingLabel="Ranking venues…"
+              loadingLabel="Ranking venues"
               onClick={() => runJob('targets', () => api.runStage(project.id, 'targets'))}
             >
               Find launch venues
@@ -179,7 +179,7 @@ export function TargetsStage() {
       )}
 
       {targets.length > 0 && (
-        <div className="overflow-x-auto rounded-sm border border-border bg-card">
+        <TableFrame>
           <Table>
             <thead>
               <tr>
@@ -211,7 +211,7 @@ export function TargetsStage() {
                           aria-label={`Select ${t.name} for the plan`}
                           checked={t.selected}
                           onChange={(e) => toggle(t.id, e.target.checked)}
-                          className="h-4 w-4 accent-[var(--primary)]"
+                          className="size-4 accent-flare"
                         />
                       </Td>
                       <Td numeric>{t.rank}</Td>
@@ -219,18 +219,16 @@ export function TargetsStage() {
                       <Td className="text-muted-foreground">{t.kind}</Td>
                       <Td>
                         <span className="flex items-center gap-2">
-                          <span className="h-1 w-16 bg-muted" aria-hidden>
+                          <span className="h-1 w-16 overflow-hidden rounded-full bg-sunken" aria-hidden>
                             <span
-                              className="block h-full bg-chart-2"
+                              className="block h-full rounded-full bg-chart-2"
                               style={{ width: `${pct}%` }}
                             />
                           </span>
-                          <span className="font-mono text-data text-muted-foreground">
-                            {t.expected_impact || '-'}
-                          </span>
+                          <span className="text-small text-muted-foreground">{t.expected_impact}</span>
                         </span>
                       </Td>
-                      <Td className="font-mono text-data text-muted-foreground">{t.effort || '-'}</Td>
+                      <Td className="text-muted-foreground">{t.effort}</Td>
                       <Td>
                         {t.url && (
                           <a
@@ -240,13 +238,14 @@ export function TargetsStage() {
                             aria-label={`Open ${t.name}`}
                             className="inline-flex items-center gap-1 font-mono text-data text-link hover:text-link-hover"
                           >
-                            open <ExternalLink size={12} strokeWidth={1.5} />
+                            Open <ExternalLink size={12} strokeWidth={1.75} aria-hidden />
                           </a>
                         )}
                       </Td>
                       <Td>
-                        <button
-                          type="button"
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
                           aria-label={open ? `Hide details for ${t.name}` : `Show details for ${t.name}`}
                           aria-expanded={open}
                           onClick={() =>
@@ -257,31 +256,23 @@ export function TargetsStage() {
                               return n;
                             })
                           }
-                          className="-my-2 inline-grid h-10 w-10 place-items-center text-muted-foreground hover:text-foreground"
+                          className="-my-1 text-muted-foreground"
                         >
-                          {open ? (
-                            <ChevronDown size={14} strokeWidth={1.5} />
-                          ) : (
-                            <ChevronRight size={14} strokeWidth={1.5} />
-                          )}
-                        </button>
+                          {open ? <ChevronDown aria-hidden /> : <ChevronRight aria-hidden />}
+                        </Button>
                       </Td>
                     </Tr>
                     {open && (
-                      <tr className={cn('border-b border-border', t.selected && 'shadow-[inset_2px_0_0_var(--primary)]')}>
-                        <td colSpan={8} className="px-3 pb-3 pt-1">
+                      <tr className={cn('border-b border-border bg-sunken/40', t.selected && 'bg-flare-soft/40')}>
+                        <td colSpan={8} className="px-5 pb-4 pt-2">
                           <div className="grid gap-2 pl-7 lg:grid-cols-3">
                             <div>
-                              <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                                Why it fits
-                              </p>
-                              <p className="mt-0.5 text-body">{t.why_fit || '-'}</p>
+                              <p className="text-label text-muted-foreground">Why it fits</p>
+                              <p className="mt-1 text-body">{t.why_fit}</p>
                             </div>
                             <div>
-                              <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                                Rules
-                              </p>
-                              <p className="mt-0.5 text-body">{t.rules_summary || '-'}</p>
+                              <p className="text-label text-muted-foreground">Rules</p>
+                              <p className="mt-1 text-body">{t.rules_summary}</p>
                               {(() => {
                                 // machines get blocked from rules pages; humans don't.
                                 // an unverified summary becomes a one-click manual check.
@@ -306,10 +297,8 @@ export function TargetsStage() {
                               })()}
                             </div>
                             <div>
-                              <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                                Audience signal
-                              </p>
-                              <p className="mt-0.5 text-body">{t.audience_signal || '-'}</p>
+                              <p className="text-label text-muted-foreground">Audience signal</p>
+                              <p className="mt-1 text-body">{t.audience_signal}</p>
                             </div>
                           </div>
                         </td>
@@ -321,18 +310,17 @@ export function TargetsStage() {
             </tbody>
           </Table>
           {rows.length > PAGE && (
-            <div className="flex items-center justify-between border-t border-border px-3 py-2">
-              <span className="font-mono text-data text-muted-foreground">
-                showing {page * PAGE + 1}–{Math.min((page + 1) * PAGE, rows.length)} of {rows.length}{' '}
-                venues
+            <div className="flex items-center justify-between border-t border-border px-5 py-2.5">
+              <span className="text-small text-muted-foreground">
+                Venues {page * PAGE + 1} to {Math.min((page + 1) * PAGE, rows.length)} of {rows.length}
               </span>
               <span className="flex gap-2">
-                <Button variant="ghost" size="compact" disabled={page === 0} onClick={() => setPage(page - 1)}>
+                <Button variant="ghost" size="sm" disabled={page === 0} onClick={() => setPage(page - 1)}>
                   Previous
                 </Button>
                 <Button
                   variant="ghost"
-                  size="compact"
+                  size="sm"
                   disabled={(page + 1) * PAGE >= rows.length}
                   onClick={() => setPage(page + 1)}
                 >
@@ -341,13 +329,13 @@ export function TargetsStage() {
               </span>
             </div>
           )}
-        </div>
+        </TableFrame>
       )}
 
       {targets.length > 0 && (
         <ProvenanceLine
           className="mt-0"
-          parts={['ranked from approved profile', 'venue rules summarized: verify before posting']}
+          parts={['Ranked from the approved profile', 'Venue rules summarised; verify before posting']}
         />
       )}
     </div>

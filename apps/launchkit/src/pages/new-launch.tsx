@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { BRAND } from '../brand/assets';
-import { AlertCircle, Clock } from 'lucide-react';
-import { Button } from '../components/ui/button';
-import { Field, Input } from '../components/ui/field';
+import { Clock } from 'lucide-react';
+import { Button } from '@launchkit/design-system/components/button';
+import { Field, Input } from '@launchkit/design-system/components/field';
+import { Card } from '@launchkit/design-system/components/card';
+import { Banner } from '@launchkit/design-system/components/banner';
+import { PageContainer } from '@launchkit/design-system/components/page-container';
+import { PageHeader } from '@launchkit/design-system/components/page-header';
 import { api } from '../data/api';
 import { ConnectionBanner } from '../components/launchkit/connection-banner';
 import { actionError } from '../lib/errors';
@@ -56,19 +60,15 @@ export default function NewLaunchPage() {
   }
 
   return (
-    <div className="mx-auto grid max-w-4xl items-start gap-8 lg:grid-cols-[1fr_18rem]">
-      <div className="grid gap-6">
-      <div>
-        <h1 className="text-display font-semibold tracking-[-0.01em]">Start a launch</h1>
-        <p className="mt-2 text-body text-muted-foreground">
-          Launch Kit reads your live site (and repo, if public) and drafts your app profile.
-          Analysis starts the moment your launch is created and takes 1–3 minutes.
-        </p>
-      </div>
-
+    <PageContainer className="grid gap-8">
+      <PageHeader
+        title="Start a launch"
+        description="Launch Kit reads your live site, and your repo if it is public, then drafts your app profile. Analysis starts the moment the launch is created and takes one to three minutes."
+      />
       <ConnectionBanner error={apiError} />
-
-      <form onSubmit={createProject} className="grid gap-4 rounded-sm border border-border bg-card p-6">
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <Card className="p-6">
+      <form onSubmit={createProject} className="grid gap-6">
         <Field label="App name" htmlFor="nl-name" error={nameError}>
           <Input
             id="nl-name"
@@ -81,12 +81,13 @@ export default function NewLaunchPage() {
         <Field
           label="Live app URL"
           htmlFor="nl-site"
-          helper={siteError ? undefined : 'The site users sign up on.'}
+          helper={siteError ? undefined : 'The site people sign up on.'}
           error={siteError}
         >
           <Input
             id="nl-site"
             required
+            inputMode="url"
             invalid={Boolean(siteError)}
             placeholder="myapp.com"
             value={form.site_url}
@@ -94,15 +95,14 @@ export default function NewLaunchPage() {
           />
         </Field>
         <Field
-          label="GitHub repo"
+          label="GitHub repo (optional)"
           htmlFor="nl-repo"
-          helper={
-            repoError ? undefined : 'Optional: public repos only. A repo gives a much stronger profile.'
-          }
+          helper={repoError ? undefined : 'Public repos only. A repo gives a much stronger profile.'}
           error={repoError}
         >
           <Input
             id="nl-repo"
+            inputMode="url"
             invalid={Boolean(repoError)}
             placeholder="github.com/you/your-app"
             value={form.repo_url}
@@ -111,35 +111,27 @@ export default function NewLaunchPage() {
         </Field>
 
         {duplicate && (
-          <p className="border border-border bg-muted p-3 text-body">
-            You already have a launch for this site, {' '}
+          <Banner tone="info" title="You already have a launch for this site.">
             <a
               href={href({ view: 'workspace', projectId: duplicate.id, stage: 'profile' })}
               onClick={(e) => {
                 e.preventDefault();
                 go({ view: 'workspace', projectId: duplicate.id, stage: 'profile' });
               }}
-              className="text-link underline underline-offset-2 hover:text-link-hover"
+              className="underline hover:text-link-hover"
             >
-              open {duplicate.name}
+              Open {duplicate.name}
             </a>{' '}
             instead of starting over, or continue to create a second one.
-          </p>
+          </Banner>
         )}
-        {summaryError && (
-          <p className="flex items-start gap-2 border border-nogo bg-nogo/10 p-3 text-body">
-            <AlertCircle size={16} strokeWidth={1.5} className="mt-0.5 shrink-0 text-nogo" />
-            <span>{summaryError}</span>
-          </p>
-        )}
-
-        <p className="flex flex-wrap items-center gap-x-2 font-mono text-data text-muted-foreground">
-          <Clock size={13} strokeWidth={1.5} aria-hidden />
-          <span>Reading your repo and site takes {etaLabel('understand')}.</span>
-          <span>It runs in the background; you can leave this page and come back.</span>
+        {summaryError && <Banner tone="nogo" title={summaryError} />}
+        <p className="flex flex-wrap items-center gap-x-2 text-small text-muted-foreground">
+          <Clock size={14} strokeWidth={1.75} aria-hidden />
+          <span>Reading your repo and site takes {etaLabel('understand')}. It runs in the background; you can leave this page and come back.</span>
         </p>
-        <div className="flex items-center gap-2">
-          <Button type="submit" variant="primary" loading={creating} loadingLabel="Starting analysis…">
+        <div className="flex flex-wrap items-center gap-2">
+          <Button type="submit" variant="primary" size="lg" loading={creating} loadingLabel="Starting analysis">
             Analyze my app
           </Button>
           <a
@@ -155,21 +147,17 @@ export default function NewLaunchPage() {
           </a>
         </div>
       </form>
-      </div>
-
-      {/* on the pad — decorative, hidden on small screens */}
-      <aside className="relative hidden aspect-[3/4] overflow-hidden rounded-sm border border-border lg:block">
-        {/* Next Image fill → plain img reproducing its inline fill styles */}
+      </Card>
+      {/* the pad at dusk: a photograph in a 24px frame (identity.md), no overlaid label */}
+      <aside className="relative hidden aspect-[3/4] overflow-hidden rounded-frame border border-border lg:block">
         <img
           src={BRAND.preLaunch}
           alt=""
           className="object-cover"
           style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0 }}
         />
-        <p className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[oklch(0.182_0.009_264/0.85)] to-transparent p-3 pt-8 font-mono text-meta font-medium uppercase tracking-[0.08em] text-[oklch(0.937_0.006_264)]">
-          On the pad
-        </p>
       </aside>
-    </div>
+      </div>
+    </PageContainer>
   );
 }

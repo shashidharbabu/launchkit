@@ -1,11 +1,12 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { useReducedMotion } from 'motion/react';
 import { BRAND } from '../../brand/assets';
-import { AnimatedBackground } from '../motion-primitives/animated-background';
-import { ThemeToggle } from '../ui/theme-toggle';
+import { AnimatedBackground } from '@launchkit/design-system/motion/animated-background';
+import { ThemeToggle } from './theme-toggle';
 import { WorkspaceSwitcher } from './workspace-switcher';
-import { Button } from '../ui/button';
+import { Button } from '@launchkit/design-system/components/button';
+import { Kbd } from '@launchkit/design-system/components/kbd';
 import { DUR, EASE_STANDARD } from '../../lib/motion';
-import { cn } from '../../lib/utils';
+import { cn } from '@launchkit/design-system/lib/cn';
 import { useNav, type NavState } from '../../nav';
 
 const NAV = [
@@ -70,25 +71,23 @@ export function AppNav() {
 
   return (
     <div className="border-b border-border bg-background">
-      <div className="flex w-full flex-wrap items-center gap-1 px-6 py-2">
+      <div className="flex h-topbar w-full flex-wrap items-center gap-1 px-5 sm:px-8 lg:px-10">
         <a
           href={href({ view: 'dashboard' })}
           onClick={(e) => {
             e.preventDefault();
             go({ view: 'dashboard' });
           }}
-          className="mr-4 flex items-center gap-2"
+          className="mr-4 flex items-center gap-2.5"
           aria-label="Launch Kit dashboard"
         >
           <BrandMark />
-          <span className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-foreground">
-            Launch Kit
-          </span>
+          <span className="text-heading">Launch Kit</span>
         </a>
         <nav aria-label="Main" className="flex flex-wrap items-center">
           <AnimatedBackground
             enableHover
-            className="rounded-lg bg-muted"
+            className="rounded-control bg-surface-raised shadow-card"
             transition={reduced ? { duration: 0 } : { duration: DUR.base, ease: EASE_STANDARD }}
           >
             {NAV.map((item) => {
@@ -104,19 +103,11 @@ export function AppNav() {
                   }}
                   aria-current={active ? 'page' : undefined}
                   className={cn(
-                    'relative px-3 py-2.5 text-body',
-                    active ? 'font-medium text-foreground' : 'text-muted-foreground',
+                    'relative inline-flex h-9 items-center rounded-control px-3 text-small font-medium transition-colors duration-(--duration-fast)',
+                    active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
                   )}
                 >
                   {item.label}
-                  {active && (
-                    <motion.span
-                      aria-hidden
-                      layoutId="appnav-underline"
-                      transition={reduced ? { duration: 0 } : { duration: DUR.base, ease: EASE_STANDARD }}
-                      className="absolute inset-x-3 bottom-1 z-10 h-0.5 bg-foreground"
-                    />
-                  )}
                 </a>
               );
             })}
@@ -124,9 +115,9 @@ export function AppNav() {
         </nav>
         <span className="ml-auto flex items-center gap-3">
           <WorkspaceSwitcher />
-          <Button variant="ghost" onClick={openPalette} aria-label="Open command palette">
+          <Button variant="ghost" size="sm" onClick={openPalette} aria-label="Open command palette">
             Search
-            <span className="font-mono text-data text-muted-foreground">⌘K</span>
+            <Kbd>⌘K</Kbd>
           </Button>
           <ThemeToggle />
         </span>

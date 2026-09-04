@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react';
-import { PlatformIcon, platformTitle, LAUNCH_PLATFORMS } from '../ui/platform-icons';
+import { PlatformIcon, platformTitle, LAUNCH_PLATFORMS } from './platform-icons';
 
 /**
  * The platforms Launch Kit writes for, bobbing gently, the one piece of

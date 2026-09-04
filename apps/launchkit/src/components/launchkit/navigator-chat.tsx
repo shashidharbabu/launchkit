@@ -40,7 +40,7 @@ export function NavigatorChat() {
   return (
     <section aria-label="Navigator" className="border-b border-border bg-background">
       <div className="mx-auto w-full max-w-5xl px-6 pt-6 pb-2">
-        <p className="font-mono text-meta uppercase tracking-[0.08em] text-muted-foreground">Navigator</p>
+        <p className="text-label text-muted-foreground">Navigator</p>
       </div>
       <div className="mx-auto h-[26rem] w-full max-w-5xl px-6 pb-6">
         <ChatView

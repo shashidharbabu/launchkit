@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useReducedMotion } from 'motion/react';
-import { TextEffect } from '../motion-primitives/text-effect';
-import { InView } from '../motion-primitives/in-view';
+import { AnimatedGroup } from '@launchkit/design-system/motion/animated-group';
+import { InView } from '@launchkit/design-system/motion/in-view';
 import { DUR, EASE_STANDARD } from '../../lib/motion';
 
 /**
@@ -14,8 +14,8 @@ export function LandingHero({ headline, subhead }: { headline: string; subhead: 
   if (reduced) {
     return (
       <>
-        <h1 className="mt-3 max-w-2xl text-display font-semibold tracking-[-0.01em]">{headline}</h1>
-        <p className="mt-4 max-w-2xl text-read leading-[1.625rem] text-muted-foreground">
+        <h1 className="mt-3 max-w-2xl text-hero text-balance">{headline}</h1>
+        <p className="mt-5 max-w-2xl text-lead text-muted-foreground">
           {subhead}
         </p>
       </>
@@ -23,23 +23,10 @@ export function LandingHero({ headline, subhead }: { headline: string; subhead: 
   }
   return (
     <>
-      <TextEffect
-        per="word"
-        preset="blur"
-        as="h1"
-        className="mt-3 max-w-2xl text-display font-semibold tracking-[-0.01em]"
-      >
-        {headline}
-      </TextEffect>
-      <TextEffect
-        per="line"
-        preset="fade"
-        delay={0.5}
-        as="p"
-        className="mt-4 max-w-2xl text-read leading-[1.625rem] text-muted-foreground"
-      >
-        {subhead}
-      </TextEffect>
+      <AnimatedGroup preset="blur-slide">
+        <h1 className="mt-3 max-w-2xl text-hero text-balance">{headline}</h1>
+        <p className="mt-5 max-w-2xl text-lead text-muted-foreground">{subhead}</p>
+      </AnimatedGroup>
     </>
   );
 }

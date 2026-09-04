@@ -4,17 +4,19 @@ import { Check, ChevronRight, Pencil, X } from 'lucide-react';
 import { useProject } from '../project-provider';
 import { useNav } from '../../../nav';
 import { Card, HonestEmpty } from '../stage-common';
-import { GateSlip } from '../gate-slip';
-import { Button } from '../../ui/button';
-import { Textarea, Label } from '../../ui/field';
-import { Disclosure } from '../../ui/disclosure';
-import { StatusStamp } from '../../ui/status-stamp';
-import { TextShimmer } from '../../motion-primitives/text-shimmer';
-import { Skeleton } from '../../ui/skeleton';
+import { GateSlip } from '@launchkit/design-system/components/gate';
+import { Button } from '@launchkit/design-system/components/button';
+import { Field, Textarea, Label } from '@launchkit/design-system/components/field';
+import { Banner } from '@launchkit/design-system/components/banner';
+import { Progress } from '@launchkit/design-system/components/progress';
+import { CodeWell, Well } from '@launchkit/design-system/components/card';
+import { Disclosure } from '@launchkit/design-system/components/disclosure';
+import { StatusStamp, Badge } from '@launchkit/design-system/components/status-stamp';
+import { Skeleton } from '@launchkit/design-system/components/skeleton';
 import { api } from '../../../data/api';
 import { provDate } from '../../../lib/format';
 import { actionError } from '../../../lib/errors';
-import { cn } from '../../../lib/utils';
+import { cn } from '@launchkit/design-system/lib/cn';
 
 const asStr = (v: unknown) => (v == null ? '' : String(v));
 const asList = (v: unknown): string[] => (Array.isArray(v) ? v.map(String) : []);
@@ -46,15 +48,14 @@ function ReviewRow({
     <div className="grid gap-1.5 border-t border-border py-3 first:border-t-0 first:pt-0">
       <div className="flex items-baseline gap-2">
         {step && (
-          <span className="font-mono text-meta font-medium tabular text-muted-foreground">
-            {step}
-          </span>
+          <span className="font-mono text-data tabular text-muted-foreground">{step}</span>
         )}
         <Label htmlFor={editing ? id : undefined} className="flex-1">
           {label}
         </Label>
         <Button
           variant="ghost"
+          size="sm"
           onClick={() => setEditing(!editing)}
           aria-label={editing ? `Done editing ${label}` : `Edit ${label}`}
         >
@@ -62,7 +63,7 @@ function ReviewRow({
             'Done'
           ) : (
             <>
-              <Pencil size={12} strokeWidth={1.5} aria-hidden />
+              <Pencil aria-hidden />
               Edit
             </>
           )}
@@ -76,10 +77,10 @@ function ReviewRow({
           value={value}
           rows={rows}
           onChange={(e) => onChange(e.target.value)}
-          className="text-read leading-[1.625rem]"
+          className="text-read"
         />
       ) : (
-        <p className={cn('text-read leading-[1.625rem]', !value && 'text-muted-foreground')}>
+        <p className={cn('text-read', !value && 'text-muted-foreground')}>
           {value || 'Nothing found: click Edit to fill this in.'}
         </p>
       )}
@@ -108,15 +109,14 @@ function ReviewListRow({
     <div className="grid gap-1.5 border-t border-border py-3 first:border-t-0 first:pt-0">
       <div className="flex items-baseline gap-2">
         {step && (
-          <span className="font-mono text-meta font-medium tabular text-muted-foreground">
-            {step}
-          </span>
+          <span className="font-mono text-data tabular text-muted-foreground">{step}</span>
         )}
         <Label htmlFor={editing ? id : undefined} className="flex-1">
           {label}
         </Label>
         <Button
           variant="ghost"
+          size="sm"
           onClick={() => setEditing(!editing)}
           aria-label={editing ? `Done editing ${label}` : `Edit ${label}`}
         >
@@ -124,7 +124,7 @@ function ReviewListRow({
             'Done'
           ) : (
             <>
-              <Pencil size={12} strokeWidth={1.5} aria-hidden />
+              <Pencil aria-hidden />
               Edit
             </>
           )}
@@ -139,18 +139,18 @@ function ReviewListRow({
           rows={Math.max(3, value.length)}
           onChange={(e) => onChange(e.target.value.split('\n').filter((s) => s.trim() !== ''))}
           placeholder="One item per line"
-          className="text-read leading-[1.625rem]"
+          className="text-read"
         />
       ) : value.length > 0 ? (
         <ul className="grid gap-1">
           {value.map((v, i) => (
-            <li key={`${v}-${i}`} className="text-read leading-[1.625rem]">
+            <li key={`${v}-${i}`} className="text-read">
 {v}
             </li>
           ))}
         </ul>
       ) : (
-        <p className="text-read leading-[1.625rem] text-muted-foreground">
+        <p className="text-read text-muted-foreground">
           Nothing found: click Edit to fill this in.
         </p>
       )}
@@ -181,15 +181,15 @@ function Section({
         className="flex w-full items-center gap-2 py-3 text-left"
       >
         <ChevronRight
-          size={14}
-          strokeWidth={1.5}
+          size={16}
+          strokeWidth={1.75}
           aria-hidden
           className={cn(
-            'shrink-0 text-muted-foreground transition-transform motion-reduce:transition-none',
+            'shrink-0 text-muted-foreground transition-transform duration-(--duration-fast) motion-reduce:transition-none',
             open && 'rotate-90',
           )}
         />
-        <span className="font-mono text-meta font-medium uppercase tracking-[0.08em]">{title}</span>
+        <span className="text-body font-medium">{title}</span>
         <span className="text-body text-muted-foreground">{summary}</span>
       </button>
       <Disclosure open={open}>
@@ -210,21 +210,13 @@ function SourcesList({ sources }: { sources: SourceRow[] }) {
     <ul className="grid gap-1.5">
       {sources.map((s, i) => (
         <li key={`${s.source}-${i}`} className="flex items-start gap-2 text-body">
-          {/* status never color alone — icon + word (color.md) */}
-          <span
-            className={`mt-0.5 flex shrink-0 items-center gap-1 font-mono text-meta font-medium uppercase tracking-[0.08em] ${
-              s.ok === false ? 'text-nogo' : 'text-go'
-            }`}
-          >
-            {s.ok === false ? (
-              <X size={12} strokeWidth={1.5} aria-hidden />
-            ) : (
-              <Check size={12} strokeWidth={1.5} aria-hidden />
-            )}
-            {s.ok === false ? 'failed' : 'read'}
-          </span>
+          {/* status never color alone: icon + word (color.md) */}
+          <Badge tone={s.ok === false ? 'nogo' : 'go'} className="mt-0.5 shrink-0 gap-1">
+            {s.ok === false ? <X size={12} strokeWidth={2} aria-hidden /> : <Check size={12} strokeWidth={2} aria-hidden />}
+            {s.ok === false ? 'Failed' : 'Read'}
+          </Badge>
           <span className="min-w-0 flex-1">
-            <span className="break-all font-mono text-data">{asStr(s.source) || '-'}</span>
+            <span className="break-all font-mono text-data">{asStr(s.source)}</span>
             {asStr(s.via) && <span className="ml-2 text-muted-foreground">via {asStr(s.via)}</span>}
             {asStr(s.note) && <p className="text-body text-muted-foreground">{asStr(s.note)}</p>}
           </span>
@@ -288,15 +280,13 @@ export function ProfileStage() {
   if (!profile) {
     if (analysing) {
       return (
-        <Card className="grid gap-3 p-4">
+        <Card className="grid gap-4 p-6">
           <div className="flex items-center gap-2">
             <StatusStamp kind="running" />
-            <TextShimmer duration={2} className="text-body">
-              Reading your repo and site to draft the profile…
-            </TextShimmer>
+            <span className="text-shimmer text-small">Reading your repo and site to draft the profile</span>
           </div>
           <p className="text-body text-muted-foreground">
-            This takes 1–3 minutes. You can leave this page and come back, the run continues.
+            This takes one to three minutes. You can leave this page and come back; the run continues.
           </p>
           <div className="grid gap-2 sm:grid-cols-2">
             {[0, 1, 2, 3].map((i) => (
@@ -309,7 +299,7 @@ export function ProfileStage() {
     return (
       <HonestEmpty
         fact="No profile yet."
-        reason="Analysis starts the moment your launch is created, if it didn't finish, run it again. Launch Kit reads your repo and live site to draft the profile you'll approve."
+        reason="Analysis starts the moment your launch is created. If it did not finish, run it again: Launch Kit reads your repo and live site to draft the profile you approve."
         action={
           <Button
             variant="secondary"
@@ -334,7 +324,7 @@ export function ProfileStage() {
     <Button
       variant="secondary"
       loading={saving}
-      loadingLabel="Saving…"
+      loadingLabel="Saving"
       onClick={async () => {
         setSaving(true);
         try {
@@ -361,30 +351,35 @@ export function ProfileStage() {
     <div className="grid gap-4">
       {/* what this screen is for, before the screen itself */}
       {!approved && (
-        <Card className="grid gap-1 p-4">
-          <p className="text-read leading-[1.625rem]">
+        <div className="grid max-w-reading gap-1.5">
+          <p className="text-lead">
             Launch Kit read {project.repo_url ? 'your repo and your site' : 'your site'} and wrote
             down what it thinks your app is. <strong className="font-medium">Check the four
             things below</strong>, fix anything wrong, then approve.
           </p>
           <p className="text-body text-muted-foreground">
-            Every later stage, pricing, listing, posts, venues, signals, is written from this. It
+            Every later stage (pricing, listing, posts, venues, signals) is written from this. It
             is the only thing you have to get right.
           </p>
-        </Card>
+        </div>
       )}
 
       <GateSlip
-        gateLabel="GATE 01: PROFILE"
+        gate={1}
+        title="Profile"
+        description="Approving locks the version every later stage is written from."
         stamp="hold"
         signed={approved}
-        signedLine={`profile approved · ${
-          profile.created_at ? provDate(profile.created_at) : `v${profile.version}`
-        }`}
+        signedLine={
+          profile.created_at
+            ? `Approved on ${provDate(profile.created_at)}, v${profile.version}`
+            : `Approved, v${profile.version}`
+        }
+        initiallyExpanded={approved ? 'view' : undefined}
         provenance={[
-          `drafted from ${project.repo_url ? 'repo + site' : 'site'}`,
+          `Drafted from ${project.repo_url ? 'repo and site' : 'site'}`,
           `v${profile.version}`,
-          degraded && 'partial analysis',
+          degraded && 'Partial analysis',
         ]}
         reopenActions={
           <>
@@ -397,9 +392,9 @@ export function ProfileStage() {
         actions={
           <>
             <Button
-              variant="primary"
+              variant="flare"
               loading={approving}
-              loadingLabel="Approving…"
+              loadingLabel="Approving"
               disabled={dirty}
               title={
                 dirty
@@ -420,7 +415,7 @@ export function ProfileStage() {
                 }
               }}
             >
-              {dirty ? 'Save your edits first' : 'This is right: approve'}
+              {dirty ? 'Save your edits first' : 'Approve profile'}
             </Button>
             {saveButton}
             {regenerateButton}
@@ -431,26 +426,24 @@ export function ProfileStage() {
       >
         <div className="grid gap-4">
           {degraded && (
-            <div className="border border-hold bg-hold/10 p-3 text-body">
-              <p className="font-medium">Partial analysis: read this one more carefully.</p>
-              <p className="mt-1 text-muted-foreground">
-                {asStr(confidence.notes) ||
-                  'Some sources could not be read, so parts of this profile are inferred rather than evidenced.'}
-                {!project.repo_url &&
-                  ' No repo was supplied, adding a public GitHub repo gives a much stronger profile.'}
-              </p>
-            </div>
+            <Banner tone="hold" title="Partial analysis: read this one more carefully.">
+              {asStr(confidence.notes) ||
+                'Some sources could not be read, so parts of this profile are inferred rather than evidenced.'}
+              {!project.repo_url &&
+                ' No repo was supplied; adding a public GitHub repo gives a much stronger profile.'}
+            </Banner>
           )}
 
           <Disclosure open={notesOpen}>
-            <div className="grid gap-2 border border-border bg-muted p-3">
-              <Label htmlFor="profile-notes">What did it get wrong?</Label>
-              <Textarea
-                id="profile-notes"
-                value={feedback}
-                onChange={(e) => setFeedback(e.target.value)}
-                placeholder="e.g. the target user is agencies, not indie devs"
-              />
+            <Well className="grid gap-3 py-4">
+              <Field label="What did it get wrong?" htmlFor="profile-notes">
+                <Textarea
+                  id="profile-notes"
+                  value={feedback}
+                  onChange={(e) => setFeedback(e.target.value)}
+                  placeholder="e.g. the target user is agencies, not indie devs"
+                />
+              </Field>
               <div>
                 <Button
                   variant="secondary"
@@ -464,13 +457,11 @@ export function ProfileStage() {
                   Read my app again
                 </Button>
               </div>
-            </div>
+            </Well>
           </Disclosure>
 
           {showJson ? (
-            <pre className="max-h-96 overflow-auto border border-border bg-muted p-4 font-mono text-data leading-5">
-              {JSON.stringify(profile.data, null, 2)}
-            </pre>
+            <CodeWell className="max-h-96">{JSON.stringify(profile.data, null, 2)}</CodeWell>
           ) : (
             draft && (
               <div className="grid gap-0">
@@ -561,11 +552,9 @@ export function ProfileStage() {
                   />
                   <div className="grid gap-1.5 border-t border-border py-3">
                     <Label>How you write</Label>
-                    <p className="text-read leading-[1.625rem]">
-                      {asList(voice.tone).join(' · ') || '-'}
-                    </p>
+                    <p className="text-read">{asList(voice.tone).join(', ')}</p>
                     {asStr(voice.sample_phrase) && (
-                      <p className="text-read italic leading-[1.625rem] text-muted-foreground">
+                      <p className="text-read italic text-muted-foreground">
                         “{asStr(voice.sample_phrase)}”
                       </p>
                     )}
@@ -574,19 +563,12 @@ export function ProfileStage() {
 
                 <Section
                   title="Where this came from"
-                  summary={`${pct}% confident · ${sources.length || 'no'} sources`}
+                  summary={`${pct}% confident, ${sources.length || 'no'} sources`}
                   open={evidenceOpen}
                   onToggle={() => setEvidenceOpen(!evidenceOpen)}
                 >
                   <div className="grid gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="h-1 flex-1 bg-muted" aria-hidden>
-                        <div className="h-full bg-chart-2" style={{ width: `${pct}%` }} />
-                      </div>
-                      <span className="font-mono text-data tabular text-muted-foreground">
-                        {pct}% confident
-                      </span>
-                    </div>
+                    <Progress value={pct} label={`${pct}% confident`} />
                     {asStr(confidence.notes) && (
                       <p className="text-body text-muted-foreground">{asStr(confidence.notes)}</p>
                     )}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Button } from '../ui/button';
+import { Button } from '@launchkit/design-system/components/button';
 import { useProject } from './project-provider';
 import { useNav } from '../../nav';
 import { STAGES } from '../../lib/stages';
@@ -54,7 +54,7 @@ export function StageNext() {
   const locked = current === 'profile' && !gate1;
   const target = { view: 'workspace' as const, projectId: project.id, stage: next.slug };
   return (
-    <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+    <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
       <p className="text-body text-muted-foreground">{hint}</p>
       <a
         href={href(target)}
@@ -66,7 +66,7 @@ export function StageNext() {
       >
         <Button variant={ready ? 'primary' : 'secondary'} disabled={locked}>
           Next: {next.name}
-          <ArrowRight size={14} strokeWidth={1.5} aria-hidden />
+          <ArrowRight aria-hidden />
         </Button>
       </a>
     </div>

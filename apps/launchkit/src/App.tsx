@@ -128,7 +128,7 @@ const ConnectedApp: React.FC = () => {
   if (!ready) {
     return (
       <div className="flex min-h-full flex-1 flex-col bg-background text-foreground">
-        <p className="p-10 text-body text-muted-foreground">Connecting to RocketRide…</p>
+        <p className="p-10 text-body text-muted-foreground">Connecting to RocketRide</p>
         {slow && (
           <p className="px-10 text-body text-muted-foreground">
             Still connecting. If this persists, the shell hasn’t handed the app a workspace yet

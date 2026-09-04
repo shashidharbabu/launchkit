@@ -47,7 +47,10 @@ export function Banner({
   );
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8090';
+// Read lazily and defensively: consumers without a Node-style `process` (a Module
+// Federation remote, a plain Vite app) must be able to import this module.
+const API_URL =
+  (typeof process !== 'undefined' ? process.env?.NEXT_PUBLIC_API_URL : undefined) ?? 'http://localhost:8090';
 
 /** The one message every list page shows when the backend is unreachable. */
 export function BackendDownBanner({ action }: { action?: React.ReactNode }) {
