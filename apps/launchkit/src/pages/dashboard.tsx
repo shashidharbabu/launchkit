@@ -98,7 +98,7 @@ export default function DashboardPage() {
         <HonestEmpty
           align="center"
           fact="No launches yet."
-          reason="A launch runs your shipped app through seven stages (profile, brand, commercial, posts, targets, signals, plan) with your approval at every gate. Start with your app's name, live site, and repo."
+          reason="A launch runs your app through seven stages (profile, brand, commercial, posts, targets, signals, plan) with your approval at every gate. Start with your app's name, live site, and repo."
           action={
             <a
               href={href({ view: 'new-launch' })}

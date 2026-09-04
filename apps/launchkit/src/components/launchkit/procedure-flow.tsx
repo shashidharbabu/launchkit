@@ -142,7 +142,7 @@ export function ProcedureFlow() {
           <Move
             accent
             step="You sign, then post"
-            headline="Nothing ships unsigned."
+            headline="Nothing goes out unsigned."
             line="Three approvals. Tracked links show which venue produced each signup."
           >
             <div className="flex items-center gap-3 py-1 text-flare-text">

@@ -12,7 +12,7 @@ import visorLaunch from '../brand/visor-launch.jpg';
 
 const HEADLINE = 'You built the app. Launch Kit turns the launch into paperwork you can sign.';
 const SUBHEAD =
-  'Profile, pricing, listing, venues, native posts, and live demand, drafted from your repo and site, verified where possible, and nothing ships without your approval.';
+  'Profile, pricing, listing, venues, native posts, and live demand, drafted from your repo and site, verified where possible, and nothing is published without your approval.';
 
 export default function HomePage() {
   const { go, href } = useNav();
