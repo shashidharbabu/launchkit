@@ -11,7 +11,7 @@ import { cn } from '../lib/cn';
 export function TableFrame({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn('overflow-x-auto rounded-card border border-border bg-surface shadow-card', className)}
+      className={cn('relative overflow-x-auto rounded-card border border-border bg-surface shadow-card', className)}
       {...props}
     />
   );

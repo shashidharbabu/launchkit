@@ -164,7 +164,7 @@ export function ProcedureFlow() {
                   <div className="grid grid-cols-[28px_1fr] gap-x-4">
                     <span
                       className={cn(
-                        'relative z-10 flex size-7 items-center justify-center rounded-full border bg-background font-mono text-data tabular',
+                        'relative flex size-7 items-center justify-center rounded-full border bg-background font-mono text-data tabular',
                         'gate' in s && s.gate
                           ? 'border-flare text-flare-text'
                           : 'border-border-strong text-muted-foreground',

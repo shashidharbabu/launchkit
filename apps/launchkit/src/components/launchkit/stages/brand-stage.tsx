@@ -91,7 +91,7 @@ export function BrandStage() {
   const neither = !dna && !brandCampaigns;
 
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {neither && !runningKind && (
         <HonestEmpty
           fact="No Business DNA yet."
@@ -123,7 +123,7 @@ export function BrandStage() {
         />
       )}
 
-      <div className="grid items-start gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-4 lg:grid-cols-2">
         {/* ---- Business DNA ---- */}
         <Card>
           <CardHeader
@@ -150,7 +150,7 @@ export function BrandStage() {
             {runningKind === 'brand_dna' ? (
               <span className="text-shimmer text-small">Reading your site for brand voice, colors, and messaging</span>
             ) : dna ? (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
                 <div>
                   <p className="text-heading">{asStr(dna.brand_name) || project.name}</p>
                   {asStr(dna.tagline_observed) && (
@@ -313,7 +313,7 @@ export function BrandStage() {
             {runningKind === 'brand_campaigns' ? (
               <span className="text-shimmer text-small">Drafting campaign ideas in your brand voice</span>
             ) : campaigns.length > 0 ? (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
                 {campaigns.map((c, i) => {
                   const copy = asObj(c.sample_copy);
                   const copyText = [asStr(copy.headline), '', asStr(copy.body), '', asStr(copy.cta)]

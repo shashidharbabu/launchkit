@@ -1,0 +1,25 @@
+Finish the Gantry design system adoption in apps/launchkit.
+
+Read design-system/GANTRY-AUDIT.md in full before you touch anything. It is the
+task list: an audit of what has already landed (do not redo it), six remaining
+items in priority order, a list of things that look like violations but are
+deliberate, and the constraints you work under.
+
+Read design-system/ADOPT-SHELL-APP.md too. It explains why this app is different
+from the reference consumer: it renders inside another page, owns no URL, and
+themes its own root at #lk-root rather than <html>.
+
+Work the items in the order the audit gives. Stop after each one and show me what
+changed. Item 4 needs a decision from me first, so ask before you start it.
+
+Before writing any component, read its spec in design-system/components/. Before
+writing any visible string, read design-system/voice.md. Run
+design-system/checklist.md against every screen you touch.
+
+The rules that must not break: presentation only, no behaviour changes; do not
+touch AppDescriptor.ts, index.ts, the rsbuild config or src/data/*; everything
+stays scoped under .lk-root; tokens only, no raw palette classes or hardcoded
+hex, radius, shadow or font size.
+
+Verify with a typecheck, then the build, then look at the screens in both themes
+at desktop and phone width.

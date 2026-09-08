@@ -222,7 +222,7 @@ export function CommercialStage() {
     : '';
 
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {neither && !runningKind && (
         <HonestEmpty
           fact="No pricing or listing drafts yet."
@@ -250,7 +250,7 @@ export function CommercialStage() {
         />
       )}
 
-      <div className="grid items-start gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-4 lg:grid-cols-2">
         {/* ---- pricing ---- */}
         <Card>
           <CardHeader
@@ -275,7 +275,7 @@ export function CommercialStage() {
             {runningKind === 'pricing' ? (
               <span className="text-shimmer text-small">Reading competitor pricing pages</span>
             ) : pricing ? (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
                 {recommendation != null && (
                   <div>
                     <MetaLabel>Recommendation</MetaLabel>
@@ -402,7 +402,7 @@ export function CommercialStage() {
             {runningKind === 'listing' ? (
               <span className="text-shimmer text-small">Rewriting your store listing</span>
             ) : listing ? (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
                 <div>
                   <p className="text-heading">{asStr(listing.title)}</p>
                   {asStr(listing.tagline) && (

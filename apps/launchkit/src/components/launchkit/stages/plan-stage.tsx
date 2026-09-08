@@ -55,7 +55,7 @@ export function PlanStage() {
   const attributedVenues = rows.filter((r) => r.signups > 0).length;
 
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {/* purpose before data — what happened, what to do */}
       {plan?.ready && (
         <Orient
@@ -170,7 +170,7 @@ export function PlanStage() {
       )}
 
       {/* telemetry after liftoff */}
-      <div className="grid items-start gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-4 lg:grid-cols-3">
         <StatTile
           label="Total signups"
           value={total}
@@ -210,7 +210,7 @@ export function PlanStage() {
                 }
               />
             ) : (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
                 {chartRows.length > 0 && chartRows.length <= 15 && (
                   <ChartContainer
                     config={chartConfig}

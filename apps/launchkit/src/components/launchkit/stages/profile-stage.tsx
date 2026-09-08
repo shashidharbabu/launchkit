@@ -348,7 +348,7 @@ export function ProfileStage() {
   );
 
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {/* what this screen is for, before the screen itself */}
       {!approved && (
         <div className="grid max-w-reading gap-1.5">
@@ -424,7 +424,7 @@ export function ProfileStage() {
           </>
         }
       >
-        <div className="grid gap-4">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
           {degraded && (
             <Banner tone="hold" title="Partial analysis: read this one more carefully.">
               {asStr(confidence.notes) ||

@@ -64,7 +64,7 @@ export default function RunsPage() {
   const atCap = (jobs?.length ?? 0) >= 100;
 
   return (
-    <PageContainer className="grid gap-8">
+    <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-8">
       <PageHeader
         title="Runs"
         description={`Every run across your launches, newest first${atCap ? ' (the last 100)' : ''}.`}

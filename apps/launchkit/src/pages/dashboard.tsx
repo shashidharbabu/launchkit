@@ -71,7 +71,7 @@ export default function DashboardPage() {
   );
   if (launches === null) {
     return (
-      <PageContainer className="grid gap-8">
+      <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-8">
         {header}
         <div className="grid gap-4">
           <DelayedSkeleton className="h-28" />
@@ -90,7 +90,7 @@ export default function DashboardPage() {
   );
 
   return (
-    <PageContainer className="grid gap-8">
+    <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-8">
       {header}
       <ConnectionBanner error={apiError} />
 

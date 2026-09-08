@@ -30,7 +30,7 @@ export function Segmented<T extends string>({
     <div
       role="radiogroup"
       aria-label={ariaLabel}
-      className={cn('inline-flex rounded-control border border-border bg-sunken p-0.5', className)}
+      className={cn('inline-flex max-w-full overflow-x-auto rounded-control border border-border bg-sunken p-0.5', className)}
     >
       <AnimatedBackground
         defaultValue={value}

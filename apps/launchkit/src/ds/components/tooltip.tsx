@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip';
 import { cn } from '../lib/cn';
+import { usePortalContainer } from '../lib/portal';
 
 export const TooltipProvider = BaseTooltip.Provider;
 
@@ -19,7 +20,7 @@ export function Tooltip({
   return (
     <BaseTooltip.Root>
       <BaseTooltip.Trigger render={children} />
-      <BaseTooltip.Portal>
+      <BaseTooltip.Portal container={usePortalContainer()}>
         <BaseTooltip.Positioner side={side} sideOffset={6} className="z-(--z-dialog)">
           <BaseTooltip.Popup
             className={cn(

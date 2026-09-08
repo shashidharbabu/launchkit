@@ -79,7 +79,7 @@ export function AnimatedBackground({
           )}
         </AnimatePresence>
         {/* inherit the item's gap so an icon and a label stay on one line */}
-        <div className="relative z-10 inline-flex items-center gap-[inherit]">{child.props.children}</div>
+        <div className="relative inline-flex items-center gap-[inherit]">{child.props.children}</div>
       </>
     );
   });

@@ -44,3 +44,6 @@ tools/tests/domain/.build-lib/
 # the package resolves its peers through the app install (ADOPT.md); never commit the link
 /design-system/node_modules
 
+
+# dev-only appState checkpoints served by the preview (never deployed: the packer ships tracked files only)
+/apps/launchkit/public/dev/

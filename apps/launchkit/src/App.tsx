@@ -12,6 +12,7 @@ import type { RocketRideClient } from 'rocketride';
 import type { ShellAppProps } from 'shell';
 import { useAuthUser, useShellConnection, useShellEvent, useWorkspace } from 'shell';
 import { Toaster } from 'sonner';
+import { PortalContainerProvider } from '@launchkit/design-system/lib/portal';
 import { LK_CSS } from './styles.generated';
 import { LkThemeProvider, useLkTheme } from './theme';
 import { NavProvider, useNav } from './nav';
@@ -153,12 +154,18 @@ const ConnectedApp: React.FC = () => {
 const Root: React.FC<ShellAppProps> = () => {
   useDesignSystem();
   const { resolvedTheme } = useLkTheme();
+  // Dialogs, sheets, tooltips and the palette portal INSIDE this root. The
+  // stylesheet is scoped under .lk-root and the theme class lives here, so a
+  // portal to document.body would render unstyled and unthemed.
+  const rootRef = React.useRef<HTMLDivElement>(null);
   return (
-    <div id="lk-root" className={resolvedTheme === 'dark' ? 'lk-root dark' : 'lk-root'}>
-      <LkErrorBoundary>
-        <ConnectedApp />
-      </LkErrorBoundary>
-      <Toaster position="bottom-right" />
+    <div id="lk-root" ref={rootRef} className={resolvedTheme === 'dark' ? 'lk-root dark' : 'lk-root'}>
+      <PortalContainerProvider container={rootRef}>
+        <LkErrorBoundary>
+          <ConnectedApp />
+        </LkErrorBoundary>
+        <Toaster position="bottom-right" />
+      </PortalContainerProvider>
     </div>
   );
 };

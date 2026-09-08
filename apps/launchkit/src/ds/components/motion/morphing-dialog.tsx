@@ -17,6 +17,7 @@ import {
 } from 'motion/react';
 import { X } from 'lucide-react';
 import { cn } from '../../lib/cn';
+import { usePortalContainerElement } from '../../lib/portal';
 
 type Ctx = {
   isOpen: boolean;
@@ -77,6 +78,7 @@ export function MorphingDialogContainer({ children }: { children: React.ReactNod
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [setIsOpen]);
+  const portalTarget = usePortalContainerElement();
   if (!mounted) return null;
   return createPortal(
     <AnimatePresence initial={false}>
@@ -84,19 +86,19 @@ export function MorphingDialogContainer({ children }: { children: React.ReactNod
         <>
           <motion.div
             key="backdrop"
-            className="fixed inset-0 z-40 bg-foreground/20"
+            className="fixed inset-0 z-(--z-overlay) bg-foreground/20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 [&>*]:pointer-events-auto pointer-events-none">
+          <div className="fixed inset-0 z-(--z-dialog) flex items-center justify-center p-4 [&>*]:pointer-events-auto pointer-events-none">
             {children}
           </div>
         </>
       )}
     </AnimatePresence>,
-    document.body,
+    portalTarget ?? document.body,
   );
 }
 

@@ -30,26 +30,37 @@ if (!existsSync(src)) {
 
 // Files the app does not use that would drag `next-themes` into the app's
 // dependencies. The adoption brief keeps the app's own ThemeToggle (it drives
-// src/theme.tsx, which themes #lk-root rather than <html>), and AmbientField is
-// a landing-page-only extra we never mounted. The barrel re-exports the package
-// ThemeToggle, and the app imports by file, so it goes too. Leaving these in
+// src/theme.tsx, which themes #lk-root rather than <html>). The barrel re-exports
+// the package ThemeToggle, and the app imports by file, so it goes too. The
+// ambient field IS mirrored: it reads its palette from its own canvas and takes a
+// themeRoot callback, so it works under a scoped #lk-root theme. Leaving these in
 // fails the SERVER typecheck, which only installs what apps/launchkit declares
 // (this is what killed v24/v25).
 const SKIP = new Set([
   'index.ts',
   path.join('components', 'theme-toggle.tsx'),
-  path.join('components', 'ambient-field.tsx'),
 ]);
 
-await rm(dest, { recursive: true, force: true });
+// Overwrite in place, then prune what the source no longer has. Deleting the
+// whole mirror first opened a window in which the dev server's watcher compiled
+// a half-copied tree ("Cannot find module '../lib/cn'") and stayed stuck on it.
+const keep = (rel) => rel === '' || !SKIP.has(rel);
 await mkdir(dest, { recursive: true });
-await cp(src, dest, {
-  recursive: true,
-  filter: (from) => {
-    const rel = path.relative(src, from);
-    return rel === '' || !SKIP.has(rel);
-  },
-});
+await cp(src, dest, { recursive: true, force: true, filter: (from) => keep(path.relative(src, from)) });
+
+const listFiles = async (dir, base = dir) => {
+  const out = [];
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    const full = path.join(dir, e.name);
+    if (e.isDirectory()) out.push(...(await listFiles(full, base)));
+    else out.push(path.relative(base, full));
+  }
+  return out;
+};
+const wanted = new Set((await listFiles(src)).filter(keep));
+for (const rel of await listFiles(dest)) {
+  if (rel !== 'GENERATED.md' && !wanted.has(rel)) await rm(path.join(dest, rel), { force: true });
+}
 
 await writeFile(
   path.join(dest, 'GENERATED.md'),

@@ -67,3 +67,13 @@ that root by the codegen (it already rewrites `:root` and `.dark` this way), and
 
 The field belongs on front doors only. In this app that means the Home view, and nowhere
 else.
+
+## Where portals go
+
+Dialogs, sheets, tooltips, menus and the morphing dialog portal to `document.body` by
+default. In this app that is outside `.lk-root`, so a portalled surface loses both the
+scoped stylesheet and the theme class and renders unstyled. The package exposes
+`PortalContainerProvider` (`lib/portal.ts`); the app wraps its tree once with a ref to
+`#lk-root`, and every portal mounts inside it. This is the companion of `AmbientField`'s
+`themeRoot`: anything the package attaches to the document must be told where the app's
+root is.

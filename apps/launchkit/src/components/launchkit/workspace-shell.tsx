@@ -58,6 +58,9 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
                 <DelayedSkeleton className="h-4 w-40" />
               )}
             </p>
+            <div className="mt-3 lg:hidden">
+              <StageRail compact />
+            </div>
             <h1 className="mt-2 text-display text-balance">{stage?.name ?? 'Stage'}</h1>
             {stage?.summary && <p className="mt-2 max-w-2xl text-body text-muted-foreground">{stage.summary}</p>}
           </div>
@@ -74,7 +77,7 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
           </div>
         </aside>
         <main className="min-w-0 flex-1">
-          <PageContainer className="grid gap-5">
+          <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-5">
             {error && (
               <Banner
                 tone="nogo"
@@ -88,9 +91,6 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
                 }
               />
             )}
-            <div className="lg:hidden">
-              <StageRail />
-            </div>
             {!loaded && !error ? (
               <div className="grid gap-4">
                 <DelayedSkeleton className="h-40 w-full" />

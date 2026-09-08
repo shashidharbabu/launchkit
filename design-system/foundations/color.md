@@ -120,3 +120,5 @@ preference and there is a toggle in the rail and a three-way control in Settings
 | nogo-text on nogo-soft | 6.1 | 6.0 |
 
 Any change to a color re-runs this table before it ships.
+
+One recorded exception: `apps/launchkit/src/components/launchkit/error-boundary.tsx` hardcodes five hex values on purpose, because it must render when the generated stylesheet never loaded.

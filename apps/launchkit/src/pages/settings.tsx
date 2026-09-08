@@ -47,7 +47,7 @@ export default function SettingsPage() {
   }, [check]);
 
   return (
-    <PageContainer className="grid gap-8">
+    <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-8">
       <PageHeader title="Settings" />
       <div className="grid max-w-2xl gap-6">
       <Card>

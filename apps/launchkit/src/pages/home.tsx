@@ -18,7 +18,7 @@ export default function HomePage() {
   const { go, href } = useNav();
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-dvh bg-background text-foreground">
 
       {/* hero: full-bleed launch-pad artwork with a slow drift */}
       <section className="relative flex min-h-[82vh] items-center overflow-hidden">
@@ -54,7 +54,7 @@ export default function HomePage() {
             background: 'linear-gradient(180deg, transparent, var(--background))',
           }}
         />
-        <div className="relative z-10 mx-auto w-full max-w-landing px-5 sm:px-8 pb-16 pt-28">
+        <div className="relative mx-auto w-full max-w-landing px-5 sm:px-8 pb-16 pt-28">
           <LandingHero headline={HEADLINE} subhead={SUBHEAD} />
           <AnimatedGroup
             preset="blur-slide"

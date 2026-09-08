@@ -348,3 +348,21 @@ Two follow-on traps, each one failed deploy:
 `node tools/build-log.mjs <version>` calls `client.buildLog(appId, version)` and
 prints the full phase-by-phase server output; it is the difference between
 fixing the failure and guessing at it (three wasted deploys).
+
+**K9. Portals must be told where the app root is.** Base UI dialogs, sheets, tooltips,
+menus and the morphing dialog portal to `document.body`, which is outside `.lk-root`, so
+they rendered with no styles and no theme (the phone menu sheet showed Times and blue
+links). Fixed upstream in the design system with `PortalContainerProvider`
+(`lib/portal.ts`) wired into every portal; `App.tsx` provides a ref to `#lk-root`. The
+`lib/*` export map resolves `.ts` only, so the module has no JSX.
+
+**K10. Two phone-width traps.** (1) An `sr-only` element is absolutely positioned; inside
+a table whose frame is not positioned it escapes the scroll container and stretches the
+document to the column it labels. `TableFrame` is now `relative`. (2) A single-column grid
+track stretches to its widest child unless declared `minmax(0,1fr)`; every page and stage
+grid now declares it, which is what lets tables, wells and long URLs scroll or wrap inside
+their own frames.
+
+**K11. The mirror sync is in place, not delete-then-copy.** The dev server's watcher
+compiled the half-copied mirror during the deletion window and stayed stuck on a missing
+`../lib/cn`. `sync-ds.mjs` now overwrites and prunes.

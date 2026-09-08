@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Menu } from '@base-ui/react/menu';
 import { cn } from '../lib/cn';
+import { usePortalContainer } from '../lib/portal';
 
 /**
  * Dropdown menu on Base UI's Menu. Raised surface, 16px radius, items are
@@ -25,7 +26,7 @@ export function DropdownMenuContent({
   sideOffset?: number;
 }) {
   return (
-    <Menu.Portal>
+    <Menu.Portal container={usePortalContainer()}>
       <Menu.Positioner side={side} align={align} sideOffset={sideOffset} className="z-(--z-dialog) outline-none">
         <Menu.Popup
           className={cn(

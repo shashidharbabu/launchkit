@@ -50,7 +50,7 @@ export default function LaunchesPage() {
   );
 
   return (
-    <PageContainer className="grid gap-8">
+    <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-8">
       <PageHeader
         title="Launches"
         description="Every app you are taking to market, and how far each one has come."

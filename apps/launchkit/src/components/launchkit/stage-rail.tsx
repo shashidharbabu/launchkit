@@ -13,16 +13,69 @@ const DOT_TITLE: Record<StageDot, string> = {
 };
 
 /**
- * The gantry (navigation.md): the seven stages as 40px rows on one vertical
- * track, each with a 32px node filled by its real state, a "Gate n" label
- * where the stage ends in a decision, and a lock while the profile is not
- * approved. The active row is raised; the track is the only structural line.
+ * The gantry (components/navigation.md): the seven stages as 40px rows on one
+ * vertical track, each with a 32px node filled by its real state, a "Gate n"
+ * label where the stage ends in a decision, and a lock while the profile is
+ * not approved. The active row is raised; the track is the only structural
+ * line. Below `lg` (`compact`) it becomes a horizontal strip of pills above
+ * the stage title, with a check on approved stages and a lock on locked ones.
  */
-export function StageRail() {
+export function StageRail({ compact = false }: { compact?: boolean }) {
   const { nav, go, href } = useNav();
   const id = nav.projectId;
   const current = nav.stage ?? 'profile';
   const { gate1, stageDots } = useProject();
+
+  if (compact) {
+    return (
+      <nav aria-label="Stages" className="-mx-5 overflow-x-auto px-5 sm:-mx-8 sm:px-8">
+        <ol className="flex w-max gap-2 pb-1">
+          {STAGES.map((s) => {
+            const active = current === s.slug;
+            const locked = !gate1 && s.slug !== 'profile';
+            const dot = stageDots[s.slug];
+            const label = `${s.name}: ${DOT_TITLE[dot]}${locked ? ', locked' : ''}`;
+            const pill = (
+              <span
+                className={cn(
+                  'inline-flex h-8 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 text-small font-medium transition-colors duration-(--duration-fast)',
+                  active
+                    ? 'border-transparent bg-surface-raised text-foreground shadow-card'
+                    : 'border-border bg-surface text-muted-foreground',
+                  locked && 'opacity-60',
+                )}
+              >
+                {dot === 'go' && <Check size={14} strokeWidth={2.5} aria-hidden className="text-go" />}
+                {s.name}
+                {locked && <Lock size={12} strokeWidth={1.75} aria-hidden />}
+              </span>
+            );
+            return (
+              <li key={s.slug}>
+                {locked ? (
+                  <span className="block cursor-not-allowed" aria-label={label}>{pill}</span>
+                ) : (
+                  <a
+                    href={href({ view: 'workspace', projectId: id, stage: s.slug })}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      go({ view: 'workspace', projectId: id, stage: s.slug });
+                    }}
+                    aria-current={active ? 'page' : undefined}
+                    aria-label={label}
+                    className="block rounded-full"
+                  >
+                    {pill}
+                  </a>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+    );
+  }
+
   return (
     <nav aria-label="Stages" className="w-full px-3 py-4">
       <p className="mb-2 px-1 text-label text-muted-foreground">Stages</p>
@@ -32,11 +85,13 @@ export function StageRail() {
           const locked = !gate1 && s.slug !== 'profile';
           const dot = stageDots[s.slug];
           const n = Number(s.num);
+          // the track is the list's ::before, painted before its rows, so a
+          // `relative` node already sits above it without a z-index
           const node = (
             <span
               aria-hidden
               className={cn(
-                'relative z-10 flex size-8 shrink-0 items-center justify-center rounded-full border font-mono text-data tabular',
+                'relative flex size-8 shrink-0 items-center justify-center rounded-full border font-mono text-data tabular',
                 dot === 'go' && 'border-go bg-go text-background',
                 dot === 'hold' && 'border-hold-soft bg-hold-soft text-hold-text',
                 dot === 'nogo' && 'border-nogo-soft bg-nogo-soft text-nogo-text',

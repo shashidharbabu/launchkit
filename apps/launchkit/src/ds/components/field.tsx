@@ -98,7 +98,7 @@ export const Checkbox = React.forwardRef<
       <input
         ref={ref}
         type="checkbox"
-        className="peer absolute inset-0 z-10 m-0 size-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
+        className="peer absolute inset-0 m-0 size-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
         {...props}
       />
       <span

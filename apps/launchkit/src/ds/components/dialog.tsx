@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { X } from 'lucide-react';
 import { cn } from '../lib/cn';
+import { usePortalContainer } from '../lib/portal';
 
 /**
  * Dialog + Sheet (components/dialogs-sheets.md)
@@ -37,7 +38,7 @@ export function DialogContent({
   ...props
 }: React.ComponentProps<typeof BaseDialog.Popup> & { showClose?: boolean }) {
   return (
-    <BaseDialog.Portal>
+    <BaseDialog.Portal container={usePortalContainer()}>
       <BaseDialog.Backdrop className={BACKDROP} />
       <BaseDialog.Popup
         className={cn(
@@ -80,7 +81,7 @@ export function SheetContent({
   ...props
 }: React.ComponentProps<typeof BaseDialog.Popup> & { side?: 'left' | 'right' }) {
   return (
-    <BaseDialog.Portal>
+    <BaseDialog.Portal container={usePortalContainer()}>
       <BaseDialog.Backdrop className={BACKDROP} />
       <BaseDialog.Popup
         className={cn(

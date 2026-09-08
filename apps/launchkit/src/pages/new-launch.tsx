@@ -60,7 +60,7 @@ export default function NewLaunchPage() {
   }
 
   return (
-    <PageContainer className="grid gap-8">
+    <PageContainer className="grid grid-cols-[minmax(0,1fr)] gap-8">
       <PageHeader
         title="Start a launch"
         description="Launch Kit reads your live site, and your repo if it is public, then drafts your app profile. Analysis starts the moment the launch is created and takes one to three minutes."

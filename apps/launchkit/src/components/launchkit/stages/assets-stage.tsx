@@ -264,7 +264,7 @@ export function AssetsStage() {
   const approvedCount = assets.filter((a) => a.status === 'approved').length;
 
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {/* purpose before data — what happened, what to do */}
       {assets.length > 0 && (
         <Orient
@@ -351,7 +351,7 @@ export function AssetsStage() {
 
       {assets.length > 0 &&
         (reduced ? (
-          <div className="grid gap-4">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
             {assets.map((a) => (
               <AssetCard key={a.id} asset={a} emberApprove={a.id === firstPendingId} />
             ))}
