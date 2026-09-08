@@ -28,9 +28,9 @@ else {
   await page.locator('#lk-root a, #lk-root button',{hasText:/New launch/i}).first().click(); await page.waitForTimeout(1500);
   const inputs=page.locator('#lk-root input'); log('FORM',{inputs:await inputs.count()});
   await inputs.nth(0).fill('hack-judge'); await inputs.nth(1).fill(SITE);
-  await page.locator('#lk-root button[type="submit"], #lk-root button',{hasText:/Create|Start|Launch/i}).first().click(); await page.waitForTimeout(3000);
+  await page.locator('#lk-root button[type="submit"], #lk-root button',{hasText:/Analyze my app/i}).first().click(); await page.waitForTimeout(3000);
   log('CREATED',{head:(await text()).slice(0,80)});
-  const approveBtn=page.locator('#lk-root button',{hasText:'This is right: approve'});
+  const approveBtn=page.locator('#lk-root button',{hasText:'Approve profile'});
   const t0=Date.now(); await approveBtn.first().waitFor({state:'visible',timeout:360000}).catch(()=>console.log('WARN approve button not visible'));
   await page.waitForFunction(()=>{const b=[...document.querySelectorAll('#lk-root button')].find(x=>/This is right: approve/.test(x.textContent));return b&&!b.disabled;},{timeout:120000}).catch(()=>console.log('WARN approve disabled'));
   log('UNDERSTAND',{secs:Math.round((Date.now()-t0)/1000), partial:/Partial analysis/.test(await text())});

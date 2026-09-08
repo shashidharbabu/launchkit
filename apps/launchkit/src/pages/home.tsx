@@ -38,6 +38,15 @@ export default function HomePage() {
               'linear-gradient(90deg, oklch(from var(--background) l c h / 0.97) 0%, oklch(from var(--background) l c h / 0.88) 42%, oklch(from var(--background) l c h / 0.35) 72%, oklch(from var(--background) l c h / 0.05) 100%)',
           }}
         />
+        {/* the photograph emerges from the canvas rather than starting on a hard
+            horizontal edge, so the hand-off from the chat above reads as one page */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-32"
+          style={{
+            background: 'linear-gradient(180deg, var(--background), transparent)',
+          }}
+        />
         <div
           aria-hidden
           className="absolute inset-x-0 bottom-0 h-40"

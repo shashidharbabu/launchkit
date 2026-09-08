@@ -93,7 +93,11 @@ export function NavigatorHome() {
   };
 
   return (
-    <section aria-label="Navigator" className={cn('flex flex-col bg-background', started ? 'h-[calc(100dvh-var(--spacing-topbar))]' : 'min-h-[calc(100dvh-var(--spacing-topbar))]')}>
+    // Empty state stops short of the fold so the launch-pad photograph below breaks
+    // the bottom edge. That peek is the "there is more" signal; Gantry bans scroll
+    // cues (checklist.md, patterns/landing.md), so the composition carries it.
+    // Once a conversation starts the thread owns the viewport and nothing peeks.
+    <section aria-label="Navigator" className={cn('flex flex-col bg-background', started ? 'h-[calc(100dvh-var(--spacing-topbar))]' : 'min-h-[calc(100dvh-var(--spacing-topbar)-5rem)]')}>
       {started ? (
         <>
           <div className="min-h-0 flex-1 overflow-y-auto">
