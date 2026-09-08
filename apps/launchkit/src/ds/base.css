@@ -1,0 +1,164 @@
+/*
+ * Launch Kit design system: base layer and app-level utilities.
+ * Import after tokens.css in the app's global stylesheet:
+ *
+ *   @import "tailwindcss";
+ *   @import "tw-animate-css";
+ *   @import "@launchkit/design-system/tokens.css";
+ *   @import "@launchkit/design-system/base.css";
+ *   @custom-variant dark (&:is(.dark *));
+ *   @source "../node_modules/@launchkit/design-system/src";
+ */
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--selection);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  a {
+    color: var(--color-link);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--muted-foreground);
+    opacity: 1;
+  }
+
+  /* any column of numbers reads in tabular figures */
+  [data-numeric],
+  td.numeric,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* subtle scrollbars everywhere */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities: compositions of tokens the components rely on            */
+/* ------------------------------------------------------------------ */
+
+/* shimmering status text: the one "working" treatment in the system */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--muted-foreground) 0%,
+    var(--foreground) 45%,
+    var(--muted-foreground) 90%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 2.2s linear infinite;
+}
+
+/* the gantry track: the vertical line that joins a stage list */
+.gantry-track {
+  position: relative;
+}
+.gantry-track::before {
+  content: "";
+  position: absolute;
+  left: calc(1rem - 0.5px);
+  top: 1.25rem;
+  bottom: 1.25rem;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+/* chat prose: paragraphs, inline code, links, short lists */
+.chat-prose > * + * {
+  margin-top: 0.75em;
+}
+.chat-prose p {
+  overflow-wrap: anywhere;
+}
+.chat-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--sunken);
+  border-radius: 0.3em;
+  padding: 0.1em 0.35em;
+}
+.chat-prose a {
+  text-decoration: underline;
+}
+.chat-prose ul {
+  padding-left: 1.25em;
+  list-style: disc;
+}
+.chat-prose ol {
+  padding-left: 1.25em;
+  list-style: decimal;
+}
+
+/* clamp sonner toast motion to the tokens */
+[data-sonner-toast] {
+  animation-duration: var(--duration-slow) !important;
+  transition-duration: var(--duration-slow) !important;
+}
+
+/* skeleton block */
+.skeleton {
+  background: linear-gradient(90deg, var(--sunken) 0%, var(--border) 50%, var(--sunken) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}

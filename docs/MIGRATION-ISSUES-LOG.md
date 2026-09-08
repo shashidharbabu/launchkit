@@ -319,3 +319,32 @@ lives there because Playwright is installed there; run it from the repo root wit
 **K7. No eslint configuration exists in this repo.** The design system's checklist asks for
 `npx eslint .`; the app and the root have no config, so that line cannot run. Typecheck and
 the build are the gates that do run.
+
+**K8. A `workspace:*` dependency cannot be deployed.** After the Gantry adoption,
+`apps/launchkit` depended on `@launchkit/design-system` as a pnpm workspace
+package. That resolves locally through the workspace symlink, so typecheck and
+`rsbuild build` both passed, but the deploy bundle packs ONLY the app root
+(`appRoot: apps/launchkit`). The server's install step cannot resolve a workspace
+dependency whose package was never uploaded, and v23 died at phase `install`.
+Fix: `tools/sync-ds.mjs` mirrors `design-system/src` into
+`apps/launchkit/src/ds`, tsconfig `paths` maps `@launchkit/design-system/*` onto
+the mirror so no import changed, and the workspace dependency is gone.
+`deploy-app.mjs` runs the sync as a pre-step beside `gen-styles.mjs`.
+
+Two follow-on traps, each one failed deploy:
+- **The server installs only what the app's `package.json` declares.** The
+  mirror initially carried `theme-toggle.tsx` and `ambient-field.tsx`, which
+  import `next-themes`, and `index.ts`, which re-exports the toggle. The app
+  uses none of them (it keeps its own toggle for `#lk-root` theming), but `tsc`
+  still typechecks every file under `src`, so v24/v25/v26 died at phase
+  `typecheck`. `sync-ds.mjs` now skips those three files.
+- **The packer ships tracked files only.** Gitignoring the generated mirror made
+  it invisible to the bundle: the pack stayed at 106 files and the server could
+  not resolve a single `@launchkit/design-system/*` import. The mirror is
+  committed, like `styles.generated.ts`, and carries a `GENERATED.md` saying the
+  authored copy lives in `design-system/`. A correct pack is 141 files.
+
+**Read the real build log.** `deploy-app.mjs` prints only the failing phase.
+`node tools/build-log.mjs <version>` calls `client.buildLog(appId, version)` and
+prints the full phase-by-phase server output; it is the difference between
+fixing the failure and guessing at it (three wasted deploys).

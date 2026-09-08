@@ -36,12 +36,12 @@
   },
   "scripts": {
     "dev": "rsbuild dev",
-    "build": "tsc --noEmit && rsbuild build",
-    "typecheck": "tsc --noEmit"
+    "build": "node ../../tools/sync-ds.mjs && tsc --noEmit && rsbuild build",
+    "typecheck": "node ../../tools/sync-ds.mjs && tsc --noEmit",
+    "sync-ds": "node ../../tools/sync-ds.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
-    "@launchkit/design-system": "workspace:*",
     "@number-flow/react": "~0.6.2",
     "@tanstack/react-table": "~9.1.2",
     "clsx": "^2.1.1",

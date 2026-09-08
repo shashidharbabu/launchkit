@@ -2,6 +2,9 @@ import { execFileSync as __rrExec } from 'node:child_process';
 // Always regenerate the compiled design system before packing — a stale
 // styles.generated.ts ships silently (tsc/rsbuild cannot detect a missing utility).
 __rrExec('node', ['tools/gen-styles.mjs'], { stdio: 'inherit' });
+// The bundle packs only apps/launchkit, so the design system must be mirrored
+// inside the app or the server build fails at install (killed v23).
+__rrExec('node', ['tools/sync-ds.mjs'], { stdio: 'inherit' });
 // Deploy rail: verifyApp -> addApp -> poll build -> (optionally) publish @me.
 import { RocketRideClient } from 'rocketride';
 import { readFileSync } from 'node:fs';

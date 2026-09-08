@@ -16,6 +16,15 @@
     "paths": {
       "next/link": [
         "./src/shims/next-link.tsx"
+      ],
+      "@launchkit/design-system/components/*": [
+        "./src/ds/components/*.tsx"
+      ],
+      "@launchkit/design-system/motion/*": [
+        "./src/ds/components/motion/*.tsx"
+      ],
+      "@launchkit/design-system/lib/*": [
+        "./src/ds/lib/*.ts"
       ]
     }
   },
