@@ -10,7 +10,7 @@ await page.goto('http://localhost:3400',{waitUntil:'networkidle'});
 await page.evaluate((raw)=>{localStorage.setItem('lk-preview-appstate',raw);localStorage.removeItem('lk-nav');},readFileSync(SEED,'utf8'));
 await page.reload({waitUntil:'networkidle'}); await page.waitForTimeout(3500);
 const nav=async(label)=>{ await page.locator('#lk-root nav a',{hasText:label}).first().click(); await page.waitForTimeout(1200); };
-const stage=async(re)=>{ await page.locator('#lk-root nav[aria-label="Stages"] a',{hasText:re}).first().click(); await page.waitForTimeout(1200); };
+const stage=async(re)=>{ await page.locator('#lk-root nav[aria-label="Stages"] a:visible',{hasText:re}).first().click(); await page.waitForTimeout(1200); };
 const shot=async(name)=>{ await page.screenshot({path:`${OUT}/${TAG}-${name}.png`}); };
 for (const theme of ['light','dark']) {
   if (theme==='dark') { await page.locator('#lk-root button[aria-label="Switch to dark theme"]').first().click(); await page.waitForTimeout(600); }

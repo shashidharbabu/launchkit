@@ -13,14 +13,14 @@ await page.evaluate((raw)=>{localStorage.setItem('lk-preview-appstate',raw);loca
 await page.reload({waitUntil:'networkidle'}); await page.waitForTimeout(4000);
 await page.locator('#lk-root nav a', {hasText:'Launches'}).first().click(); await page.waitForTimeout(1200);
 await page.getByText('Excalidraw').first().click({timeout:10000}); await page.waitForTimeout(2000);
-await page.locator('#lk-root nav[aria-label="Stages"] a', {hasText:/Social Launch/i}).first().click({timeout:8000}); await page.waitForTimeout(2500);
+await page.locator('#lk-root nav[aria-label="Stages"] a:visible', {hasText:/Social Launch/i}).first().click({timeout:8000}); await page.waitForTimeout(2500);
 const t1=await text();
 const picker=await page.locator('#lk-root button', {hasText:/^(Draft|Redraft) for /}).count();
 const r={railSocial:/Social Launch/.test(t1), picker, regenVisible:/Regenerate with feedback/.test(t1)&&await page.locator('#lk-root textarea[id^="fb-"]').count()>0, shareX:await page.locator('#lk-root button',{hasText:'Share on X'}).count()>0, noAssetsWord:!/\bAssets\b/.test(t1)};
 if(r.shareX){ await page.locator('#lk-root button',{hasText:'Share on X'}).first().click(); await page.waitForTimeout(300);
   const opened=await page.evaluate(()=>window.__opened); r.intent=opened[0]?.slice(0,60); r.intentOk=/^https:\/\/x\.com\/intent\/post\?text=/.test(opened[0]||''); }
 await page.screenshot({path:`${OUT}/v15-social-launch.png`});
-console.log('STAGE',JSON.stringify(r)); if(!r.railSocial||r.picker!==7){console.log('RAIL>>>',await page.evaluate(()=>[...document.querySelectorAll('#lk-root nav[aria-label="Stages"] a')].map(a=>a.textContent.trim()).join(' | ')));console.log('BTNS>>>',await page.evaluate(()=>[...document.querySelectorAll('#lk-root button')].map(b=>b.textContent.trim()).filter(t=>/Draft/.test(t)).join(' | ')));}
+console.log('STAGE',JSON.stringify(r)); if(!r.railSocial||r.picker!==7){console.log('RAIL>>>',await page.evaluate(()=>[...document.querySelectorAll('#lk-root nav[aria-label="Stages"] a:visible')].map(a=>a.textContent.trim()).join(' | ')));console.log('BTNS>>>',await page.evaluate(()=>[...document.querySelectorAll('#lk-root button')].map(b=>b.textContent.trim()).filter(t=>/Draft/.test(t)).join(' | ')));}
 // real draft: LinkedIn on the rotated pipe (fresh instructions)
 const btn=page.locator('#lk-root button',{hasText:/(Draft|Redraft) for LinkedIn/}).first();
 const before=await page.evaluate(()=>{try{const root=JSON.parse(localStorage.getItem('lk-preview-appstate')||'{}');const s=Object.values(root).find(v=>v&&Array.isArray(v.assets))||root;return (s.assets||[]).length;}catch{return -1;}});
@@ -37,11 +37,11 @@ await page.waitForTimeout(2500);
 const secs=Math.round((Date.now()-t0)/1000);
 const st=await page.evaluate(()=>{try{const root=JSON.parse(localStorage.getItem('lk-preview-appstate')||'{}');const s=Object.values(root).find(v=>v&&Array.isArray(v.assets))||root;const a=(s.assets||[]).filter(x=>x.asset_type==='linkedin_post');a.sort((x,y)=>(y.version||0)-(x.version||0));const n=a[0];return n?{count:a.length,version:n.version,post:String(n.data?.post||'').slice(0,600),fixed:n.data?.punctuation_fixed||0,warnings:n.data?.warnings||[],keys:Object.keys(n.data||{})}:null;}catch(e){return {err:String(e)};}});
 const dom=await text();
-const d={secs,before,stored:!!st,version:st?.version,fixed:st?.fixed,warnings:st?.warnings,dashInStored:/[—–]/.test(st?.post||''),dashInDom:/[—–]/.test(dom),runLabel:/Social Launch — LinkedIn/.test(dom),errs:errs.length};
+const d={secs,before,stored:!!st,version:st?.version,fixed:st?.fixed,warnings:st?.warnings,dashInStored:/[—–]/.test(st?.post||''),dashInDom:/[—–]/.test(dom),runLabel:/Social Launch, LinkedIn/.test(dom),errs:errs.length};
 console.log('DRAFT',JSON.stringify(d)); console.log('POST>>>',(st?.post||'(none)').replace(/\n/g,' / ').slice(0,500));
 await page.screenshot({path:`${OUT}/v15-linkedin-draft.png`});
 await page.locator('#lk-root nav a',{hasText:'Runs'}).first().click(); await page.waitForTimeout(1500);
-const runs=await text(); d.runsPage=/Social Launch — LinkedIn/.test(runs);
+const runs=await text(); d.runsPage=/Social Launch, LinkedIn/.test(runs);
 await page.locator('#lk-root nav a',{hasText:'Settings'}).first().click(); await page.waitForTimeout(1500);
 const s=await text(); d.settingsEditor=/Platform rulebooks/.test(s)&&/Save LinkedIn rulebook|Save X rulebook/.test(s);
 await page.screenshot({path:`${OUT}/v15-settings-rulebooks.png`});

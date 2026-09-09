@@ -22,7 +22,7 @@ if(RESUME && existsSync(RESUME)){ await page.evaluate((raw)=>{localStorage.setIt
 else await page.evaluate(()=>{localStorage.removeItem('lk-preview-appstate');localStorage.removeItem('lk-nav');});
 await page.reload({waitUntil:'networkidle'}); await page.waitForTimeout(4000);
 if(RESUME){ await page.locator('#lk-root nav a',{hasText:'Launches'}).first().click(); await page.waitForTimeout(1500); await page.getByText('hack-judge').first().click(); await page.waitForTimeout(2000);
-  await page.locator('#lk-root nav[aria-label="Stages"] a',{hasText:RESUME_STAGE==='signals'?/Signals/:/Targets/}).first().click(); await page.waitForTimeout(2000); }
+  await page.locator('#lk-root nav[aria-label="Stages"] a:visible',{hasText:RESUME_STAGE==='signals'?/Signals/:/Targets/}).first().click(); await page.waitForTimeout(2000); }
 else {
   await page.locator('#lk-root nav a',{hasText:'Launches'}).first().click(); await page.waitForTimeout(1500);
   await page.locator('#lk-root a, #lk-root button',{hasText:/New launch/i}).first().click(); await page.waitForTimeout(1500);
@@ -36,7 +36,7 @@ else {
   log('UNDERSTAND',{secs:Math.round((Date.now()-t0)/1000), partial:/Partial analysis/.test(await text())});
   await page.screenshot({path:`${OUT}/flow-1-profile.png`});
   await approveBtn.first().click(); await page.waitForTimeout(3500);
-  t=await text(); const rail=await page.evaluate(()=>[...document.querySelectorAll('#lk-root nav[aria-label="Stages"] a')].map(a=>({t:a.textContent.trim().replace(/\s+/g,' ').slice(0,18),cur:a.getAttribute('aria-current')})));
+  t=await text(); const rail=await page.evaluate(()=>[...document.querySelectorAll('#lk-root nav[aria-label="Stages"] a:visible')].map(a=>({t:a.textContent.trim().replace(/\s+/g,' ').slice(0,18),cur:a.getAttribute('aria-current')})));
   log('APPROVE',{autoAdvancedToBrand:/Business DNA|extracts the brand|Brand DNA/i.test(t), currentRail:rail.filter(r=>r.cur).map(r=>r.t), footer:(t.match(/Next: [A-Za-z ]+/)||[''])[0]});
   const walk=[];
   for(const expect of ['Next: Commercial','Next: Social Launch','Next: Targets']){ const btn=page.locator('#lk-root button',{hasText:expect}).first(); const seen=await btn.count()>0; walk.push({expect,seen}); if(seen){ await btn.click(); await page.waitForTimeout(1500);} }
