@@ -47,3 +47,11 @@ tools/tests/domain/.build-lib/
 
 # dev-only appState checkpoints served by the preview (never deployed: the packer ships tracked files only)
 /apps/launchkit/public/dev/
+
+# local Python env for the vendored reel toolchain
+/vendor/reel-creation/.venv/
+/vendor/reel-creation/build/
+
+# studio forge (local render service): installs and outputs
+/services/studio-forge/node_modules/
+/services/studio-forge/out/

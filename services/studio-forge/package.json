@@ -1,0 +1,16 @@
+{
+  "name": "studio-forge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Launch Kit's local render service: site probe, launch cards, kinetic reels.",
+  "scripts": {
+    "start": "node server.mjs",
+    "health": "curl -s localhost:3500/health"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "playwright": "1.62.1",
+    "sharp": "^0.35.0"
+  }
+}

@@ -21,6 +21,12 @@ import {
 import type { Dict, Profile, SignalData, TargetData } from '../domain/types';
 import { ask, askSignals } from './runner';
 import { rescoreSignals } from './rescore';
+import { forgeConcept, forgeRun } from './studio';
+import { buildStudioQuestion } from '../domain/questions';
+import {
+  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind,
+  type ConceptSpec,
+} from '../domain/studio';
 import {
   byNewest, byNumber, count, currentActor, flush, insert, remove,
   select, selectOne, uid, update, type Row,
@@ -360,6 +366,126 @@ export const api = {
         });
       });
     return { job_id: jobId };
+  },
+
+  // ---------------------------------------------------------------- Assets stage (studio)
+
+  studio: async (id: string) => {
+    const rows = byNewest(select('studio', { project_id: id }));
+    return rows.map((r) => ({
+      id: r.id, kind: r.kind, version: r.version, status: r.status,
+      data: r.data as Dict, created_at: (r.created_at as string | undefined) ?? null,
+    }));
+  },
+
+  /**
+   * One step of the Assets stage: probe (read the site on the studio forge),
+   * kit (render the cards), script (write the reel copy through lk_studio.pipe),
+   * reel (render it). Every step is a run; the forge steps need the local
+   * service, the script step needs the pipeline.
+   */
+  runStudio: async (id: string, step: string, opts: { scriptId?: string; concept?: string } = {}) => {
+    if (!isStudioStep(step)) throw new Error(unknownStageError(step));
+    const p = await projectRow(id);
+    const profile = await approvedProfile(id); // Gate 1 enforced
+    const latestOf = (kind: string) => byNewest(select('studio', { project_id: id, kind }))[0] ?? null;
+    const save = (kind: string, data: Dict, jobId: string, status = 'done') => {
+      const n = count('studio', { project_id: id, kind });
+      insert('studio', { id: uid(), project_id: id, kind, version: n + 1, status, data, job_id: jobId });
+    };
+
+    if (step === 'probe') {
+      const jobId = await runJob(id, studioJobKind('probe'),
+        () => forgeRun('probe', { project_id: id, site_url: String(p.site_url ?? '') }),
+        async (result) => save('probe', result, jobId));
+      return { job_id: jobId };
+    }
+
+    const probe = latestOf('probe');
+    const dna = await latestCommercial(id, 'brand_dna');
+
+    if (step === 'kit') {
+      if (!probe) throw new Error(NEEDS_PROBE_ERROR);
+      const pd = probe.data as Dict;
+      const listing = await latestCommercial(id, 'listing');
+      const script = latestOf('script');
+      const copy = kitCopy(profile, dna, listing, script ? (script.data as Dict) : null);
+      const jobId = await runJob(id, studioJobKind('kit'),
+        () => forgeRun('kit', {
+          project_id: id, site_url: String(p.site_url ?? ''), name: String(p.name ?? ''), ...copy,
+          palette: pd.palette, logos: pd.logos, fonts: pd.fonts,
+        }),
+        async (result) => save('kit', result, jobId));
+      return { job_id: jobId };
+    }
+
+    if (step === 'script') {
+      const concept = opts.concept ?? 'signal';
+      // the chosen campaign angle, the same way Social Launch reads it
+      const angles = Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [];
+      let campaignCtx = '';
+      if (angles.length > 0) {
+        const camps = await latestCommercial(id, 'brand_campaigns');
+        const list = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
+        const chosen = list.filter((c) => angles.includes(String(c.name)))
+          .map((c) => ({ name: c.name, big_idea: c.big_idea, hook: c.hook, objective: c.objective }));
+        campaignCtx = chosen.length > 0 ? JSON.stringify(chosen).slice(0, 2500) : angles.join('; ');
+      }
+      const jobId = await runJob(id, studioJobKind('script'),
+        async () => {
+          const spec = await forgeConcept(concept);
+          const result = await ask('lk_studio.pipe',
+            buildStudioQuestion(spec, profile, String(p.name ?? ''), String(p.site_url ?? ''), dna, campaignCtx));
+          const norm = normalizeSlots(spec, result.slots);
+          return {
+            concept, ...norm,
+            tagline: typeof result.tagline === 'string' ? result.tagline.trim().slice(0, 80) : '',
+            one_liner: typeof result.one_liner === 'string' ? result.one_liner.trim().slice(0, 160) : '',
+            claims_used: Array.isArray(result.claims_used) ? result.claims_used : [],
+            notes: typeof result.notes === 'string' ? result.notes : '',
+            spec: {
+              title: spec.title, tagline: spec.tagline, duration: spec.duration, beats: spec.beats,
+              slots: spec.slots.map((s) => ({ id: s.id, max: s.max, hint: s.hint, example: s.example, optional: s.optional, default: s.default })),
+            },
+          };
+        },
+        async (result) => save('script', result, jobId, 'draft'));
+      return { job_id: jobId };
+    }
+
+    // reel
+    if (!probe) throw new Error(NEEDS_PROBE_ERROR);
+    const script = opts.scriptId ? selectOne('studio', { id: opts.scriptId }) : latestOf('script');
+    if (!script) throw new Error(NEEDS_SCRIPT_ERROR);
+    const sd = script.data as Dict;
+    const pd = probe.data as Dict;
+    const logo = (Array.isArray(pd.logos) ? (pd.logos as Dict[]) : []).find((l) => l.picked) ?? null;
+    const jobId = await runJob(id, studioJobKind('reel'),
+      () => forgeRun('reel', { project_id: id, concept: sd.concept ?? 'signal', slots: sd.slots, palette: pd.palette, logo }),
+      async (result) => save('reel', { ...result, script_id: script.id, script_version: script.version }, jobId, 'draft'));
+    return { job_id: jobId };
+  },
+
+  /** Edit a script's slots; the same clamp the renderer applies, so the editor tells the truth. */
+  editStudioScript: async (rowId: string, slots: Record<string, string>) => {
+    const row = selectOne('studio', { id: rowId });
+    if (!row || row.kind !== 'script') throw new Error('script not found');
+    const data = row.data as Dict;
+    const spec = { ...(data.spec as Dict), concept: data.concept } as unknown as ConceptSpec;
+    const norm = normalizeSlots(spec, slots);
+    update('studio', { id: rowId }, {
+      data: { ...data, slots: norm.slots, clamped: norm.clamped, edited: true },
+      status: 'edited', status_by: currentActor(),
+    });
+    flush();
+    return { id: rowId, status: 'edited', clamped: norm.clamped };
+  },
+
+  approveStudio: async (rowId: string) => {
+    const affected = update('studio', { id: rowId }, { status: 'approved', status_by: currentActor() });
+    if (!affected) throw new Error('reel not found');
+    flush();
+    return { id: rowId, status: 'approved' };
   },
 
   job: async (jobId: string) => {

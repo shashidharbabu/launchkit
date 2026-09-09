@@ -12,8 +12,57 @@
 
 import { pyJsonDumps, pyStr, pyTruthy } from "./py";
 import type { BrandDna, Dict, Profile, TargetData } from "./types";
+import type { ConceptSpec } from "./studio";
 
 export { pyJsonDumps } from "./py";
+
+/**
+ * The Assets stage's reel script (lk_studio.pipe, a toolless LLM pipe): the
+ * whole prompt travels in the question. The slot contract comes from the
+ * studio forge's concept spec so the prompt, the editor and the renderer
+ * agree on ids and limits. New in the short-video branch, not a rr.py port.
+ */
+export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName: string,
+                                    siteUrl: string, dna?: BrandDna | null, campaign = ""): string {
+  const host = siteUrl.replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/^www\./, "").toUpperCase();
+  const beats = spec.beats.map((b) => `- ${b.t} s: ${b.what} Slots: ${b.slots.join(", ")}`).join("\n");
+  const slots = spec.slots.map((s) =>
+    `- ${s.id} (max ${s.max} chars${s.optional ? ", optional" : ""}): ${s.hint ?? ""}` +
+    (s.example ? ` Example: "${s.example}"` : "")).join("\n");
+  const parts = [
+    "You write the on-screen copy for a 24 second vertical launch reel: kinetic typography, no voice-over, " +
+    "a few words per beat. The film is fixed; you fill its text slots and nothing else.",
+    "RULES: 1) Every slot value is at most its max characters, count them, shorter is better; text renders in " +
+    "capitals. 2) Never invent a number, a user count, a benchmark or a claim: a number may appear only if it " +
+    "is in APP_PROFILE or BRAND_DNA (use ONE or a plain word otherwise). 3) Write in the brand's voice: if " +
+    "BRAND_DNA is present follow its tone_words, vocabulary and dos_and_donts and reuse its key messages; " +
+    "otherwise plain and concrete. 4) Use the app name exactly as APP_NAME. 5) t1 is \"URL: \" plus " +
+    "SITE_HOST; lock_line2 is SITE_HOST; lock_line1 is the tagline in the brand's own words. 6) No hype " +
+    "words (game-changer, revolutionary, seamless, unleash, elevate, next-gen, cutting-edge, supercharge), " +
+    "no rhetorical questions, no em dashes, no emoji. 7) Punctuate as the hints say: labels end with a " +
+    "colon, statements end with a period. 8) If CAMPAIGN_ANGLE is present, the hook (s1_line) and the " +
+    "payoff (s12_l1, s12_l2) carry that angle.",
+    `THE FILM (beats in order):\n${beats}`,
+    `SLOTS:\n${slots}`,
+    `APP_NAME: ${appName}`,
+    `SITE_HOST: ${host}`,
+    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+  ];
+  if (pyTruthy(dna)) {
+    parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
+  }
+  if (campaign) {
+    parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
+  }
+  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<every slot id " +
+             "listed above>: string}, \"tagline\": string (at most 60 characters, sentence case, the brand's own " +
+             "tagline when BRAND_DNA has one, otherwise one in its voice; used on the launch cards), " +
+             "\"one_liner\": string (at most 120 characters, sentence case, what the app does and for whom, as " +
+             "the brand would say it, never hedged with words like appears or likely), \"claims_used\": " +
+             "[string] (each on-screen fact and where in APP_PROFILE or BRAND_DNA it comes from), \"notes\": " +
+             "string (one sentence on the angle you took)}");
+  return parts.join("\n\n");
+}
 
 function isDict(v: unknown): v is Dict {
   return typeof v === "object" && v !== null && !Array.isArray(v);

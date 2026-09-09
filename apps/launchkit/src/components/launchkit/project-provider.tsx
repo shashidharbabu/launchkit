@@ -7,9 +7,11 @@ import type {
   TargetRow,
   PlanData,
   AttributionData,
+  StudioRow,
 } from '../../lib/types';
 import type { StageSlug } from '../../lib/stages';
 import { jobLabel } from '../../lib/jobs';
+import { isStudioStep, studioDot } from '../../domain/studio';
 
 export type StageDot = 'go' | 'hold' | 'nogo' | 'none';
 
@@ -26,6 +28,8 @@ type Ctx = {
   listing: Record<string, unknown> | null;
   brandDna: Record<string, unknown> | null;
   brandCampaigns: Record<string, unknown> | null;
+  /** Assets stage rows, newest first: site reads, kits, scripts, reels. */
+  studio: StudioRow[];
   loaded: boolean;
   error: string;
   setError: (e: string) => void;
@@ -55,6 +59,8 @@ export function useProjectMaybe() {
 /** Voice.md error style: what happened, then the fix — no apology. */
 export function pipelineError(kind: string, detail: string): string {
   const label = jobLabel(kind);
+  // the studio forge writes its own reachability message (it is a local service, not a pipeline)
+  if (kind.startsWith('studio:')) return `${label} failed: ${detail}`;
   if (/fetch|network|ECONNREFUSED|reach/i.test(detail)) {
     return `Couldn't reach the pipeline while running ${label}. It restarts automatically; retry in about a minute.`;
   }
@@ -72,6 +78,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
   const [listing, setListing] = React.useState<Record<string, unknown> | null>(null);
   const [brandDna, setBrandDna] = React.useState<Record<string, unknown> | null>(null);
   const [brandCampaigns, setBrandCampaigns] = React.useState<Record<string, unknown> | null>(null);
+  const [studio, setStudio] = React.useState<StudioRow[]>([]);
   const [loaded, setLoaded] = React.useState(false);
   const [error, setError] = React.useState('');
   const [running, setRunning] = React.useState<Running>(null);
@@ -82,7 +89,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
       const p = (await api.getProject(id)) as unknown as ProjectDetail;
       setProject(p);
       setError('');
-      const [a, s, t, pl, at, pr, li, bd, bc] = await Promise.all([
+      const [a, s, t, pl, at, pr, li, bd, bc, st] = await Promise.all([
         api.assets(id).catch(() => []),
         api.signals(id).catch(() => []),
         api.targets(id).catch(() => []),
@@ -92,7 +99,9 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
         api.commercial(id, 'listing').then((r) => r.data).catch(() => null),
         api.commercial(id, 'brand_dna').then((r) => r.data).catch(() => null),
         api.commercial(id, 'brand_campaigns').then((r) => r.data).catch(() => null),
+        api.studio(id).catch(() => []),
       ]);
+      setStudio(st as unknown as StudioRow[]);
       setAssets(a as unknown as AssetRow[]);
       setSignals(s as unknown as SignalRow[]);
       setTargets(t as unknown as TargetRow[]);
@@ -168,6 +177,8 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
     const start = () => {
       if (kind === 'understand') return api.runUnderstand(id);
       if (kind.startsWith('asset:')) return api.runAsset(id, kind.slice('asset:'.length));
+      const studioStep = kind.startsWith('studio:') ? kind.slice('studio:'.length) : '';
+      if (isStudioStep(studioStep)) return api.runStudio(id, studioStep);
       return api.runStage(id, kind);
     };
     runJob(kind, start);
@@ -192,11 +203,12 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
       brand,
       commercial,
       assets: assetsDot,
+      studio: studioDot(studio),
       targets: targetsDot,
       signals: signalsDot,
       plan: planDot,
     };
-  }, [gate1, project, pricing, listing, brandDna, brandCampaigns, assets, targets, signals, plan]);
+  }, [gate1, project, pricing, listing, brandDna, brandCampaigns, assets, targets, signals, plan, studio]);
 
   return (
     <ProjectContext.Provider
@@ -211,6 +223,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
         listing,
         brandDna,
         brandCampaigns,
+        studio,
         loaded,
         error,
         setError,

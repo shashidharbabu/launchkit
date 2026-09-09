@@ -12,7 +12,7 @@ import { STAGES } from '../../lib/stages';
  */
 export function StageNext() {
   const { nav, go, href } = useNav();
-  const { project, gate1, assets, targets } = useProject();
+  const { project, gate1, assets, targets, studio } = useProject();
   if (nav.view !== 'workspace' || !project) return null;
   const current = String(nav.stage ?? 'profile');
   const idx = STAGES.findIndex((s) => s.slug === current);
@@ -39,6 +39,14 @@ export function StageNext() {
         ? `${approvedAssets} post${approvedAssets === 1 ? '' : 's'} approved. Only approved posts enter the plan.`
         : 'Approve at least one post: only approved posts enter the plan.';
       break;
+    case 'studio': {
+      const reelApproved = studio.some((r) => r.kind === 'reel' && r.status === 'approved');
+      ready = studio.length > 0;
+      hint = reelApproved
+        ? 'Reel approved. The kit, the cards and the reel are ready to post beside the plan.'
+        : 'Optional. A brand kit, launch cards and a 24-second reel, rendered on this machine from your site and profile.';
+      break;
+    }
     case 'targets':
       ready = selectedTargets > 0;
       hint = selectedTargets > 0

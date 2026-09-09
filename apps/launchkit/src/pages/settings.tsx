@@ -7,9 +7,12 @@ import { Banner } from '@launchkit/design-system/components/banner';
 import { Segmented } from '@launchkit/design-system/components/segmented';
 import { PageContainer } from '@launchkit/design-system/components/page-container';
 import { PageHeader } from '@launchkit/design-system/components/page-header';
+import { Field, Input } from '@launchkit/design-system/components/field';
 import { RulebookEditor } from '../components/launchkit/rulebook-editor';
 import { WorkspaceCard } from '../components/launchkit/workspace-card';
 import { api } from '../data/api';
+import { getSetting, setSetting } from '../data/settings';
+import { DEFAULT_STUDIO_URL, STUDIO_URL_KEY, forgeHealth, type ForgeHealth } from '../data/studio';
 import { useLkTheme, type LkTheme } from '../theme';
 
 const THEMES: Array<{ value: LkTheme; label: string }> = [
@@ -21,6 +24,83 @@ const THEMES: Array<{ value: LkTheme; label: string }> = [
 /** A section label inside a card: a noun in sentence case (voice.md). */
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="text-label text-muted-foreground">{children}</p>;
+}
+
+/**
+ * The Studio service: the local half of the Assets stage (it needs a browser
+ * and ffmpeg, which the pipeline runtime does not have). Its address is a
+ * setting; the check reports what it found on the machine it runs on.
+ */
+function StudioCard() {
+  const [url, setUrl] = React.useState(() => getSetting(STUDIO_URL_KEY) || DEFAULT_STUDIO_URL);
+  const [health, setHealth] = React.useState<ForgeHealth | null>(null);
+  const [down, setDown] = React.useState<string | null>(null);
+  const [checking, setChecking] = React.useState(false);
+
+  const save = () => {
+    const v = url.trim().replace(/\/+$/, '') || DEFAULT_STUDIO_URL;
+    setUrl(v);
+    setSetting(STUDIO_URL_KEY, v);
+  };
+  const check = React.useCallback(async () => {
+    setChecking(true);
+    try {
+      setHealth(await forgeHealth());
+      setDown(null);
+    } catch (e) {
+      setHealth(null);
+      setDown(String(e instanceof Error ? e.message : e));
+    } finally {
+      setChecking(false);
+    }
+  }, []);
+  React.useEffect(() => {
+    check();
+  }, [check]);
+
+  return (
+    <Card>
+      <CardHeader
+        title="Studio service"
+        description="Reads your site, renders the launch cards and the reel. Runs where a browser and ffmpeg live: this machine for now."
+        actions={
+          health ? <StatusStamp kind={health.ok ? 'go' : 'hold'} label={health.ok ? 'Running' : 'Incomplete'} />
+            : down ? <StatusStamp kind="nogo" label="Not running" /> : undefined
+        }
+      />
+      <CardBody className="grid gap-4">
+        <Field label="Address" htmlFor="studio-url" className="max-w-md" helper="Default http://localhost:3500. Change it if the service runs elsewhere.">
+          <Input
+            id="studio-url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            onBlur={save}
+            onKeyDown={(e) => { if (e.key === 'Enter') save(); }}
+            spellCheck={false}
+          />
+        </Field>
+        {health && (
+          <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-small">
+            <dt className="text-muted-foreground">Version</dt><dd className="font-mono text-data">{health.version}</dd>
+            <dt className="text-muted-foreground">Browser</dt><dd className="font-mono text-data">{health.chromium ?? 'missing (npx playwright install chromium)'}</dd>
+            <dt className="text-muted-foreground">ffmpeg</dt><dd className="font-mono text-data">{health.ffmpeg ? health.ffmpeg.replace(/ Copyright.*$/, '') : 'missing'}</dd>
+            <dt className="text-muted-foreground">Renderer</dt><dd className="font-mono text-data">{health.hyperframes}</dd>
+            <dt className="text-muted-foreground">Concepts</dt><dd>{health.concepts.map((c) => c.title).join(', ') || 'none'}</dd>
+          </dl>
+        )}
+        {down && (
+          <Banner tone="hold" title="The Studio service is not running.">
+            Start it in a terminal: <code className="font-mono text-data">cd services/studio-forge &amp;&amp; npm start</code>. It listens on the address above. Nothing else in Launch Kit needs it.
+          </Banner>
+        )}
+        <div>
+          <Button variant="secondary" loading={checking} loadingLabel="Checking" onClick={check}>
+            Check service
+          </Button>
+        </div>
+      </CardBody>
+    </Card>
+  );
 }
 
 export default function SettingsPage() {
@@ -80,6 +160,7 @@ export default function SettingsPage() {
         </CardBody>
       </Card>
 
+      <StudioCard />
       <WorkspaceCard />
       <RulebookEditor />
       <Card>
@@ -116,7 +197,7 @@ export default function SettingsPage() {
             Launch Kit: GTM-in-a-box for RocketRide App Store publishers.
           </p>
           <p className="text-body text-muted-foreground">
-            Launch Kit drafts everything; you approve everything. Three gates, seven stages, honest
+            Launch Kit drafts everything; you approve everything. Three gates, eight stages, honest
             telemetry after liftoff.
           </p>
           <p className="mt-2 text-small text-muted-foreground">

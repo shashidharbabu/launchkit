@@ -13,7 +13,7 @@ const DOT_TITLE: Record<StageDot, string> = {
 };
 
 /**
- * The gantry (components/navigation.md): the seven stages as 40px rows on one
+ * The gantry (components/navigation.md): the eight stages as 40px rows on one
  * vertical track, each with a 32px node filled by its real state, a "Gate n"
  * label where the stage ends in a decision, and a lock while the profile is
  * not approved. The active row is raised; the track is the only structural
