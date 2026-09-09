@@ -85,6 +85,7 @@ function StudioCard() {
             <dt className="text-muted-foreground">Browser</dt><dd className="font-mono text-data">{health.chromium ?? 'missing (npx playwright install chromium)'}</dd>
             <dt className="text-muted-foreground">ffmpeg</dt><dd className="font-mono text-data">{health.ffmpeg ? health.ffmpeg.replace(/ Copyright.*$/, '') : 'missing'}</dd>
             <dt className="text-muted-foreground">Renderer</dt><dd className="font-mono text-data">{health.hyperframes}</dd>
+            <dt className="text-muted-foreground">Images</dt><dd className="font-mono text-data">{health.images?.enabled ? `${health.images.model} (OpenAI key on the service)` : 'off: put OPENAI_API_KEY in services/studio-forge/.env'}</dd>
             <dt className="text-muted-foreground">Concepts</dt><dd>{health.concepts.map((c) => c.title).join(', ') || 'none'}</dd>
           </dl>
         )}

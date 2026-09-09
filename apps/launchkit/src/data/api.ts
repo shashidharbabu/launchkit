@@ -22,7 +22,8 @@ import type { Dict, Profile, SignalData, TargetData } from '../domain/types';
 import { ask, askSignals } from './runner';
 import { rescoreSignals } from './rescore';
 import { forgeConcept, forgeRun } from './studio';
-import { buildStudioQuestion, buildStudioRepairQuestion } from '../domain/questions';
+import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion } from '../domain/questions';
+import { fillUrl } from '../lib/share';
 import {
   NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind,
   type ConceptSpec,
@@ -403,6 +404,48 @@ export const api = {
 
     const probe = latestOf('probe');
     const dna = await latestCommercial(id, 'brand_dna');
+    const concept = opts.concept ?? 'verdict';
+    // the chosen campaign angle, the same way Social Launch reads it
+    const campaignAngle = async (): Promise<string> => {
+      const angles = Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [];
+      if (angles.length === 0) return '';
+      const camps = await latestCommercial(id, 'brand_campaigns');
+      const list = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
+      const chosen = list.filter((c) => angles.includes(String(c.name)))
+        .map((c) => ({ name: c.name, big_idea: c.big_idea, hook: c.hook, objective: c.objective }));
+      return chosen.length > 0 ? JSON.stringify(chosen).slice(0, 2500) : angles.join('; ');
+    };
+    // the photographs made for this launch (kind images): a plate's file on the forge, by id
+    const images = latestOf('images');
+    const plateFile = (plateId: string): string | null => {
+      const list = images && Array.isArray((images.data as Dict).images) ? ((images.data as Dict).images as Dict[]) : [];
+      const hit = list.find((x) => x.id === plateId);
+      return hit && typeof hit.file_path === 'string' ? hit.file_path : null;
+    };
+
+    if (step === 'images') {
+      const spec = await forgeConcept(concept);
+      const plates = Array.isArray(spec.plates) ? spec.plates : [];
+      if (plates.length === 0) throw new Error(`the ${concept} concept has no image plates`);
+      const jobId = await runJob(id, studioJobKind('images'),
+        async () => {
+          const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, String(p.name ?? ''), dna, await campaignAngle()));
+          const briefs: Dict = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
+          const list = plates.map((pl) => {
+            const prompt = typeof briefs[pl.id] === 'string' ? (briefs[pl.id] as string).trim() : '';
+            if (!prompt) throw new Error(`the script pipe wrote no brief for the ${pl.id} plate`);
+            return { id: pl.id, prompt, size: pl.size, grade: pl.grade };
+          });
+          const result = await forgeRun('images', { project_id: id, briefs: list });
+          return {
+            ...result, concept,
+            subject: typeof written.subject === 'string' ? written.subject.trim() : '',
+            plates: plates.map((pl) => ({ id: pl.id, for: pl.for, when: pl.when, hint: pl.hint })),
+          };
+        },
+        async (result) => save('images', result, jobId));
+      return { job_id: jobId };
+    }
 
     if (step === 'kit') {
       if (!probe) throw new Error(NEEDS_PROBE_ERROR);
@@ -410,28 +453,31 @@ export const api = {
       const listing = await latestCommercial(id, 'listing');
       const script = latestOf('script');
       const copy = kitCopy(profile, dna, listing, script ? (script.data as Dict) : null);
+      // each platform's own post headline (the drafts Social Launch shows), for the photo-backed images
+      const drafts = byNewest(select('assets', { project_id: id }), 'version');
+      const siteUrl = String(p.site_url ?? '');
+      const firstLine = (type: string, field: string): string => {
+        const row = drafts.find((r) => r.asset_type === type);
+        const text = row ? fillUrl((row.data as Dict)[field], siteUrl) : '';
+        return text.split(/\n/).map((l) => l.trim()).find(Boolean) ?? '';
+      };
+      const headlines = {
+        x: firstLine('x_post', 'post'), linkedin: firstLine('linkedin_post', 'post'), reddit: firstLine('reddit_post', 'title'),
+        producthunt: firstLine('producthunt', 'tagline'), newsletter: firstLine('newsletter_pitch', 'subject'),
+      };
       const jobId = await runJob(id, studioJobKind('kit'),
         () => forgeRun('kit', {
-          project_id: id, site_url: String(p.site_url ?? ''), name: String(p.name ?? ''), ...copy,
+          project_id: id, site_url: siteUrl, name: String(p.name ?? ''), ...copy,
           palette: pd.palette, logos: pd.logos, fonts: pd.fonts,
+          images: { hero: plateFile('hero'), story: plateFile('arrival') }, headlines,
         }),
-        async (result) => save('kit', result, jobId));
+        async (result) => save('kit', { ...result, images_id: images?.id ?? null }, jobId));
       return { job_id: jobId };
     }
 
     if (step === 'script') {
-      const concept = opts.concept ?? 'verdict';
       const siteCopy = probe ? String(((probe.data as Dict).copy as Dict | undefined)?.text ?? '') : '';
-      // the chosen campaign angle, the same way Social Launch reads it
-      const angles = Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [];
-      let campaignCtx = '';
-      if (angles.length > 0) {
-        const camps = await latestCommercial(id, 'brand_campaigns');
-        const list = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
-        const chosen = list.filter((c) => angles.includes(String(c.name)))
-          .map((c) => ({ name: c.name, big_idea: c.big_idea, hook: c.hook, objective: c.objective }));
-        campaignCtx = chosen.length > 0 ? JSON.stringify(chosen).slice(0, 2500) : angles.join('; ');
-      }
+      const campaignCtx = await campaignAngle();
       const jobId = await runJob(id, studioJobKind('script'),
         async () => {
           const spec = await forgeConcept(concept);
@@ -481,8 +527,9 @@ export const api = {
       () => forgeRun('reel', {
         project_id: id, concept: sd.concept ?? 'verdict', slots: sd.slots, palette: pd.palette, logo,
         screenshot_path: pd.screenshot_path ?? null,
+        plates: { scene: plateFile('scene'), pile: plateFile('pile'), arrival: plateFile('arrival') },
       }),
-      async (result) => save('reel', { ...result, script_id: script.id, script_version: script.version }, jobId, 'draft'));
+      async (result) => save('reel', { ...result, script_id: script.id, script_version: script.version, images_id: images?.id ?? null }, jobId, 'draft'));
     return { job_id: jobId };
   },
 

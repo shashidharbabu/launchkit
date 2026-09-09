@@ -13,7 +13,8 @@ export const RUN_ETA_SECONDS: Record<string, number> = {
   signals: 400,
   // Assets stage, measured on the studio forge 2026-09-08 (M-series laptop)
   'studio:probe': 25,
-  'studio:kit': 15,
+  'studio:images': 75,
+  'studio:kit': 20,
   'studio:script': 45,
   'studio:reel': 60,
 };

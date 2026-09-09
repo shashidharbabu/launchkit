@@ -139,7 +139,7 @@ async function newestMp4(dir) {
  * Build the composition only (no render): returns { html, values, clamped, vars }.
  * The smoke test and the preview use it; renderReel calls it too.
  */
-export async function composeReel({ concept, slots, palette, logo, screenshot, jobDir, compositionId }) {
+export async function composeReel({ concept, slots, palette, logo, screenshot, plates, jobDir, compositionId }) {
   const { dir, spec, build } = await loadConcept(concept);
   await mkdir(jobDir, { recursive: true });
   await cp(path.join(dir, 'assets'), path.join(jobDir, 'assets'), { recursive: true });
@@ -161,17 +161,24 @@ export async function composeReel({ concept, slots, palette, logo, screenshot, j
     await cp(screenshot, path.join(jobDir, 'assets', 'site.png'));
     shot = 'assets/site.png';
   }
+  // the photographs behind the film (made by /images), copied in as assets
+  const plateSrc = {};
+  for (const [k, p] of Object.entries(plates ?? {})) {
+    if (!p || !/^[a-z]+$/.test(k) || !existsSync(p)) continue;
+    await cp(p, path.join(jobDir, 'assets', `plate-${k}.jpg`));
+    plateSrc[k] = `assets/plate-${k}.jpg`;
+  }
   const extras = { FIT_CSS: fitCss(spec, values), COMPOSITION_ID: compositionId, LOGO_IMG: logoImg };
   const html = build
-    ? build({ values, vars, extras: { compositionId, logoImg, screenshot: shot, fitCss: extras.FIT_CSS } })
+    ? build({ values, vars, extras: { compositionId, logoImg, screenshot: shot, fitCss: extras.FIT_CSS, plates: plateSrc } })
     : fill(await readFile(path.join(dir, 'index.html'), 'utf8'), spec, values, vars, extras);
   await writeFile(path.join(jobDir, 'index.html'), html);
-  return { spec, values, clamped, vars, logoImg, shot };
+  return { spec, values, clamped, vars, logoImg, shot, plates: plateSrc };
 }
 
-export async function renderReel({ concept, slots, palette, logo, screenshot, jobDir, fileUrl, compositionId, resolution, onStep }) {
+export async function renderReel({ concept, slots, palette, logo, screenshot, plates, jobDir, fileUrl, compositionId, resolution, onStep }) {
   onStep?.('preparing the composition');
-  const { spec, values, clamped, vars, logoImg, shot } = await composeReel({ concept, slots, palette, logo, screenshot, jobDir, compositionId });
+  const { spec, values, clamped, vars, logoImg, shot, plates: plateSrc } = await composeReel({ concept, slots, palette, logo, screenshot, plates, jobDir, compositionId });
 
   onStep?.('rendering frames (this takes about a minute)');
   const args = ['--yes', HYPERFRAMES, 'render'];
@@ -200,6 +207,6 @@ export async function renderReel({ concept, slots, palette, logo, screenshot, jo
     concept, concept_title: spec.title, composition_id: compositionId, resolution: resolution ?? '1080p',
     video_url: `${fileUrl}/reel.mp4`, poster_url: `${fileUrl}/poster.jpg`, strip_url: `${fileUrl}/strip.jpg`,
     duration: Math.round(Number(meta.format?.duration ?? dur) * 100) / 100, width: v?.width ?? 1080, height: v?.height ?? 1920, bytes: size,
-    slots: values, clamped, vars, logo_used: Boolean(logoImg), screenshot_used: Boolean(shot),
+    slots: values, clamped, vars, logo_used: Boolean(logoImg), screenshot_used: Boolean(shot), plates_used: Object.keys(plateSrc),
   };
 }

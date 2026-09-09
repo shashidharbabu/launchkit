@@ -12,7 +12,7 @@
 
 import { pyJsonDumps, pyStr, pyTruthy } from "./py";
 import type { BrandDna, Dict, Profile, TargetData } from "./types";
-import type { ConceptSpec } from "./studio";
+import type { ConceptSpec, PlateSpec } from "./studio";
 
 export { pyJsonDumps } from "./py";
 
@@ -97,6 +97,46 @@ export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: st
     `OVER LIMIT:\n${list}`,
     "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<each id above>: string}}",
   ].join("\n\n");
+}
+
+/**
+ * Photo briefs for the film and the launch image: one paragraph per plate,
+ * written from the profile so the pictures show this app's people and place.
+ * The forge appends the house grade (film stock, palette, "no text"), so a
+ * brief describes only the scene. New in the short-video branch.
+ */
+export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile, appName: string,
+                                          dna?: BrandDna | null, campaign = ""): string {
+  const list = plates.map((p) =>
+    `- ${p.id} (${p.for === "cards" ? "the launch image on the cards" : `the film at ${p.when} s`}, ` +
+    `${p.size.startsWith("1536") ? "landscape" : "portrait"}, ${p.grade} grade): ${p.hint}.` +
+    (p.example ? ` Example for an unrelated product: "${p.example}"` : "")).join("\n");
+  const parts = [
+    `You brief a photographer for ${appName}'s launch film and launch cards. Write one photograph per plate ` +
+    "below: a real scene with real people in the place where this app's problem happens, as APP_PROFILE " +
+    "describes the users and their job. Be concrete: who is in frame (their role, not a name), what they are " +
+    "doing, what is around them (the volume of the work: stacks, screens, tables, badges, a clock), where the " +
+    "camera stands, the hour and the light.",
+    "RULES: 1) Describe a scene, never a poster: no text, no logos, no product interface, no brand names, no " +
+    "readable screens; the film sets its own type. 2) One paragraph per plate, 40 to 90 words, plain " +
+    "sentences. 3) The cold plates show the problem (the load, the fatigue, the hour); the warm plates show " +
+    "the same kind of person after the app, calm, with room to breathe; keep one setting so the four read as " +
+    "one story. 4) People are ordinary and varied; no stereotypes, no real or famous people, no children. " +
+    "5) Nothing unsafe, violent or sexual. 6) If CAMPAIGN_ANGLE is present, let it choose the moment. " +
+    "7) The examples describe an unrelated product; never borrow their subject.",
+    `PLATES:\n${list}`,
+    `APP_NAME: ${appName}`,
+    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+  ];
+  if (pyTruthy(dna)) {
+    parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
+  }
+  if (campaign) {
+    parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
+  }
+  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"briefs\": {<each plate id above>: " +
+             "string}, \"subject\": string (one sentence: who the person in the pictures is and where they are)}");
+  return parts.join("\n\n");
 }
 
 function isDict(v: unknown): v is Dict {

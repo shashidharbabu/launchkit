@@ -10,7 +10,7 @@ import { StatusStamp, Badge } from '@launchkit/design-system/components/status-s
 import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
 import { Field, Input } from '@launchkit/design-system/components/field';
 import { api } from '../../../data/api';
-import { forgeHealth, getStudioStep, studioUrl, subscribeStudioStep } from '../../../data/studio';
+import { forgeHealth, getStudioStep, studioUrl, subscribeStudioStep, type ForgeHealth } from '../../../data/studio';
 import { studioJobKind, type ConceptBeat, type SlotSpec, type StudioStep } from '../../../domain/studio';
 import { actionError } from '../../../lib/errors';
 import type { StudioRow } from '../../../lib/types';
@@ -24,6 +24,8 @@ const asObj = (v: unknown): Record<string, unknown> =>
 type Role = { hex: string; source: string };
 type Logo = { kind: string; url: string; w?: number; h?: number; picked?: boolean; source?: string };
 type CardOut = { name: string; label: string; use: string; w: number; h: number; url: string };
+type PhotoOut = CardOut & { platform: string; headline?: string };
+type PlateOut = { id: string; url: string; w?: number; h?: number; brief?: string; grade?: string; seconds?: number };
 
 function MetaLabel({ children }: { children: React.ReactNode }) {
   return <p className="text-label text-muted-foreground">{children}</p>;
@@ -145,28 +147,94 @@ function ProbeView({ row }: { row: StudioRow }) {
   );
 }
 
-function CardsView({ row }: { row: StudioRow }) {
+function CardFigure({ c, sub }: { c: CardOut; sub: string }) {
+  return (
+    <figure className="grid gap-1.5">
+      {/* one preview height for every size, so the captions line up */}
+      <a href={c.url} target="_blank" rel="noreferrer" className="flex h-52 items-center justify-center overflow-hidden rounded-control border border-border bg-surface p-2">
+        <img src={c.url} alt={`${c.label}, ${c.w} by ${c.h}`} className="max-h-full max-w-full object-contain" />
+      </a>
+      <figcaption className="flex items-center justify-between gap-2 text-small">
+        <span>{c.label} <span className="font-mono text-data text-muted-foreground">{c.w}×{c.h}</span></span>
+        <a href={c.url} download target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-link hover:text-link-hover">
+          <Download size={14} strokeWidth={1.75} aria-hidden /> PNG
+        </a>
+      </figcaption>
+      <p className="text-label text-muted-foreground">{sub}</p>
+    </figure>
+  );
+}
+
+function CardsView({ row, imagesRow }: { row: StudioRow; imagesRow: StudioRow | null }) {
   const cards = asArr(row.data.cards) as CardOut[];
+  const photos = asArr(row.data.images) as PhotoOut[];
+  const zip = asStr(row.data.zip_url);
+  // launch images made after these cards: the platform images are missing or out of date
+  const stale = Boolean(imagesRow) && asStr(row.data.images_id) !== imagesRow?.id;
+  return (
+    <div className="grid gap-5">
+      <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {cards.map((c) => <CardFigure key={c.name} c={c} sub={`For ${c.use}.`} />)}
+      </div>
+      {photos.length > 0 && (
+        <div className="grid gap-3">
+          <div>
+            <MetaLabel>Launch images, one per platform</MetaLabel>
+            <p className="mt-0.5 text-small text-muted-foreground">The launch photograph under each platform&rsquo;s own headline: the first line of the post Social Launch wrote, or the tagline until one exists.</p>
+          </div>
+          <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {photos.map((c) => <CardFigure key={c.name} c={c} sub={`For ${c.use}.${c.headline ? ` “${c.headline}”` : ''}`} />)}
+          </div>
+        </div>
+      )}
+      {stale && (
+        <Banner tone="hold" title={photos.length ? 'New launch images since these cards.' : 'Launch images are ready.'}>
+          Remake the cards to put them on the platform images.
+        </Banner>
+      )}
+      <div className="flex flex-wrap items-center gap-3">
+        {zip && (
+          <a href={zip} download target="_blank" rel="noreferrer">
+            <Button variant="secondary" size="sm"><Download aria-hidden /> Download all (zip)</Button>
+          </a>
+        )}
+        <ProvenanceLine parts={[photos.length ? 'Rendered from the site read, the approved profile and the launch images' : 'Rendered from the site read and the approved profile', when(row)].filter(Boolean)} />
+      </div>
+    </div>
+  );
+}
+
+/** The four photographs: what each is for, the brief the pipe wrote, and the file. */
+function ImagesView({ row }: { row: StudioRow }) {
+  const d = row.data;
+  const list = asArr(d.images) as PlateOut[];
+  const plates = asArr(d.plates) as Array<{ id: string; for: string; when: string }>;
+  const where = (id: string) => {
+    const p = plates.find((x) => x.id === id);
+    return !p ? '' : p.for === 'cards' ? 'the launch cards' : `the film, ${p.when} s`;
+  };
   return (
     <div className="grid gap-4">
-      <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map((c) => (
-          <figure key={c.name} className="grid gap-1.5">
-            {/* one preview height for every size, so the captions line up */}
-            <a href={c.url} target="_blank" rel="noreferrer" className="flex h-52 items-center justify-center overflow-hidden rounded-control border border-border bg-surface p-2">
-              <img src={c.url} alt={`${c.label}, ${c.w} by ${c.h}`} className="max-h-full max-w-full object-contain" />
+      {asStr(d.subject) && <p className="text-body text-muted-foreground">{asStr(d.subject)}</p>}
+      <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {list.map((im) => (
+          <figure key={im.id} className="grid gap-1.5">
+            <a href={im.url} target="_blank" rel="noreferrer" className="flex h-52 items-center justify-center overflow-hidden rounded-control border border-border bg-surface p-2">
+              <img src={im.url} alt={`The ${im.id} photograph`} className="max-h-full max-w-full object-contain" />
             </a>
             <figcaption className="flex items-center justify-between gap-2 text-small">
-              <span>{c.label} <span className="font-mono text-data text-muted-foreground">{c.w}×{c.h}</span></span>
-              <a href={c.url} download target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-link hover:text-link-hover">
-                <Download size={14} strokeWidth={1.75} aria-hidden /> PNG
+              <span className="capitalize">{im.id} <span className="font-mono text-data text-muted-foreground">{im.w}×{im.h}</span></span>
+              <a href={im.url} download target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-link hover:text-link-hover">
+                <Download size={14} strokeWidth={1.75} aria-hidden /> JPG
               </a>
             </figcaption>
-            <p className="text-label text-muted-foreground">For {c.use}.</p>
+            <p className="text-label text-muted-foreground">For {where(im.id)}.</p>
+            {im.brief && <p className="text-label text-muted-foreground" title={im.brief}>{im.brief.length > 150 ? `${im.brief.slice(0, 150).replace(/\s+\S*$/, '')}…` : im.brief}</p>}
           </figure>
         ))}
       </div>
-      <ProvenanceLine parts={[`Rendered from the site read and the approved profile`, when(row)].filter(Boolean)} />
+      <ProvenanceLine parts={[`Made on this machine with ${asStr(d.model) || 'the Studio service’s image model'} from briefs written from your profile`, when(row)].filter(Boolean)} />
+      <RawData data={d} />
     </div>
   );
 }
@@ -260,11 +328,13 @@ function ScriptEditor({ row, disabled, onSaved }: { row: StudioRow; disabled: bo
   );
 }
 
-function ReelView({ row, script, disabled, onChanged }: { row: StudioRow; script: StudioRow | null; disabled: boolean; onChanged: () => void }) {
+function ReelView({ row, script, imagesRow, disabled, onChanged }: { row: StudioRow; script: StudioRow | null; imagesRow: StudioRow | null; disabled: boolean; onChanged: () => void }) {
   const d = row.data;
   const approved = row.status === 'approved';
   const [approving, setApproving] = React.useState(false);
   const stale = script ? asStr(d.script_id) !== script.id || (script.status === 'edited' && asStr(d.script_id) === script.id && Boolean(asObj(script.data).edited)) : false;
+  const platesUsed = asArr(d.plates_used).map(asStr);
+  const staleImages = Boolean(imagesRow) && asStr(d.images_id) !== imagesRow?.id;
   const mb = Number(d.bytes ?? 0) / 1048576;
   const approve = async () => {
     setApproving(true);
@@ -297,10 +367,16 @@ function ReelView({ row, script, disabled, onChanged }: { row: StudioRow; script
             <dt className="text-muted-foreground">Frame</dt><dd className="font-mono text-data">{asStr(d.width)}×{asStr(d.height)}, {mb.toFixed(1)} MB, -14 LUFS</dd>
             <dt className="text-muted-foreground">Script</dt><dd>version {asStr(d.script_version)}{stale ? ', the script has changed since' : ''}</dd>
             <dt className="text-muted-foreground">Logo</dt><dd>{d.logo_used ? 'the site’s own mark on the lockup' : 'none found on the site, text lockup only'}</dd>
+            <dt className="text-muted-foreground">Photos</dt><dd>{platesUsed.length > 0 ? `${platesUsed.length} launch images behind the problem and the arrival` : 'none, drawn scenes only'}</dd>
           </dl>
           {stale && (
             <Banner tone="hold" title="This reel was rendered from an earlier script.">
               Render again to see your edits on screen.
+            </Banner>
+          )}
+          {staleImages && !stale && (
+            <Banner tone="hold" title={platesUsed.length > 0 ? 'New launch images since this reel.' : 'Launch images are ready.'}>
+              Render again to put them behind the problem and the arrival.
             </Banner>
           )}
           <div className="flex flex-wrap items-center gap-2">
@@ -343,10 +419,13 @@ export function StudioStage() {
   const { project, gate1, studio, brandDna, running, runJob, refresh } = useProject();
   const { go, href } = useNav();
   const [serviceDown, setServiceDown] = React.useState<boolean | null>(null);
+  const [health, setHealth] = React.useState<ForgeHealth | null>(null);
 
   React.useEffect(() => {
     let cancelled = false;
-    forgeHealth().then(() => { if (!cancelled) setServiceDown(false); }).catch(() => { if (!cancelled) setServiceDown(true); });
+    forgeHealth()
+      .then((h) => { if (!cancelled) { setHealth(h); setServiceDown(false); } })
+      .catch(() => { if (!cancelled) { setHealth(null); setServiceDown(true); } });
     return () => { cancelled = true; };
   }, [running]);
 
@@ -357,26 +436,29 @@ export function StudioStage() {
   const busy = Boolean(runningKind);
   const latest = (kind: string) => studio.find((r) => r.kind === kind) ?? null;
   const probe = latest('probe');
+  const images = latest('images');
   const kit = latest('kit');
   const script = latest('script');
   const reel = latest('reel');
   const start = (step: StudioStep) => runJob(studioJobKind(step), () => api.runStudio(project.id, step)).then(refresh);
   const is = (step: StudioStep) => runningKind === studioJobKind(step);
   const nothing = studio.length === 0;
+  // the service answers but has no image key: the photographs are off, everything else works
+  const imagesOff = health ? !health.images?.enabled : false;
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       <Orient
         lead={
           <>
-            Launch Kit turns what it knows about your app into a brand kit, launch cards and a 24-second reel.{' '}
-            <strong className="font-medium">Read the site first</strong>, then make the cards and write the reel.
+            Launch Kit turns what it knows about your app into launch photographs, a brand kit, launch cards for every platform and a 24-second reel.{' '}
+            <strong className="font-medium">Read the site first</strong>, then make the images, the cards and the reel.
           </>
         }
         detail={
           brandDna
-            ? 'Colours and the logo come from your live site, the words from your approved profile and Business DNA. Nothing here is invented.'
-            : 'Colours and the logo come from your live site, the words from your approved profile. Extract the Business DNA on the Brand stage first if you want the reel in that voice.'
+            ? 'Colours and the logo come from your live site, the words from your approved profile and Business DNA, the photographs from briefs written from both. No claim here is invented.'
+            : 'Colours and the logo come from your live site, the words and the photo briefs from your approved profile. Extract the Business DNA on the Brand stage first if you want the reel in that voice.'
         }
         runKind="studio:reel"
       />
@@ -428,11 +510,45 @@ export function StudioStage() {
         </CardBody>
       </Card>
 
+      {/* ---- Launch images ---- */}
+      <Card>
+        <CardHeader
+          title="Launch images"
+          description="Four photographs made for your launch: the room, the person under the load, the turn, the launch image."
+          actions={
+            <>
+              {images && <StatusStamp kind="go" label="Made" />}
+              {images && (
+                <Button variant="secondary" size="sm" disabled={busy || serviceDown === true || imagesOff} loading={is('images')} loadingLabel="Making" onClick={() => start('images')}>
+                  Make again
+                </Button>
+              )}
+            </>
+          }
+        />
+        <CardBody>
+          {is('images') ? (
+            <RunningLine label="Writing the photo briefs, then making the images" />
+          ) : images ? (
+            <ImagesView row={images} />
+          ) : (
+            <HonestEmpty
+              fact="No launch images yet."
+              reason={imagesOff
+                ? 'Image generation is off on the Studio service: it has no OpenAI key. Put OPENAI_API_KEY in services/studio-forge/.env and restart it. The cards and the reel work without photographs.'
+                : 'Launch Kit writes four photo briefs from your profile (the room where the problem happens, the person doing the job by hand, the same person after your app, and a landscape launch image) and the Studio service makes them with its OpenAI key. About a minute. They go behind the film and onto the platform images.'}
+              runKind="studio:images"
+              action={<Button variant="secondary" disabled={busy || serviceDown === true || imagesOff} onClick={() => start('images')}>Make the images</Button>}
+            />
+          )}
+        </CardBody>
+      </Card>
+
       {/* ---- Cards ---- */}
       <Card>
         <CardHeader
           title="Launch cards"
-          description="Five sizes in your colours, with your logo or a monogram."
+          description="Five sizes in your colours, plus a photo image for every platform once the launch images exist."
           actions={
             <>
               {kit && <StatusStamp kind="go" label="Rendered" />}
@@ -448,12 +564,12 @@ export function StudioStage() {
           {is('kit') ? (
             <RunningLine label="Rendering the cards" />
           ) : kit ? (
-            <CardsView row={kit} />
+            <CardsView row={kit} imagesRow={images} />
           ) : (
             <HonestEmpty
               fact="No cards yet."
               reason={probe
-                ? 'Five sizes rendered from the site read: link preview, feed, story, repo banner and icon. Each is a PNG you can download.'
+                ? 'Five sizes rendered from the site read: link preview, feed, story, repo banner and icon. With launch images made, one photo image per platform too (X, LinkedIn, Product Hunt, Reddit, newsletter, link preview, story). Every one is a PNG you can download, or all of them as a zip.'
                 : 'Cards are rendered from the site read. Read the site first.'}
               runKind="studio:kit"
               action={<Button variant="secondary" disabled={busy || !probe || serviceDown === true} onClick={() => start('kit')}>Make the cards</Button>}
@@ -494,7 +610,7 @@ export function StudioStage() {
               action={<Button variant="secondary" disabled={busy || serviceDown === true} onClick={() => start('script')}>Write the script</Button>}
             />
           )}
-          {reel && !is('reel') && <ReelView row={reel} script={script} disabled={busy} onChanged={refresh} />}
+          {reel && !is('reel') && <ReelView row={reel} script={script} imagesRow={images} disabled={busy} onChanged={refresh} />}
           {script && !is('script') && (
             <div className="grid gap-3">
               <p className="text-body text-muted-foreground">

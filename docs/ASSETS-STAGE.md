@@ -30,6 +30,11 @@ What works with no key at all: the kinetic-typography pipeline (HyperFrames
 plus GSAP, rendered by a local Chromium and ffmpeg). That is the path v1 is
 built on, because it produces a finished, on-brand reel from text alone.
 
+What the owner's OpenAI key adds (2026-09-08): photographs. The forge makes
+four of them per launch with `gpt-image-2` and puts them behind the film and
+onto the platform images (section 5b). The key lives in
+`services/studio-forge/.env` (gitignored) and never reaches the browser.
+
 Music note: the bundled track (`music.mp3` in the Signal template) was
 generated with ElevenLabs Music by the upstream author. Reusing it inside
 Launch Kit for other people's apps is an owner decision (see section 7).
@@ -215,13 +220,78 @@ product, to prove the copy comes from the site and not the examples). Every
 round was judged frame by frame; the findings and fixes are in the git
 history of `concept.mjs`.
 
+## 5b. Photographs: the launch images
+
+Why the first Verdict cut had no pictures: Claude cannot make raster images,
+there was no image key, and charts need real numbers (the only real number
+the site gives is the 15-minute batch timer, which the film already animates
+as a countdown). With the owner's OpenAI key the stage gained a step,
+**Launch images**, between the site read and the cards:
+
+1. `lk_studio.pipe` writes four photo briefs from the profile, the Business
+   DNA and the campaign angle (`buildStudioImagesQuestion`). A brief is a
+   scene, never a poster: who is in frame (a role, not a name), what they are
+   doing, what is around them, the hour, the light. No text, no logos, no
+   product interface, since the film and the cards set their own type.
+2. The forge (`POST /images`, `lib/images.mjs`) makes them in parallel with
+   `gpt-image-2` at medium quality, appending one of two house grades so the
+   four read as one photographer's work: cold (desaturated teal and slate,
+   low key) for the problem, warm (soft daylight, calm) for the arrival and
+   the launch image. About 35 seconds for all four; roughly 1,500 tokens
+   each.
+
+The four plates the Verdict concept asks for (`spec.plates`):
+
+| Plate | Where it goes | Grade | What the brief describes |
+|---|---|---|---|
+| scene | the film, 0 to 3.4 s, under the opening line and the three tiles | cold | the room where the problem happens, wide, from the back; nobody is the subject yet |
+| pile | the film, 3.4 to 6.5 s, under the card rain, the doubt and the cost | cold | the one person doing the job by hand, close, surrounded by the volume |
+| arrival | the film, 20 to 22 s, under the call to action; also the story-size card | warm | the same kind of person after the app, calm, with room to breathe |
+| hero | the platform images, landscape | warm | the person and the place at a glance, subject right so a headline can sit left |
+
+In the film the plates sit under a scrim in the canvas colour (so the type
+stays the subject), push in slowly, darken under the tiles, defocus with the
+doubt (a rack focus onto the questions), and are crushed with the cost line
+on the drop. The solution half stays drawn: the product's own mechanics and
+the live screenshot are the truth, and no photograph should pretend to be
+the product. The arrival plate returns on the impact with the inverse zoom,
+tinted toward the brand. The film renders exactly as before when no
+photographs exist.
+
+The launch cards gained a second set when the images exist: one photo-backed
+image per platform Launch Kit writes posts for, each carrying the first line
+of that platform's own draft from Social Launch (or the tagline until one
+exists), the brand row, and the host:
+
+| File | Size | For |
+|---|---|---|
+| x | 1600x900 | X posts |
+| linkedin | 1200x627 | LinkedIn posts |
+| producthunt | 1270x760 | the Product Hunt gallery |
+| reddit | 1200x900 | Reddit image posts |
+| newsletter | 1200x400 | the newsletter pitch header |
+| og-photo | 1200x630 | link previews on Hacker News, Reddit and Slack |
+| story-photo | 1080x1920 | stories and the reel poster (uses the arrival plate) |
+
+Every PNG downloads on its own, and `launch-kit.zip` holds the whole set.
+The stage tells the builder when the images are newer than the cards or the
+reel, so a remake or a re-render picks them up.
+
+Not done, and why: three.js. A 3D card pile or a camera move through the
+submissions would triple the render time, add a non-deterministic WebGL path
+to the headless render, and compete with the photographs for the same three
+seconds of screen. The photographs carry the "people in a room" weight the
+owner asked for; the drawn scenes carry the product. Revisit only for a
+concept whose subject is spatial.
+
 ## 6. What v1 does not do yet
 
 - One concept, Verdict. The scene library inside it (tiles, pile, doubt,
   collision, input, scan, timeline, product shot, payoff, arrival, lockup)
   is written so a second concept can reorder or swap scenes; that is the next
   step once a second app has been through it.
-- No voice-over and no generative footage (keys).
+- No voice-over and no generative footage (the Gemini and ElevenLabs keys);
+  photographs yes (OpenAI key on the forge).
 - The approved reel is not yet added to the Plan stage's checklist.
 - Cards use the kit's faces (Space Grotesk, Anton) rather than the site's own
   font files; the observed families are recorded and shown.
@@ -232,8 +302,11 @@ history of `concept.mjs`.
    author with ElevenLabs Music. Options: keep it for internal demos only,
    buy a track under a business license (Uppbeat Business tier covers client
    and ad use), or generate a fresh one per app once an ElevenLabs key exists.
-2. **Keys.** `GEMINI_API_KEY` and `ELEVENLABS_API_KEY` unlock Pipeline A
-   (footage plus voice-over). Without them the stage is text-driven only.
+2. **Keys.** `OPENAI_API_KEY` (in `services/studio-forge/.env`) makes the
+   photographs; the key was pasted into a chat on 2026-09-08 and should be
+   rotated at the owner's convenience. `GEMINI_API_KEY` and
+   `ELEVENLABS_API_KEY` would unlock Pipeline A (footage plus voice-over).
+   Image runs cost money: four images per run at medium quality.
 3. **Where the forge runs after the demo.** Local now. A container with
    Chromium and ffmpeg behind the same API is the next step if this ships.
 4. **Stage name.** The stage is called "Assets" in the UI (slug `studio` in

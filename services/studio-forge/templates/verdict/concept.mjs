@@ -80,7 +80,22 @@ export const spec = {
     { id: 'lock_tag', lines: 2, max: 44, default: 'NOW LIVE', example: 'UPTIME MONITORING FOR SMALL TEAMS', face: 'sg', size: 40, selector: '#lock-tag', hint: 'the tagline in the brand\'s own words' },
     { id: 'lock_host', max: 40, default: '', example: 'PULSEBOARD.APP', face: 'sg', size: 52, selector: '#lock-host', optional: true, hint: 'the site host, uppercase, no protocol' },
   ],
+  // Photographs behind the film and on the launch cards, made by the forge's
+  // image model from briefs the pipe writes. The film renders without them.
+  plates: [
+    { id: 'scene', for: 'reel', when: '0.0-3.4', size: '1024x1536', grade: 'cold', hint: 'the room where the problem happens, wide, from the back or above: the people, the tables, the hour, the volume of work in view; nobody is the subject yet', example: 'A small open-plan office at night, three engineers at desks lit only by monitors, a wall of dashboards behind them, rain on the window.' },
+    { id: 'pile', for: 'reel', when: '3.4-6.5', size: '1024x1536', grade: 'cold', hint: 'the one person who has to do the job by hand, close, surrounded by the volume (the stacks, the screens, the list), tired and human, not looking at the camera', example: 'An on-call engineer alone at a kitchen table at 2 AM, laptop open, phone lit, head resting on one hand, a dozen alert windows reflected in their glasses.' },
+    { id: 'arrival', for: 'reel', when: '20.0-22.0', size: '1024x1536', grade: 'warm', hint: 'the same kind of person after the app: calm, upright, one screen or one sheet in hand, the room lighter, space to breathe', example: 'The same engineer the next morning, coffee in hand, standing relaxed by a window, one laptop closed on the desk, daylight.' },
+    { id: 'hero', for: 'cards', when: 'launch images', size: '1536x1024', grade: 'warm', hint: 'the launch image: the person and the place at a glance, landscape, the subject in the right two thirds so a headline can sit on the left', example: 'A small engineering team around one screen in a bright office, relaxed, one of them pointing at a status board, wide shot, subject on the right.' },
+  ],
 };
+
+/** "#rrggbb" to "r, g, b" for rgba() scrims. */
+function rgb(hex) {
+  const m = String(hex ?? '').replace('#', '');
+  const n = m.length === 3 ? m.split('').map((c) => c + c).join('') : m;
+  return [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16) || 0).join(', ');
+}
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const js = (s) => JSON.stringify(String(s ?? ''));
@@ -103,7 +118,11 @@ const PILE = [
 ];
 
 export function build({ values: v, vars, extras }) {
-  const { compositionId, logoImg = '', screenshot = null, fitCss = '' } = extras;
+  const { compositionId, logoImg = '', screenshot = null, fitCss = '', plates = {} } = extras;
+  const plateIds = ['scene', 'pile', 'arrival'].filter((k) => plates[k]);
+  const hasPlates = plateIds.length > 0;
+  const cc = rgb(vars.cold_canvas);
+  const bc = rgb(vars.canvas);
   const chips = [v.chip_1, v.chip_2, v.chip_3, v.chip_4, v.chip_1];
   const chipTone = ['t1', 't2', 't3', 't4', 't1'];
   const timer = /^\d{1,2}:\d{2}$/.test(v.payoff_timer) ? v.payoff_timer : '15:00';
@@ -138,6 +157,15 @@ export function build({ values: v, vars, extras }) {
       #film, #cam { position: absolute; inset: 0; }
       #bg { position: absolute; inset: 0; background: var(--cold-canvas); }
       #wash { position: absolute; inset: 0; background: var(--accent); opacity: 0; visibility: hidden; }
+
+      /* the photographs: full bleed under the scenes, a scrim in the canvas colour so the type stays the subject */
+      .plate { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+      .plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; transform-origin: 50% 45%; will-change: transform, filter; }
+      .plate .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(${cc}, 0.5) 0%, rgba(${cc}, 0.64) 50%, rgba(${cc}, 0.9) 100%); }
+      #plate-arrival img { filter: grayscale(0.4) saturate(0.9); object-position: 50% 28%; }
+      #plate-arrival .tint { position: absolute; inset: 0; background: var(--accent); opacity: 0.16; mix-blend-mode: color; }
+      #plate-arrival .scrim { background: linear-gradient(180deg, rgba(${bc}, 0.55) 0%, rgba(${bc}, 0.7) 55%, rgba(${bc}, 0.92) 100%); }
+      ${hasPlates ? `#open-l1, .tile .num, .tile .lab, #pile-line, .doubt, #cost-line, #arr-line { text-shadow: 0 4px 40px rgba(0, 0, 0, 0.55); }` : ''}
       .scene { position: absolute; inset: 0; }
       .sc { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; padding: 140px 80px; gap: 30px; text-align: center; }
       #sc-load, #sc-pile, #sc-doubt, #sc-cost, #sc-drop, #sc-s1, #sc-s2, #sc-s3, #sc-prod, #sc-pay, #sc-breathe, #sc-arr, #sc-lock, #track { opacity: 0; }
@@ -265,6 +293,7 @@ export function build({ values: v, vars, extras }) {
         <div id="cam">
           <div id="bg"></div>
           <div id="wash"></div>
+          ${plateIds.map((k) => `<div class="plate" id="plate-${k}" data-layout-allow-overlap="true"><img src="${esc(plates[k])}" alt="">${k === 'arrival' ? '<div class="tint"></div>' : ''}<div class="scrim"></div></div>`).join('\n          ')}
 
           <div class="scene" id="sc-open">
             <div class="sc" id="open-inner">
@@ -440,6 +469,20 @@ export function build({ values: v, vars, extras }) {
       function shake(t, seq) {
         seq.forEach(function (v, i) { tl.set('#cam', { x: v[0], y: v[1] }, t + i * 0.04); });
       }
+
+      /* ---------- PLATES: the room, the person under the load, the arrival ---------- */
+      ${plates.scene ? `tl.set('#plate-scene', { opacity: 1 }, 0);
+      tl.fromTo('#plate-scene img', { scale: 1.06 }, { scale: 1.16, duration: 3.4, ease: 'none', immediateRender: false }, 0);
+      tl.to('#plate-scene img', { filter: 'brightness(0.55)', duration: 0.3, ease: 'power2.out' }, 1.6);
+      tl.set('#plate-scene', { opacity: 0 }, 3.4);` : ''}
+      ${plates.pile ? `tl.set('#plate-pile', { opacity: 1 }, 3.4);
+      tl.fromTo('#plate-pile img', { scale: 1.0, filter: 'blur(0px) brightness(0.8)' }, { scale: 1.12, duration: 3.1, ease: 'none', immediateRender: false }, 3.4);
+      tl.to('#plate-pile img', { filter: 'blur(14px) brightness(0.5)', duration: 0.5, ease: 'power2.in' }, 5.0);
+      tl.to('#plate-pile', { opacity: 0, duration: 0.12, ease: 'power4.in' }, 6.38);` : ''}
+      ${plates.arrival ? `tl.set('#plate-arrival', { opacity: 1 }, 20.0);
+      tl.fromTo('#plate-arrival img', { scale: 1.22 }, { scale: 1.0, duration: 0.6, ease: 'expo.out', immediateRender: false }, 20.0);
+      tl.to('#plate-arrival img', { scale: 1.06, duration: 1.4, ease: 'none' }, 20.6);
+      tl.to('#plate-arrival', { opacity: 0, duration: 0.3, ease: 'power2.in' }, 21.7);` : ''}
 
       /* ---------- s1 OPEN (0-1.6) ---------- */
       waterfall('#open-l1 .w', 0.16, 0.13, 55);

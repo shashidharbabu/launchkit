@@ -73,11 +73,23 @@ await waitIdle('probe', 180000);
 t = await text();
 log('PROBE', { secs: Math.round((Date.now() - t0) / 1000), read: /Read from /.test(t), roles: (t.match(/#[0-9a-f]{6}/g) || []).slice(0, 5), logoFound: !/No logo found/.test(t), error: (t.match(/site read failed[^.]*\./) || [''])[0] });
 
+// the photographs (OpenAI on the forge): only when the service has a key
+const ti = Date.now();
+if (await main(/Make the images/).count()) {
+  await main(/Make the images/).click();
+  await waitIdle('images', 420000);
+  const plateImgs = await page.evaluate(() => [...document.querySelectorAll('#lk-root main figure img')].map((i) => ({ w: i.naturalWidth, alt: i.alt.slice(0, 30) })));
+  t = await text();
+  log('IMAGES', { secs: Math.round((Date.now() - ti) / 1000), plates: plateImgs.length, loaded: plateImgs.filter((c) => c.w > 0).length, subject: (t.match(/Made on this machine[^.]*\./) || [''])[0].slice(0, 80), error: (t.match(/launch images failed[^.]*\./) || [''])[0] });
+} else {
+  log('IMAGES', { skipped: true, reason: 'no Make the images button (service without an image key?)' });
+}
+
 const t1 = Date.now();
 await main(/Make the cards/).click();
-await waitIdle('kit', 180000);
+await waitIdle('kit', 240000);
 const cardImgs = await page.evaluate(() => [...document.querySelectorAll('#lk-root main figure img')].map((i) => ({ w: i.naturalWidth, alt: i.alt.slice(0, 30) })));
-log('KIT', { secs: Math.round((Date.now() - t1) / 1000), cards: cardImgs.length, loaded: cardImgs.filter((c) => c.w > 0).length });
+log('KIT', { secs: Math.round((Date.now() - t1) / 1000), figures: cardImgs.length, loaded: cardImgs.filter((c) => c.w > 0).length, zip: /Download all/.test(await text()) });
 await page.screenshot({ path: `${OUT}/studio-1-kit.png`, fullPage: true });
 
 const t2 = Date.now();

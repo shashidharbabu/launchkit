@@ -2,6 +2,7 @@ import { ASSET_LABELS } from './asset-types';
 
 const STUDIO_LABELS: Record<string, string> = {
   probe: 'site read',
+  images: 'launch images',
   kit: 'brand kit',
   script: 'reel script',
   reel: 'reel render',

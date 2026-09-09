@@ -6,7 +6,7 @@
  */
 import type { Dict } from "./types";
 
-export const STUDIO_STEPS = ["probe", "kit", "script", "reel"] as const;
+export const STUDIO_STEPS = ["probe", "images", "kit", "script", "reel"] as const;
 export type StudioStep = (typeof STUDIO_STEPS)[number];
 
 export function isStudioStep(s: string): s is StudioStep {
@@ -40,6 +40,17 @@ export interface ConceptBeat {
   slots: string[];
 }
 
+/** A photograph the concept wants: behind the film (for: reel) or on the cards (for: cards). */
+export interface PlateSpec {
+  id: string;
+  for: "reel" | "cards" | string;
+  when: string;
+  size: string;
+  grade: "cold" | "warm" | string;
+  hint: string;
+  example?: string;
+}
+
 export interface ConceptSpec {
   concept: string;
   title: string;
@@ -47,6 +58,7 @@ export interface ConceptSpec {
   duration: number;
   beats: ConceptBeat[];
   slots: SlotSpec[];
+  plates?: PlateSpec[];
 }
 
 const DANGLING = /\s(A|AN|THE|BY|OF|TO|IN|ON|AT|FOR|WITH|AND|OR|FROM|AS|IS|ARE|PER)[.,:;]?$/;

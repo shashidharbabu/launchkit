@@ -20,7 +20,7 @@ npm install          # once; reuses the Playwright Chromium the drives use
 npm start            # 127.0.0.1:3500
 node smoke.mjs https://your-site --reel    # probe, cards, reel, no app needed
 node jobs-list.mjs                          # the job table
-node verdict-smoke.mjs [--no-probe]         # the Verdict film with hand-written copy, plus a seam contact sheet
+node verdict-smoke.mjs [--no-probe] [--images]   # the Verdict film with hand-written copy (and photographs), plus a seam contact sheet
 python3 frames.py reel.mp4 sheet.jpg 0.4,1.0,1.9   # frames at those seconds, five per row
 node site-copy.mjs https://your-site         # the visible copy the probe hands to the prompt
 ```
@@ -35,6 +35,9 @@ editor read. The reel needs `npx --yes hyperframes@0.8.3`, fetched on the
 first render and cached.
 
 Environment: `STUDIO_PORT` (3500), `STUDIO_HOST` (127.0.0.1), `STUDIO_OUT`
-(`./out`, gitignored).
+(`./out`, gitignored). Secrets go in `./.env` (gitignored, loaded at start):
+`OPENAI_API_KEY` turns on `POST /images` (photographs for the film and the
+cards, `gpt-image-2` by default, `STUDIO_IMAGE_MODEL` to change it). The key
+stays on this machine; the browser only ever sees the files.
 
 Design, the asset brainstorm and the open decisions: `docs/ASSETS-STAGE.md`.

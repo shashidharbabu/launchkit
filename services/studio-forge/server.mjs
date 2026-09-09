@@ -7,26 +7,37 @@
 //   STUDIO_PORT=3600 npm start
 //   STUDIO_HOST=0.0.0.0 npm start  # reachable from another machine
 //
-// Routes: GET /health, GET /concepts, POST /probe, POST /kit, POST /reel,
-// GET /jobs/:id, GET /jobs, GET /files/<project>/<job>/<file>.
+// Routes: GET /health, GET /concepts, POST /probe, POST /images, POST /kit,
+// POST /reel, GET /jobs/:id, GET /jobs, GET /files/<project>/<job>/<file>.
+// Secrets (the OpenAI key for /images) live in ./.env, gitignored.
 import http from 'node:http';
 import { createReadStream, existsSync } from 'node:fs';
 import { mkdir, stat, readFile, writeFile } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadEnv } from './lib/env.mjs';
 import { probeSite } from './lib/probe.mjs';
 import { renderCards } from './lib/cards.mjs';
 import { renderReel, listConcepts, loadConcept, HYPERFRAMES } from './lib/reel.mjs';
+import { generateImages, imagesEnabled, imageModel } from './lib/images.mjs';
 import * as jobs from './lib/jobs.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
+loadEnv(path.join(ROOT, '.env'));
 const OUT = path.resolve(process.env.STUDIO_OUT ?? path.join(ROOT, 'out'));
 const PORT = Number(process.env.STUDIO_PORT ?? 3500);
 const HOST = process.env.STUDIO_HOST ?? '127.0.0.1';
 const VERSION = JSON.parse(await readFile(path.join(ROOT, 'package.json'), 'utf8')).version;
 
-const MIME = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp', '.mp4': 'video/mp4', '.json': 'application/json', '.html': 'text/html; charset=utf-8', '.txt': 'text/plain' };
+const MIME = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp', '.mp4': 'video/mp4', '.json': 'application/json', '.html': 'text/html; charset=utf-8', '.txt': 'text/plain', '.zip': 'application/zip' };
+
+/** A file path the request may point at: only under our own out dir, and present. */
+function ownFile(p) {
+  if (typeof p !== 'string' || !p) return null;
+  const abs = path.resolve(p);
+  return abs.startsWith(OUT + path.sep) && existsSync(abs) ? abs : null;
+}
 
 const safeSeg = (s) => /^[A-Za-z0-9._-]{1,80}$/.test(s) && !s.startsWith('.');
 const publicBase = (req) => `http://${req.headers.host ?? `${HOST}:${PORT}`}`;
@@ -63,6 +74,7 @@ async function health() {
   return {
     ok: Boolean(ffmpeg && chromium), version: VERSION, service: 'studio-forge', out: OUT,
     ffmpeg: ffmpeg ?? null, node, chromium, hyperframes: HYPERFRAMES, hyperframes_cached: existsSync(npxCache),
+    images: { enabled: imagesEnabled(), model: imagesEnabled() ? imageModel() : null, key: 'OPENAI_API_KEY in services/studio-forge/.env' },
     concepts: await listConcepts(),
   };
 }
@@ -112,7 +124,7 @@ async function handle(req, res) {
     if (req.method === 'GET' && p.startsWith('/jobs/')) { const j = jobs.get(p.slice('/jobs/'.length)); return j ? send(res, 200, j) : send(res, 404, { error: 'job not found' }); }
     if (req.method === 'GET' && p.startsWith('/files/')) return serveFile(req, res, p.slice('/files/'.length));
 
-    if (req.method === 'POST' && (p === '/probe' || p === '/kit' || p === '/reel')) {
+    if (req.method === 'POST' && (p === '/probe' || p === '/images' || p === '/kit' || p === '/reel')) {
       const body = await readJson(req);
       const project = String(body.project_id ?? 'default');
       if (!safeSeg(project)) throw new Error('project_id must be a short id');
@@ -130,6 +142,18 @@ async function handle(req, res) {
           await writeFile(path.join(jobDir, 'probe.json'), JSON.stringify(r, null, 2));
           return r;
         });
+      } else if (kind === 'images') {
+        if (!imagesEnabled()) throw new Error('image generation is off on this forge: put OPENAI_API_KEY in services/studio-forge/.env and restart it');
+        const briefs = Array.isArray(body.briefs) ? body.briefs : [];
+        if (briefs.length === 0 || briefs.length > 6) throw new Error('images needs 1 to 6 briefs');
+        for (const b of briefs) {
+          if (!/^[a-z][a-z0-9_-]{0,30}$/.test(String(b?.id ?? '')) || !String(b?.prompt ?? '').trim()) throw new Error('every brief needs an id and a prompt');
+        }
+        const quality = ['low', 'medium', 'high'].includes(body.quality) ? body.quality : 'medium';
+        work = (onStep) => generateImages({
+          briefs: briefs.map((b) => ({ id: String(b.id), prompt: String(b.prompt).slice(0, 1500), size: b.size, grade: b.grade })),
+          outDir: jobDir, fileUrl, quality, onStep,
+        }).then(async (r) => { await writeFile(path.join(jobDir, 'images.json'), JSON.stringify(r, null, 2)); return r; });
       } else if (kind === 'kit') {
         if (!body.palette?.roles) throw new Error('kit needs palette.roles (run probe first)');
         const kit = {
@@ -137,7 +161,10 @@ async function handle(req, res) {
           description: String(body.description ?? '').trim(), host: host(body.site_url ?? ''), status: String(body.status ?? 'Now live'),
           palette: body.palette, logos: Array.isArray(body.logos) ? body.logos : [], fonts: body.fonts ?? {},
         };
-        work = (onStep) => renderCards({ kit, outDir: jobDir, fileUrl, onStep }).then(async (r) => {
+        // the launch images made by /images (files under our own out dir) and the platform posts' first lines
+        const images = { hero: ownFile(body.images?.hero), story: ownFile(body.images?.story) };
+        const headlines = body.headlines && typeof body.headlines === 'object' ? body.headlines : {};
+        work = (onStep) => renderCards({ kit, images, headlines, outDir: jobDir, fileUrl, onStep }).then(async (r) => {
           const out = { ...r, name: kit.name, tagline: kit.tagline, host: kit.host, fonts: kit.fonts, palette: kit.palette, logo: kit.logos.find((l) => l.picked) ?? null };
           await writeFile(path.join(jobDir, 'kit.json'), JSON.stringify(out, null, 2));
           return out;
@@ -147,10 +174,12 @@ async function handle(req, res) {
         const concept = String(body.concept ?? 'verdict');
         await loadConcept(concept);
         const compositionId = `${project}-${concept}-${jobId}`.toLowerCase();
-        // the site screenshot the product scene shows: only a file under our own out dir
-        const shotPath = typeof body.screenshot_path === 'string' && path.resolve(body.screenshot_path).startsWith(OUT + path.sep) ? path.resolve(body.screenshot_path) : null;
+        // the site screenshot the product scene shows and the photographs behind the film: only files under our own out dir
+        const shotPath = ownFile(body.screenshot_path);
+        const plates = {};
+        for (const k of ['scene', 'pile', 'arrival']) { const f = ownFile(body.plates?.[k]); if (f) plates[k] = f; }
         work = (onStep) => renderReel({
-          concept, slots: body.slots ?? {}, palette: body.palette, logo: body.logo ?? null, screenshot: shotPath, jobDir, fileUrl, compositionId,
+          concept, slots: body.slots ?? {}, palette: body.palette, logo: body.logo ?? null, screenshot: shotPath, plates, jobDir, fileUrl, compositionId,
           resolution: body.resolution === 'portrait-4k' ? 'portrait-4k' : undefined, onStep,
         }).then(async (r) => { await writeFile(path.join(jobDir, 'reel.json'), JSON.stringify(r, null, 2)); return r; });
       }
@@ -170,4 +199,5 @@ server.listen(PORT, HOST, async () => {
   const h = await health();
   console.log(`studio-forge ${VERSION} listening on http://${HOST}:${PORT}  out=${OUT}`);
   console.log(`  ffmpeg: ${h.ffmpeg ?? 'MISSING'}  chromium: ${h.chromium ?? 'MISSING (npx playwright install chromium)'}  concepts: ${h.concepts.map((c) => c.id).join(', ')}`);
+  console.log(`  images: ${h.images.enabled ? h.images.model : 'off (' + h.images.key + ')'}`);
 });

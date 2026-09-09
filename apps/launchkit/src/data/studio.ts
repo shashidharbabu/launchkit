@@ -22,6 +22,7 @@ export type ForgeHealth = {
   ffmpeg: string | null;
   chromium: string | null;
   hyperframes: string;
+  images?: { enabled: boolean; model: string | null; key?: string };
   concepts: ForgeConceptSummary[];
 };
 export type ForgeJob = {
@@ -57,7 +58,7 @@ export const forgeConcept = (id: string) => req<ConceptSpec>(`/concepts/${encode
 export const forgeJob = (id: string) => req<ForgeJob>(`/jobs/${encodeURIComponent(id)}`);
 
 /** Start a forge job and wait for it; the step text is published while it runs. */
-export async function forgeRun(kind: 'probe' | 'kit' | 'reel', body: Dict): Promise<Dict> {
+export async function forgeRun(kind: 'probe' | 'images' | 'kit' | 'reel', body: Dict): Promise<Dict> {
   const started = await req<{ job_id: string }>(`/${kind}`, body);
   setStudioStep('queued');
   for (;;) {

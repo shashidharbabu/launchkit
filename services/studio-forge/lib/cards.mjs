@@ -4,6 +4,7 @@
 // recorded on the kit but not embedded, since we do not have their files.
 import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { contrast, parseColor, toHex, isDark, mix, ensureContrast } from './palette.mjs';
@@ -19,6 +20,28 @@ export const CARD_SIZES = [
   { name: 'banner', w: 1280, h: 640, label: 'README banner', use: 'the repo top of page' },
   { name: 'icon', w: 512, h: 512, label: 'App icon', use: 'avatars and app listings' },
 ];
+
+/**
+ * Photo-backed launch images, one per platform Launch Kit writes posts for
+ * (plus the two previews that carry a photo well). Each takes the platform's
+ * own post headline when one exists, else the tagline.
+ */
+export const IMAGE_SIZES = [
+  { name: 'x', platform: 'x', w: 1600, h: 900, label: 'X post image', use: 'X posts', orient: 'landscape' },
+  { name: 'linkedin', platform: 'linkedin', w: 1200, h: 627, label: 'LinkedIn post image', use: 'LinkedIn posts', orient: 'landscape' },
+  { name: 'producthunt', platform: 'producthunt', w: 1270, h: 760, label: 'Product Hunt gallery image', use: 'the Product Hunt gallery', orient: 'landscape' },
+  { name: 'reddit', platform: 'reddit', w: 1200, h: 900, label: 'Reddit post image', use: 'Reddit image posts', orient: 'landscape' },
+  { name: 'newsletter', platform: 'newsletter', w: 1200, h: 400, label: 'Newsletter header', use: 'the newsletter pitch header', orient: 'landscape' },
+  { name: 'og-photo', platform: 'og', w: 1200, h: 630, label: 'Link preview, photo', use: 'link previews on Hacker News, Reddit and Slack', orient: 'landscape' },
+  { name: 'story-photo', platform: 'story', w: 1080, h: 1920, label: 'Story, photo', use: 'stories and the reel poster', orient: 'portrait' },
+];
+
+/** "#rrggbb" to "r, g, b" for rgba() scrims. */
+function rgbOf(hex) {
+  const m = String(hex ?? '').replace('#', '');
+  const n = m.length === 3 ? m.split('').map((c) => c + c).join('') : m;
+  return [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16) || 0).join(', ');
+}
 
 function tokens(kit) {
   const p = kit.palette.roles;
@@ -123,19 +146,55 @@ function page(kit, spec, useLogo) {
   return `<!doctype html><html><head><meta charset="utf-8"><style>${css(t)}</style></head><body style="width:${spec.w}px;height:${spec.h}px">${body}</body></html>`;
 }
 
-export async function renderCards({ kit, outDir, fileUrl, onStep }) {
+/** A photo-backed launch image: the photograph full bleed, a scrim in the surface colour, the brand row, the headline, the host. */
+function photoPage(kit, spec, photo, headline, useLogo) {
+  const t = tokens(kit);
+  const name = esc(kit.name);
+  const portrait = spec.orient === 'portrait';
+  const short = spec.h <= 420;
+  const rawHead = trimTo(headline || kit.tagline || kit.one_liner || '', portrait ? 80 : 90);
+  const head = esc(rawHead);
+  const host = esc(kit.host);
+  const status = esc(kit.status || 'Now live');
+  const pad = Math.round(Math.min(spec.w, spec.h) * (portrait ? 0.085 : short ? 0.11 : 0.075));
+  const headSize = fitHead(rawHead, portrait ? 100 : short ? 54 : Math.round(spec.h * 0.115));
+  const sr = rgbOf(t.surface);
+  const scrim = portrait
+    ? `linear-gradient(180deg, rgba(${sr}, 0.35) 0%, rgba(${sr}, 0.18) 35%, rgba(${sr}, 0.84) 62%, rgba(${sr}, 0.97) 100%)`
+    : `linear-gradient(90deg, rgba(${sr}, 0.97) 0%, rgba(${sr}, 0.88) 38%, rgba(${sr}, 0.4) 68%, rgba(${sr}, 0.18) 100%), linear-gradient(180deg, rgba(${sr}, 0.08) 0%, rgba(${sr}, 0.5) 100%)`;
+  const body = `<div class="card photo" style="padding:${pad}px">
+    <img class="plate" id="plate" src="file://${esc(photo)}" alt="" style="object-position:${portrait ? '50% 35%' : '70% 40%'}">
+    <div class="scrim" style="background:${scrim}"></div>
+    <div class="over">
+      <div class="brand">${markHtml(kit, portrait ? 84 : short ? 48 : 64, useLogo)}<span class="name" style="font-size:${portrait ? 40 : short ? 28 : 34}px">${name}</span></div>
+      <h1 style="font-size:${headSize}px;max-width:${portrait ? '100%' : '58%'};margin-top:auto">${head}</h1>
+      <div class="foot" style="border-top:0;padding-top:${short ? 10 : 22}px"><span class="host" style="font-size:${portrait ? 36 : short ? 22 : 28}px">${host}</span><span class="chip" style="font-size:${portrait ? 24 : short ? 16 : 19}px">${status}</span></div>
+    </div></div>`;
+  return `<!doctype html><html><head><meta charset="utf-8"><style>${css(t)}
+    .card.photo { background: ${t.surface}; }
+    .plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .scrim { position: absolute; inset: 0; }
+    .over { position: relative; display: flex; flex-direction: column; height: 100%; }
+    .card.photo h1 { text-shadow: 0 2px 24px rgba(0, 0, 0, 0.18); }
+  </style></head><body style="width:${spec.w}px;height:${spec.h}px">${body}</body></html>`;
+}
+
+const zipFiles = (zipPath, files) => new Promise((resolve, reject) => execFile('zip', ['-j', '-q', zipPath, ...files], (err) => (err ? reject(err) : resolve())));
+
+export async function renderCards({ kit, images = {}, headlines = {}, outDir, fileUrl, onStep }) {
   await mkdir(outDir, { recursive: true });
   const browser = await chromium.launch({ headless: true });
   const out = [];
+  const photos = [];
   let logoUsed = false;
   try {
     const ctx = await browser.newContext({ deviceScaleFactor: 1 });
     const pg = await ctx.newPage();
-    // pages are opened from a file so the fonts and the logo (both file://) may load;
+    // pages are opened from a file so the fonts, the logo and the photographs (all file://) may load;
     // a setContent page has no file origin and Chromium refuses them there
-    const show = async (spec, useLogo) => {
+    const show = async (spec, html) => {
       const htmlPath = path.join(outDir, `${spec.name}.html`);
-      await writeFile(htmlPath, page(kit, spec, useLogo));
+      await writeFile(htmlPath, html);
       await pg.setViewportSize({ width: spec.w, height: spec.h });
       await pg.goto(`file://${htmlPath}`, { waitUntil: 'load' });
       await pg.evaluate(() => document.fonts.ready);
@@ -144,16 +203,36 @@ export async function renderCards({ kit, outDir, fileUrl, onStep }) {
     };
     for (const spec of CARD_SIZES) {
       onStep?.(`rendering the ${spec.label.toLowerCase()}`);
-      let ok = await show(spec, true);
-      if (!ok) ok = await show(spec, false); // the site's logo would not load: monogram instead
+      let ok = await show(spec, page(kit, spec, true));
+      if (!ok) ok = await show(spec, page(kit, spec, false)); // the site's logo would not load: monogram instead
       else logoUsed = logoUsed || Boolean((kit.logos || []).find((l) => l.picked && l.kind !== 'og-image'));
       const file = `${spec.name}.png`;
       await pg.screenshot({ path: path.join(outDir, file), type: 'png' });
       out.push({ name: spec.name, label: spec.label, use: spec.use, w: spec.w, h: spec.h, url: `${fileUrl}/${file}` });
     }
+    if (images.hero || images.story) {
+      for (const spec of IMAGE_SIZES) {
+        const photo = spec.orient === 'portrait' ? (images.story || images.hero) : (images.hero || images.story);
+        if (!photo) continue;
+        onStep?.(`rendering the ${spec.label.toLowerCase()}`);
+        const headline = String(headlines[spec.platform] ?? '').trim();
+        const ok = await show(spec, photoPage(kit, spec, photo, headline, true));
+        if (!ok) await show(spec, photoPage(kit, spec, photo, headline, false));
+        const file = `${spec.name}.png`;
+        await pg.screenshot({ path: path.join(outDir, file), type: 'png' });
+        photos.push({ name: spec.name, platform: spec.platform, label: spec.label, use: spec.use, w: spec.w, h: spec.h, url: `${fileUrl}/${file}`, headline: headline || kit.tagline || '' });
+      }
+    }
   } finally {
     await browser.close();
   }
+  // everything in one zip, for "download all"
+  let zipUrl = null;
+  try {
+    onStep?.('zipping the set');
+    await zipFiles(path.join(outDir, 'launch-kit.zip'), [...out, ...photos].map((c) => path.join(outDir, `${c.name}.png`)));
+    zipUrl = `${fileUrl}/launch-kit.zip`;
+  } catch { zipUrl = null; }
   const t = tokens(kit);
-  return { cards: out, logo_used: logoUsed, contrast: { ink_on_surface: Math.round(contrast(parseColor(t.ink), parseColor(t.surface)) * 100) / 100 } };
+  return { cards: out, images: photos, zip_url: zipUrl, logo_used: logoUsed, contrast: { ink_on_surface: Math.round(contrast(parseColor(t.ink), parseColor(t.surface)) * 100) / 100 } };
 }

@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 // Render the Verdict concept for hack-judge with hand-written copy (no pipeline),
 // then cut a frame after every seam so the edit can be judged honestly.
-//   node verdict-smoke.mjs [--no-probe]   (reuses the newest smoke probe when --no-probe)
+//   node verdict-smoke.mjs [--no-probe] [--images | --no-images]
+//     --no-probe   reuse the newest smoke probe
+//     --images     make the four photographs first (OpenAI on the forge) and put them in the film and the cards
+//     --no-images  reuse the newest smoke images
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
@@ -52,12 +55,46 @@ const slots = {
   lock_top: 'FOR HACKATHON ORGANIZERS', lock_title: 'HACK-JUDGE AID', lock_tag: 'USAGE VERIFICATION FOR EVERY SUBMISSION', lock_host: 'HACKATHON-JUDGE-AID.ONRENDER.COM',
 };
 
+// the photographs: hand-written briefs for hack-judge (the app writes these through the pipe)
+const newest = (prefix) => {
+  if (!existsSync(path.join(OUT, project))) return null;
+  const dirs = readdirSync(path.join(OUT, project)).filter((d) => d.startsWith(prefix)).map((d) => path.join(OUT, project, d)).sort((a, b) => statSync(b).mtimeMs - statSync(a).mtimeMs);
+  return dirs[0] ?? null;
+};
+let images = null;
+if (process.argv.includes('--no-images')) {
+  const d = newest('images-');
+  if (d && existsSync(path.join(d, 'images.json'))) images = JSON.parse(readFileSync(path.join(d, 'images.json'), 'utf8'));
+} else if (process.argv.includes('--images')) {
+  const ti = Date.now();
+  images = await wait((await j('/images', { project_id: project, briefs: [
+    { id: 'scene', size: '1024x1536', grade: 'cold', prompt: 'A university hackathon hall at nine in the morning after an all-nighter: rows of long trestle tables covered in laptops, cables, energy drink cans and pizza boxes, forty or so student teams slumped or still typing, a big wall clock, banners without words, seen from the back of the hall at head height, fluorescent light mixed with grey daylight from high windows.' },
+    { id: 'pile', size: '1024x1536', grade: 'cold', prompt: 'A single hackathon judge, a woman in her thirties with a lanyard, sitting alone at a judging table at the front of the hall, a tall stack of printed submission sheets and three open laptops in front of her, one hand pressed to her forehead, reading, exhausted, teams blurred in the background, seen from slightly above and to the side.' },
+    { id: 'arrival', size: '1024x1536', grade: 'warm', prompt: 'The same judge an hour later, standing upright at the front of the hall holding one printed results sheet, relaxed, faint smile, sleeves rolled, the hall behind her bright with morning light and teams packing up, seen from a low angle at a slight distance.' },
+    { id: 'hero', size: '1536x1024', grade: 'warm', prompt: 'A hackathon judging table in a bright hall, three organizers standing together on the right side of the frame looking at one laptop, relaxed and pleased, badges on lanyards, trophies on the table, the left third of the frame open with a plain wall and soft daylight, wide landscape shot.' },
+  ] })).job_id);
+  console.log('IMAGES', Math.round((Date.now() - ti) / 1000) + 's', { model: images.model, made: images.images.map((i) => `${i.id} ${i.w}x${i.h} ${i.seconds}s`) });
+}
+const plate = (id) => images?.images?.find((i) => i.id === id)?.file_path ?? null;
+
+if (images) {
+  const tk = Date.now();
+  const kit = await wait((await j('/kit', {
+    project_id: project, site_url: site, name: 'Hack-Judge Aid', tagline: 'Usage verification for every submission', one_liner: 'Paste the repos, get a verdict on every team in fifteen minutes.',
+    description: 'Hack-Judge Aid reads every submitted repository and classifies how much of the hackathon sponsor tool each team actually used.', palette: probe.palette, logos: probe.logos, fonts: probe.fonts,
+    images: { hero: plate('hero'), story: plate('arrival') },
+    headlines: { x: 'Forty-eight repos. Six judges. Fifteen minutes.', linkedin: 'We judged a hackathon in fifteen minutes and every team got a fair verdict.', producthunt: 'Usage verification for every hackathon submission', reddit: 'I built a tool that reads every hackathon repo and flags pre-event work', newsletter: 'Judge every submission with proof' },
+  })).job_id);
+  console.log('KIT', Math.round((Date.now() - tk) / 1000) + 's', { cards: kit.cards.length, images: kit.images.map((i) => i.name), zip: kit.zip_url });
+}
+
 const t0 = Date.now();
 const reel = await wait((await j('/reel', {
   project_id: project, concept: 'verdict', palette: probe.palette, logo: probe.logos.find((l) => l.picked) ?? null,
   screenshot_path: probe.screenshot_path, slots,
+  plates: { scene: plate('scene'), pile: plate('pile'), arrival: plate('arrival') },
 })).job_id);
-console.log('REEL', Math.round((Date.now() - t0) / 1000) + 's', { duration: reel.duration, mb: (reel.bytes / 1048576).toFixed(1), clamped: reel.clamped, shot: reel.screenshot_used, logo: reel.logo_used, video: reel.video_url });
+console.log('REEL', Math.round((Date.now() - t0) / 1000) + 's', { duration: reel.duration, mb: (reel.bytes / 1048576).toFixed(1), clamped: reel.clamped, shot: reel.screenshot_used, logo: reel.logo_used, plates: reel.plates_used, video: reel.video_url });
 
 // frames just after every seam, plus mid-scene holds
 const seams = [0.4, 1.0, 1.9, 2.6, 3.1, 3.7, 4.3, 4.8, 5.2, 5.8, 6.25, 6.6, 7.2, 8.0, 8.8, 9.6, 10.3, 10.9, 11.6, 12.3, 12.9, 13.6, 14.2, 14.9, 15.8, 16.4, 16.9, 17.6, 18.3, 18.9, 19.6, 20.3, 21.0, 21.8, 22.4, 23.6];
