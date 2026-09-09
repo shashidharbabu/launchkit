@@ -15,7 +15,6 @@ const shot=async(name)=>{ await page.screenshot({path:`${OUT}/${TAG}-${name}.png
 for (const theme of ['light','dark']) {
   if (theme==='dark') { await page.locator('#lk-root button[aria-label="Switch to dark theme"]').first().click(); await page.waitForTimeout(600); }
   await nav('Home'); await shot(`home-${theme}`);
-  await nav('Dashboard'); await shot(`dashboard-${theme}`);
   await nav('Launches'); await shot(`launches-${theme}`);
   await page.getByText('hack-judge').first().click(); await page.waitForTimeout(1500);
   await stage(/Profile/); await shot(`ws-profile-${theme}`);
