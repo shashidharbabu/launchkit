@@ -14,8 +14,7 @@ import { useNav, type NavState } from '../../nav';
 
 const NAV = [
   { href: '/home', label: 'Home', match: /^\/home/ },
-  { href: '/dashboard', label: 'Dashboard', match: /^\/dashboard/ },
-  { href: '/launches', label: 'Launches', match: /^\/(launches|p)(\/|$)/ },
+  { href: '/launches', label: 'Launches', match: /^\/(launches|p|dashboard)(\/|$)/ },
   { href: '/runs', label: 'Runs', match: /^\/runs/ },
   { href: '/settings', label: 'Settings', match: /^\/settings/ },
 ];
@@ -50,7 +49,6 @@ export function BrandMark({ size = 20 }: { size?: number }) {
 /** NavState behind each nav href: links keep their markup, the state moves. */
 export const NAV_STATE: Record<string, NavState> = {
   '/home': { view: 'home' },
-  '/dashboard': { view: 'dashboard' },
   '/launches': { view: 'launches' },
   '/runs': { view: 'runs' },
   '/settings': { view: 'settings' },
@@ -85,10 +83,10 @@ export function AppNav() {
 
   const brand = (
     <a
-      href={href({ view: 'dashboard' })}
-      onClick={(e) => follow(e, { view: 'dashboard' })}
+      href={href({ view: 'home' })}
+      onClick={(e) => follow(e, { view: 'home' })}
       className="flex items-center gap-2.5"
-      aria-label="Launch Kit dashboard"
+      aria-label="Launch Kit home"
     >
       <BrandMark />
       <span className="text-heading">Launch Kit</span>

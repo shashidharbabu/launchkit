@@ -25,7 +25,6 @@ import { WorkspaceProvider, useLkWorkspace } from './components/launchkit/worksp
 import { LkErrorBoundary } from './components/launchkit/error-boundary';
 import HomePage from './pages/home';
 import { NavigatorHome } from './components/launchkit/navigator-home';
-import DashboardPage from './pages/dashboard';
 import LaunchesPage from './pages/launches';
 import NewLaunchPage from './pages/new-launch';
 import RunsPage from './pages/runs';
@@ -62,7 +61,8 @@ function ActiveView() {
         </>
       );
     case 'dashboard':
-      return <DashboardPage />;
+      // Gantry merged Dashboard into Launches; the old view lands there (navigation.md)
+      return <LaunchesPage />;
     case 'launches':
       return <LaunchesPage />;
     case 'new-launch':

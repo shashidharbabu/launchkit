@@ -14,7 +14,6 @@ const ITEM_CLS =
   'flex cursor-pointer items-center gap-2 rounded-control px-2.5 py-2 text-body data-[selected=true]:bg-accent';
 
 const APP_PAGES: { href: string; label: string; to: NavState }[] = [
-  { href: '/dashboard', label: 'Dashboard', to: { view: 'dashboard' } },
   { href: '/launches', label: 'Launches', to: { view: 'launches' } },
   { href: '/launches/new', label: 'New launch', to: { view: 'new-launch' } },
   { href: '/runs', label: 'Runs', to: { view: 'runs' } },
@@ -67,7 +66,7 @@ export function CommandPalette() {
           />
           <Command.List className="max-h-80 overflow-y-auto p-2">
             <Command.Empty className="px-2 py-3 text-body text-muted-foreground">
-              Nothing matches. Try a page or stage name: Dashboard, Runs, Social Launch.
+              Nothing matches. Try a page or stage name: Launches, Runs, Social Launch.
             </Command.Empty>
 
             <Command.Group heading="Go to" className={GROUP_CLS}>

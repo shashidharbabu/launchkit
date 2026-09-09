@@ -136,10 +136,10 @@ export default function HomePage() {
                   <Button variant="secondary">Start your launch</Button>
                 </a>
                 <a
-                  href={href({ view: 'dashboard' })}
+                  href={href({ view: 'launches' })}
                   onClick={(e) => {
                     e.preventDefault();
-                    go({ view: 'dashboard' });
+                    go({ view: 'launches' });
                   }}
                 >
                   <Button variant="ghost">Open the console</Button>

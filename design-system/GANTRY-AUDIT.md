@@ -147,7 +147,7 @@ Items 1, 2, 3, 5 and 6 are done and verified on the preview at 1440 and 390 in b
 themes: one canvas on the Home empty state, none once a conversation starts, the field
 repaints on theme switch (`--field-sky-top` flips to the night value), the mark sits
 beside each navigator turn, the composer sits at 40% of the section, no screen scrolls
-sideways, zero page errors. Item 4 (Dashboard) is awaiting the owner's decision.
+sideways, zero page errors. Item 4: the owner chose the merge; Dashboard is gone, Launches carries the stat row and the old view lands there.
 
 Three things the audit did not list surfaced while running the checklist and were fixed:
 

@@ -99,7 +99,7 @@ for (const [w, h, tagW] of [[1440, 900, 'desktop'], [390, 844, 'phone']]) {
   await setTheme(page, false);
 
   // every other screen, both themes
-  for (const label of ['Dashboard', 'Launches', 'Runs', 'Settings']) {
+  for (const label of ['Launches', 'Runs', 'Settings']) {
     await nav(page, label);
     await shot(page, `${label.toLowerCase()}-${tagW}-light`);
     await setTheme(page, true);
