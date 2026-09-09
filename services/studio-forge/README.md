@@ -20,11 +20,17 @@ npm install          # once; reuses the Playwright Chromium the drives use
 npm start            # 127.0.0.1:3500
 node smoke.mjs https://your-site --reel    # probe, cards, reel, no app needed
 node jobs-list.mjs                          # the job table
+node verdict-smoke.mjs [--no-probe]         # the Verdict film with hand-written copy, plus a seam contact sheet
+python3 frames.py reel.mp4 sheet.jpg 0.4,1.0,1.9   # frames at those seconds, five per row
+node site-copy.mjs https://your-site         # the visible copy the probe hands to the prompt
 ```
 
 `GET /health` says whether ffmpeg and Chromium are present and which
-concepts exist. Concepts live in `templates/<concept>/` as a tokenised
-HyperFrames composition plus `slots.json`, the contract the app's prompt and
+concepts exist. Concepts live in `templates/<concept>/` in one of two
+shapes: a module (`concept.mjs` exporting `spec` and `build`, the composition
+generated from the script so it can draw scenes; `verdict` is one) or a
+tokenised HyperFrames composition plus `slots.json` (`signal`, kept for
+reference). Either way `spec.slots` is the contract the app's prompt and
 editor read. The reel needs `npx --yes hyperframes@0.8.3`, fetched on the
 first render and cached.
 

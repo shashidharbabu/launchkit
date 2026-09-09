@@ -33,6 +33,24 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
       try { await page.reload({ waitUntil: 'networkidle', timeout: 45_000 }); } catch { /* try again */ }
     }
 
+    onStep?.('reading the copy');
+    // the site's own words: what the reel and the cards may quote
+    const copy = await page.evaluate(() => {
+      const out = [];
+      const seen = new Set();
+      for (const el of document.querySelectorAll('h1,h2,h3,h4,label,button,p,li,th,td,legend,summary,[role=tab],[class*=chip],[class*=badge],[class*=tag],small,span,a')) {
+        if (el.closest('script,style,noscript')) continue;
+        if (el.children.length > 2 && !/^(P|LI|H[1-4]|LABEL|BUTTON|A)$/.test(el.tagName)) continue;
+        const t = (el.innerText || '').replace(/\s+/g, ' ').trim();
+        if (!t || t.length < 2 || t.length > 300 || seen.has(t)) continue;
+        seen.add(t);
+        out.push(`${el.tagName.toLowerCase()}: ${t}`);
+        if (out.length >= 80) break;
+      }
+      const inputs = [...document.querySelectorAll('input,textarea,select')].map((i) => `${i.tagName.toLowerCase()}: ${i.placeholder || i.getAttribute('aria-label') || i.name || ''}`).filter((s) => !s.endsWith(': ')).slice(0, 12);
+      return { lines: out, inputs };
+    });
+
     onStep?.('reading colours, logo and type');
     const dom = await page.evaluate(() => {
       const abs = (u) => { try { return new URL(u, location.href).href; } catch { return ''; } };
@@ -167,6 +185,7 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
     return {
       site_url: siteUrl, navigation: nav, title: dom.title, description: dom.description, theme_color: dom.theme_color,
       screenshot_url: `${fileUrl}/site.png`,
+      copy: { lines: copy.lines, inputs: copy.inputs, text: [...copy.lines, ...copy.inputs].join('\n').slice(0, 2400) },
       observed, palette,
       fonts: { heading: clean(dom.heading_font), body: clean(dom.body_font) },
       logos,

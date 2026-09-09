@@ -49,6 +49,23 @@ export interface ConceptSpec {
   slots: SlotSpec[];
 }
 
+const DANGLING = /\s(A|AN|THE|BY|OF|TO|IN|ON|AT|FOR|WITH|AND|OR|FROM|AS|IS|ARE|PER)[.,:;]?$/;
+
+/**
+ * Cut a value to its limit the way an editor would: at a sentence end when one
+ * leaves at least half the room, else at a word, dropping a dangling function
+ * word; a cut line keeps the original's own end mark (a question stays a
+ * question). Mirrors the forge's clampText.
+ */
+export function clampText(v: string, max: number, end: string): string {
+  const cut = v.slice(0, max);
+  const sentence = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
+  if (sentence >= max * 0.45) return cut.slice(0, sentence + 1);
+  const sp = cut.lastIndexOf(" ");
+  const out = (sp > max * 0.5 ? cut.slice(0, sp) : cut).trim().replace(DANGLING, "").replace(/[,:;-]$/, "");
+  return end && !/[.!?…:]$/.test(out) ? out + end : out;
+}
+
 /** Uppercase, one line, no em or en dash, clamped to the slot's limit (forge parity). */
 export function normalizeSlot(spec: SlotSpec, value: unknown): { value: string; clamped: boolean } {
   const original = String(value ?? "").trim();
@@ -56,10 +73,7 @@ export function normalizeSlot(spec: SlotSpec, value: unknown): { value: string; 
   if (!v && !spec.optional) v = spec.default;
   let clamped = false;
   if (v.length > spec.max) {
-    const cut = v.slice(0, spec.max);
-    const sp = cut.lastIndexOf(" ");
-    v = (sp > spec.max * 0.5 ? cut.slice(0, sp) : cut).trim();
-    if (/[.!?…:]$/.test(original) && !/[.!?…:]$/.test(v)) v = v.replace(/[,:;-]$/, "") + ".";
+    v = clampText(v, spec.max, original.match(/[.!?…:]$/)?.[0] ?? "");
     clamped = true;
   }
   return { value: v, clamped };

@@ -150,29 +150,77 @@ curl -s -X POST localhost:3500/probe -H 'content-type: application/json' \
   -d '{"project_id":"demo","site_url":"https://hackathon-judge-aid.onrender.com"}'
 ```
 
-## 5. The reel template contract
+## 5. The reel: the Verdict concept
 
-`services/studio-forge/templates/signal/index.html` is the upstream
-`aithon-v4-signal` composition with every event string replaced by a
-`{{SLOT}}` token and the palette replaced by `{{VAR}}` tokens. The slot list,
-character limits and defaults live in `templates/signal/slots.json`; the app
-prompt and the forge both read that file, so the contract has one source.
+The first cut (the "Signal" template, a re-skin of the upstream event reel)
+was judged frame by frame and rejected: twenty-four seconds of words in a
+hacker skin, filler beats, no problem, no product on screen. It stays in the
+repo as `templates/signal` for reference; the stage renders **Verdict**.
 
-Fitting: every slot has a base font size and a measured width budget. After
-substitution the forge computes a fitted size per slot (character count times
-the face's average advance, against the 900 px column) and appends override
-rules, so a longer app name shrinks instead of clipping.
+Verdict is a problem-then-solution launch film, 24 s, 1080x1920, generated
+by `services/studio-forge/templates/verdict/concept.mjs`: the composition is
+built from the script rather than substituted into a fixed page, so it can
+draw scenes. It hangs on the duel track (`m_v3_duel`, trimmed): a cold string
+build to 6.5 s, the drop, a groove to 19, a dip, an impact at 20.0, a fade.
 
-Palette: the template is a dark terminal by design. The forge maps the brand
-palette onto it: the brand primary becomes the lockup color, the accent is
-lightened until it clears 4.5:1 on the canvas, and the canvas itself takes a
-faint tint of the brand hue.
+| Time | Beat | What is on screen |
+|---|---|---|
+| 0.0 | The scene | one calm line: when and where the problem happens |
+| 1.6 | The load | three scenario numbers slam in (submissions, judges, minutes), the last in the alarm colour |
+| 3.4 | The pile | cards rain into a heap; a sagging caption says what must be done to each by hand |
+| 5.0 | The doubt | two questions the person cannot answer, cold and sagging, rack-focus swap |
+| 6.1 | The cost | one mocking line in the alarm colour |
+| 6.5 | The drop | the frame collides, the canvas turns to the brand, the app name lands with a glow and a stamped line |
+| 8.5 | Step one | the product's real input field, three lines type themselves, the real button |
+| 10.5 | Step two | rows pass under a scan line and receive the product's real verdict chips |
+| 12.5 | Step three | a commit timeline, a date marker, pre-event commits turn alarm-red, the penalty chip |
+| 14.5 | The product | the live screenshot in a browser frame, pushing in |
+| 16.6 | The payoff | one true number and unit, a timer counting down, a checklist ticking |
+| 18.6 | Breath | near-empty, a cursor, one quiet line |
+| 20.0 | Arrival | the call to action on the impact, the host as a chip |
+| 22.0 | Lockup | who it is for, the name, the tagline, the host, held in the fade |
+
+Character comes from a colour arc (cold canvas, cold grey type and an alarm
+colour before the drop; the brand palette after) and from drawing the
+product's own mechanics rather than describing them. The copy is written by
+`lk_studio.pipe` from the profile, the Business DNA and the site's own copy
+(the probe now reads labels, buttons and categories from the live page and
+hands them to the prompt as SITE_COPY), so the chips say "Significant,
+Moderate, Less, None" because the site does.
+
+Fitting: every slot has a face, a base size and a line budget. Display lines
+that may wrap get two rows before they shrink; stamps and the call to action
+stay on one line and shrink instead. The slot examples in the concept
+describe an unrelated product on purpose, so the model cannot borrow them.
+
+Limits: the model occasionally overruns a slot by a character or two. When it
+does, the app sends only the offending slots back to `lk_studio.pipe` for a
+rewrite inside the limit (a second, small ask, a few seconds) and records them
+as `repaired`. Only if that fails does the mechanical clamp run, and it now
+cuts the way an editor would: at a sentence end when one leaves enough room,
+otherwise at a word, dropping a dangling "by" or "the" and keeping the line's
+own end mark. The same clamp lives in the forge and in the app's editor.
+
+Palette: the forge maps the brand onto the film. The accent is lightened
+until it clears 5.5:1 on the canvas, the canvas takes a faint tint of the
+brand hue, and the alarm colour is red unless the brand itself is red (then
+amber).
+
+Quality loop: `node verdict-smoke.mjs --no-probe` renders the film with
+hand-written copy in about fifteen seconds and cuts a frame just after every
+cut (`frames.py`) into a contact sheet. Four rounds went through it with
+hand-written copy, then three full runs through the UI with pipeline-written
+copy (one with the concept's examples deliberately pointing at an unrelated
+product, to prove the copy comes from the site and not the examples). Every
+round was judged frame by frame; the findings and fixes are in the git
+history of `concept.mjs`.
 
 ## 6. What v1 does not do yet
 
-- Only the Signal concept. Platform, Fork, Vanishing Day and User to Builder
-  need their own tokenised templates (their copy is built in script, so the
-  manifest is a list of `addPhase` strings rather than DOM text).
+- One concept, Verdict. The scene library inside it (tiles, pile, doubt,
+  collision, input, scan, timeline, product shot, payoff, arrival, lockup)
+  is written so a second concept can reorder or swap scenes; that is the next
+  step once a second app has been through it.
 - No voice-over and no generative footage (keys).
 - The approved reel is not yet added to the Plan stage's checklist.
 - Cards use the kit's faces (Space Grotesk, Anton) rather than the site's own

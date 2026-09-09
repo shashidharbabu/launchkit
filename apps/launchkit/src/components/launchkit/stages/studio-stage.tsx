@@ -292,7 +292,7 @@ function ReelView({ row, script, disabled, onChanged }: { row: StudioRow; script
         />
         <div className="grid content-start gap-3">
           <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-small">
-            <dt className="text-muted-foreground">Concept</dt><dd className="capitalize">{asStr(d.concept)}</dd>
+            <dt className="text-muted-foreground">Concept</dt><dd>{asStr(d.concept_title) || asStr(d.concept)}</dd>
             <dt className="text-muted-foreground">Length</dt><dd className="font-mono text-data">{asStr(d.duration)} s</dd>
             <dt className="text-muted-foreground">Frame</dt><dd className="font-mono text-data">{asStr(d.width)}×{asStr(d.height)}, {mb.toFixed(1)} MB, -14 LUFS</dd>
             <dt className="text-muted-foreground">Script</dt><dd>version {asStr(d.script_version)}{stale ? ', the script has changed since' : ''}</dd>
@@ -466,7 +466,7 @@ export function StudioStage() {
       <Card>
         <CardHeader
           title="Launch reel"
-          description="24 seconds of kinetic type in your colours and your voice. Concept: Signal."
+          description="24 seconds in your colours and your voice: the problem, then your app arriving on the drop."
           actions={
             <>
               {reel && <StatusStamp kind={reel.status === 'approved' ? 'go' : 'hold'} label={reel.status === 'approved' ? 'Approved' : 'Rendered'} />}

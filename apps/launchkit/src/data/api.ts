@@ -22,7 +22,7 @@ import type { Dict, Profile, SignalData, TargetData } from '../domain/types';
 import { ask, askSignals } from './runner';
 import { rescoreSignals } from './rescore';
 import { forgeConcept, forgeRun } from './studio';
-import { buildStudioQuestion } from '../domain/questions';
+import { buildStudioQuestion, buildStudioRepairQuestion } from '../domain/questions';
 import {
   NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind,
   type ConceptSpec,
@@ -420,7 +420,8 @@ export const api = {
     }
 
     if (step === 'script') {
-      const concept = opts.concept ?? 'signal';
+      const concept = opts.concept ?? 'verdict';
+      const siteCopy = probe ? String(((probe.data as Dict).copy as Dict | undefined)?.text ?? '') : '';
       // the chosen campaign angle, the same way Social Launch reads it
       const angles = Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [];
       let campaignCtx = '';
@@ -435,10 +436,26 @@ export const api = {
         async () => {
           const spec = await forgeConcept(concept);
           const result = await ask('lk_studio.pipe',
-            buildStudioQuestion(spec, profile, String(p.name ?? ''), String(p.site_url ?? ''), dna, campaignCtx));
-          const norm = normalizeSlots(spec, result.slots);
+            buildStudioQuestion(spec, profile, String(p.name ?? ''), String(p.site_url ?? ''), dna, campaignCtx, siteCopy));
+          const raw: Dict = result.slots && typeof result.slots === 'object' ? { ...(result.slots as Dict) } : {};
+          let norm = normalizeSlots(spec, raw);
+          const repaired: string[] = [];
+          if (norm.clamped.length > 0) {
+            // a second small ask rewrites only the over-limit slots, so the film never shows a cut fragment
+            const offenders = norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? '') }));
+            try {
+              const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, String(p.name ?? '')));
+              const fixed: Dict = fix.slots && typeof fix.slots === 'object' ? (fix.slots as Dict) : {};
+              for (const o of offenders) {
+                const s = spec.slots.find((x) => x.id === o.id);
+                const v = typeof fixed[o.id] === 'string' ? (fixed[o.id] as string).trim() : '';
+                if (s && v && v.length <= s.max) { raw[o.id] = v; repaired.push(o.id); }
+              }
+              if (repaired.length > 0) norm = normalizeSlots(spec, raw);
+            } catch { /* keep the mechanical clamp */ }
+          }
           return {
-            concept, ...norm,
+            concept, ...norm, repaired,
             tagline: typeof result.tagline === 'string' ? result.tagline.trim().slice(0, 80) : '',
             one_liner: typeof result.one_liner === 'string' ? result.one_liner.trim().slice(0, 160) : '',
             claims_used: Array.isArray(result.claims_used) ? result.claims_used : [],
@@ -461,7 +478,10 @@ export const api = {
     const pd = probe.data as Dict;
     const logo = (Array.isArray(pd.logos) ? (pd.logos as Dict[]) : []).find((l) => l.picked) ?? null;
     const jobId = await runJob(id, studioJobKind('reel'),
-      () => forgeRun('reel', { project_id: id, concept: sd.concept ?? 'signal', slots: sd.slots, palette: pd.palette, logo }),
+      () => forgeRun('reel', {
+        project_id: id, concept: sd.concept ?? 'verdict', slots: sd.slots, palette: pd.palette, logo,
+        screenshot_path: pd.screenshot_path ?? null,
+      }),
       async (result) => save('reel', { ...result, script_id: script.id, script_version: script.version }, jobId, 'draft'));
     return { job_id: jobId };
   },

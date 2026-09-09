@@ -161,10 +161,20 @@ export function reelVars(palette) {
   const dim = mix(canvas, ink, 0.36);
   const panel = mix(canvas, accent, 0.09);
   const [r, g, b] = accent;
+  // the problem half of a story reel: a colder, neutral dark and an alarm colour
+  // that is not the brand's (amber when the brand itself is red)
+  const hueDeg = ah * 360;
+  const alertIsRed = !(hueDeg < 30 || hueDeg > 330);
+  const alert = alertIsRed ? [249, 56, 34] : [255, 176, 46];
+  const coldCanvas = [10, 10, 12];
+  const cold = mix([110, 118, 132], hslToRgb([ah, 0.12, 0.5]), 0.3);
   return {
     canvas: toHex(canvas), ink: toHex(ink), accent: toHex(accent), dim: toHex(dim), panel: toHex(panel), brand: toHex(brand),
     accent_glow: `rgba(${r}, ${g}, ${b}, 0.8)`,
     ink_scan: `rgba(${ink[0]}, ${ink[1]}, ${ink[2]}, 0.022)`,
+    cold_canvas: toHex(coldCanvas), cold: toHex(cold), cold_panel: toHex(mix(coldCanvas, cold, 0.12)),
+    alert: toHex(alert), alert_glow: `rgba(${alert[0]}, ${alert[1]}, ${alert[2]}, 0.35)`,
+    accent_soft: toHex(mix(accent, canvas, 0.45)),
   };
 }
 

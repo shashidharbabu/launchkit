@@ -23,25 +23,33 @@ export { pyJsonDumps } from "./py";
  * agree on ids and limits. New in the short-video branch, not a rr.py port.
  */
 export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName: string,
-                                    siteUrl: string, dna?: BrandDna | null, campaign = ""): string {
+                                    siteUrl: string, dna?: BrandDna | null, campaign = "",
+                                    siteCopy = ""): string {
   const host = siteUrl.replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/^www\./, "").toUpperCase();
   const beats = spec.beats.map((b) => `- ${b.t} s: ${b.what} Slots: ${b.slots.join(", ")}`).join("\n");
   const slots = spec.slots.map((s) =>
     `- ${s.id} (max ${s.max} chars${s.optional ? ", optional" : ""}): ${s.hint ?? ""}` +
     (s.example ? ` Example: "${s.example}"` : "")).join("\n");
+  const hostSlots = spec.slots.filter((s) => /host|chip$/.test(s.id) && /host/i.test(s.hint ?? "")).map((s) => s.id);
   const parts = [
-    "You write the on-screen copy for a 24 second vertical launch reel: kinetic typography, no voice-over, " +
-    "a few words per beat. The film is fixed; you fill its text slots and nothing else.",
+    `You write the on-screen copy for a ${spec.duration} second vertical launch film ("${spec.title}": ` +
+    `${spec.tagline}). Kinetic typography and drawn scenes, no voice-over, a few words per beat. The film ` +
+    "is fixed; you fill its text slots and nothing else. Read the whole film first so the beats tell ONE " +
+    "story: the problem a real person has, then this app arriving and proving itself.",
     "RULES: 1) Every slot value is at most its max characters, count them, shorter is better; text renders in " +
-    "capitals. 2) Never invent a number, a user count, a benchmark or a claim: a number may appear only if it " +
-    "is in APP_PROFILE or BRAND_DNA (use ONE or a plain word otherwise). 3) Write in the brand's voice: if " +
-    "BRAND_DNA is present follow its tone_words, vocabulary and dos_and_donts and reuse its key messages; " +
-    "otherwise plain and concrete. 4) Use the app name exactly as APP_NAME. 5) t1 is \"URL: \" plus " +
-    "SITE_HOST; lock_line2 is SITE_HOST; lock_line1 is the tagline in the brand's own words. 6) No hype " +
-    "words (game-changer, revolutionary, seamless, unleash, elevate, next-gen, cutting-edge, supercharge), " +
-    "no rhetorical questions, no em dashes, no emoji. 7) Punctuate as the hints say: labels end with a " +
-    "colon, statements end with a period. 8) If CAMPAIGN_ANGLE is present, the hook (s1_line) and the " +
-    "payoff (s12_l1, s12_l2) carry that angle.",
+    "capitals. 2) Never invent a claim about the product: a product number may appear only if it is in " +
+    "APP_PROFILE, BRAND_DNA or SITE_COPY (use ONE or a plain word otherwise). Beats marked as scenario " +
+    "numbers may use a plausible scene (a count of items, minutes, people) that illustrates the problem; " +
+    "keep them modest and realistic. 3) Ground the how-it-works beats in what the product actually does: " +
+    "SITE_COPY holds the site's own labels, buttons and categories; reuse those words for fields, buttons " +
+    "and verdict chips instead of inventing features. 4) Write in the brand's voice: if BRAND_DNA is " +
+    "present follow its tone_words, vocabulary and dos_and_donts and reuse its key messages; otherwise " +
+    "plain, concrete, confident. 5) Use the app name exactly as APP_NAME. " +
+    (hostSlots.length ? `6) ${hostSlots.join(" and ")} are SITE_HOST exactly. ` : "6) Host slots are SITE_HOST exactly. ") +
+    "7) No hype words (game-changer, revolutionary, seamless, unleash, elevate, next-gen, cutting-edge, " +
+    "supercharge), no em dashes, no emoji; rhetorical questions only where a beat asks for questions. " +
+    "8) Punctuate as the hints say: labels end with a colon, statements end with a period. 9) If " +
+    "CAMPAIGN_ANGLE is present, the problem beats and the call to action carry that angle.",
     `THE FILM (beats in order):\n${beats}`,
     `SLOTS:\n${slots}`,
     `APP_NAME: ${appName}`,
@@ -50,6 +58,9 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
   ];
   if (pyTruthy(dna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
+  }
+  if (siteCopy) {
+    parts.push(`SITE_COPY (the live site's own words, element by element):\n${siteCopy}`);
   }
   if (campaign) {
     parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
@@ -62,6 +73,30 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
              "[string] (each on-screen fact and where in APP_PROFILE or BRAND_DNA it comes from), \"notes\": " +
              "string (one sentence on the angle you took)}");
   return parts.join("\n\n");
+}
+
+/**
+ * A second, small ask when the script came back with slot values over their
+ * limits: rewrite only those, keeping the meaning and the voice, so the film
+ * never shows a mechanically cut fragment. New in the short-video branch.
+ */
+export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: string; value: string }[],
+                                          appName: string): string {
+  const byId = new Map(spec.slots.map((s) => [s.id, s]));
+  const list = offenders.map((o) => {
+    const s = byId.get(o.id);
+    return `- ${o.id} (max ${s?.max ?? 0} chars, currently ${o.value.length}): "${o.value}"` +
+      (s?.hint ? ` Slot: ${s.hint}` : "");
+  }).join("\n");
+  return [
+    `You wrote the on-screen copy for a ${spec.duration} second launch film for ${appName} ("${spec.title}"). ` +
+    "These slot values are over their character limits and would be cut mid-sentence on screen. Rewrite " +
+    "each one to fit inside its limit with room to spare (aim two characters under). Keep the meaning, the " +
+    "voice and the punctuation style; shorten by choosing tighter words, never by trailing off. Count the " +
+    "characters of every value before you answer.",
+    `OVER LIMIT:\n${list}`,
+    "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<each id above>: string}}",
+  ].join("\n\n");
 }
 
 function isDict(v: unknown): v is Dict {

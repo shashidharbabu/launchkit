@@ -126,6 +126,7 @@ async function handle(req, res) {
         const siteUrl = requireUrl(body.site_url);
         work = (onStep) => probeSite({ siteUrl, outDir: jobDir, fileUrl, onStep }).then(async (r) => {
           for (const l of r.logos) l.file_path = path.join(jobDir, l.file);
+          r.screenshot_path = path.join(jobDir, 'site.png');
           await writeFile(path.join(jobDir, 'probe.json'), JSON.stringify(r, null, 2));
           return r;
         });
@@ -143,11 +144,13 @@ async function handle(req, res) {
         });
       } else {
         if (!body.palette?.roles) throw new Error('reel needs palette.roles (run probe first)');
-        const concept = String(body.concept ?? 'signal');
+        const concept = String(body.concept ?? 'verdict');
         await loadConcept(concept);
         const compositionId = `${project}-${concept}-${jobId}`.toLowerCase();
+        // the site screenshot the product scene shows: only a file under our own out dir
+        const shotPath = typeof body.screenshot_path === 'string' && path.resolve(body.screenshot_path).startsWith(OUT + path.sep) ? path.resolve(body.screenshot_path) : null;
         work = (onStep) => renderReel({
-          concept, slots: body.slots ?? {}, palette: body.palette, logo: body.logo ?? null, jobDir, fileUrl, compositionId,
+          concept, slots: body.slots ?? {}, palette: body.palette, logo: body.logo ?? null, screenshot: shotPath, jobDir, fileUrl, compositionId,
           resolution: body.resolution === 'portrait-4k' ? 'portrait-4k' : undefined, onStep,
         }).then(async (r) => { await writeFile(path.join(jobDir, 'reel.json'), JSON.stringify(r, null, 2)); return r; });
       }

@@ -1,11 +1,15 @@
-// Render one reel from a concept template plus a script (the slot values).
-// Substitute, fit, render with HyperFrames, master to -14 LUFS, then cut a
-// poster frame and a filmstrip so the app can show the result without playing it.
+// Render one reel from a concept plus a script (the slot values).
+//
+// Two kinds of concept live in templates/<name>/:
+//  - a tokenised template (index.html + slots.json), filled by substitution;
+//  - a module (concept.mjs exporting `spec` and `build`) that generates the
+//    whole composition from the values, so it can draw scenes, not just words.
+// Both then go through HyperFrames, loudness mastering, a poster and a filmstrip.
 import { cp, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { reelVars } from './palette.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -13,22 +17,49 @@ const TEMPLATES = path.join(ROOT, 'templates');
 export const HYPERFRAMES = 'hyperframes@0.8.3';
 
 export async function loadConcept(concept) {
+  if (!/^[a-z0-9-]+$/.test(concept)) throw new Error(`unknown concept: ${concept}`);
   const dir = path.join(TEMPLATES, concept);
+  const modPath = path.join(dir, 'concept.mjs');
+  if (existsSync(modPath)) {
+    // the mtime in the URL lets an edited concept load without restarting the forge
+    const { mtimeMs } = await stat(modPath);
+    const mod = await import(`${pathToFileURL(modPath).href}?v=${Math.round(mtimeMs)}`);
+    return { dir, spec: mod.spec, build: mod.build };
+  }
   if (!existsSync(path.join(dir, 'slots.json'))) throw new Error(`unknown concept: ${concept}`);
-  return { dir, spec: JSON.parse(await readFile(path.join(dir, 'slots.json'), 'utf8')) };
+  return { dir, spec: JSON.parse(await readFile(path.join(dir, 'slots.json'), 'utf8')), build: null };
 }
 
 export async function listConcepts() {
   const out = [];
   for (const e of await readdir(TEMPLATES, { withFileTypes: true })) {
     if (!e.isDirectory() || e.name === 'cards') continue;
-    try { const { spec } = await loadConcept(e.name); out.push({ id: spec.concept, title: spec.title, tagline: spec.tagline, duration: spec.duration, slots: spec.slots.length }); }
-    catch { /* not a concept */ }
+    try {
+      const { spec } = await loadConcept(e.name);
+      out.push({ id: spec.concept, title: spec.title, tagline: spec.tagline, duration: spec.duration, slots: spec.slots.length, music: spec.music ?? null });
+    } catch { /* not a concept */ }
   }
   return out;
 }
 
 const escHtml = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const DANGLING = /\s(A|AN|THE|BY|OF|TO|IN|ON|AT|FOR|WITH|AND|OR|FROM|AS|IS|ARE|PER)[.,:;]?$/;
+
+/**
+ * Cut a value to its limit the way an editor would: at a sentence end when one
+ * leaves at least half the room, else at a word, dropping a dangling function
+ * word; a cut line keeps the original's own end mark (a question stays a
+ * question). Mirrored in the app's domain/studio.ts.
+ */
+export function clampText(v, max, end) {
+  const cut = v.slice(0, max);
+  const sentence = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  if (sentence >= max * 0.45) return cut.slice(0, sentence + 1);
+  const sp = cut.lastIndexOf(' ');
+  const out = (sp > max * 0.5 ? cut.slice(0, sp) : cut).trim().replace(DANGLING, '').replace(/[,:;-]$/, '');
+  return end && !/[.!?…:]$/.test(out) ? out + end : out;
+}
 
 /** Uppercase, one line, no em or en dash (owner rule), clamped to the slot's limit. */
 export function normalizeSlot(spec, value) {
@@ -36,10 +67,7 @@ export function normalizeSlot(spec, value) {
   if (!v && !spec.optional) v = spec.default;
   let clamped = false;
   if (v.length > spec.max) {
-    const cut = v.slice(0, spec.max);
-    const sp = cut.lastIndexOf(' ');
-    v = (sp > spec.max * 0.5 ? cut.slice(0, sp) : cut).trim();
-    if (/[.!?…:]$/.test(String(value ?? '').trim()) && !/[.!?…:]$/.test(v)) v = v.replace(/[,:;-]$/, '') + '.';
+    v = clampText(v, spec.max, String(value ?? '').trim().match(/[.!?…:]$/)?.[0] ?? '');
     clamped = true;
   }
   return { value: v, clamped };
@@ -55,12 +83,15 @@ function fitSize(text, base, ratio, column) {
 export function fitCss(spec, values) {
   const groups = new Map();
   for (const s of spec.slots) {
+    if (!s.selector || !s.size) continue;
     const text = `${s.prefix ?? ''}${values[s.id]}${s.suffix ?? ''}`;
     const key = s.group ? `g:${s.group}` : s.selector;
     const ratio = spec.faces[s.face] ?? 0.5;
+    // a slot that may wrap gets that many rows of width before it has to shrink
+    const budget = spec.column * (s.lines ?? 1);
     const size = s.group
-      ? fitSize(spec.slots.filter((x) => x.group === s.group).map((x) => values[x.id]).join(' '), s.size, ratio, spec.column)
-      : fitSize(text, s.size, ratio, spec.column);
+      ? fitSize(spec.slots.filter((x) => x.group === s.group).map((x) => values[x.id]).join(' '), s.size, ratio, budget)
+      : fitSize(text, s.size, ratio, budget);
     const cur = groups.get(key);
     if (!cur || size < cur.size) groups.set(key, { selector: s.selector, base: s.size, size });
   }
@@ -71,8 +102,7 @@ function fill(html, spec, values, vars, extras) {
   let out = html;
   for (const s of spec.slots) {
     const v = values[s.id];
-    const token = new RegExp(`\\{\\{${s.id.toUpperCase()}\\}\\}`, 'g');
-    out = out.replace(token, s.attr === 'data-text' ? escHtml(v) : escHtml(v));
+    out = out.replace(new RegExp(`\\{\\{${s.id.toUpperCase()}\\}\\}`, 'g'), escHtml(v));
     if (s.js) {
       out = out.replace(new RegExp(`\\{\\{${s.id.toUpperCase()}_JS\\}\\}`, 'g'), JSON.stringify(v));
       const colon = v.indexOf(':');
@@ -105,14 +135,17 @@ async function newestMp4(dir) {
   return best ? path.join(dir, best.f) : null;
 }
 
-export async function renderReel({ concept, slots, palette, logo, jobDir, fileUrl, compositionId, resolution, onStep }) {
-  const { dir, spec } = await loadConcept(concept);
+/**
+ * Build the composition only (no render): returns { html, values, clamped, vars }.
+ * The smoke test and the preview use it; renderReel calls it too.
+ */
+export async function composeReel({ concept, slots, palette, logo, screenshot, jobDir, compositionId }) {
+  const { dir, spec, build } = await loadConcept(concept);
   await mkdir(jobDir, { recursive: true });
-  onStep?.('preparing the composition');
   await cp(path.join(dir, 'assets'), path.join(jobDir, 'assets'), { recursive: true });
   await cp(path.join(dir, 'hyperframes.json'), path.join(jobDir, 'hyperframes.json'));
   await writeFile(path.join(jobDir, 'package.json'), JSON.stringify({ name: compositionId, private: true, type: 'module' }, null, 2));
-  await writeFile(path.join(jobDir, 'meta.json'), JSON.stringify({ id: compositionId, name: compositionId, createdAt: new Date().toISOString() }, null, 2));
+  await writeFile(path.join(jobDir, 'meta.json'), JSON.stringify({ id: compositionId, name: compositionId, createdAt: '2026-01-01T00:00:00.000Z' }, null, 2));
 
   const values = {}; const clamped = [];
   for (const s of spec.slots) { const r = normalizeSlot(s, slots?.[s.id]); values[s.id] = r.value; if (r.clamped) clamped.push(s.id); }
@@ -123,10 +156,22 @@ export async function renderReel({ concept, slots, palette, logo, jobDir, fileUr
     await cp(logo.file_path, path.join(jobDir, 'assets', `logo${ext}`));
     logoImg = `<img id="s14-logo" src="assets/logo${ext}" alt="">`;
   }
-  const html = fill(await readFile(path.join(dir, 'index.html'), 'utf8'), spec, values, vars, {
-    FIT_CSS: fitCss(spec, values), COMPOSITION_ID: compositionId, LOGO_IMG: logoImg,
-  });
+  let shot = null;
+  if (screenshot && existsSync(screenshot)) {
+    await cp(screenshot, path.join(jobDir, 'assets', 'site.png'));
+    shot = 'assets/site.png';
+  }
+  const extras = { FIT_CSS: fitCss(spec, values), COMPOSITION_ID: compositionId, LOGO_IMG: logoImg };
+  const html = build
+    ? build({ values, vars, extras: { compositionId, logoImg, screenshot: shot, fitCss: extras.FIT_CSS } })
+    : fill(await readFile(path.join(dir, 'index.html'), 'utf8'), spec, values, vars, extras);
   await writeFile(path.join(jobDir, 'index.html'), html);
+  return { spec, values, clamped, vars, logoImg, shot };
+}
+
+export async function renderReel({ concept, slots, palette, logo, screenshot, jobDir, fileUrl, compositionId, resolution, onStep }) {
+  onStep?.('preparing the composition');
+  const { spec, values, clamped, vars, logoImg, shot } = await composeReel({ concept, slots, palette, logo, screenshot, jobDir, compositionId });
 
   onStep?.('rendering frames (this takes about a minute)');
   const args = ['--yes', HYPERFRAMES, 'render'];
@@ -152,9 +197,9 @@ export async function renderReel({ concept, slots, palette, logo, jobDir, fileUr
   const meta = JSON.parse(probe);
   const v = (meta.streams || []).find((s) => s.width);
   return {
-    concept, composition_id: compositionId, resolution: resolution ?? '1080p',
+    concept, concept_title: spec.title, composition_id: compositionId, resolution: resolution ?? '1080p',
     video_url: `${fileUrl}/reel.mp4`, poster_url: `${fileUrl}/poster.jpg`, strip_url: `${fileUrl}/strip.jpg`,
     duration: Math.round(Number(meta.format?.duration ?? dur) * 100) / 100, width: v?.width ?? 1080, height: v?.height ?? 1920, bytes: size,
-    slots: values, clamped, vars, logo_used: Boolean(logoImg),
+    slots: values, clamped, vars, logo_used: Boolean(logoImg), screenshot_used: Boolean(shot),
   };
 }
