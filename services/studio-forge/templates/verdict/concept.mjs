@@ -88,6 +88,19 @@ export const spec = {
     { id: 'arrival', for: 'reel', when: '20.0-22.0', size: '1024x1536', grade: 'warm', hint: 'the same kind of person after the app: calm, upright, one screen or one sheet in hand, the room lighter, space to breathe', example: 'The same engineer the next morning, coffee in hand, standing relaxed by a window, one laptop closed on the desk, daylight.' },
     { id: 'hero', for: 'cards', when: 'launch images', size: '1536x1024', grade: 'warm', hint: 'the launch image: the person and the place at a glance, landscape, the subject in the right two thirds so a headline can sit on the left', example: 'A small engineering team around one screen in a bright office, relaxed, one of them pointing at a status board, wide shot, subject on the right.' },
   ],
+  // The voice-over: a founder pitching, in five lines that land in the film's
+  // windows. Word budgets assume a spoken pace of about 2.4 words a second;
+  // the forge measures each line and nudges the tempo when it runs long. The breath (18.6-20.0) and the lockup's tail stay silent.
+  voice: {
+    style: 'A founder pitching in twenty-four seconds: plain words, present tense, confident, spoken to a room of judges and builders as one person talking, never a narrator describing pictures.',
+    segments: [
+      { id: 'problem', at: 0.4, until: 6.3, words: 14, hint: 'the situation and the load: when it happens, how many, how little time, and that someone does it by hand today' },
+      { id: 'drop', at: 6.7, until: 8.4, words: 5, hint: 'the app, named exactly, and the one thing it does' },
+      { id: 'how', at: 8.7, until: 14.3, words: 13, hint: 'three steps as three short sentences: what you paste or type, what it does to each item, what it catches' },
+      { id: 'proof', at: 14.7, until: 18.4, words: 9, hint: 'the outcome, with the one true number if there is one, said plainly' },
+      { id: 'close', at: 20.2, until: 23.6, words: 7, hint: 'the ask: what to do next, ending on the app name (the address is on screen, do not read it)' },
+    ],
+  },
 };
 
 /** "#rrggbb" to "r, g, b" for rgba() scrims. */
@@ -472,15 +485,18 @@ export function build({ values: v, vars, extras }) {
 
       /* ---------- PLATES: the room, the person under the load, the arrival ---------- */
       ${plates.scene ? `tl.set('#plate-scene', { opacity: 1 }, 0);
-      tl.fromTo('#plate-scene img', { scale: 1.06 }, { scale: 1.16, duration: 3.4, ease: 'none', immediateRender: false }, 0);
+      tl.fromTo('#plate-scene img', { scale: 1.06 }, { scale: 1.18, duration: 3.8, ease: 'none', immediateRender: false }, 0);
       tl.to('#plate-scene img', { filter: 'brightness(0.55)', duration: 0.3, ease: 'power2.out' }, 1.6);
-      tl.set('#plate-scene', { opacity: 0 }, 3.4);` : ''}
-      ${plates.pile ? `tl.set('#plate-pile', { opacity: 1 }, 3.4);
-      tl.fromTo('#plate-pile img', { scale: 1.0, filter: 'blur(0px) brightness(0.8)' }, { scale: 1.12, duration: 3.1, ease: 'none', immediateRender: false }, 3.4);
+      /* the room dissolves into the person across the seam, so the story moves in instead of cutting */
+      tl.to('#plate-scene', { opacity: 0, duration: 0.55, ease: 'power2.inOut' }, 3.25);` : ''}
+      ${plates.pile ? `tl.fromTo('#plate-pile', { opacity: 0 }, { opacity: 1, duration: 0.55, ease: 'power2.inOut', immediateRender: false }, 3.25);
+      tl.fromTo('#plate-pile img', { scale: 1.0, filter: 'blur(0px) brightness(0.8)' }, { scale: 1.12, duration: 3.3, ease: 'none', immediateRender: false }, 3.2);
       tl.to('#plate-pile img', { filter: 'blur(14px) brightness(0.5)', duration: 0.5, ease: 'power2.in' }, 5.0);
       tl.to('#plate-pile', { opacity: 0, duration: 0.12, ease: 'power4.in' }, 6.38);` : ''}
-      ${plates.arrival ? `tl.set('#plate-arrival', { opacity: 1 }, 20.0);
-      tl.fromTo('#plate-arrival img', { scale: 1.22 }, { scale: 1.0, duration: 0.6, ease: 'expo.out', immediateRender: false }, 20.0);
+      ${plates.arrival ? `/* the arrival plate breathes in under the dip, then snaps to size on the impact */
+      tl.fromTo('#plate-arrival', { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.in', immediateRender: false }, 19.7);
+      tl.fromTo('#plate-arrival img', { scale: 1.3 }, { scale: 1.22, duration: 0.3, ease: 'none', immediateRender: false }, 19.7);
+      tl.to('#plate-arrival img', { scale: 1.0, duration: 0.6, ease: 'expo.out' }, 20.0);
       tl.to('#plate-arrival img', { scale: 1.06, duration: 1.4, ease: 'none' }, 20.6);
       tl.to('#plate-arrival', { opacity: 0, duration: 0.3, ease: 'power2.in' }, 21.7);` : ''}
 

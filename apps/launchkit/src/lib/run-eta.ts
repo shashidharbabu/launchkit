@@ -16,6 +16,7 @@ export const RUN_ETA_SECONDS: Record<string, number> = {
   'studio:images': 75,
   'studio:kit': 20,
   'studio:script': 45,
+  'studio:voice': 90,
   'studio:reel': 60,
 };
 

@@ -284,6 +284,46 @@ seconds of screen. The photographs carry the "people in a room" weight the
 owner asked for; the drawn scenes carry the product. Revisit only for a
 concept whose subject is spatial.
 
+## 5c. The voice-over (branch `short-video-audio`)
+
+The film is spoken as a pitch, not narrated. Open source, on this machine,
+no key:
+
+- **Engines.** Chatterbox (Resemble AI, MIT), expressive, with an exaggeration
+  control that suits a pitch; runs in a Python 3.12 venv next to the forge
+  (`uv venv --python 3.12 .venv-tts && VIRTUAL_ENV=.venv-tts uv pip install
+  chatterbox-tts "setuptools<81"`, PyTorch on Metal; about 7 seconds a line,
+  a minute for the five). Kokoro-82M (Apache 2.0)
+  through `kokoro-js`, ONNX in the forge process, fast and clean, flatter
+  delivery. The forge takes the first one present; `STUDIO_TTS=kokoro`
+  chooses. The health card names the engine.
+- **The lines.** The Verdict concept declares five windows (`spec.voice`):
+  problem (0.4 to 6.3 s), drop (6.7 to 8.4), how (8.7 to 14.3), proof (14.7 to
+  18.4), close (20.2 to 23.6), each with a word budget at about 2.4 spoken
+  words a second. `lk_studio.pipe` writes them as the founder speaking to a
+  room (`buildStudioVoiceQuestion`): present tense, plain words, numbers said
+  as a speaker says them, the app name in the drop and the close, never the
+  web address, never a description of what is on screen. The on-screen lines
+  travel along in the prompt so the spoken lines land on the right beat
+  without reading the screen aloud. The breath (18.6 to 20.0) stays silent.
+- **Fitting.** Every line is spoken on its own, trimmed, levelled to -16 LUFS
+  and measured. Over its window it is sped up by at most 15%; still over, the
+  app asks the pipe for a shorter take sized from the measured overrun and
+  speaks it again. Lines over the word budget on paper get one shorter take
+  before anything is spoken.
+- **The mix.** The rendered film keeps its music; the forge places the lines
+  at their times, ducks the music under them with a sidechain compressor
+  (ratio 10, 12 ms attack, 420 ms release), sums, and masters to -14 LUFS.
+  The stage previews the lines over the music before the render.
+- **The stage.** A Voice-over section under the script: Write the voice-over,
+  a player, the five lines with their measured seconds, a stale banner when
+  the script changes, and Voice on the reel's facts. The drive covers it.
+
+Also in this branch: the room dissolves into the person across the 3.4 s seam
+instead of cutting, the arrival plate breathes in under the dip before the
+impact, the photo briefs keep one person through the pile, the arrival and
+the hero, and every plate has an "Another take" so the builder can choose.
+
 ## 6. What v1 does not do yet
 
 - One concept, Verdict. The scene library inside it (tiles, pile, doubt,

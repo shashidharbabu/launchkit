@@ -5,6 +5,7 @@ const STUDIO_LABELS: Record<string, string> = {
   images: 'launch images',
   kit: 'brand kit',
   script: 'reel script',
+  voice: 'voice-over',
   reel: 'reel render',
 };
 

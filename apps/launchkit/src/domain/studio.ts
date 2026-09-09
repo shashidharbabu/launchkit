@@ -6,7 +6,7 @@
  */
 import type { Dict } from "./types";
 
-export const STUDIO_STEPS = ["probe", "images", "kit", "script", "reel"] as const;
+export const STUDIO_STEPS = ["probe", "images", "kit", "script", "voice", "reel"] as const;
 export type StudioStep = (typeof STUDIO_STEPS)[number];
 
 export function isStudioStep(s: string): s is StudioStep {
@@ -51,6 +51,20 @@ export interface PlateSpec {
   example?: string;
 }
 
+/** One spoken line of the voice-over and the window of the film it must land in. */
+export interface VoiceSegmentSpec {
+  id: string;
+  at: number;
+  until: number;
+  words: number;
+  hint: string;
+}
+
+export interface VoiceSpec {
+  style: string;
+  segments: VoiceSegmentSpec[];
+}
+
 export interface ConceptSpec {
   concept: string;
   title: string;
@@ -59,7 +73,10 @@ export interface ConceptSpec {
   beats: ConceptBeat[];
   slots: SlotSpec[];
   plates?: PlateSpec[];
+  voice?: VoiceSpec;
 }
+
+export const wordCount = (s: string): number => s.trim().split(/\s+/).filter(Boolean).length;
 
 const DANGLING = /\s(A|AN|THE|BY|OF|TO|IN|ON|AT|FOR|WITH|AND|OR|FROM|AS|IS|ARE|PER)[.,:;]?$/;
 

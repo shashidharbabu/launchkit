@@ -8,8 +8,11 @@
     "start": "node server.mjs",
     "health": "curl -s localhost:3500/health"
   },
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
+    "kokoro-js": "^1.2.1",
     "playwright": "1.62.1",
     "sharp": "^0.35.0"
   }

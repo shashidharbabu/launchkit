@@ -121,7 +121,9 @@ export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile,
     "readable screens; the film sets its own type. 2) One paragraph per plate, 40 to 90 words, plain " +
     "sentences. 3) The cold plates show the problem (the load, the fatigue, the hour); the warm plates show " +
     "the same kind of person after the app, calm, with room to breathe; keep one setting so the four read as " +
-    "one story. 4) People are ordinary and varied; no stereotypes, no real or famous people, no children. " +
+    "one story, and make the person in the pile plate and the person in the arrival plate the SAME person " +
+    "(same gender, age, hair, clothes), described the same way in both briefs, so the film shows one " +
+    "person's day turn; the hero shows that person with one or two colleagues. 4) People are ordinary and varied; no stereotypes, no real or famous people, no children. " +
     "5) Nothing unsafe, violent or sexual. 6) If CAMPAIGN_ANGLE is present, let it choose the moment. " +
     "7) The examples describe an unrelated product; never borrow their subject.",
     `PLATES:\n${list}`,
@@ -137,6 +139,62 @@ export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile,
   parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"briefs\": {<each plate id above>: " +
              "string}, \"subject\": string (one sentence: who the person in the pictures is and where they are)}");
   return parts.join("\n\n");
+}
+
+/**
+ * The voice-over: a founder pitching, in lines that land on the film's beats.
+ * The film's on-screen words travel along so the lines stay in sync without
+ * reading them aloud. New in the short-video-audio branch.
+ */
+export function buildStudioVoiceQuestion(spec: ConceptSpec, slots: Record<string, string>, profile: Profile,
+                                         appName: string, dna?: BrandDna | null, campaign = ""): string {
+  const voice = spec.voice;
+  const segs = (voice?.segments ?? []).map((s) =>
+    `- ${s.id} (${s.at} to ${s.until} s, at most ${s.words} words): ${s.hint}`).join("\n");
+  const beats = spec.beats.map((b) =>
+    `- ${b.t} s: ${b.what} On screen: ${b.slots.map((id) => `${id}="${slots[id] ?? ""}"`).join(", ")}`).join("\n");
+  const parts = [
+    `You are the founder of ${appName}, speaking the voice-over of its ${spec.duration} second launch film. ` +
+    (voice?.style ?? ""),
+    "RULES: 1) Talk to the listener as one person pitching: what is broken, what this app does, how it works, " +
+    "what you get, what to do next. Present tense, plain words, no hype (game-changer, revolutionary, seamless, " +
+    "unleash, elevate, next-gen, cutting-edge, supercharge), no em dashes. 2) Never describe or narrate what is " +
+    "on screen (no \"as you can see\", no \"the screen shows\"); the pictures and the words on screen are your " +
+    "backdrop. Do not read the on-screen lines aloud word for word; say what a speaker would say at that " +
+    "moment. 3) Each segment must land inside its window: respect its word budget, count the words, shorter is " +
+    "better; a segment is one to three short spoken sentences. 4) Numbers: only those on screen or in " +
+    "APP_PROFILE or BRAND_DNA, said as a speaker says them (\"forty-eight\", not \"48\"). 5) Say the app name " +
+    "exactly as APP_NAME in the drop and in the close; never read the web address. 6) In the brand's voice when " +
+    "BRAND_DNA is present; otherwise confident and direct. 7) If CAMPAIGN_ANGLE is present, the problem and the " +
+    "close carry it. 8) Write for speech: contractions are fine; no lists, colons, brackets, quotation marks or " +
+    "abbreviations (say \"links\" or \"repos\" rather than U-R-Ls).",
+    `THE FILM (what is on screen in each beat, so your lines land on the right moment):\n${beats}`,
+    `SEGMENTS TO WRITE:\n${segs}`,
+    `APP_NAME: ${appName}`,
+    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+  ];
+  if (pyTruthy(dna)) {
+    parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
+  }
+  if (campaign) {
+    parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
+  }
+  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"segments\": {<each segment id " +
+             "above>: string}, \"tone\": string (three words on how it should be spoken)}");
+  return parts.join("\n\n");
+}
+
+/** A shorter take on the spoken lines that ran past their windows. */
+export function buildStudioVoiceRepairQuestion(offenders: { id: string; text: string; words: number; budget: number }[],
+                                               appName: string): string {
+  const list = offenders.map((o) => `- ${o.id} (${o.words} words now, at most ${o.budget}): "${o.text}"`).join("\n");
+  return [
+    `You wrote the voice-over of ${appName}'s launch film. These lines run past their windows when spoken. ` +
+    "Rewrite each inside its word budget with room to spare: keep the meaning and the pitch, drop words, never " +
+    "trail off, still one to three short spoken sentences. Count the words before you answer.",
+    `TOO LONG:\n${list}`,
+    "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"segments\": {<each id above>: string}}",
+  ].join("\n\n");
 }
 
 function isDict(v: unknown): v is Dict {

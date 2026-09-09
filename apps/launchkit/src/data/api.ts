@@ -22,10 +22,10 @@ import type { Dict, Profile, SignalData, TargetData } from '../domain/types';
 import { ask, askSignals } from './runner';
 import { rescoreSignals } from './rescore';
 import { forgeConcept, forgeRun } from './studio';
-import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion } from '../domain/questions';
+import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion, buildStudioVoiceQuestion, buildStudioVoiceRepairQuestion } from '../domain/questions';
 import { fillUrl } from '../lib/share';
 import {
-  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind,
+  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind, wordCount,
   type ConceptSpec,
 } from '../domain/studio';
 import {
@@ -385,7 +385,7 @@ export const api = {
    * reel (render it). Every step is a run; the forge steps need the local
    * service, the script step needs the pipeline.
    */
-  runStudio: async (id: string, step: string, opts: { scriptId?: string; concept?: string } = {}) => {
+  runStudio: async (id: string, step: string, opts: { scriptId?: string; concept?: string; plateId?: string } = {}) => {
     if (!isStudioStep(step)) throw new Error(unknownStageError(step));
     const p = await projectRow(id);
     const profile = await approvedProfile(id); // Gate 1 enforced
@@ -427,19 +427,32 @@ export const api = {
       const spec = await forgeConcept(concept);
       const plates = Array.isArray(spec.plates) ? spec.plates : [];
       if (plates.length === 0) throw new Error(`the ${concept} concept has no image plates`);
+      // a retake: one plate again from the brief already written, the others carried over
+      const retake = opts.plateId ? plates.filter((pl) => pl.id === opts.plateId) : plates;
+      if (opts.plateId && retake.length === 0) throw new Error(`no plate called ${opts.plateId}`);
+      const prevList = images && Array.isArray((images.data as Dict).images) ? ((images.data as Dict).images as Dict[]) : [];
       const jobId = await runJob(id, studioJobKind('images'),
         async () => {
-          const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, String(p.name ?? ''), dna, await campaignAngle()));
-          const briefs: Dict = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
-          const list = plates.map((pl) => {
+          let briefs: Dict = {};
+          let subject = '';
+          if (opts.plateId && prevList.length > 0) {
+            for (const im of prevList) if (typeof im.brief === 'string') briefs[String(im.id)] = im.brief;
+            subject = String((images!.data as Dict).subject ?? '');
+          } else {
+            const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, String(p.name ?? ''), dna, await campaignAngle()));
+            briefs = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
+            subject = typeof written.subject === 'string' ? written.subject.trim() : '';
+          }
+          const list = retake.map((pl) => {
             const prompt = typeof briefs[pl.id] === 'string' ? (briefs[pl.id] as string).trim() : '';
             if (!prompt) throw new Error(`the script pipe wrote no brief for the ${pl.id} plate`);
             return { id: pl.id, prompt, size: pl.size, grade: pl.grade };
           });
           const result = await forgeRun('images', { project_id: id, briefs: list });
+          const made = Array.isArray(result.images) ? (result.images as Dict[]) : [];
+          const ordered = plates.map((pl) => made.find((m) => m.id === pl.id) ?? prevList.find((c) => c.id === pl.id)).filter(Boolean);
           return {
-            ...result, concept,
-            subject: typeof written.subject === 'string' ? written.subject.trim() : '',
+            ...result, images: ordered, concept, subject, retook: opts.plateId ?? null,
             plates: plates.map((pl) => ({ id: pl.id, for: pl.for, when: pl.when, hint: pl.hint })),
           };
         },
@@ -516,6 +529,63 @@ export const api = {
       return { job_id: jobId };
     }
 
+    if (step === 'voice') {
+      const script = latestOf('script');
+      if (!script) throw new Error(NEEDS_SCRIPT_ERROR);
+      const sd = script.data as Dict;
+      const spec = await forgeConcept(String(sd.concept ?? concept));
+      const vspec = spec.voice;
+      if (!vspec || vspec.segments.length === 0) throw new Error(`the ${spec.concept} concept has no voice-over`);
+      const slots = (sd.slots && typeof sd.slots === 'object' ? sd.slots : {}) as Record<string, string>;
+      const appName = String(p.name ?? '');
+      const jobId = await runJob(id, studioJobKind('voice'),
+        async () => {
+          const written = await ask('lk_studio.pipe', buildStudioVoiceQuestion(spec, slots, profile, appName, dna, await campaignAngle()));
+          const texts: Dict = written.segments && typeof written.segments === 'object' ? (written.segments as Dict) : {};
+          const lines = vspec.segments.map((s) => ({
+            id: s.id, at: s.at, until: s.until, budget: s.words,
+            text: typeof texts[s.id] === 'string' ? (texts[s.id] as string).replace(/\s+/g, ' ').trim() : '',
+          }));
+          for (const l of lines) if (!l.text) throw new Error(`the script pipe wrote no voice line for "${l.id}"`);
+          const repaired: string[] = [];
+          const shorten = async (offenders: { id: string; text: string; words: number; budget: number }[]): Promise<boolean> => {
+            try {
+              const fix = await ask('lk_studio.pipe', buildStudioVoiceRepairQuestion(offenders, appName));
+              const fixed: Dict = fix.segments && typeof fix.segments === 'object' ? (fix.segments as Dict) : {};
+              let changed = false;
+              for (const o of offenders) {
+                const line = lines.find((x) => x.id === o.id);
+                const v = typeof fixed[o.id] === 'string' ? (fixed[o.id] as string).replace(/\s+/g, ' ').trim() : '';
+                if (line && v && wordCount(v) <= o.budget) { line.text = v; repaired.push(o.id); changed = true; }
+              }
+              return changed;
+            } catch { return false; }
+          };
+          // over the word budget on paper: one shorter take before anything is spoken
+          const over = lines.filter((l) => wordCount(l.text) > l.budget);
+          if (over.length > 0) await shorten(over.map((l) => ({ id: l.id, text: l.text, words: wordCount(l.text), budget: l.budget })));
+          const body = () => ({ project_id: id, concept: spec.concept, segments: lines.map((l) => ({ id: l.id, text: l.text, at: l.at, until: l.until })) });
+          let result = await forgeRun('voice', body());
+          // spoken too long even 15% faster: a shorter take sized from the measured overrun, then spoken again
+          const slow = (Array.isArray(result.segments) ? (result.segments as Dict[]) : []).filter((s) => s.fits === false);
+          if (slow.length > 0) {
+            const offenders = slow.flatMap((s) => {
+              const line = lines.find((x) => x.id === s.id);
+              if (!line) return [];
+              const budget = Math.max(3, Math.floor(line.budget * Number(s.window) / Math.max(Number(s.seconds), 0.1)) - 1);
+              return [{ id: line.id, text: line.text, words: wordCount(line.text), budget }];
+            });
+            if (offenders.length > 0 && await shorten(offenders)) result = await forgeRun('voice', body());
+          }
+          return {
+            ...result, concept: spec.concept, script_id: script.id, script_version: script.version, repaired,
+            tone: typeof written.tone === 'string' ? written.tone.trim() : '', style: vspec.style,
+          };
+        },
+        async (result) => save('voice', result, jobId));
+      return { job_id: jobId };
+    }
+
     // reel
     if (!probe) throw new Error(NEEDS_PROBE_ERROR);
     const script = opts.scriptId ? selectOne('studio', { id: opts.scriptId }) : latestOf('script');
@@ -523,13 +593,20 @@ export const api = {
     const sd = script.data as Dict;
     const pd = probe.data as Dict;
     const logo = (Array.isArray(pd.logos) ? (pd.logos as Dict[]) : []).find((l) => l.picked) ?? null;
+    const voiceRow = latestOf('voice');
+    const voiceSegments = voiceRow && Array.isArray((voiceRow.data as Dict).segments)
+      ? ((voiceRow.data as Dict).segments as Dict[]).map((s) => ({ id: s.id, file_path: s.file_path, at: s.at }))
+      : [];
     const jobId = await runJob(id, studioJobKind('reel'),
       () => forgeRun('reel', {
         project_id: id, concept: sd.concept ?? 'verdict', slots: sd.slots, palette: pd.palette, logo,
         screenshot_path: pd.screenshot_path ?? null,
         plates: { scene: plateFile('scene'), pile: plateFile('pile'), arrival: plateFile('arrival') },
+        voice: { segments: voiceSegments },
       }),
-      async (result) => save('reel', { ...result, script_id: script.id, script_version: script.version, images_id: images?.id ?? null }, jobId, 'draft'));
+      async (result) => save('reel', {
+        ...result, script_id: script.id, script_version: script.version, images_id: images?.id ?? null, voice_id: voiceRow?.id ?? null,
+      }, jobId, 'draft'));
     return { job_id: jobId };
   },
 

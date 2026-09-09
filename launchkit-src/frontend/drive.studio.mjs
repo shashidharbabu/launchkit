@@ -105,6 +105,22 @@ await waitIdle('kit-remake', 180000);
 const remade = await page.evaluate(() => [...document.querySelectorAll('#lk-root main figure img')].filter((i) => i.naturalWidth > 0).length);
 log('KIT_REMAKE', { cards: remade });
 
+// the voice-over (open-source speech on the forge): only when the service has an engine
+const tv = Date.now();
+if (await main(/Write the voice-over/).count()) {
+  await main(/Write the voice-over/).click();
+  await waitIdle('voice', 900000);
+  const voice = await page.evaluate(() => {
+    const a = document.querySelector('#lk-root main audio');
+    const lines = [...document.querySelectorAll('#lk-root main ol li')].map((li) => li.textContent.trim().replace(/\s+/g, ' ').slice(0, 140));
+    return { audio: a ? a.getAttribute('src') : null, lines };
+  });
+  t = await text();
+  log('VOICE', { secs: Math.round((Date.now() - tv) / 1000), audio: Boolean(voice.audio), lines: voice.lines.length, sample: voice.lines.slice(0, 2), over: (t.match(/still over its window/g) || []).length, error: (t.match(/voice-over failed[^.]*\./) || [''])[0] });
+} else {
+  log('VOICE', { skipped: true, reason: 'no Write the voice-over button (service without a speech engine?)' });
+}
+
 const t3 = Date.now();
 await main(/Render the reel/).click();
 await waitIdle('reel', 600000);

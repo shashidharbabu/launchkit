@@ -11,6 +11,7 @@ import { spawn } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { reelVars } from './palette.mjs';
+import { mixVoice } from './voice.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TEMPLATES = path.join(ROOT, 'templates');
@@ -176,7 +177,7 @@ export async function composeReel({ concept, slots, palette, logo, screenshot, p
   return { spec, values, clamped, vars, logoImg, shot, plates: plateSrc };
 }
 
-export async function renderReel({ concept, slots, palette, logo, screenshot, plates, jobDir, fileUrl, compositionId, resolution, onStep }) {
+export async function renderReel({ concept, slots, palette, logo, screenshot, plates, voice = [], jobDir, fileUrl, compositionId, resolution, onStep }) {
   onStep?.('preparing the composition');
   const { spec, values, clamped, vars, logoImg, shot, plates: plateSrc } = await composeReel({ concept, slots, palette, logo, screenshot, plates, jobDir, compositionId });
 
@@ -191,9 +192,14 @@ export async function renderReel({ concept, slots, palette, logo, screenshot, pl
   const rendered = await newestMp4(path.join(jobDir, 'renders'));
   if (!rendered) throw new Error('render produced no mp4');
 
-  onStep?.('mastering to -14 LUFS');
   const master = path.join(jobDir, 'reel.mp4');
-  await run('ffmpeg', ['-y', '-v', 'error', '-i', rendered, '-af', 'loudnorm=I=-14:TP=-1:LRA=11', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', master], { cwd: jobDir });
+  if (voice.length > 0) {
+    onStep?.('mixing the voice over the music and mastering to -14 LUFS');
+    await mixVoice({ base: rendered, segments: voice, out: master, duration: spec.duration, video: true });
+  } else {
+    onStep?.('mastering to -14 LUFS');
+    await run('ffmpeg', ['-y', '-v', 'error', '-i', rendered, '-af', 'loudnorm=I=-14:TP=-1:LRA=11', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', master], { cwd: jobDir });
+  }
 
   onStep?.('cutting the poster and filmstrip');
   const dur = spec.duration;
@@ -207,6 +213,6 @@ export async function renderReel({ concept, slots, palette, logo, screenshot, pl
     concept, concept_title: spec.title, composition_id: compositionId, resolution: resolution ?? '1080p',
     video_url: `${fileUrl}/reel.mp4`, poster_url: `${fileUrl}/poster.jpg`, strip_url: `${fileUrl}/strip.jpg`,
     duration: Math.round(Number(meta.format?.duration ?? dur) * 100) / 100, width: v?.width ?? 1080, height: v?.height ?? 1920, bytes: size,
-    slots: values, clamped, vars, logo_used: Boolean(logoImg), screenshot_used: Boolean(shot), plates_used: Object.keys(plateSrc),
+    slots: values, clamped, vars, logo_used: Boolean(logoImg), screenshot_used: Boolean(shot), plates_used: Object.keys(plateSrc), voice_used: voice.map((v) => v.id),
   };
 }

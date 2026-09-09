@@ -21,6 +21,7 @@ import { probeSite } from './lib/probe.mjs';
 import { renderCards } from './lib/cards.mjs';
 import { renderReel, listConcepts, loadConcept, HYPERFRAMES } from './lib/reel.mjs';
 import { generateImages, imagesEnabled, imageModel } from './lib/images.mjs';
+import { generateVoice, voiceEnabled, voiceEngine, voiceEngines } from './lib/voice.mjs';
 import * as jobs from './lib/jobs.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -75,6 +76,7 @@ async function health() {
     ok: Boolean(ffmpeg && chromium), version: VERSION, service: 'studio-forge', out: OUT,
     ffmpeg: ffmpeg ?? null, node, chromium, hyperframes: HYPERFRAMES, hyperframes_cached: existsSync(npxCache),
     images: { enabled: imagesEnabled(), model: imagesEnabled() ? imageModel() : null, key: 'OPENAI_API_KEY in services/studio-forge/.env' },
+    voice: { enabled: voiceEnabled(), engine: voiceEngine(), engines: voiceEngines(), setup: 'uv venv --python 3.12 .venv-tts && VIRTUAL_ENV=.venv-tts uv pip install chatterbox-tts (or npm install kokoro-js)' },
     concepts: await listConcepts(),
   };
 }
@@ -124,7 +126,7 @@ async function handle(req, res) {
     if (req.method === 'GET' && p.startsWith('/jobs/')) { const j = jobs.get(p.slice('/jobs/'.length)); return j ? send(res, 200, j) : send(res, 404, { error: 'job not found' }); }
     if (req.method === 'GET' && p.startsWith('/files/')) return serveFile(req, res, p.slice('/files/'.length));
 
-    if (req.method === 'POST' && (p === '/probe' || p === '/images' || p === '/kit' || p === '/reel')) {
+    if (req.method === 'POST' && (p === '/probe' || p === '/images' || p === '/voice' || p === '/kit' || p === '/reel')) {
       const body = await readJson(req);
       const project = String(body.project_id ?? 'default');
       if (!safeSeg(project)) throw new Error('project_id must be a short id');
@@ -154,6 +156,21 @@ async function handle(req, res) {
           briefs: briefs.map((b) => ({ id: String(b.id), prompt: String(b.prompt).slice(0, 1500), size: b.size, grade: b.grade })),
           outDir: jobDir, fileUrl, quality, onStep,
         }).then(async (r) => { await writeFile(path.join(jobDir, 'images.json'), JSON.stringify(r, null, 2)); return r; });
+      } else if (kind === 'voice') {
+        if (!voiceEnabled()) throw new Error('voice is off on this forge: install Chatterbox or kokoro-js (see services/studio-forge/README.md) and restart it');
+        const segs = Array.isArray(body.segments) ? body.segments : [];
+        if (segs.length === 0 || segs.length > 12) throw new Error('voice needs 1 to 12 segments');
+        for (const s of segs) {
+          if (!/^[a-z][a-z0-9_-]{0,30}$/.test(String(s?.id ?? '')) || !String(s?.text ?? '').trim() || !(Number(s?.at) >= 0) || !(Number(s?.until) > Number(s?.at))) {
+            throw new Error('every segment needs an id, text, at and until');
+          }
+        }
+        const { dir, spec } = await loadConcept(String(body.concept ?? 'verdict'));
+        const music = path.join(dir, 'assets', 'audio', 'music.mp3');
+        work = (onStep) => generateVoice({
+          segments: segs.map((s) => ({ id: String(s.id), text: String(s.text).replace(/\s+/g, ' ').trim().slice(0, 400), at: Number(s.at), until: Number(s.until) })),
+          outDir: jobDir, fileUrl, music: existsSync(music) ? music : null, duration: Number(spec.duration ?? 24), onStep,
+        }).then(async (r) => { await writeFile(path.join(jobDir, 'voice.json'), JSON.stringify(r, null, 2)); return r; });
       } else if (kind === 'kit') {
         if (!body.palette?.roles) throw new Error('kit needs palette.roles (run probe first)');
         const kit = {
@@ -178,8 +195,12 @@ async function handle(req, res) {
         const shotPath = ownFile(body.screenshot_path);
         const plates = {};
         for (const k of ['scene', 'pile', 'arrival']) { const f = ownFile(body.plates?.[k]); if (f) plates[k] = f; }
+        // the spoken lines made by /voice (files under our own out dir), placed at their times
+        const voice = (Array.isArray(body.voice?.segments) ? body.voice.segments : [])
+          .map((s) => ({ id: String(s?.id ?? ''), file_path: ownFile(s?.file_path), at: Number(s?.at) }))
+          .filter((s) => /^[a-z][a-z0-9_-]{0,30}$/.test(s.id) && s.file_path && s.at >= 0);
         work = (onStep) => renderReel({
-          concept, slots: body.slots ?? {}, palette: body.palette, logo: body.logo ?? null, screenshot: shotPath, plates, jobDir, fileUrl, compositionId,
+          concept, slots: body.slots ?? {}, palette: body.palette, logo: body.logo ?? null, screenshot: shotPath, plates, voice, jobDir, fileUrl, compositionId,
           resolution: body.resolution === 'portrait-4k' ? 'portrait-4k' : undefined, onStep,
         }).then(async (r) => { await writeFile(path.join(jobDir, 'reel.json'), JSON.stringify(r, null, 2)); return r; });
       }
@@ -199,5 +220,5 @@ server.listen(PORT, HOST, async () => {
   const h = await health();
   console.log(`studio-forge ${VERSION} listening on http://${HOST}:${PORT}  out=${OUT}`);
   console.log(`  ffmpeg: ${h.ffmpeg ?? 'MISSING'}  chromium: ${h.chromium ?? 'MISSING (npx playwright install chromium)'}  concepts: ${h.concepts.map((c) => c.id).join(', ')}`);
-  console.log(`  images: ${h.images.enabled ? h.images.model : 'off (' + h.images.key + ')'}`);
+  console.log(`  images: ${h.images.enabled ? h.images.model : 'off (' + h.images.key + ')'}  voice: ${h.voice.enabled ? h.voice.engine : 'off'}`);
 });

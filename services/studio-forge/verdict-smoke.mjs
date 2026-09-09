@@ -88,13 +88,31 @@ if (images) {
   console.log('KIT', Math.round((Date.now() - tk) / 1000) + 's', { cards: kit.cards.length, images: kit.images.map((i) => i.name), zip: kit.zip_url });
 }
 
+// the voice-over: hand-written pitch lines (the app writes these through the pipe)
+let voice = null;
+if (process.argv.includes('--no-voice')) {
+  const d = newest('voice-');
+  if (d && existsSync(path.join(d, 'voice.json'))) voice = JSON.parse(readFileSync(path.join(d, 'voice.json'), 'utf8'));
+} else if (process.argv.includes('--voice')) {
+  const tv = Date.now();
+  voice = await wait((await j('/voice', { project_id: project, concept: 'verdict', segments: [
+    { id: 'problem', at: 0.4, until: 6.3, text: 'Demo day. Thirty-eight submissions, four judges, thirty minutes. And someone reads every repo by hand.' },
+    { id: 'drop', at: 6.7, until: 8.4, text: 'Hack-Judge Aid checks every one.' },
+    { id: 'how', at: 8.7, until: 14.3, text: 'Paste the repos. Every one gets read and classified. Anything built before the event gets flagged.' },
+    { id: 'proof', at: 14.7, until: 18.4, text: 'One dossier per team, in fifteen minutes.' },
+    { id: 'close', at: 20.2, until: 23.6, text: 'Judge with proof. Try Hack-Judge Aid today.' },
+  ] })).job_id);
+  console.log('VOICE', Math.round((Date.now() - tv) / 1000) + 's', { engine: voice.engine, allFit: voice.all_fit, lines: voice.segments.map((s) => `${s.id} ${s.words}w ${s.seconds}s/${s.window}s x${s.tempo}${s.fits ? '' : ' OVER'}`), preview: voice.preview_url });
+}
+
 const t0 = Date.now();
 const reel = await wait((await j('/reel', {
   project_id: project, concept: 'verdict', palette: probe.palette, logo: probe.logos.find((l) => l.picked) ?? null,
   screenshot_path: probe.screenshot_path, slots,
   plates: { scene: plate('scene'), pile: plate('pile'), arrival: plate('arrival') },
+  voice: voice ? { segments: voice.segments.map((s) => ({ id: s.id, file_path: s.file_path, at: s.at })) } : undefined,
 })).job_id);
-console.log('REEL', Math.round((Date.now() - t0) / 1000) + 's', { duration: reel.duration, mb: (reel.bytes / 1048576).toFixed(1), clamped: reel.clamped, shot: reel.screenshot_used, logo: reel.logo_used, plates: reel.plates_used, video: reel.video_url });
+console.log('REEL', Math.round((Date.now() - t0) / 1000) + 's', { duration: reel.duration, mb: (reel.bytes / 1048576).toFixed(1), clamped: reel.clamped, shot: reel.screenshot_used, logo: reel.logo_used, plates: reel.plates_used, voice: reel.voice_used, video: reel.video_url });
 
 // frames just after every seam, plus mid-scene holds
 const seams = [0.4, 1.0, 1.9, 2.6, 3.1, 3.7, 4.3, 4.8, 5.2, 5.8, 6.25, 6.6, 7.2, 8.0, 8.8, 9.6, 10.3, 10.9, 11.6, 12.3, 12.9, 13.6, 14.2, 14.9, 15.8, 16.4, 16.9, 17.6, 18.3, 18.9, 19.6, 20.3, 21.0, 21.8, 22.4, 23.6];
