@@ -11,6 +11,12 @@ export const RUN_ETA_SECONDS: Record<string, number> = {
   listing: 35,
   targets: 110,
   signals: 400,
+  // Assets stage, measured on the studio forge 2026-09-08 (M-series laptop)
+  'studio:probe': 25,
+  'studio:images': 75,
+  'studio:kit': 20,
+  'studio:script': 45,
+  'studio:reel': 60,
 };
 
 export function etaSeconds(kind: string): number {

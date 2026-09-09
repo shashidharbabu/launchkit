@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Anton";
+        src: url("assets/fonts/Anton.ttf") format("truetype");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("assets/fonts/SpaceGrotesk.ttf") format("truetype-variations");
+        font-weight: 300 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inconsolata";
+        src: url("assets/fonts/Inconsolata.ttf") format("truetype");
+        font-display: block;
+      }
+
+      :root {
+        --canvas: {{CANVAS}};
+        --ink: {{INK}};
+        --accent: {{ACCENT}};
+        --dim: {{DIM}};
+        --panel: {{PANEL}};
+        --brand: {{BRAND}};
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--canvas);
+      }
+      body {
+        font-family: "Inconsolata", monospace;
+        color: var(--ink);
+      }
+
+      .anton {
+        font-family: "Anton", sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+      }
+      .sg {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .mono {
+        font-family: "Inconsolata", monospace;
+      }
+      .acc {
+        color: var(--accent);
+      }
+      .dimc {
+        color: var(--dim);
+      }
+
+      #film,
+      #cam {
+        position: absolute;
+        inset: 0;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background: var(--canvas);
+      }
+      #crt {
+        position: absolute;
+        inset: 0;
+        z-index: 90;
+        background: repeating-linear-gradient(
+          0deg,
+          {{INK_SCAN}} 0px,
+          {{INK_SCAN}} 2px,
+          transparent 2px,
+          transparent 6px
+        );
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+      }
+      .scene-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 140px 90px;
+        gap: 34px;
+        text-align: center;
+      }
+      .scene-content.left {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      #sc-s2,
+      #sc-s3,
+      #sc-drop,
+      #sc-s6,
+      #sc-s7,
+      #sc-s8,
+      #sc-s9,
+      #sc-s10,
+      #sc-s11,
+      #sc-s12,
+      #sc-s13,
+      #sc-s14 {
+        opacity: 0;
+      }
+
+      .label {
+        font-family: "Inconsolata", monospace;
+        font-size: 40px;
+        letter-spacing: 0.14em;
+        color: var(--dim);
+      }
+
+      .dline {
+        display: block;
+        white-space: nowrap;
+      }
+      .dcell {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+      }
+      .dfin {
+        opacity: 0;
+      }
+      .dacc,
+      .dg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        text-align: center;
+        opacity: 0;
+      }
+      .dacc {
+        color: var(--accent);
+      }
+      .dg {
+        color: var(--dim);
+      }
+
+      .frow {
+        position: relative;
+        white-space: nowrap;
+      }
+      .fv {
+        display: block;
+      }
+      .fv.alt {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+      }
+
+      #s1-head {
+        font-size: 34px;
+        letter-spacing: 0.2em;
+        color: var(--dim);
+      }
+      #s1-flick {
+        font-size: 86px;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      #s1-cursor {
+        display: inline-block;
+        width: 44px;
+        height: 64px;
+        margin-left: 16px;
+        background: var(--accent);
+        vertical-align: -4px;
+      }
+
+      #s2-label {
+        font-size: 62px;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+      }
+      #s2-field {
+        font-size: 46px;
+        line-height: 1.5;
+        letter-spacing: 0.12em;
+        color: var(--dim);
+      }
+      #s2-barrow {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        margin-top: 14px;
+      }
+      #s2-bar {
+        width: 640px;
+        height: 6px;
+        background: var(--panel);
+        position: relative;
+      }
+      #s2-barfill {
+        position: absolute;
+        inset: 0;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+      #s2-pct {
+        position: relative;
+        width: 90px;
+        font-size: 40px;
+        color: var(--ink);
+        text-align: left;
+      }
+      #s2-pct .fv {
+        display: block;
+      }
+
+      #s3-decode {
+        font-family: "Anton", sans-serif;
+        font-size: 168px;
+        line-height: 1.04;
+      }
+
+      #drop-decode {
+        font-family: "Anton", sans-serif;
+        font-size: 222px;
+        line-height: 1.04;
+      }
+      .noise {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 36px;
+        letter-spacing: 0.18em;
+        color: var(--dim);
+      }
+      #noise-1 { top: 250px; }
+      #noise-2 { top: 340px; }
+      #noise-3 { bottom: 340px; }
+      #noise-4 { bottom: 250px; }
+
+      #s6-reveal {
+        position: absolute;
+        inset: 0;
+        background: var(--canvas);
+      }
+      #s6-hours,
+      #s6-off {
+        font-size: 164px;
+        line-height: 1.05;
+      }
+      #s6-off {
+        color: var(--accent);
+      }
+      .scanline {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 6px;
+        background: var(--accent);
+        box-shadow: 0 0 26px {{ACCENT_GLOW}};
+        z-index: 5;
+      }
+
+      .s7-line {
+        font-family: "Anton", sans-serif;
+        font-size: 128px;
+        line-height: 1.02;
+      }
+      .s7-dot {
+        font-size: 44px;
+        color: var(--accent);
+        line-height: 0.9;
+      }
+      #s7-rulewrap {
+        position: relative;
+        display: inline-block;
+      }
+      #s7-rule {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -18px;
+        height: 8px;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+
+      #s8-top {
+        font-family: "Anton", sans-serif;
+        font-size: 150px;
+        line-height: 1;
+      }
+      #s8-decode {
+        font-family: "Anton", sans-serif;
+        font-size: 128px;
+        line-height: 1.05;
+      }
+
+      #s9-val {
+        font-family: "Anton", sans-serif;
+        font-size: 270px;
+        line-height: 1;
+      }
+
+      #s10-label {
+        font-size: 52px;
+        letter-spacing: 0.12em;
+        color: var(--ink);
+      }
+      #s10-val {
+        font-family: "Anton", sans-serif;
+        font-size: 250px;
+        line-height: 1;
+        color: var(--accent);
+      }
+
+      #s11-l1 {
+        font-family: "Anton", sans-serif;
+        font-size: 116px;
+        line-height: 1;
+      }
+      #s11-l2 {
+        font-family: "Anton", sans-serif;
+        font-size: 196px;
+        line-height: 1;
+      }
+      #s11-cash {
+        font-size: 58px;
+        letter-spacing: 0.08em;
+        color: var(--dim);
+      }
+
+      #s12-l1 {
+        font-family: "Anton", sans-serif;
+        font-size: 108px;
+        line-height: 1;
+      }
+      #rr-wrap {
+        position: relative;
+        display: inline-block;
+      }
+      #rr-glow {
+        position: absolute;
+        inset: 0;
+        color: var(--accent);
+        filter: blur(20px);
+        opacity: 0;
+      }
+      #rr-top {
+        position: relative;
+        color: var(--accent);
+      }
+      #s12-l2 {
+        font-family: "Anton", sans-serif;
+        font-size: 152px;
+        line-height: 1;
+      }
+
+      #s13-reveal {
+        position: absolute;
+        inset: 0;
+        background: var(--canvas);
+      }
+      #s13-payload {
+        font-size: 64px;
+        line-height: 1.65;
+        letter-spacing: 0.02em;
+      }
+      .tline {
+        display: block;
+        white-space: pre;
+      }
+      .tch {
+        position: relative;
+        display: inline-block;
+        white-space: pre;
+      }
+      .tch > .c {
+        opacity: 0;
+      }
+      .tblk {
+        position: absolute;
+        inset: 4px 0;
+        background: var(--accent);
+        opacity: 0;
+      }
+      #s13-cur {
+        display: inline-block;
+        width: 36px;
+        height: 52px;
+        margin-left: 10px;
+        background: var(--accent);
+        vertical-align: -2px;
+        opacity: 0;
+      }
+      #s13-tag {
+        font-size: 34px;
+        letter-spacing: 0.2em;
+        color: var(--dim);
+      }
+
+      #s14-top {
+        font-family: "Space Grotesk", sans-serif;
+        font-variation-settings: "wght" 500;
+        font-size: 48px;
+        letter-spacing: 0.08em;
+        color: var(--ink);
+      }
+      #s14-title {
+        font-family: "Anton", sans-serif;
+        font-size: 148px;
+        line-height: 1;
+      }
+      #s14-title .brand {
+        color: var(--brand);
+      }
+      #s14-divider {
+        width: 180px;
+        height: 3px;
+        background: var(--dim);
+        transform-origin: center;
+      }
+      #s14-venue {
+        font-family: "Space Grotesk", sans-serif;
+        font-variation-settings: "wght" 500;
+        font-size: 38px;
+        color: var(--ink);
+      }
+      #s14-date {
+        font-family: "Space Grotesk", sans-serif;
+        font-variation-settings: "wght" 600;
+        font-size: 54px;
+        color: var(--ink);
+      }
+      #s14-logo {
+        height: 120px;
+        width: auto;
+        max-width: 560px;
+        object-fit: contain;
+      }
+
+      /* fitted sizes, computed by the forge for this script */
+      {{FIT_CSS}}
+    </style>
+  </head>
+  <body>
+    <div id="stage" data-composition-id="{{COMPOSITION_ID}}" data-start="0" data-duration="24" data-fps="30" data-width="1080" data-height="1920" style="position: relative; width: 1080px; height: 1920px; overflow: hidden; background: {{CANVAS}}">
+      <div id="film" class="clip" data-start="0" data-duration="24" data-track-index="1" data-layout-allow-overflow="true">
+        <div id="cam">
+          <div id="bg"></div>
+
+          <div class="scene" id="sc-s1">
+            <div class="scene-content left" id="s1-inner">
+              <div id="s1-head">// {{S1_HEAD}}</div>
+              <div id="s1-glitch" data-layout-allow-overlap="true">
+                <div id="s1-flick">{{S1_LINE}}<span id="s1-cursor"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s2">
+            <div class="scene-content left" id="s2-inner">
+              <div id="s2-label">{{S2_LABEL}}</div>
+              <div id="s2-field" data-layout-allow-overlap="true">
+                <div class="frow" id="f-r1"></div>
+                <div class="frow" id="f-r2"></div>
+                <div class="frow" id="f-r3"></div>
+              </div>
+              <div id="s2-barrow" data-layout-allow-overlap="true">
+                <div id="s2-bar"><div id="s2-barfill"></div></div>
+                <div id="s2-pct" class="frow"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s3">
+            <div class="scene-content" id="s3-inner">
+              <div class="label" id="s3-label">{{S3_LABEL}}</div>
+              <div id="s3-decode" class="dline" data-text="{{S3_AUDIENCE}}" data-layout-allow-overlap="true"></div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-drop">
+            <div class="scene-content" id="drop-inner" data-layout-allow-overlap="true">
+              <div class="frow noise mono" id="noise-1"></div>
+              <div class="frow noise mono" id="noise-2"></div>
+              <div class="frow noise mono" id="noise-3"></div>
+              <div class="frow noise mono" id="noise-4"></div>
+              <div id="drop-glitch" data-layout-allow-overlap="true">
+                <div id="drop-decode">
+                  <div id="drop-pop">
+                    <div class="dline" id="drop-l1" data-text="{{DROP_L1}}"></div>
+                    <div class="dline" id="drop-l2" data-text="{{DROP_L2}}"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s6">
+            <div id="s6-reveal">
+              <div class="scene-content" id="s6-inner">
+                <div class="label" id="s6-label">&gt; {{S6_LABEL}}</div>
+                <div class="anton" id="s6-hours">{{S6_L1}}</div>
+                <div class="anton" id="s6-off">{{S6_L2}}</div>
+              </div>
+            </div>
+            <div class="scanline" id="scan1" data-layout-allow-overlap="true"></div>
+          </div>
+
+          <div class="scene" id="sc-s7">
+            <div class="scene-content" id="s7-inner">
+              <div id="s7-glitch" style="display: flex; flex-direction: column; align-items: center; gap: 26px" data-layout-allow-overlap="true">
+                <div class="label" id="s7-label">{{S7_LABEL}}</div>
+                <div class="s7-line" id="s7-w1">{{S7_W1}}</div>
+                <div class="s7-dot">■</div>
+                <div class="s7-line" id="s7-w2">{{S7_W2}}</div>
+                <div class="s7-dot">■</div>
+                <div id="s7-rulewrap" data-layout-allow-overlap="true">
+                  <span class="s7-line" id="s7-w3">{{S7_W3}}</span>
+                  <span id="s7-rule"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s8">
+            <div class="scene-content" id="s8-inner">
+              <div id="s8-top"><span class="acc">{{S8_NUM}}</span> {{S8_WORD}}</div>
+              <div id="s8-decode" class="dline" data-text="{{S8_DECODE}}" data-layout-allow-overlap="true"></div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s9">
+            <div class="scene-content" id="s9-inner">
+              <div class="label" id="s9-label">{{S9_LABEL}}</div>
+              <div id="s9-val">{{S9_VAL}}</div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s10">
+            <div class="scene-content" id="s10-inner">
+              <div id="s10-label">{{S10_LABEL}}</div>
+              <div id="s10-val">{{S10_VAL}}</div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s11">
+            <div class="scene-content" id="s11-inner">
+              <div class="label" id="s11-label">{{S11_LABEL}}</div>
+              <div id="s11-l1">{{S11_L1}}</div>
+              <div id="s11-l2">{{S11_L2}}</div>
+              <div id="s11-cash">{{S11_SUB}}</div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s12">
+            <div class="scene-content" id="s12-inner">
+              <div id="s12-glitch" style="display: flex; flex-direction: column; align-items: center; gap: 40px" data-layout-allow-overlap="true">
+                <div id="s12-l1">{{S12_L1}}</div>
+                <div id="s12-l2">
+                  <span id="rr-wrap" data-layout-allow-overlap="true"><span id="rr-glow">{{S12_L2}}</span><span id="rr-top">{{S12_L2}}</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="scene" id="sc-s13">
+            <div id="s13-reveal">
+              <div class="scene-content left" id="s13-inner">
+                <div id="s13-tag">// PAYLOAD</div>
+                <div id="s13-payload" data-layout-allow-overlap="true">
+                  <span class="tline" id="t-l1"></span>
+                  <span class="tline" id="t-l2"></span>
+                  <span class="tline" id="t-l3-wrap"><span id="t-l3"></span><span id="s13-cur"></span></span>
+                </div>
+              </div>
+            </div>
+            <div class="scanline" id="scan2" data-layout-allow-overlap="true"></div>
+          </div>
+
+          <div class="scene" id="sc-s14">
+            <div class="scene-content" id="s14-inner" style="gap: 44px">
+              {{LOGO_IMG}}
+              <div id="s14-top">{{LOCK_TOP}}</div>
+              <div id="s14-title"><span class="brand">{{LOCK_TITLE_A}}</span> {{LOCK_TITLE_B}}</div>
+              <div id="s14-divider"></div>
+              <div id="s14-venue">{{LOCK_LINE1}}</div>
+              <div id="s14-date">{{LOCK_LINE2}}</div>
+            </div>
+          </div>
+
+          <div id="crt" data-layout-allow-overlap="true"></div>
+        </div>
+      </div>
+
+      <audio id="music" class="clip" src="assets/audio/music.mp3" data-start="0" data-duration="24" data-track-index="10" data-volume="1"></audio>
+      <audio id="sfx-riser" class="clip" src="assets/audio/sfx_riser.mp3" data-start="6.1" data-duration="1" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="sfx-glitch" class="clip" src="assets/audio/sfx_glitch.mp3" data-start="11" data-duration="0.88" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="sfx-whoosh-1" class="clip" src="assets/audio/sfx_whoosh_impact.mp3" data-start="12.4" data-duration="1" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="sfx-whoosh-2" class="clip" src="assets/audio/sfx_whoosh_impact.mp3" data-start="16.8" data-duration="1" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="sfx-slam-1" class="clip" src="assets/audio/sfx_flip_slam.mp3" data-start="6.95" data-duration="1.5" data-track-index="12" data-volume="0.75"></audio>
+      <audio id="sfx-slam-2" class="clip" src="assets/audio/sfx_flip_slam.mp3" data-start="18.45" data-duration="1.5" data-track-index="12" data-volume="0.75"></audio>
+    </div>
+
+    <script>
+      var GLYPHS = "X7#K2%Z4@9$1W8&5Q3";
+      var RED = "#FF3B4E";
+      var BLU = "#2E6BFF";
+
+      function buildDecode(id, seed) {
+        var el = document.getElementById(id);
+        var text = el.getAttribute("data-text");
+        el.textContent = "";
+        var cells = [];
+        text.split("").forEach(function (c, i) {
+          // a space must keep its width inside an inline-block cell
+          var sp = c === " ";
+          var ch = sp ? " " : c;
+          var cell = document.createElement("span");
+          cell.className = "dcell";
+          var fi = document.createElement("span");
+          fi.className = "dfin";
+          fi.textContent = ch;
+          cell.appendChild(fi);
+          var fa = document.createElement("span");
+          fa.className = "dacc";
+          fa.textContent = ch;
+          cell.appendChild(fa);
+          var g1 = document.createElement("span");
+          g1.className = "dg";
+          g1.textContent = sp ? " " : GLYPHS[(i * 7 + seed) % GLYPHS.length];
+          cell.appendChild(g1);
+          var g2 = document.createElement("span");
+          g2.className = "dg";
+          g2.textContent = sp ? " " : GLYPHS[(i * 11 + seed + 5) % GLYPHS.length];
+          cell.appendChild(g2);
+          el.appendChild(cell);
+          cells.push({ fi: fi, fa: fa, g1: g1, g2: g2 });
+        });
+        return cells;
+      }
+      var buildCells = buildDecode("s3-decode", 2);
+      var dropCells = buildDecode("drop-l1", 4).concat(buildDecode("drop-l2", 9));
+      var unlockCells = buildDecode("s8-decode", 6);
+      var allDecode = buildCells.concat(dropCells, unlockCells);
+
+      function buildFlicker(id, variants) {
+        var el = document.getElementById(id);
+        var spans = variants.map(function (s, k) {
+          var v = document.createElement("span");
+          v.className = "fv" + (k > 0 ? " alt" : "");
+          v.textContent = s;
+          el.appendChild(v);
+          return v;
+        });
+        return { spans: spans, cur: 0 };
+      }
+      var fieldRows = [
+        buildFlicker("f-r1", ["K$7#F2%9X@4Q1Z8&3P0V", "9@X4#K1%$7Z2&Q8F3V0P", "Z1%8Q$4X7#@2K9F&5P3V"]),
+        buildFlicker("f-r2", ["%4Z8@1K$#9X2Q7&F30PV", "7#Q2$9Z%1@8XK4F&P05V", "$8X3#7@Q1%Z4K92&FV0P"]),
+        buildFlicker("f-r3", ["@2K9%$1X8#4ZQ7F&3VP0", "X%7$3@9K1#Z8Q2&4FPV0", "1$Z4X#%8@7K3Q9&F2V0P"]),
+      ];
+      var pctRow = buildFlicker("s2-pct", ["18%", "44%", "67%", "91%"]);
+      var noiseRows = [
+        buildFlicker("noise-1", ["4#Q9$1Z%7@2XK8F&3P0V5W", "%8X2#K7$4@1ZQ9F3&V0P6W", "Z$3@8X1#%9K4Q2&7FPV05W"]),
+        buildFlicker("noise-2", ["7@1K$5#X9%3ZQ2F8&4VP0W", "#4Z8%Q1$7@XK39F2&5P0VW", "9%X$2#7@4ZK1Q8&F35VP0W"]),
+        buildFlicker("noise-3", ["$6X3@9#K2%Z8Q1F7&4P0VW", "2#K7$4%X1@9ZQ3&F85VP0W", "X@5$1#Z9%7K3Q4&2F8PV0W"]),
+        buildFlicker("noise-4", ["1%Z4$8X#7@3KQ9&F25VP0W", "8@X1#%5$2ZK7Q4F9&3P0VW", "K#9$3%1X@8Z4Q7&F26VP0W"]),
+      ];
+
+      function buildTyped(id, text, accLen) {
+        var el = document.getElementById(id);
+        el.textContent = "";
+        var chars = [];
+        text.split("").forEach(function (c, i) {
+          var cell = document.createElement("span");
+          cell.className = "tch";
+          var ch = document.createElement("span");
+          ch.className = "c";
+          ch.textContent = c;
+          if (i < accLen) ch.style.color = "var(--accent)";
+          cell.appendChild(ch);
+          var blk = document.createElement("span");
+          blk.className = "tblk";
+          cell.appendChild(blk);
+          el.appendChild(cell);
+          chars.push({ c: ch, b: blk });
+        });
+        return chars;
+      }
+      var typedChars = buildTyped("t-l1", {{T1_JS}}, {{T1_ACC}})
+        .concat(buildTyped("t-l2", {{T2_JS}}, {{T2_ACC}}))
+        .concat(buildTyped("t-l3", {{T3_JS}}, {{T3_ACC}}));
+
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      gsap.set("#s1-head", { opacity: 0 });
+      gsap.set("#s1-glitch", { opacity: 0 });
+      gsap.set(["#scan1", "#scan2"], { autoAlpha: 0 });
+      gsap.set(["#s2-barfill", "#s7-rule", "#s14-divider"], { scaleX: 0 });
+      gsap.set("#s11-cash", { opacity: 0 });
+      gsap.set(["#s2-label", "#s3-label", "#s6-off", "#s9-label", "#s9-val", "#s10-label", "#s10-val", "#s11-label", "#s11-l1", "#s11-l2"], { opacity: 0 });
+      allDecode.forEach(function (cell) {
+        gsap.set(cell.g1, { opacity: 1 });
+      });
+
+      function downCut(cut, exitInner, exitScene, entryInner, entryScene, entryDur) {
+        tl.to(exitInner, { y: 230, filter: "blur(8px)", duration: 0.33, ease: "power4.in" }, cut - 0.33);
+        tl.to(exitScene, { opacity: 0, duration: 0.3, ease: "power2.in" }, cut - 0.3);
+        tl.set(exitScene, { opacity: 0 }, cut);
+        tl.fromTo(
+          entryInner,
+          { y: -230, filter: "blur(8px)" },
+          { y: 0, filter: "blur(0px)", duration: entryDur || 0.42, ease: "power4.out", immediateRender: false },
+          cut
+        );
+        tl.fromTo(entryScene, { opacity: 0.35 }, { opacity: 1, duration: 0.3, ease: "power2.out", immediateRender: false }, cut);
+      }
+
+      function decodeRun(cells, sT, rT, per, step) {
+        cells.forEach(function (cell, i) {
+          var end = rT + i * per;
+          var t = sT + ((i * 13) % 7) * 0.017;
+          var on = true;
+          while (t < end - 0.03) {
+            tl.set(cell.g1, { opacity: on ? 0 : 1 }, t);
+            tl.set(cell.g2, { opacity: on ? 1 : 0 }, t);
+            on = !on;
+            t += step;
+          }
+          tl.set([cell.g1, cell.g2], { opacity: 0 }, end);
+          tl.set(cell.fa, { opacity: 1 }, end);
+          tl.set(cell.fa, { opacity: 0 }, end + 0.09);
+          tl.set(cell.fi, { opacity: 1 }, end + 0.09);
+        });
+      }
+
+      function flickerRun(row, t0, t1, step) {
+        var t = t0;
+        while (t < t1) {
+          var next = (row.cur + 1) % row.spans.length;
+          tl.set(row.spans[row.cur], { opacity: 0 }, t);
+          tl.set(row.spans[next], { opacity: 1 }, t);
+          row.cur = next;
+          t += step;
+        }
+      }
+
+      function rgbBurst(sel, t) {
+        tl.set(sel, { textShadow: "-5px 0 " + RED + ", 5px 0 " + BLU, x: 5 }, t);
+        tl.set(sel, { x: -6 }, t + 0.033);
+        tl.set(sel, { textShadow: "-3px 0 " + RED + ", 3px 0 " + BLU, x: 3 }, t + 0.066);
+        tl.set(sel, { textShadow: "none", x: 0 }, t + 0.1);
+      }
+
+      function scanWipe(t0, lineSel, revealSel, sceneIn, sceneOut) {
+        tl.set(sceneIn, { opacity: 1 }, t0);
+        tl.fromTo(lineSel, { autoAlpha: 1, y: 0 }, { y: 1914, duration: 0.4, ease: "none", immediateRender: false }, t0);
+        tl.set(lineSel, { autoAlpha: 0 }, t0 + 0.4);
+        tl.fromTo(
+          revealSel,
+          { clipPath: "inset(0% 0% 100% 0%)" },
+          { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "none", immediateRender: false },
+          t0
+        );
+        tl.set(sceneOut, { opacity: 0 }, t0 + 0.4);
+      }
+
+      function arrive(sel, t, y, dur) {
+        tl.set(sel, { opacity: 1, y: -y }, t);
+        tl.to(sel, { y: 0, duration: dur, ease: "power4.out" }, t);
+      }
+
+      tl.fromTo("#s1-head", { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, 0.05);
+      tl.set("#s1-glitch", { opacity: 1 }, 0.12);
+      tl.set("#s1-glitch", { opacity: 0 }, 0.18);
+      tl.set("#s1-glitch", { opacity: 1 }, 0.24);
+      rgbBurst("#s1-glitch", 0.3);
+      tl.set("#s1-cursor", { opacity: 0 }, 0.85);
+      tl.set("#s1-cursor", { opacity: 1 }, 1.05);
+      tl.set("#s1-cursor", { opacity: 0 }, 1.25);
+      tl.set("#s1-cursor", { opacity: 1 }, 1.45);
+
+      downCut(1.8, "#s1-inner", "#sc-s1", "#s2-inner", "#sc-s2");
+
+      arrive("#s2-label", 1.88, 36, 0.13);
+      fieldRows.forEach(function (row, i) {
+        flickerRun(row, 1.95 + i * 0.05, 4.12, 0.16);
+      });
+      tl.to("#s2-barfill", { scaleX: 1, duration: 2.0, ease: "none" }, 1.9);
+      flickerRun(pctRow, 2.3, 3.7, 0.62);
+
+      downCut(4.2, "#s2-inner", "#sc-s2", "#s3-inner", "#sc-s3");
+
+      arrive("#s3-label", 4.28, 36, 0.13);
+      decodeRun(buildCells, 4.25, 4.95, 0.05, 0.11);
+
+      downCut(6.0, "#s3-inner", "#sc-s3", "#drop-inner", "#sc-drop");
+
+      noiseRows.forEach(function (row, i) {
+        flickerRun(row, 6.05 + i * 0.03, 6.99, 0.12);
+      });
+      decodeRun(dropCells, 6.05, 7.0, 0.022, 0.09);
+      tl.set(["#noise-1", "#noise-2", "#noise-3", "#noise-4"], { autoAlpha: 0 }, 7.0);
+      rgbBurst("#drop-glitch", 7.0);
+      tl.fromTo("#drop-pop", { scale: 1.07 }, { scale: 1, duration: 0.35, ease: "expo.out", immediateRender: false }, 7.0);
+      [[3, -2], [-4, 2], [3, 3], [-2, -3], [2, 2], [-1, -1], [0, 0]].forEach(function (v, i) {
+        tl.set("#cam", { x: v[0], y: v[1] }, 7.0 + i * 0.04);
+      });
+
+      scanWipe(8.85, "#scan1", "#s6-reveal", "#sc-s6", "#sc-drop");
+
+      arrive("#s6-off", 9.55, 56, 0.16);
+
+      downCut(10.6, "#s6-inner", "#sc-s6", "#s7-inner", "#sc-s7", 0.38);
+
+      tl.set("#s7-glitch", { textShadow: "-5px 0 " + RED + ", 5px 0 " + BLU, x: 4 }, 11.0);
+      tl.set("#s7-glitch", { x: -4 }, 11.033);
+      tl.set("#s7-glitch", { x: 0 }, 11.066);
+      tl.set("#s7-glitch", { textShadow: "none" }, 11.25);
+      tl.to("#s7-rule", { scaleX: 1, duration: 0.25, ease: "power3.out" }, 11.3);
+
+      tl.to("#s7-inner", { scale: 1.2, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 12.2);
+      tl.to("#sc-s7", { opacity: 0.15, duration: 0.2, ease: "none" }, 12.2);
+      tl.set("#sc-s7", { opacity: 0 }, 12.4);
+      tl.fromTo(
+        "#s8-inner",
+        { scale: 0.75, filter: "blur(10px)" },
+        { scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out", immediateRender: false },
+        12.4
+      );
+      tl.fromTo("#sc-s8", { opacity: 0.15 }, { opacity: 1, duration: 0.5, ease: "expo.out", immediateRender: false }, 12.4);
+
+      decodeRun(unlockCells, 12.55, 12.9, 0.045, 0.1);
+
+      downCut(14.0, "#s8-inner", "#sc-s8", "#s9-inner", "#sc-s9");
+
+      arrive("#s9-label", 14.12, 36, 0.12);
+      arrive("#s9-val", 14.24, 64, 0.17);
+
+      downCut(15.4, "#s9-inner", "#sc-s9", "#s10-inner", "#sc-s10");
+
+      arrive("#s10-label", 15.52, 36, 0.12);
+      arrive("#s10-val", 15.66, 72, 0.18);
+
+      downCut(16.8, "#s10-inner", "#sc-s10", "#s11-inner", "#sc-s11");
+
+      arrive("#s11-label", 16.92, 36, 0.12);
+      arrive("#s11-l1", 17.04, 48, 0.14);
+      arrive("#s11-l2", 17.16, 70, 0.18);
+      arrive("#s11-cash", 17.5, 30, 0.12);
+
+      tl.to("#s11-inner", { scale: 0.8, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 18.3);
+      tl.to("#sc-s11", { opacity: 0.15, duration: 0.2, ease: "none" }, 18.3);
+      tl.set("#sc-s11", { opacity: 0 }, 18.5);
+      tl.fromTo(
+        "#s12-inner",
+        { scale: 1.25, filter: "blur(10px)" },
+        { scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out", immediateRender: false },
+        18.5
+      );
+      tl.fromTo("#sc-s12", { opacity: 0.15 }, { opacity: 1, duration: 0.5, ease: "expo.out", immediateRender: false }, 18.5);
+
+      rgbBurst("#s12-glitch", 18.5);
+      [[3, -2], [-3, 2], [2, 1], [0, 0]].forEach(function (v, i) {
+        tl.set("#cam", { x: v[0], y: v[1] }, 18.5 + i * 0.04);
+      });
+      tl.to("#rr-glow", { opacity: 0.85, duration: 0.3, ease: "power2.out" }, 18.9);
+      tl.to("#rr-glow", { opacity: 0.4, duration: 0.5, ease: "power2.inOut" }, 19.3);
+
+      scanWipe(20.1, "#scan2", "#s13-reveal", "#sc-s13", "#sc-s12");
+
+      tl.set(typedChars[0].b, { opacity: 1 }, 20.2);
+      var TYPE_DT = 0.021;
+      typedChars.forEach(function (ch, i) {
+        var t = 20.55 + i * TYPE_DT;
+        tl.set(ch.b, { opacity: 0 }, t);
+        tl.set(ch.c, { opacity: 1 }, t);
+        if (i + 1 < typedChars.length) {
+          tl.set(typedChars[i + 1].b, { opacity: 1 }, t);
+        } else {
+          tl.set("#s13-cur", { opacity: 1 }, t);
+        }
+      });
+      tl.to("#s13-payload", { opacity: 0.42, duration: 0.5, ease: "power2.out" }, 21.5);
+      tl.set("#s13-cur", { opacity: 0 }, 21.75);
+      tl.set("#s13-cur", { opacity: 1 }, 21.95);
+
+      downCut(22.2, "#s13-inner", "#sc-s13", "#s14-inner", "#sc-s14");
+
+      tl.to("#s14-divider", { scaleX: 1, duration: 0.3, ease: "power3.out" }, 22.5);
+
+      window.__timelines["{{COMPOSITION_ID}}"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

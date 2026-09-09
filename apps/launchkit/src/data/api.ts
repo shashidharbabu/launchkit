@@ -21,6 +21,13 @@ import {
 import type { Dict, Profile, SignalData, TargetData } from '../domain/types';
 import { ask, askSignals } from './runner';
 import { rescoreSignals } from './rescore';
+import { forgeConcept, forgeRun } from './studio';
+import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion } from '../domain/questions';
+import { fillUrl } from '../lib/share';
+import {
+  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind,
+  type ConceptSpec,
+} from '../domain/studio';
 import {
   byNewest, byNumber, count, currentActor, flush, insert, remove,
   select, selectOne, uid, update, type Row,
@@ -360,6 +367,192 @@ export const api = {
         });
       });
     return { job_id: jobId };
+  },
+
+  // ---------------------------------------------------------------- Assets stage (studio)
+
+  studio: async (id: string) => {
+    const rows = byNewest(select('studio', { project_id: id }));
+    return rows.map((r) => ({
+      id: r.id, kind: r.kind, version: r.version, status: r.status,
+      data: r.data as Dict, created_at: (r.created_at as string | undefined) ?? null,
+    }));
+  },
+
+  /**
+   * One step of the Assets stage: probe (read the site on the studio forge),
+   * kit (render the cards), script (write the reel copy through lk_studio.pipe),
+   * reel (render it). Every step is a run; the forge steps need the local
+   * service, the script step needs the pipeline.
+   */
+  runStudio: async (id: string, step: string, opts: { scriptId?: string; concept?: string } = {}) => {
+    if (!isStudioStep(step)) throw new Error(unknownStageError(step));
+    const p = await projectRow(id);
+    const profile = await approvedProfile(id); // Gate 1 enforced
+    const latestOf = (kind: string) => byNewest(select('studio', { project_id: id, kind }))[0] ?? null;
+    const save = (kind: string, data: Dict, jobId: string, status = 'done') => {
+      const n = count('studio', { project_id: id, kind });
+      insert('studio', { id: uid(), project_id: id, kind, version: n + 1, status, data, job_id: jobId });
+    };
+
+    if (step === 'probe') {
+      const jobId = await runJob(id, studioJobKind('probe'),
+        () => forgeRun('probe', { project_id: id, site_url: String(p.site_url ?? '') }),
+        async (result) => save('probe', result, jobId));
+      return { job_id: jobId };
+    }
+
+    const probe = latestOf('probe');
+    const dna = await latestCommercial(id, 'brand_dna');
+    const concept = opts.concept ?? 'verdict';
+    // the chosen campaign angle, the same way Social Launch reads it
+    const campaignAngle = async (): Promise<string> => {
+      const angles = Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [];
+      if (angles.length === 0) return '';
+      const camps = await latestCommercial(id, 'brand_campaigns');
+      const list = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
+      const chosen = list.filter((c) => angles.includes(String(c.name)))
+        .map((c) => ({ name: c.name, big_idea: c.big_idea, hook: c.hook, objective: c.objective }));
+      return chosen.length > 0 ? JSON.stringify(chosen).slice(0, 2500) : angles.join('; ');
+    };
+    // the photographs made for this launch (kind images): a plate's file on the forge, by id
+    const images = latestOf('images');
+    const plateFile = (plateId: string): string | null => {
+      const list = images && Array.isArray((images.data as Dict).images) ? ((images.data as Dict).images as Dict[]) : [];
+      const hit = list.find((x) => x.id === plateId);
+      return hit && typeof hit.file_path === 'string' ? hit.file_path : null;
+    };
+
+    if (step === 'images') {
+      const spec = await forgeConcept(concept);
+      const plates = Array.isArray(spec.plates) ? spec.plates : [];
+      if (plates.length === 0) throw new Error(`the ${concept} concept has no image plates`);
+      const jobId = await runJob(id, studioJobKind('images'),
+        async () => {
+          const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, String(p.name ?? ''), dna, await campaignAngle()));
+          const briefs: Dict = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
+          const list = plates.map((pl) => {
+            const prompt = typeof briefs[pl.id] === 'string' ? (briefs[pl.id] as string).trim() : '';
+            if (!prompt) throw new Error(`the script pipe wrote no brief for the ${pl.id} plate`);
+            return { id: pl.id, prompt, size: pl.size, grade: pl.grade };
+          });
+          const result = await forgeRun('images', { project_id: id, briefs: list });
+          return {
+            ...result, concept,
+            subject: typeof written.subject === 'string' ? written.subject.trim() : '',
+            plates: plates.map((pl) => ({ id: pl.id, for: pl.for, when: pl.when, hint: pl.hint })),
+          };
+        },
+        async (result) => save('images', result, jobId));
+      return { job_id: jobId };
+    }
+
+    if (step === 'kit') {
+      if (!probe) throw new Error(NEEDS_PROBE_ERROR);
+      const pd = probe.data as Dict;
+      const listing = await latestCommercial(id, 'listing');
+      const script = latestOf('script');
+      const copy = kitCopy(profile, dna, listing, script ? (script.data as Dict) : null);
+      // each platform's own post headline (the drafts Social Launch shows), for the photo-backed images
+      const drafts = byNewest(select('assets', { project_id: id }), 'version');
+      const siteUrl = String(p.site_url ?? '');
+      const firstLine = (type: string, field: string): string => {
+        const row = drafts.find((r) => r.asset_type === type);
+        const text = row ? fillUrl((row.data as Dict)[field], siteUrl) : '';
+        return text.split(/\n/).map((l) => l.trim()).find(Boolean) ?? '';
+      };
+      const headlines = {
+        x: firstLine('x_post', 'post'), linkedin: firstLine('linkedin_post', 'post'), reddit: firstLine('reddit_post', 'title'),
+        producthunt: firstLine('producthunt', 'tagline'), newsletter: firstLine('newsletter_pitch', 'subject'),
+      };
+      const jobId = await runJob(id, studioJobKind('kit'),
+        () => forgeRun('kit', {
+          project_id: id, site_url: siteUrl, name: String(p.name ?? ''), ...copy,
+          palette: pd.palette, logos: pd.logos, fonts: pd.fonts,
+          images: { hero: plateFile('hero'), story: plateFile('arrival') }, headlines,
+        }),
+        async (result) => save('kit', { ...result, images_id: images?.id ?? null }, jobId));
+      return { job_id: jobId };
+    }
+
+    if (step === 'script') {
+      const siteCopy = probe ? String(((probe.data as Dict).copy as Dict | undefined)?.text ?? '') : '';
+      const campaignCtx = await campaignAngle();
+      const jobId = await runJob(id, studioJobKind('script'),
+        async () => {
+          const spec = await forgeConcept(concept);
+          const result = await ask('lk_studio.pipe',
+            buildStudioQuestion(spec, profile, String(p.name ?? ''), String(p.site_url ?? ''), dna, campaignCtx, siteCopy));
+          const raw: Dict = result.slots && typeof result.slots === 'object' ? { ...(result.slots as Dict) } : {};
+          let norm = normalizeSlots(spec, raw);
+          const repaired: string[] = [];
+          if (norm.clamped.length > 0) {
+            // a second small ask rewrites only the over-limit slots, so the film never shows a cut fragment
+            const offenders = norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? '') }));
+            try {
+              const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, String(p.name ?? '')));
+              const fixed: Dict = fix.slots && typeof fix.slots === 'object' ? (fix.slots as Dict) : {};
+              for (const o of offenders) {
+                const s = spec.slots.find((x) => x.id === o.id);
+                const v = typeof fixed[o.id] === 'string' ? (fixed[o.id] as string).trim() : '';
+                if (s && v && v.length <= s.max) { raw[o.id] = v; repaired.push(o.id); }
+              }
+              if (repaired.length > 0) norm = normalizeSlots(spec, raw);
+            } catch { /* keep the mechanical clamp */ }
+          }
+          return {
+            concept, ...norm, repaired,
+            tagline: typeof result.tagline === 'string' ? result.tagline.trim().slice(0, 80) : '',
+            one_liner: typeof result.one_liner === 'string' ? result.one_liner.trim().slice(0, 160) : '',
+            claims_used: Array.isArray(result.claims_used) ? result.claims_used : [],
+            notes: typeof result.notes === 'string' ? result.notes : '',
+            spec: {
+              title: spec.title, tagline: spec.tagline, duration: spec.duration, beats: spec.beats,
+              slots: spec.slots.map((s) => ({ id: s.id, max: s.max, hint: s.hint, example: s.example, optional: s.optional, default: s.default })),
+            },
+          };
+        },
+        async (result) => save('script', result, jobId, 'draft'));
+      return { job_id: jobId };
+    }
+
+    // reel
+    if (!probe) throw new Error(NEEDS_PROBE_ERROR);
+    const script = opts.scriptId ? selectOne('studio', { id: opts.scriptId }) : latestOf('script');
+    if (!script) throw new Error(NEEDS_SCRIPT_ERROR);
+    const sd = script.data as Dict;
+    const pd = probe.data as Dict;
+    const logo = (Array.isArray(pd.logos) ? (pd.logos as Dict[]) : []).find((l) => l.picked) ?? null;
+    const jobId = await runJob(id, studioJobKind('reel'),
+      () => forgeRun('reel', {
+        project_id: id, concept: sd.concept ?? 'verdict', slots: sd.slots, palette: pd.palette, logo,
+        screenshot_path: pd.screenshot_path ?? null,
+        plates: { scene: plateFile('scene'), pile: plateFile('pile'), arrival: plateFile('arrival') },
+      }),
+      async (result) => save('reel', { ...result, script_id: script.id, script_version: script.version, images_id: images?.id ?? null }, jobId, 'draft'));
+    return { job_id: jobId };
+  },
+
+  /** Edit a script's slots; the same clamp the renderer applies, so the editor tells the truth. */
+  editStudioScript: async (rowId: string, slots: Record<string, string>) => {
+    const row = selectOne('studio', { id: rowId });
+    if (!row || row.kind !== 'script') throw new Error('script not found');
+    const data = row.data as Dict;
+    const spec = { ...(data.spec as Dict), concept: data.concept } as unknown as ConceptSpec;
+    const norm = normalizeSlots(spec, slots);
+    update('studio', { id: rowId }, {
+      data: { ...data, slots: norm.slots, clamped: norm.clamped, edited: true },
+      status: 'edited', status_by: currentActor(),
+    });
+    flush();
+    return { id: rowId, status: 'edited', clamped: norm.clamped };
+  },
+
+  approveStudio: async (rowId: string) => {
+    const affected = update('studio', { id: rowId }, { status: 'approved', status_by: currentActor() });
+    if (!affected) throw new Error('reel not found');
+    flush();
+    return { id: rowId, status: 'approved' };
   },
 
   job: async (jobId: string) => {

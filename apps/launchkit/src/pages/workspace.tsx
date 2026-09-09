@@ -6,6 +6,7 @@ import { ProfileStage } from '../components/launchkit/stages/profile-stage';
 import { BrandStage } from '../components/launchkit/stages/brand-stage';
 import { CommercialStage } from '../components/launchkit/stages/commercial-stage';
 import { AssetsStage } from '../components/launchkit/stages/assets-stage';
+import { StudioStage } from '../components/launchkit/stages/studio-stage';
 import { TargetsStage } from '../components/launchkit/stages/targets-stage';
 import { SignalsStage } from '../components/launchkit/stages/signals-stage';
 import { PlanStage } from '../components/launchkit/stages/plan-stage';
@@ -22,7 +23,7 @@ function StagePanel({ id, stage }: { id: string; stage: string }) {
       <div>
         <p className="text-heading font-semibold">No such stage.</p>
         <p className="mt-1 text-body text-muted-foreground">
-          The launch runs through seven stages, starting with the profile.
+          The launch runs through eight stages, starting with the profile.
         </p>
         <a
           href={href({ view: 'workspace', projectId: id, stage: 'profile' })}
@@ -43,6 +44,7 @@ function StagePanel({ id, stage }: { id: string; stage: string }) {
     <BrandStage key="brand" />,
     <CommercialStage key="commercial" />,
     <AssetsStage key="assets" />,
+    <StudioStage key="studio" />,
     <TargetsStage key="targets" />,
     <SignalsStage key="signals" />,
     <PlanStage key="plan" />,

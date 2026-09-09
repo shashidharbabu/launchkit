@@ -1,5 +1,13 @@
 import { ASSET_LABELS } from './asset-types';
 
+const STUDIO_LABELS: Record<string, string> = {
+  probe: 'site read',
+  images: 'launch images',
+  kit: 'brand kit',
+  script: 'reel script',
+  reel: 'reel render',
+};
+
 /** Stage vocabulary, not pipeline kinds (voice.md: name what people control). */
 export function jobLabel(kind: string): string {
   if (kind === 'understand') return 'Profile: analysis';
@@ -12,6 +20,10 @@ export function jobLabel(kind: string): string {
   if (kind.startsWith('asset:')) {
     const t = kind.slice('asset:'.length);
     return `Social Launch, ${ASSET_LABELS[t] ?? t}`;
+  }
+  if (kind.startsWith('studio:')) {
+    const s = kind.slice('studio:'.length);
+    return `Assets: ${STUDIO_LABELS[s] ?? s}`;
   }
   return kind;
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   ArrowRight,
   BadgeDollarSign,
+  Clapperboard,
   Fingerprint,
   Globe,
   IdCard,
@@ -19,7 +20,7 @@ import { Badge } from '@launchkit/design-system/components/status-stamp';
 
 /**
  * How the product works, drawn as what it is: one continuous procedure. Three
- * typographic moves up top (give → drafted → signed), then the seven stages
+ * typographic moves up top (give → drafted → signed), then the eight stages
  * as a single flight sequence down a rail, no card grid. Gates read as
  * stamped moments on the line (01-direction.md: approval is a physical act).
  */
@@ -46,6 +47,11 @@ const STAGES = [
     Icon: PenLine,
     line: 'One post per platform, in that platform’s voice.',
     gate: 'Gate 2',
+  },
+  {
+    name: 'Assets',
+    Icon: Clapperboard,
+    line: 'Your brand kit, launch cards and a 24-second reel, in your site’s own colours.',
   },
   {
     name: 'Targets',
@@ -152,7 +158,7 @@ export function ProcedureFlow() {
         </div>
       </Reveal>
 
-      {/* the seven stages, one flight sequence down a rail, the ledger keeps
+      {/* the eight stages, one flight sequence down a rail, the ledger keeps
           the honest arithmetic beside it */}
       <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
         <div className="relative max-w-2xl">
@@ -226,7 +232,7 @@ export function ProcedureFlow() {
 
 const LEDGER: { n: string; label: string; accent?: boolean }[] = [
   { n: '2', label: 'links you paste in' },
-  { n: '7', label: 'stages drafted for you' },
+  { n: '8', label: 'stages drafted for you' },
   { n: '3', label: 'signatures: all yours', accent: true },
   { n: '0', label: 'posts sent without you' },
   { n: '1', label: 'signed launch plan out' },

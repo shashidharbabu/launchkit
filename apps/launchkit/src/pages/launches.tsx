@@ -101,7 +101,7 @@ export default function LaunchesPage() {
         <HonestEmpty
           align="center"
           fact="No launches yet."
-          reason="A launch runs your app through seven stages with your approval at every gate. Start with your app's name, live site, and repo."
+          reason="A launch runs your app through eight stages with your approval at every gate. Start with your app's name, live site, and repo."
           action={
             <a
               href={href({ view: 'new-launch' })}

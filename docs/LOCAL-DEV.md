@@ -89,3 +89,25 @@ A healthy pack is **141 files**. If it is 106, the design-system mirror
 - **A signed-in identity.** The preview authenticates with an API key. Anything that needs
   the signed-in user, including the cloud SQL store, cannot be exercised locally. That store
   is dead everywhere right now regardless (platform issue 2203).
+
+## The Assets stage needs one more process: the studio forge
+
+The Assets stage (after Social Launch) reads the live site, renders launch
+cards and renders the reel. Those need a browser and ffmpeg, which the
+pipeline runtime does not have, so they run in a small local service:
+
+```bash
+cd services/studio-forge && npm install      # once; reuses the drives' Playwright Chromium
+npm start                                    # http://127.0.0.1:3500, keep it running
+```
+
+The app finds it at `http://localhost:3500` by default (Settings shows a
+health check and lets you change the address). The reel script itself is
+written by `lk_studio.pipe` on the RocketRide server like every other stage;
+only the rendering is local. Outputs land in `services/studio-forge/out/`
+(gitignored) and are served back to the app at `/files/...`.
+
+Smoke test without the app: `node smoke.mjs https://your-site --reel` in the
+forge directory. Full flow through the UI: `node drive.studio.mjs` in
+`launchkit-src/frontend` with the preview on :3400 and the forge on :3500.
+Design and the asset brainstorm: `docs/ASSETS-STAGE.md`.

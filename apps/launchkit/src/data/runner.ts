@@ -27,6 +27,7 @@ import assetsPipe from '../../pipelines/lk_assets.pipe';
 import signalsPipe from '../../pipelines/lk_signals.pipe';
 import rescorePipe from '../../pipelines/lk_rescore.pipe';
 import navigatorPipe from '../../pipelines/lk_navigator.pipe';
+import studioPipe from '../../pipelines/lk_studio.pipe';
 
 /** Dashes the sanitiser replaced in a result object (the asset card shows the count). */
 const fixedCounts = new WeakMap<object, number>();
@@ -43,6 +44,7 @@ const PIPES: Record<string, unknown> = {
   'lk_signals.pipe': signalsPipe,
   'lk_rescore.pipe': rescorePipe,
   'lk_navigator.pipe': navigatorPipe,
+  'lk_studio.pipe': studioPipe,
   'lk_store.pipe': storePipe,
 };
 

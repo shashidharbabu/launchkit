@@ -88,11 +88,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* the seven-stage procedure, drawn as the flow it is (01-direction.md) */}
+      {/* the eight-stage procedure, drawn as the flow it is (01-direction.md) */}
       <section id="procedure" className="mx-auto w-full max-w-landing px-5 sm:px-8 py-14">
         <Reveal>
           <h2 className="text-display-lg text-balance">
-            Seven stages. Three gates. Your signature on every one.
+            Eight stages. Three gates. Your signature on every one.
           </h2>
           <p className="mt-3 max-w-xl text-read text-muted-foreground">
             Two links in. A signed launch plan out.

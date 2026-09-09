@@ -6,6 +6,16 @@ export type ProjectRow = {
   profile_status: string;
 };
 
+/** One row of the Assets stage: a site read, a brand kit, a reel script or a rendered reel. */
+export type StudioRow = {
+  id: string;
+  kind: 'probe' | 'kit' | 'script' | 'reel' | string;
+  version: number;
+  status: string; // done | draft | edited | approved
+  data: Record<string, unknown>;
+  created_at?: string | null;
+};
+
 export type ProjectDetail = {
   id: string;
   name: string;

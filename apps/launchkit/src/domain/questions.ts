@@ -12,8 +12,132 @@
 
 import { pyJsonDumps, pyStr, pyTruthy } from "./py";
 import type { BrandDna, Dict, Profile, TargetData } from "./types";
+import type { ConceptSpec, PlateSpec } from "./studio";
 
 export { pyJsonDumps } from "./py";
+
+/**
+ * The Assets stage's reel script (lk_studio.pipe, a toolless LLM pipe): the
+ * whole prompt travels in the question. The slot contract comes from the
+ * studio forge's concept spec so the prompt, the editor and the renderer
+ * agree on ids and limits. New in the short-video branch, not a rr.py port.
+ */
+export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName: string,
+                                    siteUrl: string, dna?: BrandDna | null, campaign = "",
+                                    siteCopy = ""): string {
+  const host = siteUrl.replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/^www\./, "").toUpperCase();
+  const beats = spec.beats.map((b) => `- ${b.t} s: ${b.what} Slots: ${b.slots.join(", ")}`).join("\n");
+  const slots = spec.slots.map((s) =>
+    `- ${s.id} (max ${s.max} chars${s.optional ? ", optional" : ""}): ${s.hint ?? ""}` +
+    (s.example ? ` Example: "${s.example}"` : "")).join("\n");
+  const hostSlots = spec.slots.filter((s) => /host|chip$/.test(s.id) && /host/i.test(s.hint ?? "")).map((s) => s.id);
+  const parts = [
+    `You write the on-screen copy for a ${spec.duration} second vertical launch film ("${spec.title}": ` +
+    `${spec.tagline}). Kinetic typography and drawn scenes, no voice-over, a few words per beat. The film ` +
+    "is fixed; you fill its text slots and nothing else. Read the whole film first so the beats tell ONE " +
+    "story: the problem a real person has, then this app arriving and proving itself.",
+    "RULES: 1) Every slot value is at most its max characters, count them, shorter is better; text renders in " +
+    "capitals. 2) Never invent a claim about the product: a product number may appear only if it is in " +
+    "APP_PROFILE, BRAND_DNA or SITE_COPY (use ONE or a plain word otherwise). Beats marked as scenario " +
+    "numbers may use a plausible scene (a count of items, minutes, people) that illustrates the problem; " +
+    "keep them modest and realistic. 3) Ground the how-it-works beats in what the product actually does: " +
+    "SITE_COPY holds the site's own labels, buttons and categories; reuse those words for fields, buttons " +
+    "and verdict chips instead of inventing features. 4) Write in the brand's voice: if BRAND_DNA is " +
+    "present follow its tone_words, vocabulary and dos_and_donts and reuse its key messages; otherwise " +
+    "plain, concrete, confident. 5) Use the app name exactly as APP_NAME. " +
+    (hostSlots.length ? `6) ${hostSlots.join(" and ")} are SITE_HOST exactly. ` : "6) Host slots are SITE_HOST exactly. ") +
+    "7) No hype words (game-changer, revolutionary, seamless, unleash, elevate, next-gen, cutting-edge, " +
+    "supercharge), no em dashes, no emoji; rhetorical questions only where a beat asks for questions. " +
+    "8) Punctuate as the hints say: labels end with a colon, statements end with a period. 9) If " +
+    "CAMPAIGN_ANGLE is present, the problem beats and the call to action carry that angle.",
+    `THE FILM (beats in order):\n${beats}`,
+    `SLOTS:\n${slots}`,
+    `APP_NAME: ${appName}`,
+    `SITE_HOST: ${host}`,
+    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+  ];
+  if (pyTruthy(dna)) {
+    parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
+  }
+  if (siteCopy) {
+    parts.push(`SITE_COPY (the live site's own words, element by element):\n${siteCopy}`);
+  }
+  if (campaign) {
+    parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
+  }
+  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<every slot id " +
+             "listed above>: string}, \"tagline\": string (at most 60 characters, sentence case, the brand's own " +
+             "tagline when BRAND_DNA has one, otherwise one in its voice; used on the launch cards), " +
+             "\"one_liner\": string (at most 120 characters, sentence case, what the app does and for whom, as " +
+             "the brand would say it, never hedged with words like appears or likely), \"claims_used\": " +
+             "[string] (each on-screen fact and where in APP_PROFILE or BRAND_DNA it comes from), \"notes\": " +
+             "string (one sentence on the angle you took)}");
+  return parts.join("\n\n");
+}
+
+/**
+ * A second, small ask when the script came back with slot values over their
+ * limits: rewrite only those, keeping the meaning and the voice, so the film
+ * never shows a mechanically cut fragment. New in the short-video branch.
+ */
+export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: string; value: string }[],
+                                          appName: string): string {
+  const byId = new Map(spec.slots.map((s) => [s.id, s]));
+  const list = offenders.map((o) => {
+    const s = byId.get(o.id);
+    return `- ${o.id} (max ${s?.max ?? 0} chars, currently ${o.value.length}): "${o.value}"` +
+      (s?.hint ? ` Slot: ${s.hint}` : "");
+  }).join("\n");
+  return [
+    `You wrote the on-screen copy for a ${spec.duration} second launch film for ${appName} ("${spec.title}"). ` +
+    "These slot values are over their character limits and would be cut mid-sentence on screen. Rewrite " +
+    "each one to fit inside its limit with room to spare (aim two characters under). Keep the meaning, the " +
+    "voice and the punctuation style; shorten by choosing tighter words, never by trailing off. Count the " +
+    "characters of every value before you answer.",
+    `OVER LIMIT:\n${list}`,
+    "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<each id above>: string}}",
+  ].join("\n\n");
+}
+
+/**
+ * Photo briefs for the film and the launch image: one paragraph per plate,
+ * written from the profile so the pictures show this app's people and place.
+ * The forge appends the house grade (film stock, palette, "no text"), so a
+ * brief describes only the scene. New in the short-video branch.
+ */
+export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile, appName: string,
+                                          dna?: BrandDna | null, campaign = ""): string {
+  const list = plates.map((p) =>
+    `- ${p.id} (${p.for === "cards" ? "the launch image on the cards" : `the film at ${p.when} s`}, ` +
+    `${p.size.startsWith("1536") ? "landscape" : "portrait"}, ${p.grade} grade): ${p.hint}.` +
+    (p.example ? ` Example for an unrelated product: "${p.example}"` : "")).join("\n");
+  const parts = [
+    `You brief a photographer for ${appName}'s launch film and launch cards. Write one photograph per plate ` +
+    "below: a real scene with real people in the place where this app's problem happens, as APP_PROFILE " +
+    "describes the users and their job. Be concrete: who is in frame (their role, not a name), what they are " +
+    "doing, what is around them (the volume of the work: stacks, screens, tables, badges, a clock), where the " +
+    "camera stands, the hour and the light.",
+    "RULES: 1) Describe a scene, never a poster: no text, no logos, no product interface, no brand names, no " +
+    "readable screens; the film sets its own type. 2) One paragraph per plate, 40 to 90 words, plain " +
+    "sentences. 3) The cold plates show the problem (the load, the fatigue, the hour); the warm plates show " +
+    "the same kind of person after the app, calm, with room to breathe; keep one setting so the four read as " +
+    "one story. 4) People are ordinary and varied; no stereotypes, no real or famous people, no children. " +
+    "5) Nothing unsafe, violent or sexual. 6) If CAMPAIGN_ANGLE is present, let it choose the moment. " +
+    "7) The examples describe an unrelated product; never borrow their subject.",
+    `PLATES:\n${list}`,
+    `APP_NAME: ${appName}`,
+    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+  ];
+  if (pyTruthy(dna)) {
+    parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
+  }
+  if (campaign) {
+    parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
+  }
+  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"briefs\": {<each plate id above>: " +
+             "string}, \"subject\": string (one sentence: who the person in the pictures is and where they are)}");
+  return parts.join("\n\n");
+}
 
 function isDict(v: unknown): v is Dict {
   return typeof v === "object" && v !== null && !Array.isArray(v);
