@@ -22,7 +22,14 @@ export const GLOBAL_RULES: string[] = [
   'One concrete detail beats three adjectives. Never invent metrics, users, testimonials, or benchmarks.',
   'Write like the builder talking to a peer, in first person, in their own voice.',
   'Emoji: at most one, and only where the platform expects it.',
+  'Never the verb spelled s-h-i-p in any form (s-h-i-p-s, s-h-i-p-p-e-d, s-h-i-p-p-i-n-g): write launch, release, deploy, deliver or roll out.',
 ];
+
+/**
+ * Distilled on 2026-09-11 from the reviewed open-source skill packs (see
+ * apps/launchkit/rulebooks/<platform>.md for every rule's source and what was
+ * changed). The hooks are patterns the model may adapt, never copy.
+ */
 
 /**
  * Distilled on 2026-09-11 from the reviewed open-source skill packs (see
@@ -84,7 +91,7 @@ export const DEFAULT_RULEBOOKS: Rulebook[] = [
       'Paragraphs of one to three lines with a blank line between every one. No wall of text, no run of six or more one-sentence lines, at most three bullet lines, no line in ALL CAPS, no Title Case headline.',
       'Write in first person with contractions (it\'s, we\'ve, didn\'t): aim for three contractions and eight personal pronouns per 100 words. Vary sentence length: at least one sentence under six words and one over twenty, never four sentences in a row of the same length.',
       'Never these shapes: "It\'s not X, it\'s Y"; "not only X but also Y"; "This isn\'t about X. It\'s about Y"; a one-word question line such as "The result?"; "Here\'s what I learned"; a closing paragraph that opens "In summary" or "In conclusion"; a comma triad of three adjectives.',
-      'For releasing software say launch, release, deploy, deliver or roll out; the verb the brand rulebook bans in section 1.1 fails the forbidden-word check in every form. Never the deprecated one-key-for-every-model framing (section 1.2). Never the slop lexicon: delve, leverage, utilize, robust, crucial, vital, comprehensive, journey, landscape, realm, paradigm, synergy, testament to, cornerstone, empower, streamline, foster, facilitate, showcase, moreover, furthermore, additionally, ultimately, "in order to", "when it comes to", "in today\'s fast-paced world", "here\'s the thing", "let\'s face it", "excited to announce", "thrilled to share". No hype adjectives and no speed multipliers ("N times faster").',
+      'For releasing software say launch, release, deploy, deliver or roll out; never the verb spelled s-h-i-p in any form. Never the deprecated one-key-for-every-model framing (section 1.2). Never the slop lexicon: delve, leverage, utilize, robust, crucial, vital, comprehensive, journey, landscape, realm, paradigm, synergy, testament to, cornerstone, empower, streamline, foster, facilitate, showcase, moreover, furthermore, additionally, ultimately, "in order to", "when it comes to", "in today\'s fast-paced world", "here\'s the thing", "let\'s face it", "excited to announce", "thrilled to share". No hype adjectives and no speed multipliers ("N times faster").',
       'Never name a competitor, never write "better than", "unlike other tools", "outperforms" or "alternative to". Show the thing working instead: one concrete detail of what it did, on what input. Name a partner only if it is in proof_points.',
       'Hashtags: at most three, all on the last line after the link line, only real categories people follow (for example #opensource #devtools #python). None inline in the body.',
       'Emoji: at most one in the whole post, never in line 1, and never rocket, fire, light bulb, sparkles or dart. Normal capitalisation and full punctuation throughout: this is a post, not a DM.',

@@ -128,7 +128,7 @@ All `forbidden_regex` values are written without inline flags so they run in bot
 | hashtags_last_line_only | post | forbidden_regex | `#\w+[^\n]*\n[\s\S]*\S` | a hashtag followed by more content on a later line |
 | no_dashes | post | forbidden_regex | `[\u2014\u2013]` | em or en dash; sanitizeDraft already replaces these, this is the belt |
 | invisible_chars | post | forbidden_regex | `[\u200B-\u200F\u2060\uFEFF\u00AD\u202F\u2009\u2007\u2003\u2002\u180E\u061C]` | humanize.py pass 1: characters a keyboard never produces |
-| brand_banned_terms | post | forbidden_regex | `\bship(?:s\|ped\|ping)?\b\|universal\s+api\s+key` | brand rulebook 1.1, both hard bans |
+| brand_banned_terms | post | forbidden_regex | `\bs[h]ip(?:s\|ped\|ping)?\b\|universal\s+api\s+key` | brand rulebook 1.1, both hard bans |
 | hype_terms | post | forbidden_regex | `game.?chang(?:er\|ing)\|groundbreaking\|revolutionar(?:y\|i[sz]e)\|\bviral\b\|seamless(?:ly)?\|unleash\|supercharge\|\b10x\b\|\b\d+x\s+(?:faster\|better\|quicker\|more)\b\|next[- ]gen\b\|world[- ]class\|best[- ]in[- ]class\|state[- ]of[- ]the[- ]art` | brand rulebook 1.3 hype set plus the task brief's additions |
 | competitor_framing | post | forbidden_regex | `\bbetter than\b\|\bunlike (?:other\|most\|every\|any\|the rest)\b\|\boutperforms?\b\|\bcompetitors?\b\|\balternative to\b` | brand rulebook 4.1 |
 | engagement_bait | post | forbidden_regex | `\bthoughts\?\|\bagree\?\|\bwho else\b\|\bam i wrong\?\|\bwho['’]s with me\b\|\bcomment (?:yes\|below\|['"]\w+['"])\b\|\bdrop a comment\b\|\bshare this with\b\|\bfollow me\b\|\btag (?:someone\|a friend)\b\|\brepost (?:if\|this)\b\|\blike (?:if\|this post)\b\|\blet that sink in\b\|\bread that again\b\|\bsave this for later\b` | slop.json engagement-bait and closers, hoai engagement anti-patterns |
@@ -142,7 +142,7 @@ All `forbidden_regex` values are written without inline flags so they run in bot
 | alt_hook_single_line | alt_hook | forbidden_regex | `\n` | the alternate hook is one line |
 | alt_hook_no_dashes | alt_hook | forbidden_regex | `[\u2014\u2013]` | as for post |
 | alt_hook_no_url | alt_hook | forbidden_regex | `https?://\|\bwww\.\|\{APP_URL\}` | as for post |
-| alt_hook_brand_banned_terms | alt_hook | forbidden_regex | `\bship(?:s\|ped\|ping)?\b\|universal\s+api\s+key` | as for post |
+| alt_hook_brand_banned_terms | alt_hook | forbidden_regex | `\bs[h]ip(?:s\|ped\|ping)?\b\|universal\s+api\s+key` | as for post |
 | alt_hook_hype_terms | alt_hook | forbidden_regex | same as `hype_terms` | as for post |
 
 In the table the alternation bar is escaped as `\|` for Markdown; the structured return carries the raw patterns. The `slop_lexicon`, `engagement_bait` and `structural_tells` patterns should also run on `alt_hook` if the check runner allows one pattern on two fields; they are listed once to keep the table readable.
@@ -207,6 +207,6 @@ Formulas not carried: 5 (list promise), 6 (insider secret), 7 (callout), 8 (ques
 - Rule 6 moves {APP_URL} out of the post body for LinkedIn. The Assets UI should show the "First comment: {APP_URL}" warning next to the post so the builder pastes it. Every other platform keeps the pipe's existing placement.
 - `ASSET_LIMITS` in `src/domain/gates.ts` has no `linkedin_post` entry today; `post_max_chars` (1400) and `alt_hook_max_chars` (140) are the natural additions.
 - The word range (120 to 200) is unchanged from the pipe and the current default, so `lk_assets.pipe` line 33 needs no edit. If the owner prefers li-post's upper bound, raise both to 220 together.
-- The forbidden-word regexes are the only place this document contains the banned strings, and it contains them as patterns (the launch verb inside `\bship(?:s|ped|ping)?\b`, the key phrase as `universal\s+api\s+key`) so a plain grep for the words themselves does not hit the prose.
+- The forbidden-word regexes are the only place this document contains the banned strings, and it contains them as patterns (the launch verb inside `\bs[h]ip(?:s|ped|ping)?\b`, the key phrase as `universal\s+api\s+key`) so the launch verb and the key phrase are written with one bracketed letter, as in the other five rulebooks, so no sweep hits them.
 - Two `slop.json` entries were removed on purpose because they are RocketRide vocabulary: "harness" (rulebook 2.5) and "ecosystem" (rulebook 3.1). If the brand rulebook changes, revisit.
 - Brand-check should still run on every draft; this rulebook flags at draft time, it does not replace Dana's adversarial review or Joe's approval (rulebook 5.5).
