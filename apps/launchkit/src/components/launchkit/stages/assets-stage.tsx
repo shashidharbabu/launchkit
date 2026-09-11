@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { toast } from 'sonner';
-import { AtSign, Briefcase, Clapperboard, ExternalLink, FileText, Mail, MessagesSquare, Newspaper, RefreshCw, Rocket, type LucideIcon } from 'lucide-react';
+import { AtSign, Briefcase, ExternalLink, FileText, Mail, MessagesSquare, Newspaper, RefreshCw, Rocket, type LucideIcon } from 'lucide-react';
 import { useProject } from '../project-provider';
-import { Card, CardFooter, HonestEmpty, LockedGate, Orient, RawData, Well } from '../stage-common';
+import { Card, CardBody, CardFooter, CardHeader, LockedGate, Orient, RawData, Well } from '../stage-common';
 import { Button } from '@launchkit/design-system/components/button';
 import { CopyButton } from '@launchkit/design-system/components/copy-button';
 import { StatusStamp, Badge } from '@launchkit/design-system/components/status-stamp';
 import { Banner } from '@launchkit/design-system/components/banner';
 import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
 import { Field, Textarea } from '@launchkit/design-system/components/field';
+import { cn } from '@launchkit/design-system/lib/cn';
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -17,8 +18,6 @@ import {
   MorphingDialogClose,
   MorphingDialogTitle,
 } from '@launchkit/design-system/motion/morphing-dialog';
-import { useReducedMotion } from 'motion/react';
-import { AnimatedGroup } from '@launchkit/design-system/motion/animated-group';
 import { api } from '../../../data/api';
 import { ASSET_LABELS, ASSET_TYPES } from '../../../lib/asset-types';
 import { fillDeep, pickUrl, shareLinks, type ShareLink } from '../../../lib/share';
@@ -30,7 +29,7 @@ import { useNav } from '../../../nav';
 
 const asStr = (v: unknown) => (v == null ? '' : String(v));
 
-/** Generic medium icons — the type name carries the meaning, never the icon alone. */
+/** Generic medium icons: the platform name carries the meaning, never the icon alone. */
 const ASSET_ICONS: Record<string, LucideIcon> = {
   x_post: AtSign,
   linkedin_post: Briefcase,
@@ -38,7 +37,6 @@ const ASSET_ICONS: Record<string, LucideIcon> = {
   producthunt: Rocket,
   show_hn: Newspaper,
   newsletter_pitch: Mail,
-  video_script: Clapperboard,
 };
 
 /** Fields that read as paste-ready text, in preference order per type. */
@@ -94,13 +92,23 @@ function AssetBody({ data, full }: { data: Record<string, unknown>; full?: boole
   );
 }
 
+/**
+ * The draft box beside a platform tile: the latest version of that platform's
+ * post, its warnings, provenance, the regenerate well and the actions row.
+ */
 function AssetCard({
   asset,
+  name,
   emberApprove,
+  drafting,
 }: {
   asset: AssetRow;
-  /** One ember verb per view: only the first pending card gets the fill. */
+  /** The rulebook's platform name, the same word the tile and its button use. */
+  name: string;
+  /** One ember verb per view: only the first pending draft gets the fill. */
   emberApprove: boolean;
+  /** A new version of this platform's post is being written right now. */
+  drafting: boolean;
 }) {
   const { project, runJob, refresh, setError, running } = useProject();
   const [feedback, setFeedback] = React.useState('');
@@ -110,7 +118,6 @@ function AssetCard({
   const approved = asset.status === 'approved';
   const warnings = Array.isArray(asset.data.warnings) ? asset.data.warnings.map(asStr) : [];
   const label = ASSET_LABELS[asset.asset_type] ?? asset.asset_type.toUpperCase();
-  const Icon = ASSET_ICONS[asset.asset_type] ?? FileText;
   // the draft carries {APP_URL}; the card shows, copies and shares the real address
   const appUrl = pickUrl(project as unknown as Record<string, unknown>);
   const data = fillDeep(asset.data as Record<string, unknown>, appUrl);
@@ -136,11 +143,13 @@ function AssetCard({
 
   return (
     <Card>
-      {/* header: platform icon + post type + stamp; header and body share padding, no rule */}
+      {/* header: which version this is and where it stands; the tile beside it names the platform */}
       <div className="flex flex-wrap items-center gap-2.5 px-6 pb-2 pt-5">
-        <Icon size={16} strokeWidth={1.75} aria-hidden className="shrink-0 text-muted-foreground" />
-        <span className="text-heading">{label}</span>
+        <span className="text-heading">Latest draft, v{asset.version}</span>
         <StatusStamp kind={approved ? 'go' : 'hold'} />
+        {drafting && (
+          <span role="status" className="text-shimmer text-small">{`Redrafting the ${name} post`}</span>
+        )}
       </div>
 
       <div className="px-6 pb-5">
@@ -180,37 +189,40 @@ function AssetCard({
         </div>
       </div>
 
-      {/* regenerate: always visible, its own section; the feedback is the point of the review */}
+      {/* redraft: always visible, its own section; the feedback is the point of the review */}
       <Well className="mx-6 mb-5 grid gap-3 py-4">
         <div className="flex items-center gap-2">
           <RefreshCw size={16} strokeWidth={1.75} aria-hidden className="text-muted-foreground" />
-          <span className="text-body font-medium">Regenerate with feedback</span>
+          <span className="text-body font-medium">Redraft with feedback</span>
         </div>
         <p className="text-body text-muted-foreground">
           Not right? Say what should change. The {label} rulebook and the no-dash rule still apply
           to the new draft.
         </p>
-          <Field label="What should change?" htmlFor={`fb-${asset.id}`}>
-            <Textarea
-              id={`fb-${asset.id}`}
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              placeholder="e.g. shorter, lead with the benchmark, drop the second paragraph"
-            />
-          </Field>
-            <div>
-              <Button
-                variant="secondary"
-                disabled={Boolean(running)}
-                onClick={() => {
-                  runJob(`asset:${asset.asset_type}`, () =>
-                    api.runAsset(project.id, asset.asset_type, undefined, feedback),
-                  ).then(() => setFeedback(''));
-                }}
-              >
-                Regenerate
-              </Button>
-            </div>
+        <Field label="What should change?" htmlFor={`fb-${asset.id}`}>
+          <Textarea
+            id={`fb-${asset.id}`}
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            placeholder="e.g. shorter, lead with the benchmark, drop the second paragraph"
+          />
+        </Field>
+        <div>
+          <Button
+            variant="secondary"
+            disabled={Boolean(running)}
+            loading={drafting}
+            loadingLabel="Redrafting"
+            aria-label={`Redraft the ${name} post`}
+            onClick={() => {
+              runJob(`asset:${asset.asset_type}`, () =>
+                api.runAsset(project.id, asset.asset_type, undefined, feedback),
+              ).then(() => setFeedback(''));
+            }}
+          >
+            Redraft
+          </Button>
+        </div>
       </Well>
       {/* actions row: below body and provenance, like the gate */}
       <CardFooter className="flex flex-wrap items-center gap-2">
@@ -219,6 +231,7 @@ function AssetCard({
             variant={emberApprove ? 'flare' : 'secondary'}
             loading={approving}
             loadingLabel="Approving"
+            aria-label={`Approve the ${name} draft`}
             onClick={async () => {
               setApproving(true);
               try {
@@ -252,10 +265,107 @@ function AssetCard({
   );
 }
 
+/** Where a platform stands: nothing yet, a draft waiting for review, or an approved post. */
+type DraftState = 'none' | 'drafted' | 'approved';
+
+/** Tile tint per state. The tint never stands alone: a Badge or a sentence says the same thing. */
+const TILE_TONE: Record<DraftState, string> = {
+  none: 'border-border bg-surface',
+  drafted: 'border-hold bg-hold-soft/30',
+  approved: 'border-go bg-go-soft/30',
+};
+
+/**
+ * The left tile of a platform row: name, what its rulebook optimises for,
+ * status in words, and the first Draft. Once a draft exists the verb moves to
+ * the card beside it: Redraft, with feedback.
+ */
+function PlatformTile({
+  type,
+  latest,
+  drafting,
+  busy,
+  onDraft,
+  className,
+}: {
+  type: string;
+  latest: AssetRow | undefined;
+  drafting: boolean;
+  /** Any job is running: one run at a time, so every Draft button waits. */
+  busy: boolean;
+  onDraft: () => void;
+  className?: string;
+}) {
+  const rb = rulesFor(type);
+  const Icon = ASSET_ICONS[type] ?? FileText;
+  const state: DraftState = !latest ? 'none' : latest.status === 'approved' ? 'approved' : 'drafted';
+  const line = !latest
+    ? `Nothing drafted for ${rb.name} yet.`
+    : latest.status === 'approved'
+      ? `Version ${latest.version} is approved and enters the plan.`
+      : `Version ${latest.version} needs your review.`;
+  return (
+    <div className={cn('flex flex-col gap-2 rounded-card border p-5', TILE_TONE[state], className)}>
+      <div className="flex items-center gap-2">
+        <Icon size={16} strokeWidth={1.75} aria-hidden className="shrink-0 text-muted-foreground" />
+        <span className="text-body font-medium text-foreground">{rb.name}</span>
+      </div>
+      <p className="text-body text-muted-foreground">{rb.summary}</p>
+      <div className="flex flex-wrap items-center gap-2">
+        {state === 'approved' && <Badge tone="go">Approved</Badge>}
+        {state === 'drafted' && <Badge tone="hold">Needs review</Badge>}
+        <span className="text-small text-muted-foreground">{line}</span>
+      </div>
+      {state === 'none' && (
+        <div className="mt-1">
+          <Button
+            variant="secondary"
+            size="sm"
+            disabled={busy}
+            loading={drafting}
+            loadingLabel="Drafting"
+            onClick={onDraft}
+          >
+            {`Draft for ${rb.name}`}
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** The right box before a platform has a draft: quiet, dashed, and it says how the draft gets here. */
+function DraftPlaceholder({ name, drafting }: { name: string; drafting: boolean }) {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="flex items-center rounded-card border border-dashed border-border-strong bg-surface/60 px-6 py-5"
+    >
+      {drafting ? (
+        <span className="text-shimmer text-small">{`Drafting the ${name} post`}</span>
+      ) : (
+        <p className="text-body text-muted-foreground">
+          No draft yet. Press Draft for {name} and it appears here.
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** The newest version per platform. Rows arrive newest first; the version number settles any tie. */
+function latestByType(assets: AssetRow[]): Map<string, AssetRow> {
+  const latest = new Map<string, AssetRow>();
+  for (const a of assets) {
+    const cur = latest.get(a.asset_type);
+    if (!cur || a.version > cur.version) latest.set(a.asset_type, a);
+  }
+  return latest;
+}
+
 export function AssetsStage() {
   const { project, gate1, assets, brandCampaigns, running, runJob } = useProject();
   const { go, href } = useNav();
-  const reduced = useReducedMotion();
   if (!project) return null;
   if (!gate1) return <LockedGate />;
 
@@ -265,26 +375,29 @@ export function AssetsStage() {
   const chosenCampaigns = campaigns.filter((c) => chosenAngles.includes(asStr(c.name)));
   const brandHref = href({ view: 'workspace', projectId: project.id, stage: 'brand' });
   const goBrand = (e: React.MouseEvent) => { e.preventDefault(); go({ view: 'workspace', projectId: project.id, stage: 'brand' }); };
-  const existing = new Set(assets.map((a) => a.asset_type));
-  const firstPendingId = assets.find((a) => a.status !== 'approved')?.id;
-  const approvedCount = assets.filter((a) => a.status === 'approved').length;
+  // one row per platform, in catalogue order; the box beside each tile shows that platform's newest draft
+  const latest = latestByType(assets);
+  const shown = ASSET_TYPES.flatMap((t) => {
+    const a = latest.get(t);
+    return a ? [a] : [];
+  });
+  const firstPendingId = shown.find((a) => a.status !== 'approved')?.id;
+  const approvedCount = shown.filter((a) => a.status === 'approved').length;
+  const pendingCount = shown.length - approvedCount;
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
-      {/* purpose before data — what happened, what to do */}
-      {assets.length > 0 && (
-        <Orient
-          runKind="asset:x_post"
-          lead={
-            <>
-              One post per platform, drafted in your brand voice.{' '}
-              <strong className="font-medium">Approve each one you&rsquo;d actually post</strong>,{' '}
-              or tell it what&rsquo;s wrong and regenerate.
-            </>
-          }
-          detail="Gate 2: only approved posts enter the launch plan."
-        />
-      )}
+      {/* purpose before data: what happens here, what to do */}
+      <Orient
+        runKind="asset:x_post"
+        lead={
+          <>
+            One step. <strong className="font-medium">Draft a post for each platform, then approve the ones you would actually publish</strong>,{' '}
+            or say what is wrong and redraft.
+          </>
+        }
+        detail="Each post is written in your brand voice to that platform's rulebook. Gate 2: only approved posts enter the launch plan."
+      />
 
       {chosenAngles.length > 0 ? (
         <Banner
@@ -313,87 +426,49 @@ export function AssetsStage() {
           Posts are written from the profile and the brand voice alone. An angle gives them one story to tell.
         </Banner>
       )}
-      {/* platform picker: each option shows what its rulebook optimises for */}
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-label="Platforms">
-        {ASSET_TYPES.map((t) => {
-          const rb = rulesFor(t);
-          const PIcon = ASSET_ICONS[t] ?? FileText;
-          const has = existing.has(t);
-          return (
-            <div key={t} role="listitem" className="flex flex-col gap-2 rounded-card border border-border bg-surface p-5">
-              <div className="flex items-center gap-2">
-                <PIcon size={16} strokeWidth={1.75} aria-hidden className="shrink-0 text-muted-foreground" />
-                <span className="text-body font-medium text-foreground">{rb.name}</span>
-                {has && <Badge tone="neutral">Drafted</Badge>}
-              </div>
-              <p className="flex-1 text-body text-muted-foreground">{rb.summary}</p>
-              <div>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  disabled={Boolean(running)}
-                  loading={runningAsset === t}
-                  loadingLabel="Drafting"
-                  onClick={() => runJob(`asset:${t}`, () => api.runAsset(project.id, t))}
-                >
-                  {has ? `Redraft for ${rb.name}` : `Draft for ${rb.name}`}
-                </Button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
 
-      {assets.length > 0 && (
-        <p className="text-small text-muted-foreground">
-          {approvedCount} approved, {assets.length - approvedCount} awaiting review
-        </p>
-      )}
-
-      {assets.length === 0 && !runningAsset && (
-        <HonestEmpty
-          fact="No posts drafted yet."
-          reason="Each post is drafted to its platform's rulebook from your approved profile. Every draft needs your approval before it enters the plan."
-          action={
-            <Button
-              variant="secondary"
-              disabled={Boolean(running)}
-              onClick={() => runJob('asset:show_hn', () => api.runAsset(project.id, 'show_hn'))}
-            >
-              Draft for {rulesFor('show_hn').name}
-            </Button>
+      {/* ---- the one step: the posts, one per platform ---- */}
+      <Card>
+        <CardHeader
+          title="Posts"
+          description="One per platform, written to that platform's rulebook from your angle and voice. Draft each platform, read the draft beside its tile, then approve the ones you would post."
+          actions={
+            shown.length > 0 ? (
+              <StatusStamp
+                kind={pendingCount === 0 ? 'go' : 'hold'}
+                label={pendingCount === 0 ? `${approvedCount} approved` : `${approvedCount} approved, ${pendingCount} need${pendingCount === 1 ? 's' : ''} review`}
+              />
+            ) : undefined
           }
         />
-      )}
-
-      {runningAsset && !existing.has(runningAsset) && (
-        <Card className="p-6">
-          <span className="text-shimmer text-small">{`Drafting ${ASSET_LABELS[runningAsset]?.toLowerCase() ?? runningAsset}`}</span>
-        </Card>
-      )}
-
-      {assets.length > 0 &&
-        (reduced ? (
-          <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
-            {assets.map((a) => (
-              <AssetCard key={a.id} asset={a} emberApprove={a.id === firstPendingId} />
-            ))}
-          </div>
-        ) : (
-          /* first-paint stagger, 40ms/item — keyed so refetches don't re-fire */
-          <AnimatedGroup
-            key={project.id}
-            preset="fade"
-            className="grid gap-4"
-            variants={{
-              container: { visible: { transition: { staggerChildren: 0.04 } } },
-            }}
-          >
-            {assets.map((a) => (
-              <AssetCard key={a.id} asset={a} emberApprove={a.id === firstPendingId} />
-            ))}
-          </AnimatedGroup>
-        ))}
+        <CardBody>
+          {/* platform rows: the tile on the left, its draft (or the place it will land) on the right */}
+          <ul className="grid gap-4" aria-label="Platforms">
+            {ASSET_TYPES.map((t) => {
+              const rb = rulesFor(t);
+              const a = latest.get(t);
+              const drafting = runningAsset === t;
+              return (
+                <li key={t} className="grid gap-3 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-4">
+                  <PlatformTile
+                    type={t}
+                    latest={a}
+                    drafting={drafting}
+                    busy={Boolean(running)}
+                    onDraft={() => runJob(`asset:${t}`, () => api.runAsset(project.id, t))}
+                    className="lg:self-start"
+                  />
+                  {a ? (
+                    <AssetCard asset={a} name={rb.name} emberApprove={a.id === firstPendingId} drafting={drafting} />
+                  ) : (
+                    <DraftPlaceholder name={rb.name} drafting={drafting} />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </CardBody>
+      </Card>
     </div>
   );
 }

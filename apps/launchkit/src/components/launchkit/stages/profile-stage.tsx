@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { Check, ChevronRight, Pencil, X } from 'lucide-react';
 import { useProject } from '../project-provider';
 import { useNav } from '../../../nav';
-import { Card, HonestEmpty } from '../stage-common';
+import { Card, CardBody, CardHeader, HonestEmpty, Orient } from '../stage-common';
 import { GateSlip } from '@launchkit/design-system/components/gate';
 import { Button } from '@launchkit/design-system/components/button';
 import { Field, Textarea, Label } from '@launchkit/design-system/components/field';
@@ -201,7 +201,7 @@ function Section({
 
 type SourceRow = { source?: string; via?: string; ok?: boolean; note?: string };
 
-/** The evidence trail — Gate 1 is a review step; show what was read. */
+/** The evidence trail: Gate 1 is a review step, so show what was read. */
 function SourcesList({ sources }: { sources: SourceRow[] }) {
   if (sources.length === 0) {
     return <p className="text-body text-muted-foreground">No sources were recorded.</p>;
@@ -276,44 +276,81 @@ export function ProfileStage() {
   const degraded = Boolean(draft?.analysis_degraded);
   const pct = Math.round(Number(confidence.overall ?? 0) * 100);
 
+  /* ---- the one step: the profile review, ending in the Approve gate ---- */
+  const approved = profile?.status === 'approved';
+  const sourcesRead = project.repo_url ? 'your repo and your site' : 'your site';
+  const stepDescription = `The four claims every later stage is written from, drafted from ${sourcesRead}. Check each one, fix anything wrong, then approve: approving locks the version.`;
+  const orient = (
+    <Orient
+      runKind="understand"
+      lead={
+        !profile ? (
+          <>
+            Launch Kit reads {sourcesRead} and writes down what it thinks your app is.{' '}
+            <strong className="font-medium">Check the four claims it finds</strong>, fix anything wrong, then approve.
+          </>
+        ) : approved ? (
+          <>
+            Launch Kit read {sourcesRead} and wrote down what your app is, and you approved it.{' '}
+            <strong className="font-medium">Every later stage is written from this version</strong>; re-open it only if something has changed.
+          </>
+        ) : (
+          <>
+            Launch Kit read {sourcesRead} and wrote down what it thinks your app is.{' '}
+            <strong className="font-medium">Check the four claims below</strong>, fix anything wrong, then approve.
+          </>
+        )
+      }
+      detail="Every later stage (pricing, listing, posts, venues, signals) is written from this. It is the only thing you have to get right."
+    />
+  );
+
   /* ---- no profile yet ---- */
   if (!profile) {
-    if (analysing) {
-      return (
-        <Card className="grid gap-4 p-6">
-          <div className="flex items-center gap-2">
-            <StatusStamp kind="running" />
-            <span className="text-shimmer text-small">Reading your repo and site to draft the profile</span>
-          </div>
-          <p className="text-body text-muted-foreground">
-            This takes one to three minutes. You can leave this page and come back; the run continues.
-          </p>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {[0, 1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-24" />
-            ))}
-          </div>
-        </Card>
-      );
-    }
     return (
-      <HonestEmpty
-        fact="No profile yet."
-        reason="Analysis starts the moment your launch is created. If it did not finish, run it again: Launch Kit reads your repo and live site to draft the profile you approve."
-        action={
-          <Button
-            variant="secondary"
-            onClick={() => runJob('understand', () => api.runUnderstand(project.id))}
-          >
-            Analyze my app
-          </Button>
-        }
-      />
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
+        {orient}
+        <Card>
+          <CardHeader
+            title="Profile"
+            description={stepDescription}
+            actions={analysing ? <StatusStamp kind="running" /> : undefined}
+          />
+          <CardBody>
+            {analysing ? (
+              <div className="grid gap-4">
+                <span className="text-shimmer text-small">Reading your repo and site to draft the profile</span>
+                <p className="text-body text-muted-foreground">
+                  This takes one to three minutes. You can leave this page and come back; the run continues.
+                </p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {[0, 1, 2, 3].map((i) => (
+                    <Skeleton key={i} className="h-24" />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <HonestEmpty
+                fact="No profile yet."
+                reason="Analysis starts the moment your launch is created. If it did not finish, run it again: Launch Kit reads your repo and live site to draft the profile you approve."
+                runKind="understand"
+                action={
+                  <Button
+                    variant="secondary"
+                    onClick={() => runJob('understand', () => api.runUnderstand(project.id))}
+                  >
+                    Analyze my app
+                  </Button>
+                }
+              />
+            )}
+          </CardBody>
+        </Card>
+      </div>
     );
   }
 
   /* ---- the gate slip ---- */
-  const approved = profile.status === 'approved';
 
   const regenerateButton = (
     <Button variant="secondary" onClick={() => setNotesOpen(!notesOpen)}>
@@ -350,24 +387,13 @@ export function ProfileStage() {
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
       {/* what this screen is for, before the screen itself */}
-      {!approved && (
-        <div className="grid max-w-reading gap-1.5">
-          <p className="text-lead">
-            Launch Kit read {project.repo_url ? 'your repo and your site' : 'your site'} and wrote
-            down what it thinks your app is. <strong className="font-medium">Check the four
-            things below</strong>, fix anything wrong, then approve.
-          </p>
-          <p className="text-body text-muted-foreground">
-            Every later stage (pricing, listing, posts, venues, signals) is written from this. It
-            is the only thing you have to get right.
-          </p>
-        </div>
-      )}
+      {orient}
 
+      {/* the gate slip is this stage's one step card: its title and description read as the step heading */}
       <GateSlip
         gate={1}
         title="Profile"
-        description="Approving locks the version every later stage is written from."
+        description={stepDescription}
         stamp="hold"
         signed={approved}
         signedLine={

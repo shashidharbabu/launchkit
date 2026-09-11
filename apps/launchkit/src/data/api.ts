@@ -6,7 +6,7 @@
  * same versioning and carryover semantics).
  */
 import {
-  buildAssetQuestion, buildBrandQuestion, buildCommercialQuestion,
+  buildAssetQuestion, buildBrandQuestion, buildCommercialQuestion, buildPricingOptionsQuestion,
   buildSignalsQuestion, buildTargetsQuestion, buildUnderstandQuestion,
 } from '../domain/questions';
 import { gateAsset, gateSignals, gateTargets } from '../domain/gates';
@@ -231,7 +231,69 @@ export const api = {
       if (!canRunBrandCampaigns(dna)) throw new Error(BRAND_CAMPAIGNS_PREREQ_ERROR);
     }
 
-    if (kind === 'pricing' || kind === 'listing') {
+    if (kind === 'pricing') {
+      // the research first (competitors, their pages, a recommendation), then a second ask turns it into
+      // a billing choice and three plan options; when that ask fails the page synthesises option 1 itself
+      const jobId = await runJob(id, kind,
+        async () => {
+          const result = await ask('lk_commercial.pipe', buildCommercialQuestion('pricing', profile, ''));
+          // a string with no digits (Custom, Contact us) is not a price: null, never 0
+          const num = (v: unknown): number | null => {
+            const s = typeof v === 'number' ? String(v) : String(v ?? '').replace(/[^0-9.]/g, '');
+            if (!s) return null;
+            const n = Number(s);
+            return Number.isFinite(n) ? n : null;
+          };
+          const strs = (v: unknown): string[] => (Array.isArray(v) ? v.map((x) => String(x ?? '').trim()).filter(Boolean) : []);
+          const dict = (v: unknown): Dict => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Dict) : {});
+          let models_considered: Dict[] = [];
+          let market_rate = '';
+          let options: Dict[] = [];
+          try {
+            const drafted = await ask('lk_studio.pipe', buildPricingOptionsQuestion(profile, result));
+            models_considered = (Array.isArray(drafted.models_considered) ? drafted.models_considered : [])
+              .map(dict)
+              .filter((m) => typeof m.model === 'string' && m.model.trim())
+              .map((m) => ({ model: String(m.model).trim(), fit: String(m.fit ?? '').trim().toLowerCase(), why: String(m.why ?? '').trim() }));
+            market_rate = typeof drafted.market_rate === 'string' ? drafted.market_rate.trim() : '';
+            options = (Array.isArray(drafted.options) ? drafted.options : [])
+              .map(dict)
+              .filter((o) => typeof o.name === 'string' && o.name.trim() && Array.isArray(o.tiers) && o.tiers.length > 0)
+              .slice(0, 3)
+              .map((o) => {
+                const rev = dict(o.revenue_at);
+                const revenue_at: Record<string, number> = {};
+                for (const k of ['10', '50', '200']) {
+                  const n = num(rev[k]);
+                  if (n != null) revenue_at[k] = n;
+                }
+                return {
+                  name: String(o.name).trim(),
+                  billing: String(o.billing ?? '').trim(),
+                  positioning: String(o.positioning ?? '').trim(),
+                  tiers: (o.tiers as unknown[]).map(dict).map((t, i) => ({
+                    name: String(t.name ?? '').trim() || `Tier ${i + 1}`,
+                    price_usd_month: num(t.price_usd_month),
+                    who_its_for: String(t.who_its_for ?? '').trim(),
+                    includes: strs(t.includes),
+                  })),
+                  market_rate_note: String(o.market_rate_note ?? '').trim(),
+                  revenue_at,
+                  when_to_pick: String(o.when_to_pick ?? '').trim(),
+                };
+              });
+          } catch {
+            // the research still stands; the page offers the recommendation as the one option
+            models_considered = [];
+            market_rate = '';
+            options = [];
+          }
+          return { ...result, models_considered, market_rate, options };
+        },
+        async (result) => saveCommercial(id, kind, result, jobId));
+      return { job_id: jobId };
+    }
+    if (kind === 'listing') {
       const jobId = await runJob(id, kind,
         () => ask('lk_commercial.pipe', buildCommercialQuestion(kind, profile, '')),
         async (result) => saveCommercial(id, kind, result, jobId));
@@ -439,13 +501,19 @@ export const api = {
         async () => {
           let briefs: Dict = {};
           let subject = '';
+          // the signature things of the app's world the pipe listed before writing the briefs
+          let domain: string[] = [];
+          const asDomain = (v: unknown): string[] =>
+            Array.isArray(v) ? v.map((x) => String(x).replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 16) : [];
           if (opts.plateId && prevList.length > 0) {
             for (const im of prevList) if (typeof im.brief === 'string') briefs[String(im.id)] = im.brief;
             subject = String((images!.data as Dict).subject ?? '');
+            domain = asDomain((images!.data as Dict).domain);
           } else {
             const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, String(p.name ?? ''), dna, await campaignAngle()));
             briefs = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
             subject = typeof written.subject === 'string' ? written.subject.trim() : '';
+            domain = asDomain(written.domain);
           }
           const list = retake.map((pl) => {
             const prompt = typeof briefs[pl.id] === 'string' ? (briefs[pl.id] as string).trim() : '';
@@ -456,7 +524,7 @@ export const api = {
           const made = Array.isArray(result.images) ? (result.images as Dict[]) : [];
           const ordered = plates.map((pl) => made.find((m) => m.id === pl.id) ?? prevList.find((c) => c.id === pl.id)).filter(Boolean);
           return {
-            ...result, images: ordered, concept, subject, retook: opts.plateId ?? null,
+            ...result, images: ordered, concept, subject, domain, retook: opts.plateId ?? null,
             plates: plates.map((pl) => ({ id: pl.id, for: pl.for, when: pl.when, hint: pl.hint })),
           };
         },
@@ -629,6 +697,56 @@ export const api = {
     return { id: rowId, status: 'edited', clamped: norm.clamped };
   },
 
+  /**
+   * Edit the voice-over's lines and speak them again on the forge. The windows
+   * stay the row's own; only the words change. The result is a new voice row
+   * (version + 1, status edited) so the reel's stale banner tells the truth and
+   * the earlier take stays in the history. Runs as a studio:voice job, so the
+   * stage shows the forge's step line while it speaks.
+   */
+  editStudioVoice: async (rowId: string, lines: Record<string, string>) => {
+    const row = selectOne('studio', { id: rowId });
+    if (!row || row.kind !== 'voice') throw new Error('voice-over not found');
+    const id = String(row.project_id);
+    const d = row.data as Dict;
+    const prev = Array.isArray(d.segments) ? (d.segments as Dict[]) : [];
+    if (prev.length === 0) throw new Error('this voice-over has no lines to edit');
+    const clean = (v: unknown) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, 400);
+    const segments = prev.map((s) => {
+      const sid = String(s.id ?? '');
+      const text = Object.prototype.hasOwnProperty.call(lines, sid) ? clean(lines[sid]) : clean(s.text);
+      if (!text) throw new Error(`the "${sid}" line is empty: write something or put the earlier words back`);
+      return { id: sid, text, at: Number(s.at), until: Number(s.until) };
+    });
+    const concept = String(d.concept ?? 'verdict');
+    const jobId = await runJob(id, studioJobKind('voice'),
+      async () => {
+        // the word budget per line, from the concept, so the editor can show it next time
+        const budgets = new Map<string, number>();
+        try {
+          const spec = await forgeConcept(concept);
+          for (const s of spec.voice?.segments ?? []) budgets.set(s.id, s.words);
+        } catch { /* the budget is a hint; the forge measures the truth */ }
+        const result = await forgeRun('voice', { project_id: id, concept, segments });
+        const spoken = (Array.isArray(result.segments) ? (result.segments as Dict[]) : []).map((s) => {
+          const was = prev.find((x) => x.id === s.id);
+          const budget = typeof was?.budget === 'number' ? was.budget : budgets.get(String(s.id));
+          return budget == null ? s : { ...s, budget };
+        });
+        return {
+          ...result, segments: spoken, concept,
+          script_id: d.script_id ?? null, script_version: d.script_version ?? null,
+          tone: typeof d.tone === 'string' ? d.tone : '', style: typeof d.style === 'string' ? d.style : '',
+          edited: true, edited_from: rowId, repaired: [],
+        };
+      },
+      async (result) => {
+        const n = count('studio', { project_id: id, kind: 'voice' });
+        insert('studio', { id: uid(), project_id: id, kind: 'voice', version: n + 1, status: 'edited', data: result, job_id: jobId });
+      });
+    return { job_id: jobId };
+  },
+
   approveStudio: async (rowId: string) => {
     const affected = update('studio', { id: rowId }, { status: 'approved', status_by: currentActor() });
     if (!affected) throw new Error('reel not found');
@@ -713,6 +831,8 @@ export const api = {
       if (tiers.length === 0) throw new Error('choose at least one tier');
       next = {
         model: String(choice.model ?? ''),
+        option: String(choice.option ?? ''),
+        billing: String(choice.billing ?? ''),
         tiers: tiers.map((t) => ({
           name: String(t.name ?? ''),
           price_usd_month: t.price_usd_month == null || t.price_usd_month === '' || Number.isNaN(Number(t.price_usd_month)) ? null : Number(t.price_usd_month),

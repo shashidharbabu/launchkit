@@ -152,9 +152,11 @@ async function handle(req, res) {
           if (!/^[a-z][a-z0-9_-]{0,30}$/.test(String(b?.id ?? '')) || !String(b?.prompt ?? '').trim()) throw new Error('every brief needs an id and a prompt');
         }
         const quality = ['low', 'medium', 'high'].includes(body.quality) ? body.quality : 'medium';
+        // takes per brief: the body may ask for 1 to 4, else STUDIO_IMAGE_TAKES decides
+        const takes = Number.isInteger(body.takes) && body.takes >= 1 && body.takes <= 4 ? body.takes : undefined;
         work = (onStep) => generateImages({
           briefs: briefs.map((b) => ({ id: String(b.id), prompt: String(b.prompt).slice(0, 1500), size: b.size, grade: b.grade })),
-          outDir: jobDir, fileUrl, quality, onStep,
+          outDir: jobDir, fileUrl, quality, takes, onStep,
         }).then(async (r) => { await writeFile(path.join(jobDir, 'images.json'), JSON.stringify(r, null, 2)); return r; });
       } else if (kind === 'voice') {
         if (!voiceEnabled()) throw new Error('voice is off on this forge: install Chatterbox or kokoro-js (see services/studio-forge/README.md) and restart it');

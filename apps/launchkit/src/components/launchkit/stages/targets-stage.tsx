@@ -11,10 +11,11 @@ import {
 } from '@tanstack/react-table';
 import { ChevronDown, ChevronRight, ChevronUp, ExternalLink } from 'lucide-react';
 import { useProject } from '../project-provider';
-import { HonestEmpty, LockedGate, Orient } from '../stage-common';
+import { Card, CardBody, CardHeader, HonestEmpty, LockedGate, Orient } from '../stage-common';
 import { Button } from '@launchkit/design-system/components/button';
 import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
-import { Table, TableFrame, Th, Tr, Td } from '@launchkit/design-system/components/table';
+import { StatusStamp } from '@launchkit/design-system/components/status-stamp';
+import { Table, Th, Tr, Td } from '@launchkit/design-system/components/table';
 import { api } from '../../../data/api';
 import { actionError } from '../../../lib/errors';
 import { cn } from '@launchkit/design-system/lib/cn';
@@ -126,218 +127,251 @@ export function TargetsStage() {
     );
   };
 
+  const ranked = targets.length > 0;
+  const ranking = running?.kind === 'targets';
+  const rank = () => runJob('targets', () => api.runStage(project.id, 'targets'));
+
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
-      {/* purpose before data — what happened, what to do */}
-      {targets.length > 0 && (
-        <Orient
-          runKind="targets"
-          lead={
+      {/* purpose before data: what happens here, what to do */}
+      <Orient
+        runKind="targets"
+        lead={
+          <>
+            Two steps, in order. <strong className="font-medium">First rank the venues</strong> where this app should launch.{' '}
+            <strong className="font-medium">Then tick the few you will actually do</strong>: five right venues beat fifty.
+          </>
+        }
+        detail="Gate 3: only the venues you select get tracked links in the launch plan. Each venue's rules are summarised, not verified; read them before you post."
+      />
+
+      {/* ---- Step 1: Rank ---- */}
+      <Card>
+        <CardHeader
+          title="Step 1 of 2: Rank venues"
+          description="Where this app should launch, ranked from your approved profile: niche subreddits, directories and communities, each with its rules, impact and effort. Rank once, and again after the profile changes."
+          actions={
             <>
-              Launch Kit ranked where this app should launch.{' '}
-              <strong className="font-medium">Tick the venues you&rsquo;ll actually do</strong>:{' '}
-              five right venues beat fifty.
+              {ranked && <StatusStamp kind="go" label="Ranked" />}
+              {ranked && (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  disabled={Boolean(running)}
+                  loading={ranking}
+                  loadingLabel="Ranking"
+                  onClick={rank}
+                >
+                  Rank again
+                </Button>
+              )}
             </>
           }
-          detail="Gate 3: only the venues you select get tracked links in the launch plan."
         />
-      )}
+        <CardBody>
+          {ranked ? (
+            <div className="grid gap-3">
+              <p className="text-body">
+                {targets.length} {targets.length === 1 ? 'venue' : 'venues'} ranked, {selectedCount} selected for the plan below.
+              </p>
+              <ProvenanceLine parts={['Ranked from the approved profile', 'Venue rules summarised; verify before posting']} />
+            </div>
+          ) : (
+            <HonestEmpty
+              fact="No venues ranked yet."
+              reason="Launch Kit ranks the venues where your app should launch, niche subreddits, directories, communities, with the rules of each, from your approved profile."
+              runKind="targets"
+              action={
+                <Button
+                  variant="secondary"
+                  disabled={Boolean(running)}
+                  loading={ranking}
+                  loadingLabel="Ranking venues"
+                  onClick={rank}
+                >
+                  Rank venues
+                </Button>
+              }
+            />
+          )}
+        </CardBody>
+      </Card>
 
-      {targets.length > 0 && (
-        <div className="flex flex-wrap items-center gap-3">
-          <Button
-            variant="secondary"
-            disabled={Boolean(running)}
-            loading={running?.kind === 'targets'}
-            loadingLabel="Ranking venues"
-            onClick={() => runJob('targets', () => api.runStage(project.id, 'targets'))}
-          >
-            Re-rank venues
-          </Button>
-          <span className="text-small text-muted-foreground">
-            {selectedCount} selected of {targets.length} ranked
-          </span>
-        </div>
-      )}
-
-      {targets.length === 0 && (
-        <HonestEmpty
-          fact="No venues ranked yet."
-          reason="Launch Kit ranks the venues where your app should launch, niche subreddits, directories, communities, with the rules of each, from your approved profile."
-          action={
-            <Button
-              variant="secondary"
-              disabled={Boolean(running)}
-              loading={running?.kind === 'targets'}
-              loadingLabel="Ranking venues"
-              onClick={() => runJob('targets', () => api.runStage(project.id, 'targets'))}
-            >
-              Find launch venues
-            </Button>
+      {/* ---- Step 2: Choose ---- */}
+      <Card>
+        <CardHeader
+          title="Step 2 of 2: Choose venues"
+          description="The ranked list, sortable, with why each venue fits and its rules under the arrow. Tick the venues you will actually post in; only those get a tracked link in the plan."
+          actions={
+            ranked ? (
+              <StatusStamp
+                kind={selectedCount > 0 ? 'go' : 'hold'}
+                label={selectedCount > 0 ? `${selectedCount} selected of ${targets.length}` : 'None selected'}
+              />
+            ) : undefined
           }
         />
-      )}
-
-      {targets.length > 0 && (
-        <TableFrame>
-          <Table>
-            <thead>
-              <tr>
-                <Th className="w-10">
-                  <span className="sr-only">Select</span>
-                </Th>
-                {sortHeader('rank', 'Rank', true)}
-                {sortHeader('name', 'Venue')}
-                {sortHeader('kind', 'Kind')}
-                {sortHeader('expected_impact', 'Impact')}
-                {sortHeader('effort', 'Effort')}
-                <Th>Link</Th>
-                <Th className="w-10">
-                  <span className="sr-only">Details</span>
-                </Th>
-              </tr>
-            </thead>
-            <tbody>
-              {paged.map((r) => {
-                const t = r.original;
-                const open = expanded.has(t.id);
-                const pct = IMPACT_PCT[t.expected_impact.toLowerCase()] ?? 33;
-                return (
-                  <React.Fragment key={t.id}>
-                    <Tr selected={t.selected}>
-                      <Td>
-                        <input
-                          type="checkbox"
-                          aria-label={`Select ${t.name} for the plan`}
-                          checked={t.selected}
-                          onChange={(e) => toggle(t.id, e.target.checked)}
-                          className="size-4 accent-flare"
-                        />
-                      </Td>
-                      <Td numeric>{t.rank}</Td>
-                      <Td className="font-medium">{t.name}</Td>
-                      <Td className="text-muted-foreground">{t.kind}</Td>
-                      <Td>
-                        <span className="flex items-center gap-2">
-                          <span className="h-1 w-16 overflow-hidden rounded-full bg-sunken" aria-hidden>
-                            <span
-                              className="block h-full rounded-full bg-chart-2"
-                              style={{ width: `${pct}%` }}
-                            />
+        {ranked ? (
+          <CardBody className="overflow-x-auto pt-0">
+            <Table>
+              <thead>
+                <tr>
+                  <Th className="w-10">
+                    <span className="sr-only">Select</span>
+                  </Th>
+                  {sortHeader('rank', 'Rank', true)}
+                  {sortHeader('name', 'Venue')}
+                  {sortHeader('kind', 'Kind')}
+                  {sortHeader('expected_impact', 'Impact')}
+                  {sortHeader('effort', 'Effort')}
+                  <Th>Link</Th>
+                  <Th className="w-10">
+                    <span className="sr-only">Details</span>
+                  </Th>
+                </tr>
+              </thead>
+              <tbody>
+                {paged.map((r) => {
+                  const t = r.original;
+                  const open = expanded.has(t.id);
+                  const pct = IMPACT_PCT[t.expected_impact.toLowerCase()] ?? 33;
+                  return (
+                    <React.Fragment key={t.id}>
+                      <Tr selected={t.selected}>
+                        <Td>
+                          <input
+                            type="checkbox"
+                            aria-label={`Select ${t.name} for the plan`}
+                            checked={t.selected}
+                            onChange={(e) => toggle(t.id, e.target.checked)}
+                            className="size-4 accent-flare"
+                          />
+                        </Td>
+                        <Td numeric>{t.rank}</Td>
+                        <Td className="font-medium">{t.name}</Td>
+                        <Td className="text-muted-foreground">{t.kind}</Td>
+                        <Td>
+                          <span className="flex items-center gap-2">
+                            <span className="h-1 w-16 overflow-hidden rounded-full bg-sunken" aria-hidden>
+                              <span
+                                className="block h-full rounded-full bg-chart-2"
+                                style={{ width: `${pct}%` }}
+                              />
+                            </span>
+                            <span className="text-small text-muted-foreground">{t.expected_impact}</span>
                           </span>
-                          <span className="text-small text-muted-foreground">{t.expected_impact}</span>
-                        </span>
-                      </Td>
-                      <Td className="text-muted-foreground">{t.effort}</Td>
-                      <Td>
-                        {t.url && (
-                          <a
-                            href={t.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`Open ${t.name}`}
-                            className="inline-flex items-center gap-1 font-mono text-data text-link hover:text-link-hover"
+                        </Td>
+                        <Td className="text-muted-foreground">{t.effort}</Td>
+                        <Td>
+                          {t.url && (
+                            <a
+                              href={t.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={`Open ${t.name}`}
+                              className="inline-flex items-center gap-1 font-mono text-data text-link hover:text-link-hover"
+                            >
+                              Open <ExternalLink size={12} strokeWidth={1.75} aria-hidden />
+                            </a>
+                          )}
+                        </Td>
+                        <Td>
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
+                            aria-label={open ? `Hide details for ${t.name}` : `Show details for ${t.name}`}
+                            aria-expanded={open}
+                            onClick={() =>
+                              setExpanded((s) => {
+                                const n = new Set(s);
+                                if (n.has(t.id)) n.delete(t.id);
+                                else n.add(t.id);
+                                return n;
+                              })
+                            }
+                            className="-my-1 text-muted-foreground"
                           >
-                            Open <ExternalLink size={12} strokeWidth={1.75} aria-hidden />
-                          </a>
-                        )}
-                      </Td>
-                      <Td>
-                        <Button
-                          variant="ghost"
-                          size="icon-sm"
-                          aria-label={open ? `Hide details for ${t.name}` : `Show details for ${t.name}`}
-                          aria-expanded={open}
-                          onClick={() =>
-                            setExpanded((s) => {
-                              const n = new Set(s);
-                              if (n.has(t.id)) n.delete(t.id);
-                              else n.add(t.id);
-                              return n;
-                            })
-                          }
-                          className="-my-1 text-muted-foreground"
-                        >
-                          {open ? <ChevronDown aria-hidden /> : <ChevronRight aria-hidden />}
-                        </Button>
-                      </Td>
-                    </Tr>
-                    {open && (
-                      <tr className={cn('border-b border-border bg-sunken/40', t.selected && 'bg-flare-soft/40')}>
-                        <td colSpan={8} className="px-5 pb-4 pt-2">
-                          <div className="grid gap-2 pl-7 lg:grid-cols-3">
-                            <div>
-                              <p className="text-label text-muted-foreground">Why it fits</p>
-                              <p className="mt-1 text-body">{t.why_fit}</p>
+                            {open ? <ChevronDown aria-hidden /> : <ChevronRight aria-hidden />}
+                          </Button>
+                        </Td>
+                      </Tr>
+                      {open && (
+                        <tr className={cn('border-b border-border bg-sunken/40', t.selected && 'bg-flare-soft/40')}>
+                          <td colSpan={8} className="px-5 pb-4 pt-2">
+                            <div className="grid gap-2 pl-7 lg:grid-cols-3">
+                              <div>
+                                <p className="text-label text-muted-foreground">Why it fits</p>
+                                <p className="mt-1 text-body">{t.why_fit}</p>
+                              </div>
+                              <div>
+                                <p className="text-label text-muted-foreground">Rules</p>
+                                <p className="mt-1 text-body">{t.rules_summary}</p>
+                                {(() => {
+                                  // machines get blocked from rules pages; humans don't.
+                                  // an unverified summary becomes a one-click manual check.
+                                  const unverified =
+                                    !t.rules_summary || /not verified/i.test(t.rules_summary);
+                                  const m = t.url.match(/reddit\.com\/(r\/[^/?#]+)/i);
+                                  const href =
+                                    t.rules_url ||
+                                    (m ? `https://www.reddit.com/${m[1]}/about/rules` : '');
+                                  if (!unverified || !href) return null;
+                                  return (
+                                    <a
+                                      href={href}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="mt-1 inline-flex items-center gap-1 text-body text-link hover:text-link-hover"
+                                    >
+                                      Read the rules yourself
+                                      <ExternalLink size={12} strokeWidth={1.5} aria-hidden />
+                                    </a>
+                                  );
+                                })()}
+                              </div>
+                              <div>
+                                <p className="text-label text-muted-foreground">Audience signal</p>
+                                <p className="mt-1 text-body">{t.audience_signal}</p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="text-label text-muted-foreground">Rules</p>
-                              <p className="mt-1 text-body">{t.rules_summary}</p>
-                              {(() => {
-                                // machines get blocked from rules pages; humans don't.
-                                // an unverified summary becomes a one-click manual check.
-                                const unverified =
-                                  !t.rules_summary || /not verified/i.test(t.rules_summary);
-                                const m = t.url.match(/reddit\.com\/(r\/[^/?#]+)/i);
-                                const href =
-                                  t.rules_url ||
-                                  (m ? `https://www.reddit.com/${m[1]}/about/rules` : '');
-                                if (!unverified || !href) return null;
-                                return (
-                                  <a
-                                    href={href}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="mt-1 inline-flex items-center gap-1 text-body text-link hover:text-link-hover"
-                                  >
-                                    Read the rules yourself
-                                    <ExternalLink size={12} strokeWidth={1.5} aria-hidden />
-                                  </a>
-                                );
-                              })()}
-                            </div>
-                            <div>
-                              <p className="text-label text-muted-foreground">Audience signal</p>
-                              <p className="mt-1 text-body">{t.audience_signal}</p>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </tbody>
-          </Table>
-          {rows.length > PAGE && (
-            <div className="flex items-center justify-between border-t border-border px-5 py-2.5">
-              <span className="text-small text-muted-foreground">
-                Venues {page * PAGE + 1} to {Math.min((page + 1) * PAGE, rows.length)} of {rows.length}
-              </span>
-              <span className="flex gap-2">
-                <Button variant="ghost" size="sm" disabled={page === 0} onClick={() => setPage(page - 1)}>
-                  Previous
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  disabled={(page + 1) * PAGE >= rows.length}
-                  onClick={() => setPage(page + 1)}
-                >
-                  Next
-                </Button>
-              </span>
-            </div>
-          )}
-        </TableFrame>
-      )}
-
-      {targets.length > 0 && (
-        <ProvenanceLine
-          className="mt-0"
-          parts={['Ranked from the approved profile', 'Venue rules summarised; verify before posting']}
-        />
-      )}
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </tbody>
+            </Table>
+            {rows.length > PAGE && (
+              <div className="flex items-center justify-between border-t border-border px-5 py-2.5">
+                <span className="text-small text-muted-foreground">
+                  Venues {page * PAGE + 1} to {Math.min((page + 1) * PAGE, rows.length)} of {rows.length}
+                </span>
+                <span className="flex gap-2">
+                  <Button variant="ghost" size="sm" disabled={page === 0} onClick={() => setPage(page - 1)}>
+                    Previous
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    disabled={(page + 1) * PAGE >= rows.length}
+                    onClick={() => setPage(page + 1)}
+                  >
+                    Next
+                  </Button>
+                </span>
+              </div>
+            )}
+          </CardBody>
+        ) : (
+          <CardBody>
+            <HonestEmpty
+              fact="Nothing to choose from yet."
+              reason="Rank the venues first, above. The ranked list lands here with a checkbox beside each venue."
+            />
+          </CardBody>
+        )}
+      </Card>
     </div>
   );
 }

@@ -91,3 +91,14 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 - [ ] Targets: no repository file appears as a venue; awesome-lists and directories never sit in the top 5; ranks are 1..N.
 - [ ] Signals: the scan report lists open-web and LinkedIn/dev.to queries first and says Reddit is not searchable; LinkedIn and dev.to posts by people living the problem appear as signals with a problem-first drafted reply (hack-judge: 2 signals, about 13 minutes).
 - [ ] Drive: `cd launchkit-src/frontend && node drive.flow.mjs` (real pipelines, about 12 minutes) → FLOW_DONE with TARGETS listingsInTop5 = 0 and repoFiles = 0.
+
+## G. Round two (2026-09-10): decisions, rows, steps, the document
+
+- [ ] Raw data: Settings has a Developer card with "Raw data hidden / shown"; hidden by default, so no stage card shows a "Raw data" block unless it is switched on.
+- [ ] Commercial, Step 1: a "Billing model" control (only models a drafted plan implements), three plan cards with "Recommended" pre-selected, an "Included" checkbox per tier (never a button whose caption flips), a price input, "Paying customers per month" driving the revenue line, "Use this pricing". After choosing: green banner "Chosen: <plan> on <billing>, with <tiers>." that survives a reload; the Plan's Decisions card and the markdown export show plan and billing. Drive: `node drive.pricing.mjs` (seeded) and `FULL=1 node drive.pricing.mjs` (real research, then three options).
+- [ ] Social Launch: one row per platform (six, no Short video), tile coloured and worded by state (no draft; "Needs review"; "Approved"), the draft in the box beside its tile, "Draft for X" only until a draft exists, then "Redraft with feedback" on the card. Drive: `node drive.social-rows.mjs` (one real draft) or `SHOTS=1`.
+- [ ] Assets, Launch reel: three numbered steps inside the card (Script, Voice-over, The reel); every voice line editable with its window and word budget; "Save and speak again" makes a new voice row; the reel is rendered last and shown large. Drive: `node drive.studio.mjs` logs VOICE_EDIT.
+- [ ] Assets, Launch images: "The world these pictures live in" pills; each plate says "Best of 2 takes" with the judge's reason and a link to the other take; the four plates are unmistakably the app's domain (hack-judge: a hackathon hall).
+- [ ] Plan: "Download the plan (PDF)". On Free it opens the subscription dialog; "Subscribe and download" (a placeholder until billing exists) then downloads launch-plan-<app>.pdf: branded cover, six numbered sections, page numbers. Settings has a Subscription card with the demo tier switch. Drive: `node drive.plan-pdf.mjs`.
+- [ ] Every stage: an Orient lead, then cards titled "Step N of M: Name" where the steps are sequential, each with a one-sentence description.
+- [ ] Studio service: a Chatterbox line that goes quiet for five minutes fails the job with a reason instead of hanging (STUDIO_TTS_STALL_SECONDS, STUDIO_TTS_MAX_SECONDS).

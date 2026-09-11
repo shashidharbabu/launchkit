@@ -169,6 +169,9 @@ export function planMarkdown(plan: Plan): string {
   if (plan.pricing) {
     const tiers = Array.isArray(plan.pricing.tiers) ? (plan.pricing.tiers as Dict[]) : [];
     lines.push("## Pricing");
+    const option = pyStr(pyGet(plan.pricing, "option", ""));
+    const billing = pyStr(pyGet(plan.pricing, "billing", ""));
+    if (option || billing) lines.push(`Plan: ${option || "recommended plan"}, billing: ${billing || "not stated"}`);
     const model = pyStr(pyGet(plan.pricing, "model", ""));
     if (model) lines.push(`Model: ${model}`);
     for (const t of tiers) {

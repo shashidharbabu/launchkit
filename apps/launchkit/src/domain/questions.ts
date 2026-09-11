@@ -102,7 +102,11 @@ export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: st
 /**
  * Photo briefs for the film and the launch image: one paragraph per plate,
  * written from the profile so the pictures show this app's people and place.
- * The forge appends the house grade (film stock, palette, "no text"), so a
+ * Two parts: the model first lists the signature things of the app's world
+ * (users by role, the place, the props, the moments) and then writes every
+ * brief around the product's real users doing the real job with at least
+ * three of those things named, so a stranger knows the domain in a second.
+ * The forge appends the house grade (film stock, palette, "wordless"), so a
  * brief describes only the scene. New in the short-video branch.
  */
 export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile, appName: string,
@@ -112,20 +116,40 @@ export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile,
     `${p.size.startsWith("1536") ? "landscape" : "portrait"}, ${p.grade} grade): ${p.hint}.` +
     (p.example ? ` Example for an unrelated product: "${p.example}"` : "")).join("\n");
   const parts = [
-    `You brief a photographer for ${appName}'s launch film and launch cards. Write one photograph per plate ` +
-    "below: a real scene with real people in the place where this app's problem happens, as APP_PROFILE " +
-    "describes the users and their job. Be concrete: who is in frame (their role, not a name), what they are " +
-    "doing, what is around them (the volume of the work: stacks, screens, tables, badges, a clock), where the " +
-    "camera stands, the hour and the light.",
-    "RULES: 1) Describe a scene, never a poster: no text, no logos, no product interface, no brand names, no " +
-    "readable screens; the film sets its own type. 2) One paragraph per plate, 40 to 90 words, plain " +
+    `You brief a photographer for ${appName}'s launch film and launch cards. The photographs must belong ` +
+    "to this app's world so plainly that a stranger names the domain in one second, before reading a word. " +
+    "Work in two parts.",
+    "PART ONE, THE WORLD: from APP_PROFILE (and BRAND_DNA when present) list 8 to 12 signature things of " +
+    "this app's world: its users by role, the place where they do the work, the objects and props on the " +
+    "tables and the walls, and the moments of the job. Each is a short noun phrase naming something visible " +
+    "and photographable. For example, for a hackathon judging tool the list would hold: long tables of teams " +
+    "behind laptops covered in stickers, lanyards and badges, a pitch stage with a projector, a scoreboard " +
+    "screen, project posters on easels, trophies, pizza boxes and energy drinks, a countdown clock, judges " +
+    "with clipboards walking the tables. Build the list for THIS app from its own profile, never from that " +
+    "example.",
+    "PART TWO, THE BRIEFS: write one photograph per plate below. Every brief shows the product's actual " +
+    "users, by role, doing the actual job at a named moment of the product's workflow (say the moment: the " +
+    "hour before the deadline, the first pass through the queue, the review after the run), and names at " +
+    "least three things from your world list, so the domain is unmistakable in one second. Be concrete: who " +
+    "is in frame (their role, not a name), what they are doing with their hands, what is around them, where " +
+    "the camera stands, the hour and the light. Generic offices, generic desks, generic meeting rooms and " +
+    "generic conference tables are forbidden: if a room is in frame it is the room these users work in, " +
+    "dressed with the props of their world. The warm plates keep the world in frame: tidied props are still " +
+    "this world's props, and the place stays visible behind the person (the stage, the screens, the banners, " +
+    "the crowd thinning out), so the after picture names the domain as fast as the before.",
+    "RULES: 1) Describe a scene, never a poster: no legible text, no logos, no product interface, no brand " +
+    "names; screens may glow with charts, code or lists, and banners, badges and lanyards may be in frame, " +
+    "all wordless, because the film sets its own type; so never ask for a reading: a clock, a scoreboard, a " +
+    "badge or a sheet is described by its shape, its glow and its state (nearly out, half full, dense with " +
+    "marks), never by the words or digits on it. 2) One paragraph per plate, 50 to 100 words, plain " +
     "sentences. 3) The cold plates show the problem (the load, the fatigue, the hour); the warm plates show " +
-    "the same kind of person after the app, calm, with room to breathe; keep one setting so the four read as " +
-    "one story, and make the person in the pile plate and the person in the arrival plate the SAME person " +
-    "(same gender, age, hair, clothes), described the same way in both briefs, so the film shows one " +
-    "person's day turn; the hero shows that person with one or two colleagues. 4) People are ordinary and varied; no stereotypes, no real or famous people, no children. " +
-    "5) Nothing unsafe, violent or sexual. 6) If CAMPAIGN_ANGLE is present, let it choose the moment. " +
-    "7) The examples describe an unrelated product; never borrow their subject.",
+    "the same person after the app, calm, with room to breathe; keep one setting so the four read as one " +
+    "story, and make the person in the pile plate and the person in the arrival plate the SAME person (same " +
+    "gender, age, hair, clothes), described the same way in both briefs, so the film shows one person's day " +
+    "turn; the hero shows that person with one or two colleagues in the same world. 4) People are ordinary " +
+    "and varied; no stereotypes, no real or famous people, no children. 5) Nothing unsafe, violent or " +
+    "sexual. 6) If CAMPAIGN_ANGLE is present, let it choose the moment. 7) The examples describe an " +
+    "unrelated product; never borrow their subject, their place or their props.",
     `PLATES:\n${list}`,
     `APP_NAME: ${appName}`,
     `APP_PROFILE: ${pyJsonDumps(profile)}`,
@@ -136,8 +160,10 @@ export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile,
   if (campaign) {
     parts.push(`CAMPAIGN_ANGLE: ${campaign}`);
   }
-  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"briefs\": {<each plate id above>: " +
-             "string}, \"subject\": string (one sentence: who the person in the pictures is and where they are)}");
+  parts.push("OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"domain\": [string] (the 8 to " +
+             "12 signature things from part one, each a short noun phrase), \"briefs\": {<each plate id above>: " +
+             "string}, \"subject\": string (one sentence: who the person in the pictures is, by role, and where " +
+             "they are)}");
   return parts.join("\n\n");
 }
 
@@ -364,4 +390,70 @@ export function buildRescoreQuestion(summary: Dict, platform: unknown, threadTex
     "\"why\": string (one sentence), \"reply\": string (\"\" when not relevant)}\n\n" +
     `APP: ${pyJsonDumps(summary)}\n\nTHREAD CONTENT: ${threadText}`
   );
+}
+
+/**
+ * The pricing choice (lk_studio.pipe, a toolless LLM pipe): after the
+ * commercial pipe has done the research, this ask turns it into a billing
+ * decision and three plan options the builder can pick between, with the
+ * market rate and the monthly revenue at a few sizes. Numbers may only come
+ * from the research; none may be invented. New in the short-video-audio
+ * branch, not a rr.py port.
+ */
+export function buildPricingOptionsQuestion(profile: Profile, pricingResult: Dict): string {
+  // the research without its query log: the competitors and their tiers, the rejected names, the recommendation
+  const compact: Dict = {
+    competitors: pricingResult.competitors ?? [],
+    rejected: pricingResult.rejected ?? [],
+    recommendation: pricingResult.recommendation ?? {},
+    confidence: pricingResult.confidence ?? {},
+  };
+  const parts = [
+    "You are Launch Kit's pricing adviser. PRICING_RESEARCH below is what a research pass found for the " +
+    "app in APP_PROFILE: the competitors that actually recur in comparisons, the tiers read from their " +
+    "pricing pages (empty when a page could not be read), the names rejected, and a recommendation with " +
+    "tiers in monthly USD. Turn that into a decision the builder can make: which billing model fits, what " +
+    "the market charges, and three plan options to choose between.",
+    "PART ONE, BILLING MODELS: weigh exactly these five models for this app: 'monthly subscription', " +
+    "'annual subscription', 'one-time purchase', 'usage-based', 'free plus paid tiers'. For each say " +
+    "whether the fit is good, possible or poor, and why in one plain sentence grounded in the profile " +
+    "(who buys, how often they use it, what the competitors do). List all five; use the model names " +
+    "exactly as written here.",
+    "PART TWO, MARKET RATE: two to four plain sentences on what the established competitors charge, " +
+    "naming them and quoting only prices that appear in PRICING_RESEARCH, and the going rate for this " +
+    "category that follows from them. When no established competitor's prices were read, say so plainly " +
+    "and that the numbers below are estimates from the category, not anchored on read pages.",
+    "PART THREE, THREE OPTIONS: exactly three plan options. Option 1 restates the recommendation: the " +
+    "same tier names, prices, who_its_for and includes as recommendation.tiers, its billing being the " +
+    "model that recommendation.model maps to (freemium or free maps to 'free plus paid tiers', " +
+    "subscription to 'monthly subscription', one-time to 'one-time purchase', usage to 'usage-based'). " +
+    "Options 2 and 3 are real alternatives that differ from option 1 in billing model or in positioning, " +
+    "for example an annual subscription with a discount, a single one-time price, a usage-based price, " +
+    "or a higher-positioned tier set for a narrower buyer. Each alternative uses one of the five billing " +
+    "models, and each is one a buyer in this category would recognise. price_usd_month is always the " +
+    "monthly figure: for an annual subscription it is the yearly price divided by 12, and the option's " +
+    "positioning states the yearly amount actually charged; for a one-time purchase it is the purchase " +
+    "price, and revenue_at counts that many purchases in a month; for usage-based it is the expected " +
+    "monthly spend of a typical customer on that tier. A free tier has price_usd_month 0.",
+    "REVENUE: revenue_at is the monthly revenue in USD at 10, 50 and 200 paying customers, computed from " +
+    "the option's PAID tiers only (price above 0): spread the paying customers evenly across the paid " +
+    "tiers, so revenue equals the number of customers times the average paid price. Do the arithmetic; " +
+    "whole dollars. market_rate_note says in one sentence how the option's prices sit against the " +
+    "competitor prices in the research (below, level with, above, or unanchored when none were read).",
+    "RULES: 1) Never invent a competitor price, a user count or a benchmark: the only competitor numbers " +
+    "you may write are numbers present in PRICING_RESEARCH; if none are present, say the option is " +
+    "unanchored instead of quoting one. 2) Plain concrete sentences, no hype words, no markdown. 3) " +
+    "Keep it compact: at most 4 tiers per option, at most 5 short items in includes, one sentence for " +
+    "why, positioning, market_rate_note and when_to_pick.",
+    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+    `PRICING_RESEARCH: ${pyJsonDumps(compact)}`,
+    "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"models_considered\": [{\"model\": " +
+    "string (one of the five names), \"fit\": \"good\"|\"possible\"|\"poor\", \"why\": string}], " +
+    "\"market_rate\": string, \"options\": [{\"name\": string, \"billing\": string (one of the five " +
+    "names), \"positioning\": string, \"tiers\": [{\"name\": string, \"price_usd_month\": number|null, " +
+    "\"who_its_for\": string, \"includes\": [string]}], \"market_rate_note\": string, \"revenue_at\": " +
+    "{\"10\": number, \"50\": number, \"200\": number}, \"when_to_pick\": string}]} with exactly three " +
+    "options, the first restating the recommendation.",
+  ];
+  return parts.join("\n\n");
 }

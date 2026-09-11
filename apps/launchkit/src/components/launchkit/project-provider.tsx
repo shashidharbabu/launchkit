@@ -178,10 +178,15 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
   const retryFailed = React.useCallback(() => {
     if (!failed) return;
     const kind = failed;
+    const studioStep = kind.startsWith('studio:') ? kind.slice('studio:'.length) : '';
+    // a hand edit spoken again (studio:voice-edit) is not a step: its lines live in the editor, so there is nothing to run again from here
+    if (studioStep && !isStudioStep(studioStep)) {
+      setFailed(null);
+      return;
+    }
     const start = () => {
       if (kind === 'understand') return api.runUnderstand(id);
       if (kind.startsWith('asset:')) return api.runAsset(id, kind.slice('asset:'.length));
-      const studioStep = kind.startsWith('studio:') ? kind.slice('studio:'.length) : '';
       if (isStudioStep(studioStep)) return api.runStudio(id, studioStep);
       return api.runStage(id, kind);
     };

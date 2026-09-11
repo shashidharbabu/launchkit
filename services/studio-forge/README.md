@@ -37,8 +37,14 @@ first render and cached.
 Environment: `STUDIO_PORT` (3500), `STUDIO_HOST` (127.0.0.1), `STUDIO_OUT`
 (`./out`, gitignored). Secrets go in `./.env` (gitignored, loaded at start):
 `OPENAI_API_KEY` turns on `POST /images` (photographs for the film and the
-cards, `gpt-image-2` by default, `STUDIO_IMAGE_MODEL` to change it). The key
-stays on this machine; the browser only ever sees the files.
+cards, `gpt-image-2` by default, `STUDIO_IMAGE_MODEL` to change it). Every
+brief is shot `STUDIO_IMAGE_TAKES` times (2 by default, 1 to 4), all takes in
+parallel, and a vision judge (`STUDIO_IMAGE_JUDGE`, `gpt-5-mini` by default,
+`gpt-4.1-mini` when the first model is refused) scores the takes on domain
+specificity, brief fidelity, room for type and photographic quality and
+picks the plate: the winner is `plate-<id>.jpg`, the file the film and the
+cards use, the others sit beside it as `plate-<id>-take2.jpg` and so on. The
+key stays on this machine; the browser only ever sees the files.
 
 Voice (`POST /voice`, open source, no key): install one engine next to the
 forge and restart it. Chatterbox (MIT, expressive): `uv venv --python 3.12

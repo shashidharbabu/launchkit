@@ -228,26 +228,60 @@ the site gives is the 15-minute batch timer, which the film already animates
 as a countdown). With the owner's OpenAI key the stage gained a step,
 **Launch images**, between the site read and the cards:
 
-1. `lk_studio.pipe` writes four photo briefs from the profile, the Business
-   DNA and the campaign angle (`buildStudioImagesQuestion`). A brief is a
-   scene, never a poster: who is in frame (a role, not a name), what they are
-   doing, what is around them, the hour, the light. No text, no logos, no
-   product interface, since the film and the cards set their own type.
-2. The forge (`POST /images`, `lib/images.mjs`) makes them in parallel with
+1. `lk_studio.pipe` writes the briefs in two parts (`buildStudioImagesQuestion`).
+   First the world: 8 to 12 signature things of this app's world, taken from
+   the profile (and the Business DNA when it exists): its users by role, the
+   place where they work, the objects and props on the tables and the walls,
+   the moments of the job. For a hackathon judging tool that is long tables
+   of teams behind laptops, lanyards and badges, a pitch stage with a
+   projector, a scoreboard screen, trophies, pizza boxes and energy drinks, a
+   countdown clock, judges with clipboards. The list is kept on the images
+   row as `domain`. Then the four briefs: every one shows the product's real
+   users, by role, doing the real job at a named moment of its workflow, and
+   names at least three things from that list, so a stranger knows the
+   domain in one second. Generic offices, desks and meeting rooms are
+   forbidden. A brief is still a scene, never a poster: who is in frame, what
+   they are doing with their hands, what is around them, the hour, the light;
+   no legible text, no logos, no product interface, since the film and the
+   cards set their own type, but screens may glow with charts, code or lists
+   and banners, badges and lanyards may hang, all wordless, so a brief never
+   asks for a reading (a clock is nearly out, a sheet is dense with marks;
+   no digits, no words). The plate hints in the concept ask for the props
+   the same way (the room these users work in with the crowd and the props
+   in view; the one user doing the job by hand surrounded by them; the same
+   person after, with the props tidied and the place still in frame behind
+   them; the users and the place at a glance), and the concept's examples
+   describe an unrelated product, domain-rich in the same way, so the model
+   cannot borrow their subject.
+2. The forge (`POST /images`, `lib/images.mjs`) shoots every brief twice
+   (`STUDIO_IMAGE_TAKES`, 1 to 4), all eight takes in parallel with
    `gpt-image-2` at medium quality, appending one of two house grades so the
-   four read as one photographer's work: cold (desaturated teal and slate,
+   plates read as one photographer's work: cold (desaturated teal and slate,
    low key) for the problem, warm (soft daylight, calm) for the arrival and
-   the launch image. About 35 seconds for all four; roughly 1,500 tokens
-   each.
+   the launch image. Then a vision judge (`STUDIO_IMAGE_JUDGE`, `gpt-5-mini`
+   by default, `gpt-4.1-mini` when the first model is refused) sees the takes
+   of each brief side by side and scores every take from 1 to 10 on four
+   things: domain specificity (would a stranger know this is THIS world),
+   brief fidelity, room for type (a quiet dark area in the top third of the
+   portrait plates, the left third of the landscape hero), photographic
+   quality. The winner is saved as `plate-<id>.jpg`, the file the film and
+   the cards use; the other take stays beside it as `plate-<id>-take2.jpg`.
+   Every image on the row carries `takes` (take, the shooting number; file,
+   url, the four marks, score, why, chosen) and `judge` (model, why, ok,
+   fell_back, and `errors` with the first model's answer when the fallback
+   had to decide); when both judges fail, take 1 is kept and `judge.why`
+   says so. About 65 seconds for the whole step. Cost:
+   eight images per run at medium quality (roughly 1,500 image tokens a
+   take) plus four small judge calls (about 2,000 tokens each).
 
 The four plates the Verdict concept asks for (`spec.plates`):
 
 | Plate | Where it goes | Grade | What the brief describes |
 |---|---|---|---|
-| scene | the film, 0 to 3.4 s, under the opening line and the three tiles | cold | the room where the problem happens, wide, from the back; nobody is the subject yet |
-| pile | the film, 3.4 to 6.5 s, under the card rain, the doubt and the cost | cold | the one person doing the job by hand, close, surrounded by the volume |
-| arrival | the film, 20 to 22 s, under the call to action; also the story-size card | warm | the same kind of person after the app, calm, with room to breathe |
-| hero | the platform images, landscape | warm | the person and the place at a glance, subject right so a headline can sit left |
+| scene | the film, 0 to 3.4 s, under the opening line and the three tiles | cold | the room where these users do this work, wide, from the back, the crowd and the props of the world in view; nobody is the subject yet |
+| pile | the film, 3.4 to 6.5 s, under the card rain, the doubt and the cost | cold | the one user doing the job by hand, close, surrounded by the props, the job visible in their hands |
+| arrival | the film, 20 to 22 s, under the call to action; also the story-size card | warm | the same person after the app, in the same world, calmer, the props tidied, the place (the stage, the screens, the crowd thinning out) still in frame behind them |
+| hero | the platform images, landscape | warm | the users and the place at a glance, the props around them, subject right so a headline can sit left |
 
 In the film the plates sit under a scrim in the canvas colour (so the type
 stays the subject), push in slowly, darken under the tiles, defocus with the
@@ -315,9 +349,18 @@ no key:
   at their times, ducks the music under them with a sidechain compressor
   (ratio 10, 12 ms attack, 420 ms release), sums, and masters to -14 LUFS.
   The stage previews the lines over the music before the render.
-- **The stage.** A Voice-over section under the script: Write the voice-over,
-  a player, the five lines with their measured seconds, a stale banner when
-  the script changes, and Voice on the reel's facts. The drive covers it.
+- **The stage.** The Launch reel card is three numbered steps: the script,
+  the voice-over, the reel. Step 2 holds Write or Rewrite the voice-over, a
+  player, and the five lines each in its own text box with its window and
+  word budget beside the label ("6.7 to 8.4 s, up to 5 words"), a live word
+  count, and the measured take under it (seconds spoken, the speed-up, fits
+  or not). Edit any line and "Save and speak again": `api.editStudioVoice`
+  keeps the row's windows, speaks every line again on the forge and saves a
+  new voice row (version + 1, status `edited`, `edited: true`, `budget` on
+  each segment), so the reel's stale banner tells the truth and the earlier
+  take stays in the history. A stale banner shows when the script changed
+  since the voice-over; Voice is on the reel's facts. Step 3 shows the
+  finished reel first and large. The drive covers the edit (`VOICE_EDIT`).
 
 Also in this branch: the room dissolves into the person across the 3.4 s seam
 instead of cutting, the arrival plate breathes in under the dip before the

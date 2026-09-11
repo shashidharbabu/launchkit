@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { toast } from 'sonner';
 import { Check, ExternalLink, Globe } from 'lucide-react';
 import { useProject } from '../project-provider';
-import { Card, HonestEmpty, LockedGate, Orient, Well } from '../stage-common';
+import { Card, CardBody, CardHeader, HonestEmpty, LockedGate, Orient, Well } from '../stage-common';
 import { Button } from '@launchkit/design-system/components/button';
 import { CopyButton } from '@launchkit/design-system/components/copy-button';
 import { StatusStamp } from '@launchkit/design-system/components/status-stamp';
@@ -59,7 +59,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
         </a>
         <span className="ml-auto flex items-center gap-2">
           <span className="font-mono text-data tabular text-muted-foreground">{age(d.posted_when)}</span>
-          <StatusStamp kind={verified ? 'go' : 'unverified'} />
+          <StatusStamp kind={verified ? 'go' : 'unverified'} label={verified ? 'Verified' : undefined} />
         </span>
       </div>
 
@@ -146,109 +146,147 @@ export function SignalsStage() {
   const replied = signals.filter((s) => s.status === 'replied').length;
   const verified = queue.filter((s) => s.data.rescore?.verdict === 'relevant').length;
   const unverified = queue.length - verified;
+  const dismissed = signals.length - queue.length - replied;
+  const hasSignals = signals.length > 0;
+  const searching = running?.kind === 'signals';
+  const search = () => runJob('signals', () => api.runStage(project.id, 'signals'));
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
-      {/* purpose before data — what happened, what to do */}
-      {queue.length > 0 && (
-        <Orient
-          runKind="signals"
-          lead={
+      {/* purpose before data: what happens here, what to do */}
+      <Orient
+        runKind="signals"
+        lead={
+          <>
+            Two steps, in order. <strong className="font-medium">First search for live demand</strong>: real people publicly
+            asking for what you built, right now. <strong className="font-medium">Then work the queue</strong>: reply in your own
+            words, mark replied, or dismiss.
+          </>
+        }
+        detail="Launch Kit never fabricates demand; every signal was found live and checked against its thread, so an empty queue honestly means nobody is asking yet."
+      />
+
+      {/* ---- Step 1: Search ---- */}
+      <Card>
+        <CardHeader
+          title="Step 1 of 2: Search for demand"
+          description="A search of public threads for people asking for what you built, each checked against the live thread and given a drafted reply. Search now, and again after your first posts."
+          actions={
             <>
-              Real people, publicly asking for what you built, right now.{' '}
-              <strong className="font-medium">Reply in your own words</strong>, mark replied, or
-              dismiss.
+              {hasSignals && <StatusStamp kind="go" label="Searched" />}
+              {hasSignals && (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  disabled={Boolean(running)}
+                  loading={searching}
+                  loadingLabel="Searching"
+                  onClick={search}
+                >
+                  Search again
+                </Button>
+              )}
             </>
           }
-          detail="Launch Kit never fabricates demand, every signal was found live, so an empty queue honestly means nobody is asking yet."
         />
-      )}
+        <CardBody>
+          {hasSignals ? (
+            <p className="text-body">
+              {signals.length} {signals.length === 1 ? 'signal' : 'signals'} found: {queue.length} in the queue ({verified} verified,{' '}
+              {unverified} unverified){replied > 0 ? `, ${replied} replied` : ''}{dismissed > 0 ? `, ${dismissed} dismissed` : ''}.
+            </p>
+          ) : (
+            <>
+              <HonestEmpty
+                runKind="signals"
+                fact="No signals yet."
+                reason="Nobody is publicly asking for what your app does right now; that's common before launch. Search again after your first posts, or widen the pain phrasing in your profile."
+                action={
+                  <Button
+                    variant="secondary"
+                    disabled={Boolean(running)}
+                    loading={searching}
+                    loadingLabel="Searching"
+                    onClick={search}
+                  >
+                    Search for demand
+                  </Button>
+                }
+              />
+              {meta && <ScanReport meta={meta} />}
+            </>
+          )}
+        </CardBody>
+      </Card>
 
-      {queue.length > 0 && (
-        <div className="flex flex-wrap items-center gap-3">
-          <Button
-            variant="secondary"
-            disabled={Boolean(running)}
-            loading={running?.kind === 'signals'}
-            loadingLabel="Searching"
-            onClick={() => runJob('signals', () => api.runStage(project.id, 'signals'))}
-          >
-            Re-run signal search
-          </Button>
-          <span className="text-small text-muted-foreground">
-            {verified} verified, {unverified} unverified
-            {replied > 0 ? `, ${replied} replied` : ''}
-          </span>
-        </div>
-      )}
-
-      {signals.length === 0 && (<>
-        <HonestEmpty
-          runKind="signals"
-          fact="No signals yet."
-          reason="Nobody is publicly asking for what your app does right now; that's common before launch. Re-run after your first posts, or widen the pain phrasing in your profile."
-          action={
-            <Button
-              variant="secondary"
-              disabled={Boolean(running)}
-              loading={running?.kind === 'signals'}
-              loadingLabel="Searching"
-              onClick={() => runJob('signals', () => api.runStage(project.id, 'signals'))}
-            >
-              Scan for live demand
-            </Button>
+      {/* ---- Step 2: Review queue ---- */}
+      <Card>
+        <CardHeader
+          title="Step 2 of 2: Review queue"
+          description="Each signal with its thread, why it fits and a drafted reply. Reply in your own words, then mark it replied or dismiss it; an unverified signal could not be fetched, so judge it yourself first."
+          actions={
+            queue.length > 0 ? (
+              <StatusStamp kind="hold" label={`${queue.length} to review`} />
+            ) : hasSignals ? (
+              <StatusStamp kind="go" label="Queue clear" />
+            ) : undefined
           }
         />
-        {meta && <ScanReport meta={meta} />}
-      </>)}
+        <CardBody className="grid gap-4">
+          {!hasSignals ? (
+            <HonestEmpty
+              fact="Nothing to review yet."
+              reason="Search first, above. Every signal it finds lands here with a drafted reply."
+            />
+          ) : queue.length === 0 ? (
+            <HonestEmpty
+              fact="Queue clear."
+              reason={`Every signal is handled: ${replied} replied, ${
+                signals.length - replied
+              } dismissed. Search again after your first posts to find new asks.`}
+              action={
+                <Button
+                  variant="secondary"
+                  disabled={Boolean(running)}
+                  loading={searching}
+                  loadingLabel="Searching"
+                  onClick={search}
+                >
+                  Search again
+                </Button>
+              }
+            />
+          ) : null}
 
-      {signals.length > 0 && queue.length === 0 && (
-        <HonestEmpty
-          fact="Queue clear."
-          reason={`Every signal is handled: ${replied} replied, ${
-            signals.length - replied
-          } dismissed. Re-run the search after your first posts to find new asks.`}
-          action={
-            <Button
-              variant="secondary"
-              disabled={Boolean(running)}
-              loading={running?.kind === 'signals'}
-              loadingLabel="Searching"
-              onClick={() => runJob('signals', () => api.runStage(project.id, 'signals'))}
-            >
-              Re-run signal search
-            </Button>
-          }
-        />
-      )}
-
-      {/* the queue's only motion: exits on Mark replied / Dismiss */}
-      <AnimatePresence initial={false}>
-        {queue.map((s) => (
-          <motion.div
-            key={s.id}
-            layout={!reduced}
-            exit={
-              reduced
-                ? undefined
-                : {
-                    opacity: 0,
-                    height: 0,
-                    overflow: 'hidden',
-                    transition: { duration: DUR.base, ease: EASE_EXIT },
-                  }
-            }
-          >
-            <SignalCard signal={s} />
-          </motion.div>
-        ))}
-      </AnimatePresence>
+          {/* the queue's only motion: exits on Mark replied / Dismiss */}
+          <AnimatePresence initial={false}>
+            {queue.map((s) => (
+              <motion.div
+                key={s.id}
+                layout={!reduced}
+                exit={
+                  reduced
+                    ? undefined
+                    : {
+                        opacity: 0,
+                        height: 0,
+                        overflow: 'hidden',
+                        transition: { duration: DUR.base, ease: EASE_EXIT },
+                      }
+                }
+              >
+                <SignalCard signal={s} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </CardBody>
+      </Card>
     </div>
   );
 }
 
 
-/** What the last scan searched and why candidates were dropped — an empty result must be explainable. */
+/** What the last scan searched and why candidates were dropped: an empty result must be explainable. */
 function ScanReport({ meta }: { meta: Record<string, unknown> }) {
   const queries = Array.isArray(meta.queries) ? (meta.queries as unknown[]).map(String) : [];
   const dropped = Array.isArray(meta.dropped_by_gate) ? (meta.dropped_by_gate as Array<Record<string, unknown>>) : [];

@@ -19,7 +19,7 @@ const text = async () => page.evaluate(() => document.querySelector('#lk-root')?
 // busy = a run is live: the shimmer step line is showing, or a button is in its loading state
 const disabled = async () => page.evaluate(() => {
   const shimmer = document.querySelectorAll('#lk-root main .text-shimmer').length;
-  const loading = [...document.querySelectorAll('#lk-root main button')].filter((x) => x.disabled && !/Save edits|Approve reel/.test(x.textContent || '')).length;
+  const loading = [...document.querySelectorAll('#lk-root main button')].filter((x) => x.disabled && !/Save edits|Save and speak again|Approve reel/.test(x.textContent || '')).length;
   return shimmer + loading;
 });
 const log = (k, v) => console.log(k, JSON.stringify(v));
@@ -99,8 +99,13 @@ const inputs = await page.evaluate(() => [...document.querySelectorAll('#lk-root
 t = await text();
 log('SCRIPT', { secs: Math.round((Date.now() - t2) / 1000), slots: inputs.length, sample: inputs.slice(0, 6), trimmed: (t.match(/Trimmed to fit/g) || []).length, error: (t.match(/reel script failed[^.]*\./) || [''])[0] });
 
-// the cards prefer the script's tagline once one exists: remake them
-await main(/^Remake$/).click();
+// the cards prefer the script's tagline once one exists: render them again.
+// Scoped to the Launch cards card (the reel has its own Render again): the innermost
+// container holding the Step 3 title and not the Step 4 one.
+const cardsCard = page
+  .locator('#lk-root main section, #lk-root main div', { hasText: /Step 3 of 4: Launch cards/ })
+  .filter({ hasNot: page.locator('text=/Step 4 of 4/') });
+await cardsCard.locator('button', { hasText: /Render again/ }).first().click();
 await waitIdle('kit-remake', 180000);
 const remade = await page.evaluate(() => [...document.querySelectorAll('#lk-root main figure img')].filter((i) => i.naturalWidth > 0).length);
 log('KIT_REMAKE', { cards: remade });
@@ -112,11 +117,40 @@ if (await main(/Write the voice-over/).count()) {
   await waitIdle('voice', 900000);
   const voice = await page.evaluate(() => {
     const a = document.querySelector('#lk-root main audio');
-    const lines = [...document.querySelectorAll('#lk-root main ol li')].map((li) => li.textContent.trim().replace(/\s+/g, ' ').slice(0, 140));
+    // the five spoken lines are editable: one textarea each, its window and word budget beside the label
+    const lines = [...document.querySelectorAll('#lk-root main textarea')].map((ta) => ta.value.trim().replace(/\s+/g, ' ').slice(0, 140));
     return { audio: a ? a.getAttribute('src') : null, lines };
   });
   t = await text();
-  log('VOICE', { secs: Math.round((Date.now() - tv) / 1000), audio: Boolean(voice.audio), lines: voice.lines.length, sample: voice.lines.slice(0, 2), over: (t.match(/still over its window/g) || []).length, error: (t.match(/voice-over failed[^.]*\./) || [''])[0] });
+  log('VOICE', { secs: Math.round((Date.now() - tv) / 1000), audio: Boolean(voice.audio), lines: voice.lines.length, sample: voice.lines.slice(0, 2), budgets: (t.match(/up to \d+ words/g) || []).length, over: (t.match(/Still over its window/g) || []).length, error: (t.match(/voice-over failed[^.]*\./) || [''])[0] });
+
+  // edit the first line by hand (one word more), speak it again: a new voice row, version + 1, status edited
+  const te = Date.now();
+  const first = page.locator('#lk-root main textarea').first();
+  // fill, not End then type: End stops at the end of the wrapped visual line, mid-sentence
+  await first.fill(`${(await first.inputValue()).trim()} today`);
+  await page.waitForTimeout(300);
+  const saveBtn = main(/Save and speak again/);
+  const saveEnabled = await saveBtn.isEnabled();
+  log('VOICE_EDIT_START', { saveEnabled, counted: /not spoken yet/.test(await text()) });
+  if (saveEnabled) {
+    await saveBtn.click();
+    await waitIdle('voice-edit', 900000);
+    await page.waitForTimeout(2500); // the store persists on a short debounce
+    const edited = await page.evaluate(() => {
+      try {
+        const st = JSON.parse(localStorage.getItem('lk-preview-appstate') || '{}');
+        const rows = (st.launchkit?.studio || st.studio || []).filter((r) => r.kind === 'voice');
+        rows.sort((a, b) => Number(b.version || 0) - Number(a.version || 0));
+        const v = rows[0];
+        const segs = v && Array.isArray(v.data?.segments) ? v.data.segments : [];
+        return v ? { version: v.version, status: v.status, fits: segs.length > 0 && segs.every((s) => s.fits === true), first: String(segs[0]?.text || '').slice(-40), edited: v.data?.edited === true } : null;
+      } catch (e) { return { error: String(e).slice(0, 120) }; }
+    });
+    const firstNow = await page.locator('#lk-root main textarea').first().inputValue();
+    t = await text();
+    log('VOICE_EDIT', { secs: Math.round((Date.now() - te) / 1000), ...(edited || { version: null, fits: null }), spokenLine: /today[.!?]?$/.test(firstNow.trim()), versionLine: (t.match(/Version \d+, edited by you/) || [''])[0], error: (t.match(/voice-over failed[^.]*\./) || [''])[0] });
+  }
 } else {
   log('VOICE', { skipped: true, reason: 'no Write the voice-over button (service without a speech engine?)' });
 }

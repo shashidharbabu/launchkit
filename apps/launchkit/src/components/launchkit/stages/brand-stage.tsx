@@ -75,7 +75,7 @@ type Campaign = {
 
 const GOALS = ['awareness', 'signups', 'community', 'retention'];
 
-/** "signups — one sentence" splits into the goal word and the sentence. */
+/** "signups: one sentence" (any separator) splits into the goal word and the sentence. */
 function splitObjective(objective: string): { goal: string; rest: string } {
   const m = objective.trim().match(/^(awareness|signups|community|retention)\b[\s:,.|–—-]*/i);
   if (!m) return { goal: '', rest: objective.trim() };

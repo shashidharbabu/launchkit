@@ -27,9 +27,40 @@ export type SelectedPricingTier = {
 
 export type SelectedPricing = {
   model: string;
+  /** The plan option chosen (its name in pricing.options); older rows carry none and mean the recommended plan. */
+  option?: string;
+  /** The billing model of that option: monthly subscription, annual subscription, one-time purchase, usage-based, free plus paid tiers. */
+  billing?: string;
   tiers: SelectedPricingTier[];
   anchor_competitors: string[];
   chosen_at: string;
+};
+
+/** One tier of a plan option the pricing research proposes (Commercial stage). */
+export type PricingOptionTier = {
+  name: string;
+  price_usd_month: number | null;
+  who_its_for: string;
+  includes: string[];
+};
+
+/** One of the three plan options drafted from the pricing research; the first restates the recommendation. */
+export type PricingOption = {
+  name: string;
+  billing: string;
+  positioning: string;
+  tiers: PricingOptionTier[];
+  market_rate_note: string;
+  /** Monthly revenue in USD at 10, 50 and 200 paying customers. */
+  revenue_at: Record<string, number>;
+  when_to_pick: string;
+};
+
+/** A billing model the research weighed for this app. */
+export type PricingModelConsidered = {
+  model: string;
+  fit: 'good' | 'possible' | 'poor' | string;
+  why: string;
 };
 
 export type ProjectDetail = {

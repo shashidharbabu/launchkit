@@ -8,10 +8,10 @@ import { Banner } from '@launchkit/design-system/components/banner';
 import { Progress } from '@launchkit/design-system/components/progress';
 import { StatusStamp, Badge } from '@launchkit/design-system/components/status-stamp';
 import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
-import { Field, Input } from '@launchkit/design-system/components/field';
+import { Field, Input, Textarea } from '@launchkit/design-system/components/field';
 import { api } from '../../../data/api';
-import { forgeHealth, getStudioStep, studioUrl, subscribeStudioStep, type ForgeHealth } from '../../../data/studio';
-import { studioJobKind, type ConceptBeat, type SlotSpec, type StudioStep } from '../../../domain/studio';
+import { forgeConcept, forgeHealth, getStudioStep, studioUrl, subscribeStudioStep, type ForgeHealth } from '../../../data/studio';
+import { studioJobKind, wordCount, type ConceptBeat, type SlotSpec, type StudioStep } from '../../../domain/studio';
 import { actionError } from '../../../lib/errors';
 import type { StudioRow } from '../../../lib/types';
 import { useNav } from '../../../nav';
@@ -20,13 +20,23 @@ const asStr = (v: unknown) => (v == null ? '' : String(v));
 const asArr = (v: unknown): unknown[] => (Array.isArray(v) ? v : []);
 const asObj = (v: unknown): Record<string, unknown> =>
   v && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, unknown>) : {};
+const asNum = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
 
 type Role = { hex: string; source: string };
 type Logo = { kind: string; url: string; w?: number; h?: number; picked?: boolean; source?: string };
 type CardOut = { name: string; label: string; use: string; w: number; h: number; url: string };
 type PhotoOut = CardOut & { platform: string; headline?: string };
-type PlateOut = { id: string; url: string; w?: number; h?: number; brief?: string; grade?: string; seconds?: number };
-type VoiceOut = { id: string; text: string; at: number; until: number; seconds: number; words: number; tempo: number; fits: boolean };
+/** One shooting of a plate: the judge's scores and whether it won. */
+type TakeOut = { take?: number; file?: string; url?: string; chosen?: boolean; score?: number | null; why?: string };
+type PlateOut = {
+  id: string; url: string; w?: number; h?: number; brief?: string; grade?: string; seconds?: number;
+  takes?: TakeOut[]; failed_takes?: number; judge?: { model?: string; why?: string; ok?: boolean; fell_back?: boolean };
+};
+type VoiceOut = {
+  id: string; text: string; at: number; until: number; seconds: number; words: number; tempo: number; fits: boolean;
+  /** The word budget for the window: on rows spoken after an edit; older rows read it from the concept. */
+  budget?: number; words_allowed?: number;
+};
 
 function MetaLabel({ children }: { children: React.ReactNode }) {
   return <p className="text-label text-muted-foreground">{children}</p>;
@@ -139,7 +149,7 @@ function ProbeView({ row }: { row: StudioRow }) {
       <div>
         <MetaLabel>Type observed</MetaLabel>
         <p className="mt-0.5 text-small">
-          Headings <span className="font-mono text-data">{asStr(fonts.heading) || 'not observed'}</span>, body <span className="font-mono text-data">{asStr(fonts.body) || 'not observed'}</span>. The cards and the reel use the kit&rsquo;s own faces; these are recorded for your brand sheet.
+          Headings <span className="font-mono text-data">{asStr(fonts.heading) || 'not observed'}</span>, body <span className="font-mono text-data">{asStr(fonts.body) || 'not observed'}</span>. The cards and the reel use their own faces; these are recorded for your brand sheet.
         </p>
       </div>
       <ProvenanceLine parts={[`Read from ${hostOf(asStr(d.site_url))}`, when(row)].filter(Boolean)} />
@@ -190,7 +200,7 @@ function CardsView({ row, imagesRow }: { row: StudioRow; imagesRow: StudioRow | 
       )}
       {stale && (
         <Banner tone="hold" title={photos.length ? 'New launch images since these cards.' : 'Launch images are ready.'}>
-          Remake the cards to put them on the platform images.
+          Render the cards again to put them on the platform images.
         </Banner>
       )}
       <div className="flex flex-wrap items-center gap-3">
@@ -214,28 +224,60 @@ function ImagesView({ row, disabled, onRetake }: { row: StudioRow; disabled: boo
     const p = plates.find((x) => x.id === id);
     return !p ? '' : p.for === 'cards' ? 'the launch cards' : `the film, ${p.when} s`;
   };
+  // the signature things of the app's world the pipe listed before writing the briefs
+  const domain = asArr(d.domain).map(asStr).map((s) => s.trim()).filter(Boolean);
   return (
     <div className="grid gap-4">
       {asStr(d.subject) && <p className="text-body text-muted-foreground">{asStr(d.subject)}</p>}
+      {domain.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          <MetaLabel>The world these pictures live in:</MetaLabel>
+          {/* a phrase can run long: the pill wraps rather than widening the page on a phone */}
+          {domain.map((w, i) => <Badge key={i} tone="neutral" className="h-auto max-w-full whitespace-normal py-0.5 text-left">{w}</Badge>)}
+        </div>
+      )}
       <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {list.map((im) => (
-          <figure key={im.id} className="grid gap-1.5">
-            <a href={im.url} target="_blank" rel="noreferrer" className="flex h-52 items-center justify-center overflow-hidden rounded-control border border-border bg-surface p-2">
-              <img src={im.url} alt={`The ${im.id} photograph`} className="max-h-full max-w-full object-contain" />
-            </a>
-            <figcaption className="flex items-center justify-between gap-2 text-small">
-              <span className="capitalize">{im.id} <span className="font-mono text-data text-muted-foreground">{im.w}×{im.h}</span></span>
-              <span className="inline-flex items-center gap-3">
-                <button type="button" disabled={disabled} onClick={() => onRetake(im.id)} className="text-link hover:text-link-hover disabled:opacity-50">Another take</button>
-                <a href={im.url} download target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-link hover:text-link-hover">
-                  <Download size={14} strokeWidth={1.75} aria-hidden /> JPG
-                </a>
-              </span>
-            </figcaption>
-            <p className="text-label text-muted-foreground">For {where(im.id)}.</p>
-            {im.brief && <p className="text-label text-muted-foreground" title={im.brief}>{im.brief.length > 150 ? `${im.brief.slice(0, 150).replace(/\s+\S*$/, '')}…` : im.brief}</p>}
-          </figure>
-        ))}
+        {list.map((im) => {
+          const takes = asArr(im.takes) as TakeOut[];
+          const others = takes.map((t, i) => ({ ...t, n: asNum(t.take) ?? i + 1 })).filter((t) => !t.chosen && t.url);
+          const judgeWhy = asStr(asObj(im.judge).why).trim();
+          const failed = asNum(im.failed_takes) ?? 0;
+          return (
+            <figure key={im.id} className="grid gap-1.5">
+              <a href={im.url} target="_blank" rel="noreferrer" className="flex h-52 items-center justify-center overflow-hidden rounded-control border border-border bg-surface p-2">
+                <img src={im.url} alt={`The ${im.id} photograph`} className="max-h-full max-w-full object-contain" />
+              </a>
+              <figcaption className="flex items-center justify-between gap-2 text-small">
+                <span className="capitalize">{im.id} <span className="font-mono text-data text-muted-foreground">{im.w}×{im.h}</span></span>
+                <span className="inline-flex items-center gap-3">
+                  <button type="button" disabled={disabled} onClick={() => onRetake(im.id)} className="text-link hover:text-link-hover disabled:opacity-50">Another take</button>
+                  <a href={im.url} download target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-link hover:text-link-hover">
+                    <Download size={14} strokeWidth={1.75} aria-hidden /> JPG
+                  </a>
+                </span>
+              </figcaption>
+              <p className="text-label text-muted-foreground">For {where(im.id)}.</p>
+              {im.brief && <p className="text-label text-muted-foreground" title={im.brief}>{im.brief.length > 150 ? `${im.brief.slice(0, 150).replace(/\s+\S*$/, '')}…` : im.brief}</p>}
+              {takes.length > 1 && (
+                <p className="text-label text-muted-foreground">
+                  Best of {takes.length} takes{judgeWhy ? `: ${judgeWhy}` : '.'}{failed > 0 ? ` ${failed} more take${failed === 1 ? '' : 's'} failed.` : ''}
+                  {others.length > 0 && (
+                    <>
+                      {' '}
+                      {others.map((t, i) => (
+                        <React.Fragment key={t.n}>
+                          {i > 0 ? ', ' : ''}
+                          <a href={t.url} target="_blank" rel="noreferrer" className="text-link hover:text-link-hover">See take {t.n}</a>
+                        </React.Fragment>
+                      ))}
+                      .
+                    </>
+                  )}
+                </p>
+              )}
+            </figure>
+          );
+        })}
       </div>
       <ProvenanceLine parts={[`Made on this machine with ${asStr(d.model) || 'the Studio service’s image model'} from briefs written from your profile`, when(row)].filter(Boolean)} />
       <RawData data={d} />
@@ -333,54 +375,132 @@ function ScriptEditor({ row, disabled, onSaved }: { row: StudioRow; disabled: bo
 }
 
 /**
- * The voice-over: a founder's pitch in five lines that land on the film's
- * beats, spoken on the Studio service with an open-source voice, previewed
- * over the music, mixed under it when the reel renders.
+ * The concept's word budget per spoken line, read once from the forge and
+ * shown beside each window as a hint. The forge measures the truth when the
+ * line is spoken; a row spoken after an edit carries its budgets itself.
  */
-function VoiceSection({ row, script, disabled, running, voiceOff, engine, onWrite }: {
-  row: StudioRow | null; script: StudioRow; disabled: boolean; running: boolean; voiceOff: boolean; engine: string; onWrite: () => void;
+const budgetCache = new Map<string, Promise<Record<string, number>>>();
+function useVoiceBudgets(concept: string): Record<string, number> {
+  const [budgets, setBudgets] = React.useState<Record<string, number>>({});
+  React.useEffect(() => {
+    if (!concept) return;
+    let cancelled = false;
+    let p = budgetCache.get(concept);
+    if (!p) {
+      p = forgeConcept(concept)
+        .then((spec) => Object.fromEntries((spec.voice?.segments ?? []).map((s) => [s.id, s.words])))
+        .catch(() => { budgetCache.delete(concept); return {}; });
+      budgetCache.set(concept, p);
+    }
+    p.then((b) => { if (!cancelled) setBudgets(b); });
+    return () => { cancelled = true; };
+  }, [concept]);
+  return budgets;
+}
+
+/**
+ * The voice-over, editable: the five spoken lines each in its window with the
+ * word budget and a live count, the measured take under each, the preview over
+ * the music. Save speaks every line again on the Studio service and keeps the
+ * result as a new version, so the reel knows it is behind.
+ */
+function VoiceEditor({ row, script, disabled, onSpeak }: {
+  row: StudioRow; script: StudioRow; disabled: boolean; onSpeak: (lines: Record<string, string>) => Promise<void>;
 }) {
-  const d = row?.data ?? {};
+  const d = row.data;
   const segs = asArr(d.segments) as VoiceOut[];
-  const stale = row ? asStr(d.script_id) !== script.id : false;
+  const budgets = useVoiceBudgets(asStr(d.concept));
+  const spokenKey = segs.map((s) => s.text).join('');
+  const [texts, setTexts] = React.useState<Record<string, string>>(() => Object.fromEntries(segs.map((s) => [s.id, s.text])));
+  // a new take (a new row, or new words on it) resets the editor; a failed save keeps what was typed
+  React.useEffect(() => {
+    setTexts(Object.fromEntries((asArr(row.data.segments) as VoiceOut[]).map((s) => [s.id, s.text])));
+  }, [row.id, spokenKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [speaking, setSpeaking] = React.useState(false);
+  const dirty = segs.some((s) => (texts[s.id] ?? '').replace(/\s+/g, ' ').trim() !== s.text);
+  const empty = segs.some((s) => !(texts[s.id] ?? '').trim());
+  const stale = asStr(d.script_id) !== script.id;
+  const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? '' : 's'}`;
+
+  const speak = async () => {
+    setSpeaking(true);
+    try {
+      await onSpeak(Object.fromEntries(segs.map((s) => [s.id, (texts[s.id] ?? '').replace(/\s+/g, ' ').trim()])));
+    } finally {
+      setSpeaking(false);
+    }
+  };
+
   return (
-    <div className="grid gap-3 border-t border-border pt-4">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="grid gap-0.5">
-          <MetaLabel>Voice-over</MetaLabel>
-          <p className="text-small text-muted-foreground">
-            Your pitch in five spoken lines that land on the film&rsquo;s beats: the problem, the app, how it works, what you get, what to do next. This is the spoken script for your short video; it lives here, next to the film it is spoken over. Spoken on this machine{engine ? ` with ${engine}` : ''}, mixed under the music when you render.
-          </p>
-        </div>
-        <Button variant={row ? 'secondary' : 'primary'} size="sm" disabled={disabled || voiceOff} loading={running} loadingLabel="Speaking" onClick={onWrite}>
-          {row ? 'Rewrite the voice-over' : 'Write the voice-over'}
-        </Button>
+    <div className="grid gap-4">
+      {stale && (
+        <Banner tone="hold" title="The script changed since this voice-over.">
+          Rewrite it so the lines land on the new beats, or edit the lines here and speak them again.
+        </Banner>
+      )}
+      <audio controls preload="metadata" src={asStr(d.preview_url)} className="w-full max-w-xl" aria-label="The voice-over, previewed over the music" />
+      <div className="grid gap-4 sm:grid-cols-2">
+        {segs.map((s) => {
+          const v = texts[s.id] ?? '';
+          const n = wordCount(v);
+          const budget = asNum(s.budget) ?? asNum(s.words_allowed) ?? asNum(budgets[s.id]);
+          const changed = v.replace(/\s+/g, ' ').trim() !== s.text;
+          const over = budget != null && n > budget;
+          const measured = `${plural(n, 'word')}, ${s.seconds} s spoken${s.tempo > 1.001 ? `, ${Math.round((s.tempo - 1) * 100)}% faster to fit` : ''}${s.fits ? ', fits its window.' : '.'}`;
+          const helper = changed ? `${plural(n, 'word')}, not spoken yet. Save and speak again to measure it.` : measured;
+          const error = over
+            ? `Over the budget by ${plural(n - (budget ?? 0), 'word')}: it may not fit its window.`
+            : !changed && s.fits === false
+              ? `${measured} Still over its window even 15% faster: shorten it and speak again.`
+              : undefined;
+          return (
+            <Field
+              key={s.id}
+              label={<span className="capitalize">{s.id.replace(/_/g, ' ')}</span>}
+              htmlFor={`voice-${row.id}-${s.id}`}
+              trailing={`${s.at} to ${s.until} s${budget != null ? `, up to ${budget} words` : ''}`}
+              helper={helper}
+              error={error}
+            >
+              <Textarea
+                id={`voice-${row.id}-${s.id}`}
+                value={v}
+                rows={2}
+                maxLength={400}
+                disabled={disabled}
+                className="min-h-16"
+                onChange={(e) => setTexts((cur) => ({ ...cur, [s.id]: e.target.value }))}
+              />
+            </Field>
+          );
+        })}
       </div>
-      {running && <RunningLine label="Writing the pitch, then speaking it" />}
-      {voiceOff && !row && (
-        <p className="text-small text-muted-foreground">Speech is off on the Studio service. Install Chatterbox or Kokoro next to it (see services/studio-forge/README.md) and restart it.</p>
-      )}
-      {row && !running && (
-        <>
-          <audio controls preload="metadata" src={asStr(d.preview_url)} className="w-full max-w-xl" aria-label="The voice-over, previewed over the music" />
-          <ol className="grid gap-2">
-            {segs.map((s) => (
-              <li key={s.id} className="grid gap-0.5 text-small">
-                <span><span className="font-mono text-data text-muted-foreground">{s.at} to {s.until} s</span> <span className="ml-2">{s.text}</span></span>
-                <span className="text-label text-muted-foreground">
-                  {s.words} words, {s.seconds} s spoken{s.tempo > 1.001 ? `, ${Math.round((s.tempo - 1) * 100)}% faster to fit` : ''}{s.fits ? '' : ', still over its window: rewrite'}
-                </span>
-              </li>
-            ))}
-          </ol>
-          {stale && (
-            <Banner tone="hold" title="The script changed since this voice-over.">
-              Rewrite it so the lines land on the new beats.
-            </Banner>
-          )}
-          <ProvenanceLine parts={[`Spoken with ${asStr(d.engine) || 'the Studio service'}${asStr(d.tone) ? `, ${asStr(d.tone)}` : ''}`, when(row)].filter(Boolean)} />
-        </>
-      )}
+      <div className="flex flex-wrap items-center gap-2">
+        <Button variant={dirty ? 'primary' : 'secondary'} size="sm" disabled={!dirty || empty || disabled} loading={speaking} loadingLabel="Speaking" onClick={speak}>
+          Save and speak again
+        </Button>
+        <span className="text-small text-muted-foreground">
+          Version {row.version}{row.status === 'edited' ? ', edited by you' : ''}. Saving speaks every line again on this machine.
+        </span>
+      </div>
+      <ProvenanceLine parts={[`Spoken with ${asStr(d.engine) || 'the Studio service'}${asStr(d.tone) ? `, ${asStr(d.tone)}` : ''}`, when(row)].filter(Boolean)} />
+    </div>
+  );
+}
+
+/** One of the three steps inside the Launch reel card: a numbered chip, the name, one line on what to do. */
+function StepHeading({ n, name, description, actions }: { n: number; name: string; description: string; actions?: React.ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+      {/* a basis keeps the words in a readable column on a phone: the button wraps under them instead of squeezing them */}
+      <div className="flex min-w-0 flex-1 basis-64 items-start gap-3">
+        <span aria-hidden className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary font-mono text-data font-medium text-primary-foreground">{n}</span>
+        <div className="min-w-0">
+          <h4 className="text-body font-medium"><span className="sr-only">Step {n} of 3: </span>{name}</h4>
+          <p className="mt-0.5 text-small text-muted-foreground">{description}</p>
+        </div>
+      </div>
+      {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
     </div>
   );
 }
@@ -409,7 +529,8 @@ function ReelView({ row, script, imagesRow, voiceRow, disabled, onChanged }: { r
   };
   return (
     <div className="grid gap-4">
-      <div className="grid gap-5 sm:grid-cols-[minmax(0,280px)_minmax(0,1fr)]">
+      {/* the film first and large: it is what the three steps are for */}
+      <div className="grid gap-5 sm:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <video
           controls
           playsInline
@@ -470,11 +591,21 @@ function ReelView({ row, script, imagesRow, voiceRow, disabled, onChanged }: { r
           <figcaption className="text-label text-muted-foreground">Eight frames, evenly spaced, so you can read the film without playing it.</figcaption>
         </figure>
       )}
-      <ProvenanceLine parts={['Rendered on this machine from the script and the site read', when(row)].filter(Boolean)} />
+      <ProvenanceLine parts={[`Rendered on this machine from the script and the site read${platesUsed.length > 0 ? ', the launch images' : ''}${voiceUsed.length > 0 ? ' and the voice-over' : ''}`, when(row)].filter(Boolean)} />
       <RawData data={d} />
     </div>
   );
 }
+
+/**
+ * The voice-over's lines edited by hand and spoken again run under their own
+ * job kind: the error banner's Retry then has nothing to rewrite from the
+ * pipeline, and the editor keeps what was typed.
+ */
+const VOICE_EDIT_KIND = 'studio:voice-edit';
+
+/** The line shown when the Studio service answers but has no speech engine. */
+const VOICE_OFF_LINE = 'Speech is off on the Studio service. Install Chatterbox or Kokoro next to it (see services/studio-forge/README.md) and restart it. The reel renders with music only until then.';
 
 /**
  * Assets (workspace-stage-anatomy.md): the site read, the brand kit, the reel.
@@ -508,7 +639,15 @@ export function StudioStage() {
   const reel = latest('reel');
   const start = (step: StudioStep) => runJob(studioJobKind(step), () => api.runStudio(project.id, step)).then(refresh);
   const retake = (plateId: string) => runJob(studioJobKind('images'), () => api.runStudio(project.id, 'images', { plateId })).then(refresh);
+  // the voice-over's lines edited by hand and spoken again: its own run kind, so Retry never rewrites all five lines
+  const speakEdits = async (rowId: string, lines: Record<string, string>) => {
+    await runJob(VOICE_EDIT_KIND, () => api.editStudioVoice(rowId, lines));
+    await refresh();
+  };
   const is = (step: StudioStep) => runningKind === studioJobKind(step);
+  const voiceEditing = runningKind === VOICE_EDIT_KIND;
+  // the voice step is busy while the pitch is written and spoken, or while edited lines are spoken again
+  const voiceBusy = is('voice') || voiceEditing;
   const nothing = studio.length === 0;
   // the service answers but has no image key or no speech engine: those parts are off, everything else works
   const imagesOff = health ? !health.images?.enabled : false;
@@ -520,8 +659,8 @@ export function StudioStage() {
       <Orient
         lead={
           <>
-            Launch Kit turns what it knows about your app into launch photographs, a brand kit, launch cards for every platform and a 24-second reel with your pitch spoken over it.{' '}
-            <strong className="font-medium">Read the site first</strong>, then make the images, the cards, the script, the voice-over and the reel.
+            Four steps, in order. <strong className="font-medium">Read the site first</strong>, then make the launch images, the launch cards and the launch reel;
+            each step is built from the ones before it.
           </>
         }
         detail={
@@ -547,16 +686,16 @@ export function StudioStage() {
         </Banner>
       )}
 
-      {/* ---- Site read ---- */}
+      {/* ---- Step 1: Site read ---- */}
       <Card>
         <CardHeader
-          title="Site read"
-          description="Colours, logo and type, observed on your live site."
+          title="Step 1 of 4: Site read"
+          description="Colours, logo and type observed on your live site, which the cards and the reel are built from. Read it once, and again after the site changes."
           actions={
             <>
               {probe && <StatusStamp kind="go" label="Read" />}
               {probe && (
-                <Button variant="secondary" size="sm" disabled={busy} loading={is('probe')} loadingLabel="Reading" onClick={() => start('probe')}>
+                <Button variant="secondary" size="sm" disabled={busy || serviceDown === true} loading={is('probe')} loadingLabel="Reading" onClick={() => start('probe')}>
                   Read again
                 </Button>
               )}
@@ -571,7 +710,7 @@ export function StudioStage() {
           ) : (
             <HonestEmpty
               fact="No site read yet."
-              reason={`Launch Kit opens ${hostOf(project.site_url)} in a browser, takes the colours from its styles and a screenshot, and keeps the logo it finds. The kit and the reel are built from this.`}
+              reason={`Launch Kit opens ${hostOf(project.site_url)} in a browser, takes the colours from its styles and a screenshot, and keeps the logo it finds. The cards and the reel are built from this.`}
               runKind="studio:probe"
               action={<Button variant="secondary" disabled={busy || serviceDown === true} onClick={() => start('probe')}>Read the site</Button>}
             />
@@ -579,11 +718,11 @@ export function StudioStage() {
         </CardBody>
       </Card>
 
-      {/* ---- Launch images ---- */}
+      {/* ---- Step 2: Launch images ---- */}
       <Card>
         <CardHeader
-          title="Launch images"
-          description="Four photographs made for your launch: the room, the person under the load, the turn, the launch image."
+          title="Step 2 of 4: Launch images"
+          description="Four photographs made for your launch from briefs written from your profile: the room, the person under the load, the turn, the launch image. Make them, then retake any one you do not like."
           actions={
             <>
               {images && <StatusStamp kind="go" label="Made" />}
@@ -613,17 +752,17 @@ export function StudioStage() {
         </CardBody>
       </Card>
 
-      {/* ---- Cards ---- */}
+      {/* ---- Step 3: Launch cards ---- */}
       <Card>
         <CardHeader
-          title="Launch cards"
-          description="Five sizes in your colours, plus a photo image for every platform once the launch images exist."
+          title="Step 3 of 4: Launch cards"
+          description="Five sizes in your colours, plus a photo image for every platform once the launch images exist. Make them after the site read, then download any size or all of them as a zip."
           actions={
             <>
               {kit && <StatusStamp kind="go" label="Rendered" />}
               {kit && (
-                <Button variant="secondary" size="sm" disabled={busy || !probe} loading={is('kit')} loadingLabel="Rendering" onClick={() => start('kit')}>
-                  Remake
+                <Button variant="secondary" size="sm" disabled={busy || !probe || serviceDown === true} loading={is('kit')} loadingLabel="Rendering" onClick={() => start('kit')}>
+                  Render again
                 </Button>
               )}
             </>
@@ -647,53 +786,104 @@ export function StudioStage() {
         </CardBody>
       </Card>
 
-      {/* ---- Reel ---- */}
+      {/* ---- Step 4: Launch reel, three sub-steps to the film ---- */}
       <Card>
         <CardHeader
-          title="Launch reel"
-          description="24 seconds in your colours, spoken as your pitch: the problem, then your app arriving on the drop."
-          actions={
-            <>
-              {reel && <StatusStamp kind={reel.status === 'approved' ? 'go' : 'hold'} label={reel.status === 'approved' ? 'Approved' : 'Rendered'} />}
-              {script && (
-                <Button variant="secondary" size="sm" disabled={busy} loading={is('script')} loadingLabel="Writing" onClick={() => start('script')}>
+          title="Step 4 of 4: Launch reel"
+          description="24 seconds in your colours with your pitch spoken over it: the problem, then your app arriving on the drop. Three steps inside: write the script, speak the voice-over, then render and approve the reel."
+          actions={reel ? <StatusStamp kind={reel.status === 'approved' ? 'go' : 'hold'} label={reel.status === 'approved' ? 'Approved' : 'Rendered'} /> : undefined}
+        />
+        <CardBody className="grid gap-4">
+          {/* step 1: the script */}
+          <section aria-label="Step 1 of 3: Script" className="grid gap-4 rounded-card border border-border p-4 sm:p-5">
+            <StepHeading
+              n={1}
+              name="Script"
+              description="The film's on-screen lines, written from your approved profile in your Business DNA voice. Edit any line and save; the limits are the film's, so a long line is trimmed."
+              actions={script ? (
+                <Button variant="secondary" size="sm" disabled={busy || serviceDown === true} loading={is('script')} loadingLabel="Writing" onClick={() => start('script')}>
                   Rewrite
                 </Button>
-              )}
-              {script && (
-                <Button variant={reel ? 'secondary' : 'primary'} size="sm" disabled={busy || !probe || serviceDown === true} loading={is('reel')} loadingLabel="Rendering" onClick={() => start('reel')}>
-                  {reel ? 'Render again' : 'Render the reel'}
-                </Button>
-              )}
-            </>
-          }
-        />
-        <CardBody className="grid gap-6">
-          {is('script') && <RunningLine label="Writing the script in your voice" />}
-          {is('reel') && <RunningLine label="Rendering the reel" />}
-          {!script && !is('script') && (
-            <HonestEmpty
-              fact="No script yet."
-              reason="Launch Kit writes the film's thirty-odd lines from your profile, in your Business DNA voice when you have one, and never invents a number. You can edit every line before rendering."
-              runKind="studio:script"
-              action={<Button variant="secondary" disabled={busy || serviceDown === true} onClick={() => start('script')}>Write the script</Button>}
+              ) : undefined}
             />
-          )}
-          {reel && !is('reel') && <ReelView row={reel} script={script} imagesRow={images} voiceRow={voice} disabled={busy} onChanged={refresh} />}
-          {script && !is('script') && (
-            <div className="grid gap-3">
-              <p className="text-body text-muted-foreground">
-                {reel ? 'The script the reel was rendered from. Edit a line, save, then render again.' : 'Check every line, then render. The limits are the film’s: longer lines shrink on screen or get trimmed.'}
-              </p>
+            {is('script') ? (
+              <RunningLine label="Writing the script in your voice" />
+            ) : script ? (
               <ScriptEditor row={script} disabled={busy} onSaved={refresh} />
-              <VoiceSection row={voice} script={script} disabled={busy || serviceDown === true} running={is('voice')} voiceOff={voiceOff} engine={voiceEngine} onWrite={() => start('voice')} />
-              {!probe && (
-                <Banner tone="hold" title="Read the site before rendering.">
-                  The reel takes its colours and logo from the site read.
-                </Banner>
-              )}
-            </div>
-          )}
+            ) : (
+              <HonestEmpty
+                fact="No script yet."
+                reason="Launch Kit writes the film's thirty-odd lines from your profile, in your Business DNA voice when you have one, and never invents a number. You can edit every line before rendering."
+                runKind="studio:script"
+                action={<Button variant="secondary" disabled={busy || serviceDown === true} onClick={() => start('script')}>Write the script</Button>}
+              />
+            )}
+          </section>
+
+          {/* step 2: the voice-over */}
+          <section aria-label="Step 2 of 3: Voice-over" className="grid gap-4 rounded-card border border-border p-4 sm:p-5">
+            <StepHeading
+              n={2}
+              name="Voice-over"
+              description={`Your pitch in five spoken lines that land on the film's beats: the problem, the app, how it works, what you get, what to do next. Spoken on this machine${voiceEngine ? ` with ${voiceEngine}` : ''} and mixed under the music. Edit a line and speak it again, or rewrite all five.`}
+              actions={voice && script ? (
+                <Button variant="secondary" size="sm" disabled={busy || serviceDown === true || voiceOff} loading={is('voice')} loadingLabel="Speaking" onClick={() => start('voice')}>
+                  Rewrite the voice-over
+                </Button>
+              ) : undefined}
+            />
+            {voiceBusy && <RunningLine label={voiceEditing ? 'Speaking your edited lines' : 'Writing the pitch, then speaking it'} />}
+            {voice && script ? (
+              <>
+                {voiceOff && <p className="text-small text-muted-foreground">{VOICE_OFF_LINE}</p>}
+                <VoiceEditor row={voice} script={script} disabled={busy || serviceDown === true || voiceOff} onSpeak={(lines) => speakEdits(voice.id, lines)} />
+              </>
+            ) : !script ? (
+              <p className="text-small text-muted-foreground">Write the script first: the voice-over is spoken to its beats.</p>
+            ) : voiceOff ? (
+              <p className="text-small text-muted-foreground">{VOICE_OFF_LINE}</p>
+            ) : !voiceBusy ? (
+              <HonestEmpty
+                fact="No voice-over yet."
+                reason="Launch Kit writes the five lines as you speaking to a room, never reading the screen aloud, and speaks them here with an open-source voice. Every line is measured against its window; you can edit any of them and speak it again."
+                runKind="studio:voice"
+                action={<Button variant="secondary" disabled={busy || serviceDown === true} onClick={() => start('voice')}>Write the voice-over</Button>}
+              />
+            ) : null}
+          </section>
+
+          {/* step 3: the reel */}
+          <section aria-label="Step 3 of 3: The reel" className="grid gap-4 rounded-card border border-border p-4 sm:p-5">
+            <StepHeading
+              n={3}
+              name="The reel"
+              description="The finished film: 24 seconds, 1080 by 1920, your pitch under the music. Render it once the script and the voice-over read right, then approve the one you will post."
+              actions={reel && script ? (
+                <Button variant="secondary" size="sm" disabled={busy || !probe || serviceDown === true} loading={is('reel')} loadingLabel="Rendering" onClick={() => start('reel')}>
+                  Render again
+                </Button>
+              ) : undefined}
+            />
+            {is('reel') ? (
+              <RunningLine label="Rendering the reel" />
+            ) : reel ? (
+              <ReelView row={reel} script={script} imagesRow={images} voiceRow={voice} disabled={busy} onChanged={refresh} />
+            ) : !script ? (
+              <p className="text-small text-muted-foreground">Write the script first: the reel is rendered from it.</p>
+            ) : (
+              <HonestEmpty
+                fact="No reel yet."
+                reason={`Rendered on this machine from the script, the site read${images ? ', the launch images' : ''}${voice ? ' and the voice-over' : ''}: an MP4 you can download and post, with a poster and an eight-frame strip.${voice ? '' : ' Without a voice-over it renders with music only.'}`}
+                runKind="studio:reel"
+                action={<Button variant="primary" disabled={busy || !probe || serviceDown === true} onClick={() => start('reel')}>Render the reel</Button>}
+              />
+            )}
+            {!probe && script && (
+              <Banner tone="hold" title="Read the site before rendering.">
+                The reel takes its colours and logo from the site read.
+              </Banner>
+            )}
+          </section>
         </CardBody>
       </Card>
 

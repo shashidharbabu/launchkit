@@ -7,6 +7,7 @@ import { Disclosure } from '@launchkit/design-system/components/disclosure';
 import { cn } from '@launchkit/design-system/lib/cn';
 import { useNav } from '../../nav';
 import { etaLabel } from '../../lib/run-eta';
+import { getSetting } from '../../data/settings';
 
 /** The package's surfaces, re-exported so every stage builds from the same sheet. */
 export { Card, CardHeader, CardBody, CardFooter, Well } from '@launchkit/design-system/components/card';
@@ -82,13 +83,19 @@ export function Orient({
   );
 }
 
+/** The Settings switch that shows raw pipeline output on the stage cards; off for builders, on for development. */
+export const SHOW_RAW_KEY = 'show_raw_data';
+export const showRawData = () => getSetting(SHOW_RAW_KEY) === 'on';
+
 /**
  * Raw output, folded shut at the bottom of a card (cards-surfaces.md: a CodeWell).
- * People review the structured view; this exists for support and the curious.
+ * A development aid: it renders only when Settings has "Show raw data" on, so
+ * builders see the structured view alone.
  */
 export function RawData({ data, label = 'Raw data' }: { data: unknown; label?: string }) {
   const [open, setOpen] = React.useState(false);
   const isText = typeof data === 'string';
+  if (!showRawData()) return null;
   return (
     <div>
       <Button variant="ghost" size="sm" onClick={() => setOpen(!open)} aria-expanded={open} className="-ml-2 text-muted-foreground">

@@ -51,6 +51,10 @@ export async function audioSeconds(file) {
   return Math.round(Number(out.trim()) * 100) / 100;
 }
 
+/** A stalled speaker is killed rather than left running: no line for STUDIO_TTS_STALL_SECONDS (300), or STUDIO_TTS_MAX_SECONDS (900) in all. */
+const stallSeconds = () => Math.max(60, Number(process.env.STUDIO_TTS_STALL_SECONDS) || 300);
+const maxSeconds = () => Math.max(120, Number(process.env.STUDIO_TTS_MAX_SECONDS) || 900);
+
 async function sayChatterbox(items, { exaggeration, cfg, refVoice = null, onLine }) {
   const batch = path.join(path.dirname(items[0].out), 'lines.json');
   await writeFile(batch, JSON.stringify(items));
@@ -60,19 +64,35 @@ async function sayChatterbox(items, { exaggeration, cfg, refVoice = null, onLine
     const child = spawn(VENV_PY, args, { cwd: ROOT, env: { ...process.env, PYTHONUNBUFFERED: '1', TOKENIZERS_PARALLELISM: 'false' } });
     const info = {};
     let tail = '';
+    const started = Date.now();
+    let lastLine = started;
+    let done = false;
+    const finish = (fn, value) => { if (done) return; done = true; clearInterval(watch); fn(value); };
+    // the watchdog: a speaker that goes quiet (another render hogging the machine, a model load that never ends) is killed, and the job fails with a reason instead of hanging
+    const watch = setInterval(() => {
+      const quiet = (Date.now() - lastLine) / 1000;
+      const total = (Date.now() - started) / 1000;
+      if (quiet > stallSeconds() || total > maxSeconds()) {
+        child.kill('SIGKILL');
+        const spoken = Object.keys(info).length;
+        finish(reject, new Error(quiet > stallSeconds()
+          ? `chatterbox stalled: no line spoken for ${Math.round(quiet / 60)} minutes (${spoken} of ${items.length} done; another render may be hogging the machine): try again`
+          : `chatterbox took more than ${Math.round(maxSeconds() / 60)} minutes (${spoken} of ${items.length} done): try again`));
+      }
+    }, 5000);
     const take = (buf) => {
       const s = buf.toString();
       tail = (tail + s).slice(-2000);
       for (const line of s.split('\n')) {
         const t = line.trim();
         if (!t.startsWith('{')) continue;
-        try { const j = JSON.parse(t); if (j.id) info[j.id] = j; onLine?.(j); } catch { /* progress noise */ }
+        try { const j = JSON.parse(t); if (j.id) info[j.id] = j; if (j.id || j.loaded) lastLine = Date.now(); onLine?.(j); } catch { /* progress noise */ }
       }
     };
     child.stdout.on('data', take);
     child.stderr.on('data', take);
-    child.on('error', reject);
-    child.on('close', (code) => (code === 0 ? resolve(info) : reject(new Error(`chatterbox exited ${code}: ${tail.slice(-400)}`))));
+    child.on('error', (e) => finish(reject, e));
+    child.on('close', (code) => (code === 0 ? finish(resolve, info) : finish(reject, new Error(`chatterbox exited ${code}: ${tail.slice(-400)}`))));
   });
 }
 

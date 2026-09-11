@@ -6,6 +6,7 @@ const STUDIO_LABELS: Record<string, string> = {
   kit: 'brand kit',
   script: 'reel script',
   voice: 'voice-over',
+  'voice-edit': 'voice-over edit',
   reel: 'reel render',
 };
 
