@@ -276,6 +276,33 @@ export function parseJsonLoose(raw: unknown): unknown {
   try {
     return JSON.parse(blob);
   } catch {
-    return pyLiteralEval(blob);
+    // a multi-paragraph field (a Reddit body, a maker comment) often comes back with raw
+    // newlines inside the quotes, which neither JSON nor a Python literal accepts
+    try {
+      return JSON.parse(escapeControlsInStrings(blob));
+    } catch {
+      return pyLiteralEval(blob);
+    }
   }
+}
+
+/** Raw newlines, carriage returns and tabs inside double-quoted strings become their escape sequences; everything else is untouched. */
+export function escapeControlsInStrings(src: string): string {
+  let out = "";
+  let inString = false;
+  for (let i = 0; i < src.length; i++) {
+    const c = src[i];
+    if (inString) {
+      if (c === "\\") { out += c + (src[i + 1] ?? ""); i++; continue; }
+      if (c === '"') { inString = false; out += c; continue; }
+      if (c === "\n") { out += "\\n"; continue; }
+      if (c === "\r") { out += "\\r"; continue; }
+      if (c === "\t") { out += "\\t"; continue; }
+      out += c;
+    } else {
+      if (c === '"') inString = true;
+      out += c;
+    }
+  }
+  return out;
 }
