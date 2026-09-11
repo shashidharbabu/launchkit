@@ -35,6 +35,7 @@ import {
 import { getCurrentRun, setCurrentRun } from './trace';
 import { rulesBlock } from './rules';
 import { punctuationFixed } from './runner';
+import { sanitizeVerbs } from '../domain/sanitize';
 import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
@@ -424,8 +425,11 @@ export const api = {
           { commercial: commercialCtx, campaign: campaignCtx, previousDraft })),
       async (result) => {
         const changed = punctuationFixed(result);
-        const gated = gateAsset(asset_type, result) as Record<string, unknown>;
+        // the banned launch verb is swapped in the draft itself (never in quoted or observed text elsewhere)
+        const swapped = sanitizeVerbs(result as Dict);
+        const gated = gateAsset(asset_type, swapped.data) as Record<string, unknown>;
         if (changed) gated.punctuation_fixed = changed;
+        if (swapped.verbs) gated.wording_fixed = swapped.verbs;
         const n = count('assets', { project_id: id, asset_type });
         insert('assets', {
           id: uid(), project_id: id, asset_type, version: n + 1,

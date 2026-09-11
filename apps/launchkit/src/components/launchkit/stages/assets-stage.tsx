@@ -122,6 +122,7 @@ function AssetCard({
   const appUrl = pickUrl(project as unknown as Record<string, unknown>);
   const data = fillDeep(asset.data as Record<string, unknown>, appUrl);
   const fixed = typeof data.punctuation_fixed === 'number' ? data.punctuation_fixed : 0;
+  const verbsFixed = typeof data.wording_fixed === 'number' ? data.wording_fixed : 0;
   const links = shareLinks(
     asset.asset_type,
     data,
@@ -255,9 +256,9 @@ function AssetCard({
           </Button>
         ))}
         <CopyButton text={assetCopyText(data)} label="Copy" />
-        {fixed > 0 && (
+        {(fixed > 0 || verbsFixed > 0) && (
           <span className="text-small text-muted-foreground">
-            {fixed} {fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule
+            {[fixed > 0 ? `${fixed} ${fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule` : '', verbsFixed > 0 ? `${verbsFixed} banned ${verbsFixed === 1 ? 'verb' : 'verbs'} swapped for release` : ''].filter(Boolean).join(', ')}
           </span>
         )}
       </CardFooter>
