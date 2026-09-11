@@ -94,13 +94,31 @@ await step('profile', async () => {
     }).catch(() => false);
     if (!enabled && /analysis failed|understand failed|could not analy/i.test(await text().catch(() => ''))) break;
   }
-  const t = await text();
-  const partial = /Partial analysis|could not be reached|unreachable/i.test(t);
+  let t = await text();
+  let partial = /could not be read in full|Partial analysis|could not be reached|unreachable/i.test(t);
+  let retried = false;
+  if (enabled && partial) {
+    // a site that was asleep usually answers the second time: one more read before approving
+    const again = page.locator('#lk-root button', { hasText: /^Analyze again$/ }).first();
+    if (await again.count()) {
+      retried = true;
+      await again.click();
+      const t1 = Date.now();
+      await page.waitForTimeout(5000);
+      while (Date.now() - t1 < 600000) {
+        const b = await page.evaluate(() => { const x = [...document.querySelectorAll('#lk-root button')].find((y) => /Approve profile/.test(y.textContent || '')); return Boolean(x && !x.disabled); }).catch(() => false);
+        if (b) break;
+        await page.waitForTimeout(4000);
+      }
+      t = await text();
+      partial = /could not be read in full|Partial analysis|could not be reached|unreachable/i.test(t);
+    }
+  }
   await shot('1-profile.png');
   if (!enabled) throw new Error(`profile never became approvable: ${(t.match(/(failed|error)[^.]{0,160}/i) || [''])[0]}`);
   await page.locator('#lk-root button', { hasText: 'Approve profile' }).first().click();
   await page.waitForTimeout(3000);
-  return { understandSecs: Math.round((Date.now() - t0) / 1000), partial, rail: (await rail()).slice(0, 2) };
+  return { understandSecs: Math.round((Date.now() - t0) / 1000), partial, retried, rail: (await rail()).slice(0, 2) };
 });
 
 // ---- Brand ----
@@ -148,10 +166,11 @@ await step('social', async () => {
     const t = await text();
     per[p] = { drafted: true, secs: Math.round((Date.now() - t0) / 1000), idle: w.idle, failed: (t.match(new RegExp(`Social Launch, ${p}[^.]*failed[^.]*\\.`)) || [''])[0].slice(0, 160) };
   }
-  // approve every draft that exists
+  // approve every draft that passed its hard checks; the rest stay in review, as a founder would leave them
   let approved = 0;
+  const blocked = await page.evaluate(() => [...document.querySelectorAll('#lk-root main button[aria-label^="Approve the "]')].filter((b) => Number(b.getAttribute('data-blockers') || 0) > 0).map((b) => b.getAttribute('aria-label')));
   for (let i = 0; i < 8; i++) {
-    const btn = page.locator('#lk-root main button[aria-label^="Approve the "]').first();
+    const btn = page.locator('#lk-root main button[aria-label^="Approve the "][data-blockers="0"]').first();
     if (!(await btn.count())) break;
     await btn.click();
     await page.waitForTimeout(1800);
@@ -159,7 +178,7 @@ await step('social', async () => {
   }
   const t = await text();
   await shot('4-social.png');
-  return { per, approved, counts: (t.match(/\d+ approved, \d+ needs? review/) || [''])[0], warnings: (t.match(/\d+ warnings? from the draft check/g) || []).length };
+  return { per, approved, blocked, counts: (t.match(/\d+ approved, \d+ needs? review/) || [''])[0], warnings: (t.match(/\d+ warnings? from the draft check/g) || []).length, repaired: (t.match(/hard-rule failures? repaired/g) || []).length };
 });
 
 // ---- Assets ----

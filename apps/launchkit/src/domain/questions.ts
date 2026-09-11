@@ -49,7 +49,11 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
     "7) No hype words (game-changer, revolutionary, seamless, unleash, elevate, next-gen, cutting-edge, " +
     "supercharge), no em dashes, no emoji; rhetorical questions only where a beat asks for questions. " +
     "8) Punctuate as the hints say: labels end with a colon, statements end with a period. 9) If " +
-    "CAMPAIGN_ANGLE is present, the problem beats and the call to action carry that angle.",
+    "CAMPAIGN_ANGLE is present, the problem beats and the call to action carry that angle, but never the name " +
+    "of another product: 10) the film names no other product or company, ever; say what this app does instead. " +
+    "11) The how-it-works beats show what the product actually does to an item (its own field, its own states, " +
+    "its own rule) from SITE_COPY; when the product has no catch, no penalty and no timer, use its plain states " +
+    "and leave optional slots such as payoff_timer empty rather than inventing a mechanism.",
     `THE FILM (beats in order):\n${beats}`,
     `SLOTS:\n${slots}`,
     `APP_NAME: ${appName}`,
@@ -188,8 +192,10 @@ export function buildStudioVoiceQuestion(spec: ConceptSpec, slots: Record<string
     "on screen (no \"as you can see\", no \"the screen shows\"); the pictures and the words on screen are your " +
     "backdrop. Do not read the on-screen lines aloud word for word; say what a speaker would say at that " +
     "moment. 3) Each segment must land inside its window: respect its word budget, count the words, shorter is " +
-    "better; a segment is one to three short spoken sentences. 4) Numbers: only those on screen or in " +
-    "APP_PROFILE or BRAND_DNA, said as a speaker says them (\"forty-eight\", not \"48\"). 5) Say the app name " +
+    "better; a segment is one to three short spoken sentences. 4) Numbers: only those in APP_PROFILE or " +
+    "BRAND_DNA, said as a speaker says them (\"forty-eight\", not \"48\"); the on-screen scenario numbers (a " +
+    "count of items, minutes, people) are illustration, never spoken as fact: say \"a pile of reports\", not " +
+    "\"forty-seven reports\". Never name another product or company. 5) Say the app name " +
     "exactly as APP_NAME in the drop and in the close; never read the web address. 6) In the brand's voice when " +
     "BRAND_DNA is present; otherwise confident and direct. 7) If CAMPAIGN_ANGLE is present, the problem and the " +
     "close carry it. 8) Write for speech: contractions are fine; no lists, colons, brackets, quotation marks or " +
@@ -242,10 +248,14 @@ export function buildUnderstandQuestion(repoUrl: string, siteUrl: string, feedba
 }
 
 /** rr.run_commercial — task: 'pricing' | 'listing'. */
-export function buildCommercialQuestion(task: string, profile: Profile, currentListing = ""): string {
+export function buildCommercialQuestion(task: string, profile: Profile, currentListing = "",
+                                        chosenPricing = ""): string {
   const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
   if (currentListing) {
     parts.push(`CURRENT_LISTING: ${currentListing}`);
+  }
+  if (chosenPricing) {
+    parts.push(`CHOSEN_PRICING (the builder chose these tiers in the Commercial stage; the listing quotes these prices and no others): ${chosenPricing}`);
   }
   return parts.join("\n");
 }
@@ -276,6 +286,15 @@ export function buildBrandQuestion(task: string, profile: Profile, siteUrl = "",
   return parts.join("\n");
 }
 
+/** A profile the understand pass could not evidence: degraded, or under half confidence. */
+export function thinProfile(profile: Profile): boolean {
+  const p = profile as unknown as Record<string, unknown>;
+  if (pyTruthy(p.analysis_degraded)) return true;
+  const conf = p.confidence as Record<string, unknown> | undefined;
+  const overall = Number(conf?.overall ?? NaN);
+  return Number.isFinite(overall) && overall < 0.5;
+}
+
 /** rr.run_asset — section order (BRAND_DNA → TARGET → TONE → feedback) is contractual. */
 export function buildAssetQuestion(assetType: string, profile: Profile,
                                    target?: TargetData | null, tone = "",
@@ -293,6 +312,17 @@ export function buildAssetQuestion(assetType: string, profile: Profile,
   }
   if (rules) {
     parts.push(rules);
+  }
+  // a profile inferred without the site (asleep, 503) has nothing to draft from; the platform's hook patterns must not fill the gap
+  if (thinProfile(profile)) {
+    parts.push("THIN_PROFILE: this profile was inferred without reading the site (analysis degraded or confidence under " +
+               "0.5), so it holds no verified mechanism, story or number. This overrides every hook pattern and every " +
+               "platform rule that asks for an origin story, a moment, a limitation or a how-it-works: describe the app " +
+               "only in the words of its one-liner and category, name no feature, workflow, export, integration or " +
+               "step it does not state, and where a platform wants the builder's story write the placeholder " +
+               "\"[Builder: two sentences on why you built it]\" as its own paragraph. Keep the draft short; a short " +
+               "true draft beats a long plausible one. Say in warnings that the profile was thin and the builder " +
+               "should re-analyze once the site answers.");
   }
   if (extras?.campaign) {
     parts.push(`CAMPAIGN_ANGLE (the builder chose this angle in the Brand stage; the post carries it): ${extras.campaign}`);
@@ -435,6 +465,9 @@ export function buildPricingOptionsQuestion(profile: Profile, pricingResult: Dic
     "positioning states the yearly amount actually charged; for a one-time purchase it is the purchase " +
     "price, and revenue_at counts that many purchases in a month; for usage-based it is the expected " +
     "monthly spend of a typical customer on that tier. A free tier has price_usd_month 0.",
+    "INCLUDED: a tier's includes never change a quota, a seat count or a feature relative to " +
+    "APP_PROFILE.pricing_current unless the option's positioning says in plain words that it is a product " +
+    "change; a price move keeps what the tier includes.",
     "REVENUE: revenue_at is the monthly revenue in USD at 10, 50 and 200 paying customers, computed from " +
     "the option's PAID tiers only (price above 0): spread the paying customers evenly across the paid " +
     "tiers, so revenue equals the number of customers times the average paid price. Do the arithmetic; " +

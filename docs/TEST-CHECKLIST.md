@@ -102,3 +102,22 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 - [ ] Plan: "Download the plan (PDF)". On Free it opens the subscription dialog; "Subscribe and download" (a placeholder until billing exists) then downloads launch-plan-<app>.pdf: branded cover, six numbered sections, page numbers. Settings has a Subscription card with the demo tier switch. Drive: `node drive.plan-pdf.mjs`.
 - [ ] Every stage: an Orient lead, then cards titled "Step N of M: Name" where the steps are sequential, each with a one-sentence description.
 - [ ] Studio service: a Chatterbox line that goes quiet for five minutes fails the job with a reason instead of hanging (STUDIO_TTS_STALL_SECONDS, STUDIO_TTS_MAX_SECONDS).
+
+## H. Ten-app evaluation (2026-09-11): rulebooks, gate, repair pass
+
+- [ ] Rulebooks: Settings shows six platform rulebooks at version 3 (x_post, linkedin_post, reddit_post, producthunt, show_hn, newsletter_pitch), each with hook patterns; a seeded row older than the version is replaced on load, an owner-edited row is kept
+- [ ] Draft check: a draft with a comma shows no "Em or en dash" line; a LinkedIn post in lowercase shows no "capitals" line; a 246-word Show HN body shows "Body over 200 words (246 words, cap 200)" in a red "hard-rule failures: fix before posting" banner, apart from the ordinary warnings
+- [ ] Repair pass: a draft that failed a hard check is asked once more with the failures named; when the second pass fails fewer, it replaces the first and the footer says "N hard-rule failures repaired by a second pass"
+- [ ] Reddit: with a subreddit ticked in Targets, "Draft for Reddit" writes for that subreddit (its title format and disclosure), not r/SideProject
+- [ ] Invention rules: no builder name, co-founder or customer that the profile does not name (a placeholder such as [Builder first name] instead), no origin story or "I used to use X", no negative word attached to a competitor's name; with a thin profile (site asleep) the drafts stay general and add no mechanism
+- [ ] Profile: a partial read shows a red banner with "Analyze again"; the drive re-analyzes once before approving
+- [ ] Assets: cards, poster and voice carry the brand's own name when the launch was created under a slug; a card never prints a bracketed profile caveat; the reel's step 3 and payoff use the product's own states and the timer only when the product has one; a status pill or badge in the header is never picked as the logo; a light grey is never the primary colour
+- [ ] Reel: "Approve reel" is disabled while a spoken line runs past its window, with the hint to shorten and speak again
+- [ ] Commercial: revenue at 10, 50, 200 customers is computed from the paid tiers on every option card and matches the revenue check; a tier's includes never change a quota without saying so; the listing quotes only the chosen tiers and names no competitor
+- [ ] Signals: a failed search reads "The search failed." with the error and a Search again button, never the "nobody is asking" text; promotional posts and launch announcements are not signals
+- [ ] Targets: for an established product (launched over a year ago, more than 5,000 stars, paying customers) Show HN and Product Hunt rank below the niche communities with a "repeat launch" note
+- [ ] Plan: an approved post whose platform is not among the chosen venues still gets a tracked link row ("X (your account)", "Product Hunt", ...)
+- [ ] Harness: `cd launchkit-src/frontend && node run-eval.mjs` runs the ten apps in two lanes into `docs/eval-10/<slug>/`; `python3 eval-extract.py` writes extract.json and matrix.json; `SLUG=.. STAGE=.. BUTTON=.. node drive.rerun.mjs` re-runs one action from the saved store into appstate.rerun.json
+- [ ] Interrupted run: a run still marked running after 30 minutes with no live job in this page (the tab closed mid-run) settles as "Interrupted: this run never finished ... Run it again." and the stage's buttons come back
+- [ ] Thin profile: with analysis_degraded true (or confidence under 0.5) every draft stays at the one-liner, names no mechanism, and carries "[Builder: two sentences on why you built it]" where a platform wants the story
+- [ ] Logo pick: a logo-classed image outside the header, nav or home link (a customer wall) is never picked over the site's own icons

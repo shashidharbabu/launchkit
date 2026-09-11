@@ -160,9 +160,25 @@ export function kitCopy(profile: Dict, dna: Dict | null, listing: Dict | null, s
   description: string;
 } {
   const s = (v: unknown) => (v == null ? "" : String(v).trim());
+  // a profile written without the site carries its own caveats in brackets; a card never prints those
+  const clean = (v: string) => v.replace(/\s*\([^)]*(unavailable|unreachable|not verifiable|could not)[^)]*\)/gi, "").trim();
   const listingTag = listing ? s(listing.tagline) : "";
-  const tagline = s(dna?.tagline_observed) || s(script?.tagline) || listingTag || unhedge(s(profile.one_liner));
-  const oneRaw = s(script?.one_liner) || unhedge(s(profile.one_liner));
-  const one = oneRaw !== tagline ? oneRaw : unhedge(s(profile.description)).slice(0, 160);
-  return { tagline, one_liner: one, description: unhedge(s(profile.description)) };
+  const listingShort = listing ? s(listing.description_short) : "";
+  const tagline = s(dna?.tagline_observed) || s(script?.tagline) || listingTag || clean(unhedge(s(profile.one_liner)));
+  const oneRaw = s(script?.one_liner) || listingShort || clean(unhedge(s(profile.one_liner)));
+  const one = oneRaw !== tagline ? oneRaw : clean(unhedge(s(profile.description))).slice(0, 160);
+  return { tagline, one_liner: one, description: clean(unhedge(s(profile.description))) };
+}
+
+/**
+ * The name the film, the cards and the voice carry. A launch created under a
+ * slug (hack-judge) takes the brand's own name from the DNA or the profile;
+ * a real name (Cal.com) stays as typed.
+ */
+export function displayName(projectName: string, dna: Dict | null, profile: Dict | null): string {
+  const s = (v: unknown) => (v == null ? "" : String(v).trim());
+  const typed = s(projectName);
+  const slugLike = /^[a-z0-9]+(?:[-_][a-z0-9]+)+$/.test(typed) || typed === "";
+  if (!slugLike) return typed;
+  return s(dna?.brand_name) || s((profile?.brand as Dict | undefined)?.name) || s(profile?.name) || typed;
 }

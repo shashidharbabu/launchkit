@@ -1,0 +1,173 @@
+{
+  "name": "hack-judge",
+  "site": "https://hackathon-judge-aid.onrender.com",
+  "repo": "",
+  "started": "2026-09-11T07:32:02.330Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 49,
+      "understandSecs": 43,
+      "partial": true,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 81,
+      "dnaSecs": 22,
+      "anglesSecs": 55,
+      "angles": 5,
+      "chosen": true,
+      "dnaEmpty": true,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 145,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "5",
+        "4"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 235,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 25,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 61,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 28,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 31,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 43,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 34,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 6,
+      "counts": "",
+      "warnings": 6
+    },
+    "assets": {
+      "ok": true,
+      "secs": 188,
+      "probe": {
+        "secs": 4,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 55,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 22,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:long folding tables of teams behind sticker-covered laptopslanyards and printed badge holdersa pitch stage with a projector screena shared scoring spreadsheet open acr",
+      "fits": 5,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 115,
+      "ranked": 14,
+      "top5": [
+        "BetaList",
+        "Product Hunt",
+        "Indie Hackers",
+        "r/hackathon",
+        "r/AlphaAndBetaUsers"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 316,
+      "idle": true,
+      "heading": "6 signals found: 6 in the queue (0 verified, 6 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Fair by Design",
+      "pricing": "Freemium Monthly Subscription, free plus paid tiers: Free $0/mo, Pro $49/mo, Tea"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 216045,
+  "finished": "2026-09-11T07:51:11.447Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://www.linkedin.com/posts/hacktribe_hackathonjudging-hackathons-programdesi...' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-O",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/christopherderrell_how-do-you-judge-a-hackathon-w...' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-O",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/jian-kim-74767a294_the-1-complaint-from-hackathon...' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-O",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Failed to load resource: the server responded with a status of 404 ()",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/daren-tan_hackathonkakitips-darentechtalks-activi...' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-O",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://dev-forum.pyth.network/t/judging-rubric-how-submissions-are-scored/523' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-Origin"
+  ]
+}

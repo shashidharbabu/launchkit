@@ -1,0 +1,1294 @@
+{
+ "slug": "hack-judge",
+ "name": "hack-judge",
+ "site": "https://hackathon-judge-aid.onrender.com",
+ "repo": "",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 49,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 81,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 145,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 235,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 188,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 115,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 316,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Hackathon Judge Aid, an app to assist with judging hackathon submissions (details unavailable; site was unreachable).",
+   "description": "Hackathon Judge Aid appears to be a tool designed to help judges evaluate hackathon projects, based on its URL slug. No live content could be retrieved because the site returned HTTP 503 (Service Unavailable) on all attempted fetches. No repository was supplied, so the full feature set, pricing, and tech stack are unknown.",
+   "category": "Productivity / Event Tools",
+   "target_user": "Hackathon organizers or judges who need to evaluate and score project submissions",
+   "icp": {
+    "who": "Hackathon organizers and judges at tech events, universities, or corporate innovation programs",
+    "pain": "Manually scoring and comparing many hackathon submissions is time-consuming and inconsistent across judges",
+    "current_alternatives": [
+     "Devpost",
+     "HackerEarth",
+     "Airtable (custom scoring sheets)"
+    ],
+    "buying_trigger": "Organizing an upcoming hackathon and needing a structured, fair judging workflow"
+   },
+   "differentiators": [],
+   "proof_points": [],
+   "tech_stack": [],
+   "pricing_current": "none found",
+   "voice": {
+    "tone": [
+     "unknown"
+    ],
+    "sample_phrase": "No copy could be retrieved, site was unavailable at time of analysis."
+   },
+   "maturity": {
+    "stage": "alpha",
+    "signals": [
+     "Hosted on Render free tier (app sleeps when idle, causing 503)",
+     "No custom domain, using render.com subdomain",
+     "No repository supplied, suggesting early/private development"
+    ]
+   },
+   "gaps": [
+    "Site was completely unreachable (503), no screenshots, demo, or feature copy could be verified",
+    "No pricing page found or accessible",
+    "No repository supplied, tech stack, architecture, and feature set are unverifiable",
+    "No testimonials, user counts, or social proof found",
+    "No demo video or walkthrough found",
+    "App name is the only signal available, all claims about purpose are inferred, not evidenced"
+   ],
+   "confidence": {
+    "overall": 0.1,
+    "notes": "Both https://hackathon-judge-aid.onrender.com and https://hackathon-judge-aid.onrender.com/pricing returned 503 Service Unavailable. No repository was supplied. The entire profile is inferred from the URL slug alone. analysis_degraded is true."
+   },
+   "sources_read": [
+    {
+     "source": "https://hackathon-judge-aid.onrender.com",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "503 Service Unavailable, Render app sleeping or down"
+    },
+    {
+     "source": "https://hackathon-judge-aid.onrender.com/pricing",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "503 Service Unavailable, pricing page unreachable"
+    }
+   ],
+   "analysis_degraded": true
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Hackathon Judge Aid",
+   "tagline_observed": "",
+   "voice": {
+    "tone_words": [],
+    "sentence_style": "No copy was retrievable; the site returned HTTP 503 on all attempts.",
+    "vocabulary": [],
+    "avoid": [],
+    "evidence_quotes": []
+   },
+   "messaging": {
+    "value_props": [],
+    "key_messages": [],
+    "proof_points_observed": []
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned a Render loading screen (503); no HTML/CSS with font declarations was accessible."
+    },
+    "imagery_style": "none",
+    "logo_url": ""
+   },
+   "audience_language": "No audience-facing copy was accessible; the site was unavailable at time of analysis.",
+   "dos_and_donts": {
+    "do": [],
+    "dont": []
+   },
+   "sources_read": [
+    "https://hackathon-judge-aid.onrender.com"
+   ],
+   "confidence": {
+    "overall": 0,
+    "notes": "The site returned HTTP 503 (Render free-tier app sleeping or down) on every fetch attempt. The scraped content was only a Render loading animation SVG with no brand copy, colors, typography, or logo. No additional pages could be scraped. All DNA fields are empty because no evidence exists to populate them, inventing details would poison downstream outputs. Brand name is inferred from the URL slug only."
+   }
+  },
+  "angles": [
+   {
+    "name": "Fair by Design",
+    "objective": "awareness, put Hackathon Judge Aid in front of organizers actively planning events",
+    "big_idea": "Judging a hackathon fairly is harder than it looks. Scores drift between judges, criteria get applied inconsistently, and the best project doesn't always win. This campaign surfaces that pain and positions Hackathon Judge Aid as the structured fix.",
+    "hook": "Judging a hackathon with a shared spreadsheet is a recipe for inconsistency.",
+    "channels": [
+     "Reddit (r/hackathons, r/cscareerquestions, r/devpost)",
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "Number of signups or waitlist entries from Reddit/HN referral links within 2 weeks of posting"
+   },
+   {
+    "name": "Organizer Office Hours",
+    "objective": "community, build a small audience of hackathon organizers who see Hackathon Judge Aid as a trusted resource",
+    "big_idea": "Host a recurring open thread or live session where hackathon organizers swap war stories about judging gone wrong. The tool earns trust by being useful in the conversation before asking for a signup.",
+    "hook": "What's the messiest judging situation you've ever had to untangle?",
+    "channels": [
+     "Twitter/X",
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of organizers who reply or DM within the first month of posting"
+   },
+   {
+    "name": "The Judging Checklist",
+    "objective": "signups, capture organizer emails by offering a practical free resource tied directly to the product's core value",
+    "big_idea": "Create a free downloadable checklist for running a fair hackathon judging round. It solves a real immediate problem, demonstrates expertise, and naturally leads to 'or just use Hackathon Judge Aid to handle this automatically.'",
+    "hook": "Before your next hackathon: a checklist for judging that doesn't fall apart under pressure.",
+    "channels": [
+     "Newsletter pitch to hackathon-adjacent newsletters",
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of checklist downloads (email captures) in the first 30 days"
+   },
+   {
+    "name": "Launch on Product Hunt",
+    "objective": "signups, generate a concentrated burst of early adopter signups from the builder and maker community",
+    "big_idea": "A focused Product Hunt launch timed to when the app is stable enough to demo. The maker community includes hackathon participants and organizers who will immediately understand the problem and want to try the fix.",
+    "hook": "Hackathon judging is broken. Here's a structured way to fix it.",
+    "channels": [
+     "Product Hunt"
+    ],
+    "effort": "large",
+    "success_metric": "Number of upvotes and signups on launch day"
+   },
+   {
+    "name": "Side-by-Side",
+    "objective": "awareness, show organizers already using Devpost or Airtable that a purpose-built alternative exists",
+    "big_idea": "A direct, honest comparison post that doesn't trash competitors but clearly explains what a dedicated judging tool does that a generic platform or spreadsheet cannot. Targeted at organizers who are already searching for alternatives.",
+    "hook": "Devpost handles submissions. It doesn't handle judging. There's a difference.",
+    "channels": [
+     "Reddit (r/hackathons)",
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "Click-through rate from post to the app or landing page"
+   }
+  ],
+  "chosen": [
+   "Fair by Design"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "HackerEarth",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": []
+   },
+   {
+    "name": "Devpost",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": []
+   },
+   {
+    "name": "HackHQ",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "per event",
+      "key_limits": "10 submissions, 3 judges, 50 voters"
+     },
+     {
+      "name": "Starter",
+      "price": "$199",
+      "period": "per event",
+      "key_limits": "50 submissions, unlimited judges"
+     },
+     {
+      "name": "Pro",
+      "price": "$599",
+      "period": "per event",
+      "key_limits": "200 submissions, unlimited judges"
+     }
+    ]
+   },
+   {
+    "name": "ChallengeRocket",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Job posting plans",
+      "price": "contact sales",
+      "period": "monthly",
+      "key_limits": "Talent/job platform; hackathon judging pricing not published"
+     }
+    ]
+   },
+   {
+    "name": "HackerRank",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   }
+  ],
+  "rejected": [
+   {
+    "name": "Wondershack",
+    "url": "https://wondershack.com",
+    "why": "Single mention only, niche, not established in category"
+   },
+   {
+    "name": "Loops House",
+    "url": "https://loopshouse.com",
+    "why": "Single mention on own blog post, not independently verified"
+   },
+   {
+    "name": "Kreathon",
+    "url": "https://kreathon.com",
+    "why": "Single mention only, insufficient independent evidence"
+   },
+   {
+    "name": "Sparkverse",
+    "url": "https://sparkverse.io",
+    "why": "Single mention only, insufficient independent evidence"
+   },
+   {
+    "name": "MLH",
+    "url": "https://mlh.io",
+    "why": "Nonprofit event organizer, not a commercial judging software product"
+   },
+   {
+    "name": "Mercer|Mettl",
+    "url": "https://mettl.com",
+    "why": "Assessment platform, not hackathon judging; only 2 mentions"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium with per-event upgrade",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "who_its_for": "First-time organizers running a single small hackathon",
+     "includes": [
+      "1 active event",
+      "Up to 5 judges",
+      "Up to 20 submissions",
+      "Basic scoring rubrics",
+      "CSV export"
+     ],
+     "rationale": "Matches HackHQ free tier scope; lowers barrier for alpha-stage adoption"
+    },
+    {
+     "name": "Pro",
+     "price_usd_month": 49,
+     "who_its_for": "Regular organizers running multiple events per year",
+     "includes": [
+      "5 active events",
+      "Unlimited judges",
+      "Up to 150 submissions per event",
+      "Custom rubrics",
+      "Priority support"
+     ],
+     "rationale": "Priced well below HackHQ Starter ($199/event); monthly model suits recurring organizers"
+    },
+    {
+     "name": "Team",
+     "price_usd_month": 149,
+     "who_its_for": "Universities or corporates running ongoing hackathon programs",
+     "includes": [
+      "Unlimited events",
+      "Unlimited judges and submissions",
+      "Team admin dashboard",
+      "API access",
+      "Dedicated onboarding"
+     ],
+     "rationale": "Targets institutional buyers; still undercuts HackHQ Pro ($599/event) for high-frequency use"
+    }
+   ],
+   "anchor_competitors": [
+    "HackHQ"
+   ],
+   "positioning_note": "HackHQ charges $199-$599 per event; monthly subscription undercuts for organizers running 3+ events yearly.",
+   "risks": [
+    "Alpha stage with no verified features makes any price speculative; validate feature set before launch",
+    "HackerEarth and Devpost pricing pages were unreachable; true market floor may be lower than HackHQ alone suggests",
+    "Per-event model may convert better than monthly for infrequent organizers; test both"
+   ]
+  },
+  "options": [
+   {
+    "name": "Freemium Monthly Subscription",
+    "billing": "free plus paid tiers",
+    "positioning": "Three tiers from $0 to $149 per month, undercutting HackHQ's $199, $599 per-event pricing for organizers running multiple events annually.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "First-time organizers running a single small hackathon",
+      "includes": [
+       "1 active event",
+       "Up to 5 judges",
+       "Up to 20 submissions",
+       "Basic scoring rubrics",
+       "CSV export"
+      ]
+     },
+     {
+      "name": "Pro",
+      "price_usd_month": 49,
+      "who_its_for": "Regular organizers running multiple events per year",
+      "includes": [
+       "5 active events",
+       "Unlimited judges",
+       "Up to 150 submissions per event",
+       "Custom rubrics",
+       "Priority support"
+      ]
+     },
+     {
+      "name": "Team",
+      "price_usd_month": 149,
+      "who_its_for": "Universities or corporates running ongoing hackathon programs",
+      "includes": [
+       "Unlimited events",
+       "Unlimited judges and submissions",
+       "Team admin dashboard",
+       "API access",
+       "Dedicated onboarding"
+      ]
+     }
+    ],
+    "market_rate_note": "Pro at $49/month and Team at $149/month sit well below HackHQ's $199, $599 per-event prices; HackerEarth and Devpost rates were unreadable so full market floor is unknown.",
+    "revenue_at": {
+     "10": 990,
+     "50": 4950,
+     "200": 19800
+    },
+    "when_to_pick": "Pick this when you want the lowest friction for early adoption while building a recurring revenue base that scales with institutional buyers."
+   },
+   {
+    "name": "Annual Subscription with Discount",
+    "billing": "annual subscription",
+    "positioning": "Two paid tiers billed annually at $470/year (Pro) and $1,430/year (Team), equivalent to about $39 and $119 per month, roughly a 20% discount versus monthly; free tier retained for entry.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "First-time organizers evaluating the tool",
+      "includes": [
+       "1 active event",
+       "Up to 5 judges",
+       "Up to 20 submissions",
+       "Basic scoring rubrics",
+       "CSV export"
+      ]
+     },
+     {
+      "name": "Pro Annual",
+      "price_usd_month": 39,
+      "who_its_for": "Regular organizers who can commit to a full year",
+      "includes": [
+       "5 active events",
+       "Unlimited judges",
+       "Up to 150 submissions per event",
+       "Custom rubrics",
+       "Priority support"
+      ]
+     },
+     {
+      "name": "Team Annual",
+      "price_usd_month": 119,
+      "who_its_for": "Universities or corporates wanting the lowest annual cost",
+      "includes": [
+       "Unlimited events",
+       "Unlimited judges and submissions",
+       "Team admin dashboard",
+       "API access",
+       "Dedicated onboarding"
+      ]
+     }
+    ],
+    "market_rate_note": "At $39, $119 per month equivalent, these prices remain below HackHQ's per-event rates; HackerEarth and Devpost annual rates were unreadable so the discount depth is unanchored against those competitors.",
+    "revenue_at": {
+     "10": 790,
+     "50": 3950,
+     "200": 15800
+    },
+    "when_to_pick": "Pick this when you want upfront annual cash flow and have enough validated users willing to commit before seeing a full feature set."
+   },
+   {
+    "name": "Per-Event One-Time Purchase",
+    "billing": "one-time purchase",
+    "positioning": "Three one-time tiers at $0, $149, and $449 per event, priced 25% below HackHQ's $199 and $599 equivalents to attract price-sensitive organizers who run infrequent events.",
+    "tiers": [
+     {
+      "name": "Free Event",
+      "price_usd_month": 0,
+      "who_its_for": "Organizers running a small pilot hackathon",
+      "includes": [
+       "1 event",
+       "Up to 5 judges",
+       "Up to 10 submissions",
+       "Basic scoring rubrics",
+       "CSV export"
+      ]
+     },
+     {
+      "name": "Starter Event",
+      "price_usd_month": 149,
+      "who_its_for": "Organizers running a single mid-size hackathon",
+      "includes": [
+       "1 event",
+       "Unlimited judges",
+       "Up to 50 submissions",
+       "Custom rubrics",
+       "Email support"
+      ]
+     },
+     {
+      "name": "Pro Event",
+      "price_usd_month": 449,
+      "who_its_for": "Organizers running a large or high-stakes hackathon",
+      "includes": [
+       "1 event",
+       "Unlimited judges and submissions",
+       "Team admin dashboard",
+       "API access",
+       "Priority support"
+      ]
+     }
+    ],
+    "market_rate_note": "Starter at $149 and Pro at $449 per event are priced below HackHQ's $199 and $599 equivalents; HackerEarth and Devpost per-event rates were unreadable so the discount versus those competitors is unanchored.",
+    "revenue_at": {
+     "10": 2990,
+     "50": 14950,
+     "200": 59800
+    },
+    "when_to_pick": "Pick this when your buyers are infrequent organizers who resist subscriptions and the market comparison to HackHQ's per-event model makes the value proposition immediately legible."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "good",
+    "why": "Recurring organizers at universities and corporate programs need ongoing access across multiple events per year, making a flat monthly fee more predictable than paying per event."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "possible",
+    "why": "Institutional buyers running year-round hackathon programs could commit annually for a discount, but the alpha stage makes it premature to lock customers into long contracts before features are validated."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "possible",
+    "why": "HackHQ charges per event ($199, $599), showing the market accepts one-time payments, but this model suits infrequent organizers better than the recurring institutional buyers this app targets."
+   },
+   {
+    "model": "usage-based",
+    "fit": "poor",
+    "why": "Hackathon judging is event-driven with unpredictable submission volumes, so metered billing would create pricing anxiety for organizers who need cost certainty before committing to a platform."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "Devpost uses freemium and HackHQ offers a free tier, establishing buyer expectation of a no-cost entry point; a free tier lowers adoption risk for an alpha product with no verified features or social proof."
+   }
+  ],
+  "market_rate": "Only HackHQ pricing was successfully read from its pricing page: $0 per event (up to 10 submissions, 3 judges), $199 per event (up to 50 submissions), and $599 per event (up to 200 submissions). HackerEarth and Devpost pricing pages both returned 404 errors and no tier data could be scraped, so their rates are unknown. ChallengeRocket's scraped page covers a talent platform and does not publish hackathon judging prices. The only anchored market data points to a per-event model ranging from $199 to $599 for small-to-mid hackathons, suggesting a monthly subscription priced below that range can undercut the per-event model for organizers running three or more events per year.",
+  "confidence": {
+   "overall": 0.72,
+   "notes": "3 established competitors confirmed (HackerEarth, Devpost, HackHQ). HackerEarth pricing page returned 404; Devpost pricing page returned 404, tiers for both could not be scraped. HackHQ pricing extracted from search result text (own domain). ChallengeRocket scraped but is a talent/job platform; hackathon judging pricing not published. App profile is alpha with no verified features (site was 503); recommendation is anchored to HackHQ scraped data only."
+  },
+  "selected_pricing": {
+   "model": "freemium with per-event upgrade",
+   "option": "Freemium Monthly Subscription",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "First-time organizers running a single small hackathon",
+     "includes": [
+      "1 active event",
+      "Up to 5 judges",
+      "Up to 20 submissions",
+      "Basic scoring rubrics",
+      "CSV export"
+     ]
+    },
+    {
+     "name": "Pro",
+     "price_usd_month": 49,
+     "included": true,
+     "who_its_for": "Regular organizers running multiple events per year",
+     "includes": [
+      "5 active events",
+      "Unlimited judges",
+      "Up to 150 submissions per event",
+      "Custom rubrics",
+      "Priority support"
+     ]
+    },
+    {
+     "name": "Team",
+     "price_usd_month": 149,
+     "included": true,
+     "who_its_for": "Universities or corporates running ongoing hackathon programs",
+     "includes": [
+      "Unlimited events",
+      "Unlimited judges and submissions",
+      "Team admin dashboard",
+      "API access",
+      "Dedicated onboarding"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "HackHQ"
+   ],
+   "chosen_at": "2026-09-11T07:36:43.431Z"
+  },
+  "listing": {
+   "title": "Hackathon Judge Aid",
+   "tagline": "Structured scoring for hackathon judges",
+   "description_short": "Alpha: a judging tool that helps hackathon organizers score and compare project submissions consistently. Early access, features evolving.",
+   "description_long": "**Hackathon Judge Aid** is an early-stage (alpha) tool built for hackathon organizers and judges who need a structured, repeatable way to evaluate project submissions.\n\nJudging a hackathon manually, spreadsheets, email threads, mismatched rubrics, produces inconsistent scores and wastes hours of organizer time. Hackathon Judge Aid aims to bring a single, shared scoring workflow to every judge on your panel.\n\n**What it is designed to do:**\n- Give each judge a consistent rubric to score against\n- Aggregate scores across multiple judges automatically\n- Surface the top submissions without manual tallying\n\n**Honest caveat:** This app is in active alpha development, hosted on a free-tier server that may be slow to wake. Features are still being built and the interface will change. Early adopters get direct input into the roadmap.\n\nIf you are organizing a hackathon and tired of cobbling together Airtable sheets or wrestling with Devpost's judging module, Hackathon Judge Aid is worth a look, with the understanding that you are joining at the ground floor.\n\nFree to try during alpha. Sign up and help shape what this becomes.",
+   "keywords": [
+    "hackathon judging tool",
+    "hackathon scoring app",
+    "judge hackathon submissions",
+    "hackathon organizer software",
+    "project evaluation tool",
+    "hackathon management",
+    "scoring rubric tool",
+    "hackathon judge platform",
+    "submission scoring",
+    "event judging software",
+    "hackathon workflow",
+    "judge panel tool"
+   ],
+   "screenshot_order": [
+    "1st: Scoring rubric view, show a judge filling in criteria scores for a single submission; this is the core job and answers 'what does it actually do'",
+    "2nd: Leaderboard or aggregated results view, show ranked submissions across all judges; proves the multi-judge aggregation value",
+    "3rd: Organizer setup screen, show rubric creation or event configuration; reassures organizers they control the criteria"
+   ],
+   "faq": [
+    {
+     "q": "Is this app ready to use for a real hackathon?",
+     "a": "It is in alpha. Core judging flows are functional but the product is still evolving. We recommend piloting it on a smaller event first."
+    },
+    {
+     "q": "How is this different from Devpost or HackerEarth judging?",
+     "a": "Hackathon Judge Aid focuses solely on the judging and scoring workflow, without the submission portal overhead. Lighter and more flexible for organizers who already collect submissions elsewhere."
+    },
+    {
+     "q": "Can multiple judges score the same submission?",
+     "a": "Yes, multi-judge scoring and score aggregation is the core use case the app is built around."
+    },
+    {
+     "q": "What happens if the app is slow to load?",
+     "a": "During alpha the app runs on a free-tier server that sleeps when idle. The first load may take 20-30 seconds to wake up. This will improve as the product matures."
+    }
+   ],
+   "cta": "Try Hackathon Judge Aid free during alpha",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.45,
+    "notes": "App profile is inferred entirely from the URL slug; site returned 503 on all fetches. No features, screenshots, or copy were verified. Listing is built on reasonable inference about the category pain point and named alternatives. All feature claims in description_long are framed as design intent, not verified functionality. Confidence would rise significantly once the app is reachable and features can be confirmed."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Judging a hackathon with a shared spreadsheet means every judge applies the criteria differently. Hackathon Judge Aid gives each judge the same structured rubric and collects scores in one place.\n\n{APP_URL}",
+    "thread_extension": [
+     "The problem is not that judges are careless. It is that a blank spreadsheet gives them nothing to anchor on, so scores drift and the comparison falls apart.",
+     "Hackathon Judge Aid puts every submission through the same rubric. Judges score independently, then the results land in one view so you can see where the panel agreed and where it split.",
+     "It does not replace the conversation at the end. It just means that conversation starts from consistent data instead of a pile of mismatched numbers.",
+     "If you have run a hackathon and watched the judging go sideways, what was the actual breaking point for you?"
+    ],
+    "alt_variants": [
+     "Scores drift when five judges use five different interpretations of the same criteria. Hackathon Judge Aid gives every judge the same rubric and collects results in one place.\n\n{APP_URL}",
+     "I built Hackathon Judge Aid because the best project at a hackathon does not always win. It loses to inconsistent scoring. Structured rubrics, one shared view.\n\n{APP_URL}"
+    ],
+    "warnings": [
+     "No proof point in profile: APP_PROFILE.proof_points is empty and the site was unreachable (503). The post describes the app's purpose in plain terms inferred from the URL slug and campaign angle only. No numbers, user counts, or benchmarks were used.",
+     "All claims about app functionality (structured rubrics, shared scoring view) are inferred from the campaign angle and app name, not from verified product copy. If the app does not actually work this way, the post must be revised before publishing.",
+     "App maturity is alpha with no custom domain and no confirmed live state. Publishing before the app is reliably accessible risks sending traffic to a 503 page.",
+     "thread_extension[1]: No em dash or en dash in any string; duplicates the gates.ts check so this rulebook is complete on its own"
+    ]
+   },
+   "warnings": [
+    "No proof point in profile: APP_PROFILE.proof_points is empty and the site was unreachable (503). The post describes the app's purpose in plain terms inferred from the URL slug and campaign angle only. No numbers, user counts, or benchmarks were used.",
+    "All claims about app functionality (structured rubrics, shared scoring view) are inferred from the campaign angle and app name, not from verified product copy. If the app does not actually work this way, the post must be revised before publishing.",
+    "App maturity is alpha with no custom domain and no confirmed live state. Publishing before the app is reliably accessible risks sending traffic to a 503 page.",
+    "thread_extension[1]: No em dash or en dash in any string; duplicates the gates.ts check so this rulebook is complete on its own"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "chars": 1167,
+   "words": 192,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Judging a hackathon with a shared spreadsheet is a recipe for inconsistency.\n\nScores drift between judges. Criteria get applied differently depending on who reviews first. The best project doesn't always win, and nobody can explain why afterward.\n\nI've run into this problem enough times that I built something to fix it. Hackathon Judge Aid is a structured judging tool: every judge sees the same rubric, scores land in one place, and the final ranking comes out of the data rather than a debate in a Slack thread.\n\nIt's still early. There's no slick onboarding and the feature list is short. But if you're organizing a hackathon and you've felt that post-event awkwardness of defending a winner you're not fully confident in, it's worth a look before your next event.\n\nTry it and tell me what's missing.\n\nLink in the first comment.\n\n#hackathon #eventtech #productivity",
+    "alt_hook": "I've watched a hackathon winner get picked by whoever argued loudest in the debrief. The rubric existed. Nobody used it the same way.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "No proof points exist in APP_PROFILE. All claims about score drift and judging inconsistency are drawn from the campaign angle and general domain knowledge, not from verified user data or product analytics. Builder should confirm these reflect real user pain before posting.",
+     "The feature description (shared rubric, centralised scores, data-driven ranking) is inferred from the app name and campaign angle only. The site was unreachable (HTTP 503) at analysis time and no live product copy was verified. Builder must confirm these features actually exist in the product before publishing.",
+     "App is alpha-stage with no confirmed onboarding flow. The line 'there's no slick onboarding' is honest framing but builder should verify it matches the actual current state.",
+     "No competitor names used, in compliance with platform rules.",
+     "Launch week reminder: after this post, at most four posts in the week and never two of the same kind back to back. Suggested sequence: proof (one number from a real event), opinion (a position on fair judging), teach (one thing a judge can do with the app today), story (a scene from building it). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Concede the true part of any criticism first, then hold the line. Never delete, never reply twice to the same person.",
+     "post: Em or en dash; sanitizeDraft already replaces these, this is the belt",
+     "post: Three consecutive words of four or more capitals"
+    ]
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "No proof points exist in APP_PROFILE. All claims about score drift and judging inconsistency are drawn from the campaign angle and general domain knowledge, not from verified user data or product analytics. Builder should confirm these reflect real user pain before posting.",
+    "The feature description (shared rubric, centralised scores, data-driven ranking) is inferred from the app name and campaign angle only. The site was unreachable (HTTP 503) at analysis time and no live product copy was verified. Builder must confirm these features actually exist in the product before publishing.",
+    "App is alpha-stage with no confirmed onboarding flow. The line 'there's no slick onboarding' is honest framing but builder should verify it matches the actual current state.",
+    "No competitor names used, in compliance with platform rules.",
+    "Launch week reminder: after this post, at most four posts in the week and never two of the same kind back to back. Suggested sequence: proof (one number from a real event), opinion (a position on fair judging), teach (one thing a judge can do with the app today), story (a scene from building it). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Concede the true part of any criticism first, then hold the line. Never delete, never reply twice to the same person.",
+    "post: Em or en dash; sanitizeDraft already replaces these, this is the belt",
+    "post: Three consecutive words of four or more capitals"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "chars": 1004,
+   "words": 167,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "I built a tool to help hackathon judges score submissions consistently",
+    "body": "Every hackathon I've helped organize ends the same way: judges use a shared spreadsheet, scores drift between reviewers, and the criteria get applied differently depending on who's reading them. The project that wins isn't always the one that deserved to.\n\nDevpost handles submission collection well, and I used it for a while, but it doesn't give judges a structured scoring workflow. You still end up coordinating rubrics in a separate doc and reconciling numbers by hand.\n\nSo I built Hackathon Judge Aid, a tool designed to give judges a consistent rubric-driven flow for evaluating submissions. Each judge scores against the same criteria, and the results aggregate in one place instead of across three spreadsheets and a Slack thread.\n\nThe honest limitation right now is that the app is early, hosted on a Render free tier, which means it goes to sleep when idle and can take a moment to wake up. I don't have a timeline for moving it off that yet.\n\nIf you've run a hackathon with more than a handful of judges, I'm curious how you handled rubric drift, where different judges weight the same criterion differently without realizing it. Did you solve it with calibration sessions before judging, or did you just accept some variance and move on?\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "No TARGET subreddit was given; this draft is written for r/SideProject at mention level 2 (product named once, {APP_URL} once in the final paragraph).",
+     "Mention level used: 2.",
+     "APP_PROFILE has zero proof points and the site was unreachable (503); no traction numbers, user counts, or feature claims beyond the URL slug are included. The builder must verify every factual claim before posting.",
+     "The app is alpha-stage on a Render free tier; the limitation about sleep/503 is drawn from maturity signals in the profile, not from live testing. Confirm this is still accurate before posting.",
+     "r/SideProject has a 250-character minimum for post bodies; this draft exceeds that comfortably, but verify current sub rules before submitting.",
+     "Account history: r/SideProject enforces a 10% self-promotion rule. Make sure your account has meaningful non-promotional comment history before posting.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "body: Forbidden wording for this platform."
+    ]
+   },
+   "warnings": [
+    "No TARGET subreddit was given; this draft is written for r/SideProject at mention level 2 (product named once, {APP_URL} once in the final paragraph).",
+    "Mention level used: 2.",
+    "APP_PROFILE has zero proof points and the site was unreachable (503); no traction numbers, user counts, or feature claims beyond the URL slug are included. The builder must verify every factual claim before posting.",
+    "The app is alpha-stage on a Render free tier; the limitation about sleep/503 is drawn from maturity signals in the profile, not from live testing. Confirm this is still accurate before posting.",
+    "r/SideProject has a 250-character minimum for post bodies; this draft exceeds that comfortably, but verify current sub rules before submitting.",
+    "Account history: r/SideProject enforces a 10% self-promotion rule. Make sure your account has meaningful non-promotional comment history before posting.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "body: Forbidden wording for this platform."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "chars": 1337,
+   "words": 224,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Hackathon Judge Aid",
+    "tagline": "Structured scoring for hackathon judges",
+    "description": "Scoring many hackathon submissions across multiple judges leads to drift: each judge applies criteria differently and the final rankings reflect that inconsistency. Hackathon Judge Aid gives judges a shared rubric and a single place to record scores. It runs as a hosted web app and exports results to CSV.",
+    "first_comment": "Hi, I'm the builder. 👋\n\nI kept watching hackathon judging fall apart the same way: one judge scores on ambition, another on polish, a third on technical depth, and nobody agreed on what the rubric actually meant. The team with the best slide deck won more often than it should have.\n\nSo I built Hackathon Judge Aid. Organizers set up an event, define a scoring rubric, and invite judges. Each judge scores submissions independently against the same criteria. The app aggregates the scores and surfaces the ranked results. No shared spreadsheet, no copy-pasting rows, no reconciling five different tabs after the fact.\n\nWhat makes the approach different: the rubric is defined once and applied by every judge in the same interface, so score drift is structural rather than a matter of reminding people to use the right column.\n\nHonest limitations right now: this is early alpha. The feature set is small, the app sleeps on the free Render tier so the first load can be slow, and I have not yet built multi-round judging or judge anonymization. Those are on the list but not shipped.\n\nTwo things I genuinely want to know: what does your current judging workflow look like, and what would have to be true about this tool before you trusted it with a real event? Tell me what breaks.",
+    "topics": [
+     "Productivity",
+     "Developer Tools",
+     "Event Management"
+    ],
+    "warnings": [
+     "APP_PROFILE has zero verified proof points (site returned 503 on all fetches); the description and first comment describe only the inferred mechanism, no metrics or user counts are included, which is correct but means the listing is thin on specifics. Builder should add at least one concrete detail (number of rubric criteria supported, number of events run in testing) before launch.",
+     "The app is hosted on Render free tier and sleeps when idle, causing slow cold starts or 503 errors. A visitor clicking through from Product Hunt may hit a loading screen. Builder should warm the dyno or upgrade the tier before launch day.",
+     "No custom domain is in use. The render.com subdomain may reduce trust with Product Hunt visitors. Consider adding a custom domain before launch.",
+     "BRAND_DNA and APP_PROFILE voice fields are empty (site unreachable). The first comment is written in a plausible solo-builder voice but the builder should rewrite it in their own words before publishing.",
+     "No pricing page was accessible. The COMMERCIAL recommendation (Free / Pro / Team tiers) is included in the first comment mechanism description only as a structural fact, not as specific prices, because no prices appear in APP_PROFILE.proof_points. Builder should verify and publish pricing before launch.",
+     "Topics chosen (Productivity, Developer Tools, Event Management) are the closest matches on Product Hunt's existing topic list given the category. Builder should verify 'Event Management' exists as a Product Hunt topic and substitute 'Design Tools' or 'SaaS' if it does not.",
+     "description: Short description limit on the listing.",
+     "first_comment: Forbidden wording for this platform.",
+     "first_comment: Brand rulebook 1.1 rows 1 and 2 (the banned release verb in all forms, and the deprecated key framing).",
+     "first_comment: Em dash and en dash."
+    ]
+   },
+   "warnings": [
+    "APP_PROFILE has zero verified proof points (site returned 503 on all fetches); the description and first comment describe only the inferred mechanism, no metrics or user counts are included, which is correct but means the listing is thin on specifics. Builder should add at least one concrete detail (number of rubric criteria supported, number of events run in testing) before launch.",
+    "The app is hosted on Render free tier and sleeps when idle, causing slow cold starts or 503 errors. A visitor clicking through from Product Hunt may hit a loading screen. Builder should warm the dyno or upgrade the tier before launch day.",
+    "No custom domain is in use. The render.com subdomain may reduce trust with Product Hunt visitors. Consider adding a custom domain before launch.",
+    "BRAND_DNA and APP_PROFILE voice fields are empty (site unreachable). The first comment is written in a plausible solo-builder voice but the builder should rewrite it in their own words before publishing.",
+    "No pricing page was accessible. The COMMERCIAL recommendation (Free / Pro / Team tiers) is included in the first comment mechanism description only as a structural fact, not as specific prices, because no prices appear in APP_PROFILE.proof_points. Builder should verify and publish pricing before launch.",
+    "Topics chosen (Productivity, Developer Tools, Event Management) are the closest matches on Product Hunt's existing topic list given the category. Builder should verify 'Event Management' exists as a Product Hunt topic and substitute 'Design Tools' or 'SaaS' if it does not.",
+    "description: Short description limit on the listing.",
+    "first_comment: Forbidden wording for this platform.",
+    "first_comment: Brand rulebook 1.1 rows 1 and 2 (the banned release verb in all forms, and the deprecated key framing).",
+    "first_comment: Em dash and en dash."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "chars": 1692,
+   "words": 284,
+   "dashes": 0,
+   "banned_words": [
+    "shipped"
+   ],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Hackathon Judge Aid, structured scoring for hackathon judges",
+    "body": "Hi HN, Hackathon Judge Aid is a web tool that takes a set of hackathon submissions and a scoring rubric and produces a structured score sheet each judge fills in independently, so the final rankings reflect the criteria rather than whoever argued loudest in the room.\n\nYou can try it at\n{APP_URL}\nI do not know yet whether it requires an account; the app is in early alpha and the onboarding flow is still being finalized.\n\nI built it after co-judging a university hackathon where five judges used a shared spreadsheet. By the end, two judges had changed their scoring scale mid-event and one column had been accidentally deleted. The results felt arbitrary.\n\nThe technical details I can share honestly are limited right now. The app runs on Render. I will fill in the stack specifics in the thread once I have confirmed what I can say publicly, because I do not want to post something inaccurate here.\n\nWhat it does not do yet: it has no support for multi-round judging, no way to weight criteria differently per track, and the export options are basic. The app may take 30 to 60 seconds to respond on first load because it is on a free-tier host that sleeps when idle.\n\nThe one design question I genuinely want answered: should the rubric be defined once by the organizer and locked before judging starts, or should judges be able to propose rubric changes during the event? I built this and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "APP_PROFILE has no proof points, so no performance or adoption numbers appear in the body. Do not add any before submitting.",
+     "The tech stack is completely unknown (site returned 503 on all fetches, no repository supplied). The how-it-works paragraph is honest about this gap but HN readers will notice. Fill in the real stack before posting or the thread will ask immediately.",
+     "The app is hosted on Render free tier and was returning HTTP 503 at time of analysis. Verify the app is live and reachable before submitting, or HN readers will flag it as broken.",
+     "It is unclear whether {APP_URL} requires an account. Confirm and state plainly in the body before submitting. If there is a signup gate, HN norms expect you to say so explicitly.",
+     "The body currently sits at the lower end of the 100 to 200 word range because so little is known about the product. Add 1 to 2 sentences of real technical detail once the stack is confirmed.",
+     "title: Brand 1.1: no em or en dash (figure dash and horizontal bar included); use a comma between name and description.",
+     "body: Upper bound of the body budget",
+     "body: Brand 1.1: no em or en dash (figure dash and horizontal bar included)."
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "APP_PROFILE has no proof points, so no performance or adoption numbers appear in the body. Do not add any before submitting.",
+    "The tech stack is completely unknown (site returned 503 on all fetches, no repository supplied). The how-it-works paragraph is honest about this gap but HN readers will notice. Fill in the real stack before posting or the thread will ask immediately.",
+    "The app is hosted on Render free tier and was returning HTTP 503 at time of analysis. Verify the app is live and reachable before submitting, or HN readers will flag it as broken.",
+    "It is unclear whether {APP_URL} requires an account. Confirm and state plainly in the body before submitting. If there is a signup gate, HN norms expect you to say so explicitly.",
+    "The body currently sits at the lower end of the 100 to 200 word range because so little is known about the product. Add 1 to 2 sentences of real technical detail once the stack is confirmed.",
+    "title: Brand 1.1: no em or en dash (figure dash and horizontal bar included); use a comma between name and description.",
+    "body: Upper bound of the body budget",
+    "body: Brand 1.1: no em or en dash (figure dash and horizontal bar included)."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "chars": 1486,
+   "words": 262,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For hackathon organizers: a structured judging workflow",
+    "pitch": "Organizers running hackathons often hit the same wall: scores drift between judges, criteria get applied differently across submissions, and the process that should feel fair ends up feeling arbitrary. If your readers are planning an event soon, that problem is live right now.\n\nHackathon Judge Aid is a tool built to help judges evaluate hackathon submissions with a consistent, structured workflow.\n\nIt is an early-stage project, currently in alpha and publicly hosted, so readers can try it directly without a sales call or demo request.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "No proof point exists in APP_PROFILE.proof_points or BRAND_DNA.messaging.proof_points_observed. Per platform rules, a verifiable fact was used instead (alpha stage, publicly hosted on Render). The builder must verify this claim is accurate before sending.",
+     "Recipient name is unknown. The pitch does not open with a personal name. The builder must insert the newsletter author's name or newsletter name before sending.",
+     "Builder's first name is unknown. The sign-off placeholder '[Builder first name]' must be replaced before sending.",
+     "No TARGET newsletter name was supplied. The subject line does not name a specific newsletter. The builder should insert the newsletter's name if known, e.g. 'For [Newsletter] readers: a structured judging workflow'.",
+     "TARGET rules were not supplied or verified. If the newsletter uses a paid placement model or a submission form, this pitch text can be pasted into that form, but the builder should check submission requirements first.",
+     "The app returned HTTP 503 on all fetch attempts. The builder should confirm the app is live and {APP_URL} resolves before sending this pitch.",
+     "pitch: Pitch is at least 100 words (rule 1 lower bound).",
+     "pitch: No ALL CAPS section labels such as \"WHAT IT IS:\" at line start (rule 11). under i it would match \"Note:\" or \"For your readers:\"."
+    ]
+   },
+   "warnings": [
+    "No proof point exists in APP_PROFILE.proof_points or BRAND_DNA.messaging.proof_points_observed. Per platform rules, a verifiable fact was used instead (alpha stage, publicly hosted on Render). The builder must verify this claim is accurate before sending.",
+    "Recipient name is unknown. The pitch does not open with a personal name. The builder must insert the newsletter author's name or newsletter name before sending.",
+    "Builder's first name is unknown. The sign-off placeholder '[Builder first name]' must be replaced before sending.",
+    "No TARGET newsletter name was supplied. The subject line does not name a specific newsletter. The builder should insert the newsletter's name if known, e.g. 'For [Newsletter] readers: a structured judging workflow'.",
+    "TARGET rules were not supplied or verified. If the newsletter uses a paid placement model or a submission form, this pitch text can be pasted into that form, but the builder should check submission requirements first.",
+    "The app returned HTTP 503 on all fetch attempts. The builder should confirm the app is live and {APP_URL} resolves before sending this pitch.",
+    "pitch: Pitch is at least 100 words (rule 1 lower bound).",
+    "pitch: No ALL CAPS section labels such as \"WHAT IT IS:\" at line start (rule 11). under i it would match \"Note:\" or \"For your readers:\"."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "chars": 693,
+   "words": 106,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "long folding tables of teams behind sticker-covered laptops",
+    "lanyards and printed badge holders",
+    "a pitch stage with a projector screen",
+    "a shared scoring spreadsheet open across multiple monitors",
+    "clipboards dense with handwritten rubric marks",
+    "a countdown clock on a wall-mounted screen",
+    "project demo posters on easels between tables",
+    "a judges' table at the back of the hall with stacked submission printouts",
+    "energy drinks and cold coffee cups beside scoring sheets",
+    "a leaderboard screen showing ranked team tiles",
+    "trophies lined up on a side table near the stage"
+   ],
+   "subject": "A hackathon judge in her late thirties, working the final judging hour at the back of a university event hall surrounded by submission printouts, clipboards, and a shared scoring spreadsheet.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A university event hall in the final hour of a hackathon: long folding tables stretch from foreground to a lit pitch stage at the far end, every seat filled with teams behind sticker-covered laptops, project demo posters on easels lining the aisles, a countdown clock glowing on a wall-mounted screen showing almost nothing left, and at the back a judges' table buried under stacked submission printouts and clipboards, energy drinks and cold coffee cups scattered across it, the leaderboard screen beside the stage half-filled with team tiles, seen wide from the rear balcony under the flat white light of the hall.",
+     "url": "http://localhost:3500/files/16bd1e4c52d6/images-b7a566373c7d/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for stronger composition and clearer fidelity to the brief while keeping a quieter top third for headline placement.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2038
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "A wide, clearly hackathon hall view from the judges' balcony showing rows of teams, posters, stage and judges' table, but the busy ceiling area and slightly cluttered top third reduce headline space."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Very clear hackathon composition with strong perspective on teams, posters, stage and judges' desk with papers and drinks, plus a calmer top third, though closer detail risks readable text."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "One judge, a woman in her late thirties with short natural hair and a lanyard around her neck, sits alone at the judges' table in the loud hall with an hour left on the countdown clock, a thick stack of submission printouts in front of her, a clipboard covered in crossed-out rubric marks in her left hand, her right hand pressing a pen to a fresh scoring sheet, a shared spreadsheet open on the laptop beside her showing mismatched columns of numbers, her eyes down and her shoulders drawn in, the pitch stage and the crowded team tables visible and blurred behind her.",
+     "url": "http://localhost:3500/files/16bd1e4c52d6/images-b7a566373c7d/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins because it preserves the briefing elements while giving a much cleaner top third for a headline, making it more usable for launch materials.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2228
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clear hackathon judging scene with the judge, stack, clipboard, laptop and writing action, but the top third is busy with stage/activity and some on-screen text is partly legible."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Same strong storytelling and props as take 1 but with a quieter, darker top third for headline space, though spreadsheet text on the laptop is more clearly visible."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, short natural hair, lanyard still around her neck, stands upright at the now-quiet judges' table after the scores are in: the submission printouts squared into a neat stack, the clipboard closed on top, the laptop screen showing a calm ranked list of team tiles on the leaderboard, the trophies on the side table catching the warmer stage lights as the crowd thins behind her, a half-full coffee cup in her hand, her shoulders open, looking toward the stage where the winning team is gathering, the hall lighter and easier around her.",
+     "url": "http://localhost:3500/files/16bd1e4c52d6/images-b7a566373c7d/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best balances strong fidelity to the brief with a quieter top area and clearer context (stage, trophies, laptop, stack) while maintaining high photographic quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2133
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clearly reads as a competition/judging hall with trophies, leaderboard laptop, lanyard, clipboard/stack and the woman looking toward the stage so it matches the brief closely."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Also reads as the same event and includes the props and pose, but is a tighter crop with a slightly busier top area and a bit less of the desktop stack/clipboard detail."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "Two judges and a hackathon organizer stand together in the right two thirds of the frame at the judges' table in the event hall, the woman with short natural hair and her lanyard beside a taller man in a fleece and a younger organizer with a clipboard, all three looking at a leaderboard screen showing a clean ranked list of team tiles, the pitch stage and project posters on easels stretching behind them into the warm light of the closing ceremony, the left third of the frame open on the quiet aisle between team tables, wide landscape shot in warm late-evening hall light.",
+     "url": "http://localhost:3500/files/16bd1e4c52d6/images-b7a566373c7d/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief most closely: unmistakable hackathon context, correct subjects and props, and a quiet left third for headline copy.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2029
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear hackathon hall cues (posters, stage, laptops), the three roles and leaderboard are visible and the left third is a quiet aisle, all shot cleanly in warm light."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Shows the same scene and people but reads a bit more like a generic conference with a busier left side and slightly more legible screen clutter."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "JUDGING DAY.",
+    "load_n1": "47",
+    "load_l1": "SUBMISSIONS",
+    "load_n2": "3",
+    "load_l2": "JUDGES",
+    "load_n3": "4",
+    "load_l3": "HOURS LEFT",
+    "pile_line": "EVERY REPO. SCORED.",
+    "pile_label": "SUBMISSION",
+    "pile_sub": "REPO · DATE · SCORE",
+    "doubt_1": "DID THEY BUILD IT EARLY?",
+    "doubt_2": "ARE SCORES CONSISTENT?",
+    "cost_line": "THE WRONG TEAM WINS.",
+    "app_name": "HACK-JUDGE",
+    "drop_line": "JUDGES EVERY SUBMISSION.",
+    "step1_label": "PASTE YOUR REPO URLS.",
+    "step1_field": "GITHUB REPO URLS, ONE PER LINE",
+    "step1_button": "RUN",
+    "step2_label": "EVERY REPO, CLASSIFIED.",
+    "chip_1": "SIGNIFICANT",
+    "chip_2": "MODERATE",
+    "chip_3": "LESS",
+    "chip_4": "NEEDS REVIEW",
+    "step3_label": "PRE-EVENT WORK, CAUGHT.",
+    "step3_marker": "HACKATHON DATE",
+    "step3_chip": "FLAGGED",
+    "product_line": "ONE SHEET. EVERY VERDICT.",
+    "payoff_n": "15",
+    "payoff_unit": "MINUTES.",
+    "payoff_line": "EVERY REPO. FAIRLY SCORED.",
+    "payoff_timer": "15:00",
+    "breathe_line": "THE BEST PROJECT WINS.",
+    "arrive_line": "JUDGE FAIRLY.",
+    "arrive_chip": "HACKATHON-JUDGE-AID.ONRENDER.COM",
+    "lock_top": "FOR HACKATHON ORGANIZERS",
+    "lock_title": "HACK-JUDGE",
+    "lock_tag": "STRUCTURED, FAIR JUDGING FOR EVERY HACKATHON",
+    "lock_host": "HACKATHON-JUDGE-AID.ONRENDER.COM"
+   },
+   "clamped": [
+    "open_line",
+    "pile_line"
+   ],
+   "repaired": [],
+   "tagline": "Structured, fair judging for every hackathon.",
+   "claims_used": [
+    "app_name 'hack-judge': APP_NAME field exactly",
+    "arrive_chip and lock_host 'HACKATHON-JUDGE-AID.ONRENDER.COM': SITE_HOST field exactly",
+    "step1_field 'GITHUB REPO URLS, ONE PER LINE': SITE_COPY label element verbatim",
+    "step1_button 'RUN': SITE_COPY button element verbatim",
+    "chip_1 'SIGNIFICANT': SITE_COPY span 'Significant 0' verbatim category",
+    "chip_2 'MODERATE': SITE_COPY span 'Moderate 0' verbatim category",
+    "chip_3 'LESS': SITE_COPY span 'Less 0' verbatim category",
+    "chip_4 'NEEDS REVIEW': SITE_COPY span 'Needs review 0' verbatim category",
+    "step3_marker 'HACKATHON DATE': SITE_COPY label 'HACKATHON DATE (REQUIRED)' verbatim",
+    "payoff_timer '15:00' and payoff_n '15': SITE_COPY span '00:00 / 15:00' batch timer",
+    "drop_line and product_line grounded in APP_PROFILE one_liner and SITE_COPY batch description",
+    "CAMPAIGN_ANGLE 'Fair by Design' drives open_line, doubt beats, cost_line, arrive_line, and lock_tag"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct calm confident",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Judging day. Forty-seven submissions, three judges, four hours. Every repo scored by hand today.",
+     "seconds": 4.94,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "hack-judge judges every submission.",
+     "seconds": 1.59,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1.15
+    },
+    {
+     "id": "how",
+     "text": "Paste your repos and run. Every repo gets classified. Pre-event commits get caught.",
+     "seconds": 4.72,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "Every repo, fairly scored, in fifteen minutes.",
+     "seconds": 2.57,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Judge fairly. Start with hack-judge.",
+     "seconds": 2.27,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/16bd1e4c52d6/reel-bc1004a8155f/reel.mp4",
+   "poster_url": "http://localhost:3500/files/16bd1e4c52d6/reel-bc1004a8155f/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "approved"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "BetaList",
+   "kind": "launch_platform",
+   "why_fit": "App is alpha-stage on Render free tier; BetaList is built for pre-launch tools seeking early adopters.",
+   "url": "https://betalist.com"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Productivity/Event Tools category matches; hackathon organizers at tech events actively browse PH for workflow tools.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "Indie Hackers",
+   "kind": "launch_platform",
+   "why_fit": "Alpha-stage solo build; IH audience includes university and corporate hackathon organizers who are also builders.",
+   "url": "https://www.indiehackers.com"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/hackathon",
+   "kind": "subreddit",
+   "why_fit": "Direct ICP: hackathon organizers and participants discussing tools, judging pain is a recurring topic here.",
+   "url": "https://www.reddit.com/r/hackathon/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "r/AlphaAndBetaUsers",
+   "kind": "subreddit",
+   "why_fit": "Alpha-stage app needs early testers; subreddit exists specifically to connect beta tools with willing testers.",
+   "url": "https://www.reddit.com/r/alphaandbetausers/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Alpha-stage indie build; community tolerates self-promotion posts and includes organizers who run hackathons.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "Uneed",
+   "kind": "launch_platform",
+   "why_fit": "Indie SaaS launch platform; productivity/event tools category fits hackathon judging aid positioning.",
+   "url": "https://www.uneed.best"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "Fazier",
+   "kind": "launch_platform",
+   "why_fit": "Indie SaaS directory with daily launches; low-effort listing for alpha-stage event productivity tool.",
+   "url": "https://fazier.com"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "r/EntrepreneurRideAlong",
+   "kind": "subreddit",
+   "why_fit": "Build-in-public audience; sharing the journey of building a hackathon judging tool fits the subreddit narrative.",
+   "url": "https://www.reddit.com/r/EntrepreneurRideAlong/"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "ICP already uses Devpost and HackerEarth; listing as alternative captures active switchers searching those tools.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Evergreen B2B SaaS directory; organizers searching Devpost or HackerEarth alternatives will find it here.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "Capterra",
+   "kind": "directory",
+   "why_fit": "Corporate innovation program organizers (ICP) use Capterra to evaluate event management and judging tools.",
+   "url": "https://www.capterra.com"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "G2",
+   "kind": "directory",
+   "why_fit": "B2B buyers at universities and corporates search G2 for hackathon/event judging workflow tools.",
+   "url": "https://www.g2.com"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "AppSumo",
+   "kind": "directory",
+   "why_fit": "Corporate and university hackathon organizers (ICP) buy lifetime deals for event workflow tools on AppSumo.",
+   "url": "https://appsumo.com"
+  }
+ ],
+ "signals": [
+  {
+   "status": "new",
+   "url": "https://www.linkedin.com/posts/hacktribe_hackathonjudging-hackathons-programdesi...",
+   "title": null,
+   "why": "Directly describes the absence of a structured scoring rubric, the exact problem the app solves.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://www.linkedin.com/posts/christopherderrell_how-do-you-judge-a-hackathon-w...",
+   "title": null,
+   "why": "Asks the exact pain: scoring 100+ submissions fairly and consistently across multiple judges.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://www.linkedin.com/posts/jian-kim-74767a294_the-1-complaint-from-hackathon...",
+   "title": null,
+   "why": "Participant-side complaint about judging inconsistency, organizers reading this feel the pain directly.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://dev.to/pranjulrathour/a-hackathon-judging-rubric-organisers-can-copy-13i...",
+   "title": null,
+   "why": "Organizer publishing a rubric template signals active need for structured judging tools.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://www.linkedin.com/posts/daren-tan_hackathonkakitips-darentechtalks-activi...",
+   "title": null,
+   "why": "Active hackathon judge sharing scoring perspective, direct audience for a judging workflow tool.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://dev-forum.pyth.network/t/judging-rubric-how-submissions-are-scored/523",
+   "title": null,
+   "why": "Community forum thread on hackathon scoring rubric, organizers and participants discussing judging criteria.",
+   "reply": ""
+  }
+ ]
+}

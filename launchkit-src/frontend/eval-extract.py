@@ -56,6 +56,7 @@ def extract(slug):
         posts[k] = {
             'version': a.get('version'), 'status': a.get('status'), 'data': data,
             'warnings': data.get('warnings') or [],
+            'blockers': data.get('blockers') or [], 'repaired': data.get('repaired') or [],
             'chars': len(txt), 'words': len(txt.split()),
             'dashes': len(DASH.findall(txt)), 'banned_words': sorted(set(m.lower() for m in BANNED.findall(txt))),
             'exclamations': txt.count('!'), 'hashtags': len(re.findall(r'#\w+', txt)),
@@ -105,7 +106,7 @@ def extract(slug):
         'angles': len(camps), 'angle_chosen': bool(proj.get('selected_campaigns')),
         'competitors': len(pricing.get('competitors') or []), 'established': len([c for c in (pricing.get('competitors') or []) if c.get('notability') == 'established']),
         'pricing_options': len(pricing.get('options') or []), 'pricing_chosen': bool(proj.get('selected_pricing')), 'listing_approved': listing_row.get('status') == 'approved',
-        'posts': {k: {'status': v['status'], 'warnings': len(v['warnings']), 'dashes': v['dashes'], 'banned': v['banned_words'], 'excl': v['exclamations']} for k, v in posts.items()},
+        'posts': {k: {'status': v['status'], 'warnings': len(v['warnings']), 'blockers': len(v['blockers']), 'repaired': len(v['repaired']), 'dashes': v['dashes'], 'banned': v['banned_words'], 'excl': v['exclamations']} for k, v in posts.items()},
         'plates': len(images.get('images') or []), 'judge_scores': [max([tk.get('score') or 0 for tk in (i.get('takes') or [])] or [None]) for i in (images.get('images') or [])],
         'voice_all_fit': voice.get('all_fit'), 'reel': bool(reel.get('video_url')), 'reel_status': (studio.get('reel') or {}).get('status'),
         'targets': len(targets), 'signals': len(signals), 'signals_new': len([s for s in signals if s.get('status') == 'new']),

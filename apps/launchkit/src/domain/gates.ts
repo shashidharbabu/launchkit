@@ -63,6 +63,9 @@ export function gateSignals(signals: SignalData[], ownUrls: unknown[]): { kept: 
     const url = pyStr(pyGet(s, "url", ""));
     if (!url.startsWith("http")) {
       dropped.push({ url, reason: "not a url" });
+    } else if (/\.\.\.|\u2026/.test(url)) {
+      // the model shortened the address to stay compact: nobody can open it, so it is not a signal
+      dropped.push({ url, reason: "truncated url" });
     } else if (domains.some((d) => d !== "" && url.toLowerCase().includes(d.toLowerCase()))) {
       dropped.push({ url, reason: "app's own content" });
     } else if (!THREAD_PAT.test(url)) {
@@ -91,6 +94,8 @@ export const ASSET_LIMITS: Record<string, [string, number]> = {
 export function gateAsset(assetType: string, data: AssetData): AssetData {
   const raw = pyGet(data, "warnings", null);
   const warnings: unknown[] = pyTruthy(raw) ? pyList(raw) : [];
+  // the subset a founder cannot post over; the UI shows them apart and the repair ask names them
+  const blockers: string[] = [];
   const limit = Object.prototype.hasOwnProperty.call(ASSET_LIMITS, assetType)
     ? ASSET_LIMITS[assetType]
     : undefined;
@@ -98,6 +103,7 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
     const [field, maxLen] = limit;
     if (pyLen(pyStr(pyGet(data, field, ""))) > maxLen) {
       warnings.push(`${field} exceeds ${maxLen} chars: trim before publishing`);
+      blockers.push(`${field} exceeds ${maxLen} chars`);
     }
   }
   for (const [k, v] of Object.entries(data as Record<string, unknown>)) {
@@ -111,8 +117,13 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
   if (assetType === "reddit_post" && pyStr(pyGet(data, "title", "")).startsWith("Show HN")) {
     warnings.push("title uses HN convention, rewrite for Reddit");
   }
-  for (const w of runRulebookChecks(assetType, data)) if (!warnings.includes(w)) warnings.push(w);
+  for (const h of runRulebookCheckHits(assetType, data)) {
+    const w = hitLine(h);
+    if (!warnings.includes(w)) warnings.push(w);
+    if (h.hard && !blockers.includes(w)) blockers.push(w);
+  }
   data["warnings"] = warnings;
+  data["blockers"] = blockers;
   return data;
 }
 
@@ -130,35 +141,69 @@ function fieldsOf(data: AssetData, field: string): Array<[string, string]> {
   return out;
 }
 
+/** One failed check: the field, the rule, the evidence, and whether it blocks approval. */
+export type CheckHit = { id: string; field: string; description: string; detail: string; hard: boolean };
+
+// a founder cannot post over these: platform caps, required shapes, the banned verb, a link where none is allowed
+const HARD_KINDS = new Set(["max_chars", "max_words", "required_prefix", "max_count"]);
+const HARD_IDS = /banned_verb|brand_banned|s_word|raw_links|raw_urls|url_in_body|link_present|link_once|url_at_most_once|url_max_once|vote_ask|vote_or_reciprocity|no_dash|no_dashes/;
+
+/** What a max_count check counts in a string field: placeholders, raw links, paragraph breaks, else hashtags. */
+function countIn(id: string, text: string): number {
+  if (/url/.test(id)) return (text.match(/\{APP_URL\}/g) ?? []).length;
+  if (/raw_links/.test(id)) return (text.match(/https?:\/\//g) ?? []).length;
+  // a line that is only the link (the Show HN shape puts {APP_URL} on its own line) is not a paragraph
+  if (/paragraph/.test(id)) return (text.replace(/\n[ \t]*(\{APP_URL\}|https?:\/\/\S+)[ \t]*(?=\n)/g, "").match(/\n[ \t]*\n/g) ?? []).length;
+  return (text.match(/#\w+/g) ?? []).length;
+}
+
 /**
  * The rulebook's machine checks (lib/rulebook-checks.ts): lengths, counts,
- * forbidden patterns and required prefixes, each a warning the builder sees
- * on the draft. A pattern JavaScript cannot compile is skipped, never fatal.
+ * forbidden patterns and required prefixes, each with its evidence (the count
+ * or the matched words) so the builder can act on it. A pattern JavaScript
+ * cannot compile is skipped, never fatal.
  */
-export function runRulebookChecks(assetType: string, data: AssetData): string[] {
+export function runRulebookCheckHits(assetType: string, data: AssetData): CheckHit[] {
   const checks: RuleCheck[] = RULEBOOK_CHECKS[assetType] ?? [];
-  const out: string[] = [];
+  const out: CheckHit[] = [];
+  const push = (c: RuleCheck, field: string, detail: string) =>
+    out.push({ id: c.id, field, description: c.description, detail, hard: HARD_KINDS.has(c.kind) || HARD_IDS.test(c.id) });
   for (const c of checks) {
     const n = Number(c.value);
     if (c.kind === "max_count") {
       const v = (data as Record<string, unknown>)[c.field];
-      const count = Array.isArray(v) ? v.length : typeof v === "string" ? (v.match(/#\w+/g) ?? []).length : 0;
-      if (Number.isFinite(n) && count > n) out.push(`${c.field}: ${c.description}`);
+      const count = Array.isArray(v) ? v.length : typeof v === "string" ? countIn(c.id, v) : 0;
+      if (Number.isFinite(n) && count > n) push(c, c.field, `${count}, cap ${n}`);
       continue;
     }
     for (const [name, text] of fieldsOf(data, c.field)) {
       let hit = false;
-      if (c.kind === "max_chars") hit = Number.isFinite(n) && pyLen(text) > n;
-      else if (c.kind === "min_words") hit = Number.isFinite(n) && wordCount(text) < n;
-      else if (c.kind === "max_words") hit = Number.isFinite(n) && wordCount(text) > n;
-      else if (c.kind === "required_prefix") hit = !text.startsWith(c.value);
+      let detail = "";
+      if (c.kind === "max_chars") { const len = pyLen(text); hit = Number.isFinite(n) && len > n; detail = `${len} characters, cap ${n}`; }
+      else if (c.kind === "min_words") { const w = wordCount(text); hit = Number.isFinite(n) && w < n; detail = `${w} words, floor ${n}`; }
+      else if (c.kind === "max_words") { const w = wordCount(text); hit = Number.isFinite(n) && w > n; detail = `${w} words, cap ${n}`; }
+      else if (c.kind === "required_prefix") { hit = !text.startsWith(c.value); detail = `starts "${text.slice(0, 24)}"`; }
       else if (c.kind === "forbidden_regex") {
-        try { hit = new RegExp(c.value, /\\u\{/.test(c.value) ? "iu" : "i").test(text); } catch { hit = false; }
+        try {
+          const flags = c.flags ?? (/\\u\{/.test(c.value) ? "iu" : "i");
+          const m = new RegExp(c.value, flags).exec(text);
+          hit = m !== null;
+          if (m && m[0].trim()) detail = `"${m[0].trim().slice(0, 60)}"`;
+        } catch { hit = false; }
       }
-      if (hit) { out.push(`${name}: ${c.description}`); break; }
+      if (hit) { push(c, name, detail); break; }
     }
   }
   return out;
+}
+
+/** The hits as the one-line warnings the draft shows: field, rule, evidence. */
+export function runRulebookChecks(assetType: string, data: AssetData): string[] {
+  return runRulebookCheckHits(assetType, data).map(hitLine);
+}
+
+function hitLine(h: CheckHit): string {
+  return `${h.field}: ${h.description}${h.detail ? ` (${h.detail})` : ""}`;
 }
 
 /** rr.HN_LOCK_SECONDS — HN threads become read-only ~2 weeks after posting. */

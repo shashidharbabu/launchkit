@@ -108,6 +108,20 @@ export function buildPlan(project: PlanProject, approvedAssets: ApprovedAssetRow
   const assets: Record<string, AssetData> = {};
   for (const [k, a] of latest) assets[k] = a.data;
 
+  // an approved post whose platform is not among the chosen venues is still posted somewhere: it gets its own
+  // tracked link so its signups are attributed, and the plan says so instead of hiding the gap
+  for (const [atype, home] of Object.entries(POST_HOMES)) {
+    if (!latest.has(atype)) continue;
+    const covered = targetDicts.some((t) => home.match.test(`${pyStr(pyGet(t, "kind", ""))} ${pyStr(pyGet(t, "name", ""))}`));
+    if (covered) continue;
+    const d: TargetData = { name: home.name, kind: "platform", url: home.url,
+      why_fit: `Your approved ${home.label} post; no venue of this kind was chosen in Targets, so it posts from your own account`,
+      rules_summary: "your own account" };
+    d["ref"] = refCode(d);
+    d["ref_url"] = refUrl(project, pyStr(d["ref"]));
+    targetDicts.push(d);
+  }
+
   return {
     project: { id: project.id, name: project.name, app_url: project.app_url },
     sequencing,
@@ -119,6 +133,16 @@ export function buildPlan(project: PlanProject, approvedAssets: ApprovedAssetRow
     listing: extras.listing ?? null,
   };
 }
+
+/** Where each post type is posted when no chosen venue covers it, and how a chosen venue is recognised as covering it. */
+const POST_HOMES: Record<string, { name: string; label: string; url: string; match: RegExp }> = {
+  x_post: { name: "X (your account)", label: "X", url: "https://x.com/compose/post", match: /^x\b|twitter|\bx\.com/i },
+  linkedin_post: { name: "LinkedIn (your profile)", label: "LinkedIn", url: "https://www.linkedin.com/feed/", match: /linkedin/i },
+  producthunt: { name: "Product Hunt", label: "Product Hunt", url: "https://www.producthunt.com/posts/new", match: /product ?hunt/i },
+  show_hn: { name: "Hacker News Show HN", label: "Show HN", url: "https://news.ycombinator.com/submit", match: /hacker ?news|show hn/i },
+  reddit_post: { name: "Reddit", label: "Reddit", url: "https://www.reddit.com/submit", match: /subreddit|reddit/i },
+  newsletter_pitch: { name: "Newsletter pitches (email)", label: "newsletter", url: "", match: /newsletter/i },
+};
 
 /** t.get(k) rendered the way an f-string renders it (missing/None → 'None'). */
 function fmtGet(t: Dict, key: string): string {

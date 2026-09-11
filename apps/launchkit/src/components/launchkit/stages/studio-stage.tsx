@@ -514,6 +514,8 @@ function ReelView({ row, script, imagesRow, voiceRow, disabled, onChanged }: { r
   const voiceUsed = asArr(d.voice_used).map(asStr);
   const staleImages = Boolean(imagesRow) && asStr(d.images_id) !== imagesRow?.id;
   const staleVoice = Boolean(voiceRow) && asStr(d.voice_id) !== voiceRow?.id;
+  // a spoken line past its window is audible in the film; the reel is not approved over it
+  const voiceFits = !voiceRow || voiceUsed.length === 0 || asObj(voiceRow.data).all_fit !== false;
   const mb = Number(d.bytes ?? 0) / 1048576;
   const approve = async () => {
     setApproving(true);
@@ -578,9 +580,12 @@ function ReelView({ row, script, imagesRow, voiceRow, disabled, onChanged }: { r
             </a>
             {/* the card header carries the Approved stamp; here only the act itself */}
             {!approved && (
-              <Button variant="primary" size="sm" disabled={disabled} loading={approving} loadingLabel="Approving" onClick={approve}>
+              <Button variant="primary" size="sm" disabled={disabled || !voiceFits} loading={approving} loadingLabel="Approving" onClick={approve}>
                 Approve reel
               </Button>
+            )}
+            {!approved && !voiceFits && (
+              <span className="text-small text-nogo-text">A spoken line runs past its window: shorten it in the voice-over step, speak it again, then render again.</span>
             )}
           </div>
         </div>

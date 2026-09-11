@@ -116,7 +116,9 @@ function AssetCard({
   if (!project) return null;
 
   const approved = asset.status === 'approved';
-  const warnings = Array.isArray(asset.data.warnings) ? asset.data.warnings.map(asStr) : [];
+  const blockers = Array.isArray(asset.data.blockers) ? asset.data.blockers.map(asStr) : [];
+  const warnings = (Array.isArray(asset.data.warnings) ? asset.data.warnings.map(asStr) : []).filter((w) => !blockers.includes(w));
+  const repaired = Array.isArray(asset.data.repaired) ? asset.data.repaired.length : 0;
   const label = ASSET_LABELS[asset.asset_type] ?? asset.asset_type.toUpperCase();
   // the draft carries {APP_URL}; the card shows, copies and shares the real address
   const appUrl = pickUrl(project as unknown as Record<string, unknown>);
@@ -154,6 +156,15 @@ function AssetCard({
       </div>
 
       <div className="px-6 pb-5">
+        {blockers.length > 0 && (
+          <Banner tone="nogo" title={`${blockers.length} hard-rule failure${blockers.length === 1 ? '' : 's'}: fix before posting`} className="mb-4">
+            <ul className="grid list-disc gap-1 pl-5">
+              {blockers.map((w, i) => (
+                <li key={i}>{w}</li>
+              ))}
+            </ul>
+          </Banner>
+        )}
         {warnings.length > 0 && (
           <Banner tone="hold" title={`${warnings.length} warning${warnings.length === 1 ? '' : 's'} from the draft check`} className="mb-4">
             <ul className="grid list-disc gap-1 pl-5">
@@ -233,6 +244,7 @@ function AssetCard({
             loading={approving}
             loadingLabel="Approving"
             aria-label={`Approve the ${name} draft`}
+            data-blockers={blockers.length}
             onClick={async () => {
               setApproving(true);
               try {
@@ -256,9 +268,9 @@ function AssetCard({
           </Button>
         ))}
         <CopyButton text={assetCopyText(data)} label="Copy" />
-        {(fixed > 0 || verbsFixed > 0) && (
+        {(fixed > 0 || verbsFixed > 0 || repaired > 0) && (
           <span className="text-small text-muted-foreground">
-            {[fixed > 0 ? `${fixed} ${fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule` : '', verbsFixed > 0 ? `${verbsFixed} banned ${verbsFixed === 1 ? 'verb' : 'verbs'} swapped for release` : ''].filter(Boolean).join(', ')}
+            {[fixed > 0 ? `${fixed} ${fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule` : '', verbsFixed > 0 ? `${verbsFixed} banned ${verbsFixed === 1 ? 'verb' : 'verbs'} swapped for release` : '', repaired > 0 ? `${repaired} hard-rule ${repaired === 1 ? 'failure' : 'failures'} repaired by a second pass` : ''].filter(Boolean).join(', ')}
           </span>
         )}
       </CardFooter>

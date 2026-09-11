@@ -1,0 +1,173 @@
+{
+  "name": "Documenso",
+  "site": "https://documenso.com",
+  "repo": "https://github.com/documenso/documenso",
+  "started": "2026-09-11T08:31:46.843Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 77,
+      "understandSecs": 71,
+      "partial": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 132,
+      "dnaSecs": 73,
+      "anglesSecs": 55,
+      "angles": 5,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 199,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "6",
+        "6"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 340,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 40,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 49,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 31,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 133,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 40,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 34,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 6,
+      "counts": "",
+      "warnings": 6
+    },
+    "assets": {
+      "ok": true,
+      "secs": 239,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 76,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 22,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 97,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 22,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a SaaS founder at a standing desk covered in sticky notes and open laptopsa stack of unsigned PDF contracts queued in a document management dashboarda terminal window ",
+      "fits": 4,
+      "over": 1
+    },
+    "targets": {
+      "ok": true,
+      "secs": 103,
+      "ranked": 14,
+      "top5": [
+        "Show HN (Hacker News)",
+        "r/selfhosted",
+        "DevHunt",
+        "Peerlist Launchpad",
+        "Indie Hackers"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 499,
+      "idle": true,
+      "heading": "7 signals found: 7 in the queue (0 verified, 7 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Open Signing Movement Drop",
+      "pricing": "Freemium"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 230088,
+  "finished": "2026-09-11T08:58:36.272Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://www.linkedin.com/posts/rubendominguezibar_crazy-how-to-replace-docusign-in-30-minutes-activity-7457124625718657025-_Uz1' from origin 'http://localhost:3400' has been blocke",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/shawonshovon_opensource-selfhosted-documentmanagement-activity-7495095885488386049-R1ZE' from origin 'http://localhost:3400' has been blocked by CORS",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/elestio_opensign-free-open-source-alternative-to-activity-7495449307828011008-1Fkq' from origin 'http://localhost:3400' has been blocked by CORS poli",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://forums.knack.com/t/integrated-e-signature/18836' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on ",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://community.apryse.com/t/can-we-implement-the-digital-signature-without-pdftronSDK/' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-A",
+    "console: Failed to load resource: net::ERR_FAILED"
+  ]
+}

@@ -12,7 +12,7 @@ export type Rulebook = { platform: string; name: string; summary: string; rules:
  * from an older default (never edited by the owner) is replaced by the newer
  * default; an owner-edited rulebook is always kept.
  */
-export const RULEBOOK_VERSION = 2;
+export const RULEBOOK_VERSION = 3;
 
 export const GLOBAL_RULES: string[] = [
   'Never use an em dash (—) or an en dash (–) anywhere. Use a comma, a period, or the word "and". This is checked by code and fails the draft.',
@@ -23,6 +23,10 @@ export const GLOBAL_RULES: string[] = [
   'Write like the builder talking to a peer, in first person, in their own voice.',
   'Emoji: at most one, and only where the platform expects it.',
   'Never the verb spelled s-h-i-p in any form (s-h-i-p-s, s-h-i-p-p-e-d, s-h-i-p-p-i-n-g): write launch, release, deploy, deliver or roll out.',
+  'Never invent a person: no builder name, co-founder, colleague or customer that APP_PROFILE or BRAND_DNA does not name. Where a platform asks for a first name or a role, write the placeholder [Builder first name] or [role] and the builder fills it in.',
+  'Never invent an origin story, a previous job, a tool you used to use, the moment that made you build it, or a limitation. When APP_PROFILE holds none, state the problem in the present tense from the ICP pain; for a required limitation use the honest gap the profile records (an early stage, a missing platform, a feature not there yet) or write "Limitation: [builder to add one]".',
+  'A competitor is named only as a neutral fact (what it is, a public price), never with a negative word attached to its name (locks, buries, overkill, slow, charges for) and never as "we replaced X". When the campaign angle names one, carry the angle without the name.',
+  'When the profile is thin (confidence under 0.5, or analysis_degraded true), describe only what its one-liner says and keep every sentence about the product general; never add a mechanism, a workflow, a feature or a number the profile does not state.',
 ];
 
 /**

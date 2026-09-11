@@ -25,7 +25,7 @@ import { forgeConcept, forgeRun } from './studio';
 import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion, buildStudioVoiceQuestion, buildStudioVoiceRepairQuestion } from '../domain/questions';
 import { fillUrl } from '../lib/share';
 import {
-  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, isStudioStep, kitCopy, normalizeSlots, studioJobKind, wordCount,
+  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, displayName, isStudioStep, kitCopy, normalizeSlots, studioJobKind, wordCount,
   type ConceptSpec,
 } from '../domain/studio';
 import {
@@ -71,6 +71,41 @@ type JobRow = {
   error: string | null; elapsed_seconds: number; created_at: string;
 };
 const jobs = new Map<string, JobRow>();
+
+// the longest honest run (a signals search, a voice-over) finishes inside this; a "running" row older than it with
+// no live job in this page was interrupted (the tab closed, the page reloaded mid-run) and would disable the stage forever
+const ZOMBIE_RUN_MS = 30 * 60 * 1000;
+const INTERRUPTED = 'Interrupted: this run never finished, most likely because the page closed while it ran. Run it again.';
+
+/** A persisted run still marked running or queued, with no live job here and past the zombie age, is settled as an error. */
+function settleZombie(row: Row): Row {
+  const status = String(row.status ?? '');
+  if ((status !== 'running' && status !== 'queued') || jobs.has(String(row.id))) return row;
+  const started = Date.parse(String(row.created_at ?? ''));
+  if (!Number.isFinite(started) || Date.now() - started < ZOMBIE_RUN_MS) return row;
+  update('runs', { id: row.id }, { status: 'error', error: INTERRUPTED, finished_at: new Date().toISOString() });
+  return { ...row, status: 'error', error: INTERRUPTED };
+}
+
+/** The repair ask says what to cut, in the units the check counts: the model overshoots when told only the cap. */
+function repairHint(blocker: string): string {
+  const words = blocker.match(/\((\d+) words, cap (\d+)\)/);
+  if (words) return `${blocker}: delete at least ${Number(words[1]) - Number(words[2]) + 15} words, whole sentences at a time`;
+  const chars = blocker.match(/\((\d+) characters, cap (\d+)\)/);
+  if (chars) return `${blocker}: delete at least ${Number(chars[1]) - Number(chars[2]) + 20} characters, a clause at a time`;
+  const paras = blocker.match(/\((\d+), cap (\d+)\)/);
+  if (paras && /paragraph/.test(blocker)) return `${blocker}: merge paragraphs until there are at most ${Number(paras[2]) + 1}`;
+  return blocker;
+}
+
+/** How far a gated draft is over its hard checks: one point per failure plus the fraction over each cap. */
+function overage(gated: Record<string, unknown>): number {
+  const blockers = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
+  return blockers.reduce((sum, b) => {
+    const m = b.match(/\((\d+) (?:words|characters), cap (\d+)\)/) ?? b.match(/\((\d+), cap (\d+)\)/);
+    return sum + 1 + (m ? Math.max(0, Number(m[1]) - Number(m[2])) / Number(m[2]) : 0);
+  }, 0);
+}
 
 async function runJob(
   projectId: string, kind: string,
@@ -419,21 +454,45 @@ export const api = {
     }
     const prev = byNewest(select('assets', { project_id: id, asset_type }), 'version')[0];
     const previousDraft = prev ? compact(prev.data, 3000) : '';
+    // a Reddit draft is written for the subreddit the builder picked in Targets, never a generic default
+    if (!target && asset_type === 'reddit_post') {
+      const subs = byNumber(select('targets', { project_id: id, selected: true }), 'rank')
+        .filter((r) => String((r.data as Dict).kind ?? '') === 'subreddit');
+      if (subs[0]) target = subs[0].data as TargetData;
+    }
+    const rules = rulesBlock(asset_type);
+    // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
+    const draftOnce = async (fb: string, prevDraft: string) => {
+      const result = await ask('lk_assets.pipe',
+        buildAssetQuestion(asset_type, profile, target, '', fb, brandDna, rules,
+          { commercial: commercialCtx, campaign: campaignCtx, previousDraft: prevDraft }));
+      const changed = punctuationFixed(result);
+      // the banned launch verb is swapped in the draft itself (never in quoted or observed text elsewhere)
+      const swapped = sanitizeVerbs(result as Dict);
+      const gated = gateAsset(asset_type, swapped.data) as Record<string, unknown>;
+      if (changed) gated.punctuation_fixed = changed;
+      if (swapped.verbs) gated.wording_fixed = swapped.verbs;
+      return gated;
+    };
     const jobId = await runJob(id, assetJobKind(asset_type),
-      () => ask('lk_assets.pipe',
-        buildAssetQuestion(asset_type, profile, target, '', feedback, brandDna, rulesBlock(asset_type),
-          { commercial: commercialCtx, campaign: campaignCtx, previousDraft })),
-      async (result) => {
-        const changed = punctuationFixed(result);
-        // the banned launch verb is swapped in the draft itself (never in quoted or observed text elsewhere)
-        const swapped = sanitizeVerbs(result as Dict);
-        const gated = gateAsset(asset_type, swapped.data) as Record<string, unknown>;
-        if (changed) gated.punctuation_fixed = changed;
-        if (swapped.verbs) gated.wording_fixed = swapped.verbs;
+      async () => {
+        let gated = await draftOnce(feedback, previousDraft);
+        const blockers = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
+        if (blockers.length > 0) {
+          // one repair pass that names the cut to make; the draft with the smaller overage wins
+          const note = `REPAIR: the draft failed these hard checks: ${blockers.map(repairHint).join('; ')}. Fix exactly these and keep everything else as it is. Count the words and characters yourself before answering; over-length text is cut by deleting whole sentences, never excused in a warning.` + (feedback ? ` The builder's earlier feedback still applies: ${feedback}` : '');
+          try {
+            const again = await draftOnce(note, compact(gated, 3500));
+            if (overage(again) < overage(gated)) { again.repaired = blockers; gated = again; }
+          } catch { /* the first draft stands, blockers and all */ }
+        }
+        return gated;
+      },
+      async (gated) => {
         const n = count('assets', { project_id: id, asset_type });
         insert('assets', {
           id: uid(), project_id: id, asset_type, version: n + 1,
-          data: gated, status: 'draft', job_id: jobId,
+          data: gated as Dict, status: 'draft', job_id: jobId,
         });
       });
     return { job_id: jobId };
@@ -460,6 +519,8 @@ export const api = {
     const p = await projectRow(id);
     const profile = await approvedProfile(id); // Gate 1 enforced
     const latestOf = (kind: string) => byNewest(select('studio', { project_id: id, kind }))[0] ?? null;
+    // the name the film and the cards carry: the brand's own when the launch was created under a slug
+    const appName = displayName(String(p.name ?? ''), (await latestCommercial(id, 'brand_dna')) as Dict | null, profile as unknown as Dict);
     const save = (kind: string, data: Dict, jobId: string, status = 'done') => {
       const n = count('studio', { project_id: id, kind });
       insert('studio', { id: uid(), project_id: id, kind, version: n + 1, status, data, job_id: jobId });
@@ -514,7 +575,7 @@ export const api = {
             subject = String((images!.data as Dict).subject ?? '');
             domain = asDomain((images!.data as Dict).domain);
           } else {
-            const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, String(p.name ?? ''), dna, await campaignAngle()));
+            const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, appName, dna, await campaignAngle()));
             briefs = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
             subject = typeof written.subject === 'string' ? written.subject.trim() : '';
             domain = asDomain(written.domain);
@@ -556,7 +617,7 @@ export const api = {
       };
       const jobId = await runJob(id, studioJobKind('kit'),
         () => forgeRun('kit', {
-          project_id: id, site_url: siteUrl, name: String(p.name ?? ''), ...copy,
+          project_id: id, site_url: siteUrl, name: appName, ...copy,
           palette: pd.palette, logos: pd.logos, fonts: pd.fonts,
           images: { hero: plateFile('hero'), story: plateFile('arrival') }, headlines,
         }),
@@ -571,7 +632,7 @@ export const api = {
         async () => {
           const spec = await forgeConcept(concept);
           const result = await ask('lk_studio.pipe',
-            buildStudioQuestion(spec, profile, String(p.name ?? ''), String(p.site_url ?? ''), dna, campaignCtx, siteCopy));
+            buildStudioQuestion(spec, profile, appName, String(p.site_url ?? ''), dna, campaignCtx, siteCopy));
           const raw: Dict = result.slots && typeof result.slots === 'object' ? { ...(result.slots as Dict) } : {};
           let norm = normalizeSlots(spec, raw);
           const repaired: string[] = [];
@@ -579,7 +640,7 @@ export const api = {
             // a second small ask rewrites only the over-limit slots, so the film never shows a cut fragment
             const offenders = norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? '') }));
             try {
-              const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, String(p.name ?? '')));
+              const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, appName));
               const fixed: Dict = fix.slots && typeof fix.slots === 'object' ? (fix.slots as Dict) : {};
               for (const o of offenders) {
                 const s = spec.slots.find((x) => x.id === o.id);
@@ -613,7 +674,6 @@ export const api = {
       const vspec = spec.voice;
       if (!vspec || vspec.segments.length === 0) throw new Error(`the ${spec.concept} concept has no voice-over`);
       const slots = (sd.slots && typeof sd.slots === 'object' ? sd.slots : {}) as Record<string, string>;
-      const appName = String(p.name ?? '');
       const jobId = await runJob(id, studioJobKind('voice'),
         async () => {
           const written = await ask('lk_studio.pipe', buildStudioVoiceQuestion(spec, slots, profile, appName, dna, await campaignAngle()));
@@ -763,11 +823,11 @@ export const api = {
     if (j) return { ...j };
     const row = selectOne('runs', { id: jobId });
     if (!row) throw new Error('job not found');
-    return row;
+    return settleZombie(row);
   },
 
   jobs: async (id: string) => {
-    const rows = byNewest(select('runs', { project_id: id })).slice(0, 30).map((r) => ({
+    const rows = byNewest(select('runs', { project_id: id })).slice(0, 30).map((r) => settleZombie(r)).map((r) => ({
       id: r.id, kind: r.kind, status: r.status, error: r.error, elapsed_seconds: r.elapsed_seconds,
     }));
     // live in-memory state wins over persisted rows (poll loop reads these)

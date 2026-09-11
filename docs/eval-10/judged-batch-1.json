@@ -1,0 +1,1040 @@
+[
+ {
+  "slug": "excalidraw",
+  "scores": {
+   "profile": 4,
+   "brand": 4,
+   "commercial": 3,
+   "social": 3,
+   "assets": 3,
+   "targets": 3,
+   "signals": 2,
+   "plan": 3
+  },
+  "post_scores": {
+   "x_post": 4,
+   "linkedin_post": 4,
+   "producthunt": 3,
+   "show_hn": 3,
+   "newsletter_pitch": 3,
+   "reddit_post": 0
+  },
+  "issues": [
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "The Reddit post was never drafted: the pipe crashed parsing the model's answer, yet the stage reads complete with 5 approved and the plan still carries a Reddit venue.",
+    "evidence": "appstate run kind asset:reddit_post status error: \"EOL inside string literal at position 388 in Python literal\". Social page shows \"No draft yet. Press Draft for Reddit and it appears here.\" The chosen angle lists Reddit as a channel and r/softwarearchitecture is a selected venue.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "The banned verb appears in two approved drafts; the gate flagged it and approval went through anyway.",
+    "evidence": "X thread: \"It ships as an npm package too (@excalidraw/excalidraw).\" Product Hunt first comment: \"The whole thing is MIT licensed and ships as an npm package\". Both status approved, banned_words [\"ships\"]. Breaks brand rulebook 1.1 and GLOBAL_RULES. Root is the profile description: \"ships as an embeddable React npm package\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Two machine checks are broken, so most gate warnings are noise: the dash regex was scrubbed to commas, and forbidden regexes compile case-insensitive so the all-caps check fires on any three long words.",
+    "evidence": "src/lib/rulebook-checks.ts x_no_dash and no_dashes value is '[,,]' (bytes 5b 2c 2c 5d); gates.ts line 156: new RegExp(c.value, \"i\"). Result: \"post: No em dash or en dash in any string; duplicates the gates.ts check so this rulebook is complete on its own\" on a post with dashes: 0, and \"post: Three consecutive words of four or more capitals\" on a LinkedIn post with no caps run (\"Excalidraw skips that\" matches under i).",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Product Hunt first comment frames three named competitors negatively; the draft's own warning only admits to Figma.",
+    "evidence": "\"The tools that survive the meeting, Figma, Miro, Lucidchart, ask you to sign up, pick a template, and care about alignment before you have even finished the thought.\" Breaks PH rule 11 (never a negative adjective attached to a competitor's name) and brand 4.1. Warning says \"The competitor Figma is mentioned in the first comment only as a plain factual example\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Show HN title is 84 characters against the 80 cap while the draft claims 79; body is 246 words against the 200 cap; both check failures fired and the draft was approved.",
+    "evidence": "Title \"Show HN: Excalidraw, an open-source infinite-canvas whiteboard with hand-drawn style\" = 84 chars. Warning claims \"The title is 79 characters including the 'Show HN: ' prefix\". Body 246 words; warnings \"title: HN's submit form cuts titles at 80 characters, prefix included\" and \"body: Upper bound of the body budget\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Show HN invents a limitation not in the profile, mixes we and I, and opens with the rule template's stiff shape.",
+    "evidence": "\"the npm package API changes between minor versions without a formal deprecation window\" (not in profile). \"We built it because every tool we tried\" then \"I built Excalidraw and will be in the thread.\" Opener: \"takes freeform drawing input and produces diagrams\". The E2E key-in-URL-fragment question is true of the product but comes from nowhere in the profile.",
+    "systemic": false
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Newsletter pitch uses two proof points where the rule asks for exactly one, and lands at 98 words under the 100 floor.",
+    "evidence": "\"It has 131,595 GitHub stars as of September 2026 (github.com/excalidraw/excalidraw), and teams at Netflix, Meta, Microsoft, and Stripe use it.\" Newsletter rule 3: use exactly one proof point. Check warning \"pitch: Pitch is at least 100 words (rule 1 lower bound).\"",
+    "systemic": false
+   },
+   {
+    "stage": "profile",
+    "severity": "low",
+    "summary": "The profile itself carries the banned verb, which then flows into the drafts; otherwise the four claims and proof points trace to the sources read and confidence is honest.",
+    "evidence": "description: \"works offline as a PWA, and ships as an embeddable React npm package\". Proof points are verbatim plus.excalidraw.com testimonials (Karpathy, Theo, Orosz) and README integrators; confidence 0.92 with the pricing redirect noted.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "DNA voice and quotes are faithful and the six angles are distinct, but the palette misses the site's purple that the Assets site read found, typography is empty, and one angle contradicts a DNA don't.",
+    "evidence": "visual.colors only \"#121212 ... meta theme-color tag\"; Assets site read: primary \"#6965db\". typography headings \"\" body \"\". Angle \"Voices from the Canvas\": \"ending with the Plus upgrade prompt\" against don't \"Don't pressure users to sign up before they've tried the product\".",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "The recommended and chosen Team tier invents a gap: the profile says Plus already includes team management and workspaces, yet Team at $10 sells a shared workspace and an invented volume discount.",
+    "evidence": "profile pricing_current: \"Plus adds cloud workspace, team management, live presentations\". Recommendation Plus: \"Individual power users needing cloud persistence\"; Team $10: \"Shared team workspace\", \"Admin seat management\", \"Volume discount at 10+ seats\"; risk: \"No Team tier today means teams buy individual Plus seats or churn to Miro\". Competitors (Miro, Figma/FigJam, Mural, Lucidchart, Microsoft Whiteboard, Whimsical) are real and the listing is accurate.",
+    "systemic": false
+   },
+   {
+    "stage": "commercial",
+    "severity": "low",
+    "summary": "The dash sanitizer turned price ranges into comma lists, and the revenue_at figures have no stated basis.",
+    "evidence": "market_rate: \"sits in the $8, $10 per user per month range\" and \"reaching $16, $20\". revenue_at {10: 80, 50: 400, 200: 1600} with no formula shown.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The photographs show a generic engineer-at-a-desk world, not Excalidraw's canvas: no screen shows the hand-drawn style, the arrival monitor shows a 3D building drawing, the judge rewarded architecture in the building sense, and the hero breaks the subject continuity.",
+    "evidence": "Plates: scene (dark desk, two monitors with circuit-like diagrams, sticky notes on glass), pile (woman in hoodie sketching wireframes on paper), arrival (woman with mug, monitor showing an isometric CAD-style building), hero (three colleagues at a laptop, a long-haired woman not the \"same woman, short natural hair\"). Judge (gpt-4.1-mini fallback): \"more accurately reflects the brief's architectural workspace world\".",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The reel script's problem line contradicts the product, template slots leak through, and the load numbers are invented; the spoken lines and poster are otherwise clean.",
+    "evidence": "\"EVERY SKETCH. BY HAND.\" and spoken \"Still sketching by hand.\" for a product sold on its hand-drawn style; \"NO ACCOUNT. CAUGHT.\" with marker \"SIGN-UP WALL\"; \"6 DIAGRAMS DUE / 4 REVIEWERS / 20 MINUTES LEFT\"; payoff_timer \"00:20\"; \"No account needed\" spoken twice. Poster reads: EXCALIDRAW, \"IDEATE, COLLABORATE, SHARE. SIMPLY.\", EXCALIDRAW.COM, site logo and purple.",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "medium",
+    "summary": "Selected venues and drafted posts disagree, and two venues are mis-framed for a 131k-star product.",
+    "evidence": "r/softwarearchitecture selected with no Reddit post; Product Hunt ranked 8 and unselected while a PH listing was drafted; r/SideProject: \"MIT open-source free-forever tool with 131k stars is a strong side-project story\"; Indie Hackers: \"compelling bootstrapped revenue story\" (unsupported).",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "low",
+    "summary": "Show HN ranked first for an app that has been on HN many times; the HN draft's own warning concedes the repeat problem.",
+    "evidence": "HN warning: \"Excalidraw has significant prior HN presence given 131k GitHub stars; HN accepts a repeat Show HN only for a major overhaul.\" Targets rank 1: Hacker News Show HN, selected.",
+    "systemic": false
+   },
+   {
+    "stage": "signals",
+    "severity": "high",
+    "summary": "Four stale, unverified signals including a duplicate and a rival's own launch post; the drafted replies frame against Figma and still carry the URL placeholder.",
+    "evidence": "\"4 signals found: 4 in the queue (0 verified, 4 unverified)\", dated may 4, may 4, may 17, mar 31. Two LinkedIn items titled \"I stopped using Figma for system design diagrams.\" Dev.to: \"We Built a Free Tool to Create, Save, and Share Architecture Diagrams\". Replies: \"Figma's component model is overkill\", \"Figma's precision-first model slows down early-stage architecture thinking\", \"Excalidraw ({APP_URL}) is open-source\". 427 seconds spent.",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "medium",
+    "summary": "Plan reads ready although one of three venues has no post and one drafted post has no venue.",
+    "evidence": "\"Plan ready 3 venues\": Hacker News Show HN, r/softwarearchitecture, DevHunt. No Reddit draft exists; the Product Hunt draft has no tracked link. \"Sequencing advice drafted, not verified\".",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "low",
+    "summary": "Decisions are carried faithfully, including the flawed Team tier.",
+    "evidence": "Angle \"Draw First, Sign Up Never\"; Pricing \"Freemium Subscription (Recommended), free plus paid tiers: Free $0/mo, Plus $6/mo, Team $10/mo\"; Listing \"Excalidraw, Hand-Drawn Whiteboard\".",
+    "systemic": false
+   }
+  ],
+  "best": "LinkedIn line 1: \"131,595 GitHub stars, and you still don't need an account to use it. That's the whole point of Excalidraw.\"",
+  "worst": "The Reddit post: nothing. Run error \"EOL inside string literal at position 388 in Python literal\" and the page reads \"No draft yet. Press Draft for Reddit and it appears here.\" while the plan still carries r/softwarearchitecture.",
+  "notes": "The profile, DNA and listing are accurate and traceable, and the X and LinkedIn drafts are close to postable, so the evidence-gathering half of Launch Kit works well on a heavily documented app. The judgment half is weaker: the Reddit draft silently failed, the banned verb passed approval twice, two gate checks are mechanically broken (commas flagged as dashes, all-caps check case-insensitive), the pricing invents a Team tier the product already covers, and the photographs and reel script show a generic sketching world rather than Excalidraw's canvas. Signals are stale and unverified, and the targets, social and plan stages do not reconcile with each other, so a founder would need an hour of edits before any of this went out."
+ },
+ {
+  "slug": "plausible",
+  "scores": {
+   "profile": 5,
+   "brand": 4,
+   "commercial": 3,
+   "social": 3,
+   "assets": 3,
+   "targets": 3,
+   "signals": 1,
+   "plan": 3
+  },
+  "post_scores": {
+   "x_post": 4,
+   "linkedin_post": 3,
+   "reddit_post": 2,
+   "producthunt": 3,
+   "show_hn": 2,
+   "newsletter_pitch": 4
+  },
+  "issues": [
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "Reddit post invents a founding story that contradicts the company's own history and the run's other posts",
+    "evidence": "Title: \"Plausible Analytics - cookie-free analytics I built after the GA4 migration broke my setup\"; body: \"When Google Analytics 4 rolled out, I had to rebuild every report from scratch... I built Plausible Analytics to answer the basic traffic questions\". The profile says \"running since 2018\"; the Product Hunt first comment in the same run says \"We started building this in 2018... GA4 did not exist yet\". GLOBAL rule: never invent; brand 5.3 unsupported claims. The Reddit launch image carries the same fiction as its headline.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Reddit post fabricates a personal Matomo experience and disparages it; also trips the N-times hype check",
+    "evidence": "\"I ran Matomo self-hosted for a while; the setup and maintenance overhead grew faster than the insights it gave me, and the interface still felt like a scaled-down GA.\" Reddit rule 7: state the difference as a fact, never disparage. \"The tracking script is 54 times smaller than Google Analytics\" is the 'Forbidden wording' hit; the 'Better than X' warning is a regex false positive on \"grew faster than\". The post also says \"I built\" for a team of 10 whose voice is \"we\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "Show HN body leaks an internal profile gap into the public post and runs 50% over the word cap",
+    "evidence": "Body: \"The /pricing page currently returns a 404; pricing is only reachable via the homepage anchor.\" A founder would never publish that. Body is 301 words against the rule \"100 to 200 words\"; the only warning is the bare check name \"body: Upper bound of the body budget\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Show HN is the wrong vehicle for an eight-year-old product and the draft admits it, yet it is ranked first and carried into the plan",
+    "evidence": "Draft warning: \"Plausible is an established, commercially launched product with 21,000 paying subscribers. HN Show HN posts are intended for projects being shown for the first time\". Targets still rank \"Hacker News Show HN\" #1 with why_fit \"29,020 GitHub stars... textbook Show HN candidate\" and the plan issues it a tracked link.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "X warning claims the duplicate link was removed from the thread but it is still there",
+    "evidence": "Thread tweet 4 ends \"...Open source Community Edition is also available if you'd rather self-host. {APP_URL}\" while the warning says \"The URL in the fourth thread tweet has been removed to comply\". X rule: \"{APP_URL} appears exactly once... No other link anywhere in the post or the thread\". The model narrated a fix it did not make and the gate did not catch it.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "LinkedIn hook is logically garbled once the competitor name is stripped",
+    "evidence": "\"135KB of JavaScript per visitor. That's what we decided a site owner shouldn't have to pay just to see their traffic stats. So we built Plausible to load 135KB less than that.\" The 135KB is a saving relative to Google Analytics, which LinkedIn rule 12 forbids naming; without the referent the hook says nothing coherent. The warning even concedes \"the 135KB hook must carry the contrast on its own\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Product Hunt description opens with a competitor attack and uses the Nx multiplier that the other platforms dropped",
+    "evidence": "\"GA4 means cookie banners, complex reports, and data sent to Google servers. Plausible tracks traffic with a script 54 times smaller than Google Analytics\". PH rule 2: no \"Nx faster\" anywhere; rule 11: never a negative attached to a competitor's name; brand 4.1. X and LinkedIn drafters omitted 54x citing the same rule, so enforcement varies by platform.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Product Hunt maker comment names a founder who is not in the profile",
+    "evidence": "\"Hi, I'm Marko, one of the co-founders of Plausible.\" No founder name appears in APP_PROFILE or BRAND_DNA; it is right for Plausible only because the model remembered it, and would be a fabrication for an unknown app.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Mechanical warnings are bare check names without the offending quote, and some fire on text that no longer exists",
+    "evidence": "LinkedIn: \"post: Three consecutive words of four or more capitals\", \"post: Em or en dash; sanitizeDraft already replaces these, this is the belt\", \"alt_hook: Em or en dash in the alternate hook\" while the mechanical facts show dashes: 0. Show HN: \"title: Brand 1.1: no em or en dash... use a comma\" on a title that already uses a comma. A founder cannot act on these.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "medium",
+    "summary": "The chosen angle is a competitor-framed angle that every platform rulebook forbids, so no post carries it while the reel does",
+    "evidence": "Chosen: \"Ditch GA4 Already\", hook \"Google Analytics 4 is overkill for most site owners. Here's what we use instead.\" X warning: \"The campaign angle hook... was dropped from the main post and alt variants to comply.\" The reel keeps it: \"DITCH GA4. START FREE.\" DNA do-list \"Name Google Analytics directly when drawing contrasts\" conflicts head-on with the platform rules.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "Visual DNA is empty even though the Assets site read found the palette and logo",
+    "evidence": "Brand: \"colors\": [], typography \"headings\": \"\", note \"Scrape returned markdown without CSS\". Assets step 1 read the same site and found primary #909cf7, ink #252f3f, surface #f9fafb and picked the site logo. Two stages scrape the same page differently.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Approved listing contradicts the chosen pricing and claims no changes",
+    "evidence": "Listing FAQ: \"After 30 days you choose a plan, Starter at $9/mo, Growth at $14/mo, or Business at $19/mo\"; chosen pricing: Starter $9, Growth $19, Business $49; \"changes_from_current\": []. The plan carries both side by side under Decisions.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Recommended tiers invent features and the alternatives contain unsourced or inconsistent numbers",
+    "evidence": "Business tier includes \"White-label shared dashboards\", which Plausible does not sell; positioning_note \"Current $14 Growth tier is underpriced vs Fathom\" recommends a price rise for a product with 21,000 paying subscribers; Piwik Pro \"~$35\" with key_limits \"Pricing page not scraped; est. from MeasureU text\"; annual option says \"$90, $190, and $490 per year\" then \"$84 billed annually\" for the same tier.",
+    "systemic": false
+   },
+   {
+    "stage": "commercial",
+    "severity": "low",
+    "summary": "Listing over-reads the testimonials",
+    "evidence": "\"DHH at Basecamp, the Hugging Face team, and Ghost have all switched from Google Analytics to Plausible.\" The profile quotes are \"Been a very happy customer\" (DHH) and \"We're massive users\" (Clem Delangue); only Ghost's quote says \"We switched over everything from GA\".",
+    "systemic": false
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "Photographs read as a generic analytics startup, not Plausible's world; the briefed identifying props are absent",
+    "evidence": "scene: dark night office, two monitors, sticky-note wall. pile: woman in grey hoodie at a dark multi-chart dashboard (world map, donut, sparklines) that looks like the product, not the GA4 mess the brief asked for. arrival: woman with mug, light line-chart dashboard, funnel on whiteboard. hero: three colleagues pointing at a laptop dashboard. No EU-flag sticker, no red-pen consent-banner printout, no script-size sheet is visible; the judge's 8 and 9 scores are generous. A stranger would say \"SaaS office\", not \"Plausible\".",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "high",
+    "summary": "Script and voice-over speak invented scenario numbers as fact, inside a judging-queue template that does not fit an analytics product",
+    "evidence": "Slots: \"MONDAY. GA4. AGAIN.\", \"47 REPORTS\", \"3 TEAM MEMBERS\", \"2 HOURS LEFT\"; spoken: \"Monday. GA4. Forty-seven reports, three people, two hours. Every single one done by hand.\" None appear in claims_used; the UI hint \"Scenario numbers, not product claims\" is invisible to a viewer. The Verdict beats (REPORT cards raining into a pile, \"GDPR REQUIREMENT\" as a 'penalty chip' on a 'timeline of commits') are a review-queue metaphor forced onto a traffic dashboard.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "Reel attacks the competitor on screen and in voice, which the social stage had dropped for the same rule",
+    "evidence": "\"GA4 BURIES THE ANSWER.\", \"DITCH GA4. START FREE.\", spoken \"Ditch GA4. Start free with Plausible.\" Brand 4.1: never position as better than X; the X and LinkedIn drafters removed the identical hook citing PLATFORM_RULES.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "low",
+    "summary": "A voice line is over its window and the page says to re-speak it, yet the reel was approved unchanged",
+    "evidence": "Drop: \"Plausible. One page, clear stats.\" 1.98 s spoken in a 1.6 s window, page text \"Still over its window even 15% faster: shorten it and speak again\"; voice all_fit: false; reel status approved.",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "medium",
+    "summary": "Venue ranking ignores that the product launched in 2018 and is already listed almost everywhere it proposes",
+    "evidence": "#1 Show HN (see above); #5 r/privacy, which removes self-promotion; #10 AlternativeTo, #11 SaaSHub, #12 G2, #13 awesome-privacy-friendly-web-analytics, #14 awesome-selfhosted all already carry Plausible. Only Indie Hackers (#2, \"canonical Indie Hackers success narrative\") and r/selfhosted fit an established open-source product.",
+    "systemic": true
+   },
+   {
+    "stage": "signals",
+    "severity": "high",
+    "summary": "Signals came back empty after 902 seconds in a category where demand threads are posted daily",
+    "evidence": "signals: [], secs 902 against \"Takes about 7 minutes\"; empty state reads \"Nobody is publicly asking for what your app does right now; that's common before launch\" for an app with 21,000 paying subscribers whose pain phrase (\"Google Analytics 4 is complex... cookie consent banners\") matches a live stream of \"GA4 alternative\" threads on Reddit, HN and Indie Hackers. Wrong, not merely empty.",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "medium",
+    "summary": "The plan's venues and its posts do not match, and the carried angle is in none of the posts",
+    "evidence": "Tracked links: Hacker News Show HN, Indie Hackers, r/selfhosted. The Reddit draft was written for r/SideProject (warning: \"this draft defaults to r/SideProject\", title in the '<Name> - <desc>' format) not r/selfhosted; Indie Hackers has a tracked link but no post type exists for it; the Decisions box carries \"Ditch GA4 Already\" though every post dropped its hook; the listing carries $14/$19 pricing beside a $19/$49 decision.",
+    "systemic": true
+   },
+   {
+    "stage": "profile",
+    "severity": "low",
+    "summary": "One gap is Launch Kit-internal noise in a founder-facing profile",
+    "evidence": "gaps: \"App Store listing screenshots not verifiable from sources read\". Everything else in the profile traces cleanly: the four claims, nine proof points with sources, the stack, the pricing, and an honest 0.78 confidence capped for the /pricing 404.",
+    "systemic": true
+   }
+  ],
+  "best": "Product Hunt first comment: \"One honest limitation: the Community Edition does not include funnels, revenue attribution, or SSO. Those are cloud-only for now, and we know that is a gap for teams who want full features on self-hosted infrastructure. Two things we actually want to know: if you tried Plausible and went back to something else, what was the reason? And if you run a high-traffic site, what would you need to see before you moved your production analytics here?\"",
+  "worst": "Reddit post: \"Plausible Analytics - cookie-free analytics I built after the GA4 migration broke my setup\" / \"When Google Analytics 4 rolled out, I had to rebuild every report from scratch... I built Plausible Analytics\" (a fabricated founding story for a company that predates GA4 by two years, contradicted by the Product Hunt comment in the same run), with the Show HN body's \"The /pricing page currently returns a 404; pricing is only reachable via the homepage anchor.\" a close second.",
+  "notes": "The profile and brand DNA are the strongest outputs in the run: every claim traces to the homepage or README, the voice is Plausible's own, and confidence is honestly capped for the 404 pricing page. The pipeline then breaks on its own choice of a competitor-framed angle: the platform rulebooks forbid naming GA4, so the posts either contort the hook into nonsense (LinkedIn), drop it (X), keep it in violation (Product Hunt), or replace it with an invented first-person story (Reddit), while the reel shouts it and speaks made-up scenario numbers over generic startup-office photographs. Handling of an established product is the systemic gap: Show HN and already-listed directories ranked as launch venues, a pricing rewrite for a company with 21,000 subscribers, a listing FAQ that contradicts the chosen tiers, posts drafted for venues the plan did not pick, and a signals search that found nothing in a category where demand threads appear daily."
+ },
+ {
+  "slug": "hack-judge",
+  "scores": {
+   "profile": 2,
+   "brand": 2,
+   "commercial": 2,
+   "social": 2,
+   "assets": 3,
+   "targets": 3,
+   "signals": 2,
+   "plan": 3
+  },
+  "post_scores": {
+   "x_post": 2,
+   "linkedin_post": 3,
+   "reddit_post": 2,
+   "producthunt": 1,
+   "show_hn": 2,
+   "newsletter_pitch": 3
+  },
+  "issues": [
+   {
+    "stage": "profile",
+    "severity": "blocker",
+    "summary": "The site was asleep (Render free tier, HTTP 503) so the profile was inferred from the URL slug alone, approved at 10% confidence, and locked. Eight minutes later the Assets site read reached the live page and it describes a different product: a GitHub repo classifier that flags pre-event commits and writes a styled Excel. Nothing reconciled the two, so Brand, Commercial, Social, Signals and the cards all describe a rubric tool that does not exist.",
+    "evidence": "Profile: \"The entire profile is inferred from the URL slug alone. analysis_degraded is true.\" (confidence 0.1). Assets probe copy from the live site: \"Each repo is fetched locally (A), then classified on RocketRide Cloud (B). Projects with git commits older than the hackathon date (\u00b12 days) get flagged as pre-event work and lose the penalty points you set\", \"Runs the full sheet and builds the styled Excel with clickable links\", labels \"GITHUB REPO URLS, ONE PER LINE\", \"HACKATHON DATE (REQUIRED)\", \"PRE-EVENT WORK PENALTY (PTS)\", categories Significant / Moderate / Less / None / Needs review.",
+    "systemic": true
+   },
+   {
+    "stage": "profile",
+    "severity": "high",
+    "summary": "Claim 3 (the pain) is wrong for this app and claims 1 and 4 are placeholders; a founder gets one usable claim of four. No retry was attempted for a cold-start host even though the profile itself diagnosed the cause.",
+    "evidence": "Pain: \"Manually scoring and comparing many hackathon submissions is time-consuming and inconsistent across judges\" versus the site's own purpose (catching pre-event work). One-liner: \"an app to assist with judging hackathon submissions (details unavailable; site was unreachable)\". Differentiators: \"Nothing found\". Maturity signal: \"Hosted on Render free tier (app sleeps when idle, causing 503)\" yet sources_read shows only two fetches, both 503.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "medium",
+    "summary": "The DNA is honestly empty (confidence 0, every field blank), so the five angles are generic to any judging tool and one of them positions against a named competitor, which the brand rulebook forbids.",
+    "evidence": "DNA: \"All DNA fields are empty because no evidence exists to populate them\". Side-by-Side angle hook: \"Devpost handles submissions. It doesn't handle judging. There's a difference.\" (rulebook 4.1 never position as better than X; show, don't tell). Launch on Product Hunt success metric: \"Number of upvotes and signups on launch day\" while the PH rulebook bans vote framing. Angle channels name \"r/devpost\", which is not a real launch community.",
+    "systemic": false
+   },
+   {
+    "stage": "brand",
+    "severity": "medium",
+    "summary": "The chosen angle Fair by Design is coherent and its hook is a good line, but it drives every downstream post with a pain the real product does not address (score drift between judges) instead of the one it does (pre-event work).",
+    "evidence": "Angle big idea: \"Scores drift between judges, criteria get applied inconsistently, and the best project doesn't always win.\" Hook: \"Judging a hackathon with a shared spreadsheet is a recipe for inconsistency.\" The Assets script, grounded in the live site, instead says \"PRE-EVENT WORK, CAUGHT.\"",
+    "systemic": false
+   },
+   {
+    "stage": "commercial",
+    "severity": "high",
+    "summary": "The tiers price features that do not exist and are anchored on a single competitor whose numbers came from search-result text; HackerRank is mislabelled emerging. The three options do differ in billing shape, which is the one thing done right.",
+    "evidence": "Pro tier: \"Custom rubrics\", \"Up to 150 submissions per event\"; Team tier: \"Team admin dashboard\", \"API access\", \"Dedicated onboarding\" (none on the site). Confidence note: \"HackHQ pricing extracted from search result text (own domain)\"; \"HackerEarth pricing page returned 404; Devpost pricing page returned 404\". HackerRank: notability \"emerging\", mentions 2. Positioning note: \"HackHQ charges $199-$599 per event; monthly subscription undercuts\".",
+    "systemic": false
+   },
+   {
+    "stage": "commercial",
+    "severity": "high",
+    "summary": "The store listing states unverified features as fact and invents a load-time number that contradicts the Show HN draft, although its alpha caveat is honest and well framed.",
+    "evidence": "FAQ: \"Can multiple judges score the same submission? Yes, multi-judge scoring and score aggregation is the core use case the app is built around.\" Description: \"Aggregate scores across multiple judges automatically\". FAQ: \"The first load may take 20-30 seconds to wake up\" versus Show HN \"may take 30 to 60 seconds\". Listing confidence 0.45 admits \"No features, screenshots, or copy were verified.\"",
+    "systemic": false
+   },
+   {
+    "stage": "social",
+    "severity": "blocker",
+    "summary": "The Product Hunt draft breaks two hard rules, both caught by the gate, and was still approved into the plan: the banned release verb in the maker comment and a description 306 characters against the 260 limit.",
+    "evidence": "First comment: \"Those are on the list but not shipped.\" (GLOBAL rule 8, brand rulebook 1.1). banned_words: [\"shipped\"]. Description is 306 characters; PH rule 5 says \"260 characters maximum\". Gate lines: \"first_comment: Forbidden wording for this platform.\", \"description: Short description limit on the listing.\" Status: approved.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "Every platform asserts a product mechanism the app does not have (shared rubric, judge invites, score aggregation, CSV export); the model filled the empty profile with a plausible mechanism instead of staying vague, and the warnings admit it.",
+    "evidence": "X: \"gives each judge the same structured rubric and collects scores in one place\". PH: \"Organizers set up an event, define a scoring rubric, and invite judges... exports results to CSV\" (site says a styled Excel). Show HN: \"takes a set of hackathon submissions and a scoring rubric and produces a structured score sheet each judge fills in independently\". Reddit: \"Each judge scores against the same criteria, and the results aggregate in one place\". X rulebook: \"Claim only capabilities that APP_PROFILE states.\" X warning: \"All claims about app functionality... are inferred from the campaign angle and app name\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "Fabricated first-person experiences are presented as fact on four platforms because the hook patterns demand a personal anecdote the profile never supplied.",
+    "evidence": "Show HN: \"I built it after co-judging a university hackathon where five judges used a shared spreadsheet. By the end, two judges had changed their scoring scale mid-event and one column had been accidentally deleted.\" Reddit: \"Devpost handles submission collection well, and I used it for a while\". LinkedIn: \"I've run into this problem enough times that I built something to fix it.\" PH: \"I kept watching hackathon judging fall apart the same way\". GLOBAL rule 5: \"Never invent metrics, users, testimonials, or benchmarks\"; HN rule 14 asks for \"a personal, concrete story\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Show HN body is 252 words against the 100 to 200 rule, carries a number not in the profile, and the model's own warning asserts the opposite of the count; the title, however, is plain and correct.",
+    "evidence": "Body word count 252 (HN rule 3: \"100 to 200 words\"); gate: \"body: Upper bound of the body budget\". Model warning: \"The body currently sits at the lower end of the 100 to 200 word range\". Body: \"The app may take 30 to 60 seconds to respond on first load\" (proof_points empty). Body also posts \"I do not know yet whether it requires an account\", which no founder would submit. Title: \"Show HN: Hackathon Judge Aid, structured scoring for hackathon judges\" (69 chars, comma, no dash).",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Reddit ignores the r/SideProject title format its own rulebook mandates, and the gate's forbidden-wording hit names no word; otherwise the disclosure, existing-tool sentence, limitation and closing question are all in place.",
+    "evidence": "Title: \"I built a tool to help hackathon judges score submissions consistently\" versus rule 4: \"r/SideProject: '<Name> - <short description>'\". Gate: \"body: Forbidden wording for this platform.\" with no quote. Correct parts: \"So I built Hackathon Judge Aid\", \"hosted on a Render free tier, which means it goes to sleep when idle\", closing question on calibration sessions.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Newsletter pitch is one word under the floor and ends on a placeholder; it is otherwise the least wrong draft because it says the least.",
+    "evidence": "Pitch is 99 words; rule 1: \"100 to 150 words\"; gate: \"pitch: Pitch is at least 100 words (rule 1 lower bound).\" Sign-off: \"[Builder first name]\". Body line that is safe: \"It is an early-stage project, currently in alpha and publicly hosted\".",
+    "systemic": false
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Gate rule names leak into the warnings list as if they were findings, without the offending text or a pass/fail state, and one carries an implementation comment; a founder cannot act on them.",
+    "evidence": "X: \"thread_extension[1]: No em dash or en dash in any string; duplicates the gates.ts check so this rulebook is complete on its own\" (dashes: 0). LinkedIn: \"post: Em or en dash; sanitizeDraft already replaces these, this is the belt\", \"post: Three consecutive words of four or more capitals\" (no such run in the post). Newsletter: \"pitch: No ALL CAPS section labels such as \\\"WHAT IT IS:\\\" at line start (rule 11). under i it would match \\\"Note:\\\" or \\\"For your readers:\\\".\"",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "blocker",
+    "summary": "The Open Graph, square, story and README cards print the profile's error text as the product description, so every link preview would read \"site was unreachable\".",
+    "evidence": "Card body on the 1200x630 Open Graph card and the 1080x1080 square card: \"Hackathon Judge Aid, an app to assist with judging hackathon submissions (details unavailable; site was unreachable).\" The card takes profile.one_liner verbatim.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "high",
+    "summary": "The name on every card, the reel and the poster is the Launch Kit slug, not the product's name, while the host printed underneath says something else.",
+    "evidence": "Poster: \"HACK-JUDGE\" above \"HACKATHON-JUDGE-AID.ONRENDER.COM\"; cards: \"hack-judge\" with a generated H monogram; voice: \"hack-judge judges every submission.\" Claims used: \"app_name 'hack-judge': APP_NAME field exactly\" while the DNA brand_name is \"Hackathon Judge Aid\".",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The four photographs are strong and unmistakably a hackathon judging hall, but they picture the wrong-profile world of paper and clipboards rather than this app's world of repo URLs, commit dates and a classification sheet.",
+    "evidence": "Scene: wide hall from a rear balcony, rows of teams at laptops, lit stage, countdown screen. Pile: a woman judge with a lanyard writing across a stack of printouts beside a laptop spreadsheet, dark hall behind. Arrival: the same judge with a coffee cup, trophies on the table, a laptop leaderboard. Hero: three lanyard-wearing judges reading a leaderboard screen in a warm hall. Brief world list includes \"clipboards dense with handwritten rubric marks\" and \"a shared scoring spreadsheet open across multiple monitors\". Judge scores 9/10 on all four.",
+    "systemic": false
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The script and voice-over are the only stage grounded in the live site, but they mix that with scenario numbers spoken as fact and a stretched timing claim, and the X launch image truncates its headline.",
+    "evidence": "Voice: \"Judging day. Forty-seven submissions, three judges, four hours.\" (UI note: \"Scenario numbers, not product claims\", yet spoken without qualification). Voice: \"Every repo, fairly scored, in fifteen minutes.\" derived from the site's timer display \"00:00 / 15:00\". On-screen: \"EVERY REPO. SCORED.\" while the product classifies and flags. X post image headline ends \"applies the criteria...\". Grounded lines that are right: \"Paste your repos and run. Every repo gets classified. Pre-event commits get caught.\", chips \"SIGNIFICANT / MODERATE / LESS / NEEDS REVIEW\", \"HACKATHON DATE\".",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "medium",
+    "summary": "All 14 venues are real, but the three selected are generic launch platforms; the chosen angle's channels and the approved Show HN and Reddit drafts have no venue in the plan, Hacker News is not even ranked, and Capterra, G2 and AppSumo are premature for an alpha on a render.com subdomain.",
+    "evidence": "Selected: BetaList, Product Hunt, Indie Hackers. Angle channels: \"Reddit (r/hackathons, r/cscareerquestions, r/devpost)\", \"Hacker News\". r/hackathon ranked 4 with why_fit \"Direct ICP\" but not selected. AppSumo why_fit: \"organizers (ICP) buy lifetime deals for event workflow tools on AppSumo\" (no evidence).",
+    "systemic": true
+   },
+   {
+    "stage": "signals",
+    "severity": "medium",
+    "summary": "Six on-topic threads about judging fairness, but zero verified (LinkedIn fetched client-side and blocked by CORS), three are from March, one is a hackathon's own rubric announcement where a product reply would be spam, and every drafted reply ends with the same template while promising features the app lacks.",
+    "evidence": "Heading: \"6 signals found: 6 in the queue (0 verified, 6 unverified)\". page_errors: \"Access to fetch at 'https://www.linkedin.com/posts/...' ... blocked by CORS policy\". Pyth thread: \"Judging Rubric: How Submissions Are Scored, Pyth Community Hackathon\" (mar 2). Drafted reply: \"I built {APP_URL} to handle the rubric and score aggregation side of this. Disclosure: I'm the builder.\" Same closer on all six.",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "low",
+    "summary": "The decisions are carried correctly with one tracked link per selected venue, but the plan inherits the wrong-product listing and pricing, carries approved HN and Reddit drafts with no venue, and marks its own sequencing unverified.",
+    "evidence": "Decisions: Angle \"Fair by Design\", Pricing \"Freemium Monthly Subscription... Free $0/mo, Pro $49/mo, Team $149/mo\", Listing \"Hackathon Judge Aid\". Footer: \"Sequencing advice drafted, not verified\". Tracked links: lk_launch_platform_betalist, lk_launch_platform_product_hunt, lk_launch_platform_indie_hackers only.",
+    "systemic": false
+   }
+  ],
+  "best": "\"Paste your repos and run. Every repo gets classified. Pre-event commits get caught.\" (the spoken How line of the reel: the only output in the whole launch that describes the real product, every noun traced to the site's own labels)",
+  "worst": "\"Hackathon Judge Aid, an app to assist with judging hackathon submissions (details unavailable; site was unreachable).\" (printed as the product description on the Open Graph, square, story and README cards)",
+  "notes": "This run is a cascade failure from one cold-start 503: the profile was honestly empty but got approved, and every later stage filled the void with a plausible rubric-scoring product that the live site, read eight minutes later by the Assets probe, contradicts (the app classifies GitHub repos and flags pre-event commits). The pipeline's mechanics are mostly sound, the warnings are candid, the photographs and the site-grounded script are genuinely good, but a founder would post none of the six drafts as is because each describes features they do not have, invents a personal anecdote, or breaks a hard rule the gate caught and the approval ignored. The two defects most likely to recur across all ten apps are the launch cards printing profile.one_liner verbatim (error text included) and the launch slug standing in for the product name on every card, poster and spoken line."
+ },
+ {
+  "slug": "documenso",
+  "scores": {
+   "profile": 4,
+   "brand": 4,
+   "commercial": 3,
+   "social": 3,
+   "assets": 3,
+   "targets": 3,
+   "signals": 2,
+   "plan": 4
+  },
+  "post_scores": {
+   "x_post": 4,
+   "linkedin_post": 4,
+   "reddit_post": 3,
+   "producthunt": 2,
+   "show_hn": 3,
+   "newsletter_pitch": 4
+  },
+  "issues": [
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "Product Hunt maker comment invents a co-founder who does not exist",
+    "evidence": "First comment opens \"Hi, I'm Philipp, one of the co-founders of Documenso.\" Documenso's founders are Timur Ercan (CEO) and Lucas Smith (CTO) per crunchbase.com/organization/documenso and documenso.com/open. The profile holds no builder name, and the newsletter draft's own warning says \"APP_PROFILE does not include the builder's name\", so the name was made up. Breaks GLOBAL_RULES \"Never invent metrics, users, testimonials\" and the PH rule that the first line carries the maker's real first name and role.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "The mechanical dash check is corrupted to a comma class, so every draft with a comma gets a false em-dash warning",
+    "evidence": "apps/launchkit/src/lib/rulebook-checks.ts line 79: { id: 'no_dashes', description: 'Forbidden wording for this platform.', kind: 'forbidden_regex', value: '[,,]' } and line 100 ph_no_dashes value '[,,]'. The dash sanitizer replaced the em and en dashes inside the regex itself. Result on this app: X \"post: No em dash or en dash in any string\", LinkedIn \"post: Em or en dash; sanitizeDraft already replaces these, this is the belt\", Reddit \"title: Forbidden wording for this platform.\", PH \"tagline: Em dash and en dash.\", HN \"title: Brand 1.1: no em or en dash\" all fired on drafts with dashes: 0. The HN title rule requires a comma between name and description, and the check then flags that comma.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Show HN body is over budget, carries one false claim, and its warning misreports what proof was used",
+    "evidence": "Body is 278 words against the rule \"Body order, 100 to 200 words\" (the check itself says \"body: Upper bound of the body budget\"). \"every available tool was closed-source\" is false: DocuSeal and OpenSign are open-source and HN readers will say so. The warning \"Proof points used (14,980 GitHub stars, 3,198 forks) are from APP_PROFILE.proof_points\" is wrong: no star or fork count appears in the body. \"We are deciding whether the embedded signing experience should default to a full-page iframe or a lightweight JS widget\" is an invented internal decision.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Reddit post is written for the wrong subreddit and carries an invented backstory and roadmap",
+    "evidence": "Warning: \"No TARGET subreddit was specified. This draft is written for r/SideProject at mention level 2\", yet Targets selected r/selfhosted (rank 2, ticked) and the plan's tracked link is lk_subreddit_r_selfhosted. Body opens with a fabricated founder scene: \"DocuSign worked fine until the document volume climbed and the per-envelope cost started showing up in board decks\", and promises \"I'm working on a no-signup demo environment\" which the profile never states. Persona flips to \"I built Documenso\" while X, LinkedIn, PH and HN use \"we\". Social runs before Targets, so the default sub is structural.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Product Hunt first comment is over length, adds an invented limitation, and the star-rating warning is confused noise",
+    "evidence": "first_comment is 300 words against the rule \"Maker first comment: 150 to 250 words\". \"The self-hosted path also has fewer guardrails than the hosted version right now\" appears nowhere in the profile. Warning \"GitHub star count (14,980) was omitted from all fields. The platform rules prohibit star ratings in any field, and the term is ambiguous\" conflates review stars with GitHub stars. The tagline \"E-signatures you can self-host, audit, and embed\" and the no-vote-ask body are the good parts.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "X post has a broken sentence and over-reaches on stars and compliance",
+    "evidence": "\"Documenso is self-hostable, embeddable, and fully compliant e-signatures\" is ungrammatical; \"14,980 GitHub stars from developers who agree\" attributes a slogan to stargazers. Thread: \"Compliance is included: 21 CFR Part 11, SOC2, HIPAA, ESIGN Act, and UETA. You do not configure it separately\" overstates for self-hosted installs (SOC2 covers the hosted service; HIPAA needs a BAA). Hook uses the angle slogan rather than the rule's \"specific thing inside the first 8 words\". Otherwise compliant: under 280, URL last, no hashtags, question at thread end, two distinct alt hooks.",
+    "systemic": false
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "LinkedIn post is close to usable but leans on an inference and its mechanical warning is a false positive",
+    "evidence": "\"We've got 3,198 forks. People aren't just watching; they're building on top of it\" turns a fork count into an adoption claim. Warning \"post: Three consecutive words of four or more capitals\" fires though no such run exists (\"ESIGN, UETA, 21 CFR Part 11, SOC2, HIPAA\" is comma separated). The launch-week cadence and reply-triage warnings are the same boilerplate for every app. Rules met: line 1 is a proof number and 78 chars, 182 words, no URL in body, \"Link in the first comment.\", three hashtags on the last line.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Listing FAQ contradicts the stage's own competitor table and uses comparison and hype framing",
+    "evidence": "FAQ: \"DocuSign's equivalent plans typically cost significantly more\" while the same page lists DocuSign Personal at \"~$10\" per month against Documenso Individual at $25. Description: \"Why teams switch from DocuSign:\" (named competitor, better-than framing, brand 4.1). \"Yes. Both certifications are active\" treats HIPAA as a certification; there is none. \"one of the most-watched document-signing projects in the world\" is an unverifiable superlative; \"Trusted by 14,980+ GitHub stars\" is not what stars mean; \"Start free. Self-host forever. Scale with confidence.\" is the three-fragment punchline the brand rulebook lists as an AI tell (1.3).",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Revenue projections on the same page disagree by 3x",
+    "evidence": "Freemium Ladder card: revenue_at 10: 315, 50: 1575, 200: 6300 (implies 70 percent of customers on the free tier). Revenue check panel for the chosen plan at 50 paying customers: \"$5,250 per month, $63,000 per year, if customers spread evenly across the 3 paid tiers (average $105/mo). Floor: $1,250 per month\". The other two options average paid tiers only (Annual 840/10 = 84; Platform-First 2740/10 = 274), so the free-tier option is computed on a different basis with no label saying so.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Competitor set ignores the open-source peers and the recommendation just restates live pricing",
+    "evidence": "Competitors are DocuSign, Adobe Acrobat Sign, Dropbox Sign, PandaDoc, airSlate SignNow, Xodo Sign: all real and established, prices anchored (PandaDoc $19/$49, SignNow $8/$15/$30 match public pricing). But DocuSeal and OpenSign, the direct open-source alternatives, are absent even though the Signals stage surfaces both. Recommendation positioning: \"Four tiers from free to $250/month matching Documenso's live pricing\"; the only new thinking is \"$250 is likely underpriced ... Consider $299-499\", which the chosen option then does not apply.",
+    "systemic": false
+   },
+   {
+    "stage": "brand",
+    "severity": "medium",
+    "summary": "DNA proof point misreads the open metrics page and records the wrong funding total",
+    "evidence": "proof_points_observed: \"$288,000 total funding raised\". documenso.com/open and documenso.com/blog/pre-seed show $288,000 as the May 2023 tranche and $1,538,999 total after the $1.25M pre-seed. The figure was not used in any post, and the brand rulebook forbids funding figures in posts anyway, so carrying it as a proof point is a trap rather than an asset.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "Two of the five angles break the rules the posts are held to",
+    "evidence": "Compliance-First Launch big_idea: \"the only open-source signing backend that ships enterprise compliance out of the box\" uses the banned verb (brand 1.1) and an \"only\" claim DocuSeal and OpenSign disprove. DocuSign Bill Shock hook: \"DocuSign renewal coming up? Your documents belong on your infrastructure.\" opens with a rhetorical question (GLOBAL_RULES) and is a comparison angle, so the X draft had to note \"the implicit contrast was dropped\". The chosen \"Open Signing Movement Drop\" with hook \"Document signing is infrastructure. Infrastructure should be open.\" is strong and matches the site's own \"Join the Open Signing Movement\".",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "Visual DNA is empty while the Assets stage reads the same site fine",
+    "evidence": "dna.visual: \"colors\": [], typography headings \"\" and body \"\", logo_url \"\", with the note \"Scrape returned markdown without CSS\". Assets step 1 then reads primary #88ca59, ink #000000, the apple touch icon 180x180 from documenso.com. Two stages, one site, different answers.",
+    "systemic": true
+   },
+   {
+    "stage": "profile",
+    "severity": "low",
+    "summary": "Sanitizer mangles a range, eIDAS is missing, and a hype word rides in on a quote",
+    "evidence": "icp.who: \"Series A, C SaaS companies\" (the source range \"A-C\" was turned into a comma; the Targets stage still says \"Series A-C buyers\"). Compliance list \"21 CFR Part 11, SOC2, HIPAA, ESIGN Act, and UETA\" omits eIDAS, the headline claim for a German company selling into the EU. Proof point quotes \"It's been a game-changer for our team\" verbatim from the site. Pricing (Free $0, Individual $25, Teams $40, Platform $250) checks out against documenso.com/pricing; confidence note honestly flags the unscraped self-hosted page.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The four photographs show a generic dev-ops office; nothing in them says e-signature",
+    "evidence": "scene: dark open-plan office, server rack, corkboard of papers, whiteboard flowchart, monitors, paper stacks. pile: woman in glasses with fanned printouts, terminals showing code, red sticky notes on a corkboard. arrival: same woman holding coffee, code on two monitors, flowchart behind. hero: three people at a monitor showing a table UI, server rack, corkboard. No signature, contract, sign-here tab or signing screen in any frame; the domain list is 9 of 11 generic (\"a terminal window open beside a browser tab\", \"a Docker container config file\"). Hero breaks continuity: the brief says \"That same woman\" but the short-haired woman with glasses is absent, replaced by a long-haired woman, and the judge still scored it 9 for \"Clear IT/ops world\", which is the wrong world.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "Script and voice-over invent product behaviour and one spoken line does not fit its window",
+    "evidence": "step3_label \"THE DEADLINE, CAUGHT.\", step3_marker \"SIGNING DEADLINE\", step3_chip \"OVERDUE\" and spoken \"catch every deadline\" have no entry in claims_used; the chips \"SIGNED/PENDING/VIEWED/DECLINED\" are admitted as \"plausible signing workflow states\", not the product's words; payoff_timer \"00:30\" is a template artifact with no meaning for a signing tool. Voice \"drop\": \"Documenso. Sign anything.\" is 1.66 s in a 1.6 s window, fits: false even at tempo 1.15, and \"Sign anything\" is not site copy; all_fit is false yet the reel status is approved. The poster (logo, \"FOR TEAMS AND SAAS BUILDERS\", DOCUMENSO in #88ca59, \"THE OPEN SOURCE DOCUSIGN ALTERNATIVE\", DOCUMENSO.COM) and the five cards read cleanly.",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "medium",
+    "summary": "Venues are real but the ranking ignores that this app already launched, and Product Hunt is missing",
+    "evidence": "Show HN ranked 1 and selected with why_fit \"TypeScript open-source repo with 14,980 stars\" and no repeat-Show-HN caution, for a product the profile marks \"launched\", \"Repo created March 2023\", with a \"Product Hunt Top Post badge\". Product Hunt is absent from all 14 venues although a PH post was drafted and approved. DevHunt (impact medium, rank 3) is selected over r/opensource and Indie Hackers. The Open Source Drop (opensourcedrop.com) checks out as a real weekly newsletter; AlternativeTo, SaaSHub, G2, StackShare are sensible evergreen picks.",
+    "systemic": true
+   },
+   {
+    "stage": "signals",
+    "severity": "high",
+    "summary": "Zero of seven signals verified and five of seven are promotional posts, not people asking",
+    "evidence": "Heading: \"7 signals found: 7 in the queue (0 verified, 7 unverified)\"; summary.json page_errors show every fetch blocked by CORS (linkedin.com, forums.knack.com, community.apryse.com). Queue: \"Documenso. Built with Nodejs/Docker, run by you\" (a post promoting Documenso), \"A 16k-star open-source tool is quietly eating DocuSign's lunch\" (about Documenso itself), \"OpenSign: free open-source alternative to DocuSign\" (Elestio promoting a competitor), \"Docuseal is an open-source alternative to DocuSign\" (competitor promo), \"CRAZY: How to replace DocuSign in 30 minutes for $5 a month\" (a how-to post). Only the Knack thread \"Integrated E-Signature?\" and arguably the Apryse thread are someone asking.",
+    "systemic": true
+   },
+   {
+    "stage": "signals",
+    "severity": "medium",
+    "summary": "Drafted replies use the banned verb, invent a number, and pitch inside competitor and vendor threads",
+    "evidence": "Reply 1: \"Documenso (documenso.com) is open-source, self-hostable, and ships with those compliance guarantees\" (brand 1.1 banned verb). Reply 2: \"the repo includes a compose file that gets you running in under 10 minutes\" (number not in proof_points). Replies to Elestio's OpenSign post and the Apryse community thread pitch Documenso on a competitor's and a vendor's turf. Disclosure lines (\"I'm one of the builders\", \"Full disclosure: I work on Documenso\") are good. extract.json stores reply: \"\" for all seven while the UI shows full replies, so the dump does not match the store.",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "low",
+    "summary": "Decisions are carried, but only three of the six approved posts get a tracked link and the Reddit post targets a different sub than its venue",
+    "evidence": "Decisions panel: Angle \"Open Signing Movement Drop\", Pricing \"Freemium Ladder, free plus paid tiers: Free $0/mo, Individual $25/mo, Teams $40/mo, Platform $250/mo\", Listing \"Documenso, Open-Source E-Signatures\" all match the earlier stages. Tracked links exist for Show HN, r/selfhosted and DevHunt only; the approved LinkedIn, X, Product Hunt and newsletter posts have no ref code, so their signups cannot attribute. The Reddit post in the plan was drafted for r/SideProject; the tracked link is lk_subreddit_r_selfhosted. \"Sequencing advice drafted, not verified\" is honest.",
+    "systemic": true
+   }
+  ],
+  "best": "\"14,980 developers starred Documenso on GitHub. They didn't do it for the UI.\" (LinkedIn line 1: a number that traces to the repo, stands alone under 140 characters, and sets up a post with no link in the body and the link line at the end)",
+  "worst": "\"Hi, I'm Philipp, one of the co-founders of Documenso.\" (Product Hunt first comment: the profile holds no builder name, and Documenso's co-founders are Timur Ercan and Lucas Smith, so the maker persona a founder would post under is fabricated)",
+  "notes": "The facts that were scraped hold up well: the profile's claims, pricing and site quotes are accurate and the competitor prices anchor to public numbers, so the launch reads like Documenso rather than a generic dev tool. Where the pipeline had to fill a gap it invented instead of leaving a placeholder: a co-founder named Philipp, a DocuSign board-deck backstory, a deadline feature in the reel, a demo on the roadmap, and photographs of an IT-ops office with no signature in sight. The warning layer needs repair before a founder can trust it, because the dash check is literally a comma class, the signals queue is unverified promo chatter, and the Reddit draft was written for a subreddit the plan does not use."
+ },
+ {
+  "slug": "cal-com",
+  "scores": {
+   "profile": 4,
+   "brand": 4,
+   "commercial": 3,
+   "social": 3,
+   "assets": 3,
+   "targets": 3,
+   "signals": 1,
+   "plan": 3
+  },
+  "post_scores": {
+   "x_post": 0,
+   "linkedin_post": 3,
+   "reddit_post": 3,
+   "producthunt": 3,
+   "show_hn": 3,
+   "newsletter_pitch": 3
+  },
+  "issues": [
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "The X post was never produced; the run failed on a parse error and the drive reported it as drafted.",
+    "evidence": "appstate run kind asset:x_post status error: \"EOL inside string literal at position 229 in Python literal\" (54 s). The Social page shows \"No draft yet. Press Draft for X and it appears here.\" summary.json says X drafted: true and approved: 5. x_post scores 0.",
+    "systemic": true
+   },
+   {
+    "stage": "signals",
+    "severity": "high",
+    "summary": "The signals run failed after nine minutes and the UI presents the failure as an honest empty result.",
+    "evidence": "appstate run kind signals status error: \"no JSON object in answer: Failed to get valid JSON response after 4 attempts\" (541 s). The page reads \"No signals yet. Nobody is publicly asking for what your app does right now; that's common before launch.\" summary.json reports ok: true, none: true. For a scheduling product with daily Calendly-alternative threads this is false, not empty.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Every dash warning is noise: the no-dash regexes in the checker are two ASCII commas, so they fire on any comma.",
+    "evidence": "src/lib/rulebook-checks.ts lines 21, 41, 55, 79, 100: value: '[,,]' (xxd shows 5b 2c 2c 5d). Every post here has dashes: 0 yet shows \"post: Em or en dash; sanitizeDraft already replaces these, this is the belt\", \"tagline: Em dash and en dash.\", \"body: Forbidden wording for this platform.\" (the Reddit line 79 check). A real em dash would not be caught by these checks.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "The capitals-run warning is also noise because forbidden_regex is compiled case-insensitively.",
+    "evidence": "src/domain/gates.ts line 156: new RegExp(c.value, ... \"i\"). The pattern \\b[A-Z]{4,}(?:\\s+[A-Z]{4,}){2}\\b therefore matches \"very good chance\"; the LinkedIn post has no capitals run yet shows \"post: Three consecutive words of four or more capitals\".",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Product Hunt: tagline and description both exceed their limits while the model's own warnings assert they fit; first comment breaks the opener rule and uses an evaluative adjective and an invented limitation.",
+    "evidence": "Tagline \"Scheduling infrastructure for individuals, teams, and developers\" is 64 chars (limit 60); warning says \"The tagline is 55 characters, within the 40-55 target range.\" Description is 318 chars (limit 260); warning says \"The description is 258 characters, within the 260-character limit\". First comment opens \"Hi, I'm part of the Cal.com team.\" with no first name and role; \"the Platform API is powerful but the documentation has gaps\" is both hype and an untraced limitation. No vote ask: correct. Topics: fine.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Show HN disparages Calendly, overruns title and body limits, and invents three product limitations.",
+    "evidence": "\"the only real options were Calendly (closed, branded, no API worth building on)\" breaks brand 4.1 and the HN rule to name prior art neutrally. Title is 82 chars (cap 80). Body is 266 words (cap 200). \"the Platform API does not yet support every event type available in the UI, multi-org routing is only on the Organizations plan, and the self-hosted Docker image does not include the video conferencing layer by default\" appears nowhere in the profile. Voice flips from \"We built this\" to \"I built this and will be in the thread\". The opener sentence itself is excellent.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "LinkedIn: hook over length, a banned rhetorical shape, an AI-hedge opener, and a testimonial paraphrase that invents what the quote said.",
+    "evidence": "Line 1 is 147 chars (rule: 140). \"It's not because we built a nicer booking page. It's because we started from a different premise\" is the forbidden \"It's not X, it's Y\" shape. \"I've been thinking about why that landed.\" is the rulebook 1.3 hedge family. \"Flo Merian at Mintlify called it 'more elegant' and 'more open' than anything else she'd tried\" rewrites \"More elegant than Calendly, more open than SavvyCal\" into a claim the quote never made and assigns a pronoun the profile never gives. Facts used (v6.8, 65+ languages, 100+ integrations, MIT, free-tier contents) all trace.",
+    "systemic": false
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Reddit is written as a solo side project on r/SideProject because no target subreddit was passed, and it invents an outcome and a limitation while disparaging Calendly.",
+    "evidence": "\"So I built Cal.com.\" for a v6.8 product with a $28/seat tier, defaulted to r/SideProject (warning: \"No TARGET subreddit was given\"). \"the branding stays on unless you're on an expensive plan\" disparages the named alternative. \"which saved a lot of localization work for teams with global bookers\" and \"the onboarding for the Platform API is not as polished as I'd like\" are untraced. Disclosure, alternative named in the first 120 words, one question, {APP_URL} once: all correct.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Newsletter pitch is a template with a placeholder sender and an over-length subject.",
+    "evidence": "Signed \"Pete\" (warning admits it is a placeholder); opens \"For your readers who book external meetings regularly\"; subject is 75 chars (rule: 70). The Guillermo Rauch quote and free-tier facts trace to the profile.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "high",
+    "summary": "The site read picked the status badge as the logo, so the app icon and the reel poster carry an \"All Systems Operational\" pill instead of the Cal mark.",
+    "evidence": "Step 1 shows \"All Systems Operational \u25cf  site logo 202x34  Picked\" while the \"Cal\" apple touch icon 1024x1024 sits unpicked beside it; the 512x512 App icon card is the status pill on a light field; poster.jpg stacks \"All Systems Operational\" above \"FOR INDIVIDUALS AND TEAMS / CAL.COM / THE BETTER WAY TO SCHEDULE YOUR MEETINGS\". kit record: logo_used: true, primary #10b981 \"the site logo's own colour\" (the green dot).",
+    "systemic": false
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "Length repairs in the script produced wrong words while claims_used still cites the original ones.",
+    "evidence": "repaired: [\"drop_line\", \"step1_button\", \"breathe_line\"] gave \"SCHEDULE INFRASTRUCTURE.\" (reads as an imperative to schedule infrastructure), \"GET GOING\" (a button Cal.com does not have; the site anchor is \"Get started\") and \"YOUR CAL. YOUR RULES.\" (not in site copy or DNA). claims_used still says \"step1_button 'GET STARTED': SITE_COPY anchor 'Get started'\" and \"drop_line 'SCHEDULING INFRASTRUCTURE.'\". The reel renders the repaired strings.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "low",
+    "summary": "The reel was approved with a voice line that does not fit its window.",
+    "evidence": "voice segment drop \"Cal.com. Scheduling infrastructure.\" seconds 2.09, window 1.6, fits: false, tempo 1.15; all_fit: false. The UI shows in red \"Still over its window even 15% faster: shorten it and speak again.\" and the reel status is approved anyway.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "low",
+    "summary": "Photographs are coherent and on-world but the hero breaks continuity and the first two read as devops before scheduling.",
+    "evidence": "scene: dark home office, two monitors (terminal and calendar grid), server rack, whiteboard diagram, sticky notes (judge 9). pile: developer in grey hoodie at code screens with notebook (9). arrival: same developer, calendar with green confirmation on screen (8). hero: three colleagues at a wall screen showing an availability grid with server rack behind (9), but the pointing developer is a different person from pile and arrival although the brief says \"That developer and two colleagues\". Scheduling reads clearly only in arrival and hero.",
+    "systemic": false
+   },
+   {
+    "stage": "commercial",
+    "severity": "high",
+    "summary": "The store listing FAQ makes a better-than-Calendly claim that is also factually shaky.",
+    "evidence": "FAQ: \"Calendly charges for features Cal.com gives away, and Calendly cannot be embedded or white-labeled via an API.\" Brand 4.1 forbids better-than-X positioning; Calendly does offer embeds and an API. The listing also reprints \"More elegant than Calendly, more open than SavvyCal.\" and the title is \"Cal.com, Scheduling & Booking\" with the category glued on.",
+    "systemic": false
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Pricing options misplace the Platform API, misread the anchor rates, and two of three drop the free tier that is the product's funnel.",
+    "evidence": "Recommended Organizations $28 tier includes \"Platform API access\" although the profile treats the Platform API as its own product line. Option 2: \"saving buyers roughly 20% versus monthly rates of $12 and $28\" when the profile states $12 and $28 are the yearly-billed rates; it proposes $8/$19 with \"No free tier\". Option 3 \"Developer Platform Positioning\" also has no free tier and admits \"These prices are unanchored\". revenue_at 10: 200 assumes one seat per customer. Calendly tiers ($0/$10/$16 annual) are correct and the market_rate paragraph is sound.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "low",
+    "summary": "Competitor details are partly invented.",
+    "evidence": "Acuity tiers named \"Starter\", \"Standard\", \"Premium\" (Acuity's plans are Emerging, Growing, Powerhouse; the $16/$27/$49 prices are right). Doodle is tagged \"emerging\" though it dates to 2007. Calendly, Acuity and SavvyCal are real and established; the rejected list correctly drops listicles and Google Workspace.",
+    "systemic": false
+   },
+   {
+    "stage": "profile",
+    "severity": "medium",
+    "summary": "A repo fetch failure is reported as a fact about a very public repo, and the headline differentiator rests on a fork's README.",
+    "evidence": "gaps: \"GitHub repo supplied (calcom/cal.com) appears to be private or moved, analysis based on the public cal.diy fork and the live site only\". Differentiator 1: \"100% open-source MIT core (Cal.diy) with no proprietary Enterprise Edition split\" sits beside maturity signal \"SOC 2, HIPAA, ISO 27001 compliance listed on Organizations plan\". The four claims otherwise trace to the site and pricing page; confidence 0.78 with honest notes; pricing_current ($12 Teams, $28 Orgs yearly, monthly unverified) is accurate.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "The DNA forbids Calendly-alternative positioning that two angles and the listing then use; the visual layer is empty although the Assets site read found it.",
+    "evidence": "dont: \"Don't position Cal.com as just a Calendly alternative\" versus angle \"The Migration Guide\" (\"move your booking links from Calendly to Cal.com\"), angle \"Voices They Trust\" hook \"More elegant than Calendly, more open than SavvyCal\", listing keyword \"Calendly alternative\". visual: colors [], typography \"\", logo_url \"\" at confidence 0.72 (\"Scrape returned markdown without HTML/CSS\") while Assets step 1 read primary #10b981 and headings Cal Sans. Evidence quotes (\"We're building the infrastructure for time\", \"Connecting a billion people by 2031\") are real site copy and the six angles are distinct.",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "medium",
+    "summary": "Venues are real but the auto-selection took ranks 1 to 3 and left the two high-impact venues unticked; two picks are ill-suited.",
+    "evidence": "Selected: Show HN (high), DevHunt (medium), Peerlist Launchpad (medium). Unselected: r/selfhosted (high), Product Hunt (high). awesome-selfhosted (rank 14) already lists Cal.com. AppSumo (rank 13) is a lifetime-deal marketplace for a $12 to $28 per-seat product. Product Hunt why_fit: \"Calendly-alternative positioning with free unlimited tier and OSS story drives upvotes\" contradicts the DNA don't. The HN warning about repeat Show HNs is useful.",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "medium",
+    "summary": "Decisions are carried but posts and tracked venues barely overlap.",
+    "evidence": "Decisions: angle \"Show the Infrastructure\", pricing \"Freemium Per-Seat (Recommended)\", listing \"Cal.com, Scheduling & Booking\": all correct. Tracked links exist only for Show HN, DevHunt, Peerlist Launchpad; approved posts for LinkedIn, Reddit, Product Hunt and Newsletter carry no tracked link, and DevHunt and Peerlist have no copy. Footer: \"Sequencing advice drafted, not verified\".",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "low",
+    "summary": "The drive summary hides two stage failures.",
+    "evidence": "summary.json: social X drafted: true; signals ok: true, none: true; errors: []. appstate runs: asset:x_post status error, signals status error.",
+    "systemic": true
+   }
+  ],
+  "best": "\"Cal.com is a scheduling platform that takes a person's availability rules and calendar connections and produces shareable booking links, embeddable booking flows, and a full API your own product can call.\" (Show HN body, first sentence: input, output and audience in one true line)",
+  "worst": "\"Calendly charges for features Cal.com gives away, and Calendly cannot be embedded or white-labeled via an API.\" (store listing FAQ: better-than-X positioning in public copy, and Calendly does offer embeds and an API)",
+  "notes": "Cal.com is an easy app for the pipeline (rich site, named testimonials, public pricing) and the traced facts are almost all right, so the profile, DNA, angles and four photographs are close to usable. What breaks it is the machinery around the words: the X post and the Signals search both errored and were reported as fine, the site read chose a status badge as the logo so the icon and reel poster are wrong, and two broken regexes (dash class '[,,]', case-insensitive capitals run) mean every post carries false warnings that bury the real ones such as the 64-char PH tagline and the invented Show HN limitations. The drafts themselves need a founder's pass for the same three things on every platform: a solo-builder voice that does not fit a v6.8 company, limitations and outcomes the profile never supplied, and Calendly swipes that the brand rules and the DNA's own don'ts forbid."
+ },
+ {
+  "slug": "formbricks",
+  "scores": {
+   "profile": 4,
+   "brand": 4,
+   "commercial": 3,
+   "social": 3,
+   "assets": 3,
+   "targets": 3,
+   "signals": 1,
+   "plan": 3
+  },
+  "post_scores": {
+   "x_post": 3,
+   "linkedin_post": 3,
+   "reddit_post": 3,
+   "producthunt": 4,
+   "show_hn": 3,
+   "newsletter_pitch": 4
+  },
+  "issues": [
+   {
+    "stage": "profile",
+    "severity": "medium",
+    "summary": "The voice sample phrase is not on the live site, and it leaks into public copy.",
+    "evidence": "profile.voice.sample_phrase is \"Life's too short for mediocre UX.\"; a scoped search of the indexed formbricks.com homepage returns no hit for \"mediocre UX\". The listing then closes with \"Life's too short for mediocre UX, or for surveys that leak your users' data.\" Everything else in the profile checks out against the live site: h1 \"The Open Source Experience Management Platform\", Hobby free with 250 responses, Pro $74, Scale $325, hosted in Frankfurt, the three testimonials, the Siemens, IKEA, GitHub, FlixBus, Cal.com, Avito and University of Copenhagen logos. Confidence 0.9 with honest notes on G2 and TrustPilot scores is fair.",
+    "systemic": false
+   },
+   {
+    "stage": "profile",
+    "severity": "low",
+    "summary": "The ICP pain field is written as competitor swipes, which later stages copy into public text.",
+    "evidence": "icp.pain: \"Qualtrics and SurveyMonkey are expensive, lock data in vendor clouds, and lack in-product targeting; Typeform is pretty but has no self-hosting or segmentation\". These unverified comparatives reappear in the X thread, the Reddit body and the listing FAQ. Brand rulebook 4.1: never position as better than X.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "medium",
+    "summary": "The chosen angle is a channel, not a story, and it contaminates every other platform.",
+    "evidence": "Chosen angle: \"Show HN: Own Your Feedback\", channels [\"Hacker News\"]. The Reddit warnings had to say \"The CAMPAIGN_ANGLE references a Show HN framing; that convention is for Hacker News only and has been removed\", and the film note says \"The film runs the Show HN angle throughout\". The profile also records 122 HN points from a prior post, so a repeat Show HN is the weakest of the five angles to build a whole launch on.",
+    "systemic": true
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "The DNA tells writers to avoid a phrase that later copy uses as a headline benefit.",
+    "evidence": "dna.voice.avoid includes \"vendor lock-in buzzwords\"; the listing says \"**No vendor lock-in.**\" and the X alt variant says \"No vendor lock-in, no data leaving your stack.\" Otherwise the DNA is accurate: tone words, vocabulary and evidence quotes match the live h1 and subhead, colour #00C4B8 is the real brand teal, typography is honestly left empty at confidence 0.72.",
+    "systemic": false
+   },
+   {
+    "stage": "brand",
+    "severity": "low",
+    "summary": "Stages apply different proof standards to the same client logos.",
+    "evidence": "The angle's big_idea cites \"named enterprise logos\" as proof; the X stage refused them (\"the logos are visual-only on the site with no published case studies; they were omitted\"), the Product Hunt stage refused them, but LinkedIn (\"Teams at Siemens, IKEA, and FlixBus use it.\"), Reddit and the listing (\"used by teams at Siemens, IKEA, GitHub, and FlixBus\") all used them.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "high",
+    "summary": "The approved listing states the old prices while the chosen pricing decision changes them, and the plan carries both.",
+    "evidence": "Listing description_long: \"Pro plans start at $74/month for 2,000 responses and unlimited seats. Scale plans at $325/month\". selected_pricing: Pro price_usd_month 79, Scale 299. listing.changes_from_current is []. The Plan page shows Angle, Pricing \"Pro $79/mo, Scale $299/mo\" and Listing \"Formbricks, Open-Source Survey Platform\" side by side.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "high",
+    "summary": "The recommended Scale tier silently doubles the response quota.",
+    "evidence": "recommendation.tiers Scale: \"10,000 responses/mo\" with rationale \"matches Typeform Business response volume at 2.3x price\". The live pricing page (fetched) says Scale $325 includes 5,000 responses per month, and the profile's own pricing_current says \"Scale: $325/month (5 workspaces, 5,000 responses/month\". A quota change is a product decision presented as a price tweak.",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Revenue figures are computed on inconsistent bases and contradict the page's own revenue check.",
+    "evidence": "Option 1 revenue_at 10 = $1,190; Option 2 \"Annual Subscription with Discount\" revenue_at 10 = $1,575, so a discount raises revenue. Option 3 (129+399)/2 = $264 per customer and Option 2 (66+249)/2 = $157.5 are 50/50 blends, but Option 1 at $119 per customer is not (79+299)/2 = $189. The Commercial page's revenue check for 50 customers reads \"$9,450 per month ... (average $189/mo)\" while the selected option card reads \"50 $5,950/mo\".",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "Two established companies are labelled emerging.",
+    "evidence": "competitors: Hotjar Surveys notability \"emerging\", Pendo notability \"emerging\". Both are long-established; notability appears to be derived from mention counts (2 each). Typeform, SurveyMonkey and Qualtrics are correctly established, but only Typeform's prices were read, so the whole recommendation is anchored on one competitor (confidence note admits this).",
+    "systemic": true
+   },
+   {
+    "stage": "commercial",
+    "severity": "medium",
+    "summary": "The listing makes comparative and logo-only claims the rulebook forbids elsewhere.",
+    "evidence": "FAQ: \"features neither Typeform nor SurveyMonkey offer\"; description_long: \"**Trusted at scale.** 12,900+ GitHub stars, used by teams at Siemens, IKEA, GitHub, and FlixBus.\"; keywords \"Typeform alternative self-hosted\", \"Qualtrics alternative open source\". Brand rulebook 4.1 (no better-than-X). The tagline \"In-app, website & email surveys. Your data, your server.\" and the FAQ on self-hosting are good.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "X thread names competitors adversarially while the warning claims no comparison was used.",
+    "evidence": "thread_extension[0]: \"The core problem: Qualtrics and SurveyMonkey lock your response data in their infrastructure.\" X rule: \"Never frame against another product ... State a fact about this app only.\" Warning says \"No comparison framing used; the campaign angle's implicit contrast with vendor-cloud tools is expressed as a plain fact about Formbricks only\". Thread also claims \"Docker deploy takes one command\", which the profile does not state. The main post (228 chars, one proof point, link last, hook in first eight words) is compliant.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "LinkedIn hook invents why people starred the repo, and line 2 uses a banned shape.",
+    "evidence": "Line 1: \"12,928 GitHub stars on an open-source survey platform. Most of them came from teams who needed their data to stay on their own servers.\" No source exists for star motivation; LinkedIn rule 5: every outcome from proof_points. Line 2: \"Data residency isn't a nice-to-have for a lot of product teams. It's the reason they can't use the hosted tools at all.\" is the banned \"It's not X, it's Y\" shape (rule 10). Length 157 words, no link in body, \"Link in the first comment.\", three hashtags on the last line and a single instruction close are all correct.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "Reddit post invents company history, mixes voice, runs long, and is formatted for the wrong subreddit.",
+    "evidence": "\"Qualtrics is the obvious choice at scale ... We ran it for a while and the renewal conversation was the final push.\" There is no record of Formbricks using Qualtrics. \"We kept running into\" then \"So I built Formbricks\" then \"We ran it\". Body 313 words against a 300 max (warned). Title uses the r/SideProject format \"Formbricks - open source experience management platform, self-hostable under AGPLv3\" while the plan's Reddit venue is r/selfhosted. Disclosure in the naming sentence, the existing tools named within 120 words, one specific closing question and \"I'll answer questions here\" are all correct.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "high",
+    "summary": "The limitation every rulebook demands was manufactured from a scraping gap, then repeated on three platforms.",
+    "evidence": "Reddit: \"the insights dashboard is functional rather than impressive\"; Show HN: \"the analytics dashboard is basic compared to dedicated BI tools ... and there is no Windows-native installer\"; Product Hunt: \"Cross-survey cohort analysis and a built-in stats layer are not there yet\". The profile only says \"No screenshots of the survey analytics/insights dashboard visible in scraped content\". A Windows installer is irrelevant to a Dockerised web app.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Show HN body invents an origin and exceeds the budget.",
+    "evidence": "\"We built it because at a previous company we needed in-product surveys\" is not in the profile. Body 241 words against \"100 to 200 words\" (warned \"Upper bound of the body budget\"). Title \"Show HN: Formbricks, open-source in-app and link survey platform, self-hostable\" is 79 chars, plain, comma-separated: compliant. The signup gate is stated in the body and the repeat-Show-HN warning is genuinely useful.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Product Hunt maker comment skips the name-and-role line and opens with an invented scene.",
+    "evidence": "First comment opens \"Hi, we're the team behind Formbricks.\" (rule: one line with first name and role). \"We built this after watching privacy-conscious teams stitch together a link survey tool, a custom in-app widget, and a spreadsheet to hold responses\" has no source. Tagline (51 chars) and description (236 chars, opens on the concrete thing, no vote ask, three real topics) are the cleanest copy in the run.",
+    "systemic": true
+   },
+   {
+    "stage": "social",
+    "severity": "low",
+    "summary": "Newsletter pitch uses two proof points where the rule says exactly one.",
+    "evidence": "\"The project has 12,928 GitHub stars and 2,514 forks, and was selected for the GitHub Accelerator 2023 cohort.\" Newsletter rule 3: \"Use exactly one proof point\". Subject (58 chars), 112 words, bare link on its own line, \"Happy to send screenshots or answer anything your readers ask.\" and honest placeholders for addressee and first name are all correct.",
+    "systemic": false
+   },
+   {
+    "stage": "social",
+    "severity": "medium",
+    "summary": "Mechanical warnings are mostly false positives caused by a sanitised regex, and rule text leaks as warnings.",
+    "evidence": "src/lib/rulebook-checks.ts lines 21, 41, 55, 79, 100 define the dash checks with value '[,,]': the em and en dash characters were themselves replaced by commas, so every comma fires. Hence \"post: Em or en dash; sanitizeDraft already replaces these, this is the belt\" on a LinkedIn post with dashes 0, \"title: Forbidden wording for this platform.\" on Reddit, \"description: Em dash and en dash.\" on Product Hunt. \"post: Three consecutive words of four or more capitals\" fires with no match in the text. \"traction_numbers_need_proof\" fires on \"12,928 stars\" although it is in proof_points, because it is a plain regex. Warning strings such as \"duplicates the gates.ts check so this rulebook is complete on its own\" are check descriptions, not findings.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "high",
+    "summary": "The four photographs show a generic night-shift startup office, not a survey product's world.",
+    "evidence": "scene: four people at monitors in a dark open-plan office, a sticky-note wall, a server rack under a desk. pile: a woman in an indigo hoodie hand on temple over a laptop spreadsheet and sticky notes, rack behind. arrival: same woman with a mug in daylight, sticky notes and a checklist on the wall. hero: three colleagues around one monitor with a sticky-note board and a rack. No survey, NPS widget, in-app prompt or response feed is legible anywhere; the subject brief places a product manager beside a server rack. The vision judge scored 8, 9, 9, 9 on fidelity to the brief, not on whether a stranger would recognise Formbricks.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "high",
+    "summary": "The reel script asserts a capability Formbricks does not have and forces template beats onto a survey tool.",
+    "evidence": "step3_label \"THE DATA LEAK, CAUGHT.\", step3_marker \"GDPR BOUNDARY\", step3_chip \"SELF-HOST\" (a commit-timeline beat where \"everything before it turns alarm-coloured and gets a penalty chip\"); Formbricks does not detect data leaks. pile_line \"EVERY RESPONSE. BY HAND.\" frames manual tallying as the pain, which is not the pitch. step1_button \"GET GOING\" is not a product button; the site says \"Get started free\". Channels are used as \"verdict chips\" and a 14-day trial is shown as a countdown timer \"14:00\". The spoken lines themselves (\"Pick your channel. Every response captured. Self-host and your data never leaves.\", \"Fourteen days free, no card.\") are truthful and all five fit their windows.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The lockup rewrites the brand tagline and the wordmark is nearly invisible on the poster.",
+    "evidence": "lock_tag \"THE OPEN-SOURCE EXPERIENCE PLATFORM\" (35/44) drops \"Management\" from the site's h1 \"The Open Source Experience Management Platform\" because the full line is 46 chars; claims_used still cites the full phrase. On poster.jpg the picked \"site logo 725x150\" (dark navy wordmark) sits on the near-black frame and is barely readable; the large white FORMBRICKS, the tagline and FORMBRICKS.COM do read.",
+    "systemic": true
+   },
+   {
+    "stage": "assets",
+    "severity": "medium",
+    "summary": "The site read chose a grey as the primary colour, so the cards carry none of the brand teal.",
+    "evidence": "Step 1 of 4: \"primary #e2e8f0 most common button background\", \"Contrast: ... primary on surface 1.18:1\". The brand stage had found #00C4B8 from meta theme-color. All five cards and seven launch images are white and grey with the teal only inside the logo.",
+    "systemic": true
+   },
+   {
+    "stage": "targets",
+    "severity": "medium",
+    "summary": "Several venues are already done, are not editorial venues, or suit an indie side project rather than this company.",
+    "evidence": "Rank 12 awesome-selfhosted: the README already lists \"[Formbricks](https://formbricks.com) - Experience Management Suite built on the largest open source survey stack worldwide ... AGPL-3.0 Nodejs/Docker\" (verified). Rank 11 G2: the profile itself says G2 badges are on the homepage. Rank 6 \"ParticipantKit ResearchOps Newsletter\" is Participant Kit's own list (\"News, tips and updates from Participant Kit\"), not a newsletter that features tools. Indie Hackers, r/SideProject and Peerlist Launchpad for a 12,928-star company with Siemens and IKEA logos; no r/ProductManagement, r/UXResearch or PM community despite icp.who. The selected three (Show HN, r/selfhosted, DevHunt) are real and r/selfhosted is the right home.",
+    "systemic": true
+   },
+   {
+    "stage": "signals",
+    "severity": "high",
+    "summary": "No signals found after 550 seconds in a category with constant public demand.",
+    "evidence": "summary.json signals: \"secs\": 550, \"none\": true, \"failed\": \"\". Requests for an \"open source Typeform alternative\" or a \"self-hosted survey tool\" recur weekly on r/selfhosted and HN. The page then says \"Nobody is publicly asking for what your app does right now; that's common before launch\", which is wrong for a launched product with 12,928 stars.",
+    "systemic": true
+   },
+   {
+    "stage": "plan",
+    "severity": "medium",
+    "summary": "The plan carries the decisions but they contradict each other.",
+    "evidence": "Decisions block: Pricing \"Hobby $0/mo, Pro $79/mo, Scale $299/mo\" beside Listing \"Formbricks, Open-Source Survey Platform\" whose approved text says \"$74/month\" and \"$325/month\". Tracked link lk_subreddit_r_selfhosted pairs with a Reddit draft written and titled for r/SideProject. Footer: \"Sequencing advice drafted, not verified\". Three venues, zero signups, no dates.",
+    "systemic": true
+   }
+  ],
+  "best": "Product Hunt description: \"Feedback data in a vendor cloud is a compliance risk and a lock-in. Formbricks runs in-app, website, link, and email surveys from your own infrastructure under AGPLv3. Connects to Slack, Zapier, n8n, and Notion with a full API included.\" (236 chars, opens on the concrete thing, every claim traces to the site, no hype, no vote ask.)",
+  "worst": "Reel script step 3, rendered on screen in the launch film: \"THE DATA LEAK, CAUGHT.\" with marker \"GDPR BOUNDARY\" and chip \"SELF-HOST\". Formbricks does not detect data leaks; the beat is a code-review template (commit timeline, penalty chip) forced onto a survey tool, so the founder's own film asserts a capability the product lacks.",
+  "notes": "The profile and brand DNA are accurate for Formbricks (prices, hosting, testimonials and logos all verify against the live site), so the raw material was good and the strongest outputs (the Product Hunt listing, the X main post, the newsletter pitch) are close to postable. Quality falls wherever a rulebook demands something the profile does not contain: origin stories, a limitation, a hook's second sentence, a competitor contrast, a \"manual work\" film beat, and the model invents it, which shows up as fabricated Qualtrics history, a fabricated reason for 12,928 stars, a fabricated weak dashboard, and a fabricated leak-detection feature. The commercial stage contradicts itself (listing $74/$325 versus chosen $79/$299, Scale quota doubled, revenue math inconsistent), the photographs are a competent but anonymous night office, the signals stage returns nothing for a category with steady demand, and a sanitised regex makes most mechanical warnings false positives; every one of those faults looks systemic rather than specific to this app."
+ }
+]

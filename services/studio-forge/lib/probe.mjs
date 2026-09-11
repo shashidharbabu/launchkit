@@ -82,12 +82,16 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
       const icons = [...document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"], link[rel="apple-touch-icon-precomposed"]')]
         .map((l) => ({ kind: /apple/.test(l.rel) ? 'apple-touch-icon' : 'icon', url: abs(l.href), sizes: l.getAttribute('sizes') || '' }));
       const og = q('meta[property="og:image"]')?.content;
+      // a header also carries things that are not the mark: status pills, award badges, sponsor logos, avatars, flags
+      const notAMark = /status|operational|uptime|badge|shield|sponsor|avatar|flag|award|partner|trusted|backed|g2crowd|producthunt|github-?star|stargazer|\bstars?\b|\bsoc ?2\b|\bhipaa\b|\bgdpr\b|\biso\b/i;
       const headerImgs = [...document.querySelectorAll('header img, nav img, [class*="logo"] img, img[class*="logo"], img[alt*="logo" i], a[href="/"] img')]
-        .slice(0, 6).map((img) => ({ kind: 'site-logo', url: abs(img.currentSrc || img.src), alt: img.alt || '', w: img.naturalWidth, h: img.naturalHeight }))
-        .filter((i) => i.url && !/data:image\/gif/.test(i.url));
-      const headerSvg = [...document.querySelectorAll('header svg, nav svg, a[href="/"] svg, [class*="logo"] svg')].slice(0, 3)
-        .map((s) => { const r = s.getBoundingClientRect(); return { kind: 'site-logo-svg', svg: s.outerHTML, w: Math.round(r.width), h: Math.round(r.height) }; })
-        .filter((s) => s.w >= 24 && s.svg.length < 60_000);
+        .slice(0, 8).map((img) => ({ kind: 'site-logo', url: abs(img.currentSrc || img.src), alt: img.alt || '', w: img.naturalWidth, h: img.naturalHeight, href: img.closest('a')?.getAttribute('href') || '', header: Boolean(img.closest('header, nav, a[href="/"]')) }))
+        // a customer or partner logo wall matches [class*="logo"] too: only a mark inside the header, the nav or the home link is the site's own
+        .filter((i) => i.url && !/data:image\/gif/.test(i.url) && !notAMark.test(`${i.alt} ${i.url} ${i.href}`) && (i.header || !/compan|customer|client|partner|testimonial|brands?\/|logos?\//i.test(i.url)))
+        .sort((x, y) => Number(y.header) - Number(x.header)).slice(0, 6);
+      const headerSvg = [...document.querySelectorAll('header svg, nav svg, a[href="/"] svg, [class*="logo"] svg')].slice(0, 5)
+        .map((s) => { const r = s.getBoundingClientRect(); return { kind: 'site-logo-svg', svg: s.outerHTML, w: Math.round(r.width), h: Math.round(r.height), text: (s.closest('a')?.textContent || s.getAttribute('aria-label') || '') + ' ' + (s.closest('a')?.getAttribute('href') || '') }; })
+        .filter((s) => s.w >= 24 && s.svg.length < 60_000 && !notAMark.test(s.text) && !notAMark.test(s.svg.slice(0, 400))).slice(0, 3);
 
       return {
         title: document.title || '',
@@ -126,7 +130,7 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
       } catch { /* a missing candidate is not an error */ }
     };
     let n = 0;
-    for (const img of dom.headerImgs) { await save(`logo-${++n}`, img.url, 'site-logo', { w: img.w, h: img.h, alt: img.alt }); if (n >= 2) break; }
+    for (const img of dom.headerImgs) { await save(`logo-${++n}`, img.url, img.header ? 'site-logo' : 'site-logo-loose', { w: img.w, h: img.h, alt: img.alt }); if (n >= 2) break; }
     for (const s of dom.headerSvg) {
       const file = `logo-${++n}.svg`;
       await writeFile(path.join(outDir, file), s.svg);
@@ -139,7 +143,8 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
     const icon = dom.icons.filter((i) => i.kind === 'icon').sort(bySize)[0];
     if (icon) await save(`logo-${++n}`, icon.url, 'icon');
     if (dom.og) await save(`logo-${++n}`, dom.og, 'og-image');
-    const rank = { 'site-logo': 0, 'site-logo-svg': 1, 'apple-touch-icon': 2, icon: 3, 'og-image': 4 };
+    // a logo-classed image outside the header (a customer wall, a footer badge) ranks after the site's own icons
+    const rank = { 'site-logo': 0, 'site-logo-svg': 1, 'apple-touch-icon': 2, icon: 3, 'site-logo-loose': 4, 'og-image': 5 };
     logos.sort((a, b) => rank[a.kind] - rank[b.kind]);
     // an og image is a picture, not a mark: only picked when nothing else exists
     const picked = logos.find((l) => l.kind !== 'og-image') ?? logos[0] ?? null;
@@ -166,7 +171,9 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
     if (!observed.surface && shot.dominant[0]) setObs('surface', shot.dominant[0].hex, 'screenshot dominant colour');
     setObs('ink', dom.body_fg, 'computed body text colour');
     const surfaceRgb = observed.surface ? parseColor(observed.surface.value) : [255, 255, 255];
-    const distinct = (v) => { const c = parseColor(v); return c && saturation(c) >= 0.3 && Math.abs(luminance(c) - luminance(surfaceRgb)) > 0.05; };
+    // HSL saturation runs high on near-white greys (#e2e8f0 reads 0.32), so a colour also needs real chroma to count as a brand colour
+    const chroma = (c) => (Math.max(c[0], c[1], c[2]) - Math.min(c[0], c[1], c[2])) / 255;
+    const distinct = (v) => { const c = parseColor(v); return c && saturation(c) >= 0.3 && chroma(c) >= 0.12 && Math.abs(luminance(c) - luminance(surfaceRgb)) > 0.05; };
     for (const b of dom.buttons) if (distinct(b.bg)) { setObs('primary', b.bg, 'most common button background'); break; }
     if (!observed.primary && dom.theme_color && distinct(dom.theme_color)) setObs('primary', dom.theme_color, 'meta theme-color');
     if (!observed.primary) {

@@ -3,7 +3,7 @@
  * and count the replacements so the UI can say so. Pure; covered by node tests.
  */
 const EM = /\s*—\s*/g;           // em dash
-const EN_RANGE = /(\d)\s*–\s*(\d)/g; // en dash between numbers: keep as a hyphen range
+const EN_RANGE = /([\w$%])–(\$?\w)/g; // an unspaced en dash inside a range ($8–$10, A–C, 2019–2024): a hyphen
 const EN = /\s*–\s*/g;           // any other en dash
 
 function cleanString(s: string): { s: string; n: number } {

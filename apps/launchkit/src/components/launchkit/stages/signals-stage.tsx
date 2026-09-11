@@ -126,7 +126,8 @@ function SignalCard({ signal }: { signal: SignalRow }) {
 }
 
 export function SignalsStage() {
-  const { project, gate1, signals, running, runJob } = useProject();
+  const { project, gate1, signals, running, runJob, failed, error } = useProject();
+  const searchFailed = failed === 'signals' && Boolean(error);
   // the last scan's report (queries, coverage, drop reasons), an empty result must be explainable
   const [meta, setMeta] = React.useState<Record<string, unknown> | null>(null);
   const projectId = project?.id;
@@ -199,8 +200,8 @@ export function SignalsStage() {
             <>
               <HonestEmpty
                 runKind="signals"
-                fact="No signals yet."
-                reason="Nobody is publicly asking for what your app does right now; that's common before launch. Search again after your first posts, or widen the pain phrasing in your profile."
+                fact={searchFailed ? 'The search failed.' : 'No signals yet.'}
+                reason={searchFailed ? `${error} Search again; a second pass usually completes.` : "Nobody is publicly asking for what your app does right now; that's common before launch. Search again after your first posts, or widen the pain phrasing in your profile."}
                 action={
                   <Button
                     variant="secondary"

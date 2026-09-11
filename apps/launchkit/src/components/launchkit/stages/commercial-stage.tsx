@@ -268,7 +268,8 @@ function PlanCard({ option, recommended, selected, disabled, onSelect }: {
   disabled: boolean;
   onSelect: () => void;
 }) {
-  const revenue = (n: number) => option.revenue_at[String(n)] ?? revenueAt(option.tiers, n).mid;
+  // computed here from the paid tiers, never the model's arithmetic, so the card and the revenue check agree
+  const revenue = (n: number) => revenueAt(option.tiers, n).mid;
   const onKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();

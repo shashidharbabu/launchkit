@@ -33,9 +33,9 @@ export const spec = {
     { t: '6.5-8.5', what: 'The drop. The frame collides, the palette turns to the brand, the app name lands with its mark, then a stamped line says what it does.', slots: ['app_name', 'drop_line'] },
     { t: '8.5-10.5', what: 'How it works, one: the input. A label, then the field the user actually fills (three lines type themselves in) and the button they press.', slots: ['step1_label', 'step1_field', 'step1_button'] },
     { t: '10.5-12.5', what: 'How it works, two: the read. Rows pass under a scan line and each gets a verdict chip. The chips are the product\'s real categories.', slots: ['step2_label', 'chip_1', 'chip_2', 'chip_3', 'chip_4'] },
-    { t: '12.5-14.5', what: 'How it works, three: the catch. A timeline of commits; a marker drops in; everything before it turns alarm-coloured and gets a penalty chip.', slots: ['step3_label', 'step3_marker', 'step3_chip'] },
+    { t: '12.5-14.5', what: 'How it works, three: the catch. A timeline of items; a marker drops in; everything before it changes state and gets a chip. The item, the marker and the chip are the product\'s own words, never a scenario.', slots: ['step3_label', 'step3_marker', 'step3_chip'] },
     { t: '14.5-16.6', what: 'The product. The live screenshot in a browser frame, pushing in slowly, with one caption.', slots: ['product_line'] },
-    { t: '16.6-18.6', what: 'The payoff. One big number and its unit, a timer counting down under it, a checklist ticking. True numbers only (a batch timer, a count the site states) or ONE.', slots: ['payoff_n', 'payoff_unit', 'payoff_line', 'payoff_timer'] },
+    { t: '16.6-18.6', what: 'The payoff. One big number and its unit, an optional timer counting down under it, a checklist ticking. True numbers only (a count the site states) or ONE; the timer only when the product has a real batch or run time.', slots: ['payoff_n', 'payoff_unit', 'payoff_line', 'payoff_timer'] },
     { t: '18.6-19.9', what: 'Breath. Near-empty frame, a cursor and one quiet line.', slots: ['breathe_line'] },
     { t: '20.0-22.0', what: 'Arrival on the impact: the call to action, then the host lands as a chip.', slots: ['arrive_line', 'arrive_chip'] },
     { t: '22.0-24.0', what: 'The lockup, held: who it is for, the name with its mark, the tagline, the host.', slots: ['lock_top', 'lock_title', 'lock_tag', 'lock_host'] },
@@ -64,14 +64,14 @@ export const spec = {
     { id: 'chip_2', max: 12, default: 'MODERATE', example: 'DEGRADED', face: 'mono', size: 28, selector: '.vchip', hint: 'verdict two' },
     { id: 'chip_3', max: 12, default: 'LESS', example: 'SLOW', face: 'mono', size: 28, selector: '.vchip', hint: 'verdict three' },
     { id: 'chip_4', max: 12, default: 'NONE', example: 'DOWN', face: 'mono', size: 28, selector: '.vchip', hint: 'verdict four, the weakest' },
-    { id: 'step3_label', lines: 2, max: 28, default: 'THE CATCH, CAUGHT.', example: 'THE OUTAGE, CAUGHT.', face: 'anton', size: 100, selector: '#s3-label', hint: 'step three: the thing that used to slip through, and what happens to it now' },
-    { id: 'step3_marker', max: 18, default: 'THE DEADLINE', example: 'SLA THRESHOLD', face: 'mono', size: 28, selector: '#tl-marker-label', hint: 'the line on the timeline: the date or rule that decides' },
-    { id: 'step3_chip', max: 10, default: 'FLAGGED', example: 'PAGED', face: 'mono', size: 30, selector: '#tl-chip', hint: 'what a flagged item gets: a penalty or a label, from the product' },
+    { id: 'step3_label', lines: 2, max: 28, default: 'THE CATCH, CAUGHT.', example: 'THE OUTAGE, CAUGHT.', face: 'anton', size: 100, selector: '#s3-label', hint: 'step three: the thing that used to slip through and what the product does to it now, in the product\'s own words; when the product catches nothing, the moment it settles or delivers the work' },
+    { id: 'step3_marker', max: 18, default: 'THE DEADLINE', example: 'SLA THRESHOLD', face: 'mono', size: 28, selector: '#tl-marker-label', hint: 'the line on the timeline: the real rule, date or threshold the product applies (from SITE_COPY), or NOW' },
+    { id: 'step3_chip', max: 10, default: 'FLAGGED', example: 'PAGED', face: 'mono', size: 30, selector: '#tl-chip', hint: 'what an item past the line gets, in the product\'s own words: a state such as SIGNED, LIVE, DONE, or FLAGGED only when the product flags' },
     { id: 'product_line', max: 28, default: 'ONE VIEW PER TEAM.', example: 'ONE BOARD FOR EVERYTHING.', face: 'anton', size: 96, selector: '#prod-line', hint: 'the one thing to notice in the screenshot' },
     { id: 'payoff_n', max: 4, default: 'ONE', example: '30', face: 'anton', size: 300, selector: '#pay-n', hint: 'a true number from the product or the site (a batch timer, a count), else ONE' },
     { id: 'payoff_unit', max: 12, default: 'PASS.', example: 'SECONDS.', face: 'anton', size: 120, selector: '#pay-unit', hint: 'the unit of that number, with a period' },
     { id: 'payoff_line', lines: 2, max: 28, default: 'EVERY ONE. CHECKED.', example: 'EVERY OUTAGE. CAUGHT.', face: 'sg', size: 64, selector: '#pay-line', hint: 'the outcome, two short sentences' },
-    { id: 'payoff_timer', max: 5, default: '15:00', example: '00:30', face: 'mono', size: 44, selector: '#pay-timer', hint: 'a timer start in MM:SS that counts down to zero; use the product\'s batch timer if it has one' },
+    { id: 'payoff_timer', max: 5, default: '', example: '00:30', face: 'mono', size: 44, selector: '#pay-timer', optional: true, hint: 'a timer start in MM:SS only when the product has a real batch or run time stated on the site; otherwise leave it empty and no timer shows' },
     { id: 'breathe_line', lines: 2, max: 24, default: 'NO MORE GUESSING.', example: 'SLEEP THROUGH THE NIGHT.', face: 'mono', size: 44, selector: '#breathe-line', hint: 'one quiet line for the breath' },
     { id: 'arrive_line', max: 22, default: 'JUDGE WITH PROOF.', example: 'KNOW FIRST.', face: 'anton', size: 130, selector: '#arr-line', hint: 'the call to action, three or four words' },
     { id: 'arrive_chip', max: 40, default: '', example: 'PULSEBOARD.APP', face: 'mono', size: 30, selector: '#arr-chip', optional: true, hint: 'the site host, uppercase, no protocol' },
@@ -138,8 +138,8 @@ export function build({ values: v, vars, extras }) {
   const bc = rgb(vars.canvas);
   const chips = [v.chip_1, v.chip_2, v.chip_3, v.chip_4, v.chip_1];
   const chipTone = ['t1', 't2', 't3', 't4', 't1'];
-  const timer = /^\d{1,2}:\d{2}$/.test(v.payoff_timer) ? v.payoff_timer : '15:00';
-  const [tm, ts] = timer.split(':').map(Number);
+  const timer = /^\d{1,2}:\d{2}$/.test(v.payoff_timer) ? v.payoff_timer : '';
+  const [tm, ts] = (timer || '0:00').split(':').map(Number);
   const timerSeconds = tm * 60 + ts;
   const inputLines = ['github.com/team-01/project', 'github.com/team-02/project', 'github.com/team-03/project'];
   const productBlock = screenshot
@@ -396,7 +396,7 @@ export function build({ values: v, vars, extras }) {
           <div class="scene" id="sc-pay">
             <div class="sc" id="pay-inner" style="gap: 26px">
               <div id="pay-row"><span class="anton" id="pay-n">${esc(v.payoff_n)}</span><span class="anton" id="pay-unit">${esc(v.payoff_unit)}</span></div>
-              <div id="pay-timer">${esc(timer)}</div>
+              <div id="pay-timer"${timer ? '' : ' style="display:none"'}>${esc(timer)}</div>
               <div id="pay-line">${esc(v.payoff_line)}</div>
               <div id="checks">
                 ${[0, 1, 2, 3].map((i) => `<div class="chk" id="chk-${i}"><i></i><span>${esc(v.pile_label)} ${String(i + 1).padStart(2, '0')}</span></div>`).join('')}

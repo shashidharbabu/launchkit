@@ -452,11 +452,25 @@ export function ProfileStage() {
       >
         <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
           {degraded && (
-            <Banner tone="hold" title="Partial analysis: read this one more carefully.">
+            <Banner tone="nogo" title="The site could not be read in full: analyze again before approving.">
               {asStr(confidence.notes) ||
                 'Some sources could not be read, so parts of this profile are inferred rather than evidenced.'}
               {!project.repo_url &&
                 ' No repo was supplied; adding a public GitHub repo gives a much stronger profile.'}
+              {' '}
+              A site that was asleep usually answers the second time; every later stage is written from what is approved here.
+              {!approved && (
+                <div className="mt-3">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    disabled={Boolean(running)}
+                    onClick={() => runJob('understand', () => api.runUnderstand(project.id))}
+                  >
+                    Analyze again
+                  </Button>
+                </div>
+              )}
             </Banner>
           )}
 

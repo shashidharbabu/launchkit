@@ -152,7 +152,10 @@ function photoPage(kit, spec, photo, headline, useLogo) {
   const name = esc(kit.name);
   const portrait = spec.orient === 'portrait';
   const short = spec.h <= 420;
-  const rawHead = trimTo(headline || kit.tagline || kit.one_liner || '', portrait ? 80 : 90);
+  // a whole thought on the card: the post's headline when it fits without a cut, else the tagline, else the one-liner; a cut only as the last resort
+  const cap = portrait ? 80 : 90;
+  const whole = (s) => { const c = trimTo(s, cap); return c && !c.endsWith('…') ? c : ''; };
+  const rawHead = whole(headline) || whole(kit.tagline) || whole(kit.one_liner) || trimTo(headline || kit.tagline || kit.one_liner || '', cap);
   const head = esc(rawHead);
   const host = esc(kit.host);
   const status = esc(kit.status || 'Now live');

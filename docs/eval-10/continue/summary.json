@@ -1,0 +1,172 @@
+{
+  "name": "Continue",
+  "site": "https://continue.dev",
+  "repo": "https://github.com/continuedev/continue",
+  "started": "2026-09-11T09:13:54.591Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 61,
+      "understandSecs": 55,
+      "partial": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 138,
+      "dnaSecs": 64,
+      "anglesSecs": 70,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 175,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "5",
+        "3"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 205,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 25,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 28,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 28,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 43,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 31,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 37,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 6,
+      "counts": "",
+      "warnings": 6
+    },
+    "assets": {
+      "ok": true,
+      "secs": 260,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 79,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 73,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 22,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a developer at a standing desk inside a dim home office or open-plan engineering floortwo monitors side by side, one showing a dark-themed code editor with an AI sugge",
+      "fits": 3,
+      "over": 1
+    },
+    "targets": {
+      "ok": true,
+      "secs": 97,
+      "ranked": 14,
+      "top5": [
+        "Show HN (Hacker News)",
+        "r/LocalLLaMA",
+        "r/vscode",
+        "DevHunt",
+        "Peerlist Launchpad"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 319,
+      "idle": true,
+      "heading": "6 signals found: 6 in the queue (0 verified, 6 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Fork the Foundation",
+      "pricing": "Open-Source Freemium, free plus paid tiers: Open Source $0/mo, Pro $15/mo, Teams"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 224100,
+  "finished": "2026-09-11T09:35:10.155Z",
+  "page_errors": [
+    "console: Failed to load resource: the server responded with a status of 404 ()",
+    "console: Failed to load resource: the server responded with a status of 404 ()",
+    "console: Failed to load resource: the server responded with a status of 404 ()",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/navinreddy20_python-fastapi-gemma4-activity-74504...' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-O",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.aitalkboard.com/deepseek-forum/which-vs-code-extension-provides-the-best-deepseek-integration/' from origin 'http://localhost:3400' has been blocked by CORS policy: No ",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.indiehackers.com/post/made-an-ai-coding-assistant-that-runs-on-your-...' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-O",
+    "console: Failed to load resource: net::ERR_FAILED"
+  ]
+}
