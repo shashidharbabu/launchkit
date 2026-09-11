@@ -7,7 +7,7 @@ import { Segmented } from '@launchkit/design-system/components/segmented';
 import { insert } from '../../data/blobstore';
 import { rulesFor } from '../../data/rules';
 import { ASSET_TYPES } from '../../lib/asset-types';
-import { GLOBAL_RULES } from '../../lib/rulebooks';
+import { GLOBAL_RULES, RULEBOOK_VERSION } from '../../lib/rulebooks';
 
 /**
  * Platform rulebooks live in the app database (`platform_rules`); this edits
@@ -39,6 +39,8 @@ export function RulebookEditor() {
         summary: current.summary,
         rules,
         updated_at: new Date().toISOString(),
+        source: 'owner',
+        version: RULEBOOK_VERSION,
       });
       toast(`${current.name} rulebook saved`);
     } finally {

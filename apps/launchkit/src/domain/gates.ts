@@ -10,6 +10,7 @@
 
 import { pyGet, pyLen, pyList, pyStr, pyTruthy } from "./py";
 import type { AssetData, GateDropped, SignalData } from "./types";
+import { RULEBOOK_CHECKS, type RuleCheck } from "../lib/rulebook-checks";
 
 /** rr.THREAD_PAT — what counts as a real discussion thread. */
 export const THREAD_PAT = new RegExp(
@@ -110,8 +111,54 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
   if (assetType === "reddit_post" && pyStr(pyGet(data, "title", "")).startsWith("Show HN")) {
     warnings.push("title uses HN convention, rewrite for Reddit");
   }
+  for (const w of runRulebookChecks(assetType, data)) if (!warnings.includes(w)) warnings.push(w);
   data["warnings"] = warnings;
   return data;
+}
+
+const wordCount = (s: string): number => s.split(/\s+/).filter(Boolean).length;
+
+/** The fields a check reads: a named field, or every string field (and every string in an array) for "all" or "*". */
+function fieldsOf(data: AssetData, field: string): Array<[string, string]> {
+  const out: Array<[string, string]> = [];
+  const take = (k: string, v: unknown) => {
+    if (typeof v === "string") out.push([k, v]);
+    else if (Array.isArray(v)) v.forEach((x, i) => { if (typeof x === "string") out.push([`${k}[${i + 1}]`, x]); });
+  };
+  if (field === "all" || field === "*") for (const [k, v] of Object.entries(data as Record<string, unknown>)) { if (k !== "warnings") take(k, v); }
+  else take(field, (data as Record<string, unknown>)[field]);
+  return out;
+}
+
+/**
+ * The rulebook's machine checks (lib/rulebook-checks.ts): lengths, counts,
+ * forbidden patterns and required prefixes, each a warning the builder sees
+ * on the draft. A pattern JavaScript cannot compile is skipped, never fatal.
+ */
+export function runRulebookChecks(assetType: string, data: AssetData): string[] {
+  const checks: RuleCheck[] = RULEBOOK_CHECKS[assetType] ?? [];
+  const out: string[] = [];
+  for (const c of checks) {
+    const n = Number(c.value);
+    if (c.kind === "max_count") {
+      const v = (data as Record<string, unknown>)[c.field];
+      const count = Array.isArray(v) ? v.length : typeof v === "string" ? (v.match(/#\w+/g) ?? []).length : 0;
+      if (Number.isFinite(n) && count > n) out.push(`${c.field}: ${c.description}`);
+      continue;
+    }
+    for (const [name, text] of fieldsOf(data, c.field)) {
+      let hit = false;
+      if (c.kind === "max_chars") hit = Number.isFinite(n) && pyLen(text) > n;
+      else if (c.kind === "min_words") hit = Number.isFinite(n) && wordCount(text) < n;
+      else if (c.kind === "max_words") hit = Number.isFinite(n) && wordCount(text) > n;
+      else if (c.kind === "required_prefix") hit = !text.startsWith(c.value);
+      else if (c.kind === "forbidden_regex") {
+        try { hit = new RegExp(c.value, /\\u\{/.test(c.value) ? "iu" : "i").test(text); } catch { hit = false; }
+      }
+      if (hit) { out.push(`${name}: ${c.description}`); break; }
+    }
+  }
+  return out;
 }
 
 /** rr.HN_LOCK_SECONDS — HN threads become read-only ~2 weeks after posting. */
