@@ -117,6 +117,37 @@ export function PlanStage() {
           );
         })()}
 
+      {/* the decisions the plan carries besides posts and venues */}
+      {plan && ((plan.angles ?? []).length > 0 || plan.pricing || plan.listing) && (
+        <Card>
+          <CardHeader title="What this launch says" description="Chosen on the Brand and Commercial stages; the markdown export carries all of it." />
+          <CardBody>
+            <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-3">
+              <div>
+                <dt className="text-label text-muted-foreground">Angle</dt>
+                <dd className="mt-0.5 text-body">
+                  {(plan.angles ?? []).length > 0
+                    ? (plan.angles ?? []).map((c) => String(c.name ?? '')).join(' and ')
+                    : 'None chosen, posts written from the profile alone'}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-label text-muted-foreground">Pricing</dt>
+                <dd className="mt-0.5 text-body">
+                  {plan.pricing
+                    ? plan.pricing.tiers.filter((t) => t.included).map((t) => `${t.name}${t.price_usd_month == null ? '' : ` $${t.price_usd_month}/mo`}`).join(', ')
+                    : 'Not chosen yet'}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-label text-muted-foreground">Listing</dt>
+                <dd className="mt-0.5 text-body">{plan.listing ? String(plan.listing.title ?? 'approved') : 'Not approved yet'}</dd>
+              </div>
+            </dl>
+          </CardBody>
+        </Card>
+      )}
+
       {plan && plan.targets.length > 0 && (
         <Card>
           <CardHeader

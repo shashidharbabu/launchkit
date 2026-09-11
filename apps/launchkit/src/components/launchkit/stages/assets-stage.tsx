@@ -26,6 +26,7 @@ import { rulesFor } from '../../../data/rules';
 import { actionError } from '../../../lib/errors';
 import { DUR, EASE_STANDARD } from '../../../lib/motion';
 import type { AssetRow } from '../../../lib/types';
+import { useNav } from '../../../nav';
 
 const asStr = (v: unknown) => (v == null ? '' : String(v));
 
@@ -252,13 +253,18 @@ function AssetCard({
 }
 
 export function AssetsStage() {
-  const { project, gate1, assets, running, runJob } = useProject();
+  const { project, gate1, assets, brandCampaigns, running, runJob } = useProject();
+  const { go, href } = useNav();
   const reduced = useReducedMotion();
   if (!project) return null;
   if (!gate1) return <LockedGate />;
 
   const runningAsset = running?.kind.startsWith('asset:') ? running.kind.split(':')[1] : null;
-  const chosenAngles = (Array.isArray((project as unknown as Record<string, unknown>).selected_campaigns) ? ((project as unknown as Record<string, unknown>).selected_campaigns as unknown[]) : []).map(String);
+  const chosenAngles = project.selected_campaigns ?? [];
+  const campaigns = (Array.isArray(brandCampaigns?.campaigns) ? brandCampaigns.campaigns : []) as Record<string, unknown>[];
+  const chosenCampaigns = campaigns.filter((c) => chosenAngles.includes(asStr(c.name)));
+  const brandHref = href({ view: 'workspace', projectId: project.id, stage: 'brand' });
+  const goBrand = (e: React.MouseEvent) => { e.preventDefault(); go({ view: 'workspace', projectId: project.id, stage: 'brand' }); };
   const existing = new Set(assets.map((a) => a.asset_type));
   const firstPendingId = assets.find((a) => a.status !== 'approved')?.id;
   const approvedCount = assets.filter((a) => a.status === 'approved').length;
@@ -281,14 +287,31 @@ export function AssetsStage() {
       )}
 
       {chosenAngles.length > 0 ? (
-        <p className="text-body text-muted-foreground">
-          Writing from your chosen angle{chosenAngles.length === 1 ? '' : 's'}:{' '}
-          <span className="text-foreground">{chosenAngles.join(', ')}</span>. Change it in Brand.
-        </p>
+        <Banner
+          tone="go"
+          title={`Writing from your angle: ${chosenAngles.join(' and ')}.`}
+          action={
+            <a href={brandHref} onClick={goBrand}>
+              <Button variant="ghost" size="sm">Change it in Brand</Button>
+            </a>
+          }
+        >
+          {chosenCampaigns.length > 0
+            ? chosenCampaigns.map((c) => asStr(c.hook) || asStr(c.big_idea)).filter(Boolean).join(' ')
+            : 'Every post below carries this story, in your brand voice.'}
+        </Banner>
       ) : (
-        <p className="text-body text-muted-foreground">
-          No campaign angle chosen yet. Posts are written from the profile and brand voice; choose an angle in Brand to steer them.
-        </p>
+        <Banner
+          tone="hold"
+          title="No campaign angle chosen yet."
+          action={
+            <a href={brandHref} onClick={goBrand}>
+              <Button variant="secondary" size="sm">Choose an angle in Brand</Button>
+            </a>
+          }
+        >
+          Posts are written from the profile and the brand voice alone. An angle gives them one story to tell.
+        </Banner>
       )}
       {/* platform picker: each option shows what its rulebook optimises for */}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-label="Platforms">

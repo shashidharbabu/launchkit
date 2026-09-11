@@ -16,11 +16,32 @@ export type StudioRow = {
   created_at?: string | null;
 };
 
+/** One tier of the pricing the builder chose to launch with (Commercial stage). */
+export type SelectedPricingTier = {
+  name: string;
+  price_usd_month: number | null;
+  included: boolean;
+  who_its_for?: string;
+  includes?: string[];
+};
+
+export type SelectedPricing = {
+  model: string;
+  tiers: SelectedPricingTier[];
+  anchor_competitors: string[];
+  chosen_at: string;
+};
+
 export type ProjectDetail = {
   id: string;
   name: string;
   repo_url: string;
   site_url: string;
+  app_url?: string | null;
+  /** Campaign angles chosen on the Brand stage; Social Launch writes from them. */
+  selected_campaigns: string[];
+  /** The pricing chosen on the Commercial stage; the plan carries it. */
+  selected_pricing: SelectedPricing | null;
   profile: {
     id: string;
     version: number;
@@ -88,6 +109,10 @@ export type SignalRow = {
 export type PlanData = {
   ready: boolean;
   targets: { name: string; kind: string; ref: string; ref_url: string }[];
+  /** The decisions the plan carries besides posts and venues. */
+  angles?: Record<string, unknown>[];
+  pricing?: SelectedPricing | null;
+  listing?: Record<string, unknown> | null;
 };
 
 export type AttributionData = {

@@ -7,7 +7,7 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 ## Facts established by the automated Phase 1b passes (2026-09-02)
 - The app **disables every stage action while any run is in flight**; wait for the Runs badge to clear before clicking the next action.
 - Commercial's single action "Draft pricing & listing" runs pricing **then listing automatically**; "Regenerate" re-runs pricing only. Commercial has **no approve gate** (gates are Profile, Assets, Targets).
-- Brand: "Extract Business DNA" first; "Draft campaigns" appears once DNA is shown.
+- Brand is two vertical steps: "Extract Business DNA" first; "Draft the angles" appears once DNA is shown; "Choose this angle" on one angle turns the Brand dot green and Social Launch shows the angle in a banner.
 - Assets: one "DRAFT …" button per type; after a draft: Approve, Copy, Regenerate with feedback, Redraft.
 - Targets: venues are selected with the checkbox "Select <venue> for the plan".
 - Signals: "Scan for live demand" takes **2–7 minutes** on the current model; an empty result now shows a **Scan report** (queries, coverage, drop reasons).
@@ -28,9 +28,9 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 9. Approve. **Expect:** GO stamp, Stage 2 unlocked. **Triage:** Runs → trace: `lk_understand.pipe`, steps through tool_github / tool_firecrawl.
 
 ## C. Stage 2 (Brand) and Stage 3 (Commercial)
-10. Run Brand DNA. **Expect:** DNA card. Run campaigns. **Expect:** campaigns list.
-11. Run pricing. **Expect:** tiers with evidence; no "LLM error". Run listing. **Expect:** store listing copy.
-12. (No gate here.) Confirm both pricing and listing cards are filled. **Triage:** traces for `lk_brand.pipe`, `lk_commercial.pipe` (Claude via compat; Exa/Firecrawl invokes).
+10. Run Brand DNA. **Expect:** Step 1 card, "Extracted" stamp. Run the angles. **Expect:** Step 2 card with an "At a glance" table and one card per angle (goal, where it plays, what you would make, how you would know). Press "Choose this angle". **Expect:** the card turns green with "Chosen, click to drop", the banner says "Chosen: <name>", and it survives a reload.
+11. Run pricing. **Expect:** Step 1 card: tiers with Keep/Dropped and an editable price each, the research below with every competitor's own tiers; no "LLM error". Drop a tier, press "Use this pricing". **Expect:** green banner "Chosen: …" that survives a reload. Run listing. **Expect:** Step 2 card with the store page copy and "Approve listing"; approving turns the Commercial dot green.
+12. (No gate here, but two decisions.) Plan shows "What this launch says" with the angle, the kept tiers and the listing title; the markdown export ends with Campaign angle, Pricing and Listing sections. **Triage:** traces for `lk_brand.pipe`, `lk_commercial.pipe` (Claude via compat; Exa/Firecrawl invokes).
 
 ## D. Stage 4 (Assets)
 13. Generate each asset type. **Expect:** draft with gate verdict; a failing gate shows exactly why.
@@ -85,7 +85,8 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 
 ## Flow and quality (2026-09-03 evening)
 - [ ] Every stage ends with a footer stating its state and a "Next: <stage>" button; Profile's button is disabled until approved; approving the profile lands on Brand.
-- [ ] Brand shows "Campaign angles" with "Use this angle"; Social Launch shows the chosen angle above the picker and the draft reflects it.
+- [ ] Brand shows "Step 2 of 2: Campaign angle" with "Choose this angle"; Social Launch shows the chosen angle in a green banner above the picker (no "Short video" tile any more; the spoken script lives on the Assets stage) and the draft reflects it.
+- [ ] Drive: `cd launchkit-src/frontend && node drive.brand.mjs` (real pipelines, about 8 minutes) → BRAND_DONE with CHOSEN chosen=true and CHOSEN_COMMERCIAL listingApproved=true.
 - [ ] A draft card shows the real app URL, never `{APP_URL}`; Copy and Share carry the real URL.
 - [ ] Targets: no repository file appears as a venue; awesome-lists and directories never sit in the top 5; ranks are 1..N.
 - [ ] Signals: the scan report lists open-web and LinkedIn/dev.to queries first and says Reddit is not searchable; LinkedIn and dev.to posts by people living the problem appear as signals with a problem-first drafted reply (hack-judge: 2 signals, about 13 minutes).

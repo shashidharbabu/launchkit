@@ -204,6 +204,10 @@ export const api = {
     };
     return {
       id: p.id, name: p.name, repo_url: p.repo_url, site_url: p.site_url, app_url: p.app_url,
+      // the builder's decisions on the project row, so the pages can show them (a chosen angle that
+      // never came back to the page looked like a dead button)
+      selected_campaigns: Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [],
+      selected_pricing: p.selected_pricing && typeof p.selected_pricing === 'object' ? (p.selected_pricing as Dict) : null,
       profile: prof ? {
         id: prof.id, version: prof.version, status: prof.status,
         data: prof.data as Dict, created_at: prof.created_at ?? null,
@@ -685,9 +689,44 @@ export const api = {
   },
 
   commercial: async (id: string, kind: string) => {
-    const data = await latestCommercial(id, kind);
-    if (!data) throw new Error(`no ${kind} result yet`);
-    return { id, kind, data };
+    const row = byNewest(select('commercial_results', { project_id: id, kind }))[0];
+    if (!row) throw new Error(`no ${kind} result yet`);
+    return { id, kind, data: row.data as Dict, status: String(row.status ?? 'draft'), row_id: String(row.id) };
+  },
+
+  /** Approve the latest draft of a commercial kind (the listing): the plan carries approved copy only. */
+  approveCommercial: async (projectId: string, kind: string) => {
+    const row = byNewest(select('commercial_results', { project_id: projectId, kind }))[0];
+    if (!row) throw new Error(`no ${kind} result yet`);
+    update('commercial_results', { id: row.id }, { status: 'approved', status_by: currentActor() });
+    flush();
+    return { id: String(row.id), kind, status: 'approved' };
+  },
+
+  /** The pricing the builder launches with (tiers kept or dropped, prices adjusted), or null to clear it. */
+  selectPricing: async (projectId: string, choice: Dict | null) => {
+    const row = selectOne('projects', { id: projectId });
+    if (!row) throw new Error('launch not found');
+    let next: Dict | null = null;
+    if (choice) {
+      const tiers = Array.isArray(choice.tiers) ? (choice.tiers as Dict[]) : [];
+      if (tiers.length === 0) throw new Error('choose at least one tier');
+      next = {
+        model: String(choice.model ?? ''),
+        tiers: tiers.map((t) => ({
+          name: String(t.name ?? ''),
+          price_usd_month: t.price_usd_month == null || t.price_usd_month === '' || Number.isNaN(Number(t.price_usd_month)) ? null : Number(t.price_usd_month),
+          included: t.included !== false,
+          who_its_for: typeof t.who_its_for === 'string' ? t.who_its_for : '',
+          includes: Array.isArray(t.includes) ? t.includes.map(String) : [],
+        })),
+        anchor_competitors: Array.isArray(choice.anchor_competitors) ? choice.anchor_competitors.map(String) : [],
+        chosen_at: new Date().toISOString(),
+      };
+    }
+    update('projects', { id: projectId }, { selected_pricing: next });
+    flush();
+    return { selected_pricing: next };
   },
 
   assets: async (id: string) => {
@@ -761,11 +800,21 @@ export const api = {
     const assetRows = select('assets', { project_id: id, status: 'approved' });
     const targetRows = byNumber(select('targets', { project_id: id, selected: true }), 'rank');
     const meta = await latestCommercial(id, 'targets_meta');
+    // the decisions the plan carries besides posts and venues: the angle, the pricing, the approved listing
+    const angles = Array.isArray(p.selected_campaigns) ? (p.selected_campaigns as unknown[]).map(String) : [];
+    const camps = angles.length > 0 ? await latestCommercial(id, 'brand_campaigns') : null;
+    const campList = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
+    const listingRow = byNewest(select('commercial_results', { project_id: id, kind: 'listing' }))[0];
     const plan = buildPlan(
       { id: String(p.id), name: String(p.name), app_url: (p.app_url as string) ?? null, site_url: String(p.site_url) },
       assetRows.map((r) => ({ asset_type: String(r.asset_type), version: Number(r.version), data: r.data as Dict })),
       targetRows.map((r) => ({ rank: Number(r.rank), data: r.data as TargetData })),
       meta,
+      {
+        angles: campList.filter((c) => angles.includes(String(c.name))),
+        pricing: p.selected_pricing && typeof p.selected_pricing === 'object' ? (p.selected_pricing as Dict) : null,
+        listing: listingRow && listingRow.status === 'approved' ? (listingRow.data as Dict) : null,
+      },
     );
     if (fmt === 'markdown') return { markdown: planMarkdown(plan) };
     return plan;

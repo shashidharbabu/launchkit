@@ -31,12 +31,22 @@ export interface TargetRow {
   selected?: boolean;
 }
 
+/** The decisions made upstream that the plan carries along: chosen angles, chosen pricing, approved listing. */
+export interface PlanExtras {
+  angles?: Dict[];
+  pricing?: Dict | null;
+  listing?: Dict | null;
+}
+
 export interface Plan {
   project: { id: string; name: string; app_url: string };
   sequencing: unknown[];
   targets: TargetData[];
   assets: Record<string, AssetData>;
   ready: boolean;
+  angles: Dict[];
+  pricing: Dict | null;
+  listing: Dict | null;
 }
 
 /**
@@ -74,7 +84,8 @@ export function refUrl(project: Pick<PlanProject, "app_url" | "site_url">, ref: 
  * Mutates each selected target's data (adds ref / ref_url), as Python does.
  */
 export function buildPlan(project: PlanProject, approvedAssets: ApprovedAssetRow[],
-                          selectedTargets: TargetRow[], targetsMeta: Dict | null): Plan {
+                          selectedTargets: TargetRow[], targetsMeta: Dict | null,
+                          extras: PlanExtras = {}): Plan {
   const assetsSorted = [...approvedAssets].sort((a, b) =>
     a.asset_type < b.asset_type ? -1 : a.asset_type > b.asset_type ? 1 : b.version - a.version);
   const latest = new Map<string, ApprovedAssetRow>();
@@ -103,6 +114,9 @@ export function buildPlan(project: PlanProject, approvedAssets: ApprovedAssetRow
     targets: targetDicts,
     assets,
     ready: latest.size > 0 && targetDicts.length > 0,
+    angles: extras.angles ?? [],
+    pricing: extras.pricing ?? null,
+    listing: extras.listing ?? null,
   };
 }
 
@@ -139,6 +153,41 @@ export function planMarkdown(plan: Plan): string {
       if (k === "warnings") continue;
       lines.push(`**${k}:**\n\n${typeof v === "string" ? v : pyJsonDumps(v, { ensureAscii: false })}\n`);
     }
+  }
+  // the decisions made upstream, after the verbatim sections so the older export stays byte-identical
+  if (plan.angles.length > 0) {
+    lines.push("## Campaign angle");
+    for (const c of plan.angles) {
+      lines.push(`- **${pyStr(pyGet(c, "name", ""))}**: ${pyStr(pyGet(c, "big_idea", ""))}`);
+      const hook = pyStr(pyGet(c, "hook", ""));
+      if (hook) lines.push(`  - hook: ${hook}`);
+      const metric = pyStr(pyGet(c, "success_metric", ""));
+      if (metric) lines.push(`  - measure: ${metric}`);
+    }
+    lines.push("");
+  }
+  if (plan.pricing) {
+    const tiers = Array.isArray(plan.pricing.tiers) ? (plan.pricing.tiers as Dict[]) : [];
+    lines.push("## Pricing");
+    const model = pyStr(pyGet(plan.pricing, "model", ""));
+    if (model) lines.push(`Model: ${model}`);
+    for (const t of tiers) {
+      if (t.included === false) continue;
+      const price = t.price_usd_month == null ? "price to decide" : `$${t.price_usd_month}/mo`;
+      const inc = Array.isArray(t.includes) && t.includes.length > 0 ? `; includes: ${t.includes.map(String).join(", ")}` : "";
+      const who = pyStr(pyGet(t, "who_its_for", ""));
+      lines.push(`- **${pyStr(pyGet(t, "name", ""))}**: ${price}${who ? `, for ${who}` : ""}${inc}`);
+    }
+    lines.push("");
+  }
+  if (plan.listing) {
+    lines.push("## Listing (approved)");
+    for (const k of ["title", "tagline", "description_short", "description_long", "cta"]) {
+      const v = pyStr(pyGet(plan.listing, k, ""));
+      if (v) lines.push(`**${k}:**\n\n${v}\n`);
+    }
+    const kw = plan.listing.keywords;
+    if (Array.isArray(kw) && kw.length > 0) lines.push(`**keywords:** ${kw.map(String).join(", ")}\n`);
   }
   return lines.join("\n");
 }

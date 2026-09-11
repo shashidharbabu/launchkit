@@ -6,7 +6,6 @@ export const ASSET_LABELS: Record<string, string> = {
   producthunt: 'Product Hunt',
   show_hn: 'Hacker News',
   newsletter_pitch: 'Newsletter',
-  video_script: 'Short video',
 };
 
 export const ASSET_TYPES = Object.keys(ASSET_LABELS);

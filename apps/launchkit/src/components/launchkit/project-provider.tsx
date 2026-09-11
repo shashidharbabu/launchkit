@@ -26,6 +26,8 @@ type Ctx = {
   attribution: AttributionData | null;
   pricing: Record<string, unknown> | null;
   listing: Record<string, unknown> | null;
+  /** The latest listing draft was approved (the plan carries approved copy only). */
+  listingApproved: boolean;
   brandDna: Record<string, unknown> | null;
   brandCampaigns: Record<string, unknown> | null;
   /** Assets stage rows, newest first: site reads, kits, scripts, reels. */
@@ -76,6 +78,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
   const [attribution, setAttribution] = React.useState<AttributionData | null>(null);
   const [pricing, setPricing] = React.useState<Record<string, unknown> | null>(null);
   const [listing, setListing] = React.useState<Record<string, unknown> | null>(null);
+  const [listingApproved, setListingApproved] = React.useState(false);
   const [brandDna, setBrandDna] = React.useState<Record<string, unknown> | null>(null);
   const [brandCampaigns, setBrandCampaigns] = React.useState<Record<string, unknown> | null>(null);
   const [studio, setStudio] = React.useState<StudioRow[]>([]);
@@ -96,7 +99,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
         api.plan(id).catch(() => null),
         api.attribution(id).catch(() => null),
         api.commercial(id, 'pricing').then((r) => r.data).catch(() => null),
-        api.commercial(id, 'listing').then((r) => r.data).catch(() => null),
+        api.commercial(id, 'listing').catch(() => null),
         api.commercial(id, 'brand_dna').then((r) => r.data).catch(() => null),
         api.commercial(id, 'brand_campaigns').then((r) => r.data).catch(() => null),
         api.studio(id).catch(() => []),
@@ -108,7 +111,8 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
       setPlan(pl as unknown as PlanData | null);
       setAttribution(at as unknown as AttributionData | null);
       setPricing(pr);
-      setListing(li);
+      setListing(li ? li.data : null);
+      setListingApproved(li?.status === 'approved');
       setBrandDna(bd);
       setBrandCampaigns(bc);
     } catch (e) {
@@ -188,8 +192,11 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
 
   const stageDots = React.useMemo<Record<StageSlug, StageDot>>(() => {
     const profile: StageDot = gate1 ? 'go' : project?.profile ? 'hold' : 'none';
-    const brand: StageDot = brandDna && brandCampaigns ? 'go' : brandDna ? 'hold' : 'none';
-    const commercial: StageDot = pricing || listing ? 'hold' : 'none';
+    // a stage is "go" once its decision is made: an angle chosen, a pricing chosen and the listing approved
+    const angleChosen = (project?.selected_campaigns ?? []).length > 0;
+    const brand: StageDot = brandDna && brandCampaigns && angleChosen ? 'go' : brandDna || brandCampaigns ? 'hold' : 'none';
+    const commercial: StageDot =
+      project?.selected_pricing && listingApproved ? 'go' : pricing || listing ? 'hold' : 'none';
     const assetsDot: StageDot =
       assets.length === 0 ? 'none' : assets.every((a) => a.status === 'approved') ? 'go' : 'hold';
     const targetsDot: StageDot =
@@ -208,7 +215,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
       signals: signalsDot,
       plan: planDot,
     };
-  }, [gate1, project, pricing, listing, brandDna, brandCampaigns, assets, targets, signals, plan, studio]);
+  }, [gate1, project, pricing, listing, listingApproved, brandDna, brandCampaigns, assets, targets, signals, plan, studio]);
 
   return (
     <ProjectContext.Provider
@@ -221,6 +228,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
         attribution,
         pricing,
         listing,
+        listingApproved,
         brandDna,
         brandCampaigns,
         studio,

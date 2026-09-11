@@ -349,7 +349,7 @@ function VoiceSection({ row, script, disabled, running, voiceOff, engine, onWrit
         <div className="grid gap-0.5">
           <MetaLabel>Voice-over</MetaLabel>
           <p className="text-small text-muted-foreground">
-            Your pitch in five spoken lines that land on the film&rsquo;s beats: the problem, the app, how it works, what you get, what to do next. Spoken on this machine{engine ? ` with ${engine}` : ''}, mixed under the music when you render.
+            Your pitch in five spoken lines that land on the film&rsquo;s beats: the problem, the app, how it works, what you get, what to do next. This is the spoken script for your short video; it lives here, next to the film it is spoken over. Spoken on this machine{engine ? ` with ${engine}` : ''}, mixed under the music when you render.
           </p>
         </div>
         <Button variant={row ? 'secondary' : 'primary'} size="sm" disabled={disabled || voiceOff} loading={running} loadingLabel="Speaking" onClick={onWrite}>
