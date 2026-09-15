@@ -7,6 +7,12 @@ docs/eval-10/matrix.json with one row per app of the mechanical facts."""
 import json, os, re, sys
 
 ROOT = '/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10'
+# RERUN=1 reads each app's appstate.rerun.json (the store after a re-run) and writes extract.rerun.json and
+# matrix.rerun.json beside the originals, so the first run's record is never overwritten
+RERUN = os.environ.get('RERUN') == '1'
+STORE = 'appstate.rerun.json' if RERUN else 'appstate.json'
+EXTRACT = 'extract.rerun.json' if RERUN else 'extract.json'
+MATRIX = 'matrix.rerun.json' if RERUN else 'matrix.json'
 DASH = re.compile('[—–]')
 BANNED = re.compile(r'\b(ship|ships|shipped|shipping|game.?chang\w*|revolutionar\w*|groundbreaking|seamless\w*|unleash\w*|supercharge\w*|leverage|delve|elevate)\b', re.I)
 
@@ -27,7 +33,7 @@ def texty(d):
 
 def extract(slug):
     d = os.path.join(ROOT, slug)
-    p = os.path.join(d, 'appstate.json')
+    p = os.path.join(d, STORE)
     if not os.path.exists(p):
         return None
     raw = json.load(open(p))
@@ -57,6 +63,7 @@ def extract(slug):
             'version': a.get('version'), 'status': a.get('status'), 'data': data,
             'warnings': data.get('warnings') or [],
             'blockers': data.get('blockers') or [], 'repaired': data.get('repaired') or [],
+            'rulebook_version': data.get('rulebook_version'), 'rulebook_source': data.get('rulebook_source'),
             'chars': len(txt), 'words': len(txt.split()),
             'dashes': len(DASH.findall(txt)), 'banned_words': sorted(set(m.lower() for m in BANNED.findall(txt))),
             'exclamations': txt.count('!'), 'hashtags': len(re.findall(r'#\w+', txt)),
@@ -96,7 +103,8 @@ def extract(slug):
         'targets': [{'rank': r.get('rank'), 'selected': r.get('selected'), 'name': (r.get('data') or {}).get('name'), 'kind': (r.get('data') or {}).get('kind'), 'why_fit': (r.get('data') or {}).get('why_fit'), 'url': (r.get('data') or {}).get('url')} for r in targets[:15]],
         'signals': [{'status': s.get('status'), 'url': (s.get('data') or {}).get('url'), 'title': (s.get('data') or {}).get('title'), 'why': (s.get('data') or {}).get('why_relevant') or (s.get('data') or {}).get('why'), 'reply': ((s.get('data') or {}).get('draft_reply') or (s.get('data') or {}).get('reply') or '')[:400]} for s in signals[:12]],
     }
-    json.dump(out, open(os.path.join(d, 'extract.json'), 'w'), indent=1, ensure_ascii=False)
+    out['platform_rules'] = [{'platform': r.get('platform'), 'version': r.get('version'), 'source': r.get('source'), 'rules': len(r.get('rules') or []), 'hooks': len(r.get('hooks') or []), 'updated_at': r.get('updated_at')} for r in sorted(t.get('platform_rules') or [], key=lambda r: (r.get('platform') or '', r.get('updated_at') or ''))]
+    json.dump(out, open(os.path.join(d, EXTRACT), 'w'), indent=1, ensure_ascii=False)
     row = {
         'slug': slug, 'name': out['name'],
         'stages_ok': [k for k, v in out['stages'].items() if isinstance(v, dict) and v.get('ok')],
@@ -106,7 +114,7 @@ def extract(slug):
         'angles': len(camps), 'angle_chosen': bool(proj.get('selected_campaigns')),
         'competitors': len(pricing.get('competitors') or []), 'established': len([c for c in (pricing.get('competitors') or []) if c.get('notability') == 'established']),
         'pricing_options': len(pricing.get('options') or []), 'pricing_chosen': bool(proj.get('selected_pricing')), 'listing_approved': listing_row.get('status') == 'approved',
-        'posts': {k: {'status': v['status'], 'warnings': len(v['warnings']), 'blockers': len(v['blockers']), 'repaired': len(v['repaired']), 'dashes': v['dashes'], 'banned': v['banned_words'], 'excl': v['exclamations']} for k, v in posts.items()},
+        'posts': {k: {'status': v['status'], 'warnings': len(v['warnings']), 'blockers': len(v['blockers']), 'repaired': len(v['repaired']), 'dashes': v['dashes'], 'banned': v['banned_words'], 'excl': v['exclamations'], 'rulebook_version': v['rulebook_version']} for k, v in posts.items()},
         'plates': len(images.get('images') or []), 'judge_scores': [max([tk.get('score') or 0 for tk in (i.get('takes') or [])] or [None]) for i in (images.get('images') or [])],
         'voice_all_fit': voice.get('all_fit'), 'reel': bool(reel.get('video_url')), 'reel_status': (studio.get('reel') or {}).get('status'),
         'targets': len(targets), 'signals': len(signals), 'signals_new': len([s for s in signals if s.get('status') == 'new']),
@@ -116,6 +124,6 @@ def extract(slug):
 
 slugs = sorted(x for x in os.listdir(ROOT) if os.path.isdir(os.path.join(ROOT, x)))
 rows = [r for r in (extract(s) for s in slugs) if r]
-json.dump({'apps': rows}, open(os.path.join(ROOT, 'matrix.json'), 'w'), indent=1)
+json.dump({'apps': rows}, open(os.path.join(ROOT, MATRIX), 'w'), indent=1)
 for r in rows:
     print(r['slug'], 'ok:', ','.join(r['stages_ok']), 'failed:', ','.join(r['stages_failed']) or '-', 'posts:', len(r['posts']), 'plates:', r['plates'], 'targets:', r['targets'], 'signals:', r['signals'])

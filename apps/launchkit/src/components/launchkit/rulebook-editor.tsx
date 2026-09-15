@@ -5,7 +5,7 @@ import { Field, Textarea } from '@launchkit/design-system/components/field';
 import { Card, CardHeader, CardBody } from '@launchkit/design-system/components/card';
 import { Segmented } from '@launchkit/design-system/components/segmented';
 import { insert } from '../../data/blobstore';
-import { rulesFor } from '../../data/rules';
+import { rulebookMeta, rulesFor } from '../../data/rules';
 import { ASSET_TYPES } from '../../lib/asset-types';
 import { GLOBAL_RULES, RULEBOOK_VERSION } from '../../lib/rulebooks';
 
@@ -20,6 +20,7 @@ export function RulebookEditor() {
   const [text, setText] = React.useState(() => rulesFor(ASSET_TYPES[0]).rules.join('\n'));
   const [saving, setSaving] = React.useState(false);
   const current = rulesFor(platform);
+  const meta = rulebookMeta(platform);
   const pick = (p: string) => {
     setPlatform(p);
     setText(rulesFor(p).rules.join('\n'));
@@ -62,6 +63,10 @@ export function RulebookEditor() {
           className="self-start"
         />
         <p className="text-body">{current.summary}</p>
+        {/* the counts and the version a draft is stamped with, so a change here is visible before the next draft */}
+        <p className="text-label text-muted-foreground" data-testid="rulebook-meta">
+          {current.rules.length} rules, {(current.hooks ?? []).length} hook patterns, rulebook version {meta.version} ({meta.source === 'owner' ? 'your edit' : 'default'})
+        </p>
         <Field label={`${current.name} rules`} htmlFor="rulebook-text">
           <Textarea
             id="rulebook-text"

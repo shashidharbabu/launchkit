@@ -33,7 +33,7 @@ import {
   select, selectOne, uid, update, type Row,
 } from './blobstore';
 import { getCurrentRun, setCurrentRun } from './trace';
-import { rulesBlock } from './rules';
+import { rulebookMeta, rulesBlock } from './rules';
 import { punctuationFixed } from './runner';
 import { sanitizeVerbs } from '../domain/sanitize';
 import { activeWorkspaceId } from './workspace-state';
@@ -96,6 +96,61 @@ function repairHint(blocker: string): string {
   const paras = blocker.match(/\((\d+), cap (\d+)\)/);
   if (paras && /paragraph/.test(blocker)) return `${blocker}: merge paragraphs until there are at most ${Number(paras[2]) + 1}`;
   return blocker;
+}
+
+/**
+ * Last resort for a length blocker two repair asks would not fix: drop whole paragraphs from the
+ * middle of the field, never the first (the opener) and never the last (the closing question), until
+ * the count is under the cap. The model cannot count its own words, the gate can, and the draft is an
+ * outline the builder rewrites by hand; a cut recorded in the open beats a cap quietly broken.
+ * Kept only when the total overage strictly falls, so it can never trade one blocker for another.
+ */
+function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>): { data: Record<string, unknown>; dropped: string[] } {
+  const dropped: string[] = [];
+  let data = gated;
+  for (const b of Array.isArray(gated.blockers) ? (gated.blockers as string[]) : []) {
+    const chars = /^(\w+): .*?\((\d+) characters, cap (\d+)\)/.exec(b);
+    if (chars) {
+      // a one-paragraph field over a character cap loses whole trailing sentences, never a cut word
+      const [, field, , capStr] = chars;
+      const cap = Number(capStr);
+      const text = typeof data[field] === 'string' ? (data[field] as string) : '';
+      const sentences = text.match(/[^.!?]+[.!?]+(?:\s+|$)/g) ?? [];
+      if (sentences.length < 2) continue;
+      let kept = sentences.slice();
+      while (kept.length > 1 && kept.join('').trim().length > cap) {
+        const gone = kept.pop();
+        dropped.push(`${field}: the closing sentence (${(gone ?? '').trim().length} characters)`);
+      }
+      const joined = kept.join('').trim();
+      if (joined.length > cap) continue;
+      const candidate = gateAsset(assetType, { ...data, [field]: joined } as Dict) as Record<string, unknown>;
+      if (overage(candidate) < overage(data)) data = candidate;
+      continue;
+    }
+    const m = /^(\w+): .*?\((\d+) words, cap (\d+)\)/.exec(b);
+    if (!m) continue;
+    const [, field, , capStr] = m;
+    const cap = Number(capStr);
+    const text = typeof data[field] === 'string' ? (data[field] as string) : '';
+    const paras = text.split(/\n\s*\n/);
+    if (paras.length < 3) continue;
+    const keep = paras.map(() => true);
+    // middle paragraphs, longest first: the fewest cuts that get under the cap
+    const order = paras.map((p, i) => ({ i, n: p.split(/\s+/).filter(Boolean).length }))
+      .filter((x) => x.i !== 0 && x.i !== paras.length - 1)
+      .sort((a, b2) => b2.n - a.n);
+    const words = () => paras.filter((_, i) => keep[i]).join('\n\n').split(/\s+/).filter(Boolean).length;
+    for (const x of order) {
+      if (words() <= cap) break;
+      keep[x.i] = false;
+      dropped.push(`${field}: a paragraph of ${x.n} words`);
+    }
+    if (words() > cap) continue;
+    const candidate = gateAsset(assetType, { ...data, [field]: paras.filter((_, i) => keep[i]).join('\n\n') } as Dict) as Record<string, unknown>;
+    if (overage(candidate) < overage(data)) data = candidate;
+  }
+  return { data, dropped };
 }
 
 /** How far a gated draft is over its hard checks: one point per failure plus the fraction over each cap. */
@@ -461,6 +516,9 @@ export const api = {
       if (subs[0]) target = subs[0].data as TargetData;
     }
     const rules = rulesBlock(asset_type);
+    const meta = rulebookMeta(asset_type);
+    // the product's own name, so a mention-ladder count and the drafts agree on what to call it
+    const appName = displayName(String(projRow?.name ?? ''), brandDna as Dict | null, profile as unknown as Dict);
     // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
     const draftOnce = async (fb: string, prevDraft: string) => {
       const result = await ask('lk_assets.pipe',
@@ -469,22 +527,45 @@ export const api = {
       const changed = punctuationFixed(result);
       // the banned launch verb is swapped in the draft itself (never in quoted or observed text elsewhere)
       const swapped = sanitizeVerbs(result as Dict);
+      // the venue the draft was written for (a venue-scoped check reads it) and the product's name (the
+      // mention ladder counts how often a Reddit body names it)
+      if (target) (swapped.data as Dict).venue = String((target as Dict).name ?? '');
+      (swapped.data as Dict).app_name = appName;
       const gated = gateAsset(asset_type, swapped.data) as Record<string, unknown>;
       if (changed) gated.punctuation_fixed = changed;
       if (swapped.verbs) gated.wording_fixed = swapped.verbs;
+      if (swapped.slop) gated.slop_fixed = swapped.slop;
+      // every draft names the rulebook it was written against, so a re-run can prove which rules it saw
+      gated.rulebook_version = meta.version;
+      gated.rulebook_source = meta.source;
       return gated;
     };
     const jobId = await runJob(id, assetJobKind(asset_type),
       async () => {
         let gated = await draftOnce(feedback, previousDraft);
-        const blockers = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
-        if (blockers.length > 0) {
-          // one repair pass that names the cut to make; the draft with the smaller overage wins
-          const note = `REPAIR: the draft failed these hard checks: ${blockers.map(repairHint).join('; ')}. Fix exactly these and keep everything else as it is. Count the words and characters yourself before answering; over-length text is cut by deleting whole sentences, never excused in a warning.` + (feedback ? ` The builder's earlier feedback still applies: ${feedback}` : '');
+        const first = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
+        // up to two repair passes, each naming the cut to make; the draft with the smaller overage wins.
+        // one pass is not always enough: a model told only the cap tends to trim to just over it
+        for (let attempt = 1; attempt <= 2; attempt += 1) {
+          const left = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
+          if (left.length === 0) break;
+          const harder = attempt === 2 ? ' The previous attempt did not cut enough: this time delete a whole sentence or a whole paragraph, not words inside sentences.' : '';
+          const note = `REPAIR: the draft failed these hard checks: ${left.map(repairHint).join('; ')}. Fix exactly these and keep everything else as it is. Count the words and characters yourself before answering; over-length text is cut by deleting whole sentences, never excused in a warning.${harder}` + (feedback ? ` The builder's earlier feedback still applies: ${feedback}` : '');
           try {
             const again = await draftOnce(note, compact(gated, 3500));
-            if (overage(again) < overage(gated)) { again.repaired = blockers; gated = again; }
-          } catch { /* the first draft stands, blockers and all */ }
+            if (overage(again) < overage(gated)) { again.repaired = first; gated = again; }
+          } catch { break; /* the best draft so far stands, blockers and all */ }
+        }
+        // a length blocker the asks would not fix is cut deterministically, and the cut is recorded
+        const still = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
+        if (still.some((b) => /(?:words|characters), cap \d+\)/.test(b))) {
+          const trimmed = trimParagraphsToCap(asset_type, gated);
+          if (trimmed.dropped.length > 0 && trimmed.data !== gated) {
+            gated = trimmed.data;
+            const warnings = Array.isArray(gated.warnings) ? (gated.warnings as string[]) : [];
+            gated.warnings = [`Over the length cap after two rewrites, so the draft check dropped ${trimmed.dropped.join(' and ')} from the middle. Read what is left and put back what you need in your own words.`, ...warnings];
+            gated.repaired = [...(Array.isArray(gated.repaired) ? (gated.repaired as string[]) : first), ...trimmed.dropped];
+          }
         }
         return gated;
       },

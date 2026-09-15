@@ -2,6 +2,8 @@
  * No draft reaches the store with an em/en dash: replace them deterministically
  * and count the replacements so the UI can say so. Pure; covered by node tests.
  */
+import { SLOP_SWAPS } from '../lib/slop-lexicon';
+
 const EM = /\s*—\s*/g;           // em dash
 const EN_RANGE = /([\w$%])–(\$?\w)/g; // an unspaced en dash inside a range ($8–$10, A–C, 2019–2024): a hyphen
 const EN = /\s*–\s*/g;           // any other en dash
@@ -15,8 +17,8 @@ function cleanString(s: string): { s: string; n: number } {
 }
 
 // the launch verb the brand rulebook bans in every form (section 1.1); written split so a sweep of this file stays clean
-const BANNED_VERB = new RegExp('\\b(s[h]ip|s[h]ips|s[h]ipped|s[h]ipping)\\b', 'gi');
-const VERB_SWAP: Record<string, string> = { ship: 'release', ships: 'releases', shipped: 'released', shipping: 'releasing' };
+const BANNED_VERB = new RegExp('\\b(s[h]ip|s[h]ips|s[h]ipped|s[h]ipping|s[h]ippable)\\b', 'gi');
+const VERB_SWAP: Record<string, string> = { ship: 'release', ships: 'releases', shipped: 'released', shipping: 'releasing', shippable: 'releasable' };
 
 /** The banned verb becomes the release verb, case preserved on the first letter; counted so the draft can say so. */
 export function cleanVerbs(s: string): { s: string; n: number } {
@@ -26,6 +28,23 @@ export function cleanVerbs(s: string): { s: string; n: number } {
     n++;
     return m[0] === m[0].toUpperCase() ? swap[0].toUpperCase() + swap.slice(1) : swap;
   });
+  return { s: out, n };
+}
+
+// the slop lexicon, longest term first, each as its own word-bounded pattern
+const SLOP_PATTERNS: ReadonlyArray<readonly [RegExp, string]> = SLOP_SWAPS.map(([term, swap]) =>
+  [new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+')}\\b`, 'gi'), swap] as const);
+
+/** Each slop term becomes its plain replacement, case preserved on the first letter; counted for the card. */
+export function cleanSlop(s: string): { s: string; n: number } {
+  let n = 0;
+  let out = s;
+  for (const [pat, swap] of SLOP_PATTERNS) {
+    out = out.replace(pat, (m) => {
+      n++;
+      return m[0] === m[0].toUpperCase() && m[0] !== m[0].toLowerCase() ? swap[0].toUpperCase() + swap.slice(1) : swap;
+    });
+  }
   return { s: out, n };
 }
 
@@ -49,13 +68,21 @@ export function sanitizeDraft<T>(value: T): { data: T; changed: number } {
  * or for an observed profile): the banned verb becomes the release verb in
  * every field except warnings, which quote the draft's faults as written.
  */
-export function sanitizeVerbs<T>(value: T): { data: T; verbs: number } {
+export function sanitizeVerbs<T>(value: T): { data: T; verbs: number; slop: number } {
   let verbs = 0;
+  let slop = 0;
   const walk = (v: unknown, key = ''): unknown => {
-    if (typeof v === 'string') { if (key === 'warnings') return v; const w = cleanVerbs(v); verbs += w.n; return w.s; }
+    if (typeof v === 'string') {
+      if (key === 'warnings') return v;
+      const w = cleanVerbs(v);
+      verbs += w.n;
+      const p = cleanSlop(w.s);
+      slop += p.n;
+      return p.s;
+    }
     if (Array.isArray(v)) return v.map((x) => walk(x, key));
     if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(([k, x]) => [k, walk(x, k)]));
     return v;
   };
-  return { data: walk(value) as T, verbs };
+  return { data: walk(value) as T, verbs, slop };
 }

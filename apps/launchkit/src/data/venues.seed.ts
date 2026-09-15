@@ -1,4 +1,8 @@
-// GENERATED from launchkit/backend/seed_venues.py, do not edit by hand.
+// GENERATED from launchkit/backend/seed_venues.py, then extended by hand for
+// rulebook v4 (2026-09-12) with the eleven developer subreddits the Reddit
+// rulebook names; each carries its verified rules snapshot and that snapshot's
+// source in rules_summary. Keep it in sync with apps/launchkit/rulebooks/reddit_post.md
+// section 8 and with launchkit-src/backend/seed_venues.py.
 // Config-as-data: these are SEED DEFAULTS; the live set lives in the
 // venues table and is editable in Settings.
 export const VENUE_SEED = [
@@ -171,7 +175,8 @@ export const VENUE_SEED = [
   "submission_url": "https://www.reddit.com/r/SideProject/submit",
   "rules_summary": "Self-promo allowed for original projects; disclose you're the creator; feedback framing.",
   "audience_signal": "large",
-  "tags": "indie,showcase"
+  "tags": "indie,showcase",
+  "rules_source": "Wayback rules page (empty) plus sidebar, 2026-08-28: https://old.reddit.com/r/SideProject/about/rules/"
  },
  {
   "name": "r/IMadeThis",
@@ -225,7 +230,8 @@ export const VENUE_SEED = [
   "submission_url": "https://www.reddit.com/r/startups/submit",
   "rules_summary": "Strict self-promo rules, Share Your Startup thread.",
   "audience_signal": "large",
-  "tags": "startup"
+  "tags": "startup",
+  "rules_source": "Wayback rules page plus live quarterly thread, 2026-08-23 (snapshot), 2026-07-11 (thread): https://old.reddit.com/r/startups/about/rules/"
  },
  {
   "name": "r/GrowthHacking",
@@ -334,5 +340,115 @@ export const VENUE_SEED = [
   "rules_summary": "Lifetime-deal marketplace: real revenue, brutal margins; list only deliberately.",
   "audience_signal": "large",
   "tags": "deals,revenue"
+ },
+ {
+  "name": "r/programming",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/programming/",
+  "submission_url": "https://www.reddit.com/r/programming/submit",
+  "rules_summary": "Rule 5: no product promotion or 'I made this' demo posts; a technical write-up on what made the project hard is allowed, a repo link or feature list as the point is not. Rule 1: no LLM-written content. AI policy (2026-05-23): AI and LLM topics off-topic except deeply technical implementation write-ups; tool reviews and launches removed. Level 0 only.",
+  "audience_signal": "large",
+  "tags": "dev,technical,writeup",
+  "rules_source": "Mirror sidebar (live) plus Wayback rules page plus wiki, 2026-09-11 (mirror), 2026-08-11 (snapshot), policy dated 2026-05-23: https://old.reddit.com/r/programming/about/rules/ and https://www.reddit.com/r/programming/wiki/ai-policy"
+ },
+ {
+  "name": "r/LocalLLaMA",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/LocalLLaMA/",
+  "submission_url": "https://www.reddit.com/r/LocalLLaMA/submit",
+  "rules_summary": "Rule 4: self-promotion under 10% of your history, affiliation disclosed, no 'I found this', no engagement farming. Rule 3: mostly LLM-generated text or code removed. Rule 2: must relate to LLMs. Level 2 with Resources or Discussion flair; name the model size, hardware or quantization.",
+  "audience_signal": "large",
+  "tags": "ai,llm,selfhosted,opensource",
+  "rules_source": "Wayback rules page, 2026-08-07: https://old.reddit.com/r/LocalLLaMA/about/rules/"
+ },
+ {
+  "name": "r/MachineLearning",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/MachineLearning/",
+  "submission_url": "https://www.reddit.com/r/MachineLearning/submit",
+  "rules_summary": "Rule 2: no promotion of paid products where the intent is to promote; links acceptable only when the post offers value and invites feedback. Rule 3: marketing campaigns get a permanent ban. Main feed needs the [P] title prefix and method plus evaluation; the plain launch goes in the [D] Self-Promotion Thread with the price stated if paid. Level 2.",
+  "audience_signal": "large",
+  "tags": "ml,ai,research",
+  "rules_source": "Wayback rules page plus live thread on mirror, 2026-07-16 (snapshot), 2026-09-11 (thread): https://old.reddit.com/r/MachineLearning/about/rules/"
+ },
+ {
+  "name": "r/devops",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/devops/",
+  "submission_url": "https://www.reddit.com/r/devops/submit",
+  "rules_summary": "No vendor spam ('buy an ad from reddit instead'). Articles need a 3 to 5 sentence submission statement; use the article title unedited. Launches go in the Weekly Self Promotion Thread (no flair); the main feed takes a Level 1 discussion about running pipelines in production.",
+  "audience_signal": "large",
+  "tags": "devops,infra,production",
+  "rules_source": "Mirror sidebar plus live weekly thread, 2026-09-11: https://old.reddit.com/r/devops/about/rules/"
+ },
+ {
+  "name": "r/selfhosted",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/selfhosted/",
+  "submission_url": "https://www.reddit.com/r/selfhosted/submit",
+  "rules_summary": "Rule 2: no excessive self-promotion; promoted apps must be production ready with docs. Rule 6: projects under 3 months old (first public presence) only in the current New Project Megathread. Rule 4: blog links need a why-it-matters line. AI-compliance bot removes new posts until OP states how AI was involved. Level 2; Docker or bare install, docs, host requirements.",
+  "audience_signal": "large",
+  "tags": "selfhosted,docker,opensource",
+  "rules_source": "Wayback rules page plus live megathread and mods' post, 2026-08-11 (snapshot), 2026-09-10 (megathread), 2026-04-07 (mods' post): https://old.reddit.com/r/selfhosted/about/rules/"
+ },
+ {
+  "name": "r/opensource",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/opensource/",
+  "submission_url": "https://www.reddit.com/r/opensource/submit",
+  "rules_summary": "Rule 2: under-10% self-promotion ('a redditor with a website, not a website with a reddit account'). Rule 4: linked repos must carry an OSI-listed LICENSE file. Rule 3: AI-generated content is ban-worthy. Rule 6: drive-by accounts removed. Rule 8: Promotional flair for sharing a project. Level 2, license in the title.",
+  "audience_signal": "medium",
+  "tags": "opensource,license,dev",
+  "rules_source": "Wayback rules page, 2026-07-26: https://old.reddit.com/r/opensource/about/rules/"
+ },
+ {
+  "name": "r/ExperiencedDevs",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/ExperiencedDevs/",
+  "submission_url": "https://www.reddit.com/r/ExperiencedDevs/submit",
+  "rules_summary": "Rule 8: no advertisements without mod approval. Rule 10: AI topics only on Wednesdays and Saturdays. Rule 11 (modbot): user flair, karma in the sub, AI-use disclosure to the sticky, OP comments within 2 hours. Rule 9: no low effort, venting or bragging. Level 0 discussion only, no product.",
+  "audience_signal": "medium",
+  "tags": "dev,senior,discussion",
+  "rules_source": "Wayback rules page, 2026-07-28: https://old.reddit.com/r/ExperiencedDevs/about/rules/"
+ },
+ {
+  "name": "r/commandline",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/commandline/",
+  "submission_url": "https://www.reddit.com/r/commandline/submit",
+  "rules_summary": "Rule 4: no projects newer than 30 days or with few commits; must be a little unique. Rule 5 (AI Code Policy): AI-generated post text or titles strictly prohibited; largely AI-generated projects prohibited; partially AI-written code needs the note 'This software's code is partially AI-generated'. Rule 6: no projects that interact with generative AI or LLMs (popular ones like Ollama excepted). Rule 7: list similar and",
+  "audience_signal": "medium",
+  "tags": "cli,tui,terminal,dev",
+  "rules_source": "Wayback rules page (seven rules) plus live mirror sidebar, flairs and member count, 2026-08-11 (snapshot 20260811152913), 2026-09-11 (mirror): https://old.reddit.com/r/commandline/about/rules/"
+ },
+ {
+  "name": "r/vscode",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/vscode/",
+  "submission_url": "https://www.reddit.com/r/vscode/submit",
+  "rules_summary": "not verified: every fetch route failed on 2026-09-11 (old.reddit blocked, Wayback 2024, 2025 and 2026 captures absent for old and www, mirror shows no rules list). Mirror sidebar: 'A subreddit for working with Microsoft's Visual Studio Code', 224.0k members; a Weekly theme sharing thread says new theme posts are removed and creators must not repost weekly. Treat as unlisted: Level 1 until verified; read the rules in",
+  "audience_signal": "medium",
+  "tags": "ide,vscode,extensions,dev",
+  "rules_source": "Not verified. old.reddit.com answered the \"Welcome to Reddit\" shell; the mirror showed the sidebar, the member count and the weekly theme thread but no rules list; web.archive.org holds no capture of the old or www rules page for 2024, 2025 or 2026; the mirror wiki is a settings guide, 2026-09-11 (mirror only): https://www.reddit.com/r/vscode/about/rules/"
+ },
+ {
+  "name": "r/webdev",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/webdev/",
+  "submission_url": "https://www.reddit.com/r/webdev/submit",
+  "rules_summary": "Rule 3: reddiquette and the 9:1 rule, no excessive self-promotion. Rule 4: no commercial promotion or solicitation, ban possible. Rule 5: showing a project or asking for feedback only on Showoff Saturday; any other day it is removed. Level 3 on Saturday with the Showoff Saturday flair; stack, what was hard in the browser, the honest alternative.",
+  "audience_signal": "large",
+  "tags": "webdev,frontend,showoff",
+  "rules_source": "Mirror sidebar Posting Guidelines, 2026-09-11: https://old.reddit.com/r/webdev/about/rules/"
+ },
+ {
+  "name": "r/artificial",
+  "kind": "subreddit",
+  "url": "https://www.reddit.com/r/artificial/",
+  "submission_url": "https://www.reddit.com/r/artificial/submit",
+  "rules_summary": "Rule 2: first post or comment cannot carry promo; 10% rule; 'no self-inserting your product'; modmail first if in doubt. Rule 4: no selling. Rule 3: no clickbait, generic or sensational titles. Rule 10: no 'best tool' requests. Level 1 discussion from an account with history there; no name, no link; the link goes in a first comment only if the sub allows it.",
+  "audience_signal": "large",
+  "tags": "ai,discussion",
+  "rules_source": "Wayback rules page, 2026-08-28: https://old.reddit.com/r/artificial/about/rules/"
  }
 ];

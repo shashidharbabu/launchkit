@@ -125,6 +125,7 @@ function AssetCard({
   const data = fillDeep(asset.data as Record<string, unknown>, appUrl);
   const fixed = typeof data.punctuation_fixed === 'number' ? data.punctuation_fixed : 0;
   const verbsFixed = typeof data.wording_fixed === 'number' ? data.wording_fixed : 0;
+  const slopFixed = typeof data.slop_fixed === 'number' ? data.slop_fixed : 0;
   const links = shareLinks(
     asset.asset_type,
     data,
@@ -268,9 +269,9 @@ function AssetCard({
           </Button>
         ))}
         <CopyButton text={assetCopyText(data)} label="Copy" />
-        {(fixed > 0 || verbsFixed > 0 || repaired > 0) && (
+        {(fixed > 0 || verbsFixed > 0 || slopFixed > 0 || repaired > 0) && (
           <span className="text-small text-muted-foreground">
-            {[fixed > 0 ? `${fixed} ${fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule` : '', verbsFixed > 0 ? `${verbsFixed} banned ${verbsFixed === 1 ? 'verb' : 'verbs'} swapped for release` : '', repaired > 0 ? `${repaired} hard-rule ${repaired === 1 ? 'failure' : 'failures'} repaired by a second pass` : ''].filter(Boolean).join(', ')}
+            {[fixed > 0 ? `${fixed} ${fixed === 1 ? 'dash' : 'dashes'} replaced by the punctuation rule` : '', verbsFixed > 0 ? `${verbsFixed} banned ${verbsFixed === 1 ? 'verb' : 'verbs'} swapped for release` : '', slopFixed > 0 ? `${slopFixed} filler ${slopFixed === 1 ? 'word' : 'words'} swapped for plain ones` : '', repaired > 0 ? `${repaired} hard-rule ${repaired === 1 ? 'failure' : 'failures'} repaired by a second pass` : ''].filter(Boolean).join(', ')}
           </span>
         )}
       </CardFooter>

@@ -129,6 +129,9 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
 
 const wordCount = (s: string): number => s.split(/\s+/).filter(Boolean).length;
 
+// what the runner and the gate stamp onto a draft: never the draft's own words, so an "all" check skips them
+const META_FIELDS = new Set(["warnings", "blockers", "repaired", "venue", "app_name", "rulebook_version", "rulebook_source", "punctuation_fixed", "wording_fixed", "slop_fixed"]);
+
 /** The fields a check reads: a named field, or every string field (and every string in an array) for "all" or "*". */
 function fieldsOf(data: AssetData, field: string): Array<[string, string]> {
   const out: Array<[string, string]> = [];
@@ -136,7 +139,7 @@ function fieldsOf(data: AssetData, field: string): Array<[string, string]> {
     if (typeof v === "string") out.push([k, v]);
     else if (Array.isArray(v)) v.forEach((x, i) => { if (typeof x === "string") out.push([`${k}[${i + 1}]`, x]); });
   };
-  if (field === "all" || field === "*") for (const [k, v] of Object.entries(data as Record<string, unknown>)) { if (k !== "warnings") take(k, v); }
+  if (field === "all" || field === "*") for (const [k, v] of Object.entries(data as Record<string, unknown>)) { if (!META_FIELDS.has(k)) take(k, v); }
   else take(field, (data as Record<string, unknown>)[field]);
   return out;
 }
@@ -145,15 +148,22 @@ function fieldsOf(data: AssetData, field: string): Array<[string, string]> {
 export type CheckHit = { id: string; field: string; description: string; detail: string; hard: boolean };
 
 // a founder cannot post over these: platform caps, required shapes, the banned verb, a link where none is allowed
-const HARD_KINDS = new Set(["max_chars", "max_words", "required_prefix", "max_count"]);
+const HARD_KINDS = new Set(["max_chars", "max_words", "required_prefix", "required_regex", "max_count"]);
 const HARD_IDS = /banned_verb|brand_banned|s_word|raw_links|raw_urls|url_in_body|link_present|link_once|url_at_most_once|url_max_once|vote_ask|vote_or_reciprocity|no_dash|no_dashes/;
 
-/** What a max_count check counts in a string field: placeholders, raw links, paragraph breaks, else hashtags. */
-function countIn(id: string, text: string): number {
+/** What a max_count check counts in a string field: placeholders, raw links, paragraph breaks, the product's name, else hashtags. */
+function countIn(id: string, text: string, data: AssetData): number {
   if (/url/.test(id)) return (text.match(/\{APP_URL\}/g) ?? []).length;
   if (/raw_links/.test(id)) return (text.match(/https?:\/\//g) ?? []).length;
   // a line that is only the link (the Show HN shape puts {APP_URL} on its own line) is not a paragraph
   if (/paragraph/.test(id)) return (text.replace(/\n[ \t]*(\{APP_URL\}|https?:\/\/\S+)[ \t]*(?=\n)/g, "").match(/\n[ \t]*\n/g) ?? []).length;
+  if (/product_name/.test(id)) {
+    // the mention ladder counts how often the product is named; with no name stamped the check cannot fire
+    const name = pyStr(pyGet(data, "app_name", "")).trim();
+    if (!name) return 0;
+    const pat = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
+    return (text.match(pat) ?? []).length;
+  }
   return (text.match(/#\w+/g) ?? []).length;
 }
 
@@ -167,12 +177,29 @@ export function runRulebookCheckHits(assetType: string, data: AssetData): CheckH
   const checks: RuleCheck[] = RULEBOOK_CHECKS[assetType] ?? [];
   const out: CheckHit[] = [];
   const push = (c: RuleCheck, field: string, detail: string) =>
-    out.push({ id: c.id, field, description: c.description, detail, hard: HARD_KINDS.has(c.kind) || HARD_IDS.test(c.id) });
+    out.push({ id: c.id, field, description: c.description, detail, hard: c.hard ?? (HARD_KINDS.has(c.kind) || HARD_IDS.test(c.id)) });
   for (const c of checks) {
     const n = Number(c.value);
+    // a check scoped to one venue (an r/SideProject title shape, an r/MachineLearning prefix) runs only there
+    if (c.when) {
+      const gv = pyStr(pyGet(data, c.when.field, ""));
+      let applies = false;
+      try { applies = new RegExp(c.when.regex, "i").test(gv); } catch { applies = false; }
+      if (!applies) continue;
+    }
+    if (c.kind === "required_regex") {
+      // the first entry of the field must match: warnings[1] is the model's first line, a string field is itself
+      const [first] = fieldsOf(data, c.field);
+      let ok = false;
+      if (first) {
+        try { ok = new RegExp(c.value, c.flags ?? "").test(first[1]); } catch { ok = true; }
+      }
+      if (!ok) push(c, first ? first[0] : c.field, first ? `starts "${first[1].slice(0, 40)}"` : "empty");
+      continue;
+    }
     if (c.kind === "max_count") {
       const v = (data as Record<string, unknown>)[c.field];
-      const count = Array.isArray(v) ? v.length : typeof v === "string" ? countIn(c.id, v) : 0;
+      const count = Array.isArray(v) ? v.length : typeof v === "string" ? countIn(c.id, v, data) : 0;
       if (Number.isFinite(n) && count > n) push(c, c.field, `${count}, cap ${n}`);
       continue;
     }

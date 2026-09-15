@@ -1,0 +1,72 @@
+/**
+ * The slop lexicon: AI-tell words and phrases with a plain replacement that
+ * keeps the meaning and the grammar. Distilled from li-human's slop.json
+ * (Jakeschincariol/linkedin-agent-skill, MIT) for rulebook v4; the entries
+ * with no safe drop-in replacement (a deletion, a hype word that needs a
+ * rewrite, a word with a developer sense such as unlock or landscape) stay as
+ * the slop_lexicon warning check in lib/rulebook-checks.ts instead.
+ *
+ * Order matters: the longest term wins, so "delve into" is replaced before
+ * "delve" and "plethora of" before "plethora".
+ */
+export const SLOP_SWAPS: ReadonlyArray<readonly [string, string]> = [
+  ['in the ever-evolving landscape of', 'in'],
+  ['in the ever-changing world of', 'in'],
+  ['in today\'s fast-paced world', 'right now'],
+  ['it is worth noting that', 'note that'],
+  ['in today\'s digital age', 'right now'],
+  ['had the opportunity to', 'got to'],
+  ['when it comes to', 'with'],
+  ['a wide range of', 'many'],
+  ['dive deep into', 'get into'],
+  ['a testament to', 'proof of'],
+  ['comprehensive', 'complete'],
+  ['in conclusion', 'so'],
+  ['needle-moving', 'useful'],
+  ['meticulously', 'carefully'],
+  ['testament to', 'proof of'],
+  ['additionally', 'also'],
+  ['nevertheless', 'still'],
+  ['consequently', 'so'],
+  ['cornerstone', 'base'],
+  ['plethora of', 'lots of'],
+  ['furthermore', 'also'],
+  ['in order to', 'to'],
+  ['delve into', 'look at'],
+  ['leveraging', 'using'],
+  ['streamline', 'simplify'],
+  ['invaluable', 'useful'],
+  ['meticulous', 'careful'],
+  ['innovative', 'new'],
+  ['remarkable', 'notable'],
+  ['compelling', 'convincing'],
+  ['deep dive', 'breakdown'],
+  ['utilizing', 'using'],
+  ['embark on', 'start'],
+  ['spearhead', 'lead'],
+  ['cultivate', 'build'],
+  ['myriad of', 'many'],
+  ['leverage', 'use'],
+  ['showcase', 'show'],
+  ['profound', 'big'],
+  ['tapestry', 'mix'],
+  ['plethora', 'lots'],
+  ['moreover', 'also'],
+  ['utilize', 'use'],
+  ['elevate', 'improve'],
+  ['amplify', 'boost'],
+  ['curated', 'picked'],
+  ['pivotal', 'key'],
+  ['crucial', 'important'],
+  ['bespoke', 'custom'],
+  ['synergy', 'overlap'],
+  ['arsenal', 'set'],
+  ['foster', 'build'],
+  ['curate', 'pick'],
+  ['myriad', 'many'],
+  ['delve', 'look'],
+  ['vital', 'important'],
+  ['realm', 'world'],
+  ['hence', 'so'],
+  ['thus', 'so'],
+];
