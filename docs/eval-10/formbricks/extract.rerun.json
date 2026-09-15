@@ -1,0 +1,1534 @@
+{
+ "slug": "formbricks",
+ "name": "Formbricks",
+ "site": "https://formbricks.com",
+ "repo": "https://github.com/formbricks/formbricks",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 77,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 150,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 286,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 295,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 218,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 112,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 550,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Open-source experience management platform for in-app, website, link & email surveys, privacy-first and self-hostable for product teams.",
+   "description": "Formbricks is an open-source, privacy-first experience management platform that lets product and research teams run surveys across every user touchpoint, in-app, on websites, via link, and in email. It combines a no-code survey editor with granular audience segmentation, integrations (Slack, Zapier, n8n, Notion), and a full API, all deployable on your own infrastructure under AGPLv3. Teams can use the managed cloud or self-host for complete data ownership and GDPR compliance.",
+   "category": "Survey & User Research",
+   "target_user": "Product manager or UX researcher at a privacy-conscious SaaS or digital product company who needs continuous user feedback without vendor lock-in",
+   "icp": {
+    "who": "Mid-market to enterprise SaaS product teams (10-500 employees) with a developer on staff, operating in GDPR-regulated markets or with strict data-residency requirements",
+    "pain": "Qualtrics and SurveyMonkey are expensive, lock data in vendor clouds, and lack in-product targeting; Typeform is pretty but has no self-hosting or segmentation; teams end up with fragmented feedback across tools with no unified view",
+    "current_alternatives": [
+     "Qualtrics",
+     "SurveyMonkey",
+     "Typeform",
+     "Hotjar Surveys",
+     "Pendo Feedback"
+    ],
+    "buying_trigger": "A data-privacy audit, GDPR compliance requirement, or Qualtrics renewal sticker shock forces the team to find a self-hostable, open-source alternative with comparable in-app survey capabilities"
+   },
+   "differentiators": [
+    "Fully open source (AGPLv3) and self-hostable via Docker, no vendor lock-in, complete data ownership (README.md, formbricks.com)",
+    "Multi-channel survey delivery in one platform: in-app, website, link, and email surveys with event-based targeting and attribute segmentation (README.md, formbricks.com)",
+    "Privacy-first infrastructure: GDPR/CCPA-compliant cloud hosted in Frankfurt, Germany, with self-hosting option for full data residency control (formbricks.com/pricing)",
+    "Generous free tier (250 responses/month) plus self-hosted free tier under AGPLv3, no credit card required to start (formbricks.com/pricing)"
+   ],
+   "proof_points": [
+    "12,928 GitHub stars and 2,514 forks as of September 2026 (github.com/formbricks/formbricks)",
+    "455 upvotes on Product Hunt and 122 points on Hacker News (README.md badges)",
+    "Selected for GitHub Accelerator 2023 cohort (README.md badge linking to github.blog)",
+    "Testimonial: 'We run NPS surveys for several products with Formbricks. It's open source and the team lays a strong focus on keeping user data secure and compliant - definitely recommended!', Marius Cristea, CTO @ ThemeIsle (formbricks.com homepage and /pricing)",
+    "Testimonial: 'Formbricks proves that open source surveys can be both powerful and user-friendly.', Jonathan Reimer, VP Developer Products @ Linux Foundation (formbricks.com homepage and /pricing)",
+    "Testimonial: 'I've been looking for an open source XM solution for a while. Super happy to see Formbricks building it!', Peer Richelsen, Co-founder @ Cal.com (formbricks.com homepage and /pricing)",
+    "Client logos shown include Siemens, IKEA, GitHub, Ethereum, FlixBus, Cal.com, Avito, University of Copenhagen (formbricks.com homepage)",
+    "G2, TrustPilot, and Product Hunt review badges displayed on homepage and pricing page (formbricks.com)",
+    "Version 5.3 released, active development with changelog entry (formbricks.com banner)"
+   ],
+   "tech_stack": [
+    "TypeScript",
+    "Next.js",
+    "React",
+    "TailwindCSS",
+    "Prisma",
+    "Auth.js",
+    "Zod",
+    "Vitest",
+    "Docker",
+    "PostgreSQL"
+   ],
+   "pricing_current": "Hobby: Free (1 workspace, 250 responses/month, cloud hosted in Frankfurt). Pro: $74/month (3 workspaces, 2,000 responses/month, unlimited seats, integrations, iOS/Android SDKs, AI translations, 14-day free trial). Scale: $325/month (5 workspaces, 5,000 responses/month, teams & roles, workflows, enterprise add-ons). Self-hosting: Free under AGPLv3; Enterprise license key required for advanced self-hosted features (contact sales). Annual billing available (2 months free).",
+   "voice": {
+    "tone": [
+     "direct",
+     "mission-driven",
+     "developer-friendly",
+     "privacy-conscious",
+     "approachable"
+    ],
+    "sample_phrase": "Life's too short for mediocre UX."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "Version 5.3 released with active changelog (formbricks.com)",
+     "12,928 GitHub stars and 2,514 forks indicating large active community",
+     "Enterprise customers including Siemens, IKEA, GitHub, FlixBus shown on homepage",
+     "Three-tier paid pricing (Hobby/Pro/Scale) plus enterprise sales motion",
+     "GitHub Accelerator 2023 alumni",
+     "211 open issues indicating active product development and community engagement"
+    ]
+   },
+   "gaps": [
+    "No demo video found, only interactive survey flow examples embedded in homepage; a recorded product walkthrough is absent",
+    "G2 and TrustPilot logos are shown but no numeric scores or review counts are visible on the scraped pages, social proof strength cannot be verified",
+    "Enterprise/Scale pricing requires contacting sales for full feature details; no self-serve enterprise pricing table",
+    "No published case studies with quantified ROI or response-rate benchmarks found on the site",
+    "No screenshots of the survey analytics/insights dashboard visible in scraped content, key differentiator not shown"
+   ],
+   "confidence": {
+    "overall": 0.9,
+    "notes": "All sources read successfully. High confidence: repo README, homepage, and pricing page all scraped cleanly. Minor uncertainty on exact G2/TrustPilot scores (logos shown but numbers not in scraped text) and enterprise pricing details (contact-sales gated)."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Full README with features, tech stack, license, badges"
+    },
+    {
+     "source": "https://github.com/formbricks/formbricks",
+     "via": "github",
+     "ok": true,
+     "note": "Repo metadata: stars, forks, language, dates"
+    },
+    {
+     "source": "https://formbricks.com",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Homepage: tagline, clients, testimonials, features"
+    },
+    {
+     "source": "https://formbricks.com/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Full pricing tiers: Hobby free, Pro $74, Scale $325"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Formbricks",
+   "tagline_observed": "The Open Source Experience Management Platform",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "mission-driven",
+     "privacy-conscious",
+     "open",
+     "approachable"
+    ],
+    "sentence_style": "Short declaratives and second-person imperatives, technical vocabulary used without over-explanation, no marketing fluff",
+    "vocabulary": [
+     "open source",
+     "privacy-first",
+     "experience management",
+     "self-hosting",
+     "data ownership",
+     "GDPR compliant",
+     "in-product surveys",
+     "segmentation",
+     "open source XM",
+     "no credit card required"
+    ],
+    "avoid": [
+     "vendor lock-in buzzwords",
+     "vague superlatives not grounded in evidence",
+     "enterprise jargon without context",
+     "passive voice",
+     "invented metrics or unnamed social proof"
+    ],
+    "evidence_quotes": [
+     "The Open Source Experience Management Platform",
+     "A privacy-first Experience Management suite built on the largest open source survey platform worldwide",
+     "Gather feedback on websites, apps and everywhere else to understand what your customers need",
+     "Formbricks proves that open source surveys can be both powerful and user-friendly"
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Own your data with full privacy, self-host under AGPLv3 or use the GDPR-compliant cloud hosted in Frankfurt",
+     "Gather feedback across every touchpoint: in-app, website, link, and email surveys in one platform",
+     "Open source with a generous free tier, no credit card required to start",
+     "Built for teams that need audience segmentation, integrations, and a full API without vendor lock-in"
+    ],
+    "key_messages": [
+     "The Open Source Experience Management Platform",
+     "A privacy-first Experience Management suite built on the largest open source survey platform worldwide",
+     "Gather feedback on websites, apps and everywhere else to understand what your customers need",
+     "Try all Pro features free for 14 days. No credit card required. Dive right in.",
+     "It's open source and the team lays a strong focus on keeping user data secure and compliant"
+    ],
+    "proof_points_observed": [
+     "Testimonial: 'We run NPS surveys for several products with Formbricks. It's open source and the team lays a strong focus on keeping user data secure and compliant - definitely recommended!', Marius Cristea, CTO @ ThemeIsle",
+     "Testimonial: 'Formbricks proves that open source surveys can be both powerful and user-friendly.', Jonathan Reimer, VP Developer Products @ Linux Foundation",
+     "Testimonial: 'I've been looking for an open source XM solution for a while. Super happy to see Formbricks building it!', Peer Richelsen, Co-founder @ Cal.com",
+     "Client logos displayed: Siemens, IKEA, GitHub, Ethereum, FlixBus, Cal.com, Avito, University of Copenhagen",
+     "G2, TrustPilot, and Product Hunt review badges shown on homepage and pricing page",
+     "Formbricks 5.3 changelog banner active on site",
+     "Hosted in Frankfurt, Germany (stated on pricing page)"
+    ]
+   },
+   "visual": {
+    "colors": [
+     {
+      "value": "#00C4B8",
+      "role": "primary",
+      "evidence": "meta theme-color and msapplication-TileColor in page metadata"
+     },
+     {
+      "value": "#ffffff",
+      "role": "background",
+      "evidence": "meta theme-color in page metadata"
+     },
+     {
+      "value": "#002941",
+      "role": "accent",
+      "evidence": "msapplication-TileColor in page metadata"
+     }
+    ],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links observed"
+    },
+    "imagery_style": "screenshots",
+    "logo_url": ""
+   },
+   "audience_language": "Speaks directly to privacy-conscious product managers and developers using technical terms like self-hosting, GDPR, API, and segmentation without over-explaining them",
+   "dos_and_donts": {
+    "do": [
+     "Use 'open source' and 'privacy-first' as core identity anchors",
+     "Reference data ownership and GDPR compliance when addressing enterprise or regulated-market audiences",
+     "Lead with direct CTAs and concrete feature names (in-product surveys, segmentation, self-hosting)",
+     "Cite real testimonials and named client logos as social proof",
+     "Offer a no-credit-card-required entry point prominently"
+    ],
+    "dont": [
+     "Invent metrics, user counts, or review scores not visible on the site",
+     "Use vague adjectives (modern, clean, innovative) not present in site copy",
+     "Imply proprietary or closed-source positioning",
+     "Bury the self-hosting option, it is a primary differentiator",
+     "Use passive or hedging language that undercuts the direct, mission-driven tone"
+    ]
+   },
+   "sources_read": [
+    "https://formbricks.com",
+    "https://formbricks.com/pricing",
+    "https://formbricks.com/blog"
+   ],
+   "confidence": {
+    "overall": 0.72,
+    "notes": "Colors extracted from meta tags only (theme-color, msapplication-TileColor); scrape returned markdown so no CSS variables, inline styles, or font-family declarations were observed, typography fields left empty and colors may not reflect full palette. No Formbricks own logo img URL found in scraped content (all image alt texts reference client logos). Blog page scraped for brand identity signals but contained mostly article listings. G2 and TrustPilot numeric scores not visible in scraped text."
+   }
+  },
+  "angles": [
+   {
+    "name": "Show HN: Own Your Feedback",
+    "objective": "awareness, drive developer discovery and GitHub stars by posting authentically on Hacker News",
+    "big_idea": "A Show HN post written in Formbricks' direct, open-source voice that explains the self-hosting story, the GDPR motivation, and the AGPLv3 license. It leads with the problem (vendor lock-in, data leaving your infrastructure) and lets the proof points, 12,928 GitHub stars, GitHub Accelerator 2023, named enterprise logos, speak without hype. The post invites technical feedback and positions the team as builders, not marketers.",
+    "hook": "We built an open-source experience management platform because we were tired of feedback data living in someone else's cloud.",
+    "channels": [
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "Number of new GitHub stars in the 48 hours after posting"
+   },
+   {
+    "name": "r/selfhosted Drop",
+    "objective": "signups, convert self-hosting enthusiasts into active Hobby or self-hosted users by meeting them where they already discuss privacy-first tools",
+    "big_idea": "A genuine, non-promotional post in r/selfhosted and r/devops that shares the Docker self-hosting setup, explains the AGPLv3 license, and invites the community to ask questions. The mechanic is community participation, not advertising, the builder answers questions, shares the docker-compose snippet, and links to docs. A follow-up comment links to the free tier.",
+    "hook": "Self-hosted NPS and in-app surveys with full data ownership, here's how we set it up with Docker.",
+    "channels": [
+     "Reddit (r/selfhosted, r/devops)"
+    ],
+    "effort": "small",
+    "success_metric": "Number of self-hosted signups or Docker pulls in the week after posting"
+   },
+   {
+    "name": "GDPR Renewal Season",
+    "objective": "signups, capture product managers and compliance leads actively searching for Qualtrics or SurveyMonkey alternatives during budget and audit cycles",
+    "big_idea": "A LinkedIn post series timed to Q1 and Q4 (common renewal and audit periods) that speaks directly to the pain of feedback data living in a US vendor cloud. Each post is a short, direct take on one aspect of data residency, GDPR compliance, or vendor lock-in, no fluff, just the concrete alternative. The series ends with a CTA to the free Hobby tier.",
+    "hook": "Your survey data is sitting in a US data center. Your DPA says it shouldn't be.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "Click-throughs to formbricks.com/pricing from LinkedIn UTM link over a 30-day run"
+   },
+   {
+    "name": "Product Hunt v5.3 Launch",
+    "objective": "signups, generate a ranked Product Hunt listing that drives a spike in free-tier signups and surfaces Formbricks to PMs and founders browsing alternatives",
+    "big_idea": "A Product Hunt launch built around the v5.3 milestone, framed as 'the open-source XM platform that gives your data back to you.' The listing leads with the free tier, the self-hosting option, and the named enterprise logos. The maker comment is written in the same direct voice as the site, no hype, just what it does and why it was built.",
+    "hook": "Open-source experience management, self-host it, own your data, start free.",
+    "channels": [
+     "Product Hunt"
+    ],
+    "effort": "medium",
+    "success_metric": "Product Hunt upvote count and number of new Hobby-tier signups on launch day"
+   },
+   {
+    "name": "Privacy-First Newsletter Pitch",
+    "objective": "awareness, place Formbricks in front of privacy-conscious product and developer audiences via curated newsletters that already trust open-source tools",
+    "big_idea": "A short, direct pitch to newsletters like TLDR, Console.dev, Changelog, and Privacy Weekly that frames Formbricks as the open-source answer to the feedback-data problem. The pitch is one paragraph, written in the brand's voice, and leads with the self-hosting angle and the GitHub star count as credibility. No press release format, just a builder talking to an editor.",
+    "hook": "Most survey tools send your users' feedback to a third-party cloud. Formbricks doesn't have to.",
+    "channels": [
+     "Email (newsletter pitches)"
+    ],
+    "effort": "small",
+    "success_metric": "Number of newsletter placements secured and referral traffic from newsletter UTM links in 60 days"
+   }
+  ],
+  "chosen": [
+   "Show HN: Own Your Feedback"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Typeform",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Basic",
+      "price": "$39",
+      "period": "month",
+      "key_limits": "100 responses/mo, 1 user"
+     },
+     {
+      "name": "Plus",
+      "price": "$79",
+      "period": "month",
+      "key_limits": "1,000 responses/mo, 3 users"
+     },
+     {
+      "name": "Business",
+      "price": "$129",
+      "period": "month",
+      "key_limits": "10,000 responses/mo, 5 users"
+     }
+    ]
+   },
+   {
+    "name": "SurveyMonkey",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Team Advantage",
+      "price": "not scraped",
+      "period": "year",
+      "key_limits": "3+ users, 50,000 responses/yr"
+     },
+     {
+      "name": "Team Premier",
+      "price": "not scraped",
+      "period": "year",
+      "key_limits": "3+ users, 100,000 responses/yr"
+     },
+     {
+      "name": "Enterprise",
+      "price": "custom",
+      "period": "year",
+      "key_limits": "5+ users, custom response limit"
+     }
+    ]
+   },
+   {
+    "name": "Qualtrics",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "All plans",
+      "price": "Request pricing",
+      "period": "custom",
+      "key_limits": "No public tiers; enterprise sales only"
+     }
+    ]
+   },
+   {
+    "name": "Hotjar Surveys",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   },
+   {
+    "name": "Pendo",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "All plans",
+      "price": "Custom",
+      "period": "custom",
+      "key_limits": "Enterprise pricing, no public tiers"
+     }
+    ]
+   }
+  ],
+  "rejected": [
+   {
+    "name": "Contentsquare",
+    "url": "https://contentsquare.com/pricing/",
+    "why": "hotjar.com redirected here; different product, experience analytics not surveys"
+   },
+   {
+    "name": "SaaS Playbooks article",
+    "url": "https://saasplaybooks.com/10-best-in-app-feedback-tools-guide-2024/",
+    "why": "Listicle aggregator page, not a competing product"
+   },
+   {
+    "name": "Instabug",
+    "url": "https://www.instabug.com",
+    "why": "Mobile bug and crash reporting tool, not a survey platform"
+   },
+   {
+    "name": "Survicate",
+    "url": "https://www.survicate.com",
+    "why": "Single mention in one listicle; could not establish independent standing"
+   },
+   {
+    "name": "Delighted",
+    "url": "https://www.delighted.com",
+    "why": "Single mention; niche NPS tool, not a full survey platform"
+   },
+   {
+    "name": "Userback",
+    "url": "https://www.userback.io",
+    "why": "Visual bug feedback tool, not a survey platform; single mention"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium + subscription (cloud) + free self-hosted tier",
+   "tiers": [
+    {
+     "name": "Hobby",
+     "price_usd_month": 0,
+     "who_its_for": "Individual developers and small teams evaluating the product",
+     "includes": [
+      "250 responses/mo",
+      "1 workspace",
+      "Cloud hosted Frankfurt",
+      "No credit card required"
+     ],
+     "rationale": "Matches Typeform free; generous enough to prove value without giving away the farm"
+    },
+    {
+     "name": "Pro",
+     "price_usd_month": 79,
+     "who_its_for": "Product teams needing continuous in-app feedback with privacy controls",
+     "includes": [
+      "2,000 responses/mo",
+      "3 workspaces",
+      "Unlimited seats",
+      "Integrations + SDKs",
+      "14-day trial"
+     ],
+     "rationale": "$5 above current $74; anchors below Typeform Plus ($79) while offering unlimited seats vs Typeform per-seat"
+    },
+    {
+     "name": "Scale",
+     "price_usd_month": 299,
+     "who_its_for": "Mid-market teams with compliance needs and multiple products",
+     "includes": [
+      "10,000 responses/mo",
+      "5 workspaces",
+      "Teams and roles",
+      "Workflows",
+      "Priority support"
+     ],
+     "rationale": "Drop from $325 to $299; matches Typeform Business response volume at 2.3x price, justified by unlimited seats and self-hosting option"
+    },
+    {
+     "name": "Self-Hosted",
+     "price_usd_month": 0,
+     "who_its_for": "Engineering teams with strict data-residency or air-gap requirements",
+     "includes": [
+      "Unlimited responses",
+      "AGPLv3 license",
+      "Full data ownership",
+      "Community support"
+     ],
+     "rationale": "Unique differentiator vs all established competitors; no comparable free self-hosted option exists at Typeform or SurveyMonkey"
+    }
+   ],
+   "anchor_competitors": [
+    "Typeform"
+   ],
+   "positioning_note": "Price Pro below Typeform Plus while offering unlimited seats; self-hosted free tier is a category-defining differentiator no established competitor matches.",
+   "risks": [
+    "Scale tier at $299 is expensive per-response vs Typeform Business ($129 for 10k); must justify with unlimited seats and compliance story",
+    "Self-hosted free tier cannibalizes cloud revenue; enterprise license upsell must convert self-hosters",
+    "SurveyMonkey individual plan prices not scraped; actual competitive gap unknown"
+   ]
+  },
+  "options": [
+   {
+    "name": "Freemium Cloud plus Free Self-Hosted",
+    "billing": "free plus paid tiers",
+    "positioning": "Pro at $79/month sits at Typeform Plus price while offering unlimited seats instead of per-seat limits; Scale at $299/month is above Typeform Business ($129) but justified by unlimited seats, compliance features, and self-hosting option; annual billing gives two months free.",
+    "tiers": [
+     {
+      "name": "Hobby",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers and small teams evaluating the product",
+      "includes": [
+       "250 responses/mo",
+       "1 workspace",
+       "Cloud hosted Frankfurt",
+       "No credit card required"
+      ]
+     },
+     {
+      "name": "Pro",
+      "price_usd_month": 79,
+      "who_its_for": "Product teams needing continuous in-app feedback with privacy controls",
+      "includes": [
+       "2,000 responses/mo",
+       "3 workspaces",
+       "Unlimited seats",
+       "Integrations and SDKs",
+       "14-day trial"
+      ]
+     },
+     {
+      "name": "Scale",
+      "price_usd_month": 299,
+      "who_its_for": "Mid-market teams with compliance needs and multiple products",
+      "includes": [
+       "10,000 responses/mo",
+       "5 workspaces",
+       "Teams and roles",
+       "Workflows and priority support"
+      ]
+     },
+     {
+      "name": "Self-Hosted",
+      "price_usd_month": 0,
+      "who_its_for": "Engineering teams with strict data-residency or air-gap requirements",
+      "includes": [
+       "Unlimited responses",
+       "AGPLv3 license",
+       "Full data ownership",
+       "Community support"
+      ]
+     }
+    ],
+    "market_rate_note": "Pro matches Typeform Plus at $79/month; Scale at $299 is 2.3x Typeform Business ($129) and must be justified by unlimited seats and compliance story.",
+    "revenue_at": {
+     "10": 1190,
+     "50": 5950,
+     "200": 23800
+    },
+    "when_to_pick": "Pick this when the priority is maximising top-of-funnel adoption through the free and self-hosted tiers while converting compliance-driven teams to cloud paid plans."
+   },
+   {
+    "name": "Annual Subscription with Discount",
+    "billing": "annual subscription",
+    "positioning": "Pro billed at $790/year ($66/month equivalent) and Scale billed at $2,990/year ($249/month equivalent), each saving roughly two months versus monthly; targets procurement-driven buyers who commit annually and want a lower effective monthly rate.",
+    "tiers": [
+     {
+      "name": "Hobby",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals and small teams evaluating before committing",
+      "includes": [
+       "250 responses/mo",
+       "1 workspace",
+       "Cloud hosted Frankfurt",
+       "No credit card required"
+      ]
+     },
+     {
+      "name": "Pro Annual",
+      "price_usd_month": 66,
+      "who_its_for": "Product teams ready to commit annually for a lower effective rate",
+      "includes": [
+       "2,000 responses/mo",
+       "3 workspaces",
+       "Unlimited seats",
+       "Integrations and SDKs"
+      ]
+     },
+     {
+      "name": "Scale Annual",
+      "price_usd_month": 249,
+      "who_its_for": "Mid-market compliance teams on annual procurement cycles",
+      "includes": [
+       "10,000 responses/mo",
+       "5 workspaces",
+       "Teams and roles",
+       "Workflows and priority support"
+      ]
+     }
+    ],
+    "market_rate_note": "Pro Annual at $66/month equivalent is below Typeform Plus ($79/month); Scale Annual at $249/month equivalent is above Typeform Business ($129/month) but includes unlimited seats.",
+    "revenue_at": {
+     "10": 1575,
+     "50": 7875,
+     "200": 31500
+    },
+    "when_to_pick": "Pick this when the sales motion targets mid-market procurement teams who prefer annual invoices and when reducing monthly churn is more important than maximising new trial starts."
+   },
+   {
+    "name": "Higher-Positioned Team Tiers",
+    "billing": "monthly subscription",
+    "positioning": "Two paid tiers priced above Typeform, targeting teams that value unlimited seats and GDPR compliance over response-count economics; no free cloud tier to signal premium positioning, though self-hosted remains free under AGPLv3.",
+    "tiers": [
+     {
+      "name": "Team",
+      "price_usd_month": 129,
+      "who_its_for": "Product and research teams needing multi-channel surveys with compliance",
+      "includes": [
+       "5,000 responses/mo",
+       "5 workspaces",
+       "Unlimited seats",
+       "Integrations, SDKs, and AI translations"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 399,
+      "who_its_for": "Mid-market teams with audit requirements and multiple product lines",
+      "includes": [
+       "25,000 responses/mo",
+       "10 workspaces",
+       "Teams, roles, and workflows",
+       "Priority support and SLA"
+      ]
+     }
+    ],
+    "market_rate_note": "Team at $129/month matches Typeform Business price but offers far more responses and unlimited seats; Business at $399/month is above all read Typeform tiers and is unanchored against SurveyMonkey and Qualtrics whose prices were not scraped.",
+    "revenue_at": {
+     "10": 2640,
+     "50": 13200,
+     "200": 52800
+    },
+    "when_to_pick": "Pick this when the goal is higher average contract value from fewer, larger customers and the free self-hosted tier is relied upon to handle individual and small-team demand."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "good",
+    "why": "Product teams use Formbricks continuously for ongoing feedback loops, making recurring monthly billing natural, and both Typeform and SurveyMonkey use this model."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "good",
+    "why": "Formbricks already offers annual billing with two months free, and mid-market SaaS buyers on compliance-driven procurement cycles prefer annual contracts."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Continuous survey delivery, response quotas, and cloud hosting create ongoing costs that a one-time price cannot sustain."
+   },
+   {
+    "model": "usage-based",
+    "fit": "possible",
+    "why": "Response volume is a natural usage metric, but unpredictable monthly bills would deter the privacy-conscious, budget-controlled teams Formbricks targets."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "A generous free tier and a free self-hosted option are core to Formbricks' open-source go-to-market, matching the freemium model used by Typeform and aligning with how developer-led products build community before converting to paid."
+   }
+  ],
+  "market_rate": "Typeform, the only established competitor with fully scraped pricing, charges $39/month for 100 responses, $79/month for 1,000 responses, and $129/month for 10,000 responses. SurveyMonkey's individual plan prices were blocked by a cookie wall and could not be read; only team plan feature names were obtained. Qualtrics publishes no public pricing and sells enterprise-only. The going rate for a mid-market survey platform with response quotas and integrations is roughly $75 to $130 per month for teams needing 1,000 to 10,000 responses, anchored on Typeform's read tiers.",
+  "confidence": {
+   "overall": 0.82,
+   "notes": "3 established competitors confirmed (Typeform, SurveyMonkey, Qualtrics). Typeform pricing fully scraped. SurveyMonkey individual plan prices blocked by cookie wall; team plan features only. Qualtrics has no public pricing. Hotjar pricing not obtained (redirect to Contentsquare). Recommendation anchored solely on Typeform scraped data; SurveyMonkey and Qualtrics price anchors unavailable."
+  },
+  "selected_pricing": {
+   "model": "freemium + subscription (cloud) + free self-hosted tier",
+   "option": "Freemium Cloud plus Free Self-Hosted",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Hobby",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Individual developers and small teams evaluating the product",
+     "includes": [
+      "250 responses/mo",
+      "1 workspace",
+      "Cloud hosted Frankfurt",
+      "No credit card required"
+     ]
+    },
+    {
+     "name": "Pro",
+     "price_usd_month": 79,
+     "included": true,
+     "who_its_for": "Product teams needing continuous in-app feedback with privacy controls",
+     "includes": [
+      "2,000 responses/mo",
+      "3 workspaces",
+      "Unlimited seats",
+      "Integrations and SDKs",
+      "14-day trial"
+     ]
+    },
+    {
+     "name": "Scale",
+     "price_usd_month": 299,
+     "included": true,
+     "who_its_for": "Mid-market teams with compliance needs and multiple products",
+     "includes": [
+      "10,000 responses/mo",
+      "5 workspaces",
+      "Teams and roles",
+      "Workflows and priority support"
+     ]
+    },
+    {
+     "name": "Self-Hosted",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Engineering teams with strict data-residency or air-gap requirements",
+     "includes": [
+      "Unlimited responses",
+      "AGPLv3 license",
+      "Full data ownership",
+      "Community support"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Typeform"
+   ],
+   "chosen_at": "2026-09-11T08:28:05.734Z"
+  },
+  "listing": {
+   "title": "Formbricks, Open-Source Survey Platform",
+   "tagline": "In-app, website & email surveys. Your data, your server.",
+   "description_short": "Run NPS, CSAT & research surveys across every touchpoint. Self-hostable, GDPR-ready, open source. Free tier included, no credit card needed.",
+   "description_long": "**Formbricks** is the open-source experience management platform built for product and research teams who refuse to hand their user data to a vendor cloud.\n\nRun surveys **everywhere your users are**, inside your app, on your website, via shareable links, or in email, all from one no-code editor. Granular event-based targeting and attribute segmentation mean you ask the right person at the right moment, not everyone at once.\n\n**Why teams switch to Formbricks:**\n- **Full data ownership.** Self-host on your own infrastructure via Docker (AGPLv3) or use the managed cloud hosted in Frankfurt, Germany, GDPR and CCPA compliant by design.\n- **No vendor lock-in.** Everything is open source with a full REST API, Slack, Zapier, n8n, and Notion integrations built in.\n- **Trusted at scale.** 12,900+ GitHub stars, used by teams at Siemens, IKEA, GitHub, and FlixBus. Selected for GitHub Accelerator 2023.\n- **Start free.** 250 responses/month on the cloud free tier, unlimited self-hosted responses under AGPLv3.\n\nPro plans start at $74/month for 2,000 responses and unlimited seats. Scale plans at $325/month add team roles, workflows, and enterprise add-ons. Annual billing saves two months.\n\nLife's too short for mediocre UX, or for surveys that leak your users' data.",
+   "keywords": [
+    "open source survey tool",
+    "self-hosted survey platform",
+    "in-app survey",
+    "GDPR survey software",
+    "NPS survey open source",
+    "user research platform",
+    "product feedback tool",
+    "Typeform alternative self-hosted",
+    "Qualtrics alternative open source",
+    "experience management platform",
+    "privacy-first survey",
+    "user feedback SaaS",
+    "survey segmentation tool",
+    "no-code survey builder"
+   ],
+   "screenshot_order": [
+    "1st: Multi-channel survey builder UI showing in-app, website, link and email tabs side-by-side, proves the core differentiator immediately and answers 'what does it do'",
+    "2nd: Audience segmentation panel with event triggers and attribute filters, shows targeting depth that Typeform and SurveyMonkey lack, key for ICP",
+    "3rd: Self-hosting / Docker setup screen or GDPR data-residency settings, confirms privacy-first claim and closes the compliance objection for regulated-market buyers"
+   ],
+   "faq": [
+    {
+     "q": "Do I have to pay to self-host Formbricks?",
+     "a": "No. The core platform is free under AGPLv3. An enterprise license key is required only for advanced self-hosted features; contact sales for details."
+    },
+    {
+     "q": "How does Formbricks handle GDPR compliance?",
+     "a": "The managed cloud runs in Frankfurt, Germany. Self-hosting gives you full data residency on your own infrastructure. Both options are GDPR and CCPA compliant by design."
+    },
+    {
+     "q": "Can non-developers use Formbricks?",
+     "a": "Yes. The no-code survey editor and audience segmentation require no coding. A developer is needed only for self-hosting setup or SDK integration."
+    },
+    {
+     "q": "What integrations are available?",
+     "a": "Slack, Zapier, n8n, Notion, and a full REST API. iOS and Android SDKs are included on Pro and above."
+    },
+    {
+     "q": "How is Formbricks different from Typeform or SurveyMonkey?",
+     "a": "Formbricks is open source, self-hostable, and built for in-product targeting with event and attribute segmentation, features neither Typeform nor SurveyMonkey offer."
+    }
+   ],
+   "cta": "Start free, no credit card required",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.88,
+    "notes": "APP_PROFILE is high-quality and fully scraped. Minor uncertainty: G2/TrustPilot numeric scores not confirmed in scraped text so not cited; enterprise Scale feature list is contact-sales gated so description stays general. No CURRENT_LISTING provided so no diff possible."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "post": "We built Formbricks because feedback data kept ending up in vendor clouds we did not control. Self-host under AGPLv3, run surveys in-app, on websites, via link and email, one platform. 12,928 GitHub stars.\n{APP_URL}",
+    "thread_extension": [
+     "The core problem: for teams in GDPR-regulated markets, response data living in someone else's infrastructure is not a trade-off you can make. So we built the self-hosting path first, not as an afterthought.",
+     "Formbricks covers every touchpoint from one editor: in-app surveys triggered by user events, website widgets, shareable links, and email embeds. Audience segmentation and attribute filters work across all of them.",
+     "The managed cloud runs in Frankfurt, Germany. If you need full data residency, Docker deploy takes one command. The AGPLv3 license means the code stays open, always.",
+     "If you have dealt with a data-residency requirement that ruled out your existing survey tool, what did you end up doing? Curious what the workarounds looked like before you found something that fit. Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "Formbricks: TypeScript, Next.js, AGPLv3, self-hostable via Docker. It runs in-app, website, link and email surveys from one editor, with event-based targeting and attribute segmentation. 12,928 GitHub stars.\n{APP_URL}",
+     "Feedback data living in a vendor cloud is a compliance problem, not just a preference. Formbricks is open-source experience management you can deploy on your own infrastructure. Selected for GitHub Accelerator 2023.\n{APP_URL}"
+    ],
+    "warnings": [
+     "Campaign angle references named enterprise logos (Siemens, IKEA, GitHub, FlixBus) as proof points, but these are visual-only on the site with no published case studies; they were omitted from all copy to stay within sourced proof points.",
+     "GitHub Accelerator 2023 is a valid proof point from the profile; it appears in alt_variant 2 instead of the star count to satisfy the rule that each variant opens on a different fact. The main post uses the star count as its single proof point.",
+     "No comparison framing used; the campaign angle's implicit contrast with vendor-cloud tools is expressed as a plain fact about Formbricks only, per PLATFORM_RULES.",
+     "No em dash or en dash appears in any string.",
+     "warnings[3]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
+    ],
+    "app_name": "Formbricks",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Campaign angle references named enterprise logos (Siemens, IKEA, GitHub, FlixBus) as proof points, but these are visual-only on the site with no published case studies; they were omitted from all copy to stay within sourced proof points.",
+    "GitHub Accelerator 2023 is a valid proof point from the profile; it appears in alt_variant 2 instead of the star count to satisfy the rule that each variant opens on a different fact. The main post uses the star count as its single proof point.",
+    "No comparison framing used; the campaign angle's implicit contrast with vendor-cloud tools is expressed as a plain fact about Formbricks only, per PLATFORM_RULES.",
+    "No em dash or en dash appears in any string.",
+    "warnings[3]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1492,
+   "words": 226,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "post": "12,928 GitHub stars on an open-source survey platform.\n\nFormbricks is that platform. It runs in-app, website, link, and email surveys in one place, self-hostable under AGPLv3, with a GDPR-compliant cloud hosted in Frankfurt if you'd rather not run your own infra.\n\nWe built it because data residency isn't optional for a lot of product teams. It's the reason they can't use hosted tools at all.\n\nTeams at Siemens, IKEA, and FlixBus use it. Jonathan Reimer, VP Developer Products at the Linux Foundation, put it plainly: \"Formbricks proves that open source surveys can be both powerful and user-friendly.\" We were also selected for GitHub Accelerator 2023.\n\nYou can start on the free tier today. No credit card required.\n\nIf you're running a privacy audit or facing a GDPR requirement, try self-hosting it this week and tell me what breaks.\n\nLink in the first comment.\n\n#opensource #productmanagement #gdpr",
+    "alt_hook": "We built Formbricks so product teams could own their feedback data, not just access it through a vendor's portal.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "Previous draft violation fixed: removed 'Most of them came from teams who needed their data to stay on their own servers.' The rules prohibit inventing reasons why people starred the repo unless proof_points states the reason.",
+     "Previous alt_hook dropped: 'We almost built Formbricks on a hosted survey API. Then we read the data-processing agreement and started over.' invents an origin story not present in APP_PROFILE or BRAND_DNA. Replaced with a plain-function hook grounded in the ICP pain.",
+     "Quote used verbatim from proof_points and attributed exactly as sourced: 'Formbricks proves that open source surveys can be both powerful and user-friendly.' Jonathan Reimer, VP Developer Products @ Linux Foundation.",
+     "Launch week: at most four posts this week, never two of the same kind back to back. Suggested sequence after this launch post: proof (the 12,928 stars or GitHub Accelerator 2023 selection as a standalone number), opinion (a position on feedback data ownership), teach (one thing the reader can do with Formbricks today, e.g. deploy via Docker in under 10 minutes), story (a scene from building it, only if the profile holds one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+     "post: An origin-story phrase (\"I kept running into\", \"I built it because\", \"worked fine until\", \"that was the moment\"); confirm APP_PROFILE holds this story before posting (\"We built it because\")"
+    ],
+    "app_name": "Formbricks",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "Previous draft violation fixed: removed 'Most of them came from teams who needed their data to stay on their own servers.' The rules prohibit inventing reasons why people starred the repo unless proof_points states the reason.",
+    "Previous alt_hook dropped: 'We almost built Formbricks on a hosted survey API. Then we read the data-processing agreement and started over.' invents an origin story not present in APP_PROFILE or BRAND_DNA. Replaced with a plain-function hook grounded in the ICP pain.",
+    "Quote used verbatim from proof_points and attributed exactly as sourced: 'Formbricks proves that open source surveys can be both powerful and user-friendly.' Jonathan Reimer, VP Developer Products @ Linux Foundation.",
+    "Launch week: at most four posts this week, never two of the same kind back to back. Suggested sequence after this launch post: proof (the 12,928 stars or GitHub Accelerator 2023 selection as a standalone number), opinion (a position on feedback data ownership), teach (one thing the reader can do with Formbricks today, e.g. deploy via Docker in under 10 minutes), story (a scene from building it, only if the profile holds one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+    "post: An origin-story phrase (\"I kept running into\", \"I built it because\", \"worked fine until\", \"that was the moment\"); confirm APP_PROFILE holds this story before posting (\"We built it because\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1038,
+   "words": 167,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "title": "I open sourced a self-hostable survey platform under AGPLv3 for in-app and email feedback",
+    "body": "Product teams in GDPR-regulated markets keep hitting the same wall: the tools that do in-app targeting well store every response on the vendor's servers, and there's no path to self-hosting. Qualtrics has no self-hosted option at all; it's enterprise-sales-only pricing with data living in their cloud.\n\nI work on Formbricks, an open source experience management platform licensed under AGPLv3. It runs in-app surveys, website surveys, link surveys, and email surveys from one editor, with event-based targeting and attribute segmentation. You deploy it yourself with Docker and PostgreSQL, or use the managed cloud hosted in Frankfurt. The full API is there if you want to pipe responses into your own data warehouse or connect it to Slack, Zapier, or n8n.\n\nTypeform is polished and widely used, but it has no self-hosting option and the segmentation is limited. Hotjar Surveys covers on-site feedback but not in-product targeting. Those tools cover a lot of ground; the gap is specifically the case where data ownership is non-negotiable.\n\nThe part that's still rough is the insights dashboard. The survey builder and delivery are solid, but the analytics side is functional rather than impressive. No recorded product walkthrough exists yet either, so onboarding is mostly docs and the editor itself.\n\nThe repo has 12,928 stars and 2,514 forks, and we were part of the GitHub Accelerator 2023 cohort. Siemens, IKEA, and FlixBus are among the teams running it.\n\nIf you've self-hosted a feedback or survey tool in a regulated environment, what was the first thing that broke in production: the auth layer, the storage backend, or something else? I'll answer questions here.\n\n{APP_URL}",
+    "suggested_flair": "New Project Megathread",
+    "warnings": [
+     "TARGET is r/selfhosted. Per PLATFORM_RULES, r/selfhosted requires new projects (under 3 months old) to be posted in the current New Project Megathread, not the main feed. Check the subreddit sidebar for the active megathread before posting. This draft is written for that megathread venue.",
+     "Mention level used: 2 (product named once in the builder-disclosure sentence, {APP_URL} once in the final paragraph).",
+     "The title is 16 words and 82 characters, within the 6-16 word and 100-character limits. Sentence case applied.",
+     "Qualtrics is named neutrally within the first 120 words as a factual statement about its pricing model and hosting, with no negative adjective attached to its name.",
+     "Limitation stated plainly: analytics dashboard is functional rather than impressive, and no recorded product walkthrough exists. Both come from APP_PROFILE.gaps, not invented.",
+     "No origin story, no 'we ran it for a while', no invented timeline or roadmap language used. Problem stated in present tense from ICP pain.",
+     "Proof points used: 12,928 GitHub stars, 2,514 forks, GitHub Accelerator 2023, named client logos (Siemens, IKEA, FlixBus). All from APP_PROFILE.proof_points.",
+     "'We' used throughout because Formbricks is a team product older than a year, consistent with PLATFORM_RULES builder-disclosure rule.",
+     "No em dash, no en dash, no forbidden filler words, no bullet points, no bold text, no headings used.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/selfhosted requires you to answer the AI-disclosure bot honestly.",
+     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"12,928 stars\")"
+    ],
+    "venue": "r/selfhosted",
+    "app_name": "Formbricks",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "TARGET is r/selfhosted. Per PLATFORM_RULES, r/selfhosted requires new projects (under 3 months old) to be posted in the current New Project Megathread, not the main feed. Check the subreddit sidebar for the active megathread before posting. This draft is written for that megathread venue.",
+    "Mention level used: 2 (product named once in the builder-disclosure sentence, {APP_URL} once in the final paragraph).",
+    "The title is 16 words and 82 characters, within the 6-16 word and 100-character limits. Sentence case applied.",
+    "Qualtrics is named neutrally within the first 120 words as a factual statement about its pricing model and hosting, with no negative adjective attached to its name.",
+    "Limitation stated plainly: analytics dashboard is functional rather than impressive, and no recorded product walkthrough exists. Both come from APP_PROFILE.gaps, not invented.",
+    "No origin story, no 'we ran it for a while', no invented timeline or roadmap language used. Problem stated in present tense from ICP pain.",
+    "Proof points used: 12,928 GitHub stars, 2,514 forks, GitHub Accelerator 2023, named client logos (Siemens, IKEA, FlixBus). All from APP_PROFILE.proof_points.",
+    "'We' used throughout because Formbricks is a team product older than a year, consistent with PLATFORM_RULES builder-disclosure rule.",
+    "No em dash, no en dash, no forbidden filler words, no bullet points, no bold text, no headings used.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/selfhosted requires you to answer the AI-disclosure bot honestly.",
+    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"12,928 stars\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1830,
+   "words": 287,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "name": "Formbricks",
+    "tagline": "Open-source experience management for product teams",
+    "description": "Feedback data sitting in a vendor cloud is a compliance risk and a lock-in. Formbricks runs in-app, website, link, and email surveys from your own infrastructure under AGPLv3. Connects to Slack, Zapier, n8n, and Notion with a full API included.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Formbricks. 👋\n\nWe built this after watching privacy-conscious teams stitch together a link survey tool, a custom in-app widget, and a spreadsheet to hold responses, then scramble when a GDPR audit asked where the data actually lived. There was no open-source answer that covered all four channels in one place.\n\nFormbricks runs surveys across in-app (JS and mobile SDKs), website widgets, shareable links, and email embeds from a single no-code editor. You define audience segments by user attributes and events, set triggers, and responses land in your own database. The whole stack deploys via Docker. The managed cloud runs in Frankfurt if you prefer not to self-host.\n\nThe data stays on your hardware. The license is AGPLv3, so you can read and modify every line that touches your users' responses. GitHub Accelerator 2023 gave us early validation that the open-source model was worth building seriously.\n\nNot there yet: the analytics dashboard works, but cross-survey cohort analysis and a built-in stats layer are absent. For deeper analysis you will be exporting to your own BI tool.\n\nTwo things I genuinely want to know: what would you need to see before you ran this on production traffic, and which integration would you reach for first that is not on the current list?\n\nI will be in the comments all day.",
+    "topics": [
+     "Open Source",
+     "Developer Tools",
+     "SaaS"
+    ],
+    "warnings": [
+     "No offer is included because APP_PROFILE contains no Product Hunt-specific discount or promo code. Add one to the first_comment only if a real offer exists before launch.",
+     "The first_comment uses 'we' after the opening line because APP_PROFILE and BRAND_DNA indicate a team. If the listing is posted under a single founder's account, revise all 'we' and 'our' to first-person singular throughout.",
+     "[Builder first name] and [role] are placeholders. Fill them in with the actual poster's name and title before submitting the listing.",
+     "APP_PROFILE gaps note that no recorded product walkthrough video exists. Product Hunt listings with a demo video typically perform better. Consider recording a short screen capture of the survey editor and self-hosting flow before launch.",
+     "Testimonials from Marius Cristea, Jonathan Reimer, and Peer Richelsen are excluded from all fields per platform rules. They can be added as follow-up comments after launch.",
+     "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")"
+    ],
+    "app_name": "Formbricks",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "No offer is included because APP_PROFILE contains no Product Hunt-specific discount or promo code. Add one to the first_comment only if a real offer exists before launch.",
+    "The first_comment uses 'we' after the opening line because APP_PROFILE and BRAND_DNA indicate a team. If the listing is posted under a single founder's account, revise all 'we' and 'our' to first-person singular throughout.",
+    "[Builder first name] and [role] are placeholders. Fill them in with the actual poster's name and title before submitting the listing.",
+    "APP_PROFILE gaps note that no recorded product walkthrough video exists. Product Hunt listings with a demo video typically perform better. Consider recording a short screen capture of the survey editor and self-hosting flow before launch.",
+    "Testimonials from Marius Cristea, Jonathan Reimer, and Peer Richelsen are excluded from all fields per platform rules. They can be added as follow-up comments after launch.",
+    "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1715,
+   "words": 279,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 3,
+   "status": "draft",
+   "data": {
+    "title": "Show HN: Formbricks, open-source experience management platform, self-hostable",
+    "body": "Hi HN, Formbricks is an open-source experience management platform that takes user events and attributes as input and produces targeted surveys across in-app, website, link, and email channels. You can try it at\n\n{APP_URL}\n\nThe cloud version requires an email signup. The self-hosted path runs via Docker Compose with no account needed. Product teams in GDPR-regulated markets need continuous user feedback without responses leaving their infrastructure. [Builder: one sentence on why you built Formbricks.]\n\nThe stack is TypeScript and Next.js on the frontend, Prisma with PostgreSQL for storage, and Auth.js for authentication. Survey logic, segmentation rules, and response data stay in your own Postgres instance. Formbricks is AGPLv3, so you own the schema and can query responses in SQL. Current limitations: mobile SDKs for iOS and Android are on the paid Pro tier only, and advanced self-hosted features require an enterprise license key.\n\nThe choice I want a second opinion on is deployment: would you default to Docker Compose for self-hosting, or offer a single-binary option? We are the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "The profile records 122 points on a prior HN thread. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier Formbricks thread and confirm that version 5.3 represents a substantial enough change to clear that bar. If it does, add the prior thread URL to the body in paragraph one and one sentence on what changed since. If the changes are not substantial, wait for a larger release before posting.",
+     "The cloud version at {APP_URL} requires an email signup. HN readers expect to try the product immediately. If a live demo instance or a direct Docker Compose quickstart URL exists, consider linking that instead and state clearly in the body what the link opens.",
+     "Confirm that {APP_URL} opens a running instance of the app, not a marketing landing page or a waitlist. HN guidelines require the linked URL to be the working product itself.",
+     "The placeholder '[Builder: one sentence on why you built Formbricks]' must be filled with a real origin line before submitting. The profile records no README history line or founder quote, so write it in your own words from memory.",
+     "The closing question assumes a single-binary deployment option is a real design consideration. If it is not, replace it with a question about a choice the profile does record, such as the decision to keep survey response data in the same Postgres instance as the product database, or in a separate one."
+    ],
+    "app_name": "Formbricks",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: More than five paragraphs (6, cap 4)"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "The profile records 122 points on a prior HN thread. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier Formbricks thread and confirm that version 5.3 represents a substantial enough change to clear that bar. If it does, add the prior thread URL to the body in paragraph one and one sentence on what changed since. If the changes are not substantial, wait for a larger release before posting.",
+    "The cloud version at {APP_URL} requires an email signup. HN readers expect to try the product immediately. If a live demo instance or a direct Docker Compose quickstart URL exists, consider linking that instead and state clearly in the body what the link opens.",
+    "Confirm that {APP_URL} opens a running instance of the app, not a marketing landing page or a waitlist. HN guidelines require the linked URL to be the working product itself.",
+    "The placeholder '[Builder: one sentence on why you built Formbricks]' must be filled with a real origin line before submitting. The profile records no README history line or founder quote, so write it in your own words from memory.",
+    "The closing question assumes a single-binary deployment option is a real design consideration. If it is not, replace it with a question about a choice the profile does record, such as the decision to keep survey response data in the same Postgres instance as the product database, or in a separate one."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: More than five paragraphs (6, cap 4)"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1275,
+   "words": 194,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "subject": "For privacy-conscious product teams: surveys you self-host",
+    "pitch": "Hi [Editor first name],\n\nProduct and research teams in GDPR-regulated markets reach a point where a compliance audit or a renewal invoice makes the question unavoidable: where does our survey data actually live, and can we control it? Most survey platforms have no path to running the stack on your own infrastructure, so data residency stays a vendor decision, not yours. For teams with strict data-residency requirements, that is a real blocker.\n\nFormbricks is an open-source experience management platform for in-app, website, link, and email surveys, privacy-first and self-hostable for product teams.\n\nThe project has 12,928 GitHub stars on GitHub.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is unknown. Replace [Editor first name] with the newsletter author's actual first name before sending.",
+     "No TARGET newsletter name was provided. The subject line uses the ICP descriptor 'privacy-conscious product teams' instead of a specific newsletter name. Replace it with the actual newsletter name or its readers' descriptor to match the required pattern.",
+     "TARGET rules were not provided or verified. Confirm whether this newsletter accepts unsolicited pitches or requires a submission form, and adapt the pitch text accordingly if a form is used.",
+     "Builder must replace [Builder first name] with their actual first name before sending.",
+     "pitch: Six or more paragraph breaks (\"Product and research teams in GDPR-regulated markets reach a\")"
+    ],
+    "app_name": "Formbricks",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Recipient name is unknown. Replace [Editor first name] with the newsletter author's actual first name before sending.",
+    "No TARGET newsletter name was provided. The subject line uses the ICP descriptor 'privacy-conscious product teams' instead of a specific newsletter name. Replace it with the actual newsletter name or its readers' descriptor to match the required pattern.",
+    "TARGET rules were not provided or verified. Confirm whether this newsletter accepts unsolicited pitches or requires a submission form, and adapt the pitch text accordingly if a form is used.",
+    "Builder must replace [Builder first name] with their actual first name before sending.",
+    "pitch: Six or more paragraph breaks (\"Product and research teams in GDPR-regulated markets reach a\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 828,
+   "words": 123,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a product manager at a standing desk covered in sticky-note feedback clusters",
+    "a UX researcher with a second monitor showing a live response feed",
+    "a developer's terminal window glowing with a Docker deployment log",
+    "a self-hosted server rack tucked under a desk in a small SaaS office",
+    "a whiteboard mapped with user journey segments and trigger conditions",
+    "a printed GDPR compliance checklist pinned above a monitor",
+    "a Slack channel on a side screen filling with incoming survey pings",
+    "a no-code survey editor open on a laptop beside a cold coffee",
+    "a GitHub repository tab glowing with star and fork counts",
+    "sticky notes sorted by user segment across a glass partition",
+    "a dense spreadsheet of fragmented feedback exported from three different tools"
+   ],
+   "subject": "A product manager at a privacy-conscious SaaS company, working at her team's open-plan office desk surrounded by survey exports, a self-hosted server rack, and a GDPR compliance checklist, trying to unify fragmented user feedback.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A compact SaaS product team's open-plan office at half past eight in the evening, seen wide from the back corner: four desks pushed together under warm overhead light, each monitor showing a different feedback tool, one with a dense exported spreadsheet, one with a vendor survey dashboard, one with a Slack channel scrolling fast, a whiteboard at the far wall mapped with sticky notes sorted into user segments, a printed GDPR checklist pinned above the nearest monitor, a self-hosted server rack blinking under the corner desk, cold coffee cups at every station, the room humming with the weight of fragmented data and no single view.",
+     "url": "http://localhost:3500/files/065d58ff5ebd/images-b142fb0b949d/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for more accurate back-corner framing and a cleaner top third while still containing the required props and mood.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 1973
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Clear signals of a late-night SaaS/dev office (multiple dev screens, sticky-note board, server rack, coffee) and the wide back-corner view mostly match the brief."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Also strongly reads as a product team at night with the right props, but the camera angle is less back-corner wide and the top third is busier with board detail."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A woman in her mid-thirties, dark curly hair pulled back, wearing a faded indigo hoodie, sits hunched at the central desk late in the evening, one hand pressing her temple, the other scrolling through a dense spreadsheet of survey exports pulled from three different tools, a second monitor beside her showing a vendor dashboard with a renewal-cost dialog glowing on screen, the printed GDPR checklist on the wall behind her half covered in red pen marks, a stack of sticky-note feedback clusters spread across the desk, the server rack blinking in the corner, not looking at the camera.",
+     "url": "http://localhost:3500/files/065d58ff5ebd/images-b142fb0b949d/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for its clearer emotional connection and slightly stronger fidelity to the brief despite a busier top third and some legible text.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2039
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strongly reads as an IT/server ops late-night desk with the required props and posture, top third is suitably dark, but some on-screen and note text is legible which hurts technical quality."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Very clear portrayal of the brief with stronger emotional read from the subject and excellent props, though the top third is a bit busier and there are still legible bits on screens/notes."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, dark curly hair pulled back, indigo hoodie, now sitting upright at the same central desk the following morning in soft daylight coming through the window behind her, one hand resting open on the desk, the other holding a warm mug, the monitor in front of her showing a single calm response-feed screen with a steady, unhurried scroll, the sticky notes on the glass partition behind her sorted neatly into two columns, the GDPR checklist on the wall with its marks resolved, the server rack still blinking quietly under the corner desk, the exported-spreadsheet window gone, the desk clear enough to breathe.",
+     "url": "http://localhost:3500/files/065d58ff5ebd/images-b142fb0b949d/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for clearer fidelity to the brief and slightly better composition and photographic quality, making the scene more immediately identifiable and usable for a launch card.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2188
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong match to the brief with clear props (sticky notes, checklist, server rack, mug, hand placement) and a recognisable tech/operations desk, but the top third is a bit busy/bright behind the subject which weakens headline space."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Even clearer depiction of the intended tech/desk world with neatly columned notes, resolved checklist and server rack visible, cleaner composition and higher photographic quality with only mild top-third brightness."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman in the indigo hoodie and two colleagues, a developer in a grey t-shirt and a UX researcher with a notebook, gathered in the right two thirds of the frame around one monitor showing a calm, glowing response feed, the whiteboard of user-segment sticky notes and the blinking server rack visible behind them in the warm morning light, the left third of the frame open to a plain painted wall with soft daylight falling across it, shot wide in landscape from across the room.",
+     "url": "http://localhost:3500/files/065d58ff5ebd/images-b142fb0b949d/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best matches the brief overall with slightly clearer domain cues and a more usable, quieter left third while keeping strong fidelity and photographic quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2021
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clear tech cues (server rack, sticky-note board) and the three roles are present, the group sits in the right two-thirds with a clean left third and natural light, matching the brief closely."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "All role cues, monitor, whiteboard and server rack are visible and the left third is an even quieter open area: composition and fidelity are slightly stronger and more aligned with the brief."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "SPRINT REVIEW. 4 PM.",
+    "load_n1": "340",
+    "load_l1": "RESPONSES",
+    "load_n2": "3",
+    "load_l2": "SPREADSHEETS",
+    "load_n3": "1",
+    "load_l3": "HOUR LEFT",
+    "pile_line": "EVERY RESPONSE. BY HAND.",
+    "pile_label": "RESPONSE",
+    "pile_sub": "CHANNEL · SEGMENT ·",
+    "doubt_1": "WHO ACTUALLY RESPONDED?",
+    "doubt_2": "WHERE IS THE DATA NOW?",
+    "cost_line": "YOUR DATA. THEIR CLOUD.",
+    "app_name": "FORMBRICKS",
+    "drop_line": "OWN YOUR FEEDBACK.",
+    "step1_label": "ADD YOUR SURVEY CHANNEL.",
+    "step1_field": "IN-APP · WEBSITE · LINK · EMAIL",
+    "step1_button": "GET GOING",
+    "step2_label": "EVERY RESPONSE, CAUGHT.",
+    "chip_1": "IN-APP",
+    "chip_2": "WEBSITE",
+    "chip_3": "LINK",
+    "chip_4": "EMAIL",
+    "step3_label": "THE DATA LEAK, CAUGHT.",
+    "step3_marker": "GDPR BOUNDARY",
+    "step3_chip": "SELF-HOST",
+    "product_line": "ALL FEEDBACK. ONE PLACE.",
+    "payoff_n": "14",
+    "payoff_unit": "DAYS FREE.",
+    "payoff_line": "ALL PRO FEATURES. NO CARD.",
+    "payoff_timer": "14:00",
+    "breathe_line": "YOUR DATA STAYS YOURS.",
+    "arrive_line": "GET STARTED FREE.",
+    "arrive_chip": "FORMBRICKS.COM",
+    "lock_top": "FOR PRIVACY-FIRST TEAMS",
+    "lock_title": "FORMBRICKS",
+    "lock_tag": "THE OPEN-SOURCE EXPERIENCE PLATFORM",
+    "lock_host": "FORMBRICKS.COM"
+   },
+   "clamped": [
+    "pile_sub"
+   ],
+   "repaired": [
+    "cost_line",
+    "step1_button",
+    "step2_label",
+    "lock_top",
+    "lock_tag"
+   ],
+   "tagline": "The Open Source Experience Management Platform",
+   "claims_used": [
+    "drop_line 'OWN YOUR FEEDBACK.' grounds in CAMPAIGN_ANGLE hook: 'We built an open-source experience management platform because we were tired of feedback data living in someone else's cloud.'",
+    "chip_1-4 (IN-APP, WEBSITE, LINK, EMAIL) from SITE_COPY: 'In your app', 'On your website', 'In emails' and APP_PROFILE differentiators: 'Multi-channel survey delivery: in-app, website, link, and email surveys'",
+    "step3_marker 'GDPR BOUNDARY' from APP_PROFILE differentiators: 'GDPR/CCPA-compliant cloud hosted in Frankfurt, Germany' and BRAND_DNA vocabulary: 'GDPR compliant'",
+    "step3_chip 'SELF-HOST' from APP_PROFILE: 'self-hostable via Docker' and BRAND_DNA dos: 'Lead with direct CTAs and concrete feature names (self-hosting)'",
+    "payoff_n '14' and payoff_unit 'DAYS FREE.' from SITE_COPY: 'All Pro plan features free for 14 days' and BRAND_DNA key_messages: 'Try all Pro features free for 14 days. No credit card required.'",
+    "payoff_line 'ALL PRO FEATURES. NO CARD.' from SITE_COPY: 'All Pro plan features free for 14 days · No credit card required'",
+    "lock_tag 'THE OPEN SOURCE EXPERIENCE MANAGEMENT PLATFORM' from BRAND_DNA tagline_observed and SITE_COPY h1 area",
+    "arrive_line 'GET STARTED FREE.' from SITE_COPY button: 'Get started free'",
+    "cost_line 'YOUR DATA. SOMEONE ELSE'S CLOUD.' from CAMPAIGN_ANGLE big_idea: 'vendor lock-in, data leaving your infrastructure' and ICP pain: 'lock data in vendor clouds'",
+    "product_line 'ALL FEEDBACK. ONE PLACE.' from SITE_COPY h2: 'Ask anywhere, get insights in one place' and h4: 'All in one place.'"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, mission-driven, plain",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Sprint review, four PM. Three hundred forty responses, three spreadsheets, one hour by hand.",
+     "seconds": 5.23,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Formbricks. Own your feedback.",
+     "seconds": 1.61,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1.081
+    },
+    {
+     "id": "how",
+     "text": "Pick your channel. Every response captured. Self-host and your data never leaves.",
+     "seconds": 4.12,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "All feedback, one place. Fourteen days free, no card.",
+     "seconds": 3.05,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Start free today with Formbricks.",
+     "seconds": 1.77,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/065d58ff5ebd/reel-499bb8482cfd/reel.mp4",
+   "poster_url": "http://localhost:3500/files/065d58ff5ebd/reel-499bb8482cfd/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "approved"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Open-source AGPLv3 repo with 12,928 stars and Docker self-hosting; HN already gave 122 points per README badge.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "Self-hosting via Docker for GDPR data residency is a core differentiator; this community is the exact ICP home.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "DevHunt",
+   "kind": "launch_platform",
+   "why_fit": "TypeScript/Next.js/Docker stack and open-source AGPLv3 license match DevHunt's developer-tool audience exactly.",
+   "url": "https://devhunt.org"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Already earned 455 upvotes on PH per README; a re-launch or v5 launch can recapture SaaS PM/UX researcher audience.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "Peerlist Launchpad",
+   "kind": "launch_platform",
+   "why_fit": "Developer-on-staff ICP and TypeScript/Next.js stack fit Peerlist's technical product-builder audience.",
+   "url": "https://peerlist.io/launchpad"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "ParticipantKit ResearchOps Newsletter",
+   "kind": "newsletter",
+   "why_fit": "UX researchers and ResearchOps practitioners are a named ICP; newsletter covers research tooling directly.",
+   "url": "https://participantkit.com/newsletter"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "Indie Hackers",
+   "kind": "launch_platform",
+   "why_fit": "Open-source bootstrapped story with GitHub Accelerator 2023 badge resonates with IH audience of indie builders.",
+   "url": "https://www.indiehackers.com"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Promo-tolerant subreddit; Formbricks open-source origin story fits the side-project-to-product narrative.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "ICP pain is Qualtrics/Typeform/SurveyMonkey lock-in; AlternativeTo captures buyers actively searching for alternatives.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Mid-market SaaS buyers comparing survey tools will find Formbricks listed against Typeform and SurveyMonkey.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "G2",
+   "kind": "directory",
+   "why_fit": "Enterprise buyers (Siemens, IKEA shown as clients) research survey tools on G2; Qualtrics renewal trigger drives searches.",
+   "url": "https://www.g2.com"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "awesome-selfhosted",
+   "kind": "awesome_list",
+   "why_fit": "Formbricks is self-hostable via Docker under AGPLv3; list explicitly covers self-hosted survey and feedback tools.",
+   "url": "https://github.com/awesome-selfhosted/awesome-selfhosted"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "Awesome-Voice-Of-Customer-Platform",
+   "kind": "awesome_list",
+   "why_fit": "Formbricks collects NPS, CSAT, and in-app feedback, core VoC use cases this list curates.",
+   "url": "https://github.com/ishandutta2007/Awesome-Voice-Of-Customer-Platform"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 2,
+   "source": "default",
+   "rules": 18,
+   "hooks": 0,
+   "updated_at": "2026-09-11T08:19:28.522Z"
+  },
+  {
+   "platform": "linkedin_post",
+   "version": 4,
+   "source": "default",
+   "rules": 24,
+   "hooks": 10,
+   "updated_at": "2026-09-12T20:14:45.530Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 2,
+   "source": "default",
+   "rules": 15,
+   "hooks": 0,
+   "updated_at": "2026-09-11T08:19:28.522Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 4,
+   "source": "default",
+   "rules": 17,
+   "hooks": 11,
+   "updated_at": "2026-09-12T20:14:45.530Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 2,
+   "source": "default",
+   "rules": 16,
+   "hooks": 0,
+   "updated_at": "2026-09-11T08:19:28.522Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 4,
+   "source": "default",
+   "rules": 20,
+   "hooks": 12,
+   "updated_at": "2026-09-12T20:14:45.530Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 2,
+   "source": "default",
+   "rules": 18,
+   "hooks": 0,
+   "updated_at": "2026-09-11T08:19:28.522Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 4,
+   "source": "default",
+   "rules": 22,
+   "hooks": 9,
+   "updated_at": "2026-09-12T20:14:45.530Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 2,
+   "source": "default",
+   "rules": 17,
+   "hooks": 0,
+   "updated_at": "2026-09-11T08:19:28.522Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 10,
+   "updated_at": "2026-09-12T20:14:45.530Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 2,
+   "source": "default",
+   "rules": 17,
+   "hooks": 0,
+   "updated_at": "2026-09-11T08:19:28.522Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 4,
+   "source": "default",
+   "rules": 20,
+   "hooks": 11,
+   "updated_at": "2026-09-12T20:14:45.530Z"
+  }
+ ]
+}
