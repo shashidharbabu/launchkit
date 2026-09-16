@@ -14,8 +14,10 @@ const SLUG = process.env.SLUG;
 const STAGE = process.env.STAGE || 'Signals';
 const BUTTONS = (process.env.BUTTONS || process.env.BUTTON || 'Search for demand|Search again').split(';').map((s) => s.trim()).filter(Boolean);
 const MAX = Number(process.env.MAX_MS) || 1200000;
-// SEED=rerun continues from the previous re-run's store instead of the original
-const SEED_FILE = process.env.SEED === 'rerun' ? 'appstate.rerun.json' : 'appstate.json';
+// Where to start from. The default continues from the previous re-run when one exists, because the
+// output file is the same one: seeding from the original and saving over appstate.rerun.json silently
+// discards every earlier re-run in it. SEED=original forces the first-run store instead.
+const SEED_FILE = process.env.SEED === 'original' ? 'appstate.json' : 'appstate.rerun.json';
 if (!SLUG) { console.error('SLUG is required'); process.exit(2); }
 const DIR = path.join('/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10', SLUG);
 const b = await chromium.launch();

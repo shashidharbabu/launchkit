@@ -220,6 +220,32 @@ The owner settled the precedence question and asked for the flags that are not J
 
 Verification: 22 assertions on the new checks (each fires in the situation it guards and is silent outside it), the false-positive probe over ten ordinary developer sentences still clean, every check compiles, four assertions on the approval guard, and the typecheck passes.
 
+## The venue list, verified rather than adopted
+
+`github.com/mmccaff/PlacesToPostYourStartup` (7,369 stars, CC0-1.0, link-checked in CI) is a compiled list from a 2014 "Ask HN: where can I post my startup to get beta users?" thread: 19 subreddits and 82 websites, name and URL only, no rules information. Every entry was fetched, and the ones that render through JavaScript were opened in a browser.
+
+**Three of the 82 earned a place**, and they are in `venues.seed.ts` with their terms quoted and dated:
+
+| Venue | Why it passed |
+| --- | --- |
+| Awesome Indie | Free, community-ranked, "the indie products launching today"; 10,133 makers |
+| Launching Next | States it plainly: "Submitting to Launching Next is free", reviewed daily, and the paid upgrade buys only a faster decision |
+| Betabound | "Request a free announcement of your beta testing opportunity", curated, and only for an app that has a real beta programme |
+
+**The rest were rejected with cause.** Collaborizm is shut down (its homepage now points at a Substack about the company's story); Launched fails DNS and Loop fails SSL. eBool ($47 to $197), Postmake ($79 to $199) and TinyLaunch ($29) sell the listing. TinyLaunch advertises "a Badge & 72+ DR Backlink", SaaSRow "free listings with DoFollow backlinks", LaunchIgniter runs a "Link Exchange" and a "Directory Submission Service", and PitchWall's own submit page sells "Sponsored Guest Post" and paid-backlink protection. Side Projectors sells side projects, Starter Story is a revenue database, BetaTesting is a paid research panel, and the investor databases and press contacts are a different action entirely. Their 19 subreddits contain no developer sub at all, so ours stay as they are.
+
+**The verification was worth more than the three venues.** It showed the startup-directory space is largely a paid-backlink economy, and that `lk_targets.pipe` had no rule against it: the pipe never mentioned paid placement, sponsorship or backlinks, and `gateTargets` demotes by venue kind, so a backlink farm calling itself a launch platform passed straight through. Targets discovers venues by search, which is exactly where those rank well. The pipe now carries a rule: a venue that sells the listing, advertises a DoFollow backlink or a domain-authority number, runs a link exchange or a paid submission service, or charges before a human sees the product, is not a launch venue; a free path with an optional paid fast-track is fine, and the row must say the paid tier only buys speed.
+
+### What the test found
+
+A backend end-to-end test over the store, the seed, the rulebook, the gate, the Targets question, the pipe, `gateTargets`, the asset and signals gates and the plan: 51 assertions. It failed first time, on a real defect: `seedVenuesIfEmpty` builds its insert field by field and never copied `rules_source`, so the provenance added for all thirteen subreddits and these three venues existed in the seed file and nowhere else. Fixed on the insert and the update path.
+
+A live Targets run then proved it through the app rather than in a unit test. khoj's saved store held 51 venue rows, none carrying `rules_source` and none of the three new venues, so it predated both changes; after the run the store holds 55 rows, the three venues are in it, and `rules_source` is backfilled on fourteen rows. The same run showed the established-product rule working on a real ranking: Show HN moved from first to seventh and Product Hunt from sixth to eighth for a product with more than 30,000 stars, while the niche subreddits (r/selfhosted, r/LocalLLaMA, r/ObsidianMD, r/emacs) took the top places. No paid-placement venue appeared in the ranking.
+
+Both live runs were driven from a seeded copy of the app's store and the draft record was restored afterwards, because `drive.rerun.mjs` writes to one output file per app: seeding it from the first-run store and saving over `appstate.rerun.json` discards the re-run drafts already in it. The driver now continues from the previous re-run by default, and `docs/eval-10/targets-verification-v4.json` holds the venue counts and the ranked list from both runs.
+
+A second live run tested the opposite case, because a venue that never gets chosen is not worth seeding. hack-judge is an alpha on a free tier whose profile the understand pass could not evidence, and there Betabound ranked ninth with the reason "Beta-tester recruitment platform; alpha app needs early users who are hackathon organizers willing to test", above Product Hunt and the directories, in a list led by BetaList, r/hackathon and r/AlphaAndBetaUsers. So the venue is picked for the maturity its rules row describes and passed over for a launched product, which is what the row asks for.
+
 ## Next
 
 Ranked by how many of the 33 remaining high or blocker issues each would close. Items 2 to 5 of the original list are done above.

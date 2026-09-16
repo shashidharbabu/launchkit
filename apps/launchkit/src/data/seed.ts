@@ -20,6 +20,9 @@ export function seedVenuesIfEmpty(): void {
         url: v.url,
         submission_url: v.submission_url,
         rules_summary: v.rules_summary,
+        // where that rules text was read, and when: the builder opens it before posting, and a snapshot
+        // that has gone stale is the difference between a launch and a ban
+        rules_source: (v as { rules_source?: string }).rules_source ?? '',
         audience_signal: v.audience_signal,
         tags: v.tags,
         source: 'curated',
@@ -28,8 +31,9 @@ export function seedVenuesIfEmpty(): void {
       continue;
     }
     // the seed is the curated record: a rules snapshot that changed reaches the store, an owner's row does not move
-    if (row.source === 'curated' && (row.rules_summary !== v.rules_summary || row.submission_url !== v.submission_url || row.tags !== v.tags)) {
-      update('venues', { id: row.id }, { rules_summary: v.rules_summary, submission_url: v.submission_url, tags: v.tags, audience_signal: v.audience_signal });
+    const source = (v as { rules_source?: string }).rules_source ?? '';
+    if (row.source === 'curated' && (row.rules_summary !== v.rules_summary || row.rules_source !== source || row.submission_url !== v.submission_url || row.tags !== v.tags)) {
+      update('venues', { id: row.id }, { rules_summary: v.rules_summary, rules_source: source, submission_url: v.submission_url, tags: v.tags, audience_signal: v.audience_signal });
     }
   }
 }

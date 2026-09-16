@@ -1,0 +1,222 @@
+{
+ "khoj": {
+  "ran": "Targets, Rank again, 2026-09-16",
+  "venues_total": 55,
+  "venues_with_rules_source": 14,
+  "new_venues_present": [
+   "Awesome Indie",
+   "Launching Next",
+   "Betabound"
+  ],
+  "ranked": [
+   {
+    "rank": 1,
+    "name": "DevHunt",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "Developer-tool launch platform; Khoj's Python/FastAPI/pgvector stack and AGPL open-source repo are exactly what DevHunt features."
+   },
+   {
+    "rank": 2,
+    "name": "r/selfhosted",
+    "kind": "subreddit",
+    "impact": "high",
+    "why_fit": "Home subreddit for Khoj's ICP: privacy-conscious devs self-hosting on their own hardware, distrust of cloud AI services."
+   },
+   {
+    "rank": 3,
+    "name": "r/LocalLLaMA",
+    "kind": "subreddit",
+    "impact": "high",
+    "why_fit": "Khoj supports Ollama, llama3, qwen, gemma, mistral locally, exactly what r/LocalLLaMA users run; RAG over private docs is a top use-case."
+   },
+   {
+    "rank": 4,
+    "name": "r/ObsidianMD",
+    "kind": "subreddit",
+    "impact": "high",
+    "why_fit": "Khoj ships a native Obsidian plugin; ICP explicitly includes Obsidian power users who want AI over their vault without cloud upload."
+   },
+   {
+    "rank": 5,
+    "name": "Peerlist Launchpad",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "Developer-focused launch community; Khoj's open-source Python/Django stack and 37k-star repo signal credibility to Peerlist's dev audience."
+   },
+   {
+    "rank": 6,
+    "name": "r/emacs",
+    "kind": "subreddit",
+    "impact": "medium",
+    "why_fit": "Khoj ships a dedicated Emacs client; Org-mode users are a named ICP segment who manage notes locally and distrust cloud services."
+   },
+   {
+    "rank": 7,
+    "name": "Show HN",
+    "kind": "launch_platform",
+    "impact": "high",
+    "why_fit": "REPEAT venue, 37k stars and prior HN presence mean repost only for a major new version (e.g., MCP integration, enterprise release)."
+   },
+   {
+    "rank": 8,
+    "name": "Product Hunt",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "REPEAT venue, Khoj is established (37k stars, prior cloud service). Repost only for a major milestone such as the full self-hosted v2 or enterprise launch."
+   },
+   {
+    "rank": 9,
+    "name": "There's An AI For That",
+    "kind": "directory",
+    "impact": "medium",
+    "why_fit": "AI productivity directory; Khoj's self-hosted RAG over private docs is a distinct AI use-case with strong SEO longtail."
+   },
+   {
+    "rank": 10,
+    "name": "AlternativeTo",
+    "kind": "directory",
+    "impact": "medium",
+    "why_fit": "ICP searches for self-hosted alternatives to Notion AI, Obsidian Copilot, mem.ai, AlternativeTo captures that intent evergreen."
+   },
+   {
+    "rank": 11,
+    "name": "SaaSHub",
+    "kind": "directory",
+    "impact": "medium",
+    "why_fit": "Evergreen directory; ICP searches for self-hosted alternatives to Notion AI and mem.ai, SaaSHub surfaces those comparisons."
+   },
+   {
+    "rank": 12,
+    "name": "Toolify",
+    "kind": "directory",
+    "impact": "low",
+    "why_fit": "AI tool directory with SEO traffic; Khoj's self-hosted RAG differentiator stands out among cloud-only AI tools listed there."
+   },
+   {
+    "rank": 13,
+    "name": "awesome-local-ai",
+    "kind": "awesome_list",
+    "impact": "low",
+    "why_fit": "Khoj is absent from this list; ICP matches exactly, local LLM users running Ollama, llama.cpp, privacy-first inference."
+   },
+   {
+    "rank": 14,
+    "name": "awesome-knowledge-management",
+    "kind": "awesome_list",
+    "impact": "low",
+    "why_fit": "Khoj is a PKM AI tool; ICP manages large Obsidian/Org-mode note libraries, this list is the canonical PKM resource on GitHub."
+   }
+  ]
+ },
+ "hack-judge": {
+  "ran": "Targets, Rank again, 2026-09-16",
+  "venues_total": 52,
+  "venues_with_rules_source": 16,
+  "new_venues_present": [
+   "Awesome Indie",
+   "Launching Next",
+   "Betabound"
+  ],
+  "ranked": [
+   {
+    "rank": 1,
+    "name": "BetaList",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "App is alpha on Render free tier with no paying customers, BetaList is built for exactly this pre-launch stage."
+   },
+   {
+    "rank": 2,
+    "name": "Fazier",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "Indie launch platform; alpha-stage productivity tool for hackathon organizers fits the indie/early-product audience."
+   },
+   {
+    "rank": 3,
+    "name": "Uneed",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "Curated indie tool directory; hackathon judging workflow tool fits the productivity/event-tools category."
+   },
+   {
+    "rank": 4,
+    "name": "Peerlist Launchpad",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "Dev/indie community; hackathon organizers at tech events are active on Peerlist, matching the ICP exactly."
+   },
+   {
+    "rank": 5,
+    "name": "r/hackathon",
+    "kind": "subreddit",
+    "impact": "high",
+    "why_fit": "Most niche-matched subreddit: ICP is hackathon organizers and judges, this is their home community."
+   },
+   {
+    "rank": 6,
+    "name": "r/AlphaAndBetaUsers",
+    "kind": "subreddit",
+    "impact": "medium",
+    "why_fit": "App is alpha stage seeking early testers; subreddit is explicitly for recruiting alpha/beta users."
+   },
+   {
+    "rank": 7,
+    "name": "Indie Hackers",
+    "kind": "community",
+    "impact": "medium",
+    "why_fit": "Alpha-stage bootstrapped tool; IH audience includes organizers of indie/startup hackathons who are the exact ICP."
+   },
+   {
+    "rank": 8,
+    "name": "r/SideProject",
+    "kind": "subreddit",
+    "impact": "medium",
+    "why_fit": "Promo-tolerant showcase subreddit; alpha tool built to solve a real pain (inconsistent hackathon judging) fits well."
+   },
+   {
+    "rank": 9,
+    "name": "Betabound",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "Beta-tester recruitment platform; alpha app needs early users who are hackathon organizers willing to test."
+   },
+   {
+    "rank": 10,
+    "name": "r/IMadeThis",
+    "kind": "subreddit",
+    "impact": "low",
+    "why_fit": "Showcase subreddit for makers; alpha creator sharing a judging tool built to solve their own hackathon pain fits."
+   },
+   {
+    "rank": 11,
+    "name": "Product Hunt",
+    "kind": "launch_platform",
+    "impact": "medium",
+    "why_fit": "First-ever launch (alpha, no prior PH post); valid for initial launch but broad audience reduces niche fit."
+   },
+   {
+    "rank": 12,
+    "name": "StartupBase",
+    "kind": "launch_platform",
+    "impact": "low",
+    "why_fit": "Startup directory; hackathon judging tool targeting corporate innovation programs fits the startup/B2B audience."
+   },
+   {
+    "rank": 13,
+    "name": "AlternativeTo",
+    "kind": "directory",
+    "impact": "medium",
+    "why_fit": "ICP currently uses Devpost, HackerEarth, Airtable, listing as alternative to those captures active searchers."
+   },
+   {
+    "rank": 14,
+    "name": "SaaSHub",
+    "kind": "directory",
+    "impact": "medium",
+    "why_fit": "Evergreen SaaS directory; hackathon judging tool in productivity/event category is a clear fit for the catalog."
+   }
+  ]
+ }
+}

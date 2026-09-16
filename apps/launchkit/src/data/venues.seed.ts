@@ -450,5 +450,35 @@ export const VENUE_SEED = [
   "audience_signal": "large",
   "tags": "ai,discussion",
   "rules_source": "Wayback rules page, 2026-08-28: https://old.reddit.com/r/artificial/about/rules/"
+ },
+ {
+  "name": "Awesome Indie",
+  "kind": "launch_platform",
+  "url": "https://awesomeindie.com",
+  "submission_url": "https://awesomeindie.com/submit",
+  "rules_summary": "Free. An account is needed to submit (Google, GitHub or X, no password). Products are featured the day they launch and ranked by community votes, with daily, weekly, monthly and yearly boards. Indie and side-project audience.",
+  "rules_source": "Site read 2026-09-16: homepage states \"Best products launching today\", \"new products featured every day\" and \"Join other 10,133 makers, Join free\"; https://awesomeindie.com and https://awesomeindie.com/submit",
+  "audience_signal": "medium",
+  "tags": "indie,launch,community"
+ },
+ {
+  "name": "Launching Next",
+  "kind": "directory",
+  "url": "https://www.launchingnext.com",
+  "submission_url": "https://www.launchingnext.com/submit/",
+  "rules_summary": "Free to submit and editorially reviewed, so publication is not guaranteed: \"We review submissions every day, and you'll receive an email if we publish your startup.\" A paid upgrade only buys a faster decision, never a better placement.",
+  "rules_source": "Submit page read 2026-09-16, quoting it verbatim: \"Submitting to Launching Next is free, but if you want your startup to be considered for publication within 1-business day, we offer a $99 upgrade on the next page.\"; https://www.launchingnext.com/submit/",
+  "audience_signal": "medium",
+  "tags": "startup,directory,editorial"
+ },
+ {
+  "name": "Betabound",
+  "kind": "launch_platform",
+  "url": "https://www.betabound.com",
+  "submission_url": "https://www.betabound.com/announce/",
+  "rules_summary": "Free and curated, and only for an app that has a real beta programme to recruit testers into: \"Request a free announcement of your beta testing opportunity to be showcased on our homepage.\" Not every submission is accepted, and a launched product does not belong here.",
+  "rules_source": "Announce page read 2026-09-16, quoting it verbatim: \"Please note that not all submissions will be posted or responded to\", with the FAQ it points at; https://www.betabound.com/announce/ and https://www.betabound.com/faq/",
+  "audience_signal": "medium",
+  "tags": "prelaunch,beta,testers"
  }
 ];
