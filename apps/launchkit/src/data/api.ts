@@ -9,7 +9,7 @@ import {
   buildAssetQuestion, buildBrandQuestion, buildCommercialQuestion, buildPricingOptionsQuestion,
   buildSignalsQuestion, buildTargetsQuestion, buildUnderstandQuestion,
 } from '../domain/questions';
-import { gateAsset, gateSignals, gateTargets } from '../domain/gates';
+import { gateAsset, gateContext, gateSignals, gateTargets } from '../domain/gates';
 import { buildAttribution, buildPlan, planMarkdown } from '../domain/plan';
 import {
   BRAND_CAMPAIGNS_PREREQ_ERROR, GATE1_ERROR, NO_PROFILE_TO_APPROVE_ERROR,
@@ -19,6 +19,7 @@ import {
   subredditsFromTargets, unknownStageError, BAD_SIGNAL_STATUS_ERROR,
 } from '../domain/status';
 import type { Dict, Profile, SignalData, TargetData } from '../domain/types';
+import type { GateContext } from '../domain/gates';
 import { ask, askSignals } from './runner';
 import { rescoreSignals } from './rescore';
 import { forgeConcept, forgeRun } from './studio';
@@ -105,7 +106,7 @@ function repairHint(blocker: string): string {
  * outline the builder rewrites by hand; a cut recorded in the open beats a cap quietly broken.
  * Kept only when the total overage strictly falls, so it can never trade one blocker for another.
  */
-function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>): { data: Record<string, unknown>; dropped: string[] } {
+function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>, ctx: GateContext = {}): { data: Record<string, unknown>; dropped: string[] } {
   const dropped: string[] = [];
   let data = gated;
   for (const b of Array.isArray(gated.blockers) ? (gated.blockers as string[]) : []) {
@@ -124,7 +125,7 @@ function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>):
       }
       const joined = kept.join('').trim();
       if (joined.length > cap) continue;
-      const candidate = gateAsset(assetType, { ...data, [field]: joined } as Dict) as Record<string, unknown>;
+      const candidate = gateAsset(assetType, { ...data, [field]: joined } as Dict, ctx) as Record<string, unknown>;
       if (overage(candidate) < overage(data)) data = candidate;
       continue;
     }
@@ -147,7 +148,7 @@ function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>):
       dropped.push(`${field}: a paragraph of ${x.n} words`);
     }
     if (words() > cap) continue;
-    const candidate = gateAsset(assetType, { ...data, [field]: paras.filter((_, i) => keep[i]).join('\n\n') } as Dict) as Record<string, unknown>;
+    const candidate = gateAsset(assetType, { ...data, [field]: paras.filter((_, i) => keep[i]).join('\n\n') } as Dict, ctx) as Record<string, unknown>;
     if (overage(candidate) < overage(data)) data = candidate;
   }
   return { data, dropped };
@@ -517,6 +518,8 @@ export const api = {
     }
     const rules = rulesBlock(asset_type);
     const meta = rulebookMeta(asset_type);
+    // what the gate needs beyond the draft: a thin profile, a profile with no recorded gap, a RocketRide-owned app
+    const gctx = gateContext(profile, String(projRow?.site_url ?? ''), String(projRow?.repo_url ?? ''));
     // the product's own name, so a mention-ladder count and the drafts agree on what to call it
     const appName = displayName(String(projRow?.name ?? ''), brandDna as Dict | null, profile as unknown as Dict);
     // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
@@ -531,7 +534,7 @@ export const api = {
       // mention ladder counts how often a Reddit body names it)
       if (target) (swapped.data as Dict).venue = String((target as Dict).name ?? '');
       (swapped.data as Dict).app_name = appName;
-      const gated = gateAsset(asset_type, swapped.data) as Record<string, unknown>;
+      const gated = gateAsset(asset_type, swapped.data, gctx) as Record<string, unknown>;
       if (changed) gated.punctuation_fixed = changed;
       if (swapped.verbs) gated.wording_fixed = swapped.verbs;
       if (swapped.slop) gated.slop_fixed = swapped.slop;
@@ -559,7 +562,7 @@ export const api = {
         // a length blocker the asks would not fix is cut deterministically, and the cut is recorded
         const still = Array.isArray(gated.blockers) ? (gated.blockers as string[]) : [];
         if (still.some((b) => /(?:words|characters), cap \d+\)/.test(b))) {
-          const trimmed = trimParagraphsToCap(asset_type, gated);
+          const trimmed = trimParagraphsToCap(asset_type, gated, gctx);
           if (trimmed.dropped.length > 0 && trimmed.data !== gated) {
             gated = trimmed.data;
             const warnings = Array.isArray(gated.warnings) ? (gated.warnings as string[]) : [];
@@ -1014,6 +1017,15 @@ export const api = {
   },
 
   approveAsset: async (assetId: string) => {
+    // a draft with an outstanding hard failure cannot be approved: the gate's whole point is that a
+    // cap, a required shape or a banned word is not a matter of taste, and the first run's evidence is
+    // that a founder approves straight past a warning when the button lets them
+    const row = selectOne('assets', { id: assetId });
+    if (!row) throw new Error('asset not found');
+    const blockers = Array.isArray((row.data as Dict)?.blockers) ? ((row.data as Dict).blockers as string[]) : [];
+    if (blockers.length > 0) {
+      throw new Error(`This draft still fails ${blockers.length} hard ${blockers.length === 1 ? 'rule' : 'rules'}: ${blockers.join('; ')}. Redraft it, or edit the draft until the check passes.`);
+    }
     const affected = update('assets', { id: assetId }, { status: 'approved', status_by: currentActor() });
     if (!affected) throw new Error('asset not found');
     flush();

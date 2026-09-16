@@ -197,15 +197,37 @@ cal-com's Show HN lost its how-it-works paragraph to the deterministic trim, so 
 
 Reddit and Show HN carry 18 of the 33 high or blocker issues, and both rulebooks require a technical paragraph plus a limitation plus prior art. When the profile is thin, those requirements and GLOBAL_RULES rule 12 pull in opposite directions, and the model resolves the conflict by inventing. The rules cannot both be satisfied; the rulebook should say which one yields, and it should be rule 12.
 
+## What was fixed after the run
+
+The owner settled the precedence question and asked for the flags that are not Joe's to be closed. Both landed after the sixty drafts, so the numbers above are the measurement of version 4 as tested; these changes are what version 4 enforces now. Counts went from 124 rules and 207 checks to 130 rules and 243 checks, 66 of them hard.
+
+**The precedence, now rule 1 on all six platforms.** When a platform asks for something the profile does not hold, the thin-profile rule wins: write the shorter post, put the placeholder where the missing part belongs, and say in warnings which rule could not be satisfied. A short true post beats a complete invented one. This is the conflict that produced 18 of the 33 remaining issues on Reddit and Show HN.
+
+**The profile reaches the gate.** Several adopted rules depend on the profile rather than on the words in front of them, and `gates.ts` took the draft and nothing else. A `when` guard can now read three pseudo-fields from a `GateContext`: `$thin` (the understand pass could not evidence the profile), `$noGaps` (the profile records no gap), `$ownApp` (the app being launched is RocketRide's own). That is what makes the next three checks possible.
+
+| Fix | What it closes |
+| --- | --- |
+| `thin_profile_no_mechanism`, hard on all six: a mechanism verb pattern in a draft written from an unevidenced profile | The largest remaining cluster. An evidenced profile may state the same sentence; only a thin one may not |
+| `limitation_placeholder_when_no_gap`, hard on Reddit, Product Hunt and Show HN: with no gap recorded, the limitation must be the placeholder | Cluster 2, the invented limitation, 6 issues |
+| `alt_hook_no_invented_scene` and `alt_no_competitor_framing`, hard | Cluster 4 and part of 3: the alternates were checked for shape only, so an invented scene in a variant passed |
+| `body_how_it_works_present`, a `required_regex` on the Show HN body | Cluster 5: the trim only keeps a cut when the overage falls, so a required sentence now survives it |
+
+**The brand-check flags that are not Joe's, closed.** `no_financial_figures` is hard on all six, because brand rulebook 2.7 is absolute and the skill's own tiers make a financial figure a blocker, while the two checks that existed were soft. `rr_no_inference_claim` and `rr_two_entities` carry brand 1.2 and 2.6, which were absolute written policy that nothing enforced; both are scoped to `$ownApp`, because those rules bind RocketRide's own content and Launch Kit drafts a tenant's post in the tenant's voice.
+
+**`approveAsset` refuses a draft with an outstanding hard failure.** This was the one finding that reached past drafting: the handler set `status: 'approved'` without reading `blockers`, so a founder could approve over the gate and the first run's evidence is that they do. It now throws with the failure named: "This draft still fails 1 hard rule: body: Body over 200 words (254 words, cap 200). Redraft it, or edit the draft until the check passes."
+
+**Brand rulebook 4.3 is routed, not decided.** The policy is unwritten and Joe's to settle, so no rule here takes a position. What 4.3 asks of the checker is to flag a provider named in a comparative context and route it for review, and nothing routed. `provider_comparison_needs_review` is hard on all six: a comparative or adversarial mention blocks with the instruction to route the draft, and a neutral stack mention passes, which is consistent with 4.3's own working understanding that these providers are upstream infrastructure rather than competitors.
+
+Verification: 22 assertions on the new checks (each fires in the situation it guards and is silent outside it), the false-positive probe over ten ordinary developer sentences still clean, every check compiles, four assertions on the approval guard, and the typecheck passes.
+
 ## Next
 
-Ranked by how many of the 33 remaining high or blocker issues each would close.
+Ranked by how many of the 33 remaining high or blocker issues each would close. Items 2 to 5 of the original list are done above.
 
-1. A claims check: every product noun phrase in a draft must appear in the profile, or the sentence is a blocker. `apps/launchkit/src/lib/rulebook-checks.ts` plus a new check kind in `src/domain/gates.ts`. Closes cluster 1, 13 issues.
-2. The limitation placeholder as a hard check when `profile.gaps` is empty. `rulebook-checks.ts`, one check per platform. Closes cluster 2, 6 issues.
-3. Content checks applied to `alt_hook` and `alt_variants`, not only the main field. `rulebook-checks.ts`. Closes cluster 4 and part of cluster 3, 4 issues.
-4. The neutral-competitor rule as a check on every field rather than prose. `rulebook-checks.ts`. Closes the rest of cluster 3.
-5. A `required_regex` on the Show HN body's how-it-works sentence so the trim cannot delete it. `rulebook-checks.ts`. Closes cluster 5.
-6. Decide the rule-12 precedence above and write it into the six rulebooks. `src/lib/rulebooks.ts` and the six documents.
-7. Route the four flags for Joe. Until then Reddit rule 7 can name a foundation model provider in a published draft with nothing routing it for review.
-8. The newsletter close "Happy to send screenshots or answer anything your readers ask" is identical in all ten apps, lifted from the rule's own example. Product Hunt already bans rulebook-phrase reuse; the newsletter rulebook needs the same check. `rulebook-checks.ts`.
+1. Re-run the sixty drafts against the rulebook as it now stands. Everything above this line was measured on version 4 as tested; the precedence rule and the eleven new checks have unit evidence but not a full run behind them. This is the first thing to do.
+2. A semantic claims pass for an evidenced profile. `thin_profile_no_mechanism` closes the thin-profile case deterministically, but on a rich profile a mechanism claim can still be wrong in a way no pattern sees: cal-com's Show HN "asserts the exact claim the profile's own confidence note says could not be confirmed". The honest fix is a second model pass whose only job is to strike sentences whose factual content is not in the profile, run on the Reddit body, the Show HN body and the Product Hunt maker comment. `src/data/api.ts runAsset`.
+3. The newsletter close "Happy to send screenshots or answer anything your readers ask" is identical in all ten apps, lifted from the rule's own example. Product Hunt already bans rulebook-phrase reuse; the newsletter rulebook needs the same check. `rulebook-checks.ts`.
+4. documenso's X post carried an ungrammatical core claim through both runs ("Documenso is self-hostable, embeddable, and fully compliant e-signatures"). A subject-complement agreement fault is not machine-checkable; it belongs in the redraft loop's feedback, not the gate.
+5. The posting-account signal. Brand rulebook 3.5 varies the rule by account and the pipe has no account field, so Reddit rule 19 can only fire when the builder says so in TONE. Pass an ACCOUNT signal into `buildAssetQuestion` and default it to the builder's own account. `src/domain/questions.ts`.
+6. Label the Show HN card "outline, rewrite by hand before submitting" and drop copy-to-clipboard on that asset type, which is the recommendation the HN generated-text rule leaves standing. `src/components/launchkit/stages/assets-stage.tsx`.
+7. Joe's two flags, both the same unwritten brand rulebook 4.3 policy: whether a foundation model provider may be named in a comparative context at all, and whether Show HN rule 16's stack sentence may name one as a fact. Routing is in place; the policy is not.

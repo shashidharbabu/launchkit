@@ -91,7 +91,7 @@ export const ASSET_LIMITS: Record<string, [string, number]> = {
  * self-report. Mutates and returns `data` (data.warnings replaced by the
  * gated list). Length checks count CODE POINTS, matching Python len().
  */
-export function gateAsset(assetType: string, data: AssetData): AssetData {
+export function gateAsset(assetType: string, data: AssetData, ctx: GateContext = {}): AssetData {
   const raw = pyGet(data, "warnings", null);
   const warnings: unknown[] = pyTruthy(raw) ? pyList(raw) : [];
   // the subset a founder cannot post over; the UI shows them apart and the repair ask names them
@@ -117,7 +117,7 @@ export function gateAsset(assetType: string, data: AssetData): AssetData {
   if (assetType === "reddit_post" && pyStr(pyGet(data, "title", "")).startsWith("Show HN")) {
     warnings.push("title uses HN convention, rewrite for Reddit");
   }
-  for (const h of runRulebookCheckHits(assetType, data)) {
+  for (const h of runRulebookCheckHits(assetType, data, ctx)) {
     const w = hitLine(h);
     if (!warnings.includes(w)) warnings.push(w);
     if (h.hard && !blockers.includes(w)) blockers.push(w);
@@ -147,6 +147,39 @@ function fieldsOf(data: AssetData, field: string): Array<[string, string]> {
 /** One failed check: the field, the rule, the evidence, and whether it blocks approval. */
 export type CheckHit = { id: string; field: string; description: string; detail: string; hard: boolean };
 
+/**
+ * What the gate knows about the app besides the draft. Several adopted rules depend on the profile
+ * rather than on the words in front of them: a thin profile may not carry a mechanism, a limitation
+ * must be the placeholder when the profile records no gap, and RocketRide's own brand rules bind only
+ * when the app being launched is RocketRide's. A check reaches these through a `when` pseudo-field.
+ */
+export type GateContext = {
+  /** the understand pass could not evidence the profile: analysis_degraded, or confidence under 0.5 */
+  thin?: boolean;
+  /** the profile records no gap, so an honest limitation cannot be written from it */
+  noGaps?: boolean;
+  /** the app being launched is RocketRide's own, so the RocketRide brand rules bind the draft itself */
+  ownApp?: boolean;
+};
+
+/** The pseudo-fields a `when` guard may read: "true" or "" so the guard stays a plain regex test. */
+function contextValue(field: string, ctx: GateContext): string {
+  const on = field === "$thin" ? ctx.thin : field === "$noGaps" ? ctx.noGaps : field === "$ownApp" ? ctx.ownApp : false;
+  return on ? "true" : "";
+}
+
+/** The profile facts the gate needs, read once per draft. */
+export function gateContext(profile: unknown, siteUrl = "", repoUrl = ""): GateContext {
+  const p = (profile ?? {}) as Record<string, unknown>;
+  const conf = Number((p.confidence as Record<string, unknown> | undefined)?.overall ?? NaN);
+  const gaps = Array.isArray(p.gaps) ? (p.gaps as unknown[]) : [];
+  return {
+    thin: Boolean(pyTruthy(p.analysis_degraded)) || (Number.isFinite(conf) && conf < 0.5),
+    noGaps: gaps.filter((g) => pyStr(g).trim()).length === 0,
+    ownApp: /(^|\/\/|\.)rocketride\.(ai|org)(\/|$)/i.test(`${siteUrl} ${repoUrl}`),
+  };
+}
+
 // a founder cannot post over these: platform caps, required shapes, the banned verb, a link where none is allowed
 const HARD_KINDS = new Set(["max_chars", "max_words", "required_prefix", "required_regex", "max_count"]);
 const HARD_IDS = /banned_verb|brand_banned|s_word|raw_links|raw_urls|url_in_body|link_present|link_once|url_at_most_once|url_max_once|vote_ask|vote_or_reciprocity|no_dash|no_dashes/;
@@ -173,16 +206,18 @@ function countIn(id: string, text: string, data: AssetData): number {
  * or the matched words) so the builder can act on it. A pattern JavaScript
  * cannot compile is skipped, never fatal.
  */
-export function runRulebookCheckHits(assetType: string, data: AssetData): CheckHit[] {
+export function runRulebookCheckHits(assetType: string, data: AssetData, ctx: GateContext = {}): CheckHit[] {
   const checks: RuleCheck[] = RULEBOOK_CHECKS[assetType] ?? [];
   const out: CheckHit[] = [];
   const push = (c: RuleCheck, field: string, detail: string) =>
     out.push({ id: c.id, field, description: c.description, detail, hard: c.hard ?? (HARD_KINDS.has(c.kind) || HARD_IDS.test(c.id)) });
   for (const c of checks) {
     const n = Number(c.value);
-    // a check scoped to one venue (an r/SideProject title shape, an r/MachineLearning prefix) runs only there
+    // a check scoped to one venue (an r/SideProject title shape, an r/MachineLearning prefix) runs only
+    // there; a check scoped to a pseudo-field runs only in that situation (a thin profile, a profile with
+    // no recorded gap, a RocketRide-owned app), which is how a rule that depends on the profile is enforced
     if (c.when) {
-      const gv = pyStr(pyGet(data, c.when.field, ""));
+      const gv = c.when.field.startsWith("$") ? contextValue(c.when.field, ctx) : pyStr(pyGet(data, c.when.field, ""));
       let applies = false;
       try { applies = new RegExp(c.when.regex, "i").test(gv); } catch { applies = false; }
       if (!applies) continue;
@@ -225,8 +260,8 @@ export function runRulebookCheckHits(assetType: string, data: AssetData): CheckH
 }
 
 /** The hits as the one-line warnings the draft shows: field, rule, evidence. */
-export function runRulebookChecks(assetType: string, data: AssetData): string[] {
-  return runRulebookCheckHits(assetType, data).map(hitLine);
+export function runRulebookChecks(assetType: string, data: AssetData, ctx: GateContext = {}): string[] {
+  return runRulebookCheckHits(assetType, data, ctx).map(hitLine);
 }
 
 function hitLine(h: CheckHit): string {
