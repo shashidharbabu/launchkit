@@ -116,13 +116,16 @@ function AssetCard({
   if (!project) return null;
 
   const approved = asset.status === 'approved';
-  const blockers = Array.isArray(asset.data.blockers) ? asset.data.blockers.map(asStr) : [];
-  const warnings = (Array.isArray(asset.data.warnings) ? asset.data.warnings.map(asStr) : []).filter((w) => !blockers.includes(w));
-  const repaired = Array.isArray(asset.data.repaired) ? asset.data.repaired.length : 0;
   const label = ASSET_LABELS[asset.asset_type] ?? asset.asset_type.toUpperCase();
   // the draft carries {APP_URL}; the card shows, copies and shares the real address
   const appUrl = pickUrl(project as unknown as Record<string, unknown>);
   const data = fillDeep(asset.data as Record<string, unknown>, appUrl);
+  // read these from the filled copy, not the raw row: a warning that quotes the link
+  // ("First comment: {APP_URL}") used to print the placeholder while the body beside it
+  // showed the real address
+  const blockers = Array.isArray(data.blockers) ? data.blockers.map(asStr) : [];
+  const warnings = (Array.isArray(data.warnings) ? data.warnings.map(asStr) : []).filter((w) => !blockers.includes(w));
+  const repaired = Array.isArray(data.repaired) ? data.repaired.length : 0;
   const fixed = typeof data.punctuation_fixed === 'number' ? data.punctuation_fixed : 0;
   const verbsFixed = typeof data.wording_fixed === 'number' ? data.wording_fixed : 0;
   const slopFixed = typeof data.slop_fixed === 'number' ? data.slop_fixed : 0;
