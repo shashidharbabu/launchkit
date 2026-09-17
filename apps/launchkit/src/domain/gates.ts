@@ -51,11 +51,14 @@ export function gateSignals(signals: SignalData[], ownUrls: unknown[]): { kept: 
         domains.push(host);
       }
     }
-    const stripped = su.replace(/\/+$/, "");
-    const seg = stripped.slice(stripped.lastIndexOf("/") + 1);
-    if (seg) {
-      domains.push(seg);
-    }
+    // The last path segment used to be banned as a substring of any url. For
+    // plausible, whose repo is github.com/plausible/analytics, that banned the
+    // word "analytics" everywhere and dropped nine real signals in one run as
+    // "the app's own content", including
+    // indiehackers.com/post/why-i-stopped-using-google-analytics. It was also
+    // redundant: a shared host is already pinned to host/owner/repo above, and a
+    // site url already contributes its host. On a docs url it would have banned
+    // a word like "guide". Removed rather than narrowed.
   }
   const kept: SignalData[] = [];
   const dropped: GateDropped[] = [];
