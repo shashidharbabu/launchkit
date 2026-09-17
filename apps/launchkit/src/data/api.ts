@@ -36,7 +36,7 @@ import {
 import { getCurrentRun, setCurrentRun } from './trace';
 import { rulebookMeta, rulesBlock } from './rules';
 import { punctuationFixed } from './runner';
-import { sanitizeVerbs } from '../domain/sanitize';
+import { sanitizeAuthored, sanitizeVerbs } from '../domain/sanitize';
 import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
@@ -231,7 +231,13 @@ async function latestCommercial(projectId: string, kind: string): Promise<Dict |
 }
 
 async function saveCommercial(projectId: string, kind: string, data: Dict, jobId: string): Promise<void> {
-  insert('commercial_results', { id: uid(), project_id: projectId, kind, data, job_id: jobId });
+  // Every stage result lands here: pricing, the store listing, brand DNA, campaigns, the
+  // targets and signals reports. Only drafts were ever cleaned of em dashes, so one written
+  // into a plan name reached the plans dialog on screen, and the store listing is the most
+  // public copy the app has. Quoted and observed fields are stepped over, not rewritten.
+  const { data: clean, changed } = sanitizeAuthored(data);
+  if (changed) clean.punctuation_fixed = changed;
+  insert('commercial_results', { id: uid(), project_id: projectId, kind, data: clean, job_id: jobId });
 }
 
 // ---------------------------------------------------------------- understand (main._start_understand)

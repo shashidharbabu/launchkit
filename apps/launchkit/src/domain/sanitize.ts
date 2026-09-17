@@ -64,6 +64,40 @@ export function sanitizeDraft<T>(value: T): { data: T; changed: number } {
 }
 
 /**
+ * Fields that hold somebody else's words: a venue's posting rules read off its
+ * page, a competitor's pricing copy, a scraped testimonial, the raw research a
+ * recommendation was built from. Replacing a dash inside one of these would
+ * falsify a quote, so the walk below steps over them entirely.
+ */
+const QUOTED_FIELDS = new Set([
+  'rules_summary', 'rules_source', 'research', 'competitors', 'sources', 'sources_read',
+  'quote', 'quotes', 'evidence', 'copy', 'site_copy', 'observed', 'raw', 'title_or_quote',
+  'warnings', 'blockers',
+]);
+
+/**
+ * The same deterministic dash rule as sanitizeDraft, for copy Launch Kit wrote
+ * itself: pricing plans, the store listing, brand DNA, campaign angles. Only
+ * drafts were ever cleaned, so an em dash the model put in a plan name reached
+ * the screen, and the store listing is the most public copy the app has.
+ * Quoted and observed fields are left exactly as they were read.
+ */
+export function sanitizeAuthored<T>(value: T): { data: T; changed: number } {
+  let changed = 0;
+  const walk = (v: unknown): unknown => {
+    if (typeof v === 'string') { const r = cleanString(v); changed += r.n; return r.s; }
+    if (Array.isArray(v)) return v.map(walk);
+    if (v && typeof v === 'object') {
+      return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(
+        ([k, x]) => [k, QUOTED_FIELDS.has(k) ? x : walk(x)],
+      ));
+    }
+    return v;
+  };
+  return { data: walk(value) as T, changed };
+}
+
+/**
  * For launch drafts only (never for quoted third-party text such as signals,
  * or for an observed profile): the banned verb becomes the release verb in
  * every field except warnings, which quote the draft's faults as written.
