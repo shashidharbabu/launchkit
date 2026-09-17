@@ -843,14 +843,14 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "post": "Document signing is infrastructure. Infrastructure should be open. Documenso is self-hostable, embeddable, and fully compliant e-signatures, with 14,980 GitHub stars.\n{APP_URL}",
     "thread_extension": [
-     "Self-hosting means you run Documenso on your own infrastructure, audit every line of the signing flow, and keep sensitive documents off third-party servers. The full source is on GitHub under AGPLv3.",
-     "If you build a SaaS product, the Platform plan gives you a white-label embeddable signing experience via API. Your users sign inside your product, not on a page that carries someone else's name.",
-     "Compliance is included out of the box: 21 CFR Part 11, SOC2, HIPAA, ESIGN Act, and UETA. You do not configure it separately. It is there when you need it for an audit or an enterprise deal.",
+     "Self-hosting means you run Documenso on your own infra, audit every line of the signing flow, and keep sensitive documents off third-party servers. The full source is on GitHub under AGPLv3.",
+     "If you build a SaaS product, the Platform plan gives you a white-label embeddable signing experience via API. Your users sign inside your product, not on a page that says someone else's name.",
+     "Compliance is included: 21 CFR Part 11, SOC2, HIPAA, ESIGN Act, and UETA. You do not configure it separately. It is there when you need it for an audit or an enterprise deal.",
      "All our metrics, code, and designs are public on our open page. If you embed signing in your product, what compliance requirement has been hardest to satisfy?"
     ],
     "alt_variants": [
@@ -858,11 +858,13 @@
      "We made the code, the designs, and the business metrics public. If document signing is going to be infrastructure, the infrastructure should be auditable. 3,198 forks on GitHub.\n{APP_URL}"
     ],
     "warnings": [
-     "Thread tweet 4 references 'our open page' without a URL. Per platform rules no second link may appear in the thread. The open metrics page is described by name only. If a direct URL is preferred, it must be added as a second link and this warning stands.",
-     "Campaign angle references contrast with proprietary tools. Per platform rules no comparison framing is allowed. The post states facts about Documenso only; the implicit contrast was dropped.",
+     "Previous draft wrote '14,980 GitHub stars from developers who agree', which violates the platform rule that a star count is stated bare and never attributed with what those people think or agree with. Fixed to '14,980 GitHub stars'.",
+     "Previous alt variant 2 wrote '3,198 forks say others think so too', which violates the same rule. Fixed to '3,198 forks on GitHub'.",
+     "Thread tweet 4 previously included documenso.com/open as a URL. Per platform rules no second link may appear in the thread. It is now described as 'our open page'. Builder should confirm this is acceptable; if a direct URL is preferred, it must be noted as a second link and this warning stands.",
+     "Campaign angle references 'not locked behind a proprietary wall' as a contrast to proprietary tools. Per platform rules no comparison framing is allowed. The post states facts about Documenso only; the implicit contrast was dropped.",
      "No pricing numbers appear in the post or thread. Pricing is not listed in proof_points and is therefore excluded per platform rules.",
      "No user count or MRR metric used. The open metrics page exists but no specific user or revenue number appears in proof_points, so none was included.",
-     "warnings[2]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"no comparison framing\")"
+     "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"no comparison framing\")"
     ],
     "app_name": "Documenso",
     "blockers": [],
@@ -870,18 +872,20 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "Thread tweet 4 references 'our open page' without a URL. Per platform rules no second link may appear in the thread. The open metrics page is described by name only. If a direct URL is preferred, it must be added as a second link and this warning stands.",
-    "Campaign angle references contrast with proprietary tools. Per platform rules no comparison framing is allowed. The post states facts about Documenso only; the implicit contrast was dropped.",
+    "Previous draft wrote '14,980 GitHub stars from developers who agree', which violates the platform rule that a star count is stated bare and never attributed with what those people think or agree with. Fixed to '14,980 GitHub stars'.",
+    "Previous alt variant 2 wrote '3,198 forks say others think so too', which violates the same rule. Fixed to '3,198 forks on GitHub'.",
+    "Thread tweet 4 previously included documenso.com/open as a URL. Per platform rules no second link may appear in the thread. It is now described as 'our open page'. Builder should confirm this is acceptable; if a direct URL is preferred, it must be noted as a second link and this warning stands.",
+    "Campaign angle references 'not locked behind a proprietary wall' as a contrast to proprietary tools. Per platform rules no comparison framing is allowed. The post states facts about Documenso only; the implicit contrast was dropped.",
     "No pricing numbers appear in the post or thread. Pricing is not listed in proof_points and is therefore excluded per platform rules.",
     "No user count or MRR metric used. The open metrics page exists but no specific user or revenue number appears in proof_points, so none was included.",
-    "warnings[2]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"no comparison framing\")"
+    "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"no comparison framing\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1324,
-   "words": 209,
+   "chars": 1297,
+   "words": 205,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -889,36 +893,41 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "Document signing is infrastructure. Infrastructure should be open.\n\nDocumenso is an open-source e-signature platform. You can run it on your own servers, embed it white-label into your product via API, or use our hosted version. It's compliant out of the box with ESIGN, UETA, 21 CFR Part 11, SOC2, and HIPAA.\n\nThe code, the designs, and our metrics are all public. We think document infrastructure should be auditable by anyone who depends on it.\n\nSimon Burns, Co-Founder and CEO at Vial Inc., said: \"The team built an amazing product fitting our needs. They really get what it means to build for enterprise.\"\n\nWe're at 14,980 GitHub stars and 3,198 forks. Developers are building on top of it.\n\nIf you're running document workflows on closed infrastructure you can't audit, take a look at what open signing actually looks like today.\n\nLink in the first comment.\n\n#opensource #devtools #esignature",
+    "post": "Document signing is infrastructure. Infrastructure should be open.\n\nDocumenso is an open-source e-signature platform, self-hostable, embeddable via API, and compliant out of the box with ESIGN, UETA, 21 CFR Part 11, SOC2, and HIPAA.\n\nWe've built it so teams and SaaS founders can run it on their own servers, embed it white-label into their product, or use our hosted version. The code, the designs, and our metrics are all public.\n\nSimon Burns, Co-Founder and CEO at Vial Inc., put it plainly: \"The team built an amazing product fitting our needs. They really get what it means to build for enterprise.\"\n\nWe're at 14,980 GitHub stars and 3,198 forks. Developers are building on top of it.\n\nIf you're running document workflows on closed infrastructure you can't audit, take a look at what open signing actually looks like today.\n\nLink in the first comment.\n\n#opensource #devtools #esignature",
     "alt_hook": "14,980 developers starred Documenso on GitHub. It's an open-source e-signature platform you can run on your own servers.",
     "warnings": [
      "First comment: {APP_URL}",
-     "Quote dropped from post body: 'Documenso has streamlined our digital signing process...' (Nitin Gupta, COO Prisma Inc.) contains 'game-changer', which is on the slop-lexicon ban list. Paste the full verbatim quote into the first comment alongside the link if you want to use it. Never rewrite it.",
-     "Launch week cadence for Documenso: after this post, run at most four posts in the week and never two of the same kind back to back. Suggested sequence: proof (the 14,980-star count and what it means for the open signing movement), opinion (a position on why signing infrastructure should be open and auditable), teach (one thing a reader can do with Documenso today, such as self-hosting in under an hour with Docker), story (a scene from building it and what it cost, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in your audience's timezone.",
-     "Launch day replies for Documenso: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+     "Quote dropped: 'Documenso has streamlined our digital signing process...' (Nitin Gupta, COO Prisma Inc.), the verbatim quote contains 'game-changer', which is on the slop-lexicon ban list. Paste the full verbatim quote into the first comment alongside the link if you want to use it, or omit it entirely. Never rewrite it.",
+     "Launch week cadence: after this post, run at most four posts in the week and never two of the same kind back to back. Suggested sequence: proof (one number from the launch), opinion (a position on why signing infrastructure should be open), teach (one thing a reader can do with Documenso today), story (a scene from building it and what it cost, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in your audience's timezone.",
+     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
      "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
     ],
     "app_name": "Documenso",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"People aren't just watching; they're\")"
+    ]
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "Quote dropped from post body: 'Documenso has streamlined our digital signing process...' (Nitin Gupta, COO Prisma Inc.) contains 'game-changer', which is on the slop-lexicon ban list. Paste the full verbatim quote into the first comment alongside the link if you want to use it. Never rewrite it.",
-    "Launch week cadence for Documenso: after this post, run at most four posts in the week and never two of the same kind back to back. Suggested sequence: proof (the 14,980-star count and what it means for the open signing movement), opinion (a position on why signing infrastructure should be open and auditable), teach (one thing a reader can do with Documenso today, such as self-hosting in under an hour with Docker), story (a scene from building it and what it cost, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in your audience's timezone.",
-    "Launch day replies for Documenso: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+    "Quote dropped: 'Documenso has streamlined our digital signing process...' (Nitin Gupta, COO Prisma Inc.), the verbatim quote contains 'game-changer', which is on the slop-lexicon ban list. Paste the full verbatim quote into the first comment alongside the link if you want to use it, or omit it entirely. Never rewrite it.",
+    "Launch week cadence: after this post, run at most four posts in the week and never two of the same kind back to back. Suggested sequence: proof (one number from the launch), opinion (a position on why signing infrastructure should be open), teach (one thing a reader can do with Documenso today), story (a scene from building it and what it cost, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in your audience's timezone.",
+    "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"People aren't just watching; they're\")"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1037,
-   "words": 167,
+   "chars": 1238,
+   "words": 205,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -926,14 +935,14 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "I work on an open-source e-signature platform, self-hostable via Docker, AGPLv3",
-    "body": "DocuSign runs signatures on its own infrastructure; you can't audit the PDF storage or run it on your own servers. For teams with data-sovereignty requirements, that's a hard constraint with no workaround short of an enterprise negotiation.\n\nI work on Documenso, an open-source electronic signature platform built so you can own the signing backend. You deploy it via Docker, point it at your own Postgres instance, and the full stack is AGPLv3 on GitHub. It handles the complete document lifecycle: send, sign, manage, with ESIGN, UETA, SOC2, HIPAA, and 21 CFR Part 11 compliance built in. For product builders, there's an API that lets you embed a white-label signing experience directly inside your app, no Documenso branding visible to your users.\n\nStars: 14,980 | Forks: 3,198\n\nOne real gap: there's no interactive sandbox you can click through without creating an account first. Evaluating it means either signing up for the hosted version or spinning up Docker locally, which is more friction than I'd like for a first look.\n\nIf you've self-hosted a signing tool before, which part caused the most trouble in your setup: PDF rendering edge cases, audit trail storage, or email delivery for the signing requests? {APP_URL}",
+    "title": "I maintain an open-source e-signature platform, self-hostable via Docker, AGPLv3",
+    "body": "DocuSign runs signatures on its own infrastructure; you can't audit the PDF storage or run it on your own servers. For teams with data-sovereignty requirements, or SaaS builders who need to embed a white-label signing flow inside their own product, that's a hard constraint with no workaround short of an enterprise negotiation.\n\nI work on Documenso, an open-source electronic signature platform we built so you can own the signing backend. You deploy it via Docker, point it at your own Postgres instance, and the full stack is AGPLv3 on GitHub. It handles the complete document lifecycle: send, sign, manage, with ESIGN, UETA, SOC2, HIPAA, and 21 CFR Part 11 compliance built in. For product builders, there's an API that lets you embed a white-label signing experience directly inside your app, no Documenso branding visible to your users.\n\nStars: 14,980 | Forks: 3,198\n\nOne real gap right now: there's no interactive sandbox you can click through without creating an account first. Evaluating it means either signing up for the hosted version or spinning up Docker locally, which is more friction than I'd like for a first look.\n\nIf you've self-hosted a signing tool before, what broke first in your setup: PDF rendering edge cases, audit trail storage, or email delivery for the signing requests? {APP_URL}",
     "suggested_flair": "New Project Megathread",
     "warnings": [
-     "TARGET subreddit is r/selfhosted. Per platform rules, r/selfhosted requires new projects to post in the current New Project Megathread, not the main feed. Confirm the project's age and post in the correct venue. The suggested_flair reflects this.",
+     "TARGET subreddit is r/selfhosted. Per platform rules, r/selfhosted requires new projects (under 3 months old) to post in the current New Project Megathread, not the main feed. Confirm the project's age and post in the correct venue. The suggested_flair reflects this.",
      "Mention level used: 2 (product named once in the sentence that discloses the builder, {APP_URL} once in the final paragraph).",
      "Builder disclosure uses 'I work on' because Documenso is a team/company product with 3+ years of active development; 'I built' was not used.",
      "DocuSign is named as a neutral factual reference (infrastructure model, no self-hosting) in the first paragraph, within the first 120 words, per platform rules. No negative adjective is attached to its name.",
@@ -941,7 +950,7 @@
      "The limitation (no interactive sandbox without signup) is drawn directly from APP_PROFILE.gaps. The sentence does not open with 'The honest limitation' and does not include a roadmap promise, per platform rules.",
      "Key:Value lines (Stars, Forks) are the only structured lines in the body and are drawn directly from APP_PROFILE.proof_points.",
      "Builder must verify their account has sufficient karma and post history in r/selfhosted before posting; low-karma accounts are often filtered or removed.",
-     "This draft was model-assisted. Rewrite it in your own words before posting; r/selfhosted requires you to answer the AI-disclosure bot honestly."
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
     ],
     "venue": "r/selfhosted",
     "app_name": "Documenso",
@@ -950,7 +959,7 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "TARGET subreddit is r/selfhosted. Per platform rules, r/selfhosted requires new projects to post in the current New Project Megathread, not the main feed. Confirm the project's age and post in the correct venue. The suggested_flair reflects this.",
+    "TARGET subreddit is r/selfhosted. Per platform rules, r/selfhosted requires new projects (under 3 months old) to post in the current New Project Megathread, not the main feed. Confirm the project's age and post in the correct venue. The suggested_flair reflects this.",
     "Mention level used: 2 (product named once in the sentence that discloses the builder, {APP_URL} once in the final paragraph).",
     "Builder disclosure uses 'I work on' because Documenso is a team/company product with 3+ years of active development; 'I built' was not used.",
     "DocuSign is named as a neutral factual reference (infrastructure model, no self-hosting) in the first paragraph, within the first 120 words, per platform rules. No negative adjective is attached to its name.",
@@ -958,14 +967,14 @@
     "The limitation (no interactive sandbox without signup) is drawn directly from APP_PROFILE.gaps. The sentence does not open with 'The honest limitation' and does not include a roadmap promise, per platform rules.",
     "Key:Value lines (Stars, Forks) are the only structured lines in the body and are drawn directly from APP_PROFILE.proof_points.",
     "Builder must verify their account has sufficient karma and post history in r/selfhosted before posting; low-karma accounts are often filtered or removed.",
-    "This draft was model-assisted. Rewrite it in your own words before posting; r/selfhosted requires you to answer the AI-disclosure bot honestly."
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1362,
-   "words": 216,
+   "chars": 1446,
+   "words": 230,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -973,13 +982,13 @@
    "has_app_url": true
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Documenso",
     "tagline": "E-signatures you can self-host, audit, and embed",
     "description": "Closed signing tools keep your document data on a third-party server and charge per envelope as volume grows. Documenso is AGPLv3: self-host it, use it hosted, or embed it white-label via API. Compliant with ESIGN, UETA, SOC2, HIPAA, and 21 CFR Part 11.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Documenso. 👋\n\nTeams that need to embed signing into their product face a real constraint: the available tools are closed-source, charge per envelope as volume scales, and require trusting a third party with sensitive document data.\n\nDocumenso is an open-source (AGPLv3) electronic signature platform. You can run it on your own infrastructure with Docker, use our hosted version, or embed a white-label signing flow into your product via our API. The signing backend handles document preparation, recipient routing, audit trails, and compliance with ESIGN, UETA, SOC2, HIPAA, and 21 CFR Part 11.\n\nThe code, the designs, and our business metrics are all public at documenso.com/open. You can read exactly what happens to a document when it is signed.\n\nDocuSign is a hosted e-signature service. Documenso runs on your own infrastructure or ours, and the source code is public. Run both against your own document workflows and tell me which one held up.\n\nTwo things not ready yet: the Template Store is still coming soon, and the integrated payment collection feature for signers is not live.\n\nTwo things I want to know: what would you need to see before you ran this on production traffic? And if you have tried to embed signing into a product before, where did the existing tools break for you?\n\nI will be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Documenso. 👋\n\nTeams that need to embed signing into their product face a real constraint: the available tools are closed-source, charge per envelope as volume scales, and require trusting a third party with sensitive document data.\n\nDocumenso is an open-source (AGPLv3) electronic signature platform. You can run it on your own infrastructure with Docker, use our hosted version, or embed a white-label signing flow into your product via our API. The signing backend handles document preparation, recipient routing, audit trails, and compliance with ESIGN, UETA, SOC2, HIPAA, and 21 CFR Part 11.\n\nThe code, the designs, and our business metrics are all public at documenso.com/open. You can read exactly what happens to a document when it is signed.\n\nDocuSign is a hosted e-signature service at around $10 per month for the Personal plan. Documenso runs on your own infrastructure or ours, and the source code is public. Run both against your own document workflows and tell me which one held up.\n\nTwo things not ready yet: the Template Store is still coming soon, and the integrated payment collection feature for signers is not live.\n\nTwo things I want to know: what would you need to see before you ran this on production traffic? And if you have tried to embed signing into a product before, where did the existing tools break for you?\n\nI will be in the comments all day.",
     "topics": [
      "Developer Tools",
      "Open Source",
@@ -989,6 +998,7 @@
      "[Builder first name] and [role] are placeholders. Fill them in with the actual maker's name and title before the listing goes live.",
      "Template Store and integrated payment collection are listed as coming soon in APP_PROFILE. Confirm their status before launch and update the first comment if either has gone live.",
      "Self-hosted licensing details were not fully confirmed from a dedicated pricing page. Review documenso.com/self-hosted before launch and update the first comment if the self-hosted plan carries meaningful limits or a separate price.",
+     "DocuSign Personal plan price (~$10/mo) is drawn from COMMERCIAL data. Confirm it is still current on docusign.com before launch.",
      "first_comment: No limitation or rough edge named in the maker comment (rule R8)"
     ],
     "app_name": "Documenso",
@@ -996,23 +1006,26 @@
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$10\")"
+     "first_comment: Maker comment over 250 words (252 words, cap 250)",
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
     ]
    },
    "warnings": [
     "[Builder first name] and [role] are placeholders. Fill them in with the actual maker's name and title before the listing goes live.",
     "Template Store and integrated payment collection are listed as coming soon in APP_PROFILE. Confirm their status before launch and update the first comment if either has gone live.",
     "Self-hosted licensing details were not fully confirmed from a dedicated pricing page. Review documenso.com/self-hosted before launch and update the first comment if the self-hosted plan carries meaningful limits or a separate price.",
+    "DocuSign Personal plan price (~$10/mo) is drawn from COMMERCIAL data. Confirm it is still current on docusign.com before launch.",
     "first_comment: No limitation or rough edge named in the maker comment (rule R8)"
    ],
    "blockers": [],
    "repaired": [
-    "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$10\")"
+    "first_comment: Maker comment over 250 words (252 words, cap 250)",
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1858,
-   "words": 303,
+   "chars": 1931,
+   "words": 323,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1020,14 +1033,14 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "Show HN: Documenso, open-source e-signature platform, self-host or embed",
-    "body": "Hi HN, Documenso is an open-source e-signature platform that takes a PDF and produces a legally compliant signed document with an audit trail under ESIGN, UETA, and 21 CFR Part 11. An account is required to send or sign; no anonymous sandbox exists yet.\n\n{APP_URL}\n\nDocument signing is core infrastructure for most SaaS products, and building it on a closed platform means trusting a third party with sensitive document data. [Builder: one sentence on why you built it.]\n\nThe server runs on Hono in TypeScript, with React Router v7 on the front end. Document data and audit trails live in a Postgres database. The codebase is public under AGPLv3.\n\nThe whole stack is auditable and self-hostable; you run it on your own infrastructure and own the document data. Three things are not there yet: a template store, payment collection for signers, and the embedded signing API outside the Platform plan.\n\nThe choice we want a second opinion on is the embedded signing experience: should it default to a full-page iframe or a lightweight JS widget that mounts into any DOM element? I am one of the builders and will be in the thread.",
+    "title": "Show HN: Documenso, open-source e-signature platform you can self-host or embed",
+    "body": "Hi HN, Documenso is an open-source e-signature platform that takes a PDF and produces a legally compliant signed document with an audit trail under ESIGN, UETA, and 21 CFR Part 11. An account is required to send or sign; there is no anonymous sandbox yet.\n\n{APP_URL}\n\nDocument signing is core infrastructure for most SaaS products. [Builder: one sentence on why you built it, or the origin line the README records.]\n\nThe server runs on Hono in TypeScript, with React Router v7 on the front end. PDF signature fields are handled by @libpdf/core and @cantoo/pdf-lib. Document data and audit trails live in a Postgres database. The full codebase is public under AGPLv3, so you can read exactly what happens to a document before and after signing. Current limitations: no template store yet, no integrated payment collection for signers, and the embedded signing API is available on the Platform plan only.\n\nThe choice we want a second opinion on is the embedded signing experience: should it default to a full-page iframe or a lightweight JS widget that mounts into any DOM element? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-     "Documenso has been public since March 2023, more than three years ago, and no earlier HN thread is recorded in the profile. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for 'Documenso' before posting to find any prior thread, and if one exists, link it in the body and state in one sentence what has changed since.",
+     "Documenso has been public since March 2023, more than three years ago, with no earlier HN thread recorded in the profile. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for 'Documenso' before posting to find any prior thread, and if one exists, link it in the body and state in one sentence what has changed since.",
      "The app requires account creation to try the signing flow. The body discloses this plainly, but HN readers may push back if they expect a no-login demo. Consider adding a read-only or guest demo path before posting.",
      "The why-built paragraph uses the ICP pain framing from the profile because no README origin story or founder quote was recorded. Replace the placeholder sentence with your own words before submitting.",
      "Verify that {APP_URL} points to the live running application, not the marketing homepage. HN rules require the link to open the working product.",
@@ -1038,12 +1051,13 @@
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "body: Body over 200 words (202 words, cap 200)"
+     "body: Body over 200 words (254 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)"
     ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-    "Documenso has been public since March 2023, more than three years ago, and no earlier HN thread is recorded in the profile. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for 'Documenso' before posting to find any prior thread, and if one exists, link it in the body and state in one sentence what has changed since.",
+    "Documenso has been public since March 2023, more than three years ago, with no earlier HN thread recorded in the profile. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for 'Documenso' before posting to find any prior thread, and if one exists, link it in the body and state in one sentence what has changed since.",
     "The app requires account creation to try the signing flow. The body discloses this plainly, but HN readers may push back if they expect a no-login demo. Consider adding a read-only or guest demo path before posting.",
     "The why-built paragraph uses the ICP pain framing from the profile because no README origin story or founder quote was recorded. Replace the placeholder sentence with your own words before submitting.",
     "Verify that {APP_URL} points to the live running application, not the marketing homepage. HN rules require the link to open the working product.",
@@ -1051,12 +1065,13 @@
    ],
    "blockers": [],
    "repaired": [
-    "body: Body over 200 words (202 words, cap 200)"
+    "body: Body over 200 words (254 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1265,
-   "words": 213,
+   "chars": 1319,
+   "words": 222,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1064,17 +1079,17 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "subject": "For SaaS founders: e-signatures you can self-host and audit",
-    "pitch": "Hi [Editor first name],\n\nSaaS teams scaling document volume reach a point where a compliance audit requires them to control exactly where sensitive document data lives, and the signing tool they chose at seed stage often cannot be audited, embedded natively into their product, or run on their own infrastructure. That is the gap your readers are solving when they start evaluating signing backends.\n\nDocumenso is an open-source electronic signature platform for teams and SaaS builders, self-hostable and embeddable via API, with SOC2, HIPAA, and 21 CFR Part 11 compliance out of the box.\n\nIt has 14,980 stars on GitHub, which reflects real adoption across developer and engineering teams.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "subject": "For SaaS founders: open-source e-signatures you can self-host",
+    "pitch": "Hi [Editor first name],\n\nSaaS teams at the Series A and beyond often reach a point where document volume makes proprietary pricing untenable, or a compliance audit requires them to control exactly where sensitive document data lives. That is when they start looking for a signing backend they can actually own and audit.\n\nDocumenso is an open-source electronic signature platform, self-hostable and embeddable via API, with SOC2, HIPAA, and 21 CFR Part 11 compliance out of the box.\n\nThe public repo has 14,980 GitHub stars on GitHub, which reflects real adoption across developer and engineering teams.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name unknown: no TARGET was provided. The greeting uses the placeholder '[Editor first name]'. Replace with the newsletter author's first name before sending.",
      "Builder first name unknown: APP_PROFILE and BRAND_DNA do not name the builder. Replace '[Builder first name]' with the actual first name before sending.",
      "No TARGET specified: the subject line uses APP_PROFILE.target_user ('SaaS founders') as a stand-in for the newsletter name. Update the subject to name the actual newsletter or its readers if known.",
      "TARGET rules not verified: no TARGET block was provided, so newsletter submission preferences (editorial form, paid placement policy, calendar) could not be checked. Verify before sending.",
-     "pitch: Six or more paragraph breaks (\"SaaS teams scaling document volume reach a point where a com\")"
+     "pitch: Six or more paragraph breaks (\"SaaS teams at the Series A and beyond often reach a point wh\")"
     ],
     "app_name": "Documenso",
     "blockers": [],
@@ -1086,14 +1101,14 @@
     "Builder first name unknown: APP_PROFILE and BRAND_DNA do not name the builder. Replace '[Builder first name]' with the actual first name before sending.",
     "No TARGET specified: the subject line uses APP_PROFILE.target_user ('SaaS founders') as a stand-in for the newsletter name. Update the subject to name the actual newsletter or its readers if known.",
     "TARGET rules not verified: no TARGET block was provided, so newsletter submission preferences (editorial form, paid placement policy, calendar) could not be checked. Verify before sending.",
-    "pitch: Six or more paragraph breaks (\"SaaS teams scaling document volume reach a point where a com\")"
+    "pitch: Six or more paragraph breaks (\"SaaS teams at the Series A and beyond often reach a point wh\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 865,
-   "words": 134,
+   "chars": 780,
+   "words": 120,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,

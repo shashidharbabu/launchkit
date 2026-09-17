@@ -1,5 +1,14 @@
 # Launch Kit: the Social Launch rulebook at version 4
 
+> **Superseded in part, 2026-09-16.** The numbers below measure the rulebook
+> before the precedence rule and the eleven follow-up checks were added. Those
+> have now had a full sixty-draft run, and they cost 0.10 overall and 0.50 on
+> Reddit, while judge-reported blockers rose from 3 to 9. Read
+> [EVAL-10-SOCIAL-V4-RERUN.md](EVAL-10-SOCIAL-V4-RERUN.md) for the current
+> state. The evidence behind this report is preserved as
+> `judged-social-v4.measured.json`, `matrix.v4measured.json` and, per app,
+> `appstate.v4measured.json`.
+
 Version 3 distilled six open-source skill packs into a rulebook. Version 4 reconciled every adopted rule against the code, closed 96 gaps where a rule had nothing enforcing it, and was tested by re-drafting all six posts for the same ten apps from their saved stores, so the profile, the angle and the pricing are identical and only the rules differ.
 
 All four acceptance criteria pass. Zero hard-rule blockers on all sixty drafts, zero dashes and zero occurrences of the banned launch verb, zero invented person names where the first run had three, every draft stamped with the rulebook version it was written against, and every platform above its baseline with none regressing. The mean post score went from 3.03 to 3.52.

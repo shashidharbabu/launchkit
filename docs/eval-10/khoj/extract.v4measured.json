@@ -837,24 +837,24 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "Khoj turns your docs and the web into a single queryable knowledge base. Any LLM, local or cloud. Self-hosted, so your documents stay on your machine. 37,266 GitHub stars, AGPL-3.0.\n{APP_URL}",
+    "post": "Khoj turns your own docs into a queryable knowledge base. Any LLM, local or cloud. Self-host it and your notes stay on your machine. 37,266 GitHub stars, fully open-source (AGPL-3.0).\n{APP_URL}",
     "thread_extension": [
-     "It is LLM-agnostic by design. Point it at llama3, qwen, or gemma via Ollama, or swap in OpenAI or Gemini. Same interface either way, no config rewrite.",
+     "It is LLM-agnostic by design. Point it at llama3 or qwen via Ollama, or swap in OpenAI or Gemini. Same interface either way, no config rewrite.",
      "One self-hosted instance serves every client we built: browser, Obsidian plugin, Emacs, desktop app, and WhatsApp. Your notes, wherever you already work.",
-     "It ingests PDF, Markdown, Org-mode, and Notion exports. Semantic search runs across all of them, so you can ask a question that spans years of notes in different formats.",
-     "If you are running a local model against your own notes right now, what is the biggest gap you have hit? We build in the open and genuinely want to know."
+     "It ingests PDF, Markdown, Org-mode, and Notion exports. Semantic search runs across all of them, so you can ask a question that spans three years of notes in different formats.",
+     "If you are running a local model against your own notes right now, what are you using and what is the biggest gap you have hit? We are building in the open and genuinely want to know."
     ],
     "alt_variants": [
-     "Khoj: Python, AGPL-3.0, runs on consumer hardware. Chat with your own docs using any LLM you choose. 37,266 stars on GitHub.\n{APP_URL}",
-     "We built Khoj to work with any LLM, local or cloud. Point it at llama3 via Ollama or swap in Gemini. Your notes, your model. 37,266 GitHub stars, AGPL-3.0.\n{APP_URL}"
+     "Khoj: Python, AGPL-3.0, runs on consumer hardware. It does one thing: chat with your own docs using any LLM you choose. 37,266 stars on GitHub.\n{APP_URL}",
+     "37,266 GitHub stars. Khoj is a self-hosted AI assistant that chats with your own docs and the web, using any LLM you point at it. Fully open-source (AGPL-3.0).\n{APP_URL}"
     ],
     "warnings": [
-     "Privacy claim scoped to self-hosted use: 'your documents stay on your machine' is accurate for the self-hosted edition with local LLMs. When cloud LLM APIs (OpenAI, Gemini, etc.) are used, query context is sent to those providers. The post does not claim otherwise, but the builder should be aware of this nuance.",
+     "Privacy claim scoped to self-hosted use: 'your notes stay on your machine' is accurate for the self-hosted edition where documents are stored locally. When cloud LLM APIs (OpenAI, Gemini, etc.) are used, query context is sent to those providers. The post does not claim otherwise, but the builder should be aware of this nuance.",
      "Khoj Cloud was sunset April 15, 2026. There is no hosted trial. The post cannot direct users to a live demo; readers must self-host to try it.",
-     "Campaign angle references r/selfhosted and r/LocalLLaMA, but this asset is x_post. Subreddit context was noted and the candid, technical tone was carried over; no subreddit-specific framing was applied.",
+     "Campaign angle references r/selfhosted and r/LocalLLaMA, but this asset is x_post. Subreddit context was noted and the candid, technical tone was carried over, but no subreddit-specific framing was applied.",
      "No comparison framing was used. The campaign angle's implicit contrast with cloud AI services was expressed as a plain fact about Khoj only, per platform rules.",
      "Enterprise/teams pricing was not confirmed reachable during analysis and is not mentioned anywhere in this draft.",
      "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
@@ -865,9 +865,9 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "Privacy claim scoped to self-hosted use: 'your documents stay on your machine' is accurate for the self-hosted edition with local LLMs. When cloud LLM APIs (OpenAI, Gemini, etc.) are used, query context is sent to those providers. The post does not claim otherwise, but the builder should be aware of this nuance.",
+    "Privacy claim scoped to self-hosted use: 'your notes stay on your machine' is accurate for the self-hosted edition where documents are stored locally. When cloud LLM APIs (OpenAI, Gemini, etc.) are used, query context is sent to those providers. The post does not claim otherwise, but the builder should be aware of this nuance.",
     "Khoj Cloud was sunset April 15, 2026. There is no hosted trial. The post cannot direct users to a live demo; readers must self-host to try it.",
-    "Campaign angle references r/selfhosted and r/LocalLLaMA, but this asset is x_post. Subreddit context was noted and the candid, technical tone was carried over; no subreddit-specific framing was applied.",
+    "Campaign angle references r/selfhosted and r/LocalLLaMA, but this asset is x_post. Subreddit context was noted and the candid, technical tone was carried over, but no subreddit-specific framing was applied.",
     "No comparison framing was used. The campaign angle's implicit contrast with cloud AI services was expressed as a plain fact about Khoj only, per platform rules.",
     "Enterprise/teams pricing was not confirmed reachable during analysis and is not mentioned anywhere in this draft.",
     "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
@@ -876,8 +876,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1136,
-   "words": 194,
+   "chars": 1189,
+   "words": 203,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -885,20 +885,18 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "37,266 GitHub stars and 2,468 forks. The software is free, AGPL-3.0, and it runs on your own hardware.\n\nKhoj is an open-source personal AI that reads your documents and answers questions across them.\n\nYou pick the model. A local one via Ollama, or a cloud API you already trust. Either way, your documents don't leave your machine unless you point it at a cloud model.\n\nWe've kept it client-agnostic too. One self-hosted instance works from a browser, an Obsidian plugin, an Emacs client, a desktop app, or WhatsApp. It's the same second brain wherever you are.\n\nKhoj Cloud is sunset. We're a small team building in the open, and the community's grown to a point where we think it's worth more people knowing it exists.\n\nClone the repo, point it at your notes, and see what it does.\n\nLink in the first comment.\n\n#opensource #selfhosted #pkm",
+    "post": "37,266 GitHub stars and 2,468 forks. The software is free, AGPL-3.0, and runs on your own hardware.\n\nKhoj is an open-source personal AI that reads your own documents and answers questions across them.\n\nYou pick the model. A local one via Ollama, or a cloud API you already trust. Either way, your documents don't leave your machine unless you point it at a cloud model.\n\nWe've kept it client-agnostic too. One self-hosted instance works from a browser, an Obsidian plugin, an Emacs client, a desktop app, or WhatsApp. It's the same second brain wherever you are.\n\nKhoj Cloud is sunset. We're a small team building in the open, and the community has grown to a point where we think it's worth more people knowing it exists.\n\nClone the repo, point it at your notes, and see what it does.\n\nLink in the first comment.\n\n#opensource #selfhosted #pkm",
     "alt_hook": "Khoj has been production-stable since November 2023, fully self-hosted, and it's never sent your notes to a third-party server.",
     "warnings": [
      "First comment: {APP_URL}",
-     "alt_hook opens with a maturity fact (production-stable since November 2023), a different hook family from the receipt (number) used in line 1, as required.",
-     "No explicit builder feedback was provided alongside the PREVIOUS_DRAFT; this revision tightens contractions and sentence variety while keeping the structure that passed all rule checks.",
+     "alt_hook uses implied first-person singular voice; main post uses first-person plural 'we'. Decide which voice fits the poster's LinkedIn profile before publishing.",
      "Khoj Cloud sunset date (April 15, 2026) is referenced in APP_PROFILE and confirmed via app.khoj.dev scrape; verify this is still accurate at time of posting.",
-     "All numbers trace to APP_PROFILE.proof_points (37,266 stars, 2,468 forks). No invented metrics used.",
      "No second idea was cut; the post carries one idea: self-hosted AI second brain with full data ownership.",
-     "The qualifier 'unless you point it at a cloud model' is carried on the data-privacy claim, as required by platform rules.",
-     "Launch week for Khoj: after this post, at most four posts this week, never two of the same kind back to back: proof (37,266 stars and 2,468 forks), opinion (a position on self-hosted AI vs cloud RAG), teach (one thing the reader can do with Khoj today, e.g. connecting an Obsidian vault), story (only if the profile holds a scene from building it). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "All numbers trace to APP_PROFILE.proof_points (37,266 stars, 2,468 forks). No invented metrics used.",
+     "Launch week: after this post, at most four posts this week for Khoj, never two of the same kind back to back: proof (37,266 stars and 2,468 forks), opinion (a position on self-hosted AI vs cloud RAG), teach (one thing the reader can do with Khoj today, e.g. connecting an Obsidian vault), story (only if the profile holds a scene from building it). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
      "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
      "48 hours after posting, record engagement rate (reactions plus comments plus reposts divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
     ],
@@ -909,13 +907,11 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "alt_hook opens with a maturity fact (production-stable since November 2023), a different hook family from the receipt (number) used in line 1, as required.",
-    "No explicit builder feedback was provided alongside the PREVIOUS_DRAFT; this revision tightens contractions and sentence variety while keeping the structure that passed all rule checks.",
+    "alt_hook uses implied first-person singular voice; main post uses first-person plural 'we'. Decide which voice fits the poster's LinkedIn profile before publishing.",
     "Khoj Cloud sunset date (April 15, 2026) is referenced in APP_PROFILE and confirmed via app.khoj.dev scrape; verify this is still accurate at time of posting.",
-    "All numbers trace to APP_PROFILE.proof_points (37,266 stars, 2,468 forks). No invented metrics used.",
     "No second idea was cut; the post carries one idea: self-hosted AI second brain with full data ownership.",
-    "The qualifier 'unless you point it at a cloud model' is carried on the data-privacy claim, as required by platform rules.",
-    "Launch week for Khoj: after this post, at most four posts this week, never two of the same kind back to back: proof (37,266 stars and 2,468 forks), opinion (a position on self-hosted AI vs cloud RAG), teach (one thing the reader can do with Khoj today, e.g. connecting an Obsidian vault), story (only if the profile holds a scene from building it). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "All numbers trace to APP_PROFILE.proof_points (37,266 stars, 2,468 forks). No invented metrics used.",
+    "Launch week: after this post, at most four posts this week for Khoj, never two of the same kind back to back: proof (37,266 stars and 2,468 forks), opinion (a position on self-hosted AI vs cloud RAG), teach (one thing the reader can do with Khoj today, e.g. connecting an Obsidian vault), story (only if the profile holds a scene from building it). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
     "48 hours after posting, record engagement rate (reactions plus comments plus reposts divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
    ],
@@ -923,8 +919,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 981,
-   "words": 167,
+   "chars": 984,
+   "words": 168,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -932,44 +928,49 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "I maintain an open-source AI that indexes your notes with pgvector and never calls home",
-    "body": "Most AI assistants that connect to your notes still route your actual note content through a third-party API to run inference. Your documents leave your machine on every query, even if the retrieval step is local.\n\nI'm one of the maintainers of Khoj, an open-source personal AI assistant licensed AGPL-3.0. It indexes PDFs, Markdown files, Org-mode notes, and Notion exports locally using pgvector and sentence-transformers, then runs retrieval and inference on your own hardware. You can wire it to a local model through Ollama (llama3, qwen, gemma, mistral) or point it at an OpenAI or Anthropic key if you want a cloud model. The same self-hosted instance serves a browser UI, an Obsidian plugin, an Emacs client, a desktop app, and WhatsApp.\n\nObsidian Copilot does connect an LLM to your notes; it routes queries through a third-party API with your note content attached. Khoj keeps that retrieval and inference step on your own machine by default.\n\nThe real friction is setup. There's no hosted trial since we sunset our cloud service in April 2026, so getting started means Docker, a Postgres instance with pgvector, and a handful of environment variables. If you're not comfortable with a docker-compose file, the onboarding is rough and we don't have a simpler path for that yet.\n\nIf you're running a self-hosted RAG setup over a large note library, what broke first as the collection grew: chunking strategy, embedding model choice, or something else entirely?\n\n{APP_URL}",
+    "title": "We built an open-source personal AI that keeps your notes on your machine",
+    "body": "ChatGPT and Perplexity don't have access to your private notes, and the tools that do connect an LLM to your notes route your actual note content through a third-party API. That's the gap we kept running into.\n\nI'm one of the maintainers of Khoj, an open-source personal AI assistant licensed AGPL-3.0. It indexes your documents locally using pgvector and sentence-transformers, and answers questions without sending your content anywhere unless you explicitly configure a cloud API. You point it at PDFs, Markdown files, Org-mode notes, or a Notion export, and both retrieval and inference run on your own hardware. You can wire it to a local model through Ollama (llama3, qwen, gemma, mistral) or swap in an OpenAI or Anthropic key if you prefer. The same self-hosted instance serves a browser UI, an Obsidian plugin, an Emacs client, a desktop app, and WhatsApp.\n\nTools like Obsidian Copilot do connect an LLM to your notes; they route queries through a third-party API with your note content attached. It keeps that step local by default.\n\nThe setup requires Docker and a Postgres instance with pgvector. There's no hosted trial since we sunset our cloud service in April 2026, so if you're not comfortable with a docker-compose file and a handful of environment variables, the onboarding is rough. We don't have a simpler path for that yet.\n\nIf you're already running a self-hosted RAG setup over a large note library, what broke first as the collection grew, chunking strategy, embedding model choice, or something else?\n\n{APP_URL}",
     "suggested_flair": "none",
     "warnings": [
-     "Venue: r/selfhosted's New Project Megathread is intended for projects under 3 months old. Khoj launched v1.0 in November 2023 and has 37,266 GitHub stars, so it almost certainly does not qualify for the megathread. This draft is written for the main feed. Confirm with r/selfhosted moderators or recent post history before submitting; if the sub requires megathread-only for any project post, revise accordingly.",
-     "Mention level 2 used: product named once in the disclosure sentence, builder disclosed as maintainer, {APP_URL} once in the final paragraph. 'Khoj' appears exactly twice in the body (once in the disclosure sentence, once in the alternative-comparison sentence). The platform rules cap is two; this draft is at the cap. If the machine check counts both, remove the second instance and replace with 'it'.",
-     "AGPL-3.0 license named in the body as required for open-source posts on r/selfhosted.",
-     "suggested_flair set to 'none' because r/selfhosted's verified flair list was not available at draft time. Check current flair options before posting; 'New Project' or 'Show and Tell' may exist.",
+     "Venue: r/selfhosted's New Project Megathread is for projects under 3 months old. Khoj launched v1.0 in November 2023 and has 37k GitHub stars, so it almost certainly does not qualify for the megathread. This draft is written for the main feed. Confirm with r/selfhosted moderators or post history before submitting; if the sub requires megathread-only for any project post, revise accordingly.",
+     "Mention level 2 used: product named once in the disclosure sentence only (two total uses were allowed; only one was needed after repair), builder disclosed, {APP_URL} once in the final paragraph.",
+     "REPAIR applied: 'Khoj' now appears exactly once in the body (the disclosure sentence). 'Khoj keeps that step local by default' was changed to 'It keeps that step local by default'. 'Khoj Cloud' was changed to 'our cloud service'. Total named occurrences: 1, within the cap of 2.",
+     "suggested_flair set to 'none' because r/selfhosted's verified flair list was not available at draft time; the builder should check current flair options before posting.",
+     "The AGPL-3.0 license is named in the body as required for open-source posts.",
      "r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly if it replies to your post.",
-     "Verify your account has sufficient karma and post history in r/selfhosted before posting. New accounts or accounts with low sub karma are often filtered.",
-     "The limitation (no hosted trial, docker-compose setup required) is drawn directly from APP_PROFILE.gaps. No invented limitations were added.",
+     "Verify your account has sufficient karma and post history in r/selfhosted before submitting; low-karma accounts are often filtered.",
      "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
     ],
     "venue": "r/selfhosted",
     "app_name": "Khoj",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Product named three or more times in the body (the ladder says once) (3, cap 2)"
+    ]
    },
    "warnings": [
-    "Venue: r/selfhosted's New Project Megathread is intended for projects under 3 months old. Khoj launched v1.0 in November 2023 and has 37,266 GitHub stars, so it almost certainly does not qualify for the megathread. This draft is written for the main feed. Confirm with r/selfhosted moderators or recent post history before submitting; if the sub requires megathread-only for any project post, revise accordingly.",
-    "Mention level 2 used: product named once in the disclosure sentence, builder disclosed as maintainer, {APP_URL} once in the final paragraph. 'Khoj' appears exactly twice in the body (once in the disclosure sentence, once in the alternative-comparison sentence). The platform rules cap is two; this draft is at the cap. If the machine check counts both, remove the second instance and replace with 'it'.",
-    "AGPL-3.0 license named in the body as required for open-source posts on r/selfhosted.",
-    "suggested_flair set to 'none' because r/selfhosted's verified flair list was not available at draft time. Check current flair options before posting; 'New Project' or 'Show and Tell' may exist.",
+    "Venue: r/selfhosted's New Project Megathread is for projects under 3 months old. Khoj launched v1.0 in November 2023 and has 37k GitHub stars, so it almost certainly does not qualify for the megathread. This draft is written for the main feed. Confirm with r/selfhosted moderators or post history before submitting; if the sub requires megathread-only for any project post, revise accordingly.",
+    "Mention level 2 used: product named once in the disclosure sentence only (two total uses were allowed; only one was needed after repair), builder disclosed, {APP_URL} once in the final paragraph.",
+    "REPAIR applied: 'Khoj' now appears exactly once in the body (the disclosure sentence). 'Khoj keeps that step local by default' was changed to 'It keeps that step local by default'. 'Khoj Cloud' was changed to 'our cloud service'. Total named occurrences: 1, within the cap of 2.",
+    "suggested_flair set to 'none' because r/selfhosted's verified flair list was not available at draft time; the builder should check current flair options before posting.",
+    "The AGPL-3.0 license is named in the body as required for open-source posts.",
     "r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly if it replies to your post.",
-    "Verify your account has sufficient karma and post history in r/selfhosted before posting. New accounts or accounts with low sub karma are often filtered.",
-    "The limitation (no hosted trial, docker-compose setup required) is drawn directly from APP_PROFILE.gaps. No invented limitations were added.",
+    "Verify your account has sufficient karma and post history in r/selfhosted before submitting; low-karma accounts are often filtered.",
     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1599,
-   "words": 260,
+   "chars": 1728,
+   "words": 286,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -977,13 +978,13 @@
    "has_app_url": true
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Khoj",
     "tagline": "Self-hosted personal AI that chats with your own docs",
     "description": "Most AI assistants cannot see your private notes. Khoj runs on your own hardware, connects any LLM to your notes and the live web, and answers without your data leaving your machine. Open source (AGPL-3.0), works with Obsidian, Emacs, and WhatsApp.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Khoj.\n\nWe kept wanting to ask questions across our own notes and research without uploading everything to a cloud service. Every tool we tried either lacked access to our files or required trusting a third party with the content. That specific frustration is why we built this.\n\nKhoj indexes your local documents, PDF, Markdown, Org-mode, and Notion exports, using semantic search backed by pgvector. It routes your questions to whichever LLM you configure: local models via Ollama (llama3, qwen, gemma, mistral) or cloud APIs like OpenAI, Anthropic, and Gemini. When your notes don't have the answer, it searches the live web. One self-hosted instance serves a browser, Obsidian plugin, Emacs client, desktop app, and WhatsApp.\n\nIt runs on your own hardware. Your documents stay on your machine. You choose the model, you own the index.\n\nThe honest rough edge: there is no hosted trial. Khoj Cloud was sunset in April 2026, so getting started means Docker or a Python environment. That will stop non-technical users, and we know it.\n\nTwo things I actually want to know: what would you need to see before you ran this on a machine with your real notes? And if you already self-host something similar, what broke first?\n\nI'll be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Khoj.\n\nWe kept wanting to ask questions across our own notes and research without uploading everything to a cloud service. Every tool we tried either lacked access to our files or required trusting a third party with the content. That specific frustration is why we built this.\n\nKhoj indexes your local documents, PDF, Markdown, Org-mode, and Notion exports, using semantic search backed by pgvector. It routes your questions to whichever LLM you configure: local models via Ollama (llama3, qwen, gemma, mistral) or cloud APIs like OpenAI, Anthropic, and Gemini. When your notes don't have the answer, it searches the live web. One self-hosted instance serves browser, Obsidian plugin, Emacs client, desktop app, and WhatsApp.\n\nIt runs on your own hardware. Your documents stay on your machine. You choose the model, you own the index.\n\nThe honest rough edge: there is no hosted trial. Khoj Cloud was sunset in April 2026, so getting started means Docker or a Python environment. That will stop non-technical users, and we know it.\n\nTwo things I actually want to know: what would you need to see before you ran this on a machine with your real notes? And if you already self-host something similar, what broke first?\n\nI'll be in the comments all day.",
     "topics": [
      "Open Source",
      "Developer Tools",
@@ -993,29 +994,34 @@
      "No hosted trial exists. Khoj Cloud was sunset April 15, 2026. Visitors who click through expecting a live demo will find only self-hosting instructions. Add a prominent quickstart link or a short screen recording to the listing before launch.",
      "The enterprise and teams pricing page (khoj.dev/teams) was not confirmed reachable during analysis. Do not reference enterprise pricing anywhere in the listing until that page is verified live.",
      "Docs still reference Khoj Cloud as active in some cached content. Audit docs.khoj.dev before launch to avoid confusing new visitors who arrive from Product Hunt.",
-     "The first comment uses [Builder first name] and [role] as placeholders. Fill these in with the actual builder's name and role before submitting.",
+     "The first comment uses [Builder first name] and [role] as placeholders. Fill these in with the actual builder's name and role before submitting. Do not invent a name.",
      "No offer was included because APP_PROFILE contains no approved offer. Do not add one unless it is formally approved and available to all visitors without any voting or ranking condition.",
      "warnings[2]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"verified\")"
     ],
     "app_name": "Khoj",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ]
    },
    "warnings": [
     "No hosted trial exists. Khoj Cloud was sunset April 15, 2026. Visitors who click through expecting a live demo will find only self-hosting instructions. Add a prominent quickstart link or a short screen recording to the listing before launch.",
     "The enterprise and teams pricing page (khoj.dev/teams) was not confirmed reachable during analysis. Do not reference enterprise pricing anywhere in the listing until that page is verified live.",
     "Docs still reference Khoj Cloud as active in some cached content. Audit docs.khoj.dev before launch to avoid confusing new visitors who arrive from Product Hunt.",
-    "The first comment uses [Builder first name] and [role] as placeholders. Fill these in with the actual builder's name and role before submitting.",
+    "The first comment uses [Builder first name] and [role] as placeholders. Fill these in with the actual builder's name and role before submitting. Do not invent a name.",
     "No offer was included because APP_PROFILE contains no approved offer. Do not add one unless it is formally approved and available to all visitors without any voting or ranking condition.",
     "warnings[2]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"verified\")"
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1665,
-   "words": 276,
+   "chars": 1750,
+   "words": 292,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1023,34 +1029,39 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "Show HN: Khoj, open-source personal AI that chats with your docs and the web",
-    "body": "Hi HN, Khoj is a self-hosted AI assistant that takes your local documents, PDF, Markdown, Org-mode, and Notion exports, plus the live web, and returns cited conversational answers. You run it with Docker Compose; no account is needed.\n\n{APP_URL}\n\nOur original goal was a single interface to all your knowledge. Existing AI assistants have no access to private notes, and RAG tools that do require uploading those notes to a third-party server.\n\nKhoj runs as a Django 5.1 and FastAPI service. It embeds documents locally with sentence-transformers and stores vectors in a Postgres table using pgvector. Queries route to whichever LLM you configure, a local model via Ollama or a cloud API (OpenAI, Anthropic, Gemini, DeepSeek).\n\nLimitations: there is no hosted trial, self-hosting requires Docker and a running Postgres instance, and the WhatsApp client depends on a Meta Business account.\n\nThe choice I want a second opinion on is the index store. We use Postgres with pgvector, which works well but requires a running database. Would SQLite-vec be a better default for single-user installs where portability matters more than query speed? I am one of the builders and will be in the thread.",
+    "body": "Hi HN, Khoj is a self-hosted AI assistant that takes your local documents, PDF, Markdown, Org-mode, and Notion exports, plus the live web, and returns cited conversational answers. No hosted version exists; you run it with Docker Compose, no account needed.\n\n{APP_URL}\n\nExisting AI assistants have no access to private notes, and RAG tools that do require uploading those notes to a third-party server.\n\nKhoj runs as a Django 5.1 and FastAPI service. It embeds documents locally with sentence-transformers and stores vectors in a Postgres table using pgvector. Queries route to whichever LLM you configure: a local model via Ollama or a cloud API (OpenAI, Anthropic, Gemini, DeepSeek).\n\nLimitations: there is no hosted trial, self-hosting requires Docker and a running Postgres instance, and the WhatsApp client depends on a Meta Business account.\n\nThe choice I want a second opinion on is the index store. We use Postgres with pgvector, which is fast but requires a running database. Would SQLite-vec be a better default for single-user installs where portability matters more than query speed? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-     "Khoj v1.0.0 was released in November 2023 and the project has been public since 2021. No prior HN thread appears in the profile, but the project is old enough that one likely exists. Search Hacker News for 'Khoj' before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. The Khoj Cloud sunset in April 2026 and the move to fully self-hosted may qualify as that overhaul, but confirm this and note what changed since any earlier thread in the body.",
-     "No hosted trial exists. Khoj Cloud was sunset on April 15, 2026. {APP_URL} must point to the GitHub repository or the self-hosting quickstart in the docs, not a running app. The body already discloses that visitors must self-host, which is the honest path here.",
-     "The how-it-works paragraph is built from stack names in APP_PROFILE.tech_stack. Verify that the described data flow, local embedding with sentence-transformers, pgvector storage, and LLM routing, accurately reflects the current architecture before submitting."
+     "Khoj v1.0.0 was released in November 2023 and the project has been public since 2021. No prior HN thread appears in the profile, but the project is old enough that one may exist. Search Hacker News for 'Khoj' before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. The Khoj Cloud sunset (April 2026) and the move to fully self-hosted may qualify as that overhaul, but the builder should confirm this and note what changed since any earlier thread.",
+     "No hosted trial exists. Khoj Cloud was sunset on April 15, 2026. {APP_URL} must point to the GitHub repository or the self-hosting quickstart in the docs, not a running app. HN platform rules expect the URL to open the running thing itself or the closest equivalent; the body already discloses that visitors must self-host, which is the honest path here.",
+     "The how-it-works paragraph is built from stack names in APP_PROFILE.tech_stack. The builder should verify that the described data flow, local embedding with sentence-transformers, pgvector storage, and LLM routing, accurately reflects the current architecture before submitting."
     ],
     "app_name": "Khoj",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (231 words, cap 200)"
+    ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-    "Khoj v1.0.0 was released in November 2023 and the project has been public since 2021. No prior HN thread appears in the profile, but the project is old enough that one likely exists. Search Hacker News for 'Khoj' before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. The Khoj Cloud sunset in April 2026 and the move to fully self-hosted may qualify as that overhaul, but confirm this and note what changed since any earlier thread in the body.",
-    "No hosted trial exists. Khoj Cloud was sunset on April 15, 2026. {APP_URL} must point to the GitHub repository or the self-hosting quickstart in the docs, not a running app. The body already discloses that visitors must self-host, which is the honest path here.",
-    "The how-it-works paragraph is built from stack names in APP_PROFILE.tech_stack. Verify that the described data flow, local embedding with sentence-transformers, pgvector storage, and LLM routing, accurately reflects the current architecture before submitting."
+    "Khoj v1.0.0 was released in November 2023 and the project has been public since 2021. No prior HN thread appears in the profile, but the project is old enough that one may exist. Search Hacker News for 'Khoj' before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. The Khoj Cloud sunset (April 2026) and the move to fully self-hosted may qualify as that overhaul, but the builder should confirm this and note what changed since any earlier thread.",
+    "No hosted trial exists. Khoj Cloud was sunset on April 15, 2026. {APP_URL} must point to the GitHub repository or the self-hosting quickstart in the docs, not a running app. HN platform rules expect the URL to open the running thing itself or the closest equivalent; the body already discloses that visitors must self-host, which is the honest path here.",
+    "The how-it-works paragraph is built from stack names in APP_PROFILE.tech_stack. The builder should verify that the described data flow, local embedding with sentence-transformers, pgvector storage, and LLM routing, accurately reflects the current architecture before submitting."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "body: Body over 200 words (231 words, cap 200)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1281,
-   "words": 209,
+   "chars": 1284,
+   "words": 210,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1058,17 +1069,17 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "subject": "Khoj: self-hosted AI second brain for private note libraries",
-    "pitch": "Hi [Editor first name],\n\nDevelopers and researchers who keep large note libraries in Obsidian, Org-mode, or Notion reach a point where they want to query those notes with an LLM, and uploading private documents to a third-party server is a hard stop for many of them.\n\nKhoj is an open-source, self-hostable AI second brain that chats with your docs and the live web, for privacy-conscious knowledge workers. The cloud version was sunset in April 2026; the software is free to self-host under AGPL-3.0.\n\nThe project has 37,266 GitHub stars as of September 2026.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "pitch": "Hi [Editor first name],\n\nDevelopers and researchers who keep large note libraries in Obsidian, Org-mode, or Notion reach a point where they want to query those notes with an LLM, and uploading private documents to a third-party server is a hard stop for many of them.\n\nKhoj is an open-source, self-hostable AI second brain that chats with your docs and the live web, for privacy-conscious knowledge workers. The cloud version was sunset in April 2026; the software is free to self-host under AGPL-3.0.\n\nThe project has 37,266 GitHub stars on GitHub as of September 2026.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name is not in TARGET. The greeting uses '[Editor first name]'; fill in the actual editor's name before sending.",
      "Builder's first name is not in APP_PROFILE or BRAND_DNA. The sign-off '[Builder first name]' must be replaced before sending.",
      "TARGET rules were not provided or verified. Confirm the newsletter accepts unsolicited pitches and does not require a submission form or paid placement before sending this pitch.",
      "Khoj Cloud was sunset April 15, 2026. The pitch discloses this plainly in the one-liner paragraph as required by platform rules.",
-     "Proof point uses GitHub stars only (37,266 as of September 2026). No forks or secondary figures are joined to it."
+     "Proof point uses GitHub stars only (37,266). The previous draft joined stars and forks, which breaks the single-proof-point rule. Forks have been removed."
     ],
     "app_name": "Khoj",
     "blockers": [],
@@ -1080,14 +1091,14 @@
     "Builder's first name is not in APP_PROFILE or BRAND_DNA. The sign-off '[Builder first name]' must be replaced before sending.",
     "TARGET rules were not provided or verified. Confirm the newsletter accepts unsolicited pitches and does not require a submission form or paid placement before sending this pitch.",
     "Khoj Cloud was sunset April 15, 2026. The pitch discloses this plainly in the one-liner paragraph as required by platform rules.",
-    "Proof point uses GitHub stars only (37,266 as of September 2026). No forks or secondary figures are joined to it."
+    "Proof point uses GitHub stars only (37,266). The previous draft joined stars and forks, which breaks the single-proof-point rule. Forks have been removed."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 730,
-   "words": 118,
+   "chars": 740,
+   "words": 120,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,

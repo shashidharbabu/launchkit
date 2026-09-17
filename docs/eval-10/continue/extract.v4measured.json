@@ -808,49 +808,56 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "35,870 developers starred this. The repo is archived. The code is yours.\n\nContinue: open-source AI coding agent for VS Code, JetBrains, and CLI. Apache 2.0. Built together, now a foundation for whatever comes next.\n\n{APP_URL}",
+    "post": "35,870 developers starred this. The repo is archived. The code is yours.\n\nContinue: open-source AI coding agent for VS Code, JetBrains, and CLI. Apache 2.0. Built by the community, now a foundation for whatever comes next.\n\n{APP_URL}",
     "thread_extension": [
      "We built Continue so developers could run AI coding assistance inside the IDE they already use, with any model they choose, without handing control to a closed platform. That principle is still in the code.",
-     "The 2.0.0 release removed anonymous telemetry and authentication entirely. No account required. That was a deliberate choice, and it is preserved in the archive.",
+     "The 2.0.0 release removed anonymous telemetry and authentication entirely. No tracking, no account required. That was a deliberate choice, and it is preserved in the archive.",
      "Our mission was always to ensure developers are amplified, not automated. The codebase is freely available under Apache 2.0. If you want to build an open AI coding agent on top of what we made together, the foundation is there.",
      "If you are building something on top of the Continue codebase, or you have questions about the architecture, what would be most useful to you from the archived repo?"
     ],
     "alt_variants": [
-     "Continue ran as a VS Code extension, a JetBrains plugin, and a CLI tool, all from one open-source codebase. Apache 2.0. The repo is archived and the code is freely available as a foundation for whatever you build next.\n\n{APP_URL}",
+     "Continue: VS Code extension, JetBrains plugin, CLI, Apache 2.0. 35,870 stars before the repo was archived. The codebase is freely available as a foundation for whatever you want to build next.\n\n{APP_URL}",
      "We built an open-source AI coding agent across VS Code, JetBrains, and CLI. 5,359 forks. Now archived. The code stays open under Apache 2.0 so others can carry it forward.\n\n{APP_URL}"
     ],
     "warnings": [
-     "The product is effectively discontinued post-acquisition by Cursor. The post frames the archived repo as a starting point, which aligns with the campaign angle, but there is no active development or support.",
-     "{APP_URL} leads to an acquisition notice only, not a functional product page. The link placeholder is used as required by the rules.",
-     "Star count (35,870) is the single proof point in the main post, sourced from APP_PROFILE.proof_points. Fork count (5,359) appears only in alt variant 2 as its single proof point, sourced from the same.",
-     "Thread tweet 2 states 'no account required' and 'no telemetry'; this is sourced directly from APP_PROFILE differentiators ('Final 2.0.0 release removed anonymous telemetry and authentication, prioritizing user privacy') and is scoped to the 2.0.0 release, not stated as an absolute claim across all editions.",
-     "Alt variant 1 opens on the multi-IDE architecture (a decision and differentiator from the profile) rather than a numbered proof point. This satisfies the alt variant rule permitting a hook built on 'the input and output line, or a decision'.",
-     "No comparison framing against Cursor or any other tool appears in the post, thread, or variants, per PLATFORM_RULES.",
-     "warnings[6]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
+     "The product is effectively discontinued post-acquisition by Cursor; the post frames the archived repo as a starting point, which aligns with the campaign angle but readers should know there is no active development or support.",
+     "No live product exists at {APP_URL}; the site is an acquisition notice only. The link placeholder is used as required but may not lead to a functional product page.",
+     "The campaign angle hook was adapted directly; the star count 35,870 is sourced from proof_points. The fork count was removed from the main post body to satisfy the one-proof-point rule; it appears only in alt variant 2.",
+     "Thread shape used: problem to solution (vendor lock-in pain, what Continue did, what the archive enables). No comparison framing against Cursor or other tools was used, per PLATFORM_RULES.",
+     "The 2.0.0 release removing anonymous telemetry and authentication is stated in APP_PROFILE differentiators; the thread claim 'No tracking, no account required' is sourced from that.",
+     "Alt variant 1 uses the star count proof point but opens on a different clause and sentence structure. Alt variant 2 uses the fork count as its single proof point, satisfying the requirement that each variant opens on a different fact from the main post.",
+     "thread_extension[2]: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"No tracking\")",
+     "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
     ],
     "app_name": "Continue",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "post: Two traction numbers in the post; the rule allows one proof point (\"35,870 developers starred this. The repo is archived. The co\")"
+    ]
    },
    "warnings": [
-    "The product is effectively discontinued post-acquisition by Cursor. The post frames the archived repo as a starting point, which aligns with the campaign angle, but there is no active development or support.",
-    "{APP_URL} leads to an acquisition notice only, not a functional product page. The link placeholder is used as required by the rules.",
-    "Star count (35,870) is the single proof point in the main post, sourced from APP_PROFILE.proof_points. Fork count (5,359) appears only in alt variant 2 as its single proof point, sourced from the same.",
-    "Thread tweet 2 states 'no account required' and 'no telemetry'; this is sourced directly from APP_PROFILE differentiators ('Final 2.0.0 release removed anonymous telemetry and authentication, prioritizing user privacy') and is scoped to the 2.0.0 release, not stated as an absolute claim across all editions.",
-    "Alt variant 1 opens on the multi-IDE architecture (a decision and differentiator from the profile) rather than a numbered proof point. This satisfies the alt variant rule permitting a hook built on 'the input and output line, or a decision'.",
-    "No comparison framing against Cursor or any other tool appears in the post, thread, or variants, per PLATFORM_RULES.",
-    "warnings[6]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
+    "The product is effectively discontinued post-acquisition by Cursor; the post frames the archived repo as a starting point, which aligns with the campaign angle but readers should know there is no active development or support.",
+    "No live product exists at {APP_URL}; the site is an acquisition notice only. The link placeholder is used as required but may not lead to a functional product page.",
+    "The campaign angle hook was adapted directly; the star count 35,870 is sourced from proof_points. The fork count was removed from the main post body to satisfy the one-proof-point rule; it appears only in alt variant 2.",
+    "Thread shape used: problem to solution (vendor lock-in pain, what Continue did, what the archive enables). No comparison framing against Cursor or other tools was used, per PLATFORM_RULES.",
+    "The 2.0.0 release removing anonymous telemetry and authentication is stated in APP_PROFILE differentiators; the thread claim 'No tracking, no account required' is sourced from that.",
+    "Alt variant 1 uses the star count proof point but opens on a different clause and sentence structure. Alt variant 2 uses the fork count as its single proof point, satisfying the requirement that each variant opens on a different fact from the main post.",
+    "thread_extension[2]: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"No tracking\")",
+    "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "post: Two traction numbers in the post; the rule allows one proof point (\"35,870 developers starred this. The repo is archived. The co\")"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1418,
-   "words": 236,
+   "chars": 1550,
+   "words": 255,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -858,14 +865,14 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "post": "35,870 developers starred Continue before the repo was archived. The code is still yours, Apache 2.0, no strings attached.\n\nWe built Continue as an open-source AI coding agent for VS Code, JetBrains, and the CLI. Our mission was always to ensure developers are amplified, not automated. That meant no vendor lock-in, no closed model list, no proprietary runtime you couldn't inspect or replace.\n\nThe project reached its 2.0.0 release, removed anonymous telemetry, and was then acquired by Cursor. We're grateful for every contributor, every issue filed, every fork that took the code somewhere we didn't expect.\n\nThe repository is archived and read-only now. But 5,359 forks already exist. What we built together is a foundation, not a finished product. If you've been thinking about building your own AI coding agent, the codebase is there.\n\nFork it, adapt it, carry it forward.\n\nLink in the first comment.\n\n#opensource #devtools #aitools",
     "alt_hook": "Continue is archived. The Apache 2.0 codebase is still there, and 5,359 forks already show what developers are doing with it.",
     "warnings": [
      "First comment: {APP_URL}",
-     "Hook uses The Receipt pattern (star count from proof_points). Alt hook uses The State of the Project pattern, opening with the archived status rather than a number, satisfying the different-hook-family requirement.",
+     "Line 1 uses The Receipt hook pattern (star count from proof_points). Alt hook uses The State of the Project pattern, opening with the archived status rather than a number, satisfying the different-hook-family requirement.",
      "Post is written in first-person plural throughout per BRAND_DNA dos_and_donts and voice.sentence_style.",
      "No competitor is named in the post body. Cursor appears only as a neutral acquisition fact stated in proof_points.",
      "The product is effectively discontinued post-acquisition. The post frames the archived codebase as a foundation for others, which is accurate per proof_points and BRAND_DNA messaging.",
@@ -882,7 +889,7 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "Hook uses The Receipt pattern (star count from proof_points). Alt hook uses The State of the Project pattern, opening with the archived status rather than a number, satisfying the different-hook-family requirement.",
+    "Line 1 uses The Receipt hook pattern (star count from proof_points). Alt hook uses The State of the Project pattern, opening with the archived status rather than a number, satisfying the different-hook-family requirement.",
     "Post is written in first-person plural throughout per BRAND_DNA dos_and_donts and voice.sentence_style.",
     "No competitor is named in the post body. Cursor appears only as a neutral acquisition fact stated in proof_points.",
     "The product is effectively discontinued post-acquisition. The post frames the archived codebase as a foundation for others, which is accurate per proof_points and BRAND_DNA messaging.",
@@ -905,44 +912,47 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "We built an Apache 2.0 AI coding agent for VS Code and JetBrains, now archived",
-    "body": "Running AI coding assistance inside VS Code or JetBrains without handing your codebase to a closed system is harder than it should be. GitHub Copilot works inside VS Code but doesn't support self-hosted models, so there's no path to run inference on your own hardware with it.\n\nWe built Continue, an open-source coding agent that ran as a VS Code extension, a JetBrains plugin, and a standalone CLI. I'm one of the people who worked on it, and I'm disclosing that upfront per r/LocalLLaMA's affiliation rule. The idea was straightforward: developers should be amplified, not automated, and the tooling that helps them should be something they can read, fork, and point at whatever model they run locally, including local ones via Ollama or any other inference server.\n\nGitHub Copilot and Cursor both work well for many teams. Neither is open-source, and neither lets you bring your own model without routing through their API.\n\nContinue was acquired by Cursor and the repository is now archived and read-only. There's no active development or support coming from us, and that's not changing. The codebase is still there, fully intact, as a foundation for anyone who wants to carry this kind of work forward.\n\nStars: 35,870\nForks: 5,359\nLicense: Apache 2.0\n\nIf you've forked or built a VS Code extension that connects to a local model, which part of keeping the extension host stable across VS Code updates caused you the most breakage?\n\n{APP_URL}",
+    "title": "We open sourced an AI coding agent for VS Code and JetBrains under Apache 2.0",
+    "body": "Running AI coding assistance inside an existing IDE without handing your codebase to a closed system or losing control over which model runs is harder than it should be. GitHub Copilot works inside VS Code, but it does not support self-hosted models and gives you no path to run inference on your own hardware.\n\nWe built Continue, an open-source coding agent that ran as a VS Code extension, a JetBrains plugin, and a standalone CLI. I'm one of the people who worked on it, so I'm disclosing that upfront per r/LocalLLaMA's affiliation rule. The idea was straightforward: developers should be amplified, not automated, and the tooling that helps them should be something they can read, fork, and point at whatever model they run locally, including local ones via Ollama or any other inference server.\n\nTools like GitHub Copilot and Cursor exist and work well for many teams. The difference was that it was fully open-source and let you bring your own model with no telemetry and no authentication required. The final 2.0.0 release removed both of those entirely.\n\nContinue was acquired by Cursor and the repository is now archived and read-only. There is no active development or support coming from us, and we have no roadmap for that to change. The codebase is still there, fully intact, as a foundation for anyone who wants to carry this kind of work forward.\n\nStars: 35,870. Forks: 5,359. License: Apache 2.0.\n\nIf you've built or forked a VS Code extension that talks to a local model, which part of keeping the extension host stable across VS Code updates caused you the most breakage?\n\n{APP_URL}",
     "suggested_flair": "Discussion",
     "warnings": [
-     "Mention level used: 2 (r/LocalLLaMA). Product named twice in the body, within the allowed cap; {APP_URL} appears once in the final paragraph.",
+     "Mention level used: 2 (product named twice in the body, within the cap of 2, per r/LocalLLaMA's allowed level; {APP_URL} once in the final paragraph).",
      "r/LocalLLaMA rule 4 requires affiliation disclosure; the draft includes it explicitly in the second paragraph.",
-     "r/LocalLLaMA suggested flair options are 'Resources' or 'Discussion'; 'Discussion' is used here because the post invites community conversation about a now-archived project. Builder should verify current flair options in the sub before posting.",
+     "r/LocalLLaMA suggested flair is 'Resources' or 'Discussion'; 'Discussion' is used here because the post invites community conversation about a now-archived project. Builder should verify current flair options before posting.",
      "The product is effectively discontinued and the repository is archived and read-only. Be prepared to answer questions about the lack of active support honestly and promptly in comments.",
      "The campaign angle (Fork the Foundation) frames an archived repo as a starting point. Some moderators may read this as promotional for a sunset product; be ready to clarify in comments that no active product or service is being sold.",
-     "The Key: Value traction lines (Stars, Forks, License) are drawn directly from APP_PROFILE.proof_points and are permitted under the platform rules (up to 4 Key: Value lines for real figures). Builder should verify these numbers are still accurate before posting.",
      "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
-     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"35,870\nForks\")"
+     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"35,870. Forks\")"
     ],
     "venue": "r/LocalLLaMA",
     "app_name": "Continue",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Product named three or more times in the body (the ladder says once) (3, cap 2)"
+    ]
    },
    "warnings": [
-    "Mention level used: 2 (r/LocalLLaMA). Product named twice in the body, within the allowed cap; {APP_URL} appears once in the final paragraph.",
+    "Mention level used: 2 (product named twice in the body, within the cap of 2, per r/LocalLLaMA's allowed level; {APP_URL} once in the final paragraph).",
     "r/LocalLLaMA rule 4 requires affiliation disclosure; the draft includes it explicitly in the second paragraph.",
-    "r/LocalLLaMA suggested flair options are 'Resources' or 'Discussion'; 'Discussion' is used here because the post invites community conversation about a now-archived project. Builder should verify current flair options in the sub before posting.",
+    "r/LocalLLaMA suggested flair is 'Resources' or 'Discussion'; 'Discussion' is used here because the post invites community conversation about a now-archived project. Builder should verify current flair options before posting.",
     "The product is effectively discontinued and the repository is archived and read-only. Be prepared to answer questions about the lack of active support honestly and promptly in comments.",
     "The campaign angle (Fork the Foundation) frames an archived repo as a starting point. Some moderators may read this as promotional for a sunset product; be ready to clarify in comments that no active product or service is being sold.",
-    "The Key: Value traction lines (Stars, Forks, License) are drawn directly from APP_PROFILE.proof_points and are permitted under the platform rules (up to 4 Key: Value lines for real figures). Builder should verify these numbers are still accurate before posting.",
     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
-    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"35,870\nForks\")"
+    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"35,870. Forks\")"
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1566,
-   "words": 259,
+   "chars": 1806,
+   "words": 307,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -950,13 +960,13 @@
    "has_app_url": true
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Continue",
     "tagline": "Open-source AI coding agent for VS Code and JetBrains",
     "description": "Switching editors to get AI coding help means giving up your workflow and model choice. Continue ran as a VS Code extension, JetBrains plugin, and CLI, letting developers bring their own models into their IDE. Apache 2.0, archived and freely available to fork.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Continue.\n\nDevelopers who want AI coding help inside VS Code or JetBrains have had to choose between closed tools that pick the model for them and open alternatives that never quite finished. We built Continue to close that distance: an open-source agent that runs inside your existing IDE and connects to whatever model you bring.\n\nContinue worked as a VS Code extension, a JetBrains plugin, and a standalone CLI, all from one TypeScript codebase. You pointed it at a local Ollama instance, an API endpoint, or anything that spoke the right protocol, and it read, edited, and reasoned across files without leaving the editor. The final 2.0.0 release removed anonymous telemetry and dropped the authentication requirement entirely.\n\nThe code was always yours: Apache 2.0, no proprietary lock-in, model choice stays with the developer. The codebase reached 35,870 stars and 5,359 forks before we were acquired by Cursor.\n\nHonest limitation: Continue is archived. The repository is read-only and active development has stopped. If you need ongoing support or new features, this is not the right place. What the repo does offer is a complete, working foundation you can fork and carry forward under Apache 2.0.\n\nTwo things we want to know: which part of the agent architecture would you redesign first if you forked this, and which IDE integration felt most incomplete when you used it? We will be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Continue.\n\nDevelopers who want AI coding help inside VS Code or JetBrains have had to choose between closed tools that pick the model for them and open alternatives that never quite finished. We built Continue to close that distance: an open-source agent that runs inside your existing IDE and connects to whatever model you bring.\n\nContinue worked as a VS Code extension, a JetBrains plugin, and a standalone CLI, all from one TypeScript codebase. You pointed it at a local Ollama instance, an API endpoint, or anything that spoke the right protocol, and it read, edited, and reasoned across files without leaving the editor. The final 2.0.0 release removed anonymous telemetry and dropped the authentication requirement entirely.\n\nThe code was always yours: Apache 2.0, no proprietary lock-in, model choice stays with the developer. The codebase reached 35,870 stars and 5,359 forks before we were acquired by Cursor.\n\nThe honest limitation: Continue is archived. The repository is read-only and active development has stopped. If you need ongoing support or new features, this is not the right place. What the repo does offer is a complete, working foundation you can fork and carry forward under Apache 2.0.\n\nTwo things we want to know: which part of the agent architecture would you redesign first if you forked this, and which IDE integration felt most incomplete when you used it? We will be in the comments all day.",
     "topics": [
      "Developer Tools",
      "Open Source",
@@ -964,7 +974,7 @@
     ],
     "warnings": [
      "Fill in [Builder first name] and [role] in the first comment before launch. APP_PROFILE and BRAND_DNA name no individual, so the placeholder must be completed by the builder.",
-     "Confirm that Product Hunt permits listing an archived, discontinued product. The repository is read-only and no active development continues. Visitors who expect a live product should be clearly informed; consider adding a note in the listing header or tagline.",
+     "Confirm that Product Hunt permits listing an archived, discontinued product. The repository is read-only and no active development continues. Misleading visitors who expect a live product is a real risk; consider adding a note in the listing header.",
      "Verify that 'Developer Tools', 'Open Source', and 'Artificial Intelligence' exist verbatim as selectable topics on Product Hunt before submitting.",
      "No offer is included because APP_PROFILE contains no pricing tiers or promotional offer to surface."
     ],
@@ -975,7 +985,7 @@
    },
    "warnings": [
     "Fill in [Builder first name] and [role] in the first comment before launch. APP_PROFILE and BRAND_DNA name no individual, so the placeholder must be completed by the builder.",
-    "Confirm that Product Hunt permits listing an archived, discontinued product. The repository is read-only and no active development continues. Visitors who expect a live product should be clearly informed; consider adding a note in the listing header or tagline.",
+    "Confirm that Product Hunt permits listing an archived, discontinued product. The repository is read-only and no active development continues. Misleading visitors who expect a live product is a real risk; consider adding a note in the listing header.",
     "Verify that 'Developer Tools', 'Open Source', and 'Artificial Intelligence' exist verbatim as selectable topics on Product Hunt before submitting.",
     "No offer is included because APP_PROFILE contains no pricing tiers or promotional offer to surface."
    ],
@@ -983,8 +993,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1852,
-   "words": 301,
+   "chars": 1856,
+   "words": 302,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -992,43 +1002,43 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "Show HN: Continue, an open-source AI coding agent for VS Code and JetBrains",
-    "body": "Hi HN, Continue is an open-source coding agent that takes natural-language instructions and produces code edits, completions, and terminal commands inside VS Code and JetBrains IDEs. The repository is archived and read-only following our acquisition by Cursor; browse or fork it without an account at:\n\n{APP_URL}\n\nDevelopers who want AI coding assistance inside their existing IDE have no open-source option with a configurable model provider. We built Continue to fill that gap.\n\nThe agent is written in TypeScript and runs as a VS Code extension via the VS Code Extension API, a JetBrains plugin via the JetBrains Plugin SDK, and a standalone CLI on Node.js.\n\nThe repository is archived and read-only, so no new features or bug fixes will be merged. The JetBrains plugin lags the VS Code extension in feature parity. There is no hosted version; you run it yourself from the source.\n\nThe choice I want a second opinion on is the model-provider configuration format: a flat JSON file checked into the repo, or a user-level config directory to avoid accidental commits? I am one of the builders and will be in the thread.",
+    "body": "Hi HN, Continue is an open-source coding agent that takes natural-language instructions and produces code edits, completions, and terminal commands inside VS Code and JetBrains IDEs. The repository is archived and read-only following our acquisition by Cursor; browse or fork it without an account at:\n\n{APP_URL}\n\nWe built Continue because developers who want AI coding assistance inside their existing IDE should not have to accept a closed model or switch editors.\n\nThe agent is written in TypeScript and runs as a VS Code extension via the VS Code Extension API, a JetBrains plugin via the JetBrains Plugin SDK, and a standalone CLI on Node.js.\n\nThe model provider is fully configurable: point it at a local Ollama instance or any OpenAI-compatible endpoint. Limitations: the repository is archived and read-only, so no new features or bug fixes will be merged; the JetBrains plugin lags the VS Code extension in feature parity; there is no hosted version, you run it yourself.\n\nThe choice I want a second opinion on is the model-provider configuration format: a flat JSON file checked into the repo, or a user-level config directory to avoid accidental commits? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-     "The profile records no earlier HN thread, but Continue reached a 2.0.0 release and was a widely adopted project. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for any earlier Continue thread before posting; if one exists, link it in the body and state in one sentence what changed since.",
-     "{APP_URL} must point to the GitHub repository (github.com/continuedev/continue), which is the only thing a reader can browse or fork today. The live site (continue.dev) is an acquisition notice only and cannot be used as the submission URL.",
-     "The product is effectively discontinued. The repository is archived and read-only with no active development or support. Make sure the submission title and body make this clear so HN readers are not misled about the project's current state.",
-     "The closer uses 'I am one of the builders and will be in the thread', which implies a team. If you built this alone, change it to 'I built it and will be in the thread'.",
-     "The campaign angle references star and fork counts as proof of community adoption. These numbers are omitted from the body per HN platform rules, which treat adoption counts as a pitch. Do not add them back."
+     "The product is effectively discontinued. The live site (continue.dev) is an acquisition notice only and the repository is archived and read-only. {APP_URL} should point to the GitHub repository (github.com/continuedev/continue), which is the only thing a reader can browse or fork today. Make this explicit in the submission.",
+     "The GitHub repository cannot be run as a live product without cloning and building locally. Add a sentence in the body clarifying what a reader can actually do at {APP_URL} so HN readers are not misled.",
+     "If Continue was previously posted on HN under an earlier version or Show HN, HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier thread before posting and, if one exists, link it in the body and state in one sentence what changed since.",
+     "The campaign angle references star and fork counts as proof of community adoption. These numbers are omitted from the body per HN platform rules, which treat adoption counts as a pitch. Do not add them back.",
+     "The closer uses 'I am one of the builders', which implies a team. If you built this alone, change it to 'I built it and will be in the thread'."
     ],
     "app_name": "Continue",
     "blockers": [],
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "body: Body over 200 words (202 words, cap 200)"
+     "body: Body over 200 words (235 words, cap 200)"
     ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-    "The profile records no earlier HN thread, but Continue reached a 2.0.0 release and was a widely adopted project. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for any earlier Continue thread before posting; if one exists, link it in the body and state in one sentence what changed since.",
-    "{APP_URL} must point to the GitHub repository (github.com/continuedev/continue), which is the only thing a reader can browse or fork today. The live site (continue.dev) is an acquisition notice only and cannot be used as the submission URL.",
-    "The product is effectively discontinued. The repository is archived and read-only with no active development or support. Make sure the submission title and body make this clear so HN readers are not misled about the project's current state.",
-    "The closer uses 'I am one of the builders and will be in the thread', which implies a team. If you built this alone, change it to 'I built it and will be in the thread'.",
-    "The campaign angle references star and fork counts as proof of community adoption. These numbers are omitted from the body per HN platform rules, which treat adoption counts as a pitch. Do not add them back."
+    "The product is effectively discontinued. The live site (continue.dev) is an acquisition notice only and the repository is archived and read-only. {APP_URL} should point to the GitHub repository (github.com/continuedev/continue), which is the only thing a reader can browse or fork today. Make this explicit in the submission.",
+    "The GitHub repository cannot be run as a live product without cloning and building locally. Add a sentence in the body clarifying what a reader can actually do at {APP_URL} so HN readers are not misled.",
+    "If Continue was previously posted on HN under an earlier version or Show HN, HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier thread before posting and, if one exists, link it in the body and state in one sentence what changed since.",
+    "The campaign angle references star and fork counts as proof of community adoption. These numbers are omitted from the body per HN platform rules, which treat adoption counts as a pitch. Do not add them back.",
+    "The closer uses 'I am one of the builders', which implies a team. If you built this alone, change it to 'I built it and will be in the thread'."
    ],
    "blockers": [],
    "repaired": [
-    "body: Body over 200 words (202 words, cap 200)"
+    "body: Body over 200 words (235 words, cap 200)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1260,
-   "words": 210,
+   "chars": 1357,
+   "words": 224,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1036,11 +1046,11 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "subject": "For VS Code and JetBrains developers: open-source AI coding agent",
-    "pitch": "Hi [Editor first name],\n\nDevelopers on VS Code or JetBrains who want AI coding help inside their existing editor, without giving up model choice or self-hosting, have had few open options. When a team's workflow is built around their IDE, that gap is a real friction point.\n\nContinue is an open-source AI coding agent for VS Code, JetBrains, and CLI, now acquired by Cursor. The repository is archived and the code stays public under Apache 2.0 as a foundation for anyone who wants to carry it forward.\n\nThe project reached 35,870 stars on GitHub before the acquisition.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "subject": "Open-source AI coding agent for VS Code and JetBrains",
+    "pitch": "Hi [Editor first name],\n\nDevelopers using VS Code or JetBrains who want AI coding assistance inside their existing editor, without giving up model choice or self-hosting, have had limited open options. When a team's workflow depends on their IDE, switching editors to get AI help is a real cost.\n\nContinue is an open-source AI coding agent for VS Code, JetBrains, and CLI, acquired by Cursor. The repository is archived and the code stays public under Apache 2.0 as a foundation for anyone who wants to carry it forward.\n\nThe project reached 35,870 stars on GitHub before the acquisition.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name is missing: no TARGET author or newsletter name was provided. Replace '[Editor first name]' with the actual recipient's first name before sending.",
      "Builder first name is unknown: replace '[Builder first name]' with the actual sender's first name before sending.",
@@ -1048,7 +1058,7 @@
      "Continue is a sunset product: the repository is archived and read-only, and the live site shows only an acquisition notice. This is disclosed plainly in the one-liner paragraph as required.",
      "No newsletter edition or section was named in TARGET, so none was referenced. If the newsletter has a specific developer tools section, name it in the opening sentence.",
      "Cursor is named as the acquirer, which is a neutral factual proof point from the profile, not a competitive comparison. Review with the builder before sending if any concern about naming a competitor.",
-     "Subject line uses 'For VS Code and JetBrains developers:' in place of a newsletter name because no TARGET.name was provided. Replace with the newsletter's actual name or audience label if known."
+     "pitch: Six or more paragraph breaks (\"Developers using VS Code or JetBrains who want AI coding ass\")"
     ],
     "app_name": "Continue",
     "blockers": [],
@@ -1062,13 +1072,13 @@
     "Continue is a sunset product: the repository is archived and read-only, and the live site shows only an acquisition notice. This is disclosed plainly in the one-liner paragraph as required.",
     "No newsletter edition or section was named in TARGET, so none was referenced. If the newsletter has a specific developer tools section, name it in the opening sentence.",
     "Cursor is named as the acquirer, which is a neutral factual proof point from the profile, not a competitive comparison. Review with the builder before sending if any concern about naming a competitor.",
-    "Subject line uses 'For VS Code and JetBrains developers:' in place of a newsletter name because no TARGET.name was provided. Replace with the newsletter's actual name or audience label if known."
+    "pitch: Six or more paragraph breaks (\"Developers using VS Code or JetBrains who want AI coding ass\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 749,
+   "chars": 756,
    "words": 123,
    "dashes": 0,
    "banned_words": [],

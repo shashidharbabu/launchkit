@@ -1,77 +1,124 @@
 ---
 name: run-launchkit
-description: Launch and drive the Launch Kit app (FastAPI backend + Next.js frontend) on this machine. Use when asked to run, start, restart, screenshot, or smoke-test Launch Kit. Encodes the port map (8090/3200 — 8000, 3000, 3100 are OWNED BY OTHER APPS), the venv paths, and the Playwright driving recipe.
+description: Launch and drive the Launch Kit app on this machine. Use when asked to run, start, restart, screenshot, or smoke-test Launch Kit. Encodes the current architecture (browser-only app at apps/launchkit on port 3400, plus the studio-forge Node service on 3500), the port map, and the Playwright driving recipe.
 ---
 
 # Run Launch Kit
 
-Two processes: FastAPI backend (pipeline orchestration) + Next.js frontend.
-Everything runs from `launchkit/` at the repo root.
+Verified 2026-09-16. There is **no FastAPI backend and no Next.js frontend**. An
+earlier version of this skill described a `launchkit/backend` on 8090 and a
+Next dev server on 3200; that stack is retired. If you find yourself starting
+uvicorn for this app, you are following the old skill.
 
-## Port map for THIS machine — do not deviate
+## What the app actually is
+
+Launch Kit is a **browser-only React app** at `apps/launchkit`, built with
+rsbuild. It has no server of its own. Pipelines run by calling the RocketRide
+connection straight from the browser:
+
+    api.ts (facade) -> runner.ts ask(pipe, question) -> RocketRide connection
+
+All application state lives in a blobstore backed by `localStorage` under the
+key `lk-preview-appstate`. There is no database to start.
+
+One real service exists, and it is optional: **studio-forge**, a small Node
+service at `services/studio-forge` that renders brand probes, cards, voice and
+reels for the Assets stage.
+
+## Port map for THIS machine, do not deviate
 
 | Port | Owner | Action |
 |---|---|---|
-| 8000 | **rocketride-podcasts API** (user's other app) | NEVER kill |
-| 3000 | another next-server (v16.2.10) | NEVER kill |
-| 3100 | RocketRide docs site (next 14) | NEVER kill |
-| **8090** | Launch Kit backend | ours |
-| **3200** | Launch Kit frontend | ours |
+| 8000 | rocketride-podcasts API (another app) | NEVER kill |
+| 3000 | another next-server | NEVER kill |
+| 3100 | RocketRide docs site | NEVER kill |
+| **3400** | Launch Kit preview | ours |
+| **3500** | studio-forge | ours |
 
-Kill only by port + listener: `kill $(lsof -ti:8090 -sTCP:LISTEN)`.
-NEVER `pkill -f uvicorn` / `pkill -f next` — they match the other apps.
+Kill only by port and listener: `kill $(lsof -ti:3400 -sTCP:LISTEN)`.
+Never `pkill -f node`, it matches the other apps.
 
 ## Start
 
 ```bash
-cd launchkit
-# backend (its venv already has fastapi/uvicorn/sqlalchemy/rocketride)
-kill $(lsof -ti:8090 -sTCP:LISTEN) 2>/dev/null
-(.venv/bin/uvicorn app.main:app --app-dir backend --port 8090 >/tmp/lk-api.log 2>&1 &)
+# the app (from the repo root)
+cd apps/launchkit
+kill $(lsof -ti:3400 -sTCP:LISTEN) 2>/dev/null
+nohup npx rsbuild dev -c rsbuild.preview.mts > /tmp/lk-preview.log 2>&1 &
 
-# frontend
-cd frontend
-kill $(lsof -ti:3200 -sTCP:LISTEN) 2>/dev/null
-(npm run dev -- -p 3200 >/tmp/lk-web.log 2>&1 &)
+# studio-forge, only needed for the Assets stage
+cd services/studio-forge
+kill $(lsof -ti:3500 -sTCP:LISTEN) 2>/dev/null
+nohup npm start > /tmp/lk-forge.log 2>&1 &
 ```
 
-Wait + IDENTITY-CHECK both (ports get reused on this machine — always verify
-you're talking to Launch Kit, not just that the port answers):
+Identity-check both rather than trusting that a port answers:
 
 ```bash
-python3 -c "import urllib.request,json;print(json.load(urllib.request.urlopen('http://localhost:8090/openapi.json'))['info']['title'])"
-# → must print: Launch Kit API
-python3 -c "import urllib.request;html=urllib.request.urlopen('http://localhost:3200').read().decode();assert 'Launch Kit' in html;print('frontend OK')"
+python3 -c "
+import urllib.request,json
+h=urllib.request.urlopen('http://localhost:3400',timeout=5).read().decode()
+assert 'lk-root' in h, 'port 3400 is not Launch Kit'
+print('preview OK')
+print('forge:', json.load(urllib.request.urlopen('http://127.0.0.1:3500/health',timeout=5))['service'])
+"
+# -> preview OK / forge: studio-forge
 ```
 
-Backend needs `launchkit/.env` (RocketRide cloud URI + prod apikey + tool
-keys). If pipelines error with "Permission 'task.control' denied", the key in
-.env is the dev-team key — use the prod one (see .env comments).
+## Secrets
+
+- The RocketRide connection comes from the workspace `.env`
+  (`ROCKETRIDE_URI` / `ROCKETRIDE_APIKEY`). Never run lifecycle verbs against
+  the dev pair.
+- The OpenAI key lives **only** in `services/studio-forge/.env` and must never
+  reach the browser bundle. `apps/launchkit/preview/env.generated.ts` is
+  generated and must never be committed.
 
 ## Drive (headless browser)
 
-`playwright` is a devDependency of `frontend/` with cached Chromium.
-Scripts must run **from `frontend/`** (ESM resolution) — copy the script in,
-run, delete:
+`playwright` is a devDependency of `launchkit-src/frontend` with cached
+Chromium. Scripts must run **from that folder** or ESM resolution fails.
 
 ```bash
-cd frontend && cp /path/to/drive.mjs drive.tmp.mjs && node drive.tmp.mjs; rm -f drive.tmp.mjs
+cd launchkit-src/frontend
+SLUG=cal-com STAGE="Social Launch" BUTTONS="Draft for X;Draft for LinkedIn" node drive.rerun.mjs
 ```
 
-Driving gotchas (learned the hard way):
-- Hero headline is `TextEffect` — text split into per-word spans, so
-  `text=Full sentence` selectors FAIL on it. Anchor on plain elements:
-  `a[href="#how"]`, `input[placeholder="App name"]`, `form button`.
-- Workspace tab buttons carry `data-id` (`button[data-id="Targets"]`).
-- "Run understand" fires a real cloud pipeline — allow 150s for
-  `button:has-text("Approve profile (Gate 1)")` to appear.
-- After approval assert `text=Gate 1 passed`.
-- Screenshot and LOOK at it — selector-pass with broken layout has happened.
+Useful drives already written: `drive.full.mjs` (a whole launch end to end),
+`drive.rerun.mjs` (re-press named buttons for one saved app),
+`drive.studio.mjs`, `drive.signals-fix.mjs`, `drive.shots.mjs`.
+`eval-extract.py` turns saved stores into the evaluation matrix.
 
-## Pipeline tests (no UI)
+Driving gotchas, learned the hard way:
+
+- The app root is `#lk-root`. Stage links are
+  `#lk-root nav[aria-label="Stages"] a:visible`.
+- A platform that already has a draft shows **Redraft**, not "Draft for". The
+  fallback selector is `button[aria-label="Redraft the <Platform> post"]`.
+- Buttons stay **disabled** while any run is in flight, and the disabled state
+  outlives the loading shimmer. Wait for enabled, not for the shimmer, or the
+  next click races the last run and can lose a whole app's drafts.
+- `drive.rerun.mjs` seeds from `appstate.rerun.json` by default and **saves
+  over it**. Back that file up before a run you care about. `SEED=original`
+  forces the first-run store instead.
+- Run one lane at a time. Three concurrent lanes degraded the pipeline enough
+  that buttons stayed disabled past budget.
+- Screenshot and actually look at it. A selector pass with a broken layout has
+  happened.
+
+## studio-forge API
+
+Async jobs. `POST /probe | /images | /voice | /kit | /reel` returns 202 with
+`{job_id, kind, status, files}`. That envelope is **not** the result: poll
+`GET /jobs/:id` for `{status, result}`. Reading the envelope as the result once
+produced a false "regression" report. Also `GET /health`, `GET /concepts`,
+`GET /files/<project>/<job>/<file>`.
+
+## Tests (no UI)
 
 ```bash
-cd launchkit
-.venv/bin/python backend/check.py      # env + pipes + server connectivity
-.venv/bin/python backend/test_all.py   # full regression, ~8 min, runs real pipelines
+cd apps/launchkit && npx tsc --noEmit        # typecheck
 ```
+
+TypeScript smoke tests bundle with esbuild:
+`--bundle --platform=node --format=esm --loader:.pipe=text`.

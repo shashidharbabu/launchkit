@@ -784,24 +784,24 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "post": "80,280 GitHub stars. Hoppscotch is an open-source API development ecosystem: REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one PWA. MIT-licensed, self-hostable.\n{APP_URL}",
     "thread_extension": [
      "Runs as a PWA in the browser or as a Tauri desktop app on Windows, Linux, and macOS. No install needed, works offline.",
-     "Self-host on your own infrastructure. The Enterprise Edition adds SSO/OIDC and on-premises deployment for teams with compliance requirements.",
-     "6,098 forks on GitHub. Version 2026.8.0 is the current release, with continuous releases since August 2019.",
+     "Self-host on your own infra. The Enterprise Edition adds SSO/OIDC and on-premises deployment for teams with compliance requirements.",
+     "6,098 forks and continuous releases since August 2019. Version 2026.8.0 is the current release. The codebase is readable and the community is active.",
      "There is also a CLI add-on and browser extensions for Chrome and Firefox. If you self-host and hit something broken, open an issue. Link is in the first tweet."
     ],
     "alt_variants": [
-     "Hoppscotch covers REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one place. Open-source, MIT-licensed, self-hostable. 6,098 forks on GitHub.\n{APP_URL}",
-     "Hoppscotch is MIT-licensed and self-hostable. One PWA for REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT. Continuous releases since August 2019.\n{APP_URL}"
+     "Hoppscotch turns an API request into a result: REST, GraphQL, WebSocket, SSE, Socket.IO, or MQTT, without leaving the browser. MIT-licensed, 80,280 stars on GitHub.\n{APP_URL}",
+     "Hoppscotch covers REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one place. Open-source, MIT-licensed, self-hostable. 6,098 forks on GitHub.\n{APP_URL}"
     ],
     "warnings": [
-     "No comparison to other products was made. The campaign angle references Postman restrictions but that framing was dropped to comply with the no-framing-against-another-product rule.",
+     "No comparison to other products was made, per PLATFORM_RULES. The campaign angle references Postman restrictions but that framing was dropped to comply with the no-framing-against-another-product rule.",
      "Enterprise Edition pricing is not publicly listed (hoppscotch.io/pricing returns 404), so no pricing claims were made.",
-     "The phrase 'self-host in minutes' was not used because 'in minutes' is a vague time claim not supported by a number in proof_points.",
+     "The previous draft's phrase 'self-host in minutes' was removed because 'in minutes' is a vague time claim not supported by a number in proof_points.",
      "The 'before and after' hook pattern was not used because both N and M benchmark numbers are absent from proof_points.",
      "warnings[1]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"dropped to comply\")"
     ],
@@ -811,9 +811,9 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "No comparison to other products was made. The campaign angle references Postman restrictions but that framing was dropped to comply with the no-framing-against-another-product rule.",
+    "No comparison to other products was made, per PLATFORM_RULES. The campaign angle references Postman restrictions but that framing was dropped to comply with the no-framing-against-another-product rule.",
     "Enterprise Edition pricing is not publicly listed (hoppscotch.io/pricing returns 404), so no pricing claims were made.",
-    "The phrase 'self-host in minutes' was not used because 'in minutes' is a vague time claim not supported by a number in proof_points.",
+    "The previous draft's phrase 'self-host in minutes' was removed because 'in minutes' is a vague time claim not supported by a number in proof_points.",
     "The 'before and after' hook pattern was not used because both N and M benchmark numbers are absent from proof_points.",
     "warnings[1]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"dropped to comply\")"
    ],
@@ -821,8 +821,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1043,
-   "words": 152,
+   "chars": 1092,
+   "words": 163,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -830,21 +830,21 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "80,280 GitHub stars. That's seven years of developers finding Hoppscotch, using it, and coming back to contribute.\n\nHoppscotch is an open-source API development ecosystem. It handles REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one place. The full source is MIT-licensed, so I can read every line, run it locally, or self-host it on my own infrastructure.\n\nIt runs in the browser as a PWA with no install required. There's a native desktop app via Tauri for Windows, macOS, and Linux. If your team has compliance requirements that rule out cloud sync, the self-hosted path is there, and an Enterprise Edition adds SSO and on-prem deployment for orgs that need it.\n\nWe've been releasing continuously since 2019. Version 2026.8.0 is current.\n\nIf you want a fast, open API tool with no sign-in wall, clone it today.\n\nLink in the first comment.\n\n#opensource #devtools #apidev",
-    "alt_hook": "Hoppscotch has 6,098 forks on GitHub. It's MIT-licensed, self-hostable, and it's been in continuous development since 2019.",
+    "post": "80,280 GitHub stars. Every line of Hoppscotch is MIT-licensed. Read it, run it, self-host it.\n\nThat number reflects seven years of continuous releases and a community that's contributed over 6,000 forks.\n\nHoppscotch is an open-source API development ecosystem. It handles REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one place, so I don't have to switch tools mid-session.\n\nIt runs in the browser as a PWA, on the desktop via a native app, and on your own infrastructure when your compliance requirements demand it. We've been releasing continuously since 2019, and version 2026.8.0 is the current release.\n\nIf your team needs on-prem with SSO, there's an Enterprise Edition for that. If you just want a fast, open tool with no sign-in wall, the community edition is on GitHub right now.\n\nSelf-host it today.\n\nLink in the first comment.\n\n#opensource #devtools #apidev",
+    "alt_hook": "Hoppscotch has been releasing continuously since 2019. It's at version 2026.8.0 and the full source is MIT-licensed on GitHub.",
     "warnings": [
      "First comment: {APP_URL}",
-     "80,280 GitHub stars and 6,098 forks are sourced directly from APP_PROFILE.proof_points. No metrics were invented.",
-     "Version 2026.8.0 is sourced from APP_PROFILE.proof_points (packages/hoppscotch-common/package.json).",
+     "80,280 GitHub stars and 6,098 forks are both sourced directly from APP_PROFILE.proof_points. No metrics were invented.",
+     "Version 2026.8.0 is sourced from APP_PROFILE.proof_points (packages/hoppscotch-common/package.json). No other version claim is made.",
+     "No competitor is named in the post. The phrase 'sign-in wall' is generic and does not reference any named product.",
+     "Second idea noted but not cut from this draft: multi-protocol breadth (REST, GraphQL, WS, MQTT) is mentioned in passing as a feature detail. The primary idea remains open-source self-host credentials per the campaign angle. A separate post could go deeper on protocol coverage alone.",
      "Enterprise Edition is mentioned as a fact from APP_PROFILE.description. No pricing figure is stated because hoppscotch.io/pricing returned a 404 and no public price is confirmed.",
-     "The phrase 'sign-in wall' is generic and does not reference any named product. No competitor is named in the post.",
-     "Second idea noted but kept subordinate: multi-protocol breadth is listed as a feature detail only. Primary idea remains open-source self-host credentials per the campaign angle. A separate post could go deeper on protocol coverage alone.",
      "Launch week (for the builder, not the post): after this post, at most four posts in the week, never two of the same kind back to back. Suggested sequence for Hoppscotch: proof (the 80,280 star count with context), opinion (a position on API tooling privacy and self-hosting), teach (how to spin up a self-hosted Hoppscotch instance step by step), story (a scene from building it, only if the builder has one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
      "Launch day replies (for the builder, not the post): in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer the question fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
-     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions. That is the number the next post is judged on."
     ],
     "app_name": "Hoppscotch",
     "blockers": [],
@@ -853,21 +853,21 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "80,280 GitHub stars and 6,098 forks are sourced directly from APP_PROFILE.proof_points. No metrics were invented.",
-    "Version 2026.8.0 is sourced from APP_PROFILE.proof_points (packages/hoppscotch-common/package.json).",
+    "80,280 GitHub stars and 6,098 forks are both sourced directly from APP_PROFILE.proof_points. No metrics were invented.",
+    "Version 2026.8.0 is sourced from APP_PROFILE.proof_points (packages/hoppscotch-common/package.json). No other version claim is made.",
+    "No competitor is named in the post. The phrase 'sign-in wall' is generic and does not reference any named product.",
+    "Second idea noted but not cut from this draft: multi-protocol breadth (REST, GraphQL, WS, MQTT) is mentioned in passing as a feature detail. The primary idea remains open-source self-host credentials per the campaign angle. A separate post could go deeper on protocol coverage alone.",
     "Enterprise Edition is mentioned as a fact from APP_PROFILE.description. No pricing figure is stated because hoppscotch.io/pricing returned a 404 and no public price is confirmed.",
-    "The phrase 'sign-in wall' is generic and does not reference any named product. No competitor is named in the post.",
-    "Second idea noted but kept subordinate: multi-protocol breadth is listed as a feature detail only. Primary idea remains open-source self-host credentials per the campaign angle. A separate post could go deeper on protocol coverage alone.",
     "Launch week (for the builder, not the post): after this post, at most four posts in the week, never two of the same kind back to back. Suggested sequence for Hoppscotch: proof (the 80,280 star count with context), opinion (a position on API tooling privacy and self-hosting), teach (how to spin up a self-hosted Hoppscotch instance step by step), story (a scene from building it, only if the builder has one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
     "Launch day replies (for the builder, not the post): in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer the question fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
-    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions. That is the number the next post is judged on."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1023,
-   "words": 163,
+   "chars": 1022,
+   "words": 162,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -875,22 +875,25 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "I work on an open-source API client that runs self-hosted via Docker",
-    "body": "Postman requires a cloud account to sync collections, and its free tier caps at three users and 1,000 requests per month. For teams with compliance requirements, that means credentials and request history living on someone else's servers with no straightforward exit path.\n\nI work on Hoppscotch, an MIT-licensed API development ecosystem. It runs as a PWA directly in the browser, so there's nothing to install. There's also a Tauri-based desktop app for Windows, macOS, and Linux if you want it local. Self-hosting is a Docker Compose file and you own everything: request history, environment variables, team workspaces, and cloud sync if you want it. It covers REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one interface, with pre/post-request scripts and environment variable support built in.\n\nPostman and Insomnia both handle REST and GraphQL well, and Bruno takes a Git-native approach to local storage. The self-hosted path here is the part that differs: one Docker Compose file, no cloud dependency, and the MIT license means you can read and modify everything. The repo has 80,280 stars and 6,098 forks going back to August 2019, so it's not a new project.\n\nThe Enterprise Edition pricing page currently returns a 404, so public numbers aren't published yet. If you're evaluating it for a team, you'd need to reach out directly. I don't have a timeline on when that changes.\n\nIf you run API tooling on your own infrastructure, what was the deciding factor: a compliance requirement, or just preferring to keep credentials off a third-party server?\n\n{APP_URL}",
+    "body": "Postman requires a cloud account to sync collections, and its free tier caps at three users and 1,000 requests per month. For teams with compliance requirements, that means credentials and request history living on someone else's servers with no straightforward way out.\n\nI work on Hoppscotch, an MIT-licensed API development ecosystem. It runs as a PWA directly in the browser, so there's nothing to install. There's also a Tauri-based desktop app for Windows, macOS, and Linux if you want it local. Self-hosting is a Docker Compose file and you own everything: request history, environment variables, team workspaces, and cloud sync if you want it. It covers REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one interface, with pre/post-request scripts and environment variable support built in.\n\nPostman and Insomnia both handle REST and GraphQL well, and Bruno takes a Git-native approach to local storage. Hoppscotch's self-hosted path is the part that differs: one Docker Compose file, no cloud dependency, and the MIT license means you can read and modify everything. The repo has 80,280 stars and 6,098 forks going back to August 2019, so it's not a new project.\n\nThe Enterprise Edition pricing page currently returns a 404, so public numbers aren't published yet. If you're evaluating it for a team, you'd need to reach out directly. I don't have a timeline on when that changes.\n\nIf you run API tooling on your own infrastructure, what was the deciding factor: a compliance requirement, or just preferring to keep credentials off a third-party server?\n\n{APP_URL}",
     "suggested_flair": "none",
     "warnings": [
      "TARGET is r/selfhosted. Hoppscotch was created in August 2019 and is 7+ years old, so it does not fall under the 'under 3 months old' rule requiring the New Project Megathread. This draft is written for the r/selfhosted main feed.",
-     "Mention level used: 2 (product named once in the sentence that discloses the builder, {APP_URL} once in the final paragraph). 'Hoppscotch' appears only in the disclosure sentence; subsequent paragraphs refer to it as 'the repo' or 'it' to stay within the named-once constraint.",
-     "Suggested flair is 'none' because r/selfhosted's verified flair list was not available at draft time. The builder should check the subreddit's flair options before posting and select the closest match, likely 'New Project' or 'Tool'.",
+     "Mention level used: 2 (product named once in the sentence that discloses the builder, {APP_URL} once in the final paragraph).",
+     "Suggested flair is 'none' because r/selfhosted's verified flair list was not available; the builder should check the subreddit's flair options before posting and select the closest match (likely 'New Project' or 'Tool').",
      "Postman is named within the first 120 words as a neutral fact (free-tier cap, cloud account requirement) using publicly listed pricing from COMMERCIAL data. No negative adjective is attached to its name.",
-     "Builder disclosure ('I work on Hoppscotch') appears in the same sentence that first names the product. 'I work on' is used rather than 'I built' because Hoppscotch is a team project older than one year.",
-     "Limitation stated: Enterprise Edition pricing page returns a 404 and public numbers are not published. This is drawn directly from APP_PROFILE.gaps and is not a Launch Kit scrape artifact; the profile explicitly records it as a product gap. Followed by 'I don't have a timeline on when that changes', satisfying the 'I do not know yet' requirement.",
-     "r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly. This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
-     "The colon in the closing question ('a compliance requirement, or just preferring...') is a list separator, not an em dash or en dash. No em or en dashes appear anywhere in the draft.",
-     "Body word count is approximately 230 words, within the 150-300 word range.",
+     "Builder disclosure ('I work on Hoppscotch') appears in the same sentence that first names the product, as required. 'I work on' is used rather than 'I built' because Hoppscotch is a team project older than one year.",
+     "Limitation stated: Enterprise Edition pricing page returns a 404 and public numbers are not published. This is drawn directly from APP_PROFILE.gaps and is not a Launch Kit scrape artifact; the profile explicitly records it as a product gap.",
+     "The phrase 'the honest gap' and 'the honest limitation' do not appear. The limitation opens with the fact directly.",
+     "No bullet points, bold text, headings, horizontal rules, or TL;DR are present.",
+     "Proof points used: 80,280 GitHub stars, 6,098 forks, August 2019 creation date. All sourced from APP_PROFILE.proof_points. No invented metrics.",
+     "The previous draft's phrase 'the honest gap right now' has been removed. The previous draft's r/SideProject framing has been replaced with r/selfhosted main-feed framing.",
+     "r/selfhosted requires you to answer the AI-disclosure bot honestly if it asks whether the post was AI-assisted.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
      "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"1,000 requests\")",
      "body: A scrape artifact (a 404, an unreachable page, a timeout) presented as the product's limitation (\"returns a 404\")"
     ],
@@ -902,14 +905,17 @@
    },
    "warnings": [
     "TARGET is r/selfhosted. Hoppscotch was created in August 2019 and is 7+ years old, so it does not fall under the 'under 3 months old' rule requiring the New Project Megathread. This draft is written for the r/selfhosted main feed.",
-    "Mention level used: 2 (product named once in the sentence that discloses the builder, {APP_URL} once in the final paragraph). 'Hoppscotch' appears only in the disclosure sentence; subsequent paragraphs refer to it as 'the repo' or 'it' to stay within the named-once constraint.",
-    "Suggested flair is 'none' because r/selfhosted's verified flair list was not available at draft time. The builder should check the subreddit's flair options before posting and select the closest match, likely 'New Project' or 'Tool'.",
+    "Mention level used: 2 (product named once in the sentence that discloses the builder, {APP_URL} once in the final paragraph).",
+    "Suggested flair is 'none' because r/selfhosted's verified flair list was not available; the builder should check the subreddit's flair options before posting and select the closest match (likely 'New Project' or 'Tool').",
     "Postman is named within the first 120 words as a neutral fact (free-tier cap, cloud account requirement) using publicly listed pricing from COMMERCIAL data. No negative adjective is attached to its name.",
-    "Builder disclosure ('I work on Hoppscotch') appears in the same sentence that first names the product. 'I work on' is used rather than 'I built' because Hoppscotch is a team project older than one year.",
-    "Limitation stated: Enterprise Edition pricing page returns a 404 and public numbers are not published. This is drawn directly from APP_PROFILE.gaps and is not a Launch Kit scrape artifact; the profile explicitly records it as a product gap. Followed by 'I don't have a timeline on when that changes', satisfying the 'I do not know yet' requirement.",
-    "r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly. This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
-    "The colon in the closing question ('a compliance requirement, or just preferring...') is a list separator, not an em dash or en dash. No em or en dashes appear anywhere in the draft.",
-    "Body word count is approximately 230 words, within the 150-300 word range.",
+    "Builder disclosure ('I work on Hoppscotch') appears in the same sentence that first names the product, as required. 'I work on' is used rather than 'I built' because Hoppscotch is a team project older than one year.",
+    "Limitation stated: Enterprise Edition pricing page returns a 404 and public numbers are not published. This is drawn directly from APP_PROFILE.gaps and is not a Launch Kit scrape artifact; the profile explicitly records it as a product gap.",
+    "The phrase 'the honest gap' and 'the honest limitation' do not appear. The limitation opens with the fact directly.",
+    "No bullet points, bold text, headings, horizontal rules, or TL;DR are present.",
+    "Proof points used: 80,280 GitHub stars, 6,098 forks, August 2019 creation date. All sourced from APP_PROFILE.proof_points. No invented metrics.",
+    "The previous draft's phrase 'the honest gap right now' has been removed. The previous draft's r/SideProject framing has been replaced with r/selfhosted main-feed framing.",
+    "r/selfhosted requires you to answer the AI-disclosure bot honestly if it asks whether the post was AI-assisted.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"1,000 requests\")",
     "body: A scrape artifact (a 404, an unreachable page, a timeout) presented as the product's limitation (\"returns a 404\")"
    ],
@@ -917,8 +923,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1681,
-   "words": 270,
+   "chars": 1683,
+   "words": 269,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -926,41 +932,50 @@
    "has_app_url": true
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Hoppscotch",
     "tagline": "Open-source API client for REST, GraphQL, WebSocket and MQTT",
     "description": "Re-importing collections every time you switch API tools is the tax nobody budgets for. Hoppscotch handles REST, GraphQL, WebSocket, SSE, and MQTT from one browser tab or desktop app. MIT-licensed and self-hostable, with an Enterprise Edition for on-prem.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Hoppscotch. 👋\n\nAPI tools that used to just work started requiring sign-in for basic features, and syncing collections to a third-party cloud felt like the wrong trade-off for teams with strict data policies. That friction is what Hoppscotch was built to remove.\n\nHoppscotch is an open-source API development ecosystem. You open it in a browser tab or the Tauri desktop app, pick a protocol (REST, GraphQL, WebSocket, SSE, Socket.IO, or MQTT), and send a request. Team workspaces, environment variables, and pre/post-request scripts are built in. The desktop app runs offline and stays light on RAM. You can self-host the whole stack with Docker on your own hardware.\n\nIt runs on your own infrastructure. The hosted tools do not offer that on their free tier. Hoppscotch is MIT-licensed, so you can read, fork, and modify every line.\n\nLimitation: [builder to add one]\n\nTwo things I want to know: what would you need to see before you ran this on production traffic? And if you have tried self-hosting, where did the setup break for you?\n\nI will be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Hoppscotch. 👋\n\nAPI tools that used to just work started requiring sign-in for basic features, and syncing collections to a third-party cloud felt like the wrong trade-off for teams with strict data policies. That friction is what Hoppscotch was built to remove.\n\nHoppscotch is an open-source API development ecosystem. You open it in a browser tab or the Tauri desktop app, pick a protocol (REST, GraphQL, WebSocket, SSE, Socket.IO, or MQTT), and send a request. Team workspaces, environment variables, and pre/post-request scripts are built in. The desktop app runs offline and stays light on RAM. You can self-host the whole stack with Docker on your own hardware.\n\nIt runs on your own infrastructure. The hosted tools do not offer that on their free tier. Hoppscotch is MIT-licensed, so you can read, fork, and modify every line.\n\nLimitation: [builder to add one]\n\nTwo things I would genuinely like to know: what would you need to see before you ran this on production traffic? And if you have tried self-hosting, where did the setup break for you?\n\nI will be in the comments all day.",
     "topics": [
      "Developer Tools",
      "Open Source",
      "API"
     ],
     "warnings": [
-     "No valid product limitation is recorded in APP_PROFILE.gaps that qualifies under platform rules. The placeholder 'Limitation: [builder to add one]' must be replaced with a real product gap before launch.",
+     "No valid product limitation is recorded in APP_PROFILE.gaps that qualifies under platform rules (pricing page 404 and blank screen are read failures, not product gaps). The placeholder 'Limitation: [builder to add one]' must be replaced with a real product gap before launch.",
      "APP_PROFILE names no builder or team. The placeholders [Builder first name] and [role] in the first comment opening line must be filled in before submitting.",
      "Enterprise Edition pricing is not publicly listed. If a pricing page goes live before launch, the description and first comment can be updated to reference it.",
-     "No approved offer for Product Hunt visitors exists in APP_PROFILE, so none is included. If the team wants to add one, it must be available to all visitors and must not be tied to commenting or ranking."
+     "No approved offer for Product Hunt visitors exists in APP_PROFILE, so none is included. If the team wants to add one, it must be available to all visitors and must not be tied to commenting or ranking.",
+     "first_comment: AI-tell or hype vocabulary the brand rulebook bans (\"genuinely\") appears in the first comment feedback question. Replace with a plain phrasing before launch.",
+     "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")"
     ],
     "app_name": "Hoppscotch",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (323 characters, cap 260)"
+    ]
    },
    "warnings": [
-    "No valid product limitation is recorded in APP_PROFILE.gaps that qualifies under platform rules. The placeholder 'Limitation: [builder to add one]' must be replaced with a real product gap before launch.",
+    "No valid product limitation is recorded in APP_PROFILE.gaps that qualifies under platform rules (pricing page 404 and blank screen are read failures, not product gaps). The placeholder 'Limitation: [builder to add one]' must be replaced with a real product gap before launch.",
     "APP_PROFILE names no builder or team. The placeholders [Builder first name] and [role] in the first comment opening line must be filled in before submitting.",
     "Enterprise Edition pricing is not publicly listed. If a pricing page goes live before launch, the description and first comment can be updated to reference it.",
-    "No approved offer for Product Hunt visitors exists in APP_PROFILE, so none is included. If the team wants to add one, it must be available to all visitors and must not be tied to commenting or ranking."
+    "No approved offer for Product Hunt visitors exists in APP_PROFILE, so none is included. If the team wants to add one, it must be available to all visitors and must not be tied to commenting or ranking.",
+    "first_comment: AI-tell or hype vocabulary the brand rulebook bans (\"genuinely\") appears in the first comment feedback question. Replace with a plain phrasing before launch.",
+    "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")"
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (323 characters, cap 260)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1490,
-   "words": 243,
+   "chars": 1626,
+   "words": 262,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -968,36 +983,45 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "Show HN: Hoppscotch, open-source API development ecosystem, self-host in minutes",
-    "body": "Hi HN, Hoppscotch is an open-source API development ecosystem that takes HTTP, GraphQL, WebSocket, SSE, Socket.IO, and MQTT requests as input and returns a full request-response cycle with environment variables, pre/post-request scripts, and team workspaces. The core runs entirely in the browser, no account needed.\n\n{APP_URL}\n\nDevelopers working across multiple protocols often reach for separate tools for REST, WebSocket, and MQTT. [Builder: one sentence on why you built Hoppscotch.]\n\nThe app is a PWA built with Vue 3, TypeScript, and Vite. Tauri wraps it for desktop builds on Windows, macOS, and Linux. Protocol adapters for WebSocket, MQTT via paho-mqtt, and Socket.IO run client-side. A self-hosted backend is available for teams, with an Enterprise Edition that adds SSO and OIDC.\n\nThe core needs no server, so offline use works without configuration. The CLI add-on is a separate package, not integrated into the main UI. Enterprise Edition pricing is not publicly listed yet. For the self-hosted backend, would you prefer a single-binary deployment or the current Docker Compose setup? I am one of the builders and will be in the thread.",
+    "title": "Show HN: Hoppscotch, open-source API ecosystem, REST, GraphQL, WS, MQTT",
+    "body": "Hi HN, Hoppscotch is an open-source API development ecosystem that takes HTTP, GraphQL, WebSocket, SSE, Socket.IO, and MQTT requests as input and returns a full request-response cycle with environment variables, pre/post-request scripts, and team workspaces, running entirely in the browser or as a desktop app. You can try it without an account at\n\n{APP_URL}\n\n[Builder: one sentence on why you built it.]\n\nThe app is a PWA built with Vue 3, TypeScript, and Vite. Tauri wraps it for desktop builds on Windows, macOS, and Linux. Protocol adapters for WebSocket, MQTT via paho-mqtt, and Socket.IO run client-side. A self-hosted backend is available for teams, and the Enterprise Edition adds SSO and OIDC on top.\n\nThe core runs entirely in the browser with no server required, so offline use works without configuration. The CLI add-on is a separate package and not integrated into the main UI. Enterprise Edition pricing is not publicly listed yet. Limitation: [builder to add one.] For the self-hosted backend, would you prefer a single-binary deployment or the current Docker Compose setup? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
      "Hoppscotch has been on GitHub since August 2019 and is a mature project. HN accepts a repeat Show HN only for a major overhaul, about once or twice a year. Search HN for earlier Hoppscotch threads before submitting and, if one exists, link it in the body and add one sentence on what changed since.",
      "Enterprise Edition pricing is not publicly listed (hoppscotch.io/pricing returns 404). The body correctly omits pricing details, but be prepared for HN commenters to ask.",
      "The body states no account is needed to try the app at {APP_URL}. Confirm the live URL opens the working app directly, not a landing page or waitlist, before submitting.",
-     "The why-built paragraph contains a placeholder. Fill in one sentence in your own words explaining why you built Hoppscotch before submitting."
+     "The why-built paragraph contains a placeholder. Fill in one sentence in your own words explaining why you built Hoppscotch before submitting.",
+     "The third limitation is a placeholder. Add one honest product gap (a missing platform, an early-stage feature, a known constraint) before submitting."
     ],
     "app_name": "Hoppscotch",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (211 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)"
+    ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
     "Hoppscotch has been on GitHub since August 2019 and is a mature project. HN accepts a repeat Show HN only for a major overhaul, about once or twice a year. Search HN for earlier Hoppscotch threads before submitting and, if one exists, link it in the body and add one sentence on what changed since.",
     "Enterprise Edition pricing is not publicly listed (hoppscotch.io/pricing returns 404). The body correctly omits pricing details, but be prepared for HN commenters to ask.",
     "The body states no account is needed to try the app at {APP_URL}. Confirm the live URL opens the working app directly, not a landing page or waitlist, before submitting.",
-    "The why-built paragraph contains a placeholder. Fill in one sentence in your own words explaining why you built Hoppscotch before submitting."
+    "The why-built paragraph contains a placeholder. Fill in one sentence in your own words explaining why you built Hoppscotch before submitting.",
+    "The third limitation is a placeholder. Add one honest product gap (a missing platform, an early-stage feature, a known constraint) before submitting."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "body: Body over 200 words (211 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1250,
-   "words": 191,
+   "chars": 1324,
+   "words": 214,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1005,18 +1029,18 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "subject": "For API developers: Hoppscotch covers REST to MQTT",
-    "pitch": "Hi [Editor first name],\n\nWhen an engineering team's API tooling starts requiring a cloud account for basic workflows, or a compliance audit demands on-prem deployment, the search for something self-hostable and open begins fast. Developers who test REST, GraphQL, and WebSocket APIs daily need a tool that runs on their own infrastructure and works offline too.\n\nHoppscotch is an open-source API development ecosystem for developers, covering REST, GraphQL, WebSocket, MQTT and more in one lightweight PWA that runs in the browser or as a desktop app.\n\nThe project has 80,280 stars on GitHub as of September 2026.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "pitch": "Hi [Editor first name],\n\nWhen an engineering team's API tooling starts requiring a cloud account for basic workflows, or a compliance audit demands on-prem deployment, the search for something self-hostable and open begins fast. Developers who test REST, GraphQL, and WebSocket APIs daily need a tool that runs on their own infrastructure and works offline too.\n\nHoppscotch is an open-source API development ecosystem for developers, covering REST, GraphQL, WebSocket, MQTT and more in one lightweight PWA that runs in the browser or as a desktop app.\n\nThe project has 80,280 GitHub stars on GitHub as of September 2026.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name is missing: TARGET did not name the newsletter author or publication. The greeting uses '[Editor first name]' as a placeholder. Replace with the actual first name before sending.",
      "Builder's first name is unknown: APP_PROFILE and BRAND_DNA do not name the builder. The sign-off uses '[Builder first name]' as a placeholder. Replace with the actual first name.",
      "TARGET rules not verified: no submission form URL, editorial guidelines, or paid-placement policy was provided. Check whether this newsletter accepts unsolicited pitches or requires a submission form before sending.",
      "No competitor is named in the pitch per PLATFORM_RULES. The icp.pain around cloud accounts and compliance requirements is restated as category-level friction without attributing it to any named tool.",
      "Subject line is 50 characters, within the 45-60 target range.",
-     "Pitch word count is approximately 117 words, within the 110-140 target range."
+     "Pitch word count is approximately 118 words, within the 110-140 target range."
     ],
     "app_name": "Hoppscotch",
     "blockers": [],
@@ -1029,14 +1053,14 @@
     "TARGET rules not verified: no submission form URL, editorial guidelines, or paid-placement policy was provided. Check whether this newsletter accepts unsolicited pitches or requires a submission form before sending.",
     "No competitor is named in the pitch per PLATFORM_RULES. The icp.pain around cloud accounts and compliance requirements is restated as category-level friction without attributing it to any named tool.",
     "Subject line is 50 characters, within the 45-60 target range.",
-    "Pitch word count is approximately 117 words, within the 110-140 target range."
+    "Pitch word count is approximately 118 words, within the 110-140 target range."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 779,
-   "words": 121,
+   "chars": 786,
+   "words": 122,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,

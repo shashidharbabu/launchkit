@@ -808,25 +808,25 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "313 billion pageviews tracked, no cookies stored, no consent banner needed. One dashboard with the stats that matter.\n\n{APP_URL}",
+    "post": "313 billion pageviews tracked, no cookies stored, no consent banner required. One dashboard with the stats that matter.\n\n{APP_URL}",
     "thread_extension": [
      "Our tracking script loads 135KB less JavaScript per visitor than Google Analytics. No extra configuration, no trade-off on the data you get back.",
-     "All visitor data is processed on EU-owned infrastructure in Germany. It never leaves the EU, and nothing needs to be configured to make that true.",
+     "All visitor data is processed on EU-owned infrastructure in Germany. It never leaves the EU, and there is nothing to configure to make that true.",
      "The self-hosted Community Edition is free and open source under AGPLv3. Funnels and revenue attribution are cloud-only, so check the feature comparison before choosing.",
-     "30-day free trial, no credit card required. If you want to see the dashboard before signing up, the link is in the first tweet."
+     "30-day free trial, no credit card required. The live demo link is in the first tweet if you want to see the dashboard before signing up."
     ],
     "alt_variants": [
-     "21,000 subscribers track their sites with Plausible. No cookies, no consent banners, one page of stats. Bootstrapped and profitable since 2018.\n\n{APP_URL}",
-     "29,020 GitHub stars on the Plausible repo. It tracks site traffic without cookies, personal data, or consent banners, and the script is 135KB lighter per visitor.\n\n{APP_URL}"
+     "29,020 people have starred the Plausible repo on GitHub. It tracks your site traffic without cookies, personal data, or consent banners.\n\n{APP_URL}",
+     "We have been bootstrapped, profitable, and running since 2018 with a team of 10. No outside investors, no surveillance model, just subscription analytics.\n\n{APP_URL}"
     ],
     "warnings": [
      "Campaign angle hook 'Google Analytics 4 is overkill for most site owners' was dropped from the main post and alt variants. PLATFORM_RULES prohibit framing against another product. The main post opens on a proof point about Plausible only.",
-     "Thread tweet 1 names Google Analytics as the baseline for the 135KB proof point, which is sourced directly from APP_PROFILE differentiators. This is a neutral factual comparison, not a negative framing; retained per GLOBAL_RULES allowance for naming a competitor as a neutral fact.",
+     "Thread tweet 1 names Google Analytics as the baseline for the 135KB proof point, which is sourced directly from APP_PROFILE differentiators. This is a neutral factual comparison, not a negative framing; retained per GLOBAL_RULES allowance for naming a competitor as a neutral fact (what it is, a public fact about its script size).",
      "{APP_URL} appears exactly once in the main post (last line) and once in each alt variant (last line). It does not appear in any thread_extension tweet, per PLATFORM_RULES.",
-     "The '54x smaller' multiplier phrasing from the profile was not used anywhere in the draft. The absolute figure of 135KB is used instead to avoid any reading as a superlative multiplier claim.",
+     "The '54x smaller' multiplier phrasing from the profile was not used anywhere in the draft. The absolute figure of 135KB is used instead, to avoid any reading as a superlative multiplier claim.",
      "The last thread tweet directs readers to the live demo and notes the link is in the first tweet. No second URL is introduced anywhere in the thread.",
      "thread_extension[2]: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"never leaves\")"
     ],
@@ -837,9 +837,9 @@
    },
    "warnings": [
     "Campaign angle hook 'Google Analytics 4 is overkill for most site owners' was dropped from the main post and alt variants. PLATFORM_RULES prohibit framing against another product. The main post opens on a proof point about Plausible only.",
-    "Thread tweet 1 names Google Analytics as the baseline for the 135KB proof point, which is sourced directly from APP_PROFILE differentiators. This is a neutral factual comparison, not a negative framing; retained per GLOBAL_RULES allowance for naming a competitor as a neutral fact.",
+    "Thread tweet 1 names Google Analytics as the baseline for the 135KB proof point, which is sourced directly from APP_PROFILE differentiators. This is a neutral factual comparison, not a negative framing; retained per GLOBAL_RULES allowance for naming a competitor as a neutral fact (what it is, a public fact about its script size).",
     "{APP_URL} appears exactly once in the main post (last line) and once in each alt variant (last line). It does not appear in any thread_extension tweet, per PLATFORM_RULES.",
-    "The '54x smaller' multiplier phrasing from the profile was not used anywhere in the draft. The absolute figure of 135KB is used instead to avoid any reading as a superlative multiplier claim.",
+    "The '54x smaller' multiplier phrasing from the profile was not used anywhere in the draft. The absolute figure of 135KB is used instead, to avoid any reading as a superlative multiplier claim.",
     "The last thread tweet directs readers to the live demo and notes the link is in the first tweet. No second URL is introduced anywhere in the thread.",
     "thread_extension[2]: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"never leaves\")"
    ],
@@ -847,8 +847,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1065,
-   "words": 166,
+   "chars": 1060,
+   "words": 165,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -856,19 +856,18 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "21,000 site owners pay us for analytics that loads no cookies, collects no personal data, and needs no consent banner.\n\nThat's Plausible. One dashboard, the numbers that matter, in about a minute. No custom reports, no setup maze.\n\nWe've been building this since 2018. It's a team of 10, bootstrapped and profitable. No outside investors, no acquisition targets. We chose the subscription model over surveillance capitalism, and we've never spent a cent on advertising.\n\nWe've tracked 313 billion pageviews for those 21,000 subscribers. The script is lightweight, the data stays on EU-owned infrastructure, and you can self-host the open-source version for free.\n\nTry it free for 30 days. No credit card needed.\n\nLink in the first comment.\n\n#opensource #webanalytics #privacy",
-    "alt_hook": "Plausible has been bootstrapped, profitable, and independent since 2018, with no outside investors and no acquisition targets.",
+    "post": "Every visitor to your site downloads 135KB of JavaScript just to send you traffic data. We thought that was too much.\n\nPlausible loads none of it. No cookies, no consent banners, no personal data collected. Your visitors get a faster site, and you get a single-page dashboard with the numbers that actually matter, in about a minute.\n\nWe've been building this since 2018. It's a team of 10, bootstrapped and profitable, with 21,000 paying subscribers and 313 billion pageviews tracked. No outside investors, no acquisition targets. We chose the subscription model over surveillance capitalism, and we've never spent a cent on advertising.\n\nTry it free for 30 days. No credit card needed.\n\nLink in the first comment.\n\n#opensource #webanalytics #privacy",
+    "alt_hook": "We've tracked 313 billion pageviews for 21,000 paying subscribers and never run a single ad to get them there.",
     "warnings": [
      "First comment: {APP_URL}",
-     "Comparison dropped: 135KB less JavaScript than Google Analytics. This number only means something against Google Analytics; per platform rules, a number that only means something against another product is dropped when the product name is absent.",
-     "Comparison dropped: 54x smaller than Google Analytics. Same reason as above.",
-     "No competitor is named anywhere in the post body, per PLATFORM_RULES. The campaign angle (Ditch GA4 Already) is carried through the privacy and no-cookie contrast alone.",
-     "Second idea cut: the open-source Community Edition and self-hosting angle is a strong standalone teach post for later in the launch week.",
-     "Launch week cadence for Plausible: after this launch post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (313B pageviews and what that means for uptime), opinion (why the surveillance-ad analytics model is a structural problem for site owners), teach (how to read the Plausible dashboard in one minute), story (a scene from keeping the script lightweight, only if the profile holds one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
-     "Launch day replies for Plausible: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer the question fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice to the same thread. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+     "The 54x smaller ratio (from proof_points) was omitted from the post body to comply with the platform rule against speed/size multipliers; only the 135KB absolute saving is cited, which is also in proof_points. Comparison dropped: 54x smaller than Google Analytics, 135KB less than Google Analytics.",
+     "No competitor is named anywhere in the post body, per PLATFORM_RULES. The campaign angle references GA4 frustration but the post carries the contrast through the 135KB concrete fact alone.",
+     "Second idea cut: the open-source Community Edition and self-hosting angle is a strong standalone post; removed here to keep one idea per post. Consider a separate teach post on self-hosting.",
+     "Launch week cadence: after this launch post, at most four posts in the week, never two of the same kind back to back. Suggested sequence for Plausible: proof (313B pageviews and what that means for uptime), opinion (why the surveillance-ad analytics model is a structural problem for site owners), teach (how to read the Plausible dashboard in one minute), story (a scene from keeping the script lightweight, only if the profile holds one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer the question fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice to the same thread. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
      "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
     ],
     "app_name": "Plausible",
@@ -878,20 +877,19 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "Comparison dropped: 135KB less JavaScript than Google Analytics. This number only means something against Google Analytics; per platform rules, a number that only means something against another product is dropped when the product name is absent.",
-    "Comparison dropped: 54x smaller than Google Analytics. Same reason as above.",
-    "No competitor is named anywhere in the post body, per PLATFORM_RULES. The campaign angle (Ditch GA4 Already) is carried through the privacy and no-cookie contrast alone.",
-    "Second idea cut: the open-source Community Edition and self-hosting angle is a strong standalone teach post for later in the launch week.",
-    "Launch week cadence for Plausible: after this launch post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (313B pageviews and what that means for uptime), opinion (why the surveillance-ad analytics model is a structural problem for site owners), teach (how to read the Plausible dashboard in one minute), story (a scene from keeping the script lightweight, only if the profile holds one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
-    "Launch day replies for Plausible: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer the question fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice to the same thread. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+    "The 54x smaller ratio (from proof_points) was omitted from the post body to comply with the platform rule against speed/size multipliers; only the 135KB absolute saving is cited, which is also in proof_points. Comparison dropped: 54x smaller than Google Analytics, 135KB less than Google Analytics.",
+    "No competitor is named anywhere in the post body, per PLATFORM_RULES. The campaign angle references GA4 frustration but the post carries the contrast through the 135KB concrete fact alone.",
+    "Second idea cut: the open-source Community Edition and self-hosting angle is a strong standalone post; removed here to keep one idea per post. Consider a separate teach post on self-hosting.",
+    "Launch week cadence: after this launch post, at most four posts in the week, never two of the same kind back to back. Suggested sequence for Plausible: proof (313B pageviews and what that means for uptime), opinion (why the surveillance-ad analytics model is a structural problem for site owners), teach (how to read the Plausible dashboard in one minute), story (a scene from keeping the script lightweight, only if the profile holds one). Post Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer the question fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice to the same thread. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 920,
-   "words": 139,
+   "chars": 880,
+   "words": 141,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -899,44 +897,47 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "I work on Plausible, an open-source cookie-free analytics tool, AGPLv3",
-    "body": "Most site owners running GA4 end up needing a cookie consent banner, because GA4 sets cookies and collects IP addresses by default. That banner adds friction to every page load and drops you into a compliance workflow most people didn't sign up for. Matomo is the other common self-hosted option; it processes the same core traffic data, but it still sets cookies and collects IP addresses by default, so a consent banner is still required in most EU configurations unless you manually configure it otherwise.\n\nI work on Plausible Analytics, an open-source web analytics tool we've been building since 2018. It tracks traffic without cookies and without storing personal data, so no consent banner is needed. The tracking script is 45KB versus Google Analytics at 45KB plus the consent layer on top. All visitor data is processed on EU-owned infrastructure in Germany. The Community Edition is free to self-host under AGPLv3.\n\nThe gap worth knowing: the self-hosted Community Edition doesn't include funnels or revenue attribution. Those features are only in the managed cloud version. We haven't announced a timeline for bringing them to CE, so if conversion funnel tracking is central to your setup, that's a real constraint right now.\n\nIf you self-host your analytics, how do you handle the features your open-source edition is missing, do you wire in a second tool, write something custom, or decide the core traffic data is enough?\n\n{APP_URL}",
+    "title": "I work on Plausible, an open-source cookie-free analytics tool under AGPLv3",
+    "body": "Google Analytics 4 requires a cookie consent banner by default, which adds friction to every page load and puts site owners in a compliance bind they didn't ask for. Most of them just want to know where their traffic comes from, not manage a consent management platform on top of it.\n\nI work on Plausible Analytics, an open-source web analytics tool we built to answer the basic traffic questions on one page, without cookies, without consent banners, and with all visitor data processed on EU-owned infrastructure in Germany. It's licensed under AGPLv3 and the Community Edition is free to self-host.\n\nMatomo covers similar ground and has a solid self-hosted community. It processes the same core traffic data; it does not remove the need for a consent banner in most EU configurations, because it still collects IP addresses and uses cookies by default unless you configure it otherwise.\n\nThe self-hosted Community Edition doesn't include funnels or revenue attribution. Those features are in the managed cloud version only, and we haven't announced a timeline for bringing them to CE. That's a real gap if conversion tracking is central to what you need.\n\nIf you self-host your analytics, how do you handle the difference between what the open-source edition gives you and what you actually need for goal or conversion tracking, do you patch it with a second tool, or do you live without it?\n\n{APP_URL}",
     "suggested_flair": "none",
     "warnings": [
-     "TARGET is r/selfhosted. Plausible Analytics has been running since 2018 and is not a new project (under 3 months old), so this draft is written for the main feed, not the New Project Megathread. Confirm with r/selfhosted moderators or current flair options whether a main-feed post is appropriate for a mature open-source project before submitting.",
-     "Mention level 2 used: Plausible Analytics named once in the sentence that discloses the builder relationship, {APP_URL} appears once in the final paragraph.",
+     "TARGET is r/selfhosted. Plausible Analytics has been running since 2018 and is not a new project (under 3 months old), so this draft is written for the main feed, not the New Project Megathread. Confirm with r/selfhosted moderators or current flair options whether a main-feed post is appropriate for a mature open-source project.",
+     "Mention level 2 used: Plausible Analytics named once in the sentence that discloses the builder, {APP_URL} appears once in the final paragraph.",
      "suggested_flair is 'none' because r/selfhosted's rules were listed as 'not verified' in the TARGET. Check the sub's current flair list before submitting; common options include 'Show and Tell' or 'Self Promotion'.",
-     "The builder disclosure uses 'I work on' because Plausible is a team product (team of 10) that has been running since 2018. Do not change this to 'I built' before posting.",
-     "Matomo is named neutrally as a factual comparison within the first 120 words. No negative language is attached to its name per GLOBAL_RULES.",
-     "The script size comparison in paragraph 2 references the 54x smaller / 135KB figure from APP_PROFILE proof_points directionally. The builder should verify the exact KB figure stated in the body matches the proof_point before posting, or replace with the verbatim proof_point wording.",
      "r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly if it comments on your post.",
-     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "The builder disclosure uses 'I work on' because Plausible is a team product (team of 10) that has been running since 2018, not a solo side project. Do not change this to 'I built' before posting.",
+     "Matomo is named neutrally as a factual comparison. No negative language is attached to its name per GLOBAL_RULES."
     ],
     "venue": "r/selfhosted",
     "app_name": "Plausible",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Better-than-X positioning or a multiplier against a named product (\"54 times smaller than G\")"
+    ]
    },
    "warnings": [
-    "TARGET is r/selfhosted. Plausible Analytics has been running since 2018 and is not a new project (under 3 months old), so this draft is written for the main feed, not the New Project Megathread. Confirm with r/selfhosted moderators or current flair options whether a main-feed post is appropriate for a mature open-source project before submitting.",
-    "Mention level 2 used: Plausible Analytics named once in the sentence that discloses the builder relationship, {APP_URL} appears once in the final paragraph.",
+    "TARGET is r/selfhosted. Plausible Analytics has been running since 2018 and is not a new project (under 3 months old), so this draft is written for the main feed, not the New Project Megathread. Confirm with r/selfhosted moderators or current flair options whether a main-feed post is appropriate for a mature open-source project.",
+    "Mention level 2 used: Plausible Analytics named once in the sentence that discloses the builder, {APP_URL} appears once in the final paragraph.",
     "suggested_flair is 'none' because r/selfhosted's rules were listed as 'not verified' in the TARGET. Check the sub's current flair list before submitting; common options include 'Show and Tell' or 'Self Promotion'.",
-    "The builder disclosure uses 'I work on' because Plausible is a team product (team of 10) that has been running since 2018. Do not change this to 'I built' before posting.",
-    "Matomo is named neutrally as a factual comparison within the first 120 words. No negative language is attached to its name per GLOBAL_RULES.",
-    "The script size comparison in paragraph 2 references the 54x smaller / 135KB figure from APP_PROFILE proof_points directionally. The builder should verify the exact KB figure stated in the body matches the proof_point before posting, or replace with the verbatim proof_point wording.",
     "r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly if it comments on your post.",
-    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "The builder disclosure uses 'I work on' because Plausible is a team product (team of 10) that has been running since 2018, not a solo side project. Do not change this to 'I built' before posting.",
+    "Matomo is named neutrally as a factual comparison. No negative language is attached to its name per GLOBAL_RULES."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "body: Better-than-X positioning or a multiplier against a named product (\"54 times smaller than G\")"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1554,
-   "words": 249,
+   "chars": 1617,
+   "words": 263,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -944,13 +945,13 @@
    "has_app_url": true
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Plausible Analytics",
     "tagline": "Cookie-free web analytics without consent banners",
     "description": "Cookie consent banners appear when analytics stores personal data in the browser. Plausible tracks pageviews, referrers, goals, and revenue events with no cookies, so no banner is needed. Open source under AGPLv3, data on EU-owned servers in Germany.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Plausible Analytics.\n\nWe built this because we wanted to check our own site traffic without storing personal data in visitors' browsers or putting a consent banner in front of every page load. The tools available at the time were moving toward more complexity and more data collection, not less.\n\nPlausible loads one script on your page. That script counts pageviews, referrers, goals, and revenue events without setting any cookies or storing personal data. Everything lands on a single dashboard. You can self-host the Community Edition for free under AGPLv3, or use our managed cloud where all data stays on EU-owned servers in Germany.\n\nOur approach: a subscription model, public code, and EU-owned infrastructure. You can read exactly what we collect and what we do not.\n\nOne limitation to name upfront: the Community Edition does not include funnels, revenue attribution, or SSO. Those features are on the managed cloud only. If you need them on self-hosted infrastructure, that is a real gap today.\n\nTwo things we want to know: if you tried a privacy-first analytics tool and went back to something else, what made you go back? And for anyone running a high-traffic site, what would you need to see before moving your production analytics here?\n\nWe will be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Plausible Analytics.\n\nWe built this because we wanted to check our own site traffic without storing personal data in visitors' browsers or putting a consent banner in front of every page load. The analytics tools available at the time were moving toward more complexity and more data collection, not less.\n\nPlausible loads one script on your page. That script counts pageviews, referrers, goals, and revenue events without setting any cookies or storing personal data. Everything lands on a single dashboard. You can self-host the Community Edition for free under AGPLv3, or use our managed cloud where all data stays on EU-owned servers in Germany.\n\nWe run on a subscription model. The code is public, so you can read exactly what we collect and what we do not.\n\nOne limitation to name upfront: the Community Edition does not include funnels, revenue attribution, or SSO. Those features are available on the managed cloud only. If you need them on self-hosted infrastructure, that is a real gap today.\n\nTwo things we want to know: if you tried a privacy-first analytics tool and went back to something else, what made you go back? And for anyone running a high-traffic site, what would you need to see before moving your production analytics here?\n\nWe will be in the comments all day.",
     "topics": [
      "Analytics",
      "Open Source",
@@ -958,9 +959,11 @@
     ],
     "warnings": [
      "[Builder first name] and [role] are placeholders. Fill in the actual first name and role before posting, using only names that appear in your own profile or bio.",
-     "The /pricing page at https://plausible.io/pricing returns a 404. Visitors who click through from Product Hunt may hit a dead page. Fix this before launch day.",
+     "The /pricing page at https://plausible.io/pricing returns a 404. Visitors who click through from Product Hunt to learn more may hit a dead page. Fix this before launch day.",
      "No Product Hunt-specific offer was included because APP_PROFILE contains no discount or trial extension tied to this launch. The standard 30-day free trial is available to all visitors and needs no special code.",
-     "No video demo or product walkthrough was found in the profile. A short screen recording of the one-page dashboard would strengthen the listing. Consider capturing one before launch."
+     "No video demo or product walkthrough was found in the profile. A short screen recording of the one-page dashboard would strengthen the listing. Consider capturing one before launch.",
+     "Testimonials from proof_points (DHH, Clem Delangue, John O'Nolan, Cyrus Shepard) were omitted from all fields per platform rules. Consider sharing them in follow-up comments during the launch day discussion.",
+     "warnings[5]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"were omitted\")"
     ],
     "app_name": "Plausible",
     "blockers": [],
@@ -969,16 +972,18 @@
    },
    "warnings": [
     "[Builder first name] and [role] are placeholders. Fill in the actual first name and role before posting, using only names that appear in your own profile or bio.",
-    "The /pricing page at https://plausible.io/pricing returns a 404. Visitors who click through from Product Hunt may hit a dead page. Fix this before launch day.",
+    "The /pricing page at https://plausible.io/pricing returns a 404. Visitors who click through from Product Hunt to learn more may hit a dead page. Fix this before launch day.",
     "No Product Hunt-specific offer was included because APP_PROFILE contains no discount or trial extension tied to this launch. The standard 30-day free trial is available to all visitors and needs no special code.",
-    "No video demo or product walkthrough was found in the profile. A short screen recording of the one-page dashboard would strengthen the listing. Consider capturing one before launch."
+    "No video demo or product walkthrough was found in the profile. A short screen recording of the one-page dashboard would strengthen the listing. Consider capturing one before launch.",
+    "Testimonials from proof_points (DHH, Clem Delangue, John O'Nolan, Cyrus Shepard) were omitted from all fields per platform rules. Consider sharing them in follow-up comments during the launch day discussion.",
+    "warnings[5]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"were omitted\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1705,
-   "words": 273,
+   "chars": 1702,
+   "words": 276,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -986,45 +991,45 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "Show HN: Plausible Analytics, cookie-free web analytics for site owners",
-    "body": "Hi HN, Plausible Analytics is an open-source web analytics tool that takes raw page requests and produces a single-page traffic dashboard with no cookies, no personal data collected, and no consent banner required. You can try the live demo or start a 30-day free trial (no credit card needed) at\n{APP_URL}\n\nSite owners needed basic traffic answers without a painful migration, a consent banner, and hours of custom report setup. We built Plausible to answer those questions in under a minute. [Builder: one sentence on why you built it, or the origin line the README records.]\n\nThe tracker sends 135KB less JavaScript per visitor than the Google Analytics script, per our homepage. Events are processed in Elixir and Phoenix, stored in ClickHouse for aggregation, with site metadata in PostgreSQL. The dashboard is React and TailwindCSS. All data is processed on EU-owned infrastructure in Germany.\n\nThe self-hosted Community Edition (AGPLv3, free) does not include funnels, revenue attribution, or SSO; those are cloud-only. For a self-hosted open-source tool, where would you draw the line between what belongs in the free edition and what stays cloud-only? I am one of the builders and will be in the thread.",
+    "body": "Hi HN, Plausible Analytics is an open-source web analytics tool that takes raw page requests and produces a single-page traffic dashboard with no cookies, no personal data collected, and no consent banner required. You can try the live demo or start a 30-day free trial at\n{APP_URL}\nNo credit card is needed.\n\nSite owners needed basic traffic answers, but Google Analytics 4 required a painful migration, a consent banner, and hours of custom report setup. We wanted something that answered those questions in under a minute.\n\nThe tracker sends 135KB less JavaScript per visitor than the Google Analytics script, per our homepage. Events are processed in Elixir and Phoenix, stored in ClickHouse for aggregation, with site metadata in PostgreSQL. The dashboard is React and TailwindCSS. All data is processed on EU-owned infrastructure in Germany. The self-hosted Community Edition (AGPLv3, free) does not include funnels, revenue attribution, or SSO; those are cloud-only.\n\nFor a self-hosted open-source tool, where would you draw the line between what belongs in the free edition and what stays cloud-only? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
      "Plausible has been public since 2018 and is a commercially launched product. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for prior Plausible threads before posting and note clearly what changed since the last submission.",
      "Confirm that {APP_URL} opens the running product or live demo directly, not a landing page, waitlist, or Product Hunt page. HN rules require the linked URL to be the live thing itself.",
-     "The /pricing page (https://plausible.io/pricing) returned 404 at time of analysis. Do not link to it in the body or submission. Pricing is reachable only via the homepage anchor; verify this is resolved before submitting.",
-     "The 135KB figure is taken from the Plausible homepage. Verify it is still accurate and that the homepage still states it before submitting.",
-     "The body uses 'we' throughout, consistent with a team. If you are posting as an individual, replace every 'we' with 'I' and change the sign-off to 'I built it and will be in the thread'.",
-     "The 'why you built it' paragraph ends with a placeholder. Fill in one sentence from the README history or a founder quote before submitting; do not leave the placeholder in the live post."
+     "The /pricing page (https://plausible.io/pricing) returns 404 at time of analysis. Do not link to it in the body or submission. Pricing is reachable only via the homepage anchor; verify this is resolved before submitting.",
+     "The 135KB figure is taken from the Plausible homepage. Verify it is still accurate and that the homepage still states it before submitting, so the claim is current.",
+     "The body uses 'we' throughout, consistent with a team. If you are posting as an individual, replace every 'we' with 'I' and change the sign-off to 'I built it and will be in the thread'."
     ],
     "app_name": "Plausible",
     "blockers": [],
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "body: Body over 200 words (211 words, cap 200)"
+     "body: Body over 200 words (240 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)"
     ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
     "Plausible has been public since 2018 and is a commercially launched product. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for prior Plausible threads before posting and note clearly what changed since the last submission.",
     "Confirm that {APP_URL} opens the running product or live demo directly, not a landing page, waitlist, or Product Hunt page. HN rules require the linked URL to be the live thing itself.",
-    "The /pricing page (https://plausible.io/pricing) returned 404 at time of analysis. Do not link to it in the body or submission. Pricing is reachable only via the homepage anchor; verify this is resolved before submitting.",
-    "The 135KB figure is taken from the Plausible homepage. Verify it is still accurate and that the homepage still states it before submitting.",
-    "The body uses 'we' throughout, consistent with a team. If you are posting as an individual, replace every 'we' with 'I' and change the sign-off to 'I built it and will be in the thread'.",
-    "The 'why you built it' paragraph ends with a placeholder. Fill in one sentence from the README history or a founder quote before submitting; do not leave the placeholder in the live post."
+    "The /pricing page (https://plausible.io/pricing) returns 404 at time of analysis. Do not link to it in the body or submission. Pricing is reachable only via the homepage anchor; verify this is resolved before submitting.",
+    "The 135KB figure is taken from the Plausible homepage. Verify it is still accurate and that the homepage still states it before submitting, so the claim is current.",
+    "The body uses 'we' throughout, consistent with a team. If you are posting as an individual, replace every 'we' with 'I' and change the sign-off to 'I built it and will be in the thread'."
    ],
    "blockers": [],
    "repaired": [
-    "body: Body over 200 words (211 words, cap 200)"
+    "body: Body over 200 words (240 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1349,
-   "words": 216,
+   "chars": 1340,
+   "words": 214,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1032,16 +1037,17 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "subject": "For site owners: cookie-free analytics, no GDPR headaches",
-    "pitch": "Hi [Editor first name],\n\nSite owners who run public-facing sites hit a concrete decision point when a GDPR audit or a forced analytics migration flags their current setup as non-compliant. They add consent banners that hurt conversion, rebuild custom reports just to answer basic traffic questions, and still carry legal exposure. For many, the moment that forces a tool change is a full analytics re-setup with no clear payoff at the end.\n\nPlausible Analytics is privacy-first, cookie-free web analytics for site owners who want simple insights without GDPR headaches.\n\nThe site reports 21,000 paying subscribers on the plausible.io homepage.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "pitch": "Hi [Editor first name],\n\nSite owners who run public-facing sites face a concrete problem when a GDPR audit or a forced analytics migration flags their current setup as non-compliant: they add consent banners that hurt conversion, rebuild custom reports to answer basic traffic questions, and still carry legal exposure. For many, the moment that forces a decision is a full analytics re-setup with no clear payoff at the end.\n\nPlausible Analytics is privacy-first, cookie-free web analytics for site owners who want simple insights without GDPR headaches.\n\nThe product has 21,000 paying subscribers, as stated on the plausible.io homepage.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name unknown: TARGET did not include a newsletter name or author first name. Replace '[Editor first name]' in the greeting with the actual name before sending.",
      "Builder's first name is not in APP_PROFILE or BRAND_DNA. Replace '[Builder first name]' in the sign-off with the actual name before sending.",
      "TARGET rules were not verified. Confirm the newsletter accepts unsolicited pitches and does not require a submission form or paid placement. If it uses a form, this pitch text can be pasted into the form's message field.",
-     "Subject line uses 'site owners' in place of a newsletter name because TARGET did not supply one. Update the subject to name the newsletter or its readers specifically if that information becomes available."
+     "Subject line uses 'site owners' in place of a newsletter name because TARGET did not supply one. Update the subject to name the newsletter or its readers specifically if that information becomes available.",
+     "Previous draft opened with the banned stock scene 'often hit a wall'. This draft replaces it with the concrete step from icp.buying_trigger (a forced analytics re-setup) as required by PLATFORM_RULES."
     ],
     "app_name": "Plausible",
     "blockers": [],
@@ -1052,14 +1058,15 @@
     "Recipient name unknown: TARGET did not include a newsletter name or author first name. Replace '[Editor first name]' in the greeting with the actual name before sending.",
     "Builder's first name is not in APP_PROFILE or BRAND_DNA. Replace '[Builder first name]' in the sign-off with the actual name before sending.",
     "TARGET rules were not verified. Confirm the newsletter accepts unsolicited pitches and does not require a submission form or paid placement. If it uses a form, this pitch text can be pasted into the form's message field.",
-    "Subject line uses 'site owners' in place of a newsletter name because TARGET did not supply one. Update the subject to name the newsletter or its readers specifically if that information becomes available."
+    "Subject line uses 'site owners' in place of a newsletter name because TARGET did not supply one. Update the subject to name the newsletter or its readers specifically if that information becomes available.",
+    "Previous draft opened with the banned stock scene 'often hit a wall'. This draft replaces it with the concrete step from icp.buying_trigger (a forced analytics re-setup) as required by PLATFORM_RULES."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 815,
-   "words": 123,
+   "chars": 811,
+   "words": 122,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,

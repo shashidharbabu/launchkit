@@ -7,12 +7,12 @@
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [],
-   "warnings": 8,
+   "warnings": 6,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 147
+   "words": 167
   },
   {
    "slug": "hack-judge",
@@ -26,7 +26,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 145
+   "words": 136
   },
   {
    "slug": "hack-judge",
@@ -40,7 +40,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 185
+   "words": 190
   },
   {
    "slug": "hack-judge",
@@ -48,15 +48,13 @@
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [
-    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (269 characters, cap 260)"
-   ],
-   "warnings": 7,
+   "repaired": [],
+   "warnings": 6,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 271
+   "words": 265
   },
   {
    "slug": "hack-judge",
@@ -64,13 +62,16 @@
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "body: More than five paragraphs (5, cap 4)",
+    "body: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"takes hackathon submissions and a scoring rubric and produce\")"
+   ],
    "warnings": 7,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 143
+   "words": 115
   },
   {
    "slug": "hack-judge",
@@ -84,11 +85,25 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 132
+   "words": 108
   },
   {
    "slug": "excalidraw",
    "platform": "x_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 153
+  },
+  {
+   "slug": "excalidraw",
+   "platform": "linkedin_post",
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
@@ -98,21 +113,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 169
-  },
-  {
-   "slug": "excalidraw",
-   "platform": "linkedin_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 174
+   "words": 145
   },
   {
    "slug": "excalidraw",
@@ -126,7 +127,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": "r/softwarearchitecture",
-   "words": 215
+   "words": 214
   },
   {
    "slug": "excalidraw",
@@ -135,14 +136,14 @@
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [
-    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$6\")"
    ],
-   "warnings": 6,
+   "warnings": 4,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 276
+   "words": 269
   },
   {
    "slug": "excalidraw",
@@ -151,15 +152,14 @@
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [
-    "body: Body over 200 words (227 words, cap 200)",
-    "body: More than five paragraphs (7, cap 4)"
+    "body: More than five paragraphs (5, cap 4)"
    ],
-   "warnings": 7,
+   "warnings": 5,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 199
+   "words": 191
   },
   {
    "slug": "excalidraw",
@@ -173,7 +173,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 117
+   "words": 125
   },
   {
    "slug": "cal-com",
@@ -182,37 +182,10 @@
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [
-    "alt_variants[2]: An alt variant over 280 characters (310 characters, cap 280)"
+    "thread_extension[3]: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$12\")",
+    "alt_variants[1]: An alt variant frames against another product; the main post rule applies to every variant (\"more open than\")"
    ],
    "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 243
-  },
-  {
-   "slug": "cal-com",
-   "platform": "linkedin_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 7,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 152
-  },
-  {
-   "slug": "cal-com",
-   "platform": "reddit_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 10,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
@@ -221,7 +194,51 @@
   },
   {
    "slug": "cal-com",
+   "platform": "linkedin_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 7,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 154
+  },
+  {
+   "slug": "cal-com",
+   "platform": "reddit_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 9,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 232
+  },
+  {
+   "slug": "cal-com",
    "platform": "producthunt",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [
+    "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$10\")"
+   ],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 269
+  },
+  {
+   "slug": "cal-com",
+   "platform": "show_hn",
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
@@ -231,25 +248,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 245
-  },
-  {
-   "slug": "cal-com",
-   "platform": "show_hn",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: Body over 200 words (213 words, cap 200)",
-    "body: More than five paragraphs (5, cap 4)",
-    "body: a paragraph of 54 words"
-   ],
-   "warnings": 9,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 169
+   "words": 185
   },
   {
    "slug": "cal-com",
@@ -263,7 +262,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 130
+   "words": 115
   },
   {
    "slug": "plausible",
@@ -277,99 +276,10 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 163
+   "words": 164
   },
   {
    "slug": "plausible",
-   "platform": "linkedin_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 7,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 139
-  },
-  {
-   "slug": "plausible",
-   "platform": "reddit_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: Better-than-X positioning or a multiplier against a named product (\"54 times smaller than G\")"
-   ],
-   "warnings": 7,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": "r/selfhosted",
-   "words": 245
-  },
-  {
-   "slug": "plausible",
-   "platform": "producthunt",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 274
-  },
-  {
-   "slug": "plausible",
-   "platform": "show_hn",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: Body over 200 words (240 words, cap 200)",
-    "body: More than five paragraphs (5, cap 4)"
-   ],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 195
-  },
-  {
-   "slug": "plausible",
-   "platform": "newsletter_pitch",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 120
-  },
-  {
-   "slug": "formbricks",
-   "platform": "x_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 224
-  },
-  {
-   "slug": "formbricks",
    "platform": "linkedin_post",
    "present": true,
    "rulebook_version": 4,
@@ -380,10 +290,357 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 165
+   "words": 137
+  },
+  {
+   "slug": "plausible",
+   "platform": "reddit_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 8,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": "r/selfhosted",
+   "words": 246
+  },
+  {
+   "slug": "plausible",
+   "platform": "producthunt",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 4,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 271
+  },
+  {
+   "slug": "plausible",
+   "platform": "show_hn",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [
+    "body: Body over 200 words (211 words, cap 200)"
+   ],
+   "warnings": 7,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 205
+  },
+  {
+   "slug": "plausible",
+   "platform": "newsletter_pitch",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 4,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 121
   },
   {
    "slug": "formbricks",
+   "platform": "x_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 6,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 218
+  },
+  {
+   "slug": "formbricks",
+   "platform": "linkedin_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 9,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 161
+  },
+  {
+   "slug": "formbricks",
+   "platform": "reddit_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 12,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": "r/selfhosted",
+   "words": 283
+  },
+  {
+   "slug": "formbricks",
+   "platform": "producthunt",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 271
+  },
+  {
+   "slug": "formbricks",
+   "platform": "show_hn",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [
+    "body: More than five paragraphs (5, cap 4)",
+    "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")"
+   ],
+   "warnings": 6,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 175
+  },
+  {
+   "slug": "formbricks",
+   "platform": "newsletter_pitch",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 4,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 118
+  },
+  {
+   "slug": "documenso",
+   "platform": "x_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 207
+  },
+  {
+   "slug": "documenso",
+   "platform": "linkedin_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 165
+  },
+  {
+   "slug": "documenso",
+   "platform": "reddit_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 9,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": "r/selfhosted",
+   "words": 213
+  },
+  {
+   "slug": "documenso",
+   "platform": "producthunt",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [
+    "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$10\")"
+   ],
+   "warnings": 4,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 285
+  },
+  {
+   "slug": "documenso",
+   "platform": "show_hn",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [
+    "body: Body over 200 words (202 words, cap 200)"
+   ],
+   "warnings": 6,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 202
+  },
+  {
+   "slug": "documenso",
+   "platform": "newsletter_pitch",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 132
+  },
+  {
+   "slug": "dub",
+   "platform": "x_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 184
+  },
+  {
+   "slug": "dub",
+   "platform": "linkedin_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 7,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 161
+  },
+  {
+   "slug": "dub",
+   "platform": "reddit_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 10,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": "r/AffiliateMarketing",
+   "words": 252
+  },
+  {
+   "slug": "dub",
+   "platform": "producthunt",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 293
+  },
+  {
+   "slug": "dub",
+   "platform": "show_hn",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [
+    "body: More than five paragraphs (5, cap 4)"
+   ],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 198
+  },
+  {
+   "slug": "dub",
+   "platform": "newsletter_pitch",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 4,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 120
+  },
+  {
+   "slug": "hoppscotch",
+   "platform": "x_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 150
+  },
+  {
+   "slug": "hoppscotch",
+   "platform": "linkedin_post",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 9,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 161
+  },
+  {
+   "slug": "hoppscotch",
    "platform": "reddit_post",
    "present": true,
    "rulebook_version": 4,
@@ -394,228 +651,44 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": "r/selfhosted",
-   "words": 284
+   "words": 267
   },
   {
-   "slug": "formbricks",
+   "slug": "hoppscotch",
    "platform": "producthunt",
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 277
-  },
-  {
-   "slug": "formbricks",
-   "platform": "show_hn",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: More than five paragraphs (6, cap 4)"
-   ],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 184
-  },
-  {
-   "slug": "formbricks",
-   "platform": "newsletter_pitch",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 121
-  },
-  {
-   "slug": "documenso",
-   "platform": "x_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 7,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 203
-  },
-  {
-   "slug": "documenso",
-   "platform": "linkedin_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"People aren't just watching; they're\")"
-   ],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 163
-  },
-  {
-   "slug": "documenso",
-   "platform": "reddit_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 9,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": "r/selfhosted",
-   "words": 227
-  },
-  {
-   "slug": "documenso",
-   "platform": "producthunt",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "first_comment: Maker comment over 250 words (252 words, cap 250)",
-    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
-   ],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 294
-  },
-  {
-   "slug": "documenso",
-   "platform": "show_hn",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: Body over 200 words (254 words, cap 200)",
-    "body: More than five paragraphs (5, cap 4)"
-   ],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 203
-  },
-  {
-   "slug": "documenso",
-   "platform": "newsletter_pitch",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 118
-  },
-  {
-   "slug": "dub",
-   "platform": "x_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 183
-  },
-  {
-   "slug": "dub",
-   "platform": "linkedin_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 8,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 151
-  },
-  {
-   "slug": "dub",
-   "platform": "reddit_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 9,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": "r/AffiliateMarketing",
-   "words": 239
-  },
-  {
-   "slug": "dub",
-   "platform": "producthunt",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
-   ],
-   "warnings": 7,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 275
-  },
-  {
-   "slug": "dub",
-   "platform": "show_hn",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: Body over 200 words (222 words, cap 200)"
-   ],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 205
-  },
-  {
-   "slug": "dub",
-   "platform": "newsletter_pitch",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "pitch: Two proof points (a second traction figure or a customer list) where rule 3 allows exactly one (\"100M+ clicks and 2M+ links\")"
-   ],
    "warnings": 4,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 241
+  },
+  {
+   "slug": "hoppscotch",
+   "platform": "show_hn",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 5,
+   "dashes": 0,
+   "verb": 0,
+   "slop_fixed": 0,
+   "venue": null,
+   "words": 189
+  },
+  {
+   "slug": "hoppscotch",
+   "platform": "newsletter_pitch",
+   "present": true,
+   "rulebook_version": 4,
+   "blockers": [],
+   "repaired": [],
+   "warnings": 6,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
@@ -623,109 +696,18 @@
    "words": 119
   },
   {
-   "slug": "hoppscotch",
-   "platform": "x_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 5,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 161
-  },
-  {
-   "slug": "hoppscotch",
-   "platform": "linkedin_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 9,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 160
-  },
-  {
-   "slug": "hoppscotch",
-   "platform": "reddit_post",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 14,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": "r/selfhosted",
-   "words": 266
-  },
-  {
-   "slug": "hoppscotch",
-   "platform": "producthunt",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (323 characters, cap 260)"
-   ],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 243
-  },
-  {
-   "slug": "hoppscotch",
-   "platform": "show_hn",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [
-    "body: Body over 200 words (211 words, cap 200)",
-    "body: More than five paragraphs (5, cap 4)"
-   ],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 195
-  },
-  {
-   "slug": "hoppscotch",
-   "platform": "newsletter_pitch",
-   "present": true,
-   "rulebook_version": 4,
-   "blockers": [],
-   "repaired": [],
-   "warnings": 6,
-   "dashes": 0,
-   "verb": 0,
-   "slop_fixed": 0,
-   "venue": null,
-   "words": 120
-  },
-  {
    "slug": "continue",
    "platform": "x_post",
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [
-    "post: Two traction numbers in the post; the rule allows one proof point (\"35,870 developers starred this. The repo is archived. The co\")"
-   ],
-   "warnings": 8,
+   "repaired": [],
+   "warnings": 7,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 230
+   "words": 234
   },
   {
    "slug": "continue",
@@ -747,15 +729,13 @@
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [
-    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)"
-   ],
-   "warnings": 7,
+   "repaired": [],
+   "warnings": 8,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": "r/LocalLLaMA",
-   "words": 287
+   "words": 256
   },
   {
    "slug": "continue",
@@ -769,7 +749,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 300
+   "words": 299
   },
   {
    "slug": "continue",
@@ -778,14 +758,14 @@
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [
-    "body: Body over 200 words (235 words, cap 200)"
+    "body: Body over 200 words (202 words, cap 200)"
    ],
    "warnings": 6,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 213
+   "words": 199
   },
   {
    "slug": "continue",
@@ -813,7 +793,7 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 201
+   "words": 192
   },
   {
    "slug": "khoj",
@@ -822,12 +802,12 @@
    "rulebook_version": 4,
    "blockers": [],
    "repaired": [],
-   "warnings": 8,
+   "warnings": 10,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 166
+   "words": 165
   },
   {
    "slug": "khoj",
@@ -835,15 +815,13 @@
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [
-    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)"
-   ],
+   "repaired": [],
    "warnings": 8,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": "r/selfhosted",
-   "words": 266
+   "words": 257
   },
   {
    "slug": "khoj",
@@ -851,15 +829,13 @@
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [
-    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
-   ],
+   "repaired": [],
    "warnings": 6,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 273
+   "words": 274
   },
   {
    "slug": "khoj",
@@ -867,15 +843,13 @@
    "present": true,
    "rulebook_version": 4,
    "blockers": [],
-   "repaired": [
-    "body: Body over 200 words (231 words, cap 200)"
-   ],
+   "repaired": [],
    "warnings": 4,
    "dashes": 0,
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 199
+   "words": 207
   },
   {
    "slug": "khoj",
@@ -889,16 +863,16 @@
    "verb": 0,
    "slop_fixed": 0,
    "venue": null,
-   "words": 118
+   "words": 116
   }
  ],
  "means": {
-  "x_post": 4.0,
+  "x_post": 3.8,
   "linkedin_post": 3.6,
-  "reddit_post": 3.2,
+  "reddit_post": 2.7,
   "producthunt": 3.5,
-  "show_hn": 3.0,
-  "newsletter_pitch": 3.8
+  "show_hn": 2.9,
+  "newsletter_pitch": 4.0
  },
  "baseline": {
   "x_post": 3.6,

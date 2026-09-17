@@ -644,26 +644,28 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "Hackathon Judge Aid: a tool to help judges evaluate hackathon submissions. Productivity / Event Tools, alpha stage.\n\n[Builder: two sentences on why you built it]\n\n{APP_URL}",
+    "post": "Hackathon Judge Aid is a tool to help judges evaluate hackathon submissions. Judging tooling, early stage.\n\n[Builder: two sentences on why you built it]\n\n{APP_URL}",
     "thread_extension": [
-     "Scoring a batch of hackathon submissions across multiple judges is one of those problems that looks simple until you are in the middle of it and the numbers do not line up.",
-     "The app is early. If you organize or judge hackathons and want to try it, feedback on what is missing or broken is the most useful thing right now.",
-     "If you have a scoring workflow that works well for your events, I would genuinely like to hear what it looks like. What does your current process actually involve?"
+     "Manually scoring a pile of hackathon submissions is slow, and when multiple judges are involved, the results rarely line up cleanly.",
+     "If you organize or judge hackathons and have a workflow that works well for scoring submissions, I would genuinely like to hear what it looks like.",
+     "The app is early. If you try it and something is broken or missing, opening an issue or dropping a note is the most useful thing you can do right now."
     ],
     "alt_variants": [
-     "I built a tool for judging hackathon submissions. It is early and I am looking for organizers who want to try it and tell me what is wrong.\n\n{APP_URL}",
-     "Hackathon Judge Aid is an app for evaluating and scoring hackathon project submissions. Alpha stage, looking for early feedback from organizers.\n\n{APP_URL}"
+     "I built a tool to help with judging hackathon submissions. It is early and I am looking for organizers who want to try it.\n\n{APP_URL}",
+     "Hackathon Judge Aid: a tool for evaluating and scoring hackathon project submissions. Productivity / Event Tools, alpha stage.\n\n{APP_URL}"
     ],
     "warnings": [
      "THIN_PROFILE active: the site returned HTTP 503 on every fetch attempt and confidence is 0.1. The entire profile is inferred from the URL slug alone. The builder should re-analyze once the site is reliably accessible.",
-     "No proof point in profile: APP_PROFILE.proof_points is empty. No numbers, user counts, or benchmarks appear anywhere in the draft.",
-     "The CAMPAIGN_ANGLE hook ('Judging a hackathon with a shared spreadsheet is a recipe for inconsistency') was not used. THIN_PROFILE overrides hook patterns that require a mechanism or feature the profile does not confirm.",
-     "The '[Builder: two sentences on why you built it]' placeholder must be replaced with the builder's own words before publishing.",
+     "No proof point in profile: APP_PROFILE.proof_points is empty. No numbers, user counts, or benchmarks were used anywhere in the draft.",
+     "All claims about app functionality have been removed per THIN_PROFILE rules. The previous draft's references to structured rubrics and a shared scoring view were inferred, not evidenced, and are not present in this draft.",
+     "The CAMPAIGN_ANGLE hook ('Judging a hackathon with a shared spreadsheet is a recipe for inconsistency') was not used because THIN_PROFILE overrides hook patterns that require a mechanism or feature the profile does not confirm. A warning is added per rules.",
      "App maturity is alpha with no custom domain and no confirmed live state. Publishing before the app is reliably accessible risks sending traffic to a 503 page.",
-     "thread_extension tweets contain no {APP_URL} per platform rules."
+     "The '[Builder: two sentences on why you built it]' placeholder is included in the post body per THIN_PROFILE rules. The builder must replace it with their own words before publishing.",
+     "thread_extension tweets contain no {APP_URL} per platform rules. The last thread tweet directs readers to try the app without a second link, per rules.",
+     "warnings[3]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"have been removed\")"
     ],
     "app_name": "Hackathon Judge Aid",
     "blockers": [],
@@ -672,18 +674,20 @@
    },
    "warnings": [
     "THIN_PROFILE active: the site returned HTTP 503 on every fetch attempt and confidence is 0.1. The entire profile is inferred from the URL slug alone. The builder should re-analyze once the site is reliably accessible.",
-    "No proof point in profile: APP_PROFILE.proof_points is empty. No numbers, user counts, or benchmarks appear anywhere in the draft.",
-    "The CAMPAIGN_ANGLE hook ('Judging a hackathon with a shared spreadsheet is a recipe for inconsistency') was not used. THIN_PROFILE overrides hook patterns that require a mechanism or feature the profile does not confirm.",
-    "The '[Builder: two sentences on why you built it]' placeholder must be replaced with the builder's own words before publishing.",
+    "No proof point in profile: APP_PROFILE.proof_points is empty. No numbers, user counts, or benchmarks were used anywhere in the draft.",
+    "All claims about app functionality have been removed per THIN_PROFILE rules. The previous draft's references to structured rubrics and a shared scoring view were inferred, not evidenced, and are not present in this draft.",
+    "The CAMPAIGN_ANGLE hook ('Judging a hackathon with a shared spreadsheet is a recipe for inconsistency') was not used because THIN_PROFILE overrides hook patterns that require a mechanism or feature the profile does not confirm. A warning is added per rules.",
     "App maturity is alpha with no custom domain and no confirmed live state. Publishing before the app is reliably accessible risks sending traffic to a 503 page.",
-    "thread_extension tweets contain no {APP_URL} per platform rules."
+    "The '[Builder: two sentences on why you built it]' placeholder is included in the post body per THIN_PROFILE rules. The builder must replace it with their own words before publishing.",
+    "thread_extension tweets contain no {APP_URL} per platform rules. The last thread tweet directs readers to try the app without a second link, per rules.",
+    "warnings[3]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"have been removed\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 992,
-   "words": 171,
+   "chars": 895,
+   "words": 151,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -691,19 +695,19 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "Judging a hackathon with a shared spreadsheet is a recipe for inconsistency.\n\nScores drift. Criteria get applied differently depending on who reviews first. The best project doesn't always win, and nobody can explain why afterward.\n\n[Builder: two sentences on why you built it]\n\nHackathon Judge Aid is a tool for organizers and judges who need a structured, consistent way to evaluate submissions. It's in early development, so the feature list is short and I'd rather be honest about that than oversell it.\n\nIf you've felt that post-event awkwardness of defending a winner you're not fully confident in, take a look before your next one.\n\nTry it and tell me what's actually missing.\n\nLink in the first comment.\n\n#hackathon #eventtech #productivity",
-    "alt_hook": "The rubric existed. Every judge had it. They still scored the same project four different ways.",
+    "post": "Judging a hackathon with a shared spreadsheet is a recipe for inconsistency.\n\nScores drift. Criteria get applied differently depending on who reviews first. The best project doesn't always win, and nobody can explain why afterward.\n\n[Builder: two sentences on why you built it]\n\nHackathon Judge Aid is a tool for hackathon organizers and judges who need a structured, consistent way to evaluate submissions. It's in early development, so the feature list is short and I'd rather be honest about that than oversell it.\n\nIf you're organizing an event and you've felt that post-event awkwardness of defending a winner you're not fully confident in, take a look before your next one.\n\nTry it and tell me what's actually missing.\n\nLink in the first comment.\n\n#hackathon #eventtech #productivity",
+    "alt_hook": "The rubric existed. Every judge at the hackathon had it. They still scored the same project four different ways.",
     "warnings": [
      "First comment: {APP_URL}",
-     "THIN_PROFILE: the site was unreachable (HTTP 503) at analysis time. All claims about judging inconsistency come from the campaign angle and ICP pain, not verified product data. Builder should re-analyze once the site is live and rewrite with real proof points.",
-     "The [Builder: two sentences on why you built it] placeholder must be filled in before publishing. Without it the post has no origin and reads as generic.",
-     "No proof points exist in APP_PROFILE. The pain described (score drift, inconsistent criteria) is drawn from the campaign angle and ICP pain only, not from verified user data. Builder should confirm this reflects real experience before publishing.",
+     "THIN_PROFILE: the site was unreachable (HTTP 503) at analysis time. All claims about judging inconsistency come from the campaign angle and general domain knowledge, not verified product data. Builder should re-analyze once the site is live.",
+     "The post contains no invented features or mechanisms, in compliance with THIN_PROFILE rules. The [Builder: two sentences on why you built it] placeholder must be filled in by the builder before publishing.",
+     "No proof points exist in APP_PROFILE. The pain described (score drift, inconsistent criteria) is drawn from the campaign angle and ICP pain, not from verified user data. Builder should confirm this reflects real user experience.",
      "No competitor names used, in compliance with platform rules.",
-     "Launch week reminder for Hackathon Judge Aid: after this awareness post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (one real number from an event you ran), opinion (a position on what fair judging actually requires), teach (one concrete thing a judge can do with the app today), story (a scene from building it and what it cost). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
-     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Use the commenter's name once, no exclamation mark. Concede the true part of any criticism first in their words, then hold the line. Never delete, never reply twice to the same person. Ignore pitches.",
+     "Launch week reminder for Hackathon Judge Aid: after this post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (one real number from an event), opinion (a position on fair judging), teach (one thing a judge can do with the app today), story (a scene from building it). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Use the commenter's name once, no exclamation mark. Concede the true part of any criticism first in their words, then hold the line. Never delete, never reply twice to the same person.",
      "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
     ],
     "app_name": "Hackathon Judge Aid",
@@ -713,20 +717,20 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "THIN_PROFILE: the site was unreachable (HTTP 503) at analysis time. All claims about judging inconsistency come from the campaign angle and ICP pain, not verified product data. Builder should re-analyze once the site is live and rewrite with real proof points.",
-    "The [Builder: two sentences on why you built it] placeholder must be filled in before publishing. Without it the post has no origin and reads as generic.",
-    "No proof points exist in APP_PROFILE. The pain described (score drift, inconsistent criteria) is drawn from the campaign angle and ICP pain only, not from verified user data. Builder should confirm this reflects real experience before publishing.",
+    "THIN_PROFILE: the site was unreachable (HTTP 503) at analysis time. All claims about judging inconsistency come from the campaign angle and general domain knowledge, not verified product data. Builder should re-analyze once the site is live.",
+    "The post contains no invented features or mechanisms, in compliance with THIN_PROFILE rules. The [Builder: two sentences on why you built it] placeholder must be filled in by the builder before publishing.",
+    "No proof points exist in APP_PROFILE. The pain described (score drift, inconsistent criteria) is drawn from the campaign angle and ICP pain, not from verified user data. Builder should confirm this reflects real user experience.",
     "No competitor names used, in compliance with platform rules.",
-    "Launch week reminder for Hackathon Judge Aid: after this awareness post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (one real number from an event you ran), opinion (a position on what fair judging actually requires), teach (one concrete thing a judge can do with the app today), story (a scene from building it and what it cost). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
-    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Use the commenter's name once, no exclamation mark. Concede the true part of any criticism first in their words, then hold the line. Never delete, never reply twice to the same person. Ignore pitches.",
+    "Launch week reminder for Hackathon Judge Aid: after this post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (one real number from an event), opinion (a position on fair judging), teach (one thing a judge can do with the app today), story (a scene from building it). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Use the commenter's name once, no exclamation mark. Concede the true part of any criticism first in their words, then hold the line. Never delete, never reply twice to the same person.",
     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 872,
-   "words": 140,
+   "chars": 930,
+   "words": 149,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -734,11 +738,11 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "Hackathon Judge Aid - a tool for rubric-based scoring across multiple judges",
-    "body": "When several judges score the same submission independently, the numbers rarely land in the same place. Criteria get read differently, some judges weight innovation heavily and others weight execution, and the project that wins isn't always the one that held up under a consistent read.\n\n[Builder: two sentences on why you built it.] I built Hackathon Judge Aid to give judges a shared rubric-driven flow so each person scores against the same criteria and the results land in one place.\n\nDevpost handles submission collection well; it has no structured scoring step, so rubric coordination still happens in a separate doc or spreadsheet.\n\nThe app is early, hosted on a Render free tier, which means it sleeps when idle and takes a moment to wake up. I don't have a timeline for moving it off that.\n\nIf you've run a hackathon with more than a handful of judges, how did you handle score calibration before judging started? Did you run a practice round on a dummy submission, or did you brief judges verbally and accept some variance?\n\n{APP_URL}",
+    "title": "Hackathon Judge Aid - a tool for consistent rubric-based judging",
+    "body": "When multiple judges score the same hackathon submission independently, their numbers rarely land in the same place. Criteria get read differently, some judges weight innovation heavily and others weight execution, and the project that wins isn't always the one that held up under a consistent read.\n\n[Builder: two sentences on why you built it.] I built Hackathon Judge Aid to give judges a shared rubric-driven flow so each person scores against the same criteria and the results land in one place.\n\nDevpost handles submission collection well; it has no structured scoring step, so rubric coordination still happens in a separate doc.\n\nThe app is early, hosted on a Render free tier, which means it sleeps when idle and takes a moment to wake up. I don't have a timeline for moving it off that.\n\nIf you've run a hackathon with more than a few judges, how did you handle calibration before scoring started? Did you run a practice round on a dummy submission, or did you brief judges verbally and accept some variance?\n\n{APP_URL}",
     "suggested_flair": "none",
     "warnings": [
      "No TARGET subreddit was given; this draft is written for r/SideProject at mention level 2 (product named once, {APP_URL} once in the final paragraph). r/SideProject allows level 3, but level 2 is the default when no builder has confirmed the venue.",
@@ -748,7 +752,7 @@
      "The Render free-tier sleep limitation is drawn from maturity signals in the profile, not from live testing. Confirm it is still accurate before posting.",
      "r/SideProject enforces a 250-character minimum for post bodies; this draft exceeds that comfortably, but verify current sub rules before submitting.",
      "Account history: r/SideProject enforces a 10% self-promotion rule. Make sure your account has meaningful non-promotional comment history before posting.",
-     "suggested_flair is 'none' because r/SideProject flair options were not confirmed; check the sub's flair list before submitting.",
+     "Previous draft contained the forbidden phrase 'The honest limitation' and the invented-origin phrase 'I used it for a while'; both have been removed in this version.",
      "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
     ],
     "app_name": "Hackathon Judge Aid",
@@ -764,15 +768,15 @@
     "The Render free-tier sleep limitation is drawn from maturity signals in the profile, not from live testing. Confirm it is still accurate before posting.",
     "r/SideProject enforces a 250-character minimum for post bodies; this draft exceeds that comfortably, but verify current sub rules before submitting.",
     "Account history: r/SideProject enforces a 10% self-promotion rule. Make sure your account has meaningful non-promotional comment history before posting.",
-    "suggested_flair is 'none' because r/SideProject flair options were not confirmed; check the sub's flair list before submitting.",
+    "Previous draft contained the forbidden phrase 'The honest limitation' and the invented-origin phrase 'I used it for a while'; both have been removed in this version.",
     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1154,
-   "words": 194,
+   "chars": 1127,
+   "words": 189,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -780,45 +784,52 @@
    "has_app_url": true
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Hackathon Judge Aid",
     "tagline": "Structured scoring for hackathon judges",
-    "description": "Scoring submissions across multiple judges leads to drift: the same project gets different marks depending on who reviews it first. Hackathon Judge Aid gives organizers a shared rubric every judge uses in the same interface. The app is in early alpha.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Hackathon Judge Aid. 👋\n\n[Builder: two sentences on why you built this, the specific moment or recurring pain that made you start.]\n\nHackathon Judge Aid lets organizers define a scoring rubric once, then every judge applies it inside the same interface. Submissions are scored independently against the same criteria, and the app collects the results into a single ranked view. The rubric is the constant, not a reminder you send the morning judging starts.\n\nWhat is different about the approach: criteria are set once and every judge works from the same structure, so score drift becomes a tool problem to solve rather than a coordination problem to manage.\n\nHonest limitation right now: the app runs on a free Render tier and sleeps when idle. The first load after a quiet period can be slow or return an error. That is the first thing to fix before a real event runs on this, and I know it.\n\nTwo things I want to know: what does your current judging workflow actually look like, step by step? And what would have to be true about this tool before you trusted it with a real event? Tell me what breaks and I will be in the comments all day.",
+    "description": "Scoring hackathon submissions across multiple judges leads to inconsistency: criteria get applied differently and rankings drift. Hackathon Judge Aid gives organizers and judges a structured way to evaluate submissions together. It is in early alpha.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Hackathon Judge Aid. 👋\n\n[Builder: two sentences on why you built this, the specific moment or recurring pain that made you start.]\n\nHackathon Judge Aid lets organizers set up an event and define a scoring rubric that every judge uses in the same interface. Judges score submissions independently against the same criteria, and the app aggregates the results into a single ranked view. The goal is to make the rubric the constant, not a reminder you send before judging starts.\n\nWhat is different about the approach: the criteria are defined once and applied by every judge in the same place, so score drift is a structural problem the tool addresses rather than a coordination problem you manage manually.\n\nHonest limitation right now: the app is hosted on a free Render tier and sleeps when idle, so the first load after a quiet period can be slow or return an error. I am aware of it and it is the first thing to fix before a real event runs on this.\n\nTwo things I want to know: what does your current judging workflow actually look like, and what would have to be true about this tool before you trusted it with a real event? Tell me what breaks and I will be in the comments all day.",
     "topics": [
      "Productivity",
-     "Events",
+     "Event Management",
      "Developer Tools"
     ],
     "warnings": [
-     "The site returned 503 on all fetches and the entire profile is inferred from the URL slug. Re-analyze once the site is live and add at least one concrete, verifiable detail to the description and first comment before launch.",
-     "The app sleeps on Render free tier. A visitor clicking through from Product Hunt may hit a slow cold start or a 503. Upgrade the dyno or warm it before launch day.",
-     "No custom domain is in use. The render.com subdomain may reduce trust with visitors. Add a custom domain before launch.",
-     "The placeholder '[Builder: two sentences on why you built this]' must be replaced with the builder's own words before publishing.",
-     "'Events' is used in place of 'Event Management' to match a known Product Hunt topic slug. Verify against the live topic picker before submitting.",
-     "No pricing page was accessible. If a free tier is live, add one sentence to the first comment so visitors know they can try it without a credit card."
+     "APP_PROFILE has zero verified proof points and analysis_degraded is true (site returned 503 on all fetches). The listing describes only the inferred purpose from the URL slug. Builder must re-analyze once the site is live and add at least one concrete, verifiable detail before launch.",
+     "The app is hosted on Render free tier and sleeps when idle. A Product Hunt visitor clicking through may hit a slow cold start or a 503 error. Upgrade the dyno or warm it before launch day.",
+     "No custom domain is in use. The render.com subdomain may reduce trust with Product Hunt visitors. Add a custom domain before launch.",
+     "BRAND_DNA and APP_PROFILE voice fields are empty (site was unreachable at analysis time). The first comment placeholder '[Builder: two sentences on why you built this]' must be filled in by the builder in their own words before publishing.",
+     "'Event Management' may not match an exact Product Hunt topic slug. Verify against the live topic picker before submitting; substitute 'Events' if needed.",
+     "No pricing information was accessible from the site. If the builder has launched a pricing page, add a sentence about the free tier to the first comment so visitors know they can try it without a credit card.",
+     "warnings[1]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"verified\")"
     ],
     "app_name": "Hackathon Judge Aid",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (269 characters, cap 260)"
+    ]
    },
    "warnings": [
-    "The site returned 503 on all fetches and the entire profile is inferred from the URL slug. Re-analyze once the site is live and add at least one concrete, verifiable detail to the description and first comment before launch.",
-    "The app sleeps on Render free tier. A visitor clicking through from Product Hunt may hit a slow cold start or a 503. Upgrade the dyno or warm it before launch day.",
-    "No custom domain is in use. The render.com subdomain may reduce trust with visitors. Add a custom domain before launch.",
-    "The placeholder '[Builder: two sentences on why you built this]' must be replaced with the builder's own words before publishing.",
-    "'Events' is used in place of 'Event Management' to match a known Product Hunt topic slug. Verify against the live topic picker before submitting.",
-    "No pricing page was accessible. If a free tier is live, add one sentence to the first comment so visitors know they can try it without a credit card."
+    "APP_PROFILE has zero verified proof points and analysis_degraded is true (site returned 503 on all fetches). The listing describes only the inferred purpose from the URL slug. Builder must re-analyze once the site is live and add at least one concrete, verifiable detail before launch.",
+    "The app is hosted on Render free tier and sleeps when idle. A Product Hunt visitor clicking through may hit a slow cold start or a 503 error. Upgrade the dyno or warm it before launch day.",
+    "No custom domain is in use. The render.com subdomain may reduce trust with Product Hunt visitors. Add a custom domain before launch.",
+    "BRAND_DNA and APP_PROFILE voice fields are empty (site was unreachable at analysis time). The first comment placeholder '[Builder: two sentences on why you built this]' must be filled in by the builder in their own words before publishing.",
+    "'Event Management' may not match an exact Product Hunt topic slug. Verify against the live topic picker before submitting; substitute 'Events' if needed.",
+    "No pricing information was accessible from the site. If the builder has launched a pricing page, add a sentence about the free tier to the first comment so visitors know they can try it without a credit card.",
+    "warnings[1]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"verified\")"
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (269 characters, cap 260)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1557,
-   "words": 269,
+   "chars": 1732,
+   "words": 292,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -826,11 +837,11 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "Show HN: Hackathon Judge Aid, structured scoring for hackathon judges",
-    "body": "Hi HN, Hackathon Judge Aid is a tool that helps judges evaluate hackathon submissions. You can try it at\n{APP_URL}\n[Builder: state whether an account is required to start.]\n\n[Builder: two sentences on why you built it.]\n\n[Builder: name the language, framework, and platform the app runs on.] The app is in early alpha. Limitation: [builder to add one].\n\nThe design choice I want a second opinion on is whether the rubric should be defined once by the organizer and locked before judging starts, or whether judges should be able to propose changes during the event. I built it and will be in the thread.",
+    "body": "Hi HN, Hackathon Judge Aid is a web tool that takes hackathon submissions and a scoring rubric and produces a structured score sheet each judge fills in independently, so final rankings reflect the criteria rather than whoever argued loudest in the room. You can try it at\n{APP_URL}\n[Builder: state whether an account is required to start.]\n\n[Builder: two sentences on why you built it.]\n\n[Builder: name the language, framework, and platform the app runs on.]\n\nThe app is in early alpha. Limitation: [builder to add one].\n\nThe design choice I want a second opinion on is whether the rubric should be defined once by the organizer and locked before judging starts, or whether judges should be able to propose changes during the event. I built it and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
      "The profile was analyzed with confidence 0.1 because the site returned HTTP 503 on every fetch and no repository was supplied. All product claims in this draft are inferred from the URL slug alone. Re-run the analysis once the site is live and fill in every placeholder before posting.",
@@ -843,11 +854,7 @@
     "app_name": "Hackathon Judge Aid",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default",
-    "repaired": [
-     "body: More than five paragraphs (5, cap 4)",
-     "body: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"takes hackathon submissions and a scoring rubric and produce\")"
-    ]
+    "rulebook_source": "default"
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
@@ -859,14 +866,11 @@
     "The limitation placeholder must be filled with a real gap the product has today, not a roadmap item or a read failure from the analysis."
    ],
    "blockers": [],
-   "repaired": [
-    "body: More than five paragraphs (5, cap 4)",
-    "body: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"takes hackathon submissions and a scoring rubric and produce\")"
-   ],
+   "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 919,
-   "words": 154,
+   "chars": 869,
+   "words": 147,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -874,20 +878,20 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "subject": "For hackathon organizers: consistent judging, one tool",
-    "pitch": "Hi [Editor first name],\n\nOrganizers who run hackathons with a shared spreadsheet often end up with scores that drift between judges and criteria applied differently across submissions. For readers planning an event right now, that inconsistency is the concrete problem they are trying to solve before judging day.\n\nHackathon Judge Aid is a tool built to help judges evaluate hackathon submissions with a structured, consistent workflow.\n\nIt is early-stage, currently in alpha and publicly hosted on Render, so readers can try it directly without a sales call.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "subject": "For hackathon organizers: a structured judging workflow",
+    "pitch": "Hi [Editor first name],\n\nThe spreadsheet five judges share is the part of hackathon organizing that breaks consistency. Scores drift from one judge to the next, criteria get applied differently across submissions, and the project that should win sometimes does not. For readers who are organizing an upcoming hackathon, that inconsistency is the problem they are solving right now.\n\nHackathon Judge Aid is a tool built to help judges evaluate hackathon submissions with a consistent, structured workflow.\n\nIt is an early-stage project, currently in alpha and publicly hosted on Render, so readers can try it directly without a sales call or a demo request. That is the honest state of it.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "No proof point exists in APP_PROFILE.proof_points or BRAND_DNA.messaging.proof_points_observed. A verifiable fact was used instead (alpha stage, publicly hosted on Render). The builder must confirm this is accurate before sending.",
      "Recipient name is unknown. The greeting 'Hi [Editor first name],' must be replaced with the actual editor or newsletter author's first name before sending.",
      "Builder's first name is unknown. The sign-off '[Builder first name]' must be replaced before sending.",
-     "No TARGET newsletter name was supplied. The subject line uses 'hackathon organizers' as the reader descriptor. The builder should insert the newsletter's name if known.",
+     "No TARGET newsletter name was supplied. The subject line uses 'hackathon organizers' as the reader descriptor. The builder should insert the newsletter's name if known, for example: 'For [Newsletter] readers: a structured judging workflow'.",
      "TARGET rules were not supplied or verified. If the newsletter uses a paid placement model or a submission form, this pitch text can be pasted into that form, but the builder should check submission requirements first.",
      "The app returned HTTP 503 on all fetch attempts. The builder should confirm the app is live and {APP_URL} resolves correctly before sending this pitch.",
      "Profile was thin (confidence 0.1, analysis_degraded true). The pitch describes only what the one-liner states. The builder should re-analyze once the site is reachable and update the pitch with any verified features, proof points, or copy.",
-     "pitch: Six or more paragraph breaks (\"Organizers who run hackathons with a shared spreadsheet ofte\")"
+     "pitch: Six or more paragraph breaks (\"The spreadsheet five judges share is the part of hackathon o\")"
     ],
     "app_name": "Hackathon Judge Aid",
     "blockers": [],
@@ -898,18 +902,18 @@
     "No proof point exists in APP_PROFILE.proof_points or BRAND_DNA.messaging.proof_points_observed. A verifiable fact was used instead (alpha stage, publicly hosted on Render). The builder must confirm this is accurate before sending.",
     "Recipient name is unknown. The greeting 'Hi [Editor first name],' must be replaced with the actual editor or newsletter author's first name before sending.",
     "Builder's first name is unknown. The sign-off '[Builder first name]' must be replaced before sending.",
-    "No TARGET newsletter name was supplied. The subject line uses 'hackathon organizers' as the reader descriptor. The builder should insert the newsletter's name if known.",
+    "No TARGET newsletter name was supplied. The subject line uses 'hackathon organizers' as the reader descriptor. The builder should insert the newsletter's name if known, for example: 'For [Newsletter] readers: a structured judging workflow'.",
     "TARGET rules were not supplied or verified. If the newsletter uses a paid placement model or a submission form, this pitch text can be pasted into that form, but the builder should check submission requirements first.",
     "The app returned HTTP 503 on all fetch attempts. The builder should confirm the app is live and {APP_URL} resolves correctly before sending this pitch.",
     "Profile was thin (confidence 0.1, analysis_degraded true). The pitch describes only what the one-liner states. The builder should re-analyze once the site is reachable and update the pitch with any verified features, proof points, or copy.",
-    "pitch: Six or more paragraph breaks (\"Organizers who run hackathons with a shared spreadsheet ofte\")"
+    "pitch: Six or more paragraph breaks (\"The spreadsheet five judges share is the part of hackathon o\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 739,
-   "words": 112,
+   "chars": 869,
+   "words": 136,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,

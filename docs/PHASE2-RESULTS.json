@@ -1,0 +1,192 @@
+{
+ "slug": "cal-com",
+ "when": "2026-09-17T04:47:46.094Z",
+ "pass": 19,
+ "fail": 0,
+ "skipped": 7,
+ "page_errors": [],
+ "results": [
+  {
+   "id": "A1",
+   "section": "Shell",
+   "what": "app renders with its own rail and no page errors",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "A2",
+   "section": "Shell",
+   "what": "each rail view opens and the highlight follows",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "A3",
+   "section": "Shell",
+   "what": "theme toggle survives a reload",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "A4",
+   "section": "Shell",
+   "what": "command palette opens on Cmd+K",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "A5a",
+   "section": "Shell",
+   "what": "launches persist across a reload",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "A5b",
+   "section": "Shell",
+   "what": "a second account sees none of the first account launches",
+   "state": "SKIPPED",
+   "detail": "needs two signed-in accounts; the preview has no shell identity. Proven instead by the ownership unit test (owner-smoke): user-2 sees none of user-1 rows in one shared snapshot."
+  },
+  {
+   "id": "S1",
+   "section": "Social",
+   "what": "the stage is called Social Launch and no stage is called Assets alone",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "S2",
+   "section": "Social",
+   "what": "one row per platform, six platforms",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "S3",
+   "section": "Social",
+   "what": "a drafted platform offers Redraft, not Draft for",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "S4",
+   "section": "Social",
+   "what": "no em or en dash survives in any draft on screen",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "S5",
+   "section": "Social",
+   "what": "the banned launch verb appears nowhere on the stage",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "S6",
+   "section": "Social",
+   "what": "a draft shows the real app URL, never {APP_URL}",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "S7",
+   "section": "Social",
+   "what": "every draft names the rulebook version it was written against",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "T1",
+   "section": "Targets",
+   "what": "ranks run 1..N with no repository file as a venue",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "G1",
+   "section": "Signals",
+   "what": "a failed search says so, never \"nobody is asking\"",
+   "state": "SKIPPED",
+   "detail": "this store has no failed scan to show"
+  },
+  {
+   "id": "P1",
+   "section": "Plan",
+   "what": "the plan copy controls are present",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "P2",
+   "section": "Plan",
+   "what": "the PDF download is gated on Free now that the bypass is off",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "X1",
+   "section": "Settings",
+   "what": "the subscription card no longer claims billing is unwired",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "X2",
+   "section": "Settings",
+   "what": "the rulebook editor reports six platforms at version 4",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "X3",
+   "section": "Settings",
+   "what": "raw data is hidden by default",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "X4",
+   "section": "Settings",
+   "what": "no em dash or banned verb in Settings beyond the rule that names them",
+   "state": "PASS",
+   "detail": ""
+  },
+  {
+   "id": "W1",
+   "section": "Deferred",
+   "what": "team workspace switcher and a teammate seeing the same launch",
+   "state": "SKIPPED",
+   "detail": "needs the deployed app and a second signed-in teammate"
+  },
+  {
+   "id": "W2",
+   "section": "Deferred",
+   "what": "store round trip (\"Check store\" reports ok)",
+   "state": "SKIPPED",
+   "detail": "needs a signed-in user identity; an API-key preview cannot reach the store"
+  },
+  {
+   "id": "K1",
+   "section": "Deferred",
+   "what": "Free limit, upgrade, checkout with a card, then cancel",
+   "state": "SKIPPED",
+   "detail": "needs the deployed app in the real shell; the preview has no account to charge"
+  },
+  {
+   "id": "L1",
+   "section": "Deferred",
+   "what": "external user on a fresh account and org completes the flow unaided",
+   "state": "SKIPPED",
+   "detail": "Phase 6, needs a real external account"
+  },
+  {
+   "id": "B1",
+   "section": "Deferred",
+   "what": "create a launch and run Stage 1 against live pipelines",
+   "state": "SKIPPED",
+   "detail": "a real pipeline run, kept out of this pass so it can be timed on its own"
+  }
+ ]
+}

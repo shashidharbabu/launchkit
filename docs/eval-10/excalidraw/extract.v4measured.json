@@ -835,26 +835,28 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "131,595 GitHub stars, and one thing it does: open a tab and draw. No account, no setup, no sign-up wall.\n\n{APP_URL}",
+    "post": "Excalidraw turns a blank tab into a hand-drawn diagram. No account, no setup, just open and draw. 131,595 GitHub stars and counting.\n\n{APP_URL}",
     "thread_extension": [
-     "Real-time collaboration works via a shareable link. End-to-end encrypted by default, no account needed on either end.",
+     "Real-time collaboration works via a shareable link. End-to-end encrypted by default, no account required on either end.",
      "The hand-drawn style is intentional. It keeps focus on the idea, not on making the diagram look polished before the thinking is done.",
      "It also comes as an npm package (@excalidraw/excalidraw). Drop the full editor into your own app if you need it embedded.",
-     "If you have ever lost a whiteboard sketch after a meeting, what do you reach for now to keep diagrams around?"
+     "If you have ever lost a whiteboard sketch after a meeting, what do you use now for keeping diagrams around? Curious what others do."
     ],
     "alt_variants": [
-     "Theo (@t3dotgg): \"Of all my favorite tools, @excalidraw would be the hardest to leave behind.\" Open-source, MIT, no account required. Just open and draw.\n\n{APP_URL}",
-     "Adam Wathan (@adamwathan) made a diagram to clear up something with his electrician in 90 seconds. No account, no setup, MIT-licensed and free forever.\n\n{APP_URL}"
+     "No account. No setup. Open a tab, start drawing, share a link. Excalidraw is MIT-licensed and free forever. Theo (@t3dotgg): 'Of all my favorite tools, @excalidraw would be the hardest to leave behind.'\n\n{APP_URL}",
+     "Excalidraw does one thing: infinite-canvas sketching in a hand-drawn style. No sign-up wall, no learning curve, no pixel-perfect pressure. MIT, open-source, runs offline as a PWA.\n\n{APP_URL}"
     ],
     "warnings": [
-     "Star count 131,595 is stated as of September 2026 in proof_points; verify the current count before posting.",
-     "Theo quote in alt variant 1 is sourced directly from proof_points; the @t3dotgg handle is as listed in the profile.",
-     "Adam Wathan quote and the 90-second detail in alt variant 2 are sourced from BRAND_DNA proof_points_observed; the @adamwathan handle is as listed there.",
-     "Campaign angle hook ('No account. No setup. Just open a tab and start drawing.') opens on a fact (star count) per the platform rule that a hook built from imperatives should open on the fact behind it; the zero-friction language appears in the body of the post.",
-     "No pricing, comparison framing, or competitor names used anywhere in the draft per platform rules and campaign angle."
+     "Star count used is 131,595 as stated in proof_points (as of September 2026); verify it is still current before posting.",
+     "Theo quote in alt_variant 1 is sourced from proof_points; the @t3dotgg handle is as listed in the profile.",
+     "Campaign angle explicitly avoids sign-up pressure; no pricing or upgrade copy included in any tweet per the Draw First, Sign Up Never brief.",
+     "No comparison framing used; Figma, Miro, and other alternatives mentioned in ICP were omitted per platform rules.",
+     "Previous draft warning about the banned verb in thread_extension[2] has been resolved: 'It ships as' replaced with 'It also comes as'.",
+     "Alt variant 2 uses 'No sign-up wall' which is campaign-angle language, not a direct proof point; it is supported by the profile's stated free-forever no-account feature.",
+     "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
     ],
     "app_name": "Excalidraw",
     "blockers": [],
@@ -862,18 +864,20 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "Star count 131,595 is stated as of September 2026 in proof_points; verify the current count before posting.",
-    "Theo quote in alt variant 1 is sourced directly from proof_points; the @t3dotgg handle is as listed in the profile.",
-    "Adam Wathan quote and the 90-second detail in alt variant 2 are sourced from BRAND_DNA proof_points_observed; the @adamwathan handle is as listed there.",
-    "Campaign angle hook ('No account. No setup. Just open a tab and start drawing.') opens on a fact (star count) per the platform rule that a hook built from imperatives should open on the fact behind it; the zero-friction language appears in the body of the post.",
-    "No pricing, comparison framing, or competitor names used anywhere in the draft per platform rules and campaign angle."
+    "Star count used is 131,595 as stated in proof_points (as of September 2026); verify it is still current before posting.",
+    "Theo quote in alt_variant 1 is sourced from proof_points; the @t3dotgg handle is as listed in the profile.",
+    "Campaign angle explicitly avoids sign-up pressure; no pricing or upgrade copy included in any tweet per the Draw First, Sign Up Never brief.",
+    "No comparison framing used; Figma, Miro, and other alternatives mentioned in ICP were omitted per platform rules.",
+    "Previous draft warning about the banned verb in thread_extension[2] has been resolved: 'It ships as' replaced with 'It also comes as'.",
+    "Alt variant 2 uses 'No sign-up wall' which is campaign-angle language, not a direct proof point; it is supported by the profile's stated free-forever no-account feature.",
+    "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"No comparison framing\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 946,
-   "words": 155,
+   "chars": 1075,
+   "words": 171,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -881,19 +885,18 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "131,595 GitHub stars. No account required to use any of it.\n\nThat's the whole point of Excalidraw. Open a tab, start drawing. The hand-drawn style is intentional, it keeps your focus on the idea, not on making the diagram look finished.\n\nIt's MIT-licensed, free in your browser, and real-time collaboration works via a shareable link, end-to-end encrypted by default. No setup, no loading screen while you remember which tool your team agreed on last quarter.\n\nNetflix, Meta, Stripe, and Supabase use it. Theo (@t3dotgg) said it plainly: \"Of all my favorite tools, @excalidraw would be the hardest to leave behind.\"\n\nIf your team still opens a heavyweight design tool just to sketch an architecture diagram, open a tab first.\n\nLink in the first comment.\n\n#opensource #devtools #diagramming",
-    "alt_hook": "Excalidraw is an open-source whiteboard in your browser. No account, no install, real-time collaboration end-to-end encrypted by default.",
+    "post": "131,595 GitHub stars, and you still don't need an account to use it.\n\nThat's the whole point of Excalidraw. Open a tab, start drawing. No sign-up, no setup, no loading screen while you remember which tool your team agreed on last quarter.\n\nThe hand-drawn style is intentional. It keeps the focus on the idea, not on making the diagram look finished.\n\nIt's open-source, MIT-licensed, and the free tier lives in your browser. Real-time collaboration works via a shareable link, end-to-end encrypted by default.\n\nNetflix, Meta, Stripe, and Supabase use it. Andrej Karpathy called it \"really amazing and useful for graphics and diagrams, use it all the time.\" Theo (@t3dotgg): \"Of all my favorite tools, @excalidraw would be the hardest to leave behind.\"\n\nIf your team still opens a heavyweight design tool just to sketch an architecture diagram, open a tab first.\n\nLink in the first comment.\n\n#opensource #devtools #diagramming",
+    "alt_hook": "I stopped opening a design tool every time I needed to sketch something. A browser tab and a shareable link turned out to be enough.",
     "warnings": [
      "First comment: {APP_URL}",
-     "The Theo (@t3dotgg) quote is used verbatim as sourced in proof_points and attributed exactly as the source attributes it. No rewriting was done.",
-     "Karpathy quote not used to keep the post to one idea. It is a strong proof point for a follow-up proof post.",
-     "Gergely Orosz and Farza testimonials not used for the same reason; both suit a follow-up proof post.",
-     "Launch week cadence for Excalidraw: after this launch post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (131k stars and integrator list), opinion (tool friction in engineering planning), teach (one thing readers can do with Excalidraw today, such as sharing a diagram via encrypted link), story (a scene from building it, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
+     "Launch week cadence: after this launch post, publish at most four posts in the week and never two of the same kind back to back. Suggested sequence for Excalidraw: proof (131k stars and integrator list), opinion (tool friction in engineering planning), teach (one thing readers can do with Excalidraw today, such as sharing a diagram via encrypted link), story (a scene from building it, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
      "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
-     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+     "Gergely Orosz and Farza testimonials were not used to keep the post to one idea. Both are strong proof points for a follow-up proof post.",
+     "The Theo quote is used verbatim as sourced in proof_points and attributed to Theo (@t3dotgg). The Karpathy quote is used verbatim as sourced and attributed to Andrej Karpathy (@karpathy). No rewriting was done."
     ],
     "app_name": "Excalidraw",
     "blockers": [],
@@ -902,19 +905,18 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "The Theo (@t3dotgg) quote is used verbatim as sourced in proof_points and attributed exactly as the source attributes it. No rewriting was done.",
-    "Karpathy quote not used to keep the post to one idea. It is a strong proof point for a follow-up proof post.",
-    "Gergely Orosz and Farza testimonials not used for the same reason; both suit a follow-up proof post.",
-    "Launch week cadence for Excalidraw: after this launch post, at most four posts in the week, never two of the same kind back to back. Suggested sequence: proof (131k stars and integrator list), opinion (tool friction in engineering planning), teach (one thing readers can do with Excalidraw today, such as sharing a diagram via encrypted link), story (a scene from building it, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
+    "Launch week cadence: after this launch post, publish at most four posts in the week and never two of the same kind back to back. Suggested sequence for Excalidraw: proof (131k stars and integrator list), opinion (tool friction in engineering planning), teach (one thing readers can do with Excalidraw today, such as sharing a diagram via encrypted link), story (a scene from building it, only if the profile holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
-    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+    "Gergely Orosz and Farza testimonials were not used to keep the post to one idea. Both are strong proof points for a follow-up proof post.",
+    "The Theo quote is used verbatim as sourced in proof_points and attributed to Theo (@t3dotgg). The Karpathy quote is used verbatim as sourced and attributed to Andrej Karpathy (@karpathy). No rewriting was done."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 946,
-   "words": 147,
+   "chars": 1076,
+   "words": 176,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -922,13 +924,13 @@
    "has_app_url": false
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Excalidraw",
     "tagline": "Open-source whiteboard, hand-drawn style, no account needed",
     "description": "Rough diagrams get lost after meetings, or buried in tools that demand pixel-perfect effort before sharing. Excalidraw is a free, open-source whiteboard: hand-drawn style, real-time collaboration, end-to-end encrypted. MIT licensed, no account required.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Excalidraw.\n\nWhiteboard sketches kept dying in meeting rooms. You draw an architecture diagram, the meeting ends, and the board gets wiped. The tools that survive the meeting ask you to sign up, pick a template, and care about alignment before you have finished the thought.\n\nExcalidraw opens in a tab. No account, no setup. You draw, you get a shareable link, and anyone who opens it sees the same canvas in real time. Collaboration is end-to-end encrypted by default, not as an add-on. The editor is also available as an npm package (@excalidraw/excalidraw) so developers can embed the full editor inside their own apps. The repo sits at 131,595 GitHub stars.\n\nThe hand-drawn style is intentional. It signals that the diagram is a sketch, not a spec, so people comment on the idea instead of the pixel gaps.\n\nOne honest limitation: the free editor saves only to your browser's local storage. Clearing your cache clears your work. Cloud storage, team workspaces, and PDF and PPTX export live in Excalidraw+, the paid tier.\n\nTwo things I want to know: if you have embedded @excalidraw/excalidraw in your own app, what broke first? And what would you need to see before you trusted the free tier for async team collaboration?\n\nI will be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Excalidraw.\n\nWhiteboard sketches kept dying in meeting rooms. You draw an architecture diagram, the meeting ends, and the board gets wiped. The tools that survive the meeting ask you to sign up, pick a template, and care about alignment before you have finished the thought.\n\nExcalidraw opens in a tab. No account, no setup. You draw, you get a shareable link, and anyone who opens it sees the same canvas in real time. Collaboration is end-to-end encrypted by default, not as an add-on. The editor is also available as an npm package (@excalidraw/excalidraw) so developers can embed the full editor inside their own apps. The repo sits at 131,595 GitHub stars.\n\nThe hand-drawn style is intentional. It signals that the diagram is a sketch, not a spec, so people comment on the idea instead of the pixel gaps.\n\nOne honest limitation: the free editor saves only to your browser's local storage. Clearing your cache clears your work. Cloud storage, team workspaces, and PDF and PPTX export live in Excalidraw+, the paid tier at $6 per user per month.\n\nTwo things I genuinely want to know: if you have embedded @excalidraw/excalidraw in your own app, what broke first? And what would you need to see before you trusted the free tier for async team collaboration?\n\nI will be in the comments all day.",
     "topics": [
      "Open Source",
      "Developer Tools",
@@ -938,30 +940,34 @@
      "APP_PROFILE does not name an individual builder. The first comment uses the placeholder '[Builder first name], [role] at Excalidraw.' Fill this in with the actual name and role of the person leading the launch before publishing.",
      "No Product Hunt-specific offer is included because APP_PROFILE contains no discount or promo code. If one exists, add it to the first comment as available to everyone visiting from Product Hunt, with no tie to voting or ranking.",
      "Confirm all three topics (Open Source, Developer Tools, Design Tools) exist as active topics in the Product Hunt topic picker before submitting.",
-     "The self-hosted or on-premise option is not documented in APP_PROFILE. If Excalidraw supports self-hosting, add one factual sentence about it to the first comment before launch."
+     "The self-hosted or on-premise option is not documented in APP_PROFILE. If Excalidraw supports self-hosting, add one factual sentence about it to the first comment before launch.",
+     "first_comment: the word 'genuinely' reads as AI-tell per the brand rulebook. Replace with a plain verb if you want to tighten the voice before launch.",
+     "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")"
     ],
     "app_name": "Excalidraw",
     "blockers": [],
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$6\")"
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
     ]
    },
    "warnings": [
     "APP_PROFILE does not name an individual builder. The first comment uses the placeholder '[Builder first name], [role] at Excalidraw.' Fill this in with the actual name and role of the person leading the launch before publishing.",
     "No Product Hunt-specific offer is included because APP_PROFILE contains no discount or promo code. If one exists, add it to the first comment as available to everyone visiting from Product Hunt, with no tie to voting or ranking.",
     "Confirm all three topics (Open Source, Developer Tools, Design Tools) exist as active topics in the Product Hunt topic picker before submitting.",
-    "The self-hosted or on-premise option is not documented in APP_PROFILE. If Excalidraw supports self-hosting, add one factual sentence about it to the first comment before launch."
+    "The self-hosted or on-premise option is not documented in APP_PROFILE. If Excalidraw supports self-hosting, add one factual sentence about it to the first comment before launch.",
+    "first_comment: the word 'genuinely' reads as AI-tell per the brand rulebook. Replace with a plain verb if you want to tighten the voice before launch.",
+    "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")"
    ],
    "blockers": [],
    "repaired": [
-    "first_comment: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$6\")"
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1809,
-   "words": 287,
+   "chars": 1807,
+   "words": 295,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -969,41 +975,47 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "Show HN: Excalidraw, open-source hand-drawn whiteboard with E2E-encrypted collab",
-    "body": "Hi HN, Excalidraw is an open-source whiteboard that takes freeform drawing input and produces diagrams, wireframes, and sketches in a hand-drawn style, shareable via a single link. Try it at\n{APP_URL}\nwithout an account.\n\nHeavyweight design tools push teams toward pixel-perfect output before an idea is settled. [Builder: one sentence on why you built Excalidraw.] The editor runs in the browser as a TypeScript and React app, deployed on Vercel. Collaboration works by generating a shareable URL; the session is end-to-end encrypted so the server never sees the canvas content.\n\nThe hand-drawn rendering is deliberate: it keeps focus on the idea, not the presentation. The free tier stores data in browser-local storage only, so clearing the browser loses the file. There is no documented self-hosted option for the paid cloud storage backend.\n\nThe choice I want a second opinion on is the E2E collaboration key: it currently lives in the URL fragment, invisible to the server but visible in browser history. Would you prefer a short user-controlled room code instead? I am one of the builders and will be in the thread.",
+    "body": "Hi HN, Excalidraw is an open-source whiteboard that takes freeform drawing input and produces diagrams, wireframes, and sketches rendered in a hand-drawn style, shareable via a single link. Try it at\n\n{APP_URL}\n\nwithout an account.\n\nHeavyweight design tools push teams toward pixel-perfect output before an idea is settled. [Builder: one sentence on why you built Excalidraw.]\n\nThe editor runs entirely in the browser as a TypeScript and React app, deployed on Vercel. Collaboration works by generating a shareable URL; the session is end-to-end encrypted so the server never sees the canvas content. The hand-drawn rendering is a deliberate choice: it keeps focus on the idea rather than the presentation. The free tier stores data in browser-local storage only, so clearing the browser loses the file, and there is no documented self-hosted option for the paid cloud storage backend.\n\nThe choice I want a second opinion on is the E2E collaboration key: it currently lives in the URL fragment, invisible to the server but visible in browser history. Would you prefer a short user-controlled room code instead, and why? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
      "Excalidraw has significant prior HN presence given its prominence in the open-source community. HN accepts a repeat Show HN only for a major overhaul, about once or twice a year. Search HN for earlier Excalidraw threads before posting and confirm this submission represents a meaningful new milestone or feature set.",
-     "The [Builder: one sentence on why you built Excalidraw.] placeholder in paragraph two must be filled with a real origin line before submitting. The profile records no README history line or founder quote, so this sentence cannot be generated.",
-     "The self-hosted limitation is drawn from the APP_PROFILE gaps section. Confirm it accurately reflects the current state of the product before submitting.",
-     "The profile does not clearly identify a solo builder or a named team. The draft closes with 'I am one of the builders.' If you are the sole builder, change the closing to 'I built it and will be in the thread.'"
+     "The [Builder: one sentence on why you built Excalidraw.] placeholder in paragraph two must be filled with a real origin line before submitting. The profile records no README history line or founder quote, so this cannot be generated.",
+     "The self-hosted limitation is drawn from the APP_PROFILE gaps section ('No self-hosted / on-premise pricing or documentation found in sources read'). Confirm this accurately reflects the current state of the product before submitting.",
+     "The profile does not clearly identify a solo builder or a named team. The draft uses 'we' throughout and closes with 'I am one of the builders.' If you are the sole builder, replace all instances of 'we' with 'I' and change the closing to 'I built it and will be in the thread.'",
+     "The title is exactly 80 characters including the 'Show HN: ' prefix. Verify the character count after any edits, as HN's submit form cuts titles at 80 characters.",
+     "warnings[6]: The model reports its own word or character count; only the gate counts (\"is exactly 80 characters\")"
     ],
     "app_name": "Excalidraw",
     "blockers": [],
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "body: More than five paragraphs (5, cap 4)"
+     "body: Body over 200 words (227 words, cap 200)",
+     "body: More than five paragraphs (7, cap 4)"
     ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
     "Excalidraw has significant prior HN presence given its prominence in the open-source community. HN accepts a repeat Show HN only for a major overhaul, about once or twice a year. Search HN for earlier Excalidraw threads before posting and confirm this submission represents a meaningful new milestone or feature set.",
-    "The [Builder: one sentence on why you built Excalidraw.] placeholder in paragraph two must be filled with a real origin line before submitting. The profile records no README history line or founder quote, so this sentence cannot be generated.",
-    "The self-hosted limitation is drawn from the APP_PROFILE gaps section. Confirm it accurately reflects the current state of the product before submitting.",
-    "The profile does not clearly identify a solo builder or a named team. The draft closes with 'I am one of the builders.' If you are the sole builder, change the closing to 'I built it and will be in the thread.'"
+    "The [Builder: one sentence on why you built Excalidraw.] placeholder in paragraph two must be filled with a real origin line before submitting. The profile records no README history line or founder quote, so this cannot be generated.",
+    "The self-hosted limitation is drawn from the APP_PROFILE gaps section ('No self-hosted / on-premise pricing or documentation found in sources read'). Confirm this accurately reflects the current state of the product before submitting.",
+    "The profile does not clearly identify a solo builder or a named team. The draft uses 'we' throughout and closes with 'I am one of the builders.' If you are the sole builder, replace all instances of 'we' with 'I' and change the closing to 'I built it and will be in the thread.'",
+    "The title is exactly 80 characters including the 'Show HN: ' prefix. Verify the character count after any edits, as HN's submit form cuts titles at 80 characters.",
+    "warnings[6]: The model reports its own word or character count; only the gate counts (\"is exactly 80 characters\")"
    ],
    "blockers": [],
    "repaired": [
-    "body: More than five paragraphs (5, cap 4)"
+    "body: Body over 200 words (227 words, cap 200)",
+    "body: More than five paragraphs (7, cap 4)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1265,
-   "words": 201,
+   "chars": 1361,
+   "words": 218,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1011,16 +1023,16 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "subject": "For developers who sketch diagrams: Excalidraw, free and open-source",
-    "pitch": "Hi [Editor first name],\n\nSoftware engineers and designers on your list spend real time rebuilding the same architecture sketches after every planning call, because the tools that save those sketches ask for accounts and project setup before you can draw a single box. When a team needs to share a rough idea quickly, that friction is the thing that stops them, and the sketch ends up on a physical whiteboard that nobody photographs.\n\nExcalidraw is an open-source virtual whiteboard with a hand-drawn style, real-time end-to-end-encrypted collaboration, and a free-forever tier, for developers, designers, and teams.\n\n131,595 GitHub stars as of September 2026.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "pitch": "Hi [Editor first name],\n\nSoftware engineers and designers on your list spend real time rebuilding the same architecture sketches after every planning call, because the tools that save those sketches ask for accounts and project setup before you can draw a single box. When teams need to share a rough idea quickly, that setup cost is the thing that stops them.\n\nExcalidraw is an open-source virtual whiteboard with a hand-drawn style, real-time end-to-end-encrypted collaboration, and a free-forever tier, for developers, designers, and teams.\n\nIt has 131,595 GitHub stars on GitHub as of September 2026.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name unknown: TARGET did not provide an author first name or newsletter name. Replace '[Editor first name]' in the greeting with the actual editor's name before sending.",
      "Builder first name unknown: APP_PROFILE and BRAND_DNA do not name a builder. Replace '[Builder first name]' in the sign-off with your actual first name before sending.",
      "TARGET rules not verified: confirm whether this newsletter accepts unsolicited pitches or requires a submission form. If it uses a form, this text works as form copy but remove the greeting line and sign-off.",
-     "Word count is approximately 109 words in the body paragraphs (excluding greeting and sign-off), within the required 100-150 band."
+     "Word count is approximately 116 words, within the required 100-150 band."
     ],
     "app_name": "Excalidraw",
     "blockers": [],
@@ -1031,14 +1043,14 @@
     "Recipient name unknown: TARGET did not provide an author first name or newsletter name. Replace '[Editor first name]' in the greeting with the actual editor's name before sending.",
     "Builder first name unknown: APP_PROFILE and BRAND_DNA do not name a builder. Replace '[Builder first name]' in the sign-off with your actual first name before sending.",
     "TARGET rules not verified: confirm whether this newsletter accepts unsolicited pitches or requires a submission form. If it uses a form, this text works as form copy but remove the greeting line and sign-off.",
-    "Word count is approximately 109 words in the body paragraphs (excluding greeting and sign-off), within the required 100-150 band."
+    "Word count is approximately 116 words, within the required 100-150 band."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 844,
-   "words": 127,
+   "chars": 788,
+   "words": 119,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1046,14 +1058,14 @@
    "has_app_url": true
   },
   "reddit_post": {
-   "version": 2,
+   "version": 1,
    "status": "draft",
    "data": {
     "title": "I maintain an open-source whiteboard we use for architecture sketches",
-    "body": "When I'm sketching a system design mid-conversation, tools like Lucidchart are built for precise, structured output, not for rough thinking. They require an account and push you toward pixel-perfect diagrams before you've agreed on the shape of the system.\n\nI work on an open-source infinite-canvas whiteboard that renders everything in a hand-drawn style. It runs in the browser with no account required, supports real-time collaboration via a shareable link with end-to-end encryption, and works offline as a PWA. The hand-drawn aesthetic is intentional: it keeps diagrams looking like thinking-in-progress rather than finished deliverables, which tends to invite more honest feedback during design reviews.\n\nThe tool has been around for a few years and is embedded in a number of developer platforms, so it's probably not new to most people here.\n\nOne gap that's still real: the upgrade path from the free browser editor to the paid cloud workspace isn't surfaced inside the editor itself, so teams sometimes don't realize persistent cloud storage is an option until they've already lost a session.\n\nWhen you're doing async architecture reviews with a distributed team, how do you handle the gap between a quick sketch someone made and the canonical diagram that ends up in the docs?",
+    "body": "When I'm sketching a system design mid-conversation, tools like Lucidchart are built for precise, structured output, not for rough thinking. They require an account and push you toward pixel-perfect diagrams before you've even agreed on the shape of the system.\n\nI work on an open-source infinite-canvas whiteboard that renders everything in a hand-drawn style. It runs in the browser with no account required, supports real-time collaboration via a shareable link with end-to-end encryption, and works offline as a PWA. The hand-drawn aesthetic is intentional: it keeps diagrams looking like thinking-in-progress rather than finished deliverables, which tends to invite more honest feedback during design reviews.\n\nThe tool has been around for a few years and is embedded in a number of developer platforms, so it's probably not new to most people here.\n\nOne gap that's still real: the upgrade path from the free browser editor to the paid cloud workspace isn't surfaced inside the editor itself, so teams sometimes don't realize persistent cloud storage is an option until they've already lost a session.\n\nWhen you're doing async architecture reviews with a distributed team, how do you handle the gap between a quick sketch someone made and the canonical diagram that ends up in the docs?",
     "suggested_flair": "none",
     "warnings": [
-     "Mention level 1 used. r/softwarearchitecture is not in the verified subreddit list and its rules page could not be scraped (Reddit is not supported by Firecrawl). Per platform rules, unverified subs default to Level 1: no product name and no link in the body. If the builder verifies the sub allows named self-promotion with a link, upgrade to Level 2, name Excalidraw once in the disclosure sentence, and add {APP_URL} in the final paragraph.",
+     "Mention level 1 used. r/softwarearchitecture is not in the verified subreddit list, so its rules are treated as unverified. Per platform rules, unverified subs default to Level 1: no product name and no link in the body. If the builder verifies the sub allows named self-promotion with a link, upgrade to Level 2, name Excalidraw once in the disclosure sentence, and add {APP_URL} in the final paragraph.",
      "No link included in this draft per Level 1 rules. If the sub permits it after the builder checks the rules, add the link as a comment or upgrade the level.",
      "Suggested flair is 'none' because r/softwarearchitecture's available flairs were not verified. The builder should check https://www.reddit.com/r/softwarearchitecture/about/rules/ and https://www.reddit.com/r/softwarearchitecture/about/flair/ before posting.",
      "The builder should confirm r/softwarearchitecture allows self-promotion posts on the main feed. Some architecture subreddits restrict or ban product posts entirely.",
@@ -1067,7 +1079,7 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "Mention level 1 used. r/softwarearchitecture is not in the verified subreddit list and its rules page could not be scraped (Reddit is not supported by Firecrawl). Per platform rules, unverified subs default to Level 1: no product name and no link in the body. If the builder verifies the sub allows named self-promotion with a link, upgrade to Level 2, name Excalidraw once in the disclosure sentence, and add {APP_URL} in the final paragraph.",
+    "Mention level 1 used. r/softwarearchitecture is not in the verified subreddit list, so its rules are treated as unverified. Per platform rules, unverified subs default to Level 1: no product name and no link in the body. If the builder verifies the sub allows named self-promotion with a link, upgrade to Level 2, name Excalidraw once in the disclosure sentence, and add {APP_URL} in the final paragraph.",
     "No link included in this draft per Level 1 rules. If the sub permits it after the builder checks the rules, add the link as a comment or upgrade the level.",
     "Suggested flair is 'none' because r/softwarearchitecture's available flairs were not verified. The builder should check https://www.reddit.com/r/softwarearchitecture/about/rules/ and https://www.reddit.com/r/softwarearchitecture/about/flair/ before posting.",
     "The builder should confirm r/softwarearchitecture allows self-promotion posts on the main feed. Some architecture subreddits restrict or ban product posts entirely.",
@@ -1078,8 +1090,8 @@
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1403,
-   "words": 217,
+   "chars": 1408,
+   "words": 218,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,

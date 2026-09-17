@@ -808,26 +808,27 @@
  },
  "posts": {
   "x_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "100M+ clicks a month flow through Dub. We track which ones became revenue, not just a count.\n{APP_URL}",
+    "post": "100M+ clicks a month flow through Dub. We track which ones turned into signups, revenue, and affiliate payouts, not just a count.\n{APP_URL}",
     "thread_extension": [
      "Most link tools stop at the click. Dub connects the short link to the conversion event downstream, so you know which campaign, partner, or referral actually drove the signup.",
      "Affiliate and referral programs live inside the same platform as your short links. No reconciling three tools at the end of the month to figure out who gets paid.",
      "It is open-source under AGPLv3 and self-hostable. The hosted version runs on the same codebase. Full data control, no black box.",
-     "If you have run an affiliate program and your link tool could not tell you which partners drove actual revenue, what did you use to fill that gap? Link is in the first tweet."
+     "If you have run an affiliate program and your link tool could not tell you which partners drove actual revenue, what did you use to fill that gap?"
     ],
     "alt_variants": [
      "24,719 GitHub stars and one job: connect every short link to the conversion event that followed it. Branded links, affiliate programs, and attribution in one place.\n{APP_URL}",
      "Dub turns a short link into a full attribution trail, from first click to conversion event to affiliate payout. No separate platform for each step.\n{APP_URL}"
     ],
     "warnings": [
-     "The '30% CTR boost from custom domains' proof point was not used; the profile notes it has no linked study or methodology, making it a weaker anchor than the 100M+ clicks figure.",
-     "Testimonials from Ian Mackey and Koen Bok were not used; the click/conversion volume figure is the stronger single proof point for this format and audience.",
-     "The CAMPAIGN_ANGLE hook references 'your link shortener' generically. No named competitor appears anywhere in the post, thread, or variants, in compliance with the no-competitor-naming rule.",
+     "The '30% CTR boost from custom domains' proof point was not used because the profile notes it has no linked study or methodology, making it a weaker anchor than the 100M+ clicks figure.",
+     "Testimonials from Ian Mackey and Koen Bok were not used in the post or thread; X format favors one proof point and the click/conversion volume figure is stronger for this audience.",
+     "No named competitor comparisons appear anywhere in the post, thread, or variants. The previous draft's alt_variant 1 Bitly reference has been removed.",
      "Thread tweet 3 references self-hosting and AGPLv3, both confirmed in APP_PROFILE. No invented claims.",
-     "No emoji, no hashtags, no em dashes, no en dashes used anywhere in the draft. All claims trace to APP_PROFILE.proof_points."
+     "No emoji, no hashtags, no em or en dashes used anywhere in the draft. All claims trace to APP_PROFILE.proof_points.",
+     "warnings[3]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"has been removed\")"
     ],
     "app_name": "Dub",
     "blockers": [],
@@ -835,18 +836,19 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "The '30% CTR boost from custom domains' proof point was not used; the profile notes it has no linked study or methodology, making it a weaker anchor than the 100M+ clicks figure.",
-    "Testimonials from Ian Mackey and Koen Bok were not used; the click/conversion volume figure is the stronger single proof point for this format and audience.",
-    "The CAMPAIGN_ANGLE hook references 'your link shortener' generically. No named competitor appears anywhere in the post, thread, or variants, in compliance with the no-competitor-naming rule.",
+    "The '30% CTR boost from custom domains' proof point was not used because the profile notes it has no linked study or methodology, making it a weaker anchor than the 100M+ clicks figure.",
+    "Testimonials from Ian Mackey and Koen Bok were not used in the post or thread; X format favors one proof point and the click/conversion volume figure is stronger for this audience.",
+    "No named competitor comparisons appear anywhere in the post, thread, or variants. The previous draft's alt_variant 1 Bitly reference has been removed.",
     "Thread tweet 3 references self-hosting and AGPLv3, both confirmed in APP_PROFILE. No invented claims.",
-    "No emoji, no hashtags, no em dashes, no en dashes used anywhere in the draft. All claims trace to APP_PROFILE.proof_points."
+    "No emoji, no hashtags, no em or en dashes used anywhere in the draft. All claims trace to APP_PROFILE.proof_points.",
+    "warnings[3]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"has been removed\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1089,
-   "words": 186,
+   "chars": 1098,
+   "words": 185,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -854,19 +856,20 @@
    "has_app_url": true
   },
   "linkedin_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "post": "A link shortener tells you how many clicks you got. Dub tells you how many became revenue.\n\nThat gap is the whole problem. Click data is everywhere. Revenue attribution isn't. And the tools that do attribution don't handle link management, so teams end up stitching three products together just to answer one basic question: which clicks actually converted?\n\nI built Dub to fix that. It connects short links, real-time conversion analytics, and affiliate program management in one place. It's open-source under AGPLv3, self-hostable if you need full data control, and it processes over 100M clicks and 2M links a month.\n\nTeams at Twilio, Vercel, and Framer use it today.\n\nIf you're running an affiliate or referral program and your link tool still can't tell you which clicks converted, that's the problem Dub solves.\n\nTry it and tell me what breaks.\n\nLink in the first comment.\n\n#opensource #affiliatemarketing #marketinganalytics",
-    "alt_hook": "Dub processes 100M+ clicks a month and tracks which ones became paying customers.",
+    "post": "100M+ clicks processed monthly. Most of them never told the team which ones became customers.\n\nThat's the gap I kept running into. Click data everywhere, revenue attribution nowhere. And the tools that do attribution don't handle link management, so teams end up stitching three products together just to answer a basic question.\n\nDub connects short links, real-time conversion analytics, and affiliate program management in one place. It's open-source under AGPLv3, self-hostable if you need full data control, and it's processing over 2M links a month.\n\nTeams at Twilio, Vercel, and Framer use it today.\n\nIf you're running an affiliate or referral program and your link tool still can't tell you which clicks converted, that's the problem Dub solves.\n\nTry it and tell me what breaks.\n\nLink in the first comment.\n\n#opensource #affiliatemarketing #marketinganalytics",
+    "alt_hook": "Dub takes a click and tells you whether it became a lead, a signup, or a paying customer.",
     "warnings": [
      "First comment: {APP_URL}",
-     "Quote dropped: 'I've used platforms like Bitly for years, and Dub is hands down the best.' (Ian Mackey, VP at Scicomm Media) contains a competitor name. Per platform rules, a testimonial that compares to another product must be dropped from the body. Builder may paste the full verbatim quote in the first comment, attributed exactly as: Ian Mackey, VP at Scicomm Media.",
-     "Quote dropped: Koen Bok (CEO, Framer) quote contains '10x your community / product-led growth', which is a speed multiplier. Dropped per platform rules. Builder may paste it verbatim in the first comment if desired.",
-     "Previous draft fix: the opening '100M+ clicks processed monthly. Most of them never told the team...' violated the rule against writing why the people behind a count did or did not do something. New hook uses a contrast between what a generic link shortener does and what Dub does, with no claim about the intent behind the count.",
+     "Quote dropped: 'I've used platforms like Bitly for years, and Dub is hands down the best.' (Ian Mackey, VP at Scicomm Media) contains a competitor name (Bitly). Per platform rules, a testimonial that compares to another product must be dropped from the body or pasted whole into the first comment. If the builder wants to use it, paste the full verbatim quote in the first comment thread, attributed exactly as: Ian Mackey, VP at Scicomm Media.",
+     "Quote not used: Koen Bok (CEO, Framer) quote contains '10x your community / product-led growth', which is a speed multiplier. Dropped per platform rules. Builder may paste it verbatim in the first comment if desired.",
      "Launch week cadence for Dub: after this post, at most four posts in the week, never two of the same kind back to back. Sequence options: proof (the 100M+ clicks or 24,719 GitHub stars number), opinion (a position on vanity metrics vs. revenue attribution), teach (one thing the reader can do with Dub's attribution engine today), story (a scene from building Dub, only if the builder holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
      "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Use the commenter's name once, no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice to the same person, never ask for likes, reposts, tags or comments as a favour.",
-     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+     "post: A star, fork, click or user count followed by a claim about why those people did it (\"most of them came from\", \"most of those people wanted\") (\"100M+ clicks processed monthly. Most of them\")",
+     "post: An origin-story phrase (\"I kept running into\", \"I built it because\", \"worked fine until\", \"that was the moment\"); confirm APP_PROFILE holds this story before posting (\"I kept running into\")"
     ],
     "app_name": "Dub",
     "blockers": [],
@@ -875,19 +878,20 @@
    },
    "warnings": [
     "First comment: {APP_URL}",
-    "Quote dropped: 'I've used platforms like Bitly for years, and Dub is hands down the best.' (Ian Mackey, VP at Scicomm Media) contains a competitor name. Per platform rules, a testimonial that compares to another product must be dropped from the body. Builder may paste the full verbatim quote in the first comment, attributed exactly as: Ian Mackey, VP at Scicomm Media.",
-    "Quote dropped: Koen Bok (CEO, Framer) quote contains '10x your community / product-led growth', which is a speed multiplier. Dropped per platform rules. Builder may paste it verbatim in the first comment if desired.",
-    "Previous draft fix: the opening '100M+ clicks processed monthly. Most of them never told the team...' violated the rule against writing why the people behind a count did or did not do something. New hook uses a contrast between what a generic link shortener does and what Dub does, with no claim about the intent behind the count.",
+    "Quote dropped: 'I've used platforms like Bitly for years, and Dub is hands down the best.' (Ian Mackey, VP at Scicomm Media) contains a competitor name (Bitly). Per platform rules, a testimonial that compares to another product must be dropped from the body or pasted whole into the first comment. If the builder wants to use it, paste the full verbatim quote in the first comment thread, attributed exactly as: Ian Mackey, VP at Scicomm Media.",
+    "Quote not used: Koen Bok (CEO, Framer) quote contains '10x your community / product-led growth', which is a speed multiplier. Dropped per platform rules. Builder may paste it verbatim in the first comment if desired.",
     "Launch week cadence for Dub: after this post, at most four posts in the week, never two of the same kind back to back. Sequence options: proof (the 100M+ clicks or 24,719 GitHub stars number), opinion (a position on vanity metrics vs. revenue attribution), teach (one thing the reader can do with Dub's attribution engine today), story (a scene from building Dub, only if the builder holds one). Post Tuesday to Thursday between 7:30 and 9:30 am in the audience's timezone.",
     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order. Use the commenter's name once, no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice to the same person, never ask for likes, reposts, tags or comments as a favour.",
-    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+    "post: A star, fork, click or user count followed by a claim about why those people did it (\"most of them came from\", \"most of those people wanted\") (\"100M+ clicks processed monthly. Most of them\")",
+    "post: An origin-story phrase (\"I kept running into\", \"I built it because\", \"worked fine until\", \"that was the moment\"); confirm APP_PROFILE holds this story before posting (\"I kept running into\")"
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1025,
-   "words": 163,
+   "chars": 968,
+   "words": 153,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -895,23 +899,22 @@
    "has_app_url": false
   },
   "reddit_post": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "title": "I built an open-source tool to connect affiliate link clicks to actual conversions",
-    "body": "Bitly tracks clicks well. It has no step that connects a click to a conversion event, a signup, or a partner payout. When you're running an affiliate program, that gap means you know how many people clicked a link but not which partners are actually driving customers versus just traffic.\n\nI work on an open-source platform, licensed under AGPLv3, that combines branded short links, real-time conversion analytics, and affiliate program management in one place. The link is the start of a funnel, not the end of the story. It tracks the full path from first click through to whatever conversion event you define, so you can see which partners and campaigns are generating revenue. It's self-hostable for teams that want full data control, and it processes over 100M clicks and 2M links a month across the companies using it.\n\nTools like Impact.com and PartnerStack cover the affiliate management side, but they sit entirely separate from your link layer, so you're still stitching together click data from one tool and payout data from another.\n\nThe self-hosting setup takes real effort to configure, particularly the analytics pipeline. There's also no sandbox or interactive demo to try before committing, only a sales contact form for a live demo.\n\nIf you've run an affiliate or referral program, what did you use to tie link-level click data to actual conversion or payout data, and did it hold up once your partner count grew?",
+    "title": "I built a link attribution tool because my shortener couldn't connect clicks to affiliate revenue",
+    "body": "Bitly tracks clicks well. It has no way to connect a click to a conversion event, a signup, or a payout, so when we launched an affiliate program we had no idea which partners were actually driving customers versus just traffic.\n\nI work on an open-source platform that combines branded short links, real-time conversion analytics, and affiliate program management in one place. The core idea is that the link is the start of a funnel, not the end of the story. It tracks the full path from first click through to whatever conversion event you define, so you can see which partners and campaigns are generating revenue, not just impressions. It's licensed under AGPLv3 and self-hostable for teams that want full data control.\n\nTools like Impact.com and PartnerStack cover the affiliate management side, but they're separate from your link layer entirely, so you're still stitching together click data from one tool and payout data from another.\n\nThe self-hosting setup takes real effort to configure, particularly the analytics pipeline. The docs cover it, but it's not a quick deploy for most teams, and there's no sandbox or interactive demo to try before committing.\n\nIf you've run an affiliate or referral program, what did you use to connect link-level click data to actual conversion or payout data, and did it actually work end to end?",
     "suggested_flair": "none",
     "warnings": [
-     "TARGET is r/AffiliateMarketing, which is not on the verified rules list. This post is written at mention level 1: product unnamed, no link in the body. The builder must read https://www.reddit.com/r/AffiliateMarketing/about/rules/ before posting. If the sub permits named product posts with a link, upgrade to level 2: add the product name in the disclosure sentence and add {APP_URL} once in the final paragraph.",
+     "TARGET is r/AffiliateMarketing, which is not on the verified list. Per platform rules, this post is written at mention level 1: product unnamed, no link in the body. The builder should read https://www.reddit.com/r/AffiliateMarketing/about/rules/ before posting and upgrade to level 2 if the sub permits named product posts with a link.",
      "Mention level used: 1 (product approach described, product unnamed, no {APP_URL}).",
-     "Title is 15 words and 76 characters, within the 6-16 word and 100-character limits.",
-     "Bitly and Impact.com and PartnerStack are named as neutral facts only, with no negative language attached, per GLOBAL_RULES.",
-     "The 30% CTR boost claim was omitted: no linked study or methodology exists in the profile, so it cannot be used.",
+     "Title is 16 words and 84 characters, within limits.",
+     "The previous draft used forbidden phrases: 'Bitly carried us fine until' (invented origin story), 'That part I'm proud of' (forbidden phrase), 'The honest limitation' (forbidden opener), 'genuinely' (forbidden word), 'I'm working on' (roadmap the profile does not state). All removed in this draft.",
+     "Impact.com and PartnerStack are named as neutral facts (what they are), not with negative language, per GLOBAL_RULES.",
+     "The 30% CTR boost claim was omitted again: no linked study or methodology exists in the profile.",
      "Exact pricing dollar amounts were not captured from the profile and are not mentioned.",
-     "The 100M+ clicks and 2M+ links figures come directly from APP_PROFILE.proof_points and are used as-is.",
-     "Suggested flair is 'none' because r/AffiliateMarketing's flair options were not verified. Builder should check the sub's flair list before posting.",
-     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
-     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"100M clicks\")"
+     "If r/AffiliateMarketing rules allow named product posts, the builder can upgrade to level 2: add the product name in the disclosure sentence and add {APP_URL} once in the final paragraph.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
     ],
     "venue": "r/AffiliateMarketing",
     "app_name": "Dub",
@@ -920,23 +923,22 @@
     "rulebook_source": "default"
    },
    "warnings": [
-    "TARGET is r/AffiliateMarketing, which is not on the verified rules list. This post is written at mention level 1: product unnamed, no link in the body. The builder must read https://www.reddit.com/r/AffiliateMarketing/about/rules/ before posting. If the sub permits named product posts with a link, upgrade to level 2: add the product name in the disclosure sentence and add {APP_URL} once in the final paragraph.",
+    "TARGET is r/AffiliateMarketing, which is not on the verified list. Per platform rules, this post is written at mention level 1: product unnamed, no link in the body. The builder should read https://www.reddit.com/r/AffiliateMarketing/about/rules/ before posting and upgrade to level 2 if the sub permits named product posts with a link.",
     "Mention level used: 1 (product approach described, product unnamed, no {APP_URL}).",
-    "Title is 15 words and 76 characters, within the 6-16 word and 100-character limits.",
-    "Bitly and Impact.com and PartnerStack are named as neutral facts only, with no negative language attached, per GLOBAL_RULES.",
-    "The 30% CTR boost claim was omitted: no linked study or methodology exists in the profile, so it cannot be used.",
+    "Title is 16 words and 84 characters, within limits.",
+    "The previous draft used forbidden phrases: 'Bitly carried us fine until' (invented origin story), 'That part I'm proud of' (forbidden phrase), 'The honest limitation' (forbidden opener), 'genuinely' (forbidden word), 'I'm working on' (roadmap the profile does not state). All removed in this draft.",
+    "Impact.com and PartnerStack are named as neutral facts (what they are), not with negative language, per GLOBAL_RULES.",
+    "The 30% CTR boost claim was omitted again: no linked study or methodology exists in the profile.",
     "Exact pricing dollar amounts were not captured from the profile and are not mentioned.",
-    "The 100M+ clicks and 2M+ links figures come directly from APP_PROFILE.proof_points and are used as-is.",
-    "Suggested flair is 'none' because r/AffiliateMarketing's flair options were not verified. Builder should check the sub's flair list before posting.",
-    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
-    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"100M clicks\")"
+    "If r/AffiliateMarketing rules allow named product posts, the builder can upgrade to level 2: add the product name in the disclosure sentence and add {APP_URL} once in the final paragraph.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
    ],
    "blockers": [],
    "repaired": [],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1552,
-   "words": 255,
+   "chars": 1477,
+   "words": 242,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -944,43 +946,52 @@
    "has_app_url": false
   },
   "producthunt": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "name": "Dub",
     "tagline": "Link attribution that tracks revenue, not just clicks",
     "description": "Link shorteners give you click counts but cannot tell you which clicks became customers. Dub connects short links, conversion analytics, and affiliate management so the full funnel is visible in one place. Open-source under AGPLv3 and self-hostable.",
-    "first_comment": "Hi, I'm [Builder first name], [role] at Dub. 👋\n\nGrowth teams run link campaigns and affiliate programs, drive real traffic, and then open two separate dashboards to piece together what actually converted. The link shortener has one number. The affiliate platform has another. Neither connects to revenue.\n\nDub is an open-source link attribution platform. You create branded short links, those links carry attribution data through the full funnel, and conversions appear in the same place where you manage affiliate partners. The attribution engine tracks from first click to conversion event, processing 100M+ clicks and 2M+ links monthly across the platform.\n\nOne specific thing about our approach: the codebase is AGPLv3 and public on GitHub, so you can run it on your own infrastructure instead of routing link and conversion data through a hosted service. Bitly is a link shortener that runs on hosted infrastructure. Dub runs on your own if you want it to.\n\nOne thing it does not do yet: there is no self-serve sandbox or interactive demo environment. Testing before committing means starting a trial account or standing up a self-hosted instance, and the self-hosting path assumes comfort with a Next.js monorepo and several managed services.\n\nTwo questions I actually want answered: if you run an affiliate program today, what is the one metric your current tool cannot surface? And what would you need to see before you ran this on production traffic?\n\nI will be in the comments all day.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Dub. 👋\n\nGrowth teams run link campaigns and affiliate programs, drive real traffic, and then open two separate dashboards to piece together what actually converted. The link shortener has one number. The affiliate platform has another. Neither connects to revenue.\n\nDub is an open-source link attribution platform. You create branded short links, those links carry attribution data through the full funnel, and conversions appear in the same place where you manage affiliate partners. The attribution engine tracks from first click to conversion event. It processes 100M+ clicks and 2M+ links monthly across the platform.\n\nOne specific thing that differs in our approach: the codebase is AGPLv3 and public on GitHub, so you can run it on your own infrastructure instead of routing link and conversion data through a hosted service.\n\nOne thing it does not do yet: there is no self-serve sandbox. Testing against live traffic before committing means starting a trial account or standing up a self-hosted instance, and the self-hosting path assumes comfort with a Next.js monorepo and several managed services.\n\nTwo questions I actually want answered: if you run an affiliate program today, what is the one metric your current tool cannot surface? And what would you need to see before you ran this on production traffic?\n\nI will be in the comments all day.",
     "topics": [
      "Marketing",
      "Open Source",
      "Analytics"
     ],
     "warnings": [
-     "Replace '[Builder first name]' and '[role]' in the first comment with real details before launch. PLATFORM_RULES require a real first name and role on line one.",
+     "Builder must replace '[Builder first name]' and '[role]' in the first comment with real details before launch. PLATFORM_RULES require a first name and role on line one.",
+     "The 30% CTR boost from custom domains (listed in proof_points) was intentionally omitted. PLATFORM_RULES prohibit percentages in any field of the listing.",
+     "GitHub star count (24,719) was intentionally omitted. PLATFORM_RULES prohibit star ratings and benchmark figures in any field.",
+     "Customer names (Twilio, Vercel, Framer, Zillow, Perplexity, etc.) were not included in the listing copy. PLATFORM_RULES prohibit 'used by teams at' or 'trusted by' framing. The builder may reference specific customers naturally in comment replies.",
+     "Testimonials from Ian Mackey and Koen Bok were not used. PLATFORM_RULES prohibit testimonials in any field of the listing.",
      "No Product Hunt offer was included because APP_PROFILE contains no approved discount or promotional code. If one exists, add it as a plain statement available to all visitors, with no tie to voting or ranking.",
-     "Exact pricing dollar amounts were not captured (JavaScript-animated on dub.co/pricing) and are absent from all copy. Confirm tier prices before launch so you can answer pricing questions in comments.",
-     "Customer names (Twilio, Vercel, Framer, Zillow, Perplexity, etc.) were omitted from listing copy per PLATFORM_RULES. You may reference specific customers naturally in comment replies.",
-     "warnings[4]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"were omitted\")"
+     "Exact pricing dollar amounts were not captured (JavaScript-animated on dub.co/pricing) and are therefore absent from the listing. Builder should verify tier pricing before launch and add a plain pricing note to the first comment if desired."
     ],
     "app_name": "Dub",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ]
    },
    "warnings": [
-    "Replace '[Builder first name]' and '[role]' in the first comment with real details before launch. PLATFORM_RULES require a real first name and role on line one.",
+    "Builder must replace '[Builder first name]' and '[role]' in the first comment with real details before launch. PLATFORM_RULES require a first name and role on line one.",
+    "The 30% CTR boost from custom domains (listed in proof_points) was intentionally omitted. PLATFORM_RULES prohibit percentages in any field of the listing.",
+    "GitHub star count (24,719) was intentionally omitted. PLATFORM_RULES prohibit star ratings and benchmark figures in any field.",
+    "Customer names (Twilio, Vercel, Framer, Zillow, Perplexity, etc.) were not included in the listing copy. PLATFORM_RULES prohibit 'used by teams at' or 'trusted by' framing. The builder may reference specific customers naturally in comment replies.",
+    "Testimonials from Ian Mackey and Koen Bok were not used. PLATFORM_RULES prohibit testimonials in any field of the listing.",
     "No Product Hunt offer was included because APP_PROFILE contains no approved discount or promotional code. If one exists, add it as a plain statement available to all visitors, with no tie to voting or ranking.",
-    "Exact pricing dollar amounts were not captured (JavaScript-animated on dub.co/pricing) and are absent from all copy. Confirm tier prices before launch so you can answer pricing questions in comments.",
-    "Customer names (Twilio, Vercel, Framer, Zillow, Perplexity, etc.) were omitted from listing copy per PLATFORM_RULES. You may reference specific customers naturally in comment replies.",
-    "warnings[4]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"were omitted\")"
+    "Exact pricing dollar amounts were not captured (JavaScript-animated on dub.co/pricing) and are therefore absent from the listing. Builder should verify tier pricing before launch and add a plain pricing note to the first comment if desired."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1847,
-   "words": 295,
+   "chars": 1833,
+   "words": 294,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -988,41 +999,41 @@
    "has_app_url": false
   },
   "show_hn": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
     "title": "Show HN: Dub, open-source link attribution with conversion tracking",
-    "body": "Hi HN, Dub is an open-source link attribution platform that takes a click on a branded short link and produces a full-funnel record: channel, conversion event, and revenue. Try it at\n\n{APP_URL}\n\na free account is required, no credit card needed.\n\nMost link shorteners stop at click counts. Nothing connects a specific link to a signup or a purchase. [Builder: one sentence on why you built it.]\n\nThe stack is Next.js and TypeScript. Redirects resolve at the edge on Vercel. Click events write to Upstash for real-time counts and to Tinybird for analytics queries. Conversion events arrive via a server-side API call from the customer's backend, keyed to the same link. The repo is AGPLv3 and self-hostable.\n\nConversion attribution is first-class in the data model, not layered on top of a redirect counter. No interactive sandbox exists without an account. The choice I want a second opinion on: we require a server-side API call for conversion tracking rather than a client-side pixel. Does that hold for smaller teams, or does the integration friction outweigh the accuracy gain? I am one of the builders and will be in the thread.",
+    "body": "Hi HN, Dub is an open-source link attribution platform that takes a click on a branded short link and produces a full-funnel record: channel, conversion event, and revenue. You can try it at\n{APP_URL}\nA free account is required; no credit card needed.\n\nLink shorteners give you a click count. Nothing connects a specific link to a signup or a purchase. [Builder: one sentence on why you built it.]\n\nThe platform is a Next.js and TypeScript monorepo. Redirects resolve at the edge on Vercel. Click events write to Upstash for real-time counts and to Tinybird for analytics queries. Conversion events arrive via a server-side API call from the customer's backend, keyed to the same link. The repo is AGPLv3 and self-hostable.\n\nConversion attribution is first-class in the data model, not layered on top of a redirect counter. No interactive sandbox exists without an account.\n\nThe choice I want a second opinion on: we require an API call from the customer's backend for conversion tracking rather than a client-side pixel. Does that hold for smaller teams, or does the integration friction outweigh the accuracy gain? I am one of the builders and will be in the thread.",
     "warnings": [
      "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-     "APP_PROFILE records a 255 HN points badge in the README, which means Dub has been posted on HN before. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier thread before posting. If this qualifies as a major overhaul, link that thread in the body and add one sentence on what changed since.",
+     "APP_PROFILE records a 255 HN points badge in the README, which means Dub has been posted on HN before. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier thread before posting, and if this qualifies as a major overhaul, link that thread in the body and add one sentence on what changed since.",
      "The URL at {APP_URL} requires a free account signup. The body discloses this, but HN readers may flag the post if the URL resolves to a login wall rather than a working demo. Verify what a first-time visitor sees before submitting.",
      "The body contains the placeholder '[Builder: one sentence on why you built it.]' The profile records no founder quote or README origin story. Fill this in with your own words before posting.",
-     "The how-it-works paragraph names the stack from APP_PROFILE. No redirect latency or attribution accuracy benchmarks appear in proof_points, so none were added. If you have published numbers, add them with the unit and how they were measured."
+     "The how-it-works paragraph names the stack from APP_PROFILE. No redirect latency or attribution accuracy benchmarks appear in proof_points, so none were added. If you have published numbers, add them here with the unit and how they were measured."
     ],
     "app_name": "Dub",
     "blockers": [],
     "rulebook_version": 4,
     "rulebook_source": "default",
     "repaired": [
-     "body: More than five paragraphs (5, cap 4)"
+     "body: Body over 200 words (222 words, cap 200)"
     ]
    },
    "warnings": [
     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
-    "APP_PROFILE records a 255 HN points badge in the README, which means Dub has been posted on HN before. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier thread before posting. If this qualifies as a major overhaul, link that thread in the body and add one sentence on what changed since.",
+    "APP_PROFILE records a 255 HN points badge in the README, which means Dub has been posted on HN before. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for the earlier thread before posting, and if this qualifies as a major overhaul, link that thread in the body and add one sentence on what changed since.",
     "The URL at {APP_URL} requires a free account signup. The body discloses this, but HN readers may flag the post if the URL resolves to a login wall rather than a working demo. Verify what a first-time visitor sees before submitting.",
     "The body contains the placeholder '[Builder: one sentence on why you built it.]' The profile records no founder quote or README origin story. Fill this in with your own words before posting.",
-    "The how-it-works paragraph names the stack from APP_PROFILE. No redirect latency or attribution accuracy benchmarks appear in proof_points, so none were added. If you have published numbers, add them with the unit and how they were measured."
+    "The how-it-works paragraph names the stack from APP_PROFILE. No redirect latency or attribution accuracy benchmarks appear in proof_points, so none were added. If you have published numbers, add them here with the unit and how they were measured."
    ],
    "blockers": [],
    "repaired": [
-    "body: More than five paragraphs (5, cap 4)"
+    "body: Body over 200 words (222 words, cap 200)"
    ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 1256,
-   "words": 208,
+   "chars": 1295,
+   "words": 216,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
@@ -1030,11 +1041,11 @@
    "has_app_url": true
   },
   "newsletter_pitch": {
-   "version": 3,
+   "version": 2,
    "status": "draft",
    "data": {
-    "subject": "For growth marketers: link attribution that tracks conversions",
-    "pitch": "Hi [Editor first name],\n\nGrowth and performance marketing managers who run affiliate or referral programs reach a point where their link tool reports clicks but cannot connect those clicks to signups, trials, or revenue. That gap becomes concrete the moment a partner program goes live: the team cannot tell which links drove paying customers, and adding a separate affiliate platform means two dashboards with no shared attribution data.\n\nDub is an open-source link attribution platform for short links, conversion tracking, and affiliate programs, built for marketing teams.\n\nIt processes 100M+ clicks monthly, on record in the project README.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "subject": "For growth marketing readers: link attribution that tracks conversions",
+    "pitch": "Hi [Editor first name],\n\nGrowth and performance marketing managers running affiliate or referral programs reach a point where their link tool reports clicks but cannot connect those clicks to signups, trials, or revenue. That gap becomes real the moment a partner program goes live: the team cannot tell which links drove paying customers, and adding a separate affiliate platform means two dashboards with no shared attribution data.\n\nDub is an open-source link attribution platform for short links, conversion tracking, and affiliate programs, built for marketing teams.\n\nIt processes 100M+ clicks monthly, according to the project README.\n\n{APP_URL}\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
     "warnings": [
      "Recipient name not provided in TARGET. The greeting uses the placeholder '[Editor first name]'. Replace with the actual editor or author name before sending.",
      "Builder first name not found in APP_PROFILE or BRAND_DNA. Replace '[Builder first name]' in the sign-off with the actual sender name before sending.",
@@ -1044,7 +1055,10 @@
     "app_name": "Dub",
     "blockers": [],
     "rulebook_version": 4,
-    "rulebook_source": "default"
+    "rulebook_source": "default",
+    "repaired": [
+     "pitch: Two proof points (a second traction figure or a customer list) where rule 3 allows exactly one (\"100M+ clicks and 2M+ links\")"
+    ]
    },
    "warnings": [
     "Recipient name not provided in TARGET. The greeting uses the placeholder '[Editor first name]'. Replace with the actual editor or author name before sending.",
@@ -1053,11 +1067,13 @@
     "TARGET rules not verified. Confirm whether this newsletter accepts unsolicited pitches or requires a submission form. If a form is required, this pitch text can be pasted directly into the form body."
    ],
    "blockers": [],
-   "repaired": [],
+   "repaired": [
+    "pitch: Two proof points (a second traction figure or a customer list) where rule 3 allows exactly one (\"100M+ clicks and 2M+ links\")"
+   ],
    "rulebook_version": 4,
    "rulebook_source": "default",
-   "chars": 816,
-   "words": 122,
+   "chars": 953,
+   "words": 144,
    "dashes": 0,
    "banned_words": [],
    "exclamations": 0,
