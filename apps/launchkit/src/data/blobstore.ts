@@ -25,6 +25,9 @@ const APP_STATE_KEY = 'launchkit';
 let tables: Tables = Object.fromEntries(TABLES.map((t) => [t, []])) as Tables;
 let persist: ((snapshot: Record<string, unknown>) => void) | null = null;
 let actor = 'user';
+// The signed-in user's stable id. Empty in the API-key preview, which has no signed-in
+// user; ownership filtering is inert there by design rather than hiding every launch.
+let ownerId = '';
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
 /** Wire the store to the shell's appState: hydrate + register the persister. */
@@ -32,8 +35,10 @@ export function initBlobStore(
   appState: Record<string, unknown>,
   updateAppState: (updater: (prev: Record<string, unknown>) => Record<string, unknown>) => void,
   actorDisplay: string,
+  userId = '',
 ) {
   actor = actorDisplay || 'user';
+  ownerId = userId || '';
   const saved = (appState?.[APP_STATE_KEY] as Tables | undefined) ?? null;
   tables = Object.fromEntries(
     TABLES.map((t) => [t, Array.isArray(saved?.[t]) ? saved![t].map((r) => ({ ...r })) : []]),
@@ -59,6 +64,19 @@ export function isReady(): boolean {
 
 export function currentActor(): string {
   return actor;
+}
+
+/** The signed-in user's stable id, or '' when nobody is signed in (the preview). */
+export function currentOwnerId(): string {
+  return ownerId;
+}
+
+/** Whether a row belongs to the signed-in user. A row written before ownership
+ *  existed has no owner_id and stays visible; only new rows are private. */
+export function ownedByMe(row: { owner_id?: unknown }): boolean {
+  const owner = typeof row.owner_id === 'string' ? row.owner_id : '';
+  if (!owner || !ownerId) return true;
+  return owner === ownerId;
 }
 
 function markDirty() {

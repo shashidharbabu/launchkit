@@ -76,6 +76,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const identity = useAuthUser();
   const workspace = useWorkspace();
   const actor = identity?.displayName ?? identity?.email ?? 'user';
+  const ownerId = identity?.userId ?? '';
   const [org, setOrg] = React.useState<Ctx['org']>(null);
   const [me, setMe] = React.useState<Ctx['me']>(null);
   const [teams, setTeams] = React.useState<Team[]>([]);
@@ -95,7 +96,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
 
   // Personal backing store: the shell's per-user appState, exactly as before.
   const mountPersonal = React.useCallback(() => {
-    initBlobStore(workspace.appState ?? {}, workspace.updateAppState, actor);
+    initBlobStore(workspace.appState ?? {}, workspace.updateAppState, actor, ownerId);
     seedVenuesIfEmpty();
     seedRulebooksIfEmpty();
     // eslint-disable-next-line react-hooks/exhaustive-deps

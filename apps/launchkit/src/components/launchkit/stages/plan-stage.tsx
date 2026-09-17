@@ -24,7 +24,7 @@ import {
 import { api } from '../../../data/api';
 import { useNav } from '../../../nav';
 import { actionError } from '../../../lib/errors';
-import { getTier, subscribe, type Tier } from '../../../lib/subscription';
+import { billingIsLive, getTier, requestUpgrade, subscribeLocally, type Tier } from '../../../lib/subscription';
 import type { Plan as FullPlan } from '../../../domain/plan';
 
 const chartConfig = {
@@ -446,8 +446,10 @@ export function PlanStage() {
           )}
           {tier !== 'pro' && (
             <p className="mt-4 text-small text-muted-foreground">
-              Downloading the document is part of Pro. Billing is not wired yet: the button below stands in for
-              checkout.
+              Downloading the document is part of Pro.{' '}
+              {billingIsLive()
+                ? 'Upgrading opens checkout in your RocketRide account; this app never handles your card.'
+                : 'No shell connection, so the button below stands in for checkout and charges nothing.'}
             </p>
           )}
           <DialogFooter>
@@ -456,14 +458,20 @@ export function PlanStage() {
               variant="primary"
               onClick={() => {
                 if (tier !== 'pro') {
-                  subscribe();
+                  // the shell owns checkout: hand off and let its status come back to us
+                  if (billingIsLive()) {
+                    requestUpgrade();
+                    setAskDocument(false);
+                    return;
+                  }
+                  subscribeLocally();
                   setTier('pro');
                 }
                 setAskDocument(false);
                 void buildDocument();
               }}
             >
-              {tier === 'pro' ? 'Build the document anyway' : 'Subscribe and download'}
+              {tier === 'pro' ? 'Build the document anyway' : billingIsLive() ? 'Upgrade to Pro' : 'Subscribe and download'}
             </Button>
           </DialogFooter>
         </DialogContent>

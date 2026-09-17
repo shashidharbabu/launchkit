@@ -14,7 +14,7 @@ import { api } from '../data/api';
 import { getSetting, setSetting } from '../data/settings';
 import { DEFAULT_STUDIO_URL, STUDIO_URL_KEY, forgeHealth, type ForgeHealth } from '../data/studio';
 import { SHOW_RAW_KEY } from '../components/launchkit/stage-common';
-import { TIER_LABEL, getTier, subscribe, unsubscribe, type Tier } from '../lib/subscription';
+import { TIER_LABEL, billingIsLive, getShellStatus, getTier, requestUpgrade, subscribeLocally, unsubscribeLocally, type Tier } from '../lib/subscription';
 import { useLkTheme, type LkTheme } from '../theme';
 
 const THEMES: Array<{ value: LkTheme; label: string }> = [
@@ -108,11 +108,16 @@ function StudioCard() {
 }
 
 /**
- * The subscription placeholder (lib/subscription.ts): the tier lives in the
- * store until the shell's billing hooks land. Pro unlocks the plan document.
+ * The subscription, as the shell reports it. Pro unlocks the plan document.
+ * Upgrading hands off to the shell's own Stripe checkout; this app never sees a
+ * card. With no shell connected the local stand-in is shown instead, clearly
+ * labelled, so the paid surfaces stay testable in the preview.
  */
 function SubscriptionCard() {
   const [tier, setTier] = React.useState<Tier>(() => getTier());
+  const live = billingIsLive();
+  const status = getShellStatus();
+
   return (
     <Card>
       <CardHeader
@@ -121,22 +126,47 @@ function SubscriptionCard() {
         actions={<Badge tone={tier === 'pro' ? 'go' : 'neutral'}>{TIER_LABEL[tier]}</Badge>}
       />
       <CardBody className="grid gap-3">
-        <Segmented
-          ariaLabel="Subscription tier"
-          value={tier}
-          onChange={(v) => {
-            if (v === 'pro') subscribe();
-            else unsubscribe();
-            setTier(v);
-          }}
-          options={[
-            { value: 'free', label: 'Free' },
-            { value: 'pro', label: 'Pro' },
-          ]}
-        />
-        <p className="text-small text-muted-foreground">
-          Billing is not wired yet: this switch stands in for the subscription until the shell&rsquo;s checkout lands.
-        </p>
+        {live ? (
+          <>
+            <p className="text-small text-muted-foreground">
+              Billing runs through your RocketRide account. Status for this app:{' '}
+              <strong className="font-medium">{status}</strong>.
+            </p>
+            {tier === 'pro' ? (
+              <p className="text-small text-muted-foreground">
+                Manage or cancel this subscription from your account billing settings.
+              </p>
+            ) : (
+              <Button
+                data-testid="upgrade-to-pro"
+                onClick={() => {
+                  if (!requestUpgrade()) return;
+                }}
+              >
+                Upgrade to Pro
+              </Button>
+            )}
+          </>
+        ) : (
+          <>
+            <Segmented
+              ariaLabel="Subscription tier"
+              value={tier}
+              onChange={(v) => {
+                if (v === 'pro') subscribeLocally();
+                else unsubscribeLocally();
+                setTier(v);
+              }}
+              options={[
+                { value: 'free', label: 'Free' },
+                { value: 'pro', label: 'Pro' },
+              ]}
+            />
+            <p className="text-small text-muted-foreground">
+              No shell connection, so this switch stands in for the subscription. Nothing is charged.
+            </p>
+          </>
+        )}
       </CardBody>
     </Card>
   );

@@ -10,13 +10,14 @@
 import React from 'react';
 import type { RocketRideClient } from 'rocketride';
 import type { ShellAppProps } from 'shell';
-import { useAuthUser, useShellConnection, useShellEvent, useWorkspace } from 'shell';
+import { useAuthUser, useShellConnection, useShellEvent, useSubscriptions, useWorkspace } from 'shell';
 import { Toaster } from 'sonner';
 import { PortalContainerProvider } from '@launchkit/design-system/lib/portal';
 import { LK_CSS } from './styles.generated';
 import { LkThemeProvider, useLkTheme } from './theme';
 import { NavProvider, useNav } from './nav';
 import { initBlobStore } from './data/blobstore';
+import { APP_ID, setShellStatus } from './lib/subscription';
 import { ingestShellEvent } from './data/trace';
 import { seedRulebooksIfEmpty, seedVenuesIfEmpty } from './data/seed';
 import { initRunner } from './data/runner';
@@ -95,6 +96,10 @@ const ConnectedApp: React.FC = () => {
   const { client } = useShellConnection();
   const identity = useAuthUser();
   const workspace = useWorkspace();
+  // the shell carries this app's live Stripe status; plan gating reads it and nothing else
+  const { getStatus } = useSubscriptions();
+  const subscriptionStatus = getStatus(APP_ID);
+  React.useEffect(() => { setShellStatus(subscriptionStatus ?? null); }, [subscriptionStatus]);
   // tracing layer 2: the shell re-broadcasts engine events; keep FLOW steps per pipe
   useShellEvent('shell:event', (p) => ingestShellEvent((p as { event?: unknown }).event));
   const [ready, setReady] = React.useState(false);
@@ -116,6 +121,7 @@ const ConnectedApp: React.FC = () => {
       workspace.appState ?? {},
       workspace.updateAppState,
       identity?.displayName ?? identity?.email ?? 'user',
+      identity?.userId ?? '',
     );
     seedVenuesIfEmpty();
     seedRulebooksIfEmpty();

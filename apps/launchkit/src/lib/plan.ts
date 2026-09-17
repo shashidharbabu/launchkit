@@ -7,8 +7,15 @@
  */
 export type Plan = 'free' | 'pro';
 
-/** null = derive from the shell's subscription status; 'pro' = bypass billing. */
-export const PLAN_OVERRIDE: Plan | null = 'pro';
+/**
+ * null = derive from the shell's subscription status; 'pro' = bypass billing.
+ *
+ * Switched to null on 2026-09-17: the shell reports a real Stripe status now, so
+ * bypassing it would mean the paid surfaces were never actually gated. A preview
+ * with no shell keeps working through the local stand-in in lib/subscription.ts,
+ * not through this override.
+ */
+export const PLAN_OVERRIDE: Plan | null = null;
 
 export function effectivePlan(subscriptionStatus?: string | null): Plan {
   if (PLAN_OVERRIDE) return PLAN_OVERRIDE;

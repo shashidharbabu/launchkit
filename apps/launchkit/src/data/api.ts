@@ -31,7 +31,7 @@ import {
 } from '../domain/studio';
 import {
   byNewest, byNumber, count, currentActor, flush, insert, remove,
-  select, selectOne, uid, update, type Row,
+  select, selectOne, uid, update, currentOwnerId, ownedByMe, type Row,
 } from './blobstore';
 import { getCurrentRun, setCurrentRun } from './trace';
 import { rulebookMeta, rulesBlock } from './rules';
@@ -254,7 +254,8 @@ async function startUnderstand(p: Dict, feedback = ''): Promise<string> {
 
 export const api = {
   listProjects: async () => {
-    const rows = byNewest(select('projects'));
+    // a team workspace shares one snapshot: without this every member sees every launch
+    const rows = byNewest(select('projects')).filter((r) => ownedByMe(r as { owner_id?: unknown }));
     return rows.map((r) => {
       const latest = byVersionDesc(select('profiles', { project_id: r.id }))[0];
       return {
@@ -274,6 +275,7 @@ export const api = {
     const id = uid();
     insert('projects', {
       id, name, repo_url: repo, site_url: site, app_url: appUrl, created_by: currentActor(),
+      owner_id: currentOwnerId(),
       workspace_id: activeWorkspaceId(),
     });
     const p = { id, name, repo_url: repo, site_url: site };
@@ -287,6 +289,8 @@ export const api = {
 
   getProject: async (id: string) => {
     const p = await projectRow(id);
+    // a filtered dashboard is cosmetic if a pasted id still opens someone else's launch
+    if (!ownedByMe(p as unknown as { owner_id?: unknown })) throw new Error('That launch belongs to someone else.');
     const prof = await latestProfile(id);
     const counts: Dict = {
       assets: count('assets', { project_id: id }),
