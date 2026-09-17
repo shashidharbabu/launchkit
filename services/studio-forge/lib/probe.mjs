@@ -85,11 +85,14 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
       // a header also carries things that are not the mark: status pills, award badges, sponsor logos, avatars, flags
       const notAMark = /status|operational|uptime|badge|shield|sponsor|avatar|flag|award|partner|trusted|backed|g2crowd|producthunt|github-?star|stargazer|\bstars?\b|\bsoc ?2\b|\bhipaa\b|\bgdpr\b|\biso\b/i;
       const headerImgs = [...document.querySelectorAll('header img, nav img, [class*="logo"] img, img[class*="logo"], img[alt*="logo" i], a[href="/"] img')]
-        .slice(0, 8).map((img) => ({ kind: 'site-logo', url: abs(img.currentSrc || img.src), alt: img.alt || '', w: img.naturalWidth, h: img.naturalHeight, href: img.closest('a')?.getAttribute('href') || '', header: Boolean(img.closest('header, nav, a[href="/"]')) }))
+        // the footer's brand link is an a[href="/"] too, so it used to pass as the site's header mark
+        // and outrank it: formbricks picked footerlogo.svg over the logo in its own header
+        .slice(0, 8).map((img) => ({ kind: 'site-logo', url: abs(img.currentSrc || img.src), alt: img.alt || '', w: img.naturalWidth, h: img.naturalHeight, href: img.closest('a')?.getAttribute('href') || '', header: Boolean(img.closest('header, nav')) || (Boolean(img.closest('a[href="/"]')) && !img.closest('footer, [class*="footer"]')) }))
         // a customer or partner logo wall matches [class*="logo"] too: only a mark inside the header, the nav or the home link is the site's own
         .filter((i) => i.url && !/data:image\/gif/.test(i.url) && !notAMark.test(`${i.alt} ${i.url} ${i.href}`) && (i.header || !/compan|customer|client|partner|testimonial|brands?\/|logos?\//i.test(i.url)))
         .sort((x, y) => Number(y.header) - Number(x.header)).slice(0, 6);
-      const headerSvg = [...document.querySelectorAll('header svg, nav svg, a[href="/"] svg, [class*="logo"] svg')].slice(0, 5)
+      const headerSvg = [...document.querySelectorAll('header svg, nav svg, a[href="/"] svg, [class*="logo"] svg')]
+        .filter((s) => !s.closest('footer, [class*="footer"]')).slice(0, 5)
         .map((s) => { const r = s.getBoundingClientRect(); return { kind: 'site-logo-svg', svg: s.outerHTML, w: Math.round(r.width), h: Math.round(r.height), text: (s.closest('a')?.textContent || s.getAttribute('aria-label') || '') + ' ' + (s.closest('a')?.getAttribute('href') || '') }; })
         .filter((s) => s.w >= 24 && s.svg.length < 60_000 && !notAMark.test(s.text) && !notAMark.test(s.svg.slice(0, 400))).slice(0, 3);
 
@@ -181,11 +184,32 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
       if (varHit) setObs('primary', varHit[1], `css variable ${varHit[0]}`);
     }
     if (!observed.primary && logoColors[0]) setObs('primary', logoColors[0], `the ${picked.kind.replace(/-/g, ' ')}'s own colour`);
-    if (!observed.primary && shot.saturated[0]) setObs('primary', shot.saturated[0].hex, 'screenshot, strongest saturated colour');
+    // A colour that covers almost none of the page is not the brand: on a monochrome site the one
+    // saturated thing in the screenshot is usually a status pill, a badge or a sponsor logo, and
+    // taking it made cal.com's primary the green of "all systems operational".
+    const BRAND_MIN_AREA = 0.005;
+    const bigEnough = (c) => (c.area ?? c.share ?? 0) >= BRAND_MIN_AREA;
+    if (!observed.primary) { const s = shot.saturated.find(bigEnough); if (s) setObs('primary', s.hex, 'screenshot, strongest saturated colour'); }
+    // A brand can simply have no colour in it (black buttons on a white page). Its primary is then
+    // the button, not the only coloured pixel on the page. Skip see-through overlays: a
+    // half-transparent black scrim is not a brand colour.
+    if (!observed.primary) {
+      const opaque = (bg) => { const m = String(bg).match(/^rgba\([^)]*[,/]\s*([\d.]+%?)\s*\)$/); if (!m) return true; const a = m[1].endsWith('%') ? parseFloat(m[1]) / 100 : parseFloat(m[1]); return a >= 0.9; };
+      const solid = dom.buttons.find((b) => { const c = parseColor(b.bg); return c && opaque(b.bg) && Math.abs(luminance(c) - luminance(surfaceRgb)) > 0.25; });
+      if (solid) setObs('primary', solid.bg, 'most common button background (the brand carries no colour)');
+    }
+    // Last resort. Every chromatic source has failed and the buttons were all see-through, so the
+    // page genuinely carries no brand colour; its ink is the closest true answer. documenso lands
+    // here: before the area floor it was handed a green that covered none of the page.
+    if (!observed.primary && dom.body_fg && parseColor(dom.body_fg)) {
+      setObs('primary', dom.body_fg, 'body text colour (no brand colour anywhere on the page)');
+    }
     const notPrimary = (hex) => !observed.primary || hex !== observed.primary.value;
-    for (const l of dom.links) { const c = parseColor(l.color); if (c && distinct(l.color) && notPrimary(toHex(c))) { setObs('accent', l.color, 'most common link colour'); break; } }
+    // rgb(0,0,238) is the user agent's default for an unstyled link, not a decision anyone made
+    const UA_LINK_BLUE = '#0000ee';
+    for (const l of dom.links) { const c = parseColor(l.color); if (c && distinct(l.color) && toHex(c) !== UA_LINK_BLUE && notPrimary(toHex(c))) { setObs('accent', l.color, 'most common link colour'); break; } }
     if (!observed.accent) { const second = logoColors.find(notPrimary); if (second) setObs('accent', second, `the ${picked.kind.replace(/-/g, ' ')}'s second colour`); }
-    if (!observed.accent) { const second = shot.saturated.map((c) => c.hex).find(notPrimary); if (second) setObs('accent', second, 'screenshot, second saturated colour'); }
+    if (!observed.accent) { const second = shot.saturated.filter(bigEnough).map((c) => c.hex).find(notPrimary); if (second) setObs('accent', second, 'screenshot, second saturated colour'); }
     const palette = buildPalette(observed);
 
     const clean = (f) => f.split(',')[0].replace(/["']/g, '').trim();

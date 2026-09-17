@@ -195,7 +195,9 @@ export function quantize(pixels, count) {
     .filter((c) => { const [, s, l] = rgbToHsl(c.rgb); return s >= 0.45 && l >= 0.22 && l <= 0.72; })
     .map((c) => ({ ...c, score: rgbToHsl(c.rgb)[1] * Math.sqrt(c.share) }))
     .sort((a, b) => b.score - a.score)
-    .slice(0, 6).map((c) => ({ hex: toHex(c.rgb), share: round(c.share) }));
+    // `area` keeps the unrounded share: the caller needs it to tell a brand colour from a status
+    // pill, and `share` rounds anything under half a percent to a flat 0.
+    .slice(0, 6).map((c) => ({ hex: toHex(c.rgb), share: round(c.share), area: c.share }));
   return { dominant, saturated };
 }
 
