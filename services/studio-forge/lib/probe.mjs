@@ -16,12 +16,22 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, userAgent: UA, deviceScaleFactor: 1 });
     const page = await ctx.newPage();
     onStep?.('opening the site');
+    // networkidle first, then load, then the DOM alone: a marketing site that keeps a
+    // socket or an analytics beacon open never goes idle, and a heavy one (cal.com,
+    // 2026-09-18) never reaches load inside 45 s either. The copy and the screenshot
+    // only need the DOM; images that are still loading are given the wait below.
     let nav = 'networkidle';
     try {
       await page.goto(siteUrl, { waitUntil: 'networkidle', timeout: 45_000 });
     } catch {
-      nav = 'load';
-      await page.goto(siteUrl, { waitUntil: 'load', timeout: 45_000 });
+      try {
+        nav = 'load';
+        await page.goto(siteUrl, { waitUntil: 'load', timeout: 45_000 });
+      } catch {
+        nav = 'domcontentloaded';
+        await page.goto(siteUrl, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+        await page.waitForTimeout(5000);
+      }
     }
     await page.waitForTimeout(800);
     // free-tier hosts serve a "waking up" page first; wait for the real app
