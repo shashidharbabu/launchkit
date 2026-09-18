@@ -18,6 +18,9 @@ export const FIXTURE: Array<{ text: string; want: Intent; from: string }> = [
   { text: 'I Built an Encrypted Second Brain, private AI over personal notes', want: 'builder', from: 'khoj #3' },
   { text: 'Just wrapped up Phase 1 of AetherOS, a local-first, private AI operating layer', want: 'builder', from: 'khoj #4' },
   { text: 'How I Turned My Obsidian Vault into a Self-Hosted AI-Powered Knowledge Base', want: 'builder', from: 'khoj #6' },
+  // ---- the two that slipped past the first rule (khoj, after the rule, 2026-09-18)
+  { text: 'Spent the last few evenings building myself a memory for LLMs that runs entirely locally', want: 'builder', from: 'khoj post-rule #1' },
+  { text: 'AetherOS, a local-first, private AI second brain; asking for local RAG stack advice', want: 'builder', from: 'khoj post-rule #2' },
   // ---- builders from the Lemmy probe
   { text: 'Show HN: Someday, Open-Source Calendly Alternative for Gmail / Google Calendar', want: 'builder', from: 'lemmy hackernews' },
   { text: 'Plausible 3.0.0: Freie und schlanke Google-Analytics-Alternative', want: 'builder', from: 'lemmy heiseOnline' },

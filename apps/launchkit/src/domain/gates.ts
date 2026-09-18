@@ -59,6 +59,10 @@ const HARD_BUILDER = [
   // "Name: descriptor", the announce shape; the name must be capitalised, the descriptor may be either case
   /^[A-Z][\w.]+(?: [A-Z][\w.]+)?(?: v?\d+(\.\d+)+)?:\s+([Oo]pen[- ]source|[Aa] |[Aa]n |[Tt]he |[Ss]elf[- ]?host(ed|able)|[Ff]ree|[Ff]ast|[Oo]ffline|[Ff]reie)/,
   /\bjust (wrapped up|finished|shipped|launched|released|published)\b/i, /^\s*how i (built|made|turned|created)\b/i,
+  // "Name, a local-first ..." is the announce shape with a comma; a builder asking peers for stack advice is still a builder
+  /^[A-Z][\w.]+(?: [A-Z][\w.]+)?, an? (local[- ]first|self[- ]?hosted|private|open[- ]source|free|fast|lightweight|minimal)\b/,
+  // present participle on a build: "spent the evenings building myself a memory for LLMs"
+  /\b(building|making|writing|creating|hacking on|working on) (myself|my own|our own) (an? )?\w+/i,
 ];
 // the author states a need or is visibly living the problem
 const BUYER = [
