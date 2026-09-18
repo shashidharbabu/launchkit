@@ -29,15 +29,14 @@ from that run (`docs/demo/cal-com/summary.json`).
    them, and they stay warm for about an hour. If the demo is more than an hour
    after the warm-up, run Stage 1 once on a throwaway launch before you start.
 
-4. Load the finished Cal.com launch into your browser:
-
-       http://localhost:3400/?seed=cal-com
-
-   The preview reads `apps/launchkit/public/dev/flow-appstate-cal-com.json`
-   into the browser's store before the app mounts, then drops the parameter.
-   Do this once, in the browser and profile you will demo from; the store is
-   that browser's localStorage. Any other saved launch works the same way
-   (`?seed=dub`, `?seed=hoppscotch`) once its file is in `public/dev/`.
+4. Open http://localhost:3400 in the browser you will demo from. An empty
+   store loads the finished Cal.com launch on its own (the preview reads
+   `apps/launchkit/public/dev/flow-appstate-cal-com.json` before the app
+   mounts), so the Launches list and Run history are full on the first open.
+   Check both before the audience arrives. `?seed=cal-com` reloads that
+   launch over whatever is in the store, `?seed=blank` empties it for a
+   start-from-nothing run, and any other saved launch works the same way
+   (`?seed=dub`) once its file is in `public/dev/`.
 
 ## The demo (25 to 35 minutes live, or 8 with the safety net)
 
