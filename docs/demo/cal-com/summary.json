@@ -1,0 +1,121 @@
+{
+  "name": "Cal.com",
+  "site": "https://cal.com",
+  "repo": "https://github.com/calcom/cal.com",
+  "started": "2026-09-18T16:47:42.156Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 88,
+      "understandSecs": 75,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 154,
+      "dnaSecs": 76,
+      "anglesSecs": 73,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 256,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "6",
+        "6"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 575,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 55,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 145,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 127,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 70,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 121,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 43,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 6,
+      "blocked": [],
+      "counts": "",
+      "warnings": 6,
+      "repaired": 2
+    },
+    "assets": {
+      "ok": false,
+      "secs": 939,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Make the cards$/ }).first()\n    - locator resolved to <button disabled type=\"button\" class=\"relative inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-now"
+    },
+    "targets": {
+      "ok": false,
+      "secs": 32,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Rank venues/ }).first()\n    - locator resolved to <button disabled type=\"button\" class=\"relative inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-nowrap "
+    },
+    "signals": {
+      "ok": false,
+      "secs": 32,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Search for demand/ }).first()\n    - locator resolved to <button disabled type=\"button\" class=\"relative inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-n"
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Show HN: We built open scheduling infrastructure",
+      "pricing": "Freemium Per-Seat (Current), free plus paid tiers: Free $0/mo, Teams $12/mo, Org"
+    }
+  },
+  "errors": [
+    "assets: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Make the cards$/ }).first()\n    - locator resolved to <button disabled type=\"butto",
+    "targets: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Rank venues/ }).first()\n    - locator resolved to <button disabled type=\"button\" c",
+    "signals: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Search for demand/ }).first()\n    - locator resolved to <button disabled type=\"but"
+  ],
+  "appstate_bytes": 180973,
+  "finished": "2026-09-18T17:22:33.359Z",
+  "page_errors": []
+}
