@@ -98,6 +98,34 @@ export function sanitizeAuthored<T>(value: T): { data: T; changed: number } {
 }
 
 /**
+ * The app profile is Launch Kit's own paraphrase of a product, and it feeds every
+ * later draft, so it carries the two brand rules that never bend: no em dash and
+ * never the banned launch verb. PostHog's profile arrived as "diagnoses issues and
+ * ships fixes" on a cold run. Quoted fields (sources read, observed copy) are
+ * stepped over; the slop lexicon is deliberately not applied, because a profile
+ * is a record of facts and a swapped adjective can change one.
+ */
+export function sanitizeProfile<T>(value: T): { data: T; dashes: number; verbs: number } {
+  let dashes = 0;
+  let verbs = 0;
+  const walk = (v: unknown): unknown => {
+    if (typeof v === 'string') {
+      const d = cleanString(v); dashes += d.n;
+      const w = cleanVerbs(d.s); verbs += w.n;
+      return w.s;
+    }
+    if (Array.isArray(v)) return v.map(walk);
+    if (v && typeof v === 'object') {
+      return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(
+        ([k, x]) => [k, QUOTED_FIELDS.has(k) ? x : walk(x)],
+      ));
+    }
+    return v;
+  };
+  return { data: walk(value) as T, dashes, verbs };
+}
+
+/**
  * For launch drafts only (never for quoted third-party text such as signals,
  * or for an observed profile): the banned verb becomes the release verb in
  * every field except warnings, which quote the draft's faults as written.

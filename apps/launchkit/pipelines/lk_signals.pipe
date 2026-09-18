@@ -112,10 +112,10 @@
       "config": {
         "type": "tool_exa_search",
         "apikey": "${ROCKETRIDE_EXA_KEY}",
-        "numResults": 20,
+        "numResults": 10,
         "useAutoprompt": true,
         "searchType": "auto",
-        "includeText": false
+        "includeText": true
       },
       "control": [
         {
@@ -150,13 +150,7 @@
         "maxConcurrentRequests": 6,
         "urlWhitelist": [
           {
-            "whitelistPattern": "^https://hn\\.algolia\\.com/"
-          },
-          {
-            "whitelistPattern": "^https://api\\.github\\.com/"
-          },
-          {
-            "whitelistPattern": "^https://api\\.stackexchange\\.com/"
+            "whitelistPattern": "^https://(hn\\.algolia\\.com|api\\.github\\.com|api\\.stackexchange\\.com)/"
           }
         ]
       },

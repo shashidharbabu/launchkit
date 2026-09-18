@@ -36,7 +36,7 @@ import {
 import { getCurrentRun, setCurrentRun } from './trace';
 import { rulebookMeta, rulesBlock } from './rules';
 import { punctuationFixed } from './runner';
-import { sanitizeAuthored, sanitizeVerbs } from '../domain/sanitize';
+import { sanitizeAuthored, sanitizeProfile, sanitizeVerbs } from '../domain/sanitize';
 import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
@@ -249,9 +249,14 @@ async function startUnderstand(p: Dict, feedback = ''): Promise<string> {
       buildUnderstandQuestion(String(p.repo_url ?? ''), String(p.site_url ?? ''), feedback)),
     async (result) => {
       const row = newProfileRowOnUnderstand(await profileCount(pid), result, 'pipeline');
+      // the profile is our own paraphrase and the seed of every later draft: the dash rule and
+      // the banned verb are applied here, the one path that used to skip both
+      const { data, dashes, verbs } = sanitizeProfile(row.data as Record<string, unknown>);
+      if (dashes) data.punctuation_fixed = dashes;
+      if (verbs) data.wording_fixed = verbs;
       insert('profiles', {
         id: uid(), project_id: pid, version: row.version,
-        data: row.data, status: row.status, job_id: row.job_id,
+        data, status: row.status, job_id: row.job_id,
       });
     });
 }
