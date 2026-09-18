@@ -119,7 +119,7 @@ function Arrow() {
 export function ProcedureFlow() {
   return (
     <>
-      {/* the whole product in three moves — typographic, no cards */}
+      {/* the whole product in three moves, typographic, no cards */}
       <Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-[1fr_auto_1.15fr_auto_1fr] sm:gap-8">
           <Move

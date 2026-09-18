@@ -18,6 +18,6 @@ await q(`INSERT INTO lk_profiles (id, project_id, version, data, status, job_id,
 const after = await q(`SELECT version, data FROM lk_profiles ORDER BY version DESC LIMIT 1`);
 const d = after.rows[0].data;
 const obj = typeof d === 'string' ? JSON.parse(d) : d;
-console.log(`v${after.rows[0].version} READBACK OK — keys:`, Object.keys(obj).join(',').slice(0, 160));
+console.log(`v${after.rows[0].version} READBACK OK, keys:`, Object.keys(obj).join(',').slice(0, 160));
 console.log('one_liner:', JSON.stringify(obj.one_liner ?? '(absent)').slice(0, 140));
 process.exit(0);

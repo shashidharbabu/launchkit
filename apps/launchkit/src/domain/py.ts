@@ -31,12 +31,12 @@ export function pyGet(obj: Record<string, unknown>, key: string, def: unknown): 
   return def;
 }
 
-/** s[:n] — Python slices by code point, not UTF-16 unit. */
+/** s[:n], Python slices by code point, not UTF-16 unit. */
 export function pySlice(s: string, n: number): string {
   return Array.from(s).slice(0, n).join("");
 }
 
-/** len(s) — code points, matching Python's len() on str. */
+/** len(s), code points, matching Python's len() on str. */
 export function pyLen(s: string): number {
   return Array.from(s).length;
 }

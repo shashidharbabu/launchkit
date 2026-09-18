@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Vendored motion-primitives MorphingDialog (compact copy — we own the
+ * Vendored motion-primitives MorphingDialog (compact copy, we own the
  * source). Trigger and Content are the two ends of a shared-layout morph;
  * Content must sit inside Container (portal + backdrop).
  */

@@ -21,7 +21,7 @@ console.log('validate:', JSON.stringify(validation).slice(0, 800));
 
 const okToRun = validation?.valid ?? validation?.ok ?? validation?.success;
 if (okToRun === false) {
-  console.log('VALIDATION FAILED — stopping before run');
+  console.log('VALIDATION FAILED, stopping before run');
   process.exit(1);
 }
 

@@ -1,9 +1,9 @@
 /*
- * Launch Kit — design tokens ("Flight Paperwork")
+ * Launch Kit, design tokens ("Flight Paperwork")
  * Tailwind CSS v4 CSS-first config. This file IS the token pipeline:
  * drop into app/globals.css. Values are OKLCH (hex noted in comments).
  * Convention: semantic shadcn-style names; components consume utilities
- * (bg-background, text-muted-foreground) — never raw palette classes.
+ * (bg-background, text-muted-foreground), never raw palette classes.
  */
 
 @import "tailwindcss";
@@ -12,7 +12,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------- */
-/* Day console (light, default) — paper & ink                        */
+/* Day console (light, default), paper & ink                        */
 /* ---------------------------------------------------------------- */
 :root {
   /* surfaces */
@@ -27,7 +27,7 @@
   --border: oklch(0.899 0.011 257);             /* rule    #D9DEE5 */
   --input: oklch(0.899 0.011 257);              /* rule    */
 
-  /* action — ember (launch exhaust). Budget: one primary action per view. */
+  /* action, ember (launch exhaust). Budget: one primary action per view. */
   --primary: oklch(0.565 0.175 36);             /* ember   #C7431D (5.0:1 w/ white) */
   --primary-foreground: oklch(1 0 0);           /* white   */
   --primary-hover: oklch(0.498 0.154 36);       /* ember-deep #A83717 */
@@ -36,12 +36,12 @@
   --accent: oklch(0.942 0.006 255);             /* hover wash (lists, menu items) */
   --accent-foreground: var(--foreground);
 
-  /* blueprint — cobalt: links, focus ring, data references */
+  /* blueprint, cobalt: links, focus ring, data references */
   --link: oklch(0.49 0.216 264);                /* cobalt  #1C4FD8 (6.6:1 on paper) */
   --link-hover: oklch(0.407 0.161 263);         /* cobalt-deep #16409F */
   --ring: oklch(0.49 0.216 264);                /* focus = cobalt, distinct from ember actions */
 
-  /* gate / signal status — reserved. Stamps only; never a 4th chart series. */
+  /* gate / signal status, reserved. Stamps only; never a 4th chart series. */
   --go: oklch(0.529 0.118 156);                 /* #1A7F4E */
   --go-foreground: oklch(1 0 0);
   --hold: oklch(0.555 0.146 49);                /* #B45309 */
@@ -52,18 +52,18 @@
   --destructive-foreground: oklch(1 0 0);
   --unverified: oklch(0.501 0.025 259);         /* faint; dashed-border stamp */
 
-  /* charts — "flight line" categorical, fixed order, validated (dataviz.md) */
+  /* charts, "flight line" categorical, fixed order, validated (dataviz.md) */
   --chart-1: oklch(0.565 0.175 36);             /* ember  #C7431D */
   --chart-2: oklch(0.49 0.216 264);             /* cobalt #1C4FD8 */
   --chart-3: oklch(0.533 0.125 129);            /* moss   #557A1F */
   --chart-4: oklch(0.523 0.188 310);            /* plum   #8B3FB8 */
   --chart-5: oklch(0.609 0.111 222);            /* cyan   #0891B2 */
 
-  /* radius — sharp on paper, soft when floating */
+  /* radius, sharp on paper, soft when floating */
   --radius: 0rem;                                /* cards, slips, inputs, stamps, tables */
   --radius-float: 0.25rem;                       /* menus, dialogs, toasts, popovers */
 
-  /* elevation — printed paper casts faint, tight shadows */
+  /* elevation, printed paper casts faint, tight shadows */
   --shadow-float: 0 1px 2px oklch(0.209 0.01 268 / 0.06),
                   0 8px 24px oklch(0.209 0.01 268 / 0.1);
 
@@ -79,10 +79,10 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Night console (dark) — same paperwork, red-shifted for midnight   */
+/* Night console (dark), same paperwork, red-shifted for midnight   */
 /* ---------------------------------------------------------------- */
 .dark {
-  --background: oklch(0.182 0.009 264);         /* #101216 — blue-charcoal, not pure black */
+  --background: oklch(0.182 0.009 264);         /* #101216, blue-charcoal, not pure black */
   --foreground: oklch(0.937 0.006 264);         /* #E8EAEE */
   --card: oklch(0.201 0.012 271);               /* #14161C */
   --card-foreground: var(--foreground);
@@ -115,7 +115,7 @@
   --destructive-foreground: oklch(0.182 0.009 264);
   --unverified: oklch(0.713 0.024 261);
 
-  /* dark charts — own validated steps, NOT an automatic flip (dataviz.md) */
+  /* dark charts, own validated steps, NOT an automatic flip (dataviz.md) */
   --chart-1: oklch(0.615 0.182 37);             /* #DB5124 */
   --chart-2: oklch(0.647 0.165 270);            /* #6885F2 */
   --chart-3: oklch(0.648 0.151 130);            /* #6FA02F */
@@ -193,34 +193,34 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* Static tokens — identical in both modes                           */
+/* Static tokens, identical in both modes                           */
 /* ---------------------------------------------------------------- */
 @theme {
-  /* type — wired by next/font (foundations/typography.md) */
+  /* type, wired by next/font (foundations/typography.md) */
   --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   /* type scale (see typography.md for roles) */
-  --text-display: 30px;      /* 30px — page titles */
+  --text-display: 30px;      /* 30px, page titles */
   --text-display--line-height: 36px;
-  --text-title: 22px;        /* 22px — section/slip titles */
+  --text-title: 22px;        /* 22px, section/slip titles */
   --text-title--line-height: 30px;
-  --text-heading: 18px;         /* 18px — card headings */
+  --text-heading: 18px;         /* 18px, card headings */
   --text-heading--line-height: 28px;
-  --text-body: 16px;        /* 16px — workspace UI default */
+  --text-body: 16px;        /* 16px, workspace UI default */
   --text-body--line-height: 24px;
-  --text-read: 18px;            /* 18px — long-form: asset bodies, thread quotes */
+  --text-read: 18px;            /* 18px, long-form: asset bodies, thread quotes */
   --text-read--line-height: 30px;
-  --text-data: 14px;       /* 14px — mono: refs, counts, timestamps */
+  --text-data: 14px;       /* 14px, mono: refs, counts, timestamps */
   --text-data--line-height: 20px;
-  --text-meta: 12px;       /* 12px — mono uppercase: procedure labels, stamps */
+  --text-meta: 12px;       /* 12px, mono uppercase: procedure labels, stamps */
   --text-meta--line-height: 16px;
 
-  /* motion — see motion.md */
+  /* motion, see motion.md */
   --duration-fast: 120ms;       /* hovers, toggles */
   --duration-base: 180ms;       /* enters, panel swaps, queue exits */
   --duration-slow: 280ms;       /* larger surfaces (dialogs, drawers) */
-  --duration-stamp: 240ms;      /* the gate stamp — reserved */
+  --duration-stamp: 240ms;      /* the gate stamp, reserved */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* enters, moves */
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);       /* exits (shorter + sharper) */
 }
@@ -277,7 +277,7 @@
 
 /* ---------------------------------------------------------------- */
 /* App layer (not part of foundations/tokens.css): clamp sonner      */
-/* toast motion to the tokens — toasts animate at 180–280ms          */
+/* toast motion to the tokens, toasts animate at 180-280ms          */
 /* (motion.md, floating layer). Token values above are unchanged.    */
 /* ---------------------------------------------------------------- */
 [data-sonner-toast] {
@@ -285,7 +285,7 @@
   transition-duration: var(--duration-slow) !important;
 }
 
-/* App layer: landing hero image drift — ambient motion on the marketing
+/* App layer: landing hero image drift, ambient motion on the marketing
    surface only. The reduced-motion kill-switch above disables it. */
 @keyframes hero-drift {
   from { transform: scale(1.03) translateY(0); }

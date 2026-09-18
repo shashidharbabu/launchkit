@@ -1,7 +1,7 @@
-# Launch Kit — full reference for language models
+# Launch Kit, full reference for language models
 
 Launch Kit is go-to-market software for people who publish apps. It takes an app that
-already exists — a repo and a live site — and produces the launch: profile, pricing,
+already exists, a repo and a live site, and produces the launch: profile, pricing,
 store listing, ranked venues, platform-native posts, verified demand signals, a
 sequenced plan with tracked links, and signup attribution afterwards.
 
@@ -21,7 +21,7 @@ A GTM plan for an app answers four questions:
 
 1. Who is it for, and why is it different from the alternatives?
 2. What does it cost, relative to what comparable tools actually charge?
-3. Where does it launch — which specific communities, directories and platforms?
+3. Where does it launch, which specific communities, directories and platforms?
 4. What gets posted in each of those places, in that place's own voice?
 
 Launch Kit produces all four, then closes the loop by attributing signups to venues.
@@ -37,13 +37,13 @@ each claim. If there is no public repo, the analysis runs site-only and is flagg
 degraded rather than presented as complete.
 
 **Gate 1:** the builder edits any field and approves. Until then, every downstream
-stage is blocked — not merely discouraged, blocked.
+stage is blocked, not merely discouraged, blocked.
 
 ### 02 Commercial
 Two jobs, both grounded in scraped evidence:
-- **Pricing** — finds comparable products, reads their actual pricing pages, and
+- **Pricing** finds comparable products, reads their actual pricing pages, and
   recommends a tier ladder against those real numbers.
-- **Listing** — rewrites the app store tagline and description around the approved
+- **Listing** rewrites the app store tagline and description around the approved
   differentiators and proof points.
 
 ### 03 Assets (Gate 2)
@@ -57,8 +57,8 @@ code, not left to the model's discretion.
 them with written feedback.
 
 ### 04 Targets (Gate 3)
-Ranks the venues where this specific app should launch — niche subreddits,
-directories, communities, newsletters — each with a rationale, its posting rules, and
+Ranks the venues where this specific app should launch, niche subreddits,
+directories, communities, newsletters, each with a rationale, its posting rules, and
 its submission link. It draws on a curated venue pool and writes newly discovered
 venues back into it, so the pool improves with use.
 
@@ -70,7 +70,7 @@ web search) for people describing the problem the app solves. Every candidate th
 then fetched and judged for real relevance in a second pass; stale threads (for example
 Hacker News threads too old to reply to) are rejected in code. What survives is a reply
 queue with a drafted, genuinely helpful reply for each thread. When nothing survives,
-the queue is empty and says so — no fabricated demand.
+the queue is empty and says so, no fabricated demand.
 
 ### 06 Plan
 The approved assets across the selected venues, in a recommended order, each with its

@@ -21,7 +21,7 @@ export default defineConfig(() => ({
 			filename: 'remoteEntry.js',
 			exposes: { './AppDescriptor': './src/AppDescriptor.ts' },
 			dts: false,
-			// runtime: false — the host (the shell) provides the MF runtime;
+			// runtime: false, the host (the shell) provides the MF runtime;
 			// remotes don't embed their own copy, keeping remoteEntry.js
 			// stable across app-code-only rebuilds.
 			runtime: false,
@@ -35,10 +35,10 @@ export default defineConfig(() => ({
 				'react-dom': { singleton: true, eager: true, requiredVersion: '^18.2.0' },
 				// Platform modules are CONSUMED from the shell's share scope at
 				// runtime, never bundled (import: false): the app repo needs no
-				// platform checkout to build — editor types come from the
+				// platform checkout to build, editor types come from the
 				// installed shell package (the workspace's vendored shell.tgz).
 				'shell': { singleton: true, requiredVersion: false, import: false },
-				// The SDK surface — runtime values (protocol classes, enums,
+				// The SDK surface, runtime values (protocol classes, enums,
 				// constants) resolve to the host's singleton so class identity
 				// holds across the container boundary.
 				'rocketride': { singleton: true, requiredVersion: false, import: false },
@@ -51,7 +51,7 @@ export default defineConfig(() => ({
 		}),
 	],
 	// Treat .pipe files as JSON so pipeline definitions can be imported and
-	// passed to client.use({ pipeline }) — the browser has no filesystem, so
+	// passed to client.use({ pipeline }), the browser has no filesystem, so
 	// filepath loading is Node-only.
 	// `as const` keeps the rule's `type` a literal for the config typecheck.
 	tools: {
@@ -61,7 +61,7 @@ export default defineConfig(() => ({
 			},
 		},
 	},
-	// CORS: explicitly allow any origin — the serving host isn't fixed, so no
+	// CORS: explicitly allow any origin, the serving host isn't fixed, so no
 	// allowlist is possible; declaring it also stops the MF plugin injecting
 	// its own wildcard defaults (and warning about it).
 	server: { port: 3991, cors: { origin: '*' } },
@@ -73,7 +73,7 @@ export default defineConfig(() => ({
 	// lazyCompilation stays off: compile-on-request made every served bundle
 	// one hash behind, so the dev client always saw itself as stale.
 	// client: the bundle runs INSIDE the preview shell's page (a different
-	// origin) — without an explicit host the client derives its WebSocket URL
+	// origin), without an explicit host the client derives its WebSocket URL
 	// from that page's location and never reaches this dev server. '<port>'
 	// is rsbuild's runtime placeholder for the ACTUAL port, so dynamic port
 	// assignment keeps working.

@@ -19,7 +19,7 @@ const DOT: Record<StageDot, string> = {
 };
 
 /**
- * The seven-stage procedure line — the app's only navigation (components.md).
+ * The seven-stage procedure line, the app's only navigation (components.md).
  * Each tab is a route; locked stages stay visible with a lock + tooltip.
  */
 export function StageRail() {

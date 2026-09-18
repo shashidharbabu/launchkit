@@ -63,7 +63,7 @@ export function refCode(targetData: TargetData): string {
   return `lk_${pyStr(pyGet(targetData, "kind", "x"))}_${slug}`;
 }
 
-/** main._ref_url — app_url or site_url, '?'/'&' chosen by existing query. */
+/** main._ref_url, app_url or site_url, '?'/'&' chosen by existing query. */
 export function refUrl(project: Pick<PlanProject, "app_url" | "site_url">, ref: string): string {
   const base = pyTruthy(project.app_url) ? project.app_url : project.site_url;
   const sep = base.includes("?") ? "&" : "?";

@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/platform-icons';
 
 /**
- * The platforms Launch Kit writes for, bobbing gently — the one piece of
+ * The platforms Launch Kit writes for, bobbing gently, the one piece of
  * ambient motion on the page. Static under prefers-reduced-motion
  * (motion.md), and the tiles read the same either way.
  */

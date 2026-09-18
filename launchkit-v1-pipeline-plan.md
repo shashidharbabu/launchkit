@@ -1,23 +1,23 @@
-# Launch Kit v1 — Feature → Pipeline Map & Honest Dependency Audit
+# Launch Kit v1, Feature → Pipeline Map & Honest Dependency Audit
 
 All node facts verified against `.rocketride/services-catalog.json` + `.rocketride/schema/*.json` (connected server, 140 components) on Aug 5, 2026.
 
 ---
 
-## Part A — The honest headline
+## Part A, The honest headline
 
 **The AI work is ~100% RocketRide. The app is not.**
 
-Roughly: **35% of Launch Kit is pipelines, 65% is a conventional web app.** That's not a criticism of RocketRide — it's exactly the architecture the README describes ("pipelines do all the intelligence; the backend manages state and approvals"). But it should be said plainly before we estimate anything:
+Roughly: **35% of Launch Kit is pipelines, 65% is a conventional web app.** That's not a criticism of RocketRide, it's exactly the architecture the README describes ("pipelines do all the intelligence; the backend manages state and approvals"). But it should be said plainly before we estimate anything:
 
 - Every *thinking* step maps to a pipeline. No feature in v1 needs an AI capability RocketRide can't reach.
 - Every *remembering, approving, versioning, scheduling, linking, and rendering* step is FastAPI + Postgres + Next.js. Pipelines are stateless invocations; they cannot hold a draft between gates, dedupe against last week's run, or know that the builder already replied to a thread.
 
-**And every pipeline needs at least one paid external API key.** RocketRide nodes are the *plumbing* to GitHub/FireCrawl/Exa — not replacements for them. There is no "reach the web" capability that doesn't bottom out in someone's paid API.
+**And every pipeline needs at least one paid external API key.** RocketRide nodes are the *plumbing* to GitHub/FireCrawl/Exa, not replacements for them. There is no "reach the web" capability that doesn't bottom out in someone's paid API.
 
 ---
 
-## Part B — Feature → Pipeline map
+## Part B, Feature → Pipeline map
 
 | # | Feature (plain) | Pipeline | % pure pipeline | External deps beyond nodes | Backend must do |
 |---|---|---|---|---|---|
@@ -27,19 +27,19 @@ Roughly: **35% of Launch Kit is pipelines, 65% is a conventional web app.** That
 | 4a | **Tells you where to launch** (ranked venues + rules) | `lk_targets.pipe` | **80%** | Exa key, FireCrawl key, Postgres | Seed the ~100-row venue DB (one-time, human-curated); write discovered venues back; Gate 3 selection |
 | 4b | **Writes the posts for each place** | `lk_assets.pipe` | **95%** ⭐ purest | LLM key only | Per-asset versioning, edit/approve, single-asset regen |
 | 5 | **Finds people asking for your app right now** | `lk_signals.pipe` | **65%** ⚠️ lowest | Exa key, **Reddit API (OAuth app)**, HN Algolia (free) | Dedupe vs. already-seen threads, recurrence (no cron node), rate limiting, "already replied" state |
-| — | **Demo video script/storyboard** | `lk_assets.pipe` *(asset type)* | **95%** | LLM key | Nothing extra in v1 |
-| — | **Approval gates, versioning, ref-code links, attribution** | **none — pure backend** | **0%** | Postgres | All of it |
+| none | **Demo video script/storyboard** | `lk_assets.pipe` *(asset type)* | **95%** | LLM key | Nothing extra in v1 |
+| none | **Approval gates, versioning, ref-code links, attribution** | **none, pure backend** | **0%** | Postgres | All of it |
 
 ### Why feature 5 is only 65%
 
 The pipeline finds and drafts brilliantly. But the *product* is a queue that stays useful over time, and that needs:
-- **Deduplication** — a thread found today must not reappear tomorrow. Pipelines are stateless; this is a Postgres `seen_threads` table.
-- **Recurrence** — the value is checking daily. **There is no cron source node** (sources: `chat`, `dropper`, `filesys`, `telegram`, `webhook`). Backend scheduler → `webhook`.
-- **Freshness** — Exa is great for semantic discovery but weaker on "posted in the last 48 hours." Direct Reddit API + HN Algolia via `tool_http_request` give recency. That's an OAuth app registration (free) and a whitelist entry.
+- **Deduplication** a thread found today must not reappear tomorrow. Pipelines are stateless; this is a Postgres `seen_threads` table.
+- **Recurrence** the value is checking daily. **There is no cron source node** (sources: `chat`, `dropper`, `filesys`, `telegram`, `webhook`). Backend scheduler → `webhook`.
+- **Freshness** Exa is great for semantic discovery but weaker on "posted in the last 48 hours." Direct Reddit API + HN Algolia via `tool_http_request` give recency. That's an OAuth app registration (free) and a whitelist entry.
 
 ---
 
-## Part C — Proposed pipelines (5 files)
+## Part C, Proposed pipelines (5 files)
 
 ```
 pipelines/
@@ -50,39 +50,39 @@ pipelines/
 └── lk_signals.pipe       # intent-signal reply queue (recurring)
 ```
 
-**Common shape — all five are the same graph:**
+**Common shape, all five are the same graph:**
 ```
 webhook → question → agent_rocketride → extract_data → response_json
                           │ (control)
               llm · memory_internal · tools…
 ```
-What differs: instructions, tool set, output schema. Good news for build cost — pipeline #2 onward is mostly copy-and-retarget.
+What differs: instructions, tool set, output schema. Good news for build cost, pipeline #2 onward is mostly copy-and-retarget.
 
 **Per-pipeline detail:**
 
 | Pipeline | Tools on the agent | Notes |
 |---|---|---|
-| `lk_understand` | `tool_github`, `tool_firecrawl` | `tool_github` covers files, code search, issues, commits, releases — plenty. Longest-running agent; watch `max_waves`. |
+| `lk_understand` | `tool_github`, `tool_firecrawl` | `tool_github` covers files, code search, issues, commits, releases, plenty. Longest-running agent; watch `max_waves`. |
 | `lk_commercial` | `tool_exa_search`, `tool_firecrawl`, `tool_http_request` | Two branches (pricing / listing) from one source. **Open q: split into two files?** Different latency and different re-run triggers. |
-| `lk_targets` | `db_postgres` (as agent tool — it's `['database','tool']`, NL→query, `invoke: llm`), `tool_exa_search`, `tool_firecrawl` | Confirmed the venue seed DB *is* queryable from inside the pipeline. Two-mode: rank known + discover new. |
+| `lk_targets` | `db_postgres` (as agent tool, it's `['database','tool']`, NL→query, `invoke: llm`), `tool_exa_search`, `tool_firecrawl` | Confirmed the venue seed DB *is* queryable from inside the pipeline. Two-mode: rank known + discover new. |
 | `lk_assets` | `llm` only (+ optional `tool_firecrawl` to read a target's posting rules) | Parameterized by `asset_type` so "regenerate just the Reddit post" is one cheap call rather than a six-branch fan-out. |
-| `lk_signals` | `tool_exa_search`, `tool_http_request` (Reddit API, HN Algolia) | `tool_http_request` needs `urlWhitelist` configured — good, it's a security control, not a limitation. |
+| `lk_signals` | `tool_exa_search`, `tool_http_request` (Reddit API, HN Algolia) | `tool_http_request` needs `urlWhitelist` configured, good, it's a security control, not a limitation. |
 
 ---
 
-## Part D — Complete external dependency list
+## Part D, Complete external dependency list
 
 | Dependency | Needed for | Cost | Auth | Blocking? |
 |---|---|---|---|---|
 | **LLM key** (OpenAI / Anthropic / GMI) | all 5 pipelines | paid, usage | key | have |
 | **FireCrawl API key** | understand, commercial, targets | **paid SaaS** | key | ⚠️ **need to procure** |
 | **Exa API key** | commercial, targets, signals | **paid SaaS** | key | ⚠️ **need to procure** |
-| **GitHub PAT** | understand | free | token | easy — mind rate limits |
+| **GitHub PAT** | understand | free | token | easy, mind rate limits |
 | **Postgres / Supabase** | venue DB + all app state | our infra | conn string | easy |
 | **Reddit API app** | signals (recency) | free | OAuth app registration | needs a real account + app registration |
 | **HN Algolia API** | signals | free, no key | none | easy ✅ |
-| **Mock Store API** | commercial, attribution | we build it | — | small FastAPI service |
-| **Backend scheduler** | signals recurrence | we build it | — | APScheduler/cron → `webhook` |
+| **Mock Store API** | commercial, attribution | we build it | none | small FastAPI service |
+| **Backend scheduler** | signals recurrence | we build it | none | APScheduler/cron → `webhook` |
 | Tavily key | optional Exa alternative | paid | key | optional |
 | GMI video API | v1.5 only | have key | key | not v1 |
 
@@ -90,7 +90,7 @@ What differs: instructions, tool set, output schema. Good news for build cost �
 
 ---
 
-## Part E — What is explicitly NOT a pipeline
+## Part E, What is explicitly NOT a pipeline
 
 Say this out loud so estimates aren't wrong by half:
 
@@ -108,7 +108,7 @@ Say this out loud so estimates aren't wrong by half:
 
 ---
 
-## Part F — Spikes to run before committing
+## Part F, Spikes to run before committing
 
 | Risk | Spike |
 |---|---|
@@ -118,4 +118,4 @@ Say this out loud so estimates aren't wrong by half:
 | Exa recency for intent signals | Compare Exa vs. direct Reddit API on "last 48h" recall. |
 | FireCrawl on JS-heavy app sites | Test against 3 real store apps. |
 
-**Recommendation: build `lk_understand.pipe` first, completely, including the FastAPI job wrapper and one UI view.** It de-risks the structured-output question, the latency/job question, and the FireCrawl/GitHub questions in one vertical slice — and every later pipeline is a variation on it.
+**Recommendation: build `lk_understand.pipe` first, completely, including the FastAPI job wrapper and one UI view.** It de-risks the structured-output question, the latency/job question, and the FireCrawl/GitHub questions in one vertical slice, and every later pipeline is a variation on it.

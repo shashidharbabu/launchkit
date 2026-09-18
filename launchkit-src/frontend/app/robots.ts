@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo';
 
-/** The workspace is private; everything else is open — including to the
+/** The workspace is private; everything else is open, including to the
  *  answer engines, which we want quoting us rather than guessing. */
 const PRIVATE = ['/p/', '/dashboard', '/launches', '/runs', '/settings', '/api/'];
 

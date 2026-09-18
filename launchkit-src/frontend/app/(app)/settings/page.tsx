@@ -138,7 +138,7 @@ export default function SettingsPage() {
             className="mb-2 hidden dark:block"
           />
           <p className="text-body">
-            Launch Kit — GTM-in-a-box for RocketRide App Store publishers.
+            Launch Kit, GTM-in-a-box for RocketRide App Store publishers.
           </p>
           <p className="text-body text-muted-foreground">
             AI drafts everything; you approve everything. Three gates, seven stages, honest

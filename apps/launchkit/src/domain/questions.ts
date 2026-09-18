@@ -1,5 +1,5 @@
 /**
- * Pipe question-payload builders — byte-faithful port of the string
+ * Pipe question-payload builders, byte-faithful port of the string
  * construction in launchkit/backend/app/rr.py (run_understand, run_commercial,
  * run_targets, run_brand, run_asset, build_signals_question, and the judge
  * prompt inside rescore_signals).
@@ -233,11 +233,11 @@ function isDict(v: unknown): v is Dict {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
-/** rr.run_understand — repo_url may be empty: site-only analysis is supported. */
+/** rr.run_understand, repo_url may be empty: site-only analysis is supported. */
 export function buildUnderstandQuestion(repoUrl: string, siteUrl: string, feedback = ""): string {
   const repoLine = repoUrl
     ? `Repository URL: ${repoUrl}`
-    : "Repository URL: NONE SUPPLIED — analyse from the live site " +
+    : "Repository URL: NONE SUPPLIED, analyse from the live site " +
       "alone and set analysis_degraded true.";
   let q = `Produce the app profile for this app.\n${repoLine}\nLive product URL: ${siteUrl}`;
   if (feedback) {
@@ -247,7 +247,7 @@ export function buildUnderstandQuestion(repoUrl: string, siteUrl: string, feedba
   return q;
 }
 
-/** rr.run_commercial — task: 'pricing' | 'listing'. */
+/** rr.run_commercial, task: 'pricing' | 'listing'. */
 export function buildCommercialQuestion(task: string, profile: Profile, currentListing = "",
                                         chosenPricing = ""): string {
   const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
@@ -260,7 +260,7 @@ export function buildCommercialQuestion(task: string, profile: Profile, currentL
   return parts.join("\n");
 }
 
-/** rr.run_targets — curated venue pool rides along when non-empty. */
+/** rr.run_targets, curated venue pool rides along when non-empty. */
 export function buildTargetsQuestion(profile: Profile, curatedVenues?: unknown[] | null): string {
   const parts = [`APP_PROFILE: ${pyJsonDumps(profile)}`];
   if (pyTruthy(curatedVenues)) {
@@ -269,7 +269,7 @@ export function buildTargetsQuestion(profile: Profile, curatedVenues?: unknown[]
   return parts.join("\n");
 }
 
-/** rr.run_brand — task: 'dna' (scrape SITE_URL) or 'campaigns' (DNA + profile). */
+/** rr.run_brand, task: 'dna' (scrape SITE_URL) or 'campaigns' (DNA + profile). */
 export function buildBrandQuestion(task: string, profile: Profile, siteUrl = "",
                                    dna?: BrandDna | null, feedback = ""): string {
   const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
@@ -295,7 +295,7 @@ export function thinProfile(profile: Profile): boolean {
   return Number.isFinite(overall) && overall < 0.5;
 }
 
-/** rr.run_asset — section order (BRAND_DNA → TARGET → TONE → feedback) is contractual. */
+/** rr.run_asset, section order (BRAND_DNA → TARGET → TONE → feedback) is contractual. */
 export function buildAssetQuestion(assetType: string, profile: Profile,
                                    target?: TargetData | null, tone = "",
                                    feedback = "", brandDna?: BrandDna | null, rules = "",
@@ -341,14 +341,14 @@ export function buildAssetQuestion(assetType: string, profile: Profile,
 }
 
 /**
- * rr.SIGNAL_FALLBACK_COMMUNITIES — generic dev communities used when a project
+ * rr.SIGNAL_FALLBACK_COMMUNITIES, generic dev communities used when a project
  * has no ranked targets yet.
  */
 export const SIGNAL_FALLBACK_COMMUNITIES = ["opensource", "SideProject", "selfhosted",
                                             "webdev", "devtools", "programming"];
 
 /**
- * rr.build_signals_question — APP_PROFILE + ICP_PAIN (surfaced so the finder
+ * rr.build_signals_question, APP_PROFILE + ICP_PAIN (surfaced so the finder
  * mines problem phrasings from it) + COMMUNITIES (for site-scoped passes).
  */
 export function buildSignalsQuestion(profile: Profile, communities?: unknown[] | null): string {
@@ -376,7 +376,7 @@ export const RESCORE_SUMMARY_KEYS = ["one_liner", "description", "icp",
 
 /**
  * rr.rescore_signals summary construction: `{k: profile.get(k) for k in (...)
- * if k in profile}` — key ORDER is the tuple order, not the profile's, and
+ * if k in profile}`, key ORDER is the tuple order, not the profile's, and
  * only present keys are included (a key present with null stays null).
  */
 export function buildRescoreSummary(profile: Profile): Dict {
@@ -390,7 +390,7 @@ export function buildRescoreSummary(profile: Profile): Dict {
 }
 
 /**
- * The judge prompt inside rr.rescore_signals — VERBATIM, including the
+ * The judge prompt inside rr.rescore_signals, VERBATIM, including the
  * help-first REPLY RULES and the RFC 8259 JSON output contract.
  *
  * `platform` mirrors `s.get('platform', 'forum')`: pass undefined when the
@@ -403,7 +403,7 @@ export function buildRescoreQuestion(summary: Dict, platform: unknown, threadTex
     "You are a strict relevance judge AND reply writer for launch outreach. " +
     "Below is an APP and the ACTUAL CONTENT of a discussion thread. First " +
     "decide if replying to this thread with this app is genuinely helpful " +
-    "to the thread's author — i.e. they are asking for, or struggling " +
+    "to the thread's author, i.e. they are asking for, or struggling " +
     "with, what this app does. Passing mentions of the topic do NOT count. " +
     "A thread whose author is announcing, launching, releasing or showing off " +
     "their OWN tool in this space is NEVER relevant, however close the topic: " +
@@ -411,14 +411,14 @@ export function buildRescoreQuestion(summary: Dict, platform: unknown, threadTex
     "reads as an advert. Relevant means the author states a need in the first " +
     "person or is visibly living the problem this app solves. " +
     "IF AND ONLY IF relevant, also write the reply the builder should " +
-    "post. REPLY RULES: open by engaging the author's SPECIFIC situation — " +
+    "post. REPLY RULES: open by engaging the author's SPECIFIC situation, " +
     "reference a concrete detail from the thread (their tool, error, " +
     "constraint, or exact question); NEVER open with a canned phrase like " +
     "'I built a tool for exactly this'. Genuinely help FIRST in 2-4 " +
-    "sentences — the reply must be worth upvoting even if they never " +
+    "sentences, the reply must be worth upvoting even if they never " +
     "click. Then, only if the app truly fits, one plain-words sentence " +
     "disclosing you built it, mentioning it ONCE with {APP_URL}. Match " +
-    `the norms of platform '${plat}' — Reddit and ` +
+    `the norms of platform '${plat}', Reddit and ` +
     "HN are hostile to marketing. Max 120 words. No emoji, no hype " +
     "words, no bullet lists. Reply with ONLY RFC 8259 JSON: " +
     "{\"relevant\": true|false, \"confidence\": number 0-1, " +

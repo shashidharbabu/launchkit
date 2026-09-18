@@ -3,7 +3,7 @@
 // Sources of truth:
 //   - launchkit-src/pipelines/*.pipe        the tuned production pipes (templates)
 //   - tools/pipe-ids.json               stable project_ids (created on first run,
-//                                       then NEVER regenerated — task addressing
+//                                       then NEVER regenerated, task addressing
 //                                       and deploy history key on them)
 // Outputs (both written on every run; never hand-edit them):
 //   - pipelines/<name>.pipe             workspace copies, for deploy
@@ -11,7 +11,7 @@
 //
 // Variants: a pipe whose components include a `rocketride_sql` node is ALSO
 // emitted as <name>.external.pipe with the node swapped to `db_postgres`
-// (same node id — the app's execute calls address the id, not the provider),
+// (same node id, the app's execute calls address the id, not the provider),
 // per doc 05 §2. None of the seven launch pipes touch a store today; the seam
 // exists for lk_seed and future pipes.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
@@ -45,7 +45,7 @@ for (const file of pipes) {
   doc.project_id = ids[name];
 
   const secretLeaks = JSON.stringify(doc).match(/"(sk-[A-Za-z0-9_-]{8,}|rr_[a-f0-9]{16,})"/);
-  if (secretLeaks) throw new Error(`literal secret in ${file}: ${secretLeaks[1].slice(0, 12)}… — use \${ROCKETRIDE_*}`);
+  if (secretLeaks) throw new Error(`literal secret in ${file}: ${secretLeaks[1].slice(0, 12)}…, use \${ROCKETRIDE_*}`);
 
   const out = JSON.stringify(doc, null, 1) + '\n';
   writeFileSync(join(OUT_WORKSPACE, file), out);

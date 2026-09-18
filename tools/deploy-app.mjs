@@ -1,5 +1,5 @@
 import { execFileSync as __rrExec } from 'node:child_process';
-// Always regenerate the compiled design system before packing — a stale
+// Always regenerate the compiled design system before packing, a stale
 // styles.generated.ts ships silently (tsc/rsbuild cannot detect a missing utility).
 __rrExec('node', ['tools/gen-styles.mjs'], { stdio: 'inherit' });
 // The bundle packs only apps/launchkit, so the design system must be mirrored
@@ -39,7 +39,7 @@ for (let i = 0; i < 90; i++) {
   const latest = rows.reduce((a, b) => ((a?.version ?? 0) >= (b?.version ?? 0) ? a : b), null);
   const status = latest?.metadata?.build?.status ?? latest?.build?.status ?? latest?.snapshot?.build?.status ?? 'unknown';
   console.log(`build poll ${i}: v${latest?.version} ${status}`);
-  if (status === 'ok') { console.log('BUILD OK — version', latest.version); break; }
+  if (status === 'ok') { console.log('BUILD OK, version', latest.version); break; }
   if (String(status).includes('fail') || String(status).includes('error')) {
     console.log('BUILD FAILED:', JSON.stringify(latest?.build ?? latest).slice(0, 1500));
     process.exit(1);

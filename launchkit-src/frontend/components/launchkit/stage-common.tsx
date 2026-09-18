@@ -68,7 +68,7 @@ export function Orient({
 /**
  * The raw pipeline output, demoted to a debugging affordance. Builders review
  * structured views; the JSON exists for support and for the curious, folded
- * shut at the bottom of a card — never at eye level.
+ * shut at the bottom of a card, never at eye level.
  */
 export function RawData({ data, label = 'Raw data' }: { data: unknown; label?: string }) {
   const [open, setOpen] = React.useState(false);
@@ -112,7 +112,7 @@ export function LockedGate() {
   return (
     <HonestEmpty
       fact="Locked until you approve the profile."
-      reason="Everything downstream is built from it — pricing, assets, venues, and signal search all read the approved profile."
+      reason="Everything downstream is built from it, pricing, assets, venues, and signal search all read the approved profile."
       action={
         <Link href={`/p/${id}/profile`}>
           <Button variant="secondary">Review profile</Button>

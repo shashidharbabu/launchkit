@@ -13,7 +13,7 @@ const lit = (s) => `'${s.replaceAll("'", "''")}'`;
 const { rows } = await q(`SELECT id, data FROM lk_profiles`);
 for (const r of rows) {
   if (typeof r.data !== 'string') continue;
-  let parsed; try { JSON.parse(r.data); continue; } catch { /* python text — repair */ }
+  let parsed; try { JSON.parse(r.data); continue; } catch { /* python text, repair */ }
   try { parsed = parseJsonLoose(r.data); } catch { continue; }
   const res = await q(`UPDATE lk_profiles SET data = ${lit(JSON.stringify(parsed))} WHERE id = ${lit(r.id)}`);
   console.log('repaired', r.id, 'affected:', res.affected_rows);
@@ -21,5 +21,5 @@ for (const r of rows) {
 const after = await q(`SELECT data FROM lk_profiles ORDER BY version DESC LIMIT 1`);
 const d = after.rows[0].data;
 const obj = typeof d === 'string' ? JSON.parse(d) : d;
-console.log('READBACK OK — keys:', Object.keys(obj).join(',').slice(0, 140));
+console.log('READBACK OK, keys:', Object.keys(obj).join(',').slice(0, 140));
 process.exit(0);

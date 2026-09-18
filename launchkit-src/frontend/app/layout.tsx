@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — go-to-market for app publishers`,
+    default: `${SITE_NAME}, go-to-market for app publishers`,
     template: `%s · ${SITE_NAME}`,
   },
   description: DESCRIPTION,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — ${TAGLINE}`,
+    title: `${SITE_NAME}, ${TAGLINE}`,
     description: DESCRIPTION,
     images: [
       {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${TAGLINE}`,
+    title: `${SITE_NAME}, ${TAGLINE}`,
     description: TAGLINE,
     images: ["/brand/hero-launch-pad.jpg"],
   },

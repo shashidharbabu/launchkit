@@ -65,7 +65,7 @@ for (const rel of await listFiles(dest)) {
 await writeFile(
   path.join(dest, 'GENERATED.md'),
   [
-    '# Generated — do not edit',
+    '# Generated, do not edit',
     '',
     'This directory is a mirror of `design-system/src`, produced by',
     '`node tools/sync-ds.mjs`. Edit the design system at `design-system/src`',

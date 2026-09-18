@@ -26,7 +26,7 @@ function stripTags(html: string): string {
     .trim();
 }
 
-/** (text, createdEpoch|null) for a thread URL — mirrors rr._fetch_url_text. */
+/** (text, createdEpoch|null) for a thread URL, mirrors rr._fetch_url_text. */
 export async function fetchUrlText(url: string): Promise<[string, number | null]> {
   const hn = url.match(/news\.ycombinator\.com\/item\?id=(\d+)/);
   if (hn) {

@@ -22,7 +22,7 @@ export function openPalette() {
   window.dispatchEvent(new CustomEvent('lk:palette'));
 }
 
-/** RocketRide mark — color on paper, white on the night console. */
+/** RocketRide mark, color on paper, white on the night console. */
 export function BrandMark({ size = 20 }: { size?: number }) {
   return (
     <>

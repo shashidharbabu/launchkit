@@ -46,7 +46,7 @@ import type { AssetRow } from '@/lib/types';
 
 const asStr = (v: unknown) => (v == null ? '' : String(v));
 
-/** Generic medium icons — the type name carries the meaning, never the icon alone. */
+/** Generic medium icons, the type name carries the meaning, never the icon alone. */
 const ASSET_ICONS: Record<string, LucideIcon> = {
   x_post: AtSign,
   linkedin_post: Briefcase,
@@ -72,7 +72,7 @@ function assetParagraphs(data: Record<string, unknown>): Array<{ label: string; 
         text: v
           .map((item, i) =>
             typeof item === 'object' && item !== null
-              ? `${i + 1}. ${Object.values(item as Record<string, unknown>).map(asStr).join(' — ')}`
+              ? `${i + 1}. ${Object.values(item as Record<string, unknown>).map(asStr).join(', ')}`
               : `• ${asStr(item)}`,
           )
           .join('\n'),
@@ -105,7 +105,7 @@ function AssetBody({ data, full }: { data: Record<string, unknown>; full?: boole
       ))}
       {!full && paras.length > 3 && (
         <p className="text-body text-muted-foreground">
-          + {paras.length - 3} more section{paras.length - 3 === 1 ? '' : 's'} — open to read all
+          + {paras.length - 3} more section{paras.length - 3 === 1 ? '' : 's'}, open to read all
         </p>
       )}
     </div>
@@ -257,13 +257,13 @@ export function AssetsStage() {
 
   return (
     <div className="grid gap-4">
-      {/* purpose before data — what happened, what to do */}
+      {/* purpose before data, what happened, what to do */}
       {assets.length > 0 && (
         <Orient
           lead={
             <>
               One post per platform, drafted in your brand voice.{' '}
-              <strong className="font-medium">Approve each one you&rsquo;d actually post</strong> —
+              <strong className="font-medium">Approve each one you&rsquo;d actually post</strong>
               or tell it what&rsquo;s wrong and regenerate.
             </>
           }
@@ -297,7 +297,7 @@ export function AssetsStage() {
       {assets.length === 0 && !runningAsset && (
         <HonestEmpty
           fact="No assets drafted yet."
-          reason="Each launch asset is drafted platform-native from your approved profile — Reddit that reads like Reddit, a Show HN that survives HN. Every draft needs your approval before it enters the plan."
+          reason="Each launch asset is drafted platform-native from your approved profile, Reddit that reads like Reddit, a Show HN that survives HN. Every draft needs your approval before it enters the plan."
           action={
             <Button
               variant="secondary"
@@ -326,7 +326,7 @@ export function AssetsStage() {
             ))}
           </div>
         ) : (
-          /* first-paint stagger, 40ms/item — keyed so refetches don't re-fire */
+          /* first-paint stagger, 40ms/item, keyed so refetches don't re-fire */
           <AnimatedGroup
             key={project.id}
             preset="fade"

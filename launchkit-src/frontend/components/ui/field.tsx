@@ -4,7 +4,7 @@ import * as React from 'react';
 import { AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-/** Visible label above the control — never placeholder-as-label (components.md). */
+/** Visible label above the control, never placeholder-as-label (components.md). */
 export function Label({
   className,
   ...props
@@ -68,7 +68,7 @@ export const Textarea = React.forwardRef<
 
 /**
  * Field = label above, control, helper faint below; an error replaces the
- * helper in nogo with an alert-circle icon, at the field — not just a top
+ * helper in nogo with an alert-circle icon, at the field, not just a top
  * summary.
  */
 export function Field({

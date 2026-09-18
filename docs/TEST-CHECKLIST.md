@@ -1,4 +1,4 @@
-# Launch Kit — Manual Test Checklist (Phase 2)
+# Launch Kit, Manual Test Checklist (Phase 2)
 
 Run twice: once by the builder in the hardened preview, once by the owner in the real shell (staging, signed in as the org account, after clearing site data). Record each line as PASS / FAIL with the run id; every FAIL gets a trace (Runs → expand row → Pipeline trace) and an entry in [MIGRATION-ISSUES-LOG.md](MIGRATION-ISSUES-LOG.md).
 
@@ -10,9 +10,9 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 - Brand is two vertical steps: "Extract Business DNA" first; "Draft the angles" appears once DNA is shown; "Choose this angle" on one angle turns the Brand dot green and Social Launch shows the angle in a banner.
 - Assets: one "DRAFT …" button per type; after a draft: Approve, Copy, Regenerate with feedback, Redraft.
 - Targets: venues are selected with the checkbox "Select <venue> for the plan".
-- Signals: "Scan for live demand" takes **2–7 minutes** on the current model; an empty result now shows a **Scan report** (queries, coverage, drop reasons).
+- Signals: "Scan for live demand" takes **2-7 minutes** on the current model; an empty result now shows a **Scan report** (queries, coverage, drop reasons).
 - Plan: "Copy launch plan" and "Copy markdown" both copy the Markdown plan; tracked links appear per selected venue.
-- Typical durations seen: understand 1.5–2 min · brand DNA 1.5 min · campaigns 1 min · pricing 2 min · listing ~0.5 min · asset draft 0.5 min · targets 2 min.
+- Typical durations seen: understand 1.5-2 min · brand DNA 1.5 min · campaigns 1 min · pricing 2 min · listing ~0.5 min · asset draft 0.5 min · targets 2 min.
 
 ## A. Shell integration
 1. Open the app from the launcher. **Expect:** app fills the client area, own rail on the left, no shell sidebar column or "RocketRide / LAUNCH KIT" header.
@@ -24,7 +24,7 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 ## B. Launch creation and Stage 1 (Profile)
 6. New launch → name, site URL, repo URL → Analyze. **Expect:** run appears in Runs as running; profile lands within ~2 min with a confidence and sources.
 7. Edit one profile field, save. **Expect:** new version, HOLD stamp until approved.
-8. "Something's wrong — redo it" with feedback. **Expect:** a new understand run; feedback reflected.
+8. "Something's wrong, redo it" with feedback. **Expect:** a new understand run; feedback reflected.
 9. Approve. **Expect:** GO stamp, Stage 2 unlocked. **Triage:** Runs → trace: `lk_understand.pipe`, steps through tool_github / tool_firecrawl.
 
 ## C. Stage 2 (Brand) and Stage 3 (Commercial)
@@ -42,11 +42,11 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 16. Select / deselect targets. **Expect:** selection persists after reload. **Triage:** `lk_targets.pipe`.
 
 ## F. Stage 6 (Signals)
-17. Run signals. **Expect:** list of live threads with relevance; rescore writes help-first replies. Check one HN, one StackExchange, one GitHub thread. **Expect:** thread details load (client-side fetch; if blank in the shell, it is CORS — log it).
+17. Run signals. **Expect:** list of live threads with relevance; rescore writes help-first replies. Check one HN, one StackExchange, one GitHub thread. **Expect:** thread details load (client-side fetch; if blank in the shell, it is CORS, log it).
 18. Change a signal's status (keep / reject). **Expect:** persists. **Triage:** `lk_signals.pipe`, `lk_rescore.pipe`.
 
 ## G. Stage 7 (Plan) and Attribution
-19. Copy the launch plan ("Copy launch plan" / "Copy markdown"). **Expect:** the clipboard holds a Markdown plan starting `# Launch Plan — <app>` with all approved stages (JSON export is API-only).
+19. Copy the launch plan ("Copy launch plan" / "Copy markdown"). **Expect:** the clipboard holds a Markdown plan starting `# Launch Plan, <app>` with all approved stages (JSON export is API-only).
 20. Copy a tracked link; simulate a signup with its ref. **Expect:** attribution shows the signup under that ref.
 
 ## H. Runs and tracing
@@ -60,15 +60,15 @@ Legend: **Expect** = what you must see. **Triage** = where to look when it fails
 ## J. Navigator chat (after Phase 1c)
 25. On Home ask: "open my latest launch", "what is gate 2", "where do I add API keys", "show runs". **Expect:** correct navigation or a correct answer; never a wrong navigation.
 
-## K. Auth and billing (after Phases 3–4)
+## K. Auth and billing (after Phases 3-4)
 26. Signed-out visit. **Expect:** shell blocks or app shows a clear sign-in state.
 27. Free account: second active launch. **Expect:** limit message + Upgrade → checkout opens. Subscribe with promo. **Expect:** limit lifted. Cancel. **Expect:** back to Free.
 
 ## L. External user (Phase 6)
-28. Fresh account, different org: install from the team rung, add keys in Settings, complete steps 6–20 with no help.
+28. Fresh account, different org: install from the team rung, add keys in Settings, complete steps 6-20 with no help.
 
 ## Social Launch (stage 04, 2026-09-03)
-- [ ] Stage rail and flow strip say "Social Launch"; no "Assets" anywhere in the UI (run labels read "Social Launch — <platform>").
+- [ ] Stage rail and flow strip say "Social Launch"; no "Assets" anywhere in the UI (run labels read "Social Launch, <platform>").
 - [ ] Picker shows seven platform cards, each with its rulebook summary; Draft/Redraft label reflects whether a draft exists.
 - [ ] Every draft card has a visible "Regenerate with feedback" section with a textarea and a primary Regenerate button (no toggle).
 - [ ] Action row: "Share on X" opens x.com/intent/post with the post prefilled; LinkedIn, Reddit, HN, email open their composers; Product Hunt copies the listing and opens new-post; video has Copy only.

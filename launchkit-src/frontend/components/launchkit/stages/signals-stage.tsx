@@ -46,10 +46,10 @@ function SignalCard({ signal }: { signal: SignalRow }) {
 
   return (
     <Card className="p-4">
-      {/* 1 — source row */}
+      {/* 1, source row */}
       <div className="flex flex-wrap items-center gap-2">
         <Globe size={14} strokeWidth={1.5} className="shrink-0 text-muted-foreground" aria-hidden />
-        <span className="font-mono text-data text-muted-foreground">{String(d.platform ?? '—')}</span>
+        <span className="font-mono text-data text-muted-foreground">{String(d.platform ?? ', ')}</span>
         <a
           href={String(d.url ?? '#')}
           target="_blank"
@@ -65,7 +65,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
         </span>
       </div>
 
-      {/* 2 — the ask */}
+      {/* 2, the ask */}
       <blockquote className="mt-3 border-l-2 border-border pl-3 text-read leading-[1.625rem]">
         “{String(d.title_or_quote ?? '')}”
       </blockquote>
@@ -76,7 +76,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
         </p>
       )}
 
-      {/* 3 — drafted reply */}
+      {/* 3, drafted reply */}
       <div className="mt-3 bg-muted p-3">
         <p className="whitespace-pre-wrap text-body">{String(d.drafted_reply ?? '')}</p>
       </div>
@@ -88,12 +88,12 @@ function SignalCard({ signal }: { signal: SignalRow }) {
       />
       {!verified && (
         <p className="mt-2 text-body text-muted-foreground">
-          Couldn&rsquo;t fetch this thread, so we can&rsquo;t verify it. It stays marked UNVERIFIED —
+          Couldn&rsquo;t fetch this thread, so we can&rsquo;t verify it. It stays marked UNVERIFIED
           judge it yourself before replying.
         </p>
       )}
 
-      {/* 4 — actions */}
+      {/* 4, actions */}
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <CopyButton text={String(d.drafted_reply ?? '')} label="Copy reply" toastMessage="Copied" />
         <Button variant="ghost" loading={marking} onClick={() => setStatus('replied')}>
@@ -140,17 +140,17 @@ export function SignalsStage() {
 
   return (
     <div className="grid gap-4">
-      {/* purpose before data — what happened, what to do */}
+      {/* purpose before data, what happened, what to do */}
       {queue.length > 0 && (
         <Orient
           lead={
             <>
-              Real people, publicly asking for what you built — right now.{' '}
+              Real people, publicly asking for what you built, right now.{' '}
               <strong className="font-medium">Reply in your own words</strong>, mark replied, or
               dismiss.
             </>
           }
-          detail="Launch Kit never fabricates demand — every signal was found live, so an empty queue honestly means nobody is asking yet."
+          detail="Launch Kit never fabricates demand, every signal was found live, so an empty queue honestly means nobody is asking yet."
         />
       )}
 
@@ -175,7 +175,7 @@ export function SignalsStage() {
       {signals.length === 0 && (
         <HonestEmpty
           fact="No signals yet."
-          reason="Nobody is publicly asking for what your app does right now — that's common before launch. Re-run after your first posts, or widen the pain phrasing in your profile."
+          reason="Nobody is publicly asking for what your app does right now, that's common before launch. Re-run after your first posts, or widen the pain phrasing in your profile."
           action={
             <Button
               variant="secondary"
@@ -193,7 +193,7 @@ export function SignalsStage() {
       {signals.length > 0 && queue.length === 0 && (
         <HonestEmpty
           fact="Queue clear."
-          reason={`Every signal is handled — ${replied} replied · ${
+          reason={`Every signal is handled, ${replied} replied · ${
             signals.length - replied
           } dismissed. Re-run the search after your first posts to find new asks.`}
           action={

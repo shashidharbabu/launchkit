@@ -21,8 +21,8 @@ const asStr = (v: unknown) => (v == null ? '' : String(v));
 const asList = (v: unknown): string[] => (Array.isArray(v) ? v.map(String) : []);
 
 /**
- * A single reviewable claim. Reads as prose by default — the builder's job at
- * this gate is to *check*, not to fill in a form — and turns into an input
+ * A single reviewable claim. Reads as prose by default, the builder's job at
+ * this gate is to *check*, not to fill in a form, and turns into an input
  * only when they choose to correct it.
  */
 function ReviewRow({
@@ -81,7 +81,7 @@ function ReviewRow({
         />
       ) : (
         <p className={cn('text-read leading-[1.625rem]', !value && 'text-muted-foreground')}>
-          {value || 'Nothing found — click Edit to fill this in.'}
+          {value || 'Nothing found, click Edit to fill this in.'}
         </p>
       )}
     </div>
@@ -146,13 +146,13 @@ function ReviewListRow({
         <ul className="grid gap-1">
           {value.map((v, i) => (
             <li key={`${v}-${i}`} className="text-read leading-[1.625rem]">
-              — {v}
+              {v}
             </li>
           ))}
         </ul>
       ) : (
         <p className="text-read leading-[1.625rem] text-muted-foreground">
-          Nothing found — click Edit to fill this in.
+          Nothing found, click Edit to fill this in.
         </p>
       )}
     </div>
@@ -202,7 +202,7 @@ function Section({
 
 type SourceRow = { source?: string; via?: string; ok?: boolean; note?: string };
 
-/** The evidence trail — Gate 1 is a review step; show what was read. */
+/** The evidence trail, Gate 1 is a review step; show what was read. */
 function SourcesList({ sources }: { sources: SourceRow[] }) {
   if (sources.length === 0) {
     return <p className="text-body text-muted-foreground">No sources were recorded.</p>;
@@ -211,7 +211,7 @@ function SourcesList({ sources }: { sources: SourceRow[] }) {
     <ul className="grid gap-1.5">
       {sources.map((s, i) => (
         <li key={`${s.source}-${i}`} className="flex items-start gap-2 text-body">
-          {/* status never color alone — icon + word (color.md) */}
+          {/* status never color alone, icon + word (color.md) */}
           <span
             className={`mt-0.5 flex shrink-0 items-center gap-1 font-mono text-meta font-medium uppercase tracking-[0.08em] ${
               s.ok === false ? 'text-nogo' : 'text-go'
@@ -225,7 +225,7 @@ function SourcesList({ sources }: { sources: SourceRow[] }) {
             {s.ok === false ? 'failed' : 'read'}
           </span>
           <span className="min-w-0 flex-1">
-            <span className="break-all font-mono text-data">{asStr(s.source) || '—'}</span>
+            <span className="break-all font-mono text-data">{asStr(s.source) || ', '}</span>
             {asStr(s.via) && <span className="ml-2 text-muted-foreground">via {asStr(s.via)}</span>}
             {asStr(s.note) && <p className="text-body text-muted-foreground">{asStr(s.note)}</p>}
           </span>
@@ -296,7 +296,7 @@ export function ProfileStage() {
             </TextShimmer>
           </div>
           <p className="text-body text-muted-foreground">
-            This takes 1–3 minutes. You can leave this page and come back — the run continues.
+            This takes 1-3 minutes. You can leave this page and come back, the run continues.
           </p>
           <div className="grid gap-2 sm:grid-cols-2">
             {[0, 1, 2, 3].map((i) => (
@@ -309,7 +309,7 @@ export function ProfileStage() {
     return (
       <HonestEmpty
         fact="No profile yet."
-        reason="Analysis starts the moment your launch is created — if it didn't finish, run it again. Launch Kit reads your repo and live site to draft the profile you'll approve."
+        reason="Analysis starts the moment your launch is created, if it didn't finish, run it again. Launch Kit reads your repo and live site to draft the profile you'll approve."
         action={
           <Button
             variant="secondary"
@@ -327,7 +327,7 @@ export function ProfileStage() {
 
   const regenerateButton = (
     <Button variant="secondary" onClick={() => setNotesOpen(!notesOpen)}>
-      Something&apos;s wrong — redo it
+      Something&apos;s wrong, redo it
     </Button>
   );
   const saveButton = dirty && (
@@ -368,14 +368,14 @@ export function ProfileStage() {
             things below</strong>, fix anything wrong, then approve.
           </p>
           <p className="text-body text-muted-foreground">
-            Every later stage — pricing, listing, posts, venues, signals — is written from this. It
+            Every later stage, pricing, listing, posts, venues, signals, is written from this. It
             is the only thing you have to get right.
           </p>
         </Card>
       )}
 
       <GateSlip
-        gateLabel="GATE 01 — PROFILE"
+        gateLabel="GATE 01, PROFILE"
         stamp="hold"
         signed={approved}
         signedLine={`profile approved · ${
@@ -403,7 +403,7 @@ export function ProfileStage() {
               disabled={dirty}
               title={
                 dirty
-                  ? 'Save your edits first — approval locks the version that unlocks every later stage'
+                  ? 'Save your edits first, approval locks the version that unlocks every later stage'
                   : undefined
               }
               onClick={async () => {
@@ -419,7 +419,7 @@ export function ProfileStage() {
                 }
               }}
             >
-              {dirty ? 'Save your edits first' : 'This is right — approve'}
+              {dirty ? 'Save your edits first' : 'This is right, approve'}
             </Button>
             {saveButton}
             {regenerateButton}
@@ -431,12 +431,12 @@ export function ProfileStage() {
         <div className="grid gap-4">
           {degraded && (
             <div className="border border-hold bg-hold/10 p-3 text-body">
-              <p className="font-medium">Partial analysis — read this one more carefully.</p>
+              <p className="font-medium">Partial analysis, read this one more carefully.</p>
               <p className="mt-1 text-muted-foreground">
                 {asStr(confidence.notes) ||
                   'Some sources could not be read, so parts of this profile are inferred rather than evidenced.'}
                 {!project.repo_url &&
-                  ' No repo was supplied — adding a public GitHub repo gives a much stronger profile.'}
+                  ' No repo was supplied, adding a public GitHub repo gives a much stronger profile.'}
               </p>
             </div>
           )}
@@ -561,7 +561,7 @@ export function ProfileStage() {
                   <div className="grid gap-1.5 border-t border-border py-3">
                     <Label>How you write</Label>
                     <p className="text-read leading-[1.625rem]">
-                      {asList(voice.tone).join(' · ') || '—'}
+                      {asList(voice.tone).join(' · ') || ', '}
                     </p>
                     {asStr(voice.sample_phrase) && (
                       <p className="text-read italic leading-[1.625rem] text-muted-foreground">

@@ -27,7 +27,7 @@ const chartConfig = {
 
 /**
  * Simulating a signup writes a fake event to the mock store. That is a
- * developer affordance for testing attribution — shipping it to builders would
+ * developer affordance for testing attribution, shipping it to builders would
  * let them fabricate their own launch numbers. Inlined at build time, so the
  * button is absent from the production bundle rather than merely hidden.
  */
@@ -67,17 +67,17 @@ export function PlanStage() {
 
   return (
     <div className="grid gap-4">
-      {/* purpose before data — what happened, what to do */}
+      {/* purpose before data, what happened, what to do */}
       {plan?.ready && (
         <Orient
           lead={
             <>
-              Your launch, in order — each venue with its own tracked link.{' '}
+              Your launch, in order, each venue with its own tracked link.{' '}
               <strong className="font-medium">Post each one yourself</strong>, then watch signups
               attribute back here.
             </>
           }
-          detail="Nothing auto-publishes — Launch Kit hands you the plan; every post is yours to make."
+          detail="Nothing auto-publishes, Launch Kit hands you the plan; every post is yours to make."
         />
       )}
 
@@ -105,8 +105,8 @@ export function PlanStage() {
               fact="Plan not ready."
               reason={
                 needsAssets
-                  ? 'The plan assembles your approved assets across your selected venues with sequencing advice — approve at least one asset first, then tick venues in Targets.'
-                  : 'The plan assembles your approved assets across your selected venues with sequencing advice — your assets are approved; now tick at least one venue in Targets.'
+                  ? 'The plan assembles your approved assets across your selected venues with sequencing advice, approve at least one asset first, then tick venues in Targets.'
+                  : 'The plan assembles your approved assets across your selected venues with sequencing advice, your assets are approved; now tick at least one venue in Targets.'
               }
               action={
                 <Link href={`/p/${project.id}/${needsAssets ? 'assets' : 'targets'}`}>
@@ -120,12 +120,12 @@ export function PlanStage() {
       {plan && plan.targets.length > 0 && (
         <Card>
           <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Tracked links — one per venue</MetaLabel>
+            <MetaLabel>Tracked links, one per venue</MetaLabel>
           </div>
           <div className="border-t border-border px-4 py-1">
             <p className="py-2 text-body text-muted-foreground">
               Use each venue&rsquo;s link when you post there. The store records the ref code at
-              signup — that&rsquo;s how attribution below fills in.
+              signup, that&rsquo;s how attribution below fills in.
             </p>
             <Table>
               <thead>
@@ -185,7 +185,7 @@ export function PlanStage() {
         />
         <Card className="lg:col-span-2">
           <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>Attribution — which venue produced signups</MetaLabel>
+            <MetaLabel>Attribution, which venue produced signups</MetaLabel>
             {rows.length > 0 && total > 0 && (
               <CopyButton
                 size="compact"
@@ -287,7 +287,7 @@ export function PlanStage() {
       {markdown && (
         <Card>
           <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <MetaLabel>The plan — markdown export</MetaLabel>
+            <MetaLabel>The plan, markdown export</MetaLabel>
             <CopyButton
               size="compact"
               text={markdown}
@@ -301,7 +301,7 @@ export function PlanStage() {
               parts={[
                 'assembled from approved assets + selected venues',
                 plan ? `${plan.targets.length} venue${plan.targets.length === 1 ? '' : 's'}` : null,
-                'sequencing advice drafted — not verified',
+                'sequencing advice drafted, not verified',
               ]}
             />
             {/* the export is the deliverable; its source stays folded like raw data */}

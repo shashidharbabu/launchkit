@@ -89,7 +89,7 @@ function markDirty() {
   }, 150);
 }
 
-/** Immediate, awaitable flush — use after a critical write (create/approve). */
+/** Immediate, awaitable flush, use after a critical write (create/approve). */
 export function flush(): void {
   if (flushTimer) { clearTimeout(flushTimer); flushTimer = null; }
   persist?.(snapshot());

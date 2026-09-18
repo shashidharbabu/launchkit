@@ -30,7 +30,7 @@ console.log('getTaskToken ->', token ? token.slice(0, 20) + '…' : 'UNDEFINED')
 if (token) {
   try {
     const r = await c.database.query({ token, sql: 'SELECT count(*)::int AS n FROM lk_venues', nodeId: 'rocketride_sql_1' });
-    console.log('QUERY OK — deployed store works:', JSON.stringify(r.rows));
+    console.log('QUERY OK, deployed store works:', JSON.stringify(r.rows));
   } catch (e) { console.log('QUERY FAILED:', String(e?.message).slice(0, 200)); }
 }
 process.exit(0);

@@ -11,7 +11,7 @@ import { FAQ } from '@/lib/seo';
 
 const HEADLINE = 'You built the app. Launch Kit turns the launch into paperwork you can sign.';
 const SUBHEAD =
-  'Profile, pricing, listing, venues, native posts, and live demand — drafted from your repo and site, verified where possible, and nothing ships without your approval.';
+  'Profile, pricing, listing, venues, native posts, and live demand, drafted from your repo and site, verified where possible, and nothing ships without your approval.';
 
 export default function Home() {
   return (
@@ -37,7 +37,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* hero — full-bleed launch-pad artwork with a slow drift */}
+      {/* hero, full-bleed launch-pad artwork with a slow drift */}
       <section className="relative flex min-h-[82vh] items-center overflow-hidden">
         <Image
           src="/brand/hero-launch-pad.jpg"
@@ -100,7 +100,7 @@ export default function Home() {
         <ProcedureFlow />
       </section>
 
-      {/* telemetry band — the visor artwork beside the honest pitch */}
+      {/* telemetry band, the visor artwork beside the honest pitch */}
       <section className="border-t border-border">
         <div className="mx-auto grid w-full max-w-5xl items-center gap-10 px-4 py-16 lg:grid-cols-[2fr_3fr]">
           <Reveal>
@@ -124,7 +124,7 @@ export default function Home() {
               </h2>
               <p className="mt-3 max-w-xl text-read leading-[1.625rem] text-muted-foreground">
                 Every draft states where it came from and whether it was verified. Every count says
-                what it counts. When nobody is asking for what you built yet, Launch Kit says so —
+                what it counts. When nobody is asking for what you built yet, Launch Kit says so
                 and after you post, tracked links attribute every signup to the venue that produced
                 it.
               </p>
@@ -141,7 +141,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* answers, stated plainly — the questions builders actually type */}
+      {/* answers, stated plainly, the questions builders actually type */}
       <section id="questions" className="mx-auto w-full max-w-3xl px-4 py-14">
         <Reveal>
           <h2 className="text-title font-semibold tracking-[-0.005em]">Questions, answered</h2>

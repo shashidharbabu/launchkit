@@ -1,4 +1,4 @@
-// Correct constructor: { auth, uri } (NOT apikey — that option is ignored).
+// Correct constructor: { auth, uri } (NOT apikey, that option is ignored).
 import { RocketRideClient } from 'rocketride';
 import { readFileSync } from 'node:fs';
 const load = (p) => Object.fromEntries(readFileSync(p, 'utf8').split('\n')

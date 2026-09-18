@@ -57,7 +57,7 @@ Paths to the skill files inside those clones:
 
 ```bash
 grep -rinE '\bship(s|ped|ping)?\b' <dir> | wc -l
-grep -rn '—' <dir> | wc -l
+grep -rn ', ' <dir> | wc -l
 grep -rinE 'game.?chang|groundbreaking|revolutionar|viral' <dir> | wc -l
 ```
 

@@ -97,7 +97,7 @@ export default function DashboardPage() {
       {!apiDown && launches.length === 0 && (
         <HonestEmpty
           fact="No launches yet."
-          reason="A launch runs your shipped app through seven stages — profile, brand, commercial, assets, targets, signals, plan — with your approval at every gate."
+          reason="A launch runs your shipped app through seven stages, profile, brand, commercial, assets, targets, signals, plan, with your approval at every gate."
           action={
             <Link href="/launches/new">
               <Button variant="secondary">Start your first launch</Button>
@@ -172,16 +172,16 @@ export default function DashboardPage() {
                       ) : row.profile_status ? (
                         <StatusStamp kind="hold" />
                       ) : (
-                        <span className="text-muted-foreground">—</span>
+                        <span className="text-muted-foreground">, </span>
                       )}
                     </Td>
                     <Td numeric>
                       {detail
                         ? `${detail.counts.targets_selected}/${detail.counts.targets}`
-                        : '—'}
+                        : ', '}
                     </Td>
-                    <Td numeric>{detail ? detail.counts.signals : '—'}</Td>
-                    <Td numeric>{attribution ? attribution.total : '—'}</Td>
+                    <Td numeric>{detail ? detail.counts.signals : ', '}</Td>
+                    <Td numeric>{attribution ? attribution.total : ', '}</Td>
                     <Td>
                       {plan?.ready ? (
                         <StatusStamp kind="go" />

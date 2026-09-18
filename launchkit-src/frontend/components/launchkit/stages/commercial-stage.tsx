@@ -29,7 +29,7 @@ function MetaLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Generic structured renderer — prose in Reading type, data in mono. */
+/** Generic structured renderer, prose in Reading type, data in mono. */
 function DataBlock({ data }: { data: unknown }) {
   if (data == null) return null;
   if (typeof data === 'string' || typeof data === 'number' || typeof data === 'boolean') {
@@ -83,7 +83,7 @@ function tierPrice(t: RecTier): string {
     return /^\d+(\.\d+)?$/.test(p) ? `$${p}` : p;
   }
   const key = Object.keys(t).find((k) => /price/i.test(k) && t[k] != null && asStr(t[k]) !== '');
-  if (!key) return '—';
+  if (!key) return ', ';
   const v = asStr(t[key]);
   const num = /^\d+(\.\d+)?$/.test(v);
   const perMonth = /month|mo\b|_mo/i.test(key);
@@ -93,7 +93,7 @@ function tierPrice(t: RecTier): string {
 
 /**
  * The tiers Launch Kit recommends, rendered the way a builder will actually
- * publish them — as a pricing table, not a key/value dump. The rationale and
+ * publish them, as a pricing table, not a key/value dump. The rationale and
  * the names the numbers are anchored on sit right under it, because the tiers
  * are only as trustworthy as their anchors.
  */
@@ -125,7 +125,7 @@ function RecommendationView({ rec }: { rec: Record<string, unknown> }) {
                   <ul className="grid gap-1">
                     {asArr(t.includes).map((inc, j) => (
                       <li key={j} className="text-body">
-                        — {String(inc)}
+                        {String(inc)}
                       </li>
                     ))}
                   </ul>
@@ -156,7 +156,7 @@ function RecommendationView({ rec }: { rec: Record<string, unknown> }) {
           <ul className="mt-1 grid gap-1">
             {risks.map((r, i) => (
               <li key={i} className="text-body text-muted-foreground">
-                — {String(r)}
+                {String(r)}
               </li>
             ))}
           </ul>
@@ -183,7 +183,7 @@ type Rejected = { name?: string; url?: string; why?: string };
 /**
  * How well-known a competitor is. The pricing recommendation is only as good
  * as the names it is anchored to, so standing is shown in the table rather
- * than buried in the JSON — a row of "niche" is a reason to distrust the
+ * than buried in the JSON, a row of "niche" is a reason to distrust the
  * numbers. Never colour alone: the word carries the meaning (color.md).
  */
 function Standing({ notability, mentions, evidence }: {
@@ -191,7 +191,7 @@ function Standing({ notability, mentions, evidence }: {
   mentions?: number;
   evidence?: string;
 }) {
-  if (!notability) return <span className="text-muted-foreground">—</span>;
+  if (!notability) return <span className="text-muted-foreground">, </span>;
   const tone =
     notability === 'established' ? 'text-go'
     : notability === 'emerging' ? 'text-hold'
@@ -253,17 +253,17 @@ export function CommercialStage() {
         />
       )}
 
-      {/* purpose before data — what happened, what to check */}
+      {/* purpose before data, what happened, what to check */}
       {(pricing || listing) && (
         <Orient
           lead={
             <>
               Launch Kit priced your app against real competitors and rewrote your store listing.{' '}
-              <strong className="font-medium">Check the tiers and the copy</strong> — regenerate
+              <strong className="font-medium">Check the tiers and the copy</strong>, regenerate
               anything that reads wrong.
             </>
           }
-          detail="Drafted from your approved profile. The numbers are only as strong as the “established” competitors they’re anchored on — a column of “niche” is a reason to distrust them."
+          detail="Drafted from your approved profile. The numbers are only as strong as the “established” competitors they’re anchored on, a column of “niche” is a reason to distrust them."
         />
       )}
 
@@ -307,7 +307,7 @@ export function CommercialStage() {
                 )}
                 {competitors.length > 0 && (
                   <div>
-                    <MetaLabel>Competitors read — {competitors.length}</MetaLabel>
+                    <MetaLabel>Competitors read, {competitors.length}</MetaLabel>
                     <div className="mt-1 overflow-x-auto">
                       <Table>
                         <thead>
@@ -331,7 +331,7 @@ export function CommercialStage() {
                                 />
                               </Td>
                               <Td className="text-muted-foreground">{asStr(c.pricing_model)}</Td>
-                              <Td numeric>{Array.isArray(c.tiers) ? c.tiers.length : '—'}</Td>
+                              <Td numeric>{Array.isArray(c.tiers) ? c.tiers.length : ', '}</Td>
                               <Td>
                                 {(c.source_url || c.url) && (
                                   <a
@@ -354,11 +354,11 @@ export function CommercialStage() {
                 )}
                 {rejected.length > 0 && (
                   <div>
-                    <MetaLabel>Not counted as competitors — {rejected.length}</MetaLabel>
+                    <MetaLabel>Not counted as competitors, {rejected.length}</MetaLabel>
                     <ul className="mt-1 grid gap-1">
                       {rejected.map((r, i) => (
                         <li key={i} className="text-body text-muted-foreground">
-                          <span className="text-foreground">{asStr(r.name)}</span> — {asStr(r.why)}
+                          <span className="text-foreground">{asStr(r.name)}</span>, {asStr(r.why)}
                         </li>
                       ))}
                     </ul>
@@ -369,7 +369,7 @@ export function CommercialStage() {
                     'drafted from approved profile + competitor pricing pages',
                     established.length > 0
                       ? `anchored on ${established.length} established ${established.length === 1 ? 'competitor' : 'competitors'}`
-                      : 'no established competitor found — treat these numbers as weak',
+                      : 'no established competitor found, treat these numbers as weak',
                   ]}
                 />
                 <RawData data={pricing} />

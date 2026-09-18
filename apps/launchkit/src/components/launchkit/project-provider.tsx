@@ -58,7 +58,7 @@ export function useProjectMaybe() {
   return React.useContext(ProjectContext);
 }
 
-/** Voice.md error style: what happened, then the fix — no apology. */
+/** Voice.md error style: what happened, then the fix, no apology. */
 export function pipelineError(kind: string, detail: string): string {
   const label = jobLabel(kind);
   // the studio forge writes its own reachability message (it is a local service, not a pipeline)

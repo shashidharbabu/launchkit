@@ -3,7 +3,7 @@
 Ground truth precedence: `shell.d.ts` (authoritative) > prose docs.
 
 Sources:
-- `apps/launchkit/node_modules/shell/shell.d.ts` — 11,841 lines, `"types"` entry of `shell@1.2.0`, `rocketride.shellApiVersion: 0`
+- `apps/launchkit/node_modules/shell/shell.d.ts`, 11,841 lines, `"types"` entry of `shell@1.2.0`, `rocketride.shellApiVersion: 0`
 - `.rocketride/docs/ROCKETRIDE_APPS.md` (1727 lines)
 - `.rocketride/docs/ROCKETRIDE_UI_COMPONENTS.md` (1590 lines)
 - `.rocketride/docs/ROCKETRIDE_typescript_API.md` (1306 lines)
@@ -20,7 +20,7 @@ All from `import { ... } from 'shell'`. `React$1` in the .d.ts is the `react` na
 
 ### A.1 `AppLayout`
 
-`shell.d.ts:8997-9018` — verbatim:
+`shell.d.ts:8997-9018`, verbatim:
 
 ```typescript
 /** Props for {@link AppLayout}. */
@@ -46,7 +46,7 @@ Exactly four props. There is no `header`, `footer`, `title`, `className`, or `st
 
 ### A.2 `ShellAppProps`
 
-`shell.d.ts:5706-5717` — the props the shell injects into your root component:
+`shell.d.ts:5706-5717`, the props the shell injects into your root component:
 
 ```typescript
 /**
@@ -64,11 +64,11 @@ Two fields only.
 
 ### A.3 `AppDescriptor`
 
-`shell.d.ts:5905-5933` — the single Module-Federation-exposed module:
+`shell.d.ts:5905-5933`, the single Module-Federation-exposed module:
 
 ```typescript
 export interface AppDescriptor {
-    /** Unique stable identifier — used as the workspace file key. */
+    /** Unique stable identifier, used as the workspace file key. */
     id: string;
     /** Display name shown in the app switcher. */
     name: string;
@@ -79,11 +79,11 @@ export interface AppDescriptor {
     /**
      * The app's ONE mount point, rendered raw in the client area. The app
      * composes its own layout inside with `<AppLayout>` (one column, sidebar,
-     * status bar — declared as props from the app's single tree).
+     * status bar, declared as props from the app's single tree).
      */
     app: React$1.ComponentType<ShellAppProps>;
     /**
-     * Optional cross-app component catalog. Never mounted by the shell —
+     * Optional cross-app component catalog. Never mounted by the shell
      * entries are loadable by other apps via `useAppComponent()`.
      */
     components?: {
@@ -124,16 +124,16 @@ interface ShellConnectionState {
 // shell.d.ts:5684
 export declare function useShellConnection(): ShellConnectionState;
 
-// shell.d.ts:5694 — identity from the most recent successful connect
+// shell.d.ts:5694, identity from the most recent successful connect
 export declare function useAuthUser(): ConnectResult | null;
 
-// shell.d.ts:5705 — ALWAYS returns null in the current implementation (see jsdoc)
+// shell.d.ts:5705, ALWAYS returns null in the current implementation (see jsdoc)
 export declare function useLogout(): (() => void) | null;
 
-// shell.d.ts:7301 — client, guaranteed connected when non-null; re-renders on state change
+// shell.d.ts:7301, client, guaranteed connected when non-null; re-renders on state change
 export declare function useClient(): RocketRideClient | null;
 
-// shell.d.ts:7521 — non-React call sites. Doc says: "Prefer
+// shell.d.ts:7521, non-React call sites. Doc says: "Prefer
 // `ConnectionManager.getInstance().getClient()` for new code."
 export declare function getClient(): RocketRideClient | null;
 ```
@@ -190,7 +190,7 @@ export declare function PrefsProvider({ value, children }: {
 export declare function usePrefs(): IPrefsApi;
 ```
 
-`getPref` returns `unknown` — you must narrow. Never null-checks needed.
+`getPref` returns `unknown`, you must narrow. Never null-checks needed.
 
 ### A.6 `useWorkspace`
 
@@ -274,7 +274,7 @@ export declare function useSubscriptions(): {
 // AppStatus (shell.d.ts:7320, NOT exported as a type):
 //   "auth" | "free" | "unsubscribed" | "subscribed" | "trialing" | "past_due" | "canceled"
 
-// shell.d.ts:7375 — polls only while connected
+// shell.d.ts:7375, polls only while connected
 export declare function usePolling(fetcher: () => void | Promise<void>, /* IUsePollingOptions @7364 */): /* … */;
 
 // shell.d.ts:7509
@@ -297,7 +297,7 @@ export declare function useAnnouncements(): Announcement[];   // Announcement @1
 `useAppComponent(appId, componentName)` is documented in
 `ROCKETRIDE_typescript_API.md:993` for the `rocketride/app-sdk` subpath:
 *"load a React component from another app's catalog (lazy-loads the descriptor;
-`null` while loading)"*. Its `shell` export signature — see NOT DOCUMENTED.
+`null` while loading)"*. Its `shell` export signature, see NOT DOCUMENTED.
 
 ### A.9 Stock UI components
 
@@ -321,7 +321,7 @@ Function components (`export declare function`, all return `React$1.ReactElement
 | `Section` / `LabelValue` | 9486 / 9493 | `{ label, children }` / `{ label, children, mono }` |
 | `ContentHeader` | 9509 | `{ title, subtitle, actions }: IContentHeaderProps` |
 | `TabControl` / `TabPanel` | 9701 / 9720 | `{ menu, activeId, onSelect, trailing }` / `{ panels, activeId }` |
-| `DetailPanel` | 9671 | `{ open, onClose, avatar, title, subtitle, tabs, activeTab, onTabSelect, children, side, width, height, footer, flushBody, contained, resizable, dirty, editing, onExitMode, busy, modeless, minWidth, persistKey }` — returns `ReactElement \| null` |
+| `DetailPanel` | 9671 | `{ open, onClose, avatar, title, subtitle, tabs, activeTab, onTabSelect, children, side, width, height, footer, flushBody, contained, resizable, dirty, editing, onExitMode, busy, modeless, minWidth, persistKey }`, returns `ReactElement \| null` |
 | `PanelTabBody` | 9683 | `{ children }` |
 | `SidebarMenu` | 9831 | `{ menu, activeId, onSelect, sectionLabel, collapsed }` |
 | `SaveFileDialog` | 9800 | `{ title, vfs, fileTypes, rootLabel, defaultDir, initialName, onConfirm, onCancel }` |
@@ -413,19 +413,19 @@ Plus `cm.getDebugLog(): DebugLogEntry[]`, `cm.clearDebugLog()`,
 
 ## B. Data access from an app
 
-### B.1 SQL — use `client.database`, not `client.tool`
+### B.1 SQL, use `client.database`, not `client.tool`
 
 **This is the direct answer to "how does an app execute SQL against a
 `rocketride_sql` node".** `client.database.query` *is* the typed wrapper around
 the node's `execute` tool function.
 
-`shell.d.ts:3902-3936` — verbatim:
+`shell.d.ts:3902-3936`, verbatim:
 
 ```typescript
 /**
  * Direct database-query namespace on RocketRideClient.
  *
- * Accessed via `client.database` — not instantiated directly. Statements
+ * Accessed via `client.database`, not instantiated directly. Statements
  * submitted through this namespace bypass the LLM translation layer and
  * safety checks, so the caller is responsible for the SQL/Cypher they pass.
  */
@@ -472,15 +472,15 @@ export declare enum DatabaseDialect {   // shell.d.ts:3897
 
 `ROCKETRIDE_typescript_API.md:938-971` adds `dialect` and `sequelize`, verbatim:
 
-> `dialect(options: { token: string; nodeId?: string }): Promise<DatabaseDialect>` — discover the underlying engine (`DatabaseDialect.POSTGRES | MYSQL | NEO4J`); branch on SQL syntax differences or detect a graph DB
+> `dialect(options: { token: string; nodeId?: string }): Promise<DatabaseDialect>`, discover the underlying engine (`DatabaseDialect.POSTGRES | MYSQL | NEO4J`); branch on SQL syntax differences or detect a graph DB
 
 > ##### `sequelize(options): Sequelize`
-> Build a Sequelize ORM instance that transports its SQL over the RocketRide pipe instead of a TCP socket. `sequelize` is an optional **peer dependency** — import the class yourself and pass it in:
+> Build a Sequelize ORM instance that transports its SQL over the RocketRide pipe instead of a TCP socket. `sequelize` is an optional **peer dependency** import the class yourself and pass it in:
 > ```typescript
 > import { Sequelize } from 'sequelize';
 >
 > const db = client.database.sequelize({ Sequelize, token, nodeId: 'db_postgres_1' });
-> // define models / run queries as usual — traffic rides the RocketRide connection
+> // define models / run queries as usual, traffic rides the RocketRide connection
 > ```
 
 > **Transaction example:**
@@ -494,7 +494,7 @@ export declare enum DatabaseDialect {   // shell.d.ts:3897
 > 	throw err;
 > }
 > ```
-> Pin `nodeId` on every call of a transaction when the pipeline has more than one database node — broadcasts may land on different nodes.
+> Pin `nodeId` on every call of a transaction when the pipeline has more than one database node, broadcasts may land on different nodes.
 
 **The `rocketride_sql` node itself** (`.rocketride/schema/rocketride_sql.json`):
 
@@ -507,7 +507,7 @@ export declare enum DatabaseDialect {   // shell.d.ts:3897
   "capabilities": 1024,
   "classType": ["database", "tool"],
   "actions": 0,
-  "description": "A RocketRide-managed relational database. Stores structured table data \nin your own provisioned RocketRide cloud database with zero setup — no host, \nuser, or password to enter. The connection is resolved automatically from \nyour signed-in RocketRide identity. Supports the same natural-language query, \nschema reflection, and direct-execute surface as the generic PostgreSQL node.",
+  "description": "A RocketRide-managed relational database. Stores structured table data \nin your own provisioned RocketRide cloud database with zero setup, no host, \nuser, or password to enter. The connection is resolved automatically from \nyour signed-in RocketRide identity. Supports the same natural-language query, \nschema reflection, and direct-execute surface as the generic PostgreSQL node.",
   "lanes": { "answers": [], "questions": ["table", "text", "answers"] },
   "invoke": { "llm": { "description": "LLM to use to craft SQL queries from question", "min": 1 } },
   "documentation": "https://docs.rocketride.org",
@@ -517,14 +517,14 @@ export declare enum DatabaseDialect {   // shell.d.ts:3897
 
 Key facts: `classType` includes `"tool"` (so it sits on the tool lane and
 `client.database.query` can reach it), it has **no** `properties` (zero config
-fields — the connection resolves from identity), and `invoke.llm` has `min: 1`,
+fields, the connection resolves from identity), and `invoke.llm` has `min: 1`,
 so a pipeline using it **must** wire an `llm` control node.
 
 **nodeId convention** (`ROCKETRIDE_PIPELINES.md:82`, verbatim): *"Unique within
 the pipeline. Convention: `<provider>_<n>` (`chat_1`, `llm_openai_1`)."* So a
 `rocketride_sql` node is conventionally `rocketride_sql_1`. Passing `nodeId: ''`
 (or omitting it) broadcasts to all tool-lane nodes and the first database node
-handles it — safe when the pipeline has exactly one DB node.
+handles it, safe when the pipeline has exactly one DB node.
 
 Assembled app-side shape:
 
@@ -543,9 +543,9 @@ const { rows, affected_rows } = await client.database.query({
 });
 ```
 
-### B.2 `client.tool({...})` — generic tool-function invocation
+### B.2 `client.tool({...})`, generic tool-function invocation
 
-`shell.d.ts:5636-5658` — verbatim (jsdoc trimmed to the param block):
+`shell.d.ts:5636-5658`, verbatim (jsdoc trimmed to the param block):
 
 ```typescript
     /**
@@ -567,11 +567,11 @@ const { rows, affected_rows } = await client.database.query({
     }): Promise<T>;
 ```
 
-`ROCKETRIDE_typescript_API.md:468-480` — verbatim:
+`ROCKETRIDE_typescript_API.md:468-480`, verbatim:
 
 > ### `tool(options): Promise<T>` (client-level)
 >
-> Invoke a `@tool_function` on a pipeline node without an open pipe — the server borrows a pipeline instance from the pool, dispatches the call, and returns the result directly (no Question/Answer/SSE overhead).
+> Invoke a `@tool_function` on a pipeline node without an open pipe, the server borrows a pipeline instance from the pool, dispatches the call, and returns the result directly (no Question/Answer/SSE overhead).
 >
 > ```typescript
 > const rows = await client.tool({
@@ -586,11 +586,11 @@ const { rows, affected_rows } = await client.database.query({
 Also available on an **open** `DataPipe` (cheaper, reuses that pipe's instance),
 `ROCKETRIDE_typescript_API.md:458`:
 
-> `tool<T>(tool: string, nodeId?: string, input?: Record<string, unknown>): Promise<T>` — invoke a `@tool_function` on a pipeline node **through this open pipe**, reusing its pipeline instance (no pool borrow). An empty `nodeId` broadcasts to all tool-lane nodes; the first owner of the tool handles it
+> `tool<T>(tool: string, nodeId?: string, input?: Record<string, unknown>): Promise<T>`, invoke a `@tool_function` on a pipeline node **through this open pipe**, reusing its pipeline instance (no pool borrow). An empty `nodeId` broadcasts to all tool-lane nodes; the first owner of the tool handles it
 
 ### B.3 `client.use({...})`
 
-`shell.d.ts:4839-4856` — verbatim:
+`shell.d.ts:4839-4856`, verbatim:
 
 ```typescript
     use(options?: {
@@ -613,11 +613,11 @@ Also available on an **open** `DataPipe` (cheaper, reuses that pipe's instance),
     }>;
 ```
 
-`ROCKETRIDE_APPS.md:856-864` — verbatim:
+`ROCKETRIDE_APPS.md:856-864`, verbatim:
 
 ```typescript
 // The rsbuild config treats .pipe as JSON, and src/global.d.ts declares the
-// module type — both scaffolded for you.
+// module type, both scaffolded for you.
 import summarizer from './summarizer.pipe';
 import { useShellConnection } from 'shell';
 
@@ -625,10 +625,10 @@ const { client } = useShellConnection();
 const { token } = await client.use({ pipeline: summarizer });
 ```
 
-`ROCKETRIDE_APPS.md:866-867`, verbatim: *"The browser has no filesystem — always
+`ROCKETRIDE_APPS.md:866-867`, verbatim: *"The browser has no filesystem, always
 pass `pipeline:` (the imported object), never `filepath:` (Node-only)."*
 
-`ROCKETRIDE_APPS.md:898-900`, verbatim: *"`use()` is expensive — start the
+`ROCKETRIDE_APPS.md:898-900`, verbatim: *"`use()` is expensive, start the
 pipeline once per session and keep the token; never start/stop around every
 request. `ttl` controls the idle shutdown window (`0` = run until terminated)."*
 
@@ -665,7 +665,7 @@ getTaskPipeline(token: string): Promise<Record<string, unknown> | undefined>;
 
 ### B.4 `client.chat(...)` and `client.send(...)`
 
-`shell.d.ts:4925` and `4969-4973` — verbatim:
+`shell.d.ts:4925` and `4969-4973`, verbatim:
 
 ```typescript
     send(token: string, data: string | Uint8Array, objinfo?: Record<string, unknown>,
@@ -694,8 +694,8 @@ Note `chat`'s `question` is typed `Question` (the exported class at
 
 Which one to use (`ROCKETRIDE_APPS.md:946-950`, verbatim):
 
-> - `client.send(token, data, objinfo?, mimetype?, onSSE?)` — for pipelines whose source pipeline component is `webhook` or `dropper`; `client.sendFiles(files, token)` for parallel file upload.
-> - `client.chat({ token, question, onSSE })` — for a `chat` source pipeline component.
+> - `client.send(token, data, objinfo?, mimetype?, onSSE?)`, for pipelines whose source pipeline component is `webhook` or `dropper`; `client.sendFiles(files, token)` for parallel file upload.
+> - `client.chat({ token, question, onSSE })`, for a `chat` source pipeline component.
 
 Streaming into React (`ROCKETRIDE_APPS.md:955-963`, verbatim):
 
@@ -714,19 +714,19 @@ data: Record<string, unknown>) => Promise<void>`. It is *"the last positional
 parameter on `pipe()` and `send()`, and a field on the `chat()` options object"*
 (`:484`).
 
-### B.5 Per-user vs deployed-task addressing — YES, there is a distinction
+### B.5 Per-user vs deployed-task addressing, YES, there is a distinction
 
-`ROCKETRIDE_APPS.md:902-942` — verbatim:
+`ROCKETRIDE_APPS.md:902-942`, verbatim:
 
 > ### One task for everyone vs a task per user
 >
-> A task's identity is owner + `project_id` + source component — and when your app calls `use()`, the owner is the signed-in **user**. So every user of your app gets their own instance of the pipeline, automatically. `useExisting` does not change that: it attaches to *that user's* own already-running instance (a reload, a second tab, a second component) instead of failing with 'Pipeline is already running.' — it never crosses user boundaries.
+> A task's identity is owner + `project_id` + source component, and when your app calls `use()`, the owner is the signed-in **user**. So every user of your app gets their own instance of the pipeline, automatically. `useExisting` does not change that: it attaches to *that user's* own already-running instance (a reload, a second tab, a second component) instead of failing with 'Pipeline is already running.', it never crosses user boundaries.
 >
 > **Per-user tasks (the default, and the only behavior `use()` can produce):**
 >
-> - Isolation — whatever state the pipeline holds in memory (accumulated documents, warm models, conversation state) belongs to that user alone.
-> - Cost — each user's task runs and bills under their own identity, and `${ROCKETRIDE_*}` placeholders resolve from *their* environment layers.
-> - Cleanup — each instance idles out on its own `ttl`; `terminate(token)` ends only that user's instance. Pass `useExisting: true` routinely so a reload re-attaches instead of erroring while the previous instance lives.
+> - Isolation, whatever state the pipeline holds in memory (accumulated documents, warm models, conversation state) belongs to that user alone.
+> - Cost, each user's task runs and bills under their own identity, and `${ROCKETRIDE_*}` placeholders resolve from *their* environment layers.
+> - Cleanup, each instance idles out on its own `ttl`; `terminate(token)` ends only that user's instance. Pass `useExisting: true` routinely so a reload re-attaches instead of erroring while the previous instance lives.
 >
 > **One shared task for all users** is a *deployed*, team-owned pipeline, not an app-embedded one: deploy the pipeline as its own `kind: 'pipe'` project and point a team at it (see 'App pipes cannot be scheduled' below and the SDK deploy docs). The team's run is a single instance; your app addresses it by adding the `teamId` scope when resolving the token:
 >
@@ -735,20 +735,20 @@ parameter on `pipe()` and `send()`, and a field on the `chat()` options object"*
 > if (token) await client.send(token, data, undefined, 'text/plain');
 > ```
 >
-> - Shared state — one instance serves every caller; anything the pipeline accumulates is visible to all of them.
-> - Cost and lifecycle — the run bills to the owning team, resolves the team's environment, and outlives any one user's session; restarting or terminating it affects everyone at once.
+> - Shared state, one instance serves every caller; anything the pipeline accumulates is visible to all of them.
+> - Cost and lifecycle, the run bills to the owning team, resolves the team's environment, and outlives any one user's session; restarting or terminating it affects everyone at once.
 >
-> **Choosing:** per-user when the pipeline holds per-user state or cost should follow the user; shared when the pipeline is a service — one big index, one warm model — whose state and cost belong to the team. When in doubt, start per-user: it is what you get by writing nothing.
+> **Choosing:** per-user when the pipeline holds per-user state or cost should follow the user; shared when the pipeline is a service, one big index, one warm model, whose state and cost belong to the team. When in doubt, start per-user: it is what you get by writing nothing.
 
 `ROCKETRIDE_APPS.md:1040-1048`, verbatim: *"A pipeline embedded in your app
-exists only inside your bundle — it runs when your code calls `use()`. Schedules
+exists only inside your bundle, it runs when your code calls `use()`. Schedules
 (cron runs) are a feature of pipelines *deployed to the server* as their own
 `kind: 'pipe'` projects via the deploy registry."*
 
 The team-service identity pattern (`ROCKETRIDE_APPS.md:1057-1069`, verbatim):
 
-> - **Identity without drift** — import the `.pipe` for its `project_id` (the scaffold's build treats `.pipe` as JSON) and address the service as `{ projectId, source, teamId }`. The import is identity only — the app never calls `use()` on it. Listing the pipeline folder under `appManifest.include` packs the definition with the app as provenance.
-> - **Store the team NAME in settings, resolve the id at runtime** — names are portable across environments; a team GUID baked into a settings default dies on any other server.
+> - **Identity without drift** import the `.pipe` for its `project_id` (the scaffold's build treats `.pipe` as JSON) and address the service as `{ projectId, source, teamId }`. The import is identity only, the app never calls `use()` on it. Listing the pipeline folder under `appManifest.include` packs the definition with the app as provenance.
+> - **Store the team NAME in settings, resolve the id at runtime** names are portable across environments; a team GUID baked into a settings default dies on any other server.
 
 ```typescript
 import filePipe from '../../../pipelines/file-to-text.pipe'; // identity only
@@ -759,21 +759,21 @@ const PROJECT_ID = String(filePipe.project_id);
 
 `ROCKETRIDE_APPS.md:874-877`, verbatim: *"Pipeline configs reference secrets as
 `${ROCKETRIDE_*}` placeholders. Substitution happens server-side when you call
-`use()` — the values come from the user's stored environment keys, so no secret
+`use()`, the values come from the user's stored environment keys, so no secret
 ever ships inside your app bundle or `.pipe` file."*
 
 ### B.7 Error handling
 
 `ROCKETRIDE_APPS.md:973-1016`, verbatim in essence:
 
-1. **The request** — `send()`, `sendFiles()`, `chat()` throw `PipeException`
+1. **The request** `send()`, `sendFiles()`, `chat()` throw `PipeException`
    (importable from `'rocketride'`; also exported from `'shell'` at
    `shell.d.ts:175`).
-2. **The task** — `getTaskStatus(token)` (`shell.d.ts:4887`): *"`completed` flips
+2. **The task** `getTaskStatus(token)` (`shell.d.ts:4887`): *"`completed` flips
    true once the run is over, `exitCode !== 0` (with `exitMessage`) means it did
    not end well, `errors` carries the most recent error lines (capped at 50), and
    `serviceUp: false` … means it cannot serve."*
-3. **Live signals** —
+3. **Live signals** 
 
 ```typescript
 useEffect(() => {
@@ -808,35 +808,35 @@ variant='error'>` above your content instead of replacing it."*
 
 Declared in `package.json` under the `appManifest` key
 (`ROCKETRIDE_APPS.md:347-351`, verbatim): *"This metadata is available to the
-platform without loading your bundle — it drives the app store listing,
+platform without loading your bundle, it drives the app store listing,
 authentication gating, packaging, and billing."*
 
-### C.1 Complete field reference — `ROCKETRIDE_APPS.md:355-372`, verbatim
+### C.1 Complete field reference, `ROCKETRIDE_APPS.md:355-372`, verbatim
 
 | Field | Type | Default | Meaning |
 |---|---|---|---|
 | `id` | `string` | required | Stable unique identity, `<developerId>.<name>` (e.g. `acme.brandy`). The prefix must be your org's claimed namespace to deploy or publish. Renaming the id makes it a different app. |
-| `projectId` | `string` | auto | Working-copy GUID the App Builder manages — tells one checkout apart from another; rides deploys only as provenance. Leave it alone. |
-| `publisher` | `string` | — | Publisher display name in the app store. |
+| `projectId` | `string` | auto | Working-copy GUID the App Builder manages, tells one checkout apart from another; rides deploys only as provenance. Leave it alone. |
+| `publisher` | `string` | none | Publisher display name in the app store. |
 | `name` | `string` | required | Display name (app switcher, store tile). |
-| `description` | `string` | — | Short description for the store listing. |
-| `icon` | `string` | — | App-folder-relative icon path (e.g. `./icon.svg`); must live inside the app folder. |
-| `readme` | `string` | — | App-folder-relative store README (markdown); must live inside the app folder. |
+| `description` | `string` | none | Short description for the store listing. |
+| `icon` | `string` | none | App-folder-relative icon path (e.g. `./icon.svg`); must live inside the app folder. |
+| `readme` | `string` | none | App-folder-relative store README (markdown); must live inside the app folder. |
 | `categories` | `string[]` | `[]` | Store filter categories (e.g. `["tools"]`). |
 | `mode` | `string` | `'free'` | Billing mode: `'free'`, `'subscription'`, or `'paywall'`. |
 | `authenticated` | `boolean` | `true` | `false` lets the app run signed-out (`isConnected: false`, `identity: null`). |
 | `showStatusBar` | `boolean` | `true` | `false` hides the shell status bar for this app. |
 | `shells` | `string[]` | all | Compatible shells: any of `'saas'`, `'oss'`, `'vscode'`. Omitted = all. |
-| `include` | `string[]` | — | Extra workspace-relative paths packed into the deploy zip — see [below](#packaging-extra-directories-include). |
-| `typecheck` | `boolean` | `true` | `false` = the server build skips the `tsc` gate and deploys even with type errors — a visible waiver, not a default. |
-| `billing.plans` | `object[]` | — | Pricing plans for paid modes: `{ nickname, amountCents, currency, interval, metadata? }` (Stripe-shaped). A *proposal* that rides every deploy and goes live when a version is approved for the store. Edited on the Store tab. |
-| `contributes.configuration` | `object` | — | Settings declaration in the VS Code `contributes.configuration` shape (below). |
+| `include` | `string[]` | none | Extra workspace-relative paths packed into the deploy zip, see [below](#packaging-extra-directories-include). |
+| `typecheck` | `boolean` | `true` | `false` = the server build skips the `tsc` gate and deploys even with type errors, a visible waiver, not a default. |
+| `billing.plans` | `object[]` | none | Pricing plans for paid modes: `{ nickname, amountCents, currency, interval, metadata? }` (Stripe-shaped). A *proposal* that rides every deploy and goes live when a version is approved for the store. Edited on the Store tab. |
+| `contributes.configuration` | `object` | none | Settings declaration in the VS Code `contributes.configuration` shape (below). |
 
 `ROCKETRIDE_APPS.md:374-376`, verbatim: *"The id grammar is enforced at scaffold
-and at deploy: `^[a-z][a-z_]*\.[a-z][a-zA-Z0-9_-]*$` — publisher segment first,
+and at deploy: `^[a-z][a-z_]*\.[a-z][a-zA-Z0-9_-]*$`, publisher segment first,
 then a dot, then the app name (`acme.s3-explorer`, `acme.app2`)."*
 
-### C.2 BILLING — how to declare a PAID app
+### C.2 BILLING, how to declare a PAID app
 
 Two fields, and they are the whole story:
 
@@ -862,7 +862,7 @@ Two fields, and they are the whole story:
 Exact plan object keys, from the manifest table: `{ nickname, amountCents,
 currency, interval, metadata? }`. `amountCents` is an integer count of cents (not
 a decimal amount). `billing.plans` is *"A **proposal** that rides every deploy and
-goes live when a version is approved for the store."* — it is not live on deploy
+goes live when a version is approved for the store."* it is not live on deploy
 alone; store approval activates it. The App Builder's **Store** tab is the GUI
 editor for it, and `ROCKETRIDE_APPS.md:145-148` says that tab holds *"billing
 mode, pricing plans, and the store requirements checklist. Personal and team
@@ -880,7 +880,7 @@ trialing | past_due | canceled`. Shell-side checkout UI is exported:
 
 ### C.3 `contributes.configuration` (runtime settings)
 
-`ROCKETRIDE_APPS.md:383-418` — verbatim:
+`ROCKETRIDE_APPS.md:383-418`, verbatim:
 
 ```json
 {
@@ -904,9 +904,9 @@ trialing | past_due | canceled`. Shell-side checkout UI is exported:
 > Rules and behavior:
 >
 > - Every key must be prefixed with your app id (`acme.brandy.<setting>`).
-> - `type` is one of `string | number | integer | boolean`; `enum`, `enumDescriptions`, `markdownDescription`, `order`, `required`, and `placeholder` refine the control. The display label derives from the key, VS Code style (`maxResults` renders as "Max Results") — there is no label field.
+> - `type` is one of `string | number | integer | boolean`; `enum`, `enumDescriptions`, `markdownDescription`, `order`, `required`, and `placeholder` refine the control. The display label derives from the key, VS Code style (`maxResults` renders as "Max Results"), there is no label field.
 > - Settings render in the shell's Settings overlay, grouped by `title`; only user *overrides* are stored (defaults live in your schema).
-> - Read settings via `useWorkspace().settings` — an *effective* map with defaults already merged, keyed by the full dotted key:
+> - Read settings via `useWorkspace().settings`, an *effective* map with defaults already merged, keyed by the full dotted key:
 >
 > ```typescript
 > const { settings } = useWorkspace();
@@ -921,25 +921,25 @@ export interface SettingSchema {
     default?: SettingValue;
     description?: string;
     markdownDescription?: string;
-    enum?: string[];   // "Typed string[] per the frozen v0 contract" — see note
+    enum?: string[];   // "Typed string[] per the frozen v0 contract", see note
     // …enumDescriptions, order, required, placeholder
 }
 ```
 
-`shell.d.ts:5795-5799` warns, verbatim: *"Fixed value choices — renders as a
+`shell.d.ts:5795-5799` warns, verbatim: *"Fixed value choices, renders as a
 dropdown. Typed `string[]` per the frozen v0 contract; integer/number schemas may
 carry numeric entries in the manifest JSON at runtime, so render through
 `String()` and coerce the selected value back via `type`."*
 
 Label derivation (`shell.d.ts:5778-5781`): *"'rocketride.pipeBuilder.pipelineTraceLevel'
-renders as "Pipeline Builder: Pipeline Trace Level" — there is no label field.
+renders as "Pipeline Builder: Pipeline Trace Level", there is no label field.
 Key casing is therefore label casing (use 'pipelineTTL' for "Pipeline TTL")."*
 
 ### C.4 `include`
 
-`ROCKETRIDE_APPS.md:420-442` — verbatim:
+`ROCKETRIDE_APPS.md:420-442`, verbatim:
 
-> Deploying an app uploads its SOURCE — the server owns the build. The deploy zip mirrors your workspace tree: the app folder packs at its workspace-relative position, and any `include` entries pack verbatim at theirs, so relative references between them (a shared-source tsconfig mapping, a `file:` dependency) resolve identically after the server unpacks:
+> Deploying an app uploads its SOURCE, the server owns the build. The deploy zip mirrors your workspace tree: the app folder packs at its workspace-relative position, and any `include` entries pack verbatim at theirs, so relative references between them (a shared-source tsconfig mapping, a `file:` dependency) resolve identically after the server unpacks:
 >
 > ```json
 > {
@@ -949,7 +949,7 @@ Key casing is therefore label casing (use 'pipelineTTL' for "Pipeline TTL")."*
 > }
 > ```
 >
-> Entries are workspace-relative paths (files or directories) — no absolute paths, drive letters, or `.`/`..` segments, and every entry must exist or the deploy fails. Packing honors your workspace's `.gitignore` plus a built-in baseline (`node_modules/`, `dist/`, `.git/`): dependency trees and build output never ship — the server installs and builds from source. The zipped upload caps at 50 MB; hitting it usually means an over-broad `include` entry.
+> Entries are workspace-relative paths (files or directories), no absolute paths, drive letters, or `.`/`..` segments, and every entry must exist or the deploy fails. Packing honors your workspace's `.gitignore` plus a built-in baseline (`node_modules/`, `dist/`, `.git/`): dependency trees and build output never ship, the server installs and builds from source. The zipped upload caps at 50 MB; hitting it usually means an over-broad `include` entry.
 
 ### C.5 Real scaffolded manifest (this workspace)
 
@@ -960,7 +960,7 @@ Key casing is therefore label casing (use 'pipelineTTL' for "Pipeline TTL")."*
   "id": "rocketride_ai.launchkit",
   "publisher": "rocketride_ai",
   "name": "Launch Kit",
-  "description": "Launch Kit — a RocketRide app",
+  "description": "Launch Kit, a RocketRide app",
   "icon": "./icon.svg",
   "readme": "./README.md",
   "categories": ["custom"],
@@ -977,11 +977,11 @@ Key casing is therefore label casing (use 'pipelineTTL' for "Pipeline TTL")."*
 
 ## D. Styling constraints
 
-### D.1 The doctrine — `ROCKETRIDE_APPS.md:1375-1414`, verbatim
+### D.1 The doctrine, `ROCKETRIDE_APPS.md:1375-1414`, verbatim
 
 > ## Styles Doctrine
 >
-> The platform's UI conventions — the App Builder's Components gallery shows all of it live.
+> The platform's UI conventions, the App Builder's Components gallery shows all of it live.
 >
 > 1. **Plain CSS via style objects.** No CSS frameworks, no MUI, no styled-components, no separate stylesheet files. Each component file declares one named `styles` const at the top:
 >
@@ -993,11 +993,11 @@ Key casing is therefore label casing (use 'pipelineTTL' for "Pipeline TTL")."*
 >    };
 >    ```
 >
->    JSX references `styles.wrap` — no inline object literals scattered through the markup.
+>    JSX references `styles.wrap`, no inline object literals scattered through the markup.
 >
 > 2. **Tokens for every visual value.** Colors, fonts, and borders always come from `--rr-*` variables so all themes work for free.
 >
-> 3. **Stock components first.** Before building a card, badge, modal, grid, or input from scratch, check the surface: `Button`, `Card`, `Modal`, `ConfirmDialog`, `StatusBadge`, `Banner`, `InputField`, `ToggleGroup`, `Chip`, `DataGrid`, `TabControl`, `TabPanel`, `EmptyState`, `Section`, `DetailPanel`, `SidebarMenu`, `ChatView`, and more — all importable from `'shell'`, all token-styled and theme-correct.
+> 3. **Stock components first.** Before building a card, badge, modal, grid, or input from scratch, check the surface: `Button`, `Card`, `Modal`, `ConfirmDialog`, `StatusBadge`, `Banner`, `InputField`, `ToggleGroup`, `Chip`, `DataGrid`, `TabControl`, `TabPanel`, `EmptyState`, `Section`, `DetailPanel`, `SidebarMenu`, `ChatView`, and more, all importable from `'shell'`, all token-styled and theme-correct.
 >
 > 4. **`commonStyles` for shared shapes.** [...] Spread and extend (`{ ...commonStyles.buttonPrimary, minWidth: 96 }`) for genuinely shared shapes; keep one-off styling in your own `styles` const.
 >
@@ -1009,7 +1009,7 @@ stylesheet files."* A precompiled Tailwind stylesheet violates rule 1 twice
 (framework + separate stylesheet file) and rule 2 (Tailwind's utility classes
 carry literal colors, not `--rr-*` tokens).
 
-**Is the prohibition mechanically enforced?** NOT DOCUMENTED — see the caveats
+**Is the prohibition mechanically enforced?** NOT DOCUMENTED, see the caveats
 list. What *is* verifiable from `apps/launchkit/rsbuild.config.mts`: the build is
 a stock `@rsbuild/core` + `pluginReact()` + `pluginModuleFederation()` config
 with exactly one `tools.rspack` rule added (`{ test: /\.pipe$/, type: 'json' }`).
@@ -1019,9 +1019,9 @@ would land at runtime (the app is a Module Federation **remote** mounted inside
 the shell's page, so any global stylesheet it injects would apply to the shell
 chrome too), is not covered by any doc I read.
 
-### D.2 Theming — `ROCKETRIDE_APPS.md:1330-1371`, verbatim
+### D.2 Theming, `ROCKETRIDE_APPS.md:1330-1371`, verbatim
 
-> The shell manages themes via CSS custom properties. Use `--rr-*` variables for every color, font, and border — never hardcoded values. The user's theme choice (light, dark, and other palettes, including a Visual Studio-flavored one) swaps the values out from under you; an app built on tokens needs no theme-specific code.
+> The shell manages themes via CSS custom properties. Use `--rr-*` variables for every color, font, and border, never hardcoded values. The user's theme choice (light, dark, and other palettes, including a Visual Studio-flavored one) swaps the values out from under you; an app built on tokens needs no theme-specific code.
 
 ### Core tokens (documented set)
 
@@ -1046,7 +1046,7 @@ theme (`ThemeTokens` is the typed map, **~80 tokens**)"*. The exact 80 are
 enumerable from `ThemeTokens` at `shell.d.ts:10768` and from the shipped
 `shell/tokens.css`.
 
-Gotcha, `ROCKETRIDE_APPS.md:1354-1355`, verbatim: *"There is no monospace token —
+Gotcha, `ROCKETRIDE_APPS.md:1354-1355`, verbatim: *"There is no monospace token
 use a fallback stack: `fontFamily: 'var(--rr-font-mono, Consolas, monospace)'`."*
 
 Reacting to theme changes (`ROCKETRIDE_APPS.md:1364-1368`, verbatim):
@@ -1060,7 +1060,7 @@ useShellEvent('shell:themeChange', ({ tokens }) => {
 ### D.3 Fonts
 
 No doc in `.rocketride/docs/` mentions `@font-face`, `woff`, font bundling, or
-font files — see NOT DOCUMENTED. The only verifiable data point: the **shell's
+font files, see NOT DOCUMENTED. The only verifiable data point: the **shell's
 own** `package.json` depends on `@fontsource-variable/figtree@^5.2.10`, and the
 shell package publishes two CSS subpath exports for its own use:
 
@@ -1074,21 +1074,21 @@ shell package publishes two CSS subpath exports for its own use:
 ```
 
 The documented way for an app to set type is `var(--rr-font-family, system-ui)`
-— i.e. inherit the shell's font rather than ship one.
+i.e. inherit the shell's font rather than ship one.
 
 ### D.4 Styling inside an embedded iframe
 
-`ROCKETRIDE_APPS.md:665-701` — the one place raw CSS text is sanctioned, and only
+`ROCKETRIDE_APPS.md:665-701`, the one place raw CSS text is sanctioned, and only
 inside an iframe you build with `srcdoc`. Verbatim:
 
-> - **Seed the theme into the `srcdoc` markup.** Waiting for `shell:init` to theme the document paints one unthemed frame first. Instead, generate a `:root { ... }` style block from the current token map when you build the `srcdoc` string — the shell writes every `--rr-*` token as an inline style property on the document root, so the current values are trivial to read — and use `shell:init`/`shell:themeChange` only to keep them fresh afterwards.
+> - **Seed the theme into the `srcdoc` markup.** Waiting for `shell:init` to theme the document paints one unthemed frame first. Instead, generate a `:root { ... }` style block from the current token map when you build the `srcdoc` string, the shell writes every `--rr-*` token as an inline style property on the document root, so the current values are trivial to read, and use `shell:init`/`shell:themeChange` only to keep them fresh afterwards.
 > - **Hide until ready.** Keep the iframe `visibility: 'hidden'` until the content posts `view:initialized`, then reveal [...] Never use `display: 'none'` for this: a display-none frame has zero dimensions, which breaks any layout measured inside it.
 
 > Style the embedded document with `var(--rr-*)` exactly as you would in the app itself and it follows every theme switch live.
 
 The iframe must be `srcdoc` or same-origin (`:659-661`): *"The bridge posts every
 message with the shell's own origin as the target, so a document on a foreign
-origin never receives it — by design: identity and config must not leak."*
+origin never receives it, by design: identity and config must not leak."*
 
 ---
 
@@ -1100,8 +1100,8 @@ Only **two** app-level asset references exist in the manifest, both
 app-folder-relative and both required to live inside the app folder
 (`ROCKETRIDE_APPS.md:362-363`):
 
-- `icon` — e.g. `./icon.svg`
-- `readme` — e.g. `./README.md`
+- `icon`, e.g. `./icon.svg`
+- `readme`, e.g. `./README.md`
 
 The scaffold ships `icon.svg` (`ROCKETRIDE_APPS.md:250`, verbatim): *"Neutral
 placeholder so icon readiness starts green and store tiles never render a bare
@@ -1116,7 +1116,7 @@ asset handling), but no doc states what the platform does with it, and
 `output: { assetPrefix: 'auto' }` in `rsbuild.config.mts` is the only
 asset-related build setting present.
 
-### E.2 Size caps — CONFIRMED
+### E.2 Size caps, CONFIRMED
 
 `ROCKETRIDE_APPS.md:441`: *"The zipped upload caps at 50 MB."*
 
@@ -1132,7 +1132,7 @@ ships it through the registry rail"*.
 
 Pre-flight check before deploying (`ROCKETRIDE_typescript_API.md:853`, verbatim):
 
-> Pre-check everything first with `client.deploy.verifyApp(appFolder)` — a purely local dry run (no server call) returning `{ ok, checks: [{ id, ok, note }], fileCount, uncompressedBytes }` covering the manifest shape, id grammar, declared assets, include entries, and pack size.
+> Pre-check everything first with `client.deploy.verifyApp(appFolder)`, a purely local dry run (no server call) returning `{ ok, checks: [{ id, ok, note }], fileCount, uncompressedBytes }` covering the manifest shape, id grammar, declared assets, include entries, and pack size.
 
 CI shape, verbatim from the same line:
 
@@ -1143,23 +1143,23 @@ rocketride app verify ./apps/reports && rocketride app deploy ./apps/reports --c
 > both read the `ROCKETRIDE_DEPLOY_*` pair, and deploy refuses to run without a configured deployment target.
 
 Note the caps apply to **source**, not build output: *"Deploying an app uploads
-its SOURCE — the server owns the build"* (`:422`) and *"dependency trees and
-build output never ship — the server installs and builds from source"* (`:439`).
+its SOURCE, the server owns the build"* (`:422`) and *"dependency trees and
+build output never ship, the server installs and builds from source"* (`:439`).
 
 ---
 
 ## F. Events & realtime
 
-### F.1 `useShellEvent` — exact signature
+### F.1 `useShellEvent`, exact signature
 
-`shell.d.ts:7302-7319` — verbatim:
+`shell.d.ts:7302-7319`, verbatim:
 
 ```typescript
 /**
  * Subscribe to a typed shell event with automatic cleanup on unmount.
  *
  * Replaces the common pattern of manually calling `cm.on()` in a useEffect
- * and returning the unsubscribe function. The handler is stable — it always
+ * and returning the unsubscribe function. The handler is stable, it always
  * calls the latest version without needing it in the dependency array.
  *
  * @param event   - The event name from ShellConnectionEventMap.
@@ -1178,28 +1178,28 @@ export declare function useShellEvent<K extends keyof ShellConnectionEventMap>(
 ): void;
 ```
 
-Returns `void` — no unsubscribe to manage; cleanup is automatic on unmount, and
+Returns `void`, no unsubscribe to manage; cleanup is automatic on unmount, and
 the handler is stable (no dependency array needed).
 
 ### F.2 Complete event name list
 
 `ShellConnectionEventMap` is declared at `shell.d.ts:6369` (the interface itself
-is **not** exported — only `useShellEvent`'s generic references it). The complete
+is **not** exported, only `useShellEvent`'s generic references it). The complete
 key set, enumerated from the 25 `emit`/`on` overloads at `shell.d.ts:7179-7213`
 and the `ConnectionManager.on` overloads at `shell.d.ts:6637-6709`:
 
 | Event | Payload (from `shell.d.ts:6369-6500`, and `ROCKETRIDE_APPS.md:752-760`) |
 |---|---|
-| `shell:connected` | `Record<string, never>` — WS handshake + auth complete |
+| `shell:connected` | `Record<string, never>`, WS handshake + auth complete |
 | `shell:disconnected` | `{ reason: string; hasError: boolean }` |
-| `shell:statusMessage` | `{ message: string \| null }` — `null` clears |
-| `shell:statusChange` | `ConnectionStatus` — full state machine update |
+| `shell:statusMessage` | `{ message: string \| null }`, `null` clears |
+| `shell:statusChange` | `ConnectionStatus`, full state machine update |
 | `shell:error` | `{ error: Error \| unknown }` |
-| `shell:event` | `{ event: DAPMessage }` — **every** raw server push |
-| `shell:accountUpdate` | `ConnectResult` — from the `apaext_account` DAP event |
-| `shell:orgChanged` | `{ orgId: string }` — from `apaext_org_changed`; pure notification |
+| `shell:event` | `{ event: DAPMessage }`, **every** raw server push |
+| `shell:accountUpdate` | `ConnectResult`, from the `apaext_account` DAP event |
+| `shell:orgChanged` | `{ orgId: string }`, from `apaext_org_changed`; pure notification |
 | `shell:servicesUpdated` | `{ services: Record<string, unknown>; icons?: Record<string, string>; servicesError?: string }` |
-| `shell:appsUpdated` | `{ apps: ShellAppEntry[] }` — complete replacement set |
+| `shell:appsUpdated` | `{ apps: ShellAppEntry[] }`, complete replacement set |
 | `shell:login` | `{ user: ConnectResult }` |
 | `shell:logout` | `Record<string, never>` |
 | `shell:loginRequest` | `{ appId?: string; register?: boolean }` |
@@ -1207,14 +1207,14 @@ and the `ConnectionManager.on` overloads at `shell.d.ts:6637-6709`:
 | `shell:switchApp` | `{ appId: string }` |
 | `shell:subscribe` | opens `CheckoutModal`; `app` = manifest entry, optional `plan` preselects a tier (`:6485-6488`) |
 | `shell:unsubscribe` | see NOT DOCUMENTED (payload not read) |
-| `shell:myApps` | `{}` — navigate to the My Apps launcher |
-| `shell:openOverlay` | `{ id }` — `'account' \| 'settings' \| 'environment'` |
+| `shell:myApps` | `{}`, navigate to the My Apps launcher |
+| `shell:openOverlay` | `{ id }`, `'account' \| 'settings' \| 'environment'` |
 | `shell:sidebarCollapsing` | `{}` |
-| `shell:themeChange` | `{ tokens }` — the full `--rr-*` map |
-| `shell:viewActivated` | `{ viewId }` — a view/tab became active; lazy panels init here |
-| `shell:manifestRefresh` | `{ source }` — server-side app manifest changed (dev overlay, publish, expiry) |
-| `app:statusChanged` | `{ appId, version?, status, notes? }` — store review status changed |
-| `store:changed` | `{ prefix, paths }` — files changed under a watched store prefix |
+| `shell:themeChange` | `{ tokens }`, the full `--rr-*` map |
+| `shell:viewActivated` | `{ viewId }`, a view/tab became active; lazy panels init here |
+| `shell:manifestRefresh` | `{ source }`, server-side app manifest changed (dev overlay, publish, expiry) |
+| `app:statusChanged` | `{ appId, version?, status, notes? }`, store review status changed |
+| `store:changed` | `{ prefix, paths }`, files changed under a watched store prefix |
 
 `ROCKETRIDE_APPS.md:761`: *"The event map is the platform's shared vocabulary."*
 
@@ -1235,7 +1235,7 @@ Every DAP message the WebSocket receives is republished on the shell bus as
 ```
 
 `ROCKETRIDE_APPS.md:965-967`, verbatim: *"Server push events (task status, custom
-pipeline-to-UI messages) arrive on the shell bus — subscribe with
+pipeline-to-UI messages) arrive on the shell bus, subscribe with
 `useShellEvent('shell:event', ...)`; see `ROCKETRIDE_OBSERVABILITY.md` for the
 event taxonomy."*
 
@@ -1262,7 +1262,7 @@ Named DAP events referenced in the app docs: `apaevt_status_update`,
 `sendFiles`), `apaext_account`, `apaext_org_changed`.
 
 `ROCKETRIDE_APPS.md:997-1001`, verbatim: *"an `apaevt_task` event with `action:
-'end'` that you did not cause — no `terminate()`, no TTL you expected — is your
+'end'` that you did not cause, no `terminate()`, no TTL you expected, is your
 cue to check the status and show the error state"*.
 
 ### F.4 Non-React subscription
@@ -1278,21 +1278,21 @@ const unsub = cm.on('shell:connected', () => console.log('Connected'));
 unsub();
 ```
 
-> In React, prefer the hook — it unsubscribes on unmount and always calls your latest handler
+> In React, prefer the hook, it unsubscribes on unmount and always calls your latest handler
 
 ### F.5 The iframe bridge (a separate, non-overlapping message set)
 
-`ROCKETRIDE_APPS.md:639-656` — messages the shell posts *into* an embedded
+`ROCKETRIDE_APPS.md:639-656`, messages the shell posts *into* an embedded
 iframe. These are **not** `ShellConnectionEventMap` keys:
 
 | Message | Payload | When |
 |---|---|---|
-| `shell:init` | `{ theme, user, isConnected, apiConfig }` | The reply to `view:ready` — the bootstrap snapshot. `theme` is the full `--rr-*` token map. |
-| `shell:themeChange` | `{ tokens }` | The user switched themes — re-apply the token map. |
+| `shell:init` | `{ theme, user, isConnected, apiConfig }` | The reply to `view:ready`, the bootstrap snapshot. `theme` is the full `--rr-*` token map. |
+| `shell:themeChange` | `{ tokens }` | The user switched themes, re-apply the token map. |
 | `shell:connectionChange` | `{ isConnected }` | The platform WebSocket opened or closed. |
-| `shell:login` / `shell:logout` | `{ user }` / — | Identity changed. |
+| `shell:login` / `shell:logout` | `{ user }` /, | Identity changed. |
 | `shell:event` | `{ event }` | Every raw server push event, forwarded. |
-| `shell:viewActivated` | `{ viewId }` | — |
+| `shell:viewActivated` | `{ viewId }` | none |
 
 Content-side messages include `view:ready`, `view:initialized`, and an
 open-singleton-tab request `{ viewType, label }`. Hook: `useIframeBridge`
@@ -1363,7 +1363,7 @@ Everything below was asked for but could not be verified in
     exact *destructured prop names* (which is what you code against) and the
     interface name + line. The interfaces' full type bodies (`IButtonProps`
     variants, `IDataGridProps<Row>`, `IChatViewProps`, `IDetailPanelProps`, etc.)
-    were not transcribed — read them at the cited lines.
+    were not transcribed, read them at the cited lines.
 
 13. **Whether `mode: 'paywall'` and `mode: 'subscription'` differ in required
     `billing.plans` shape.** The manifest table gives one plan shape for "paid
@@ -1371,7 +1371,7 @@ Everything below was asked for but could not be verified in
 
 14. **Whether `billing.plans` is validated at deploy or only at store review.**
     The doc says it "rides every deploy and goes live when a version is approved
-    for the store" — the validation point is not stated.
+    for the store", the validation point is not stated.
 
 15. **`AppConfiguration` / `SettingsRegistry` full shapes.** Referenced by
     `AppManifestEntry.configuration` (`shell.d.ts:5877`) and

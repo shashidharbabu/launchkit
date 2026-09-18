@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { DUR, EASE_STANDARD, EASE_EXIT } from '@/lib/motion';
 
 /**
- * The Gate Slip — the signature element (01-direction.md). A bordered sheet
+ * The Gate Slip, the signature element (01-direction.md). A bordered sheet
  * on the desk (no shadow). Approving fires the stamp: GO lands with
  * scale 1.15 → 1.0 over --duration-stamp, then the slip collapses to a
  * signed row. While the stamp plays, nothing else moves.
@@ -23,14 +23,14 @@ export function GateSlip({
   reopenActions,
   children,
 }: {
-  gateLabel: string; // "GATE 01 — PROFILE"
+  gateLabel: string; // "GATE 01, PROFILE"
   stamp: StampKind;
   signed: boolean;
   signedLine: string; // "profile approved · aug 11"
   provenance: Array<string | null | undefined | false>;
   /** Action row while unsigned: the ember verb + secondaries. */
   actions: React.ReactNode;
-  /** Action row when a signed slip is re-opened (edit/regenerate — no Approve). */
+  /** Action row when a signed slip is re-opened (edit/regenerate, no Approve). */
   reopenActions?: React.ReactNode;
   children: React.ReactNode;
 }) {
@@ -94,7 +94,7 @@ export function GateSlip({
                 </div>
               )}
 
-              {/* the stamp lands — meta stamp treatment, sized by transform */}
+              {/* the stamp lands, meta stamp treatment, sized by transform */}
               <AnimatePresence>
                 {stamping && (
                   <motion.div

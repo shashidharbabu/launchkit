@@ -66,8 +66,8 @@ export function TargetsStage() {
         id: t.id,
         rank: t.rank,
         selected: t.selected,
-        name: String(t.data.name ?? '—'),
-        kind: String(t.data.kind ?? '—'),
+        name: String(t.data.name ?? ', '),
+        kind: String(t.data.kind ?? ', '),
         url: String(t.data.submission_url || t.data.url || ''),
         why_fit: String(t.data.why_fit ?? ''),
         rules_summary: String(t.data.rules_summary ?? ''),
@@ -130,13 +130,13 @@ export function TargetsStage() {
 
   return (
     <div className="grid gap-4">
-      {/* purpose before data — what happened, what to do */}
+      {/* purpose before data, what happened, what to do */}
       {targets.length > 0 && (
         <Orient
           lead={
             <>
               Launch Kit ranked where this app should launch.{' '}
-              <strong className="font-medium">Tick the venues you&rsquo;ll actually do</strong> —
+              <strong className="font-medium">Tick the venues you&rsquo;ll actually do</strong>
               five right venues beat fifty.
             </>
           }
@@ -164,7 +164,7 @@ export function TargetsStage() {
       {targets.length === 0 && (
         <HonestEmpty
           fact="No venues ranked yet."
-          reason="Launch Kit ranks the venues where your app should launch — niche subreddits, directories, communities — with the rules of each, from your approved profile."
+          reason="Launch Kit ranks the venues where your app should launch, niche subreddits, directories, communities, with the rules of each, from your approved profile."
           action={
             <Button
               variant="secondary"
@@ -227,11 +227,11 @@ export function TargetsStage() {
                             />
                           </span>
                           <span className="font-mono text-data text-muted-foreground">
-                            {t.expected_impact || '—'}
+                            {t.expected_impact || ', '}
                           </span>
                         </span>
                       </Td>
-                      <Td className="font-mono text-data text-muted-foreground">{t.effort || '—'}</Td>
+                      <Td className="font-mono text-data text-muted-foreground">{t.effort || ', '}</Td>
                       <Td>
                         {t.url && (
                           <a
@@ -276,13 +276,13 @@ export function TargetsStage() {
                               <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
                                 Why it fits
                               </p>
-                              <p className="mt-0.5 text-body">{t.why_fit || '—'}</p>
+                              <p className="mt-0.5 text-body">{t.why_fit || ', '}</p>
                             </div>
                             <div>
                               <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
                                 Rules
                               </p>
-                              <p className="mt-0.5 text-body">{t.rules_summary || '—'}</p>
+                              <p className="mt-0.5 text-body">{t.rules_summary || ', '}</p>
                               {(() => {
                                 // machines get blocked from rules pages; humans don't.
                                 // an unverified summary becomes a one-click manual check.
@@ -310,7 +310,7 @@ export function TargetsStage() {
                               <p className="font-mono text-meta font-medium uppercase tracking-[0.08em] text-muted-foreground">
                                 Audience signal
                               </p>
-                              <p className="mt-0.5 text-body">{t.audience_signal || '—'}</p>
+                              <p className="mt-0.5 text-body">{t.audience_signal || ', '}</p>
                             </div>
                           </div>
                         </td>
@@ -324,7 +324,7 @@ export function TargetsStage() {
           {rows.length > PAGE && (
             <div className="flex items-center justify-between border-t border-border px-3 py-2">
               <span className="font-mono text-data text-muted-foreground">
-                showing {page * PAGE + 1}–{Math.min((page + 1) * PAGE, rows.length)} of {rows.length}{' '}
+                showing {page * PAGE + 1}, {Math.min((page + 1) * PAGE, rows.length)} of {rows.length}{' '}
                 venues
               </span>
               <span className="flex gap-2">

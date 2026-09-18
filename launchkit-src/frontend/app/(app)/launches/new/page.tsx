@@ -44,7 +44,7 @@ export default function NewLaunchPage() {
     setCreating(true);
     setFormError('');
     try {
-      // analysis starts server-side on create — the workspace picks up the job
+      // analysis starts server-side on create, the workspace picks up the job
       const p = await api.createProject({ ...form, autorun: true });
       router.push(`/p/${p.id}/profile`);
     } catch (err) {
@@ -60,7 +60,7 @@ export default function NewLaunchPage() {
         <h1 className="text-display font-semibold tracking-[-0.01em]">Start a launch</h1>
         <p className="mt-2 text-body text-muted-foreground">
           Launch Kit reads your live site (and repo, if public) and drafts your app profile.
-          Analysis starts the moment your launch is created and takes 1–3 minutes.
+          Analysis starts the moment your launch is created and takes 1-3 minutes.
         </p>
       </div>
 
@@ -106,7 +106,7 @@ export default function NewLaunchPage() {
           label="GitHub repo"
           htmlFor="nl-repo"
           helper={
-            repoError ? undefined : 'Optional — public repos only. A repo gives a much stronger profile.'
+            repoError ? undefined : 'Optional, public repos only. A repo gives a much stronger profile.'
           }
           error={repoError}
         >
@@ -121,7 +121,7 @@ export default function NewLaunchPage() {
 
         {duplicate && (
           <p className="border border-border bg-muted p-3 text-body">
-            You already have a launch for this site —{' '}
+            You already have a launch for this site, {' '}
             <Link
               href={`/p/${duplicate.id}/profile`}
               className="text-link underline underline-offset-2 hover:text-link-hover"
@@ -151,7 +151,7 @@ export default function NewLaunchPage() {
       </form>
       </div>
 
-      {/* on the pad — decorative, hidden on small screens */}
+      {/* on the pad, decorative, hidden on small screens */}
       <aside className="relative hidden aspect-[3/4] overflow-hidden rounded-sm border border-border lg:block">
         <Image
           src="/brand/pre-launch.jpg"

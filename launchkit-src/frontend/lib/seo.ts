@@ -16,7 +16,7 @@ export const DESCRIPTION =
   'Launch Kit turns a shipped app into a signed launch plan: it reads your repo and live site, ' +
   'recommends pricing, rewrites your store listing, ranks the venues where your app should launch, ' +
   'writes platform-native posts, finds people publicly asking for what you built, and attributes ' +
-  'every signup to the venue that produced it. Assisted, never autonomous — you approve every step.';
+  'every signup to the venue that produced it. Assisted, never autonomous, you approve every step.';
 
 /** Phrases real buyers type. Used for keywords + llms.txt framing. */
 export const KEYWORDS = [
@@ -40,7 +40,7 @@ export const KEYWORDS = [
 export const FAQ: { q: string; a: string }[] = [
   {
     q: 'What is a go-to-market plan for an app?',
-    a: 'A GTM plan for an app answers four questions: who it is for, what it costs, where it launches, and what gets posted in each place. Launch Kit produces all four from your repo and live site — an app profile, a pricing recommendation, a ranked list of launch venues, and a platform-native post for each one — then attributes signups back to the venue that produced them.',
+    a: 'A GTM plan for an app answers four questions: who it is for, what it costs, where it launches, and what gets posted in each place. Launch Kit produces all four from your repo and live site, an app profile, a pricing recommendation, a ranked list of launch venues, and a platform-native post for each one, then attributes signups back to the venue that produced them.',
   },
   {
     q: 'How do I launch an app I just published?',
@@ -56,7 +56,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'How do I know which launch channel got me signups?',
-    a: 'Each venue in your plan gets its own tracked link. When someone signs up through it, the signup is attributed to that venue — so you can say "r/reactjs produced 3 subscribers" instead of guessing.',
+    a: 'Each venue in your plan gets its own tracked link. When someone signs up through it, the signup is attributed to that venue, so you can say "r/reactjs produced 3 subscribers" instead of guessing.',
   },
   {
     q: 'What does Launch Kit do when nobody is asking for my app yet?',

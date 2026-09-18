@@ -12,7 +12,7 @@ import { pyGet, pyLen, pyList, pyStr, pyTruthy } from "./py";
 import type { AssetData, GateDropped, SignalData } from "./types";
 import { RULEBOOK_CHECKS, type RuleCheck } from "../lib/rulebook-checks";
 
-/** rr.THREAD_PAT — what counts as a real discussion thread. */
+/** rr.THREAD_PAT, what counts as a real discussion thread. */
 export const THREAD_PAT = new RegExp(
   "(reddit\\.com/r/.+/comments/|news\\.ycombinator\\.com/item|" +
   "github\\.com/.+/(discussions|issues)/|stackoverflow\\.com/questions/|" +
@@ -29,8 +29,9 @@ export const THREAD_PAT = new RegExp(
  * hostname is a drop-substring; for SHARED hosts (github.com, reddit.com, …)
  * only the app's own path on that host is (host/owner/name), because a shared
  * host is never "own", the original rule dropped every github.com signal for
- * any GitHub-hosted app (F4). The last path segment of each own URL (e.g. the
- * repo name) remains a drop-substring, as before.
+ * any GitHub-hosted app (F4). The last path segment of an own URL is no longer
+ * a drop-substring: for github.com/plausible/analytics it banned the word
+ * "analytics" from every url on the internet (see the note in the loop below).
  */
 const GENERIC_HOSTS = new Set([
   "github.com", "gitlab.com", "bitbucket.org", "codeberg.org", "huggingface.co",
@@ -144,7 +145,7 @@ export function gateSignals(signals: SignalData[], ownUrls: unknown[]): { kept: 
   return { kept, dropped };
 }
 
-/** rr.ASSET_LIMITS — asset_type → [field, max chars]. */
+/** rr.ASSET_LIMITS, asset_type → [field, max chars]. */
 export const ASSET_LIMITS: Record<string, [string, number]> = {
   x_post: ["post", 280],
   producthunt: ["tagline", 60],
@@ -332,7 +333,7 @@ function hitLine(h: CheckHit): string {
   return `${h.field}: ${h.description}${h.detail ? ` (${h.detail})` : ""}`;
 }
 
-/** rr.HN_LOCK_SECONDS — HN threads become read-only ~2 weeks after posting. */
+/** rr.HN_LOCK_SECONDS, HN threads become read-only ~2 weeks after posting. */
 export const HN_LOCK_SECONDS = 14 * 86400;
 
 /** Rejection text used by rescore_signals when the HN lock trips. */

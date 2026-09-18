@@ -74,7 +74,7 @@ export default function LaunchesPage() {
       {launches !== null && !apiDown && launches.length === 0 && (
         <HonestEmpty
           fact="No launches yet."
-          reason="A launch runs your shipped app through seven stages with your approval at every gate — start with your app's name, live site, and repo."
+          reason="A launch runs your shipped app through seven stages with your approval at every gate, start with your app's name, live site, and repo."
           action={
             <Link href="/launches/new">
               <Button variant="secondary">Start your first launch</Button>
@@ -124,7 +124,7 @@ export default function LaunchesPage() {
                       {row.site_url.replace(/^https?:\/\//, '')}
                     </Td>
                     <Td className="font-mono text-data text-muted-foreground">
-                      {row.repo_url ? row.repo_url.replace(/^https?:\/\/(github\.com\/)?/, '') : '—'}
+                      {row.repo_url ? row.repo_url.replace(/^https?:\/\/(github\.com\/)?/, '') : ', '}
                     </Td>
                     <Td>
                       {row.profile_status === 'approved' ? (
@@ -132,14 +132,14 @@ export default function LaunchesPage() {
                       ) : row.profile_status ? (
                         <StatusStamp kind="hold" />
                       ) : (
-                        <span className="text-muted-foreground">—</span>
+                        <span className="text-muted-foreground">, </span>
                       )}
                     </Td>
-                    <Td numeric>{detail ? detail.counts.assets : '—'}</Td>
+                    <Td numeric>{detail ? detail.counts.assets : ', '}</Td>
                     <Td numeric>
-                      {detail ? `${detail.counts.targets_selected}/${detail.counts.targets}` : '—'}
+                      {detail ? `${detail.counts.targets_selected}/${detail.counts.targets}` : ', '}
                     </Td>
-                    <Td numeric>{detail ? detail.counts.signals : '—'}</Td>
+                    <Td numeric>{detail ? detail.counts.signals : ', '}</Td>
                   </Tr>
                 ))}
               </tbody>

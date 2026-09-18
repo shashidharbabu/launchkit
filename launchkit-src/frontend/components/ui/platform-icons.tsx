@@ -1,7 +1,7 @@
 /**
  * The platforms Launch Kit writes for. Marks are the official ones (paths
  * from Simple Icons, CC0), inlined so there is no icon dependency and no
- * network fetch. Rendered monochrome in `currentColor` — the page keeps its
+ * network fetch. Rendered monochrome in `currentColor`, the page keeps its
  * two colors (voice.md); recognition comes from the silhouette.
  */
 

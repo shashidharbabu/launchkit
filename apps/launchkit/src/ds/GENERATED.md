@@ -1,4 +1,4 @@
-# Generated — do not edit
+# Generated, do not edit
 
 This directory is a mirror of `design-system/src`, produced by
 `node tools/sync-ds.mjs`. Edit the design system at `design-system/src`

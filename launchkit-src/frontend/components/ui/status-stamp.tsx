@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 export type StampKind = 'go' | 'hold' | 'nogo' | 'unverified' | 'running';
 
-/** Status is never color alone — the word is always present (color.md). */
+/** Status is never color alone, the word is always present (color.md). */
 const SPEC: Record<
   StampKind,
   { label: string; Icon: typeof Check; classes: string }

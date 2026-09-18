@@ -2,7 +2,7 @@
 
 **GTM-in-a-box for RocketRide App Store publishers.**
 
-A builder ships an app to the RocketRide App Store. Launch Kit reads their repo and live site, figures out what the app is and who it's for, generates a complete launch asset pack, ranks the specific places this app should launch, and hands the builder a ready-to-go launch — everything reviewed and approved by them before a single thing is published.
+A builder ships an app to the RocketRide App Store. Launch Kit reads their repo and live site, figures out what the app is and who it's for, generates a complete launch asset pack, ranks the specific places this app should launch, and hands the builder a ready-to-go launch, everything reviewed and approved by them before a single thing is published.
 
 ---
 
@@ -10,7 +10,7 @@ A builder ships an app to the RocketRide App Store. Launch Kit reads their repo 
 
 Builders can build. Most of them cannot market. An app lands in the App Store with a one-line description, no launch post, no demo video, no idea which subreddit or directory would care, and it dies quietly with eleven installs.
 
-That's a problem for the builder, and a bigger problem for the store: **every app that fails to find users makes the storefront less valuable.** Launch Kit exists to close that gap — it's flywheel infrastructure disguised as an app.
+That's a problem for the builder, and a bigger problem for the store: **every app that fails to find users makes the storefront less valuable.** Launch Kit exists to close that gap, it's flywheel infrastructure disguised as an app.
 
 ## Who it's for
 
@@ -29,7 +29,7 @@ These are product commitments, not preferences. They shape the architecture, so 
 
 **3. No same-day-users promise.** The product delivers *a launch-ready package today*, and reach when it goes out. It does not promise paying subscribers by end of day, and the marketing copy must not imply it. Over-promising here poisons trust in the whole store.
 
-**4. Quality over volume.** A well-targeted launch in five right places beats a blast across fifty. Volume-optimized outreach is what gets accounts banned and domains blacklisted — and it converts worse anyway.
+**4. Quality over volume.** A well-targeted launch in five right places beats a blast across fifty. Volume-optimized outreach is what gets accounts banned and domains blacklisted, and it converts worse anyway.
 
 ---
 
@@ -51,7 +51,7 @@ These are product commitments, not preferences. They shape the architecture, so 
 
 4. TARGET       Produce a ranked list of where THIS app should launch:
                 subreddits, directories, awesome-lists, communities,
-                newsletters — each with a reason, rules summary, and
+                newsletters, each with a reason, rules summary, and
                 submission link.
                 → Builder selects targets. (Gate 3)
 
@@ -79,27 +79,27 @@ Four `.pipe` graphs, one per stage. Keeping them separate (rather than one mega-
 
 **`launchkit_understand.pipe`**
 Input: repo URL + live app URL.
-Reads the repository (GitHub tool) — README, package manifests, source structure — and scrapes the live site (FireCrawl) for positioning and existing copy. An LLM synthesizes both into a structured app profile: one-liner, category, target user, ICP signals, core differentiators, proof points, tech stack, screenshots available.
+Reads the repository (GitHub tool), README, package manifests, source structure, and scrapes the live site (FireCrawl) for positioning and existing copy. An LLM synthesizes both into a structured app profile: one-liner, category, target user, ICP signals, core differentiators, proof points, tech stack, screenshots available.
 Output: structured JSON app profile.
 
 **`launchkit_assets.pipe`**
 Input: confirmed app profile + tone/voice preferences.
-Generates the launch asset pack. Each asset type is its own branch so they run in parallel and can be regenerated individually: X/LinkedIn launch post, Reddit post (format-aware — Reddit punishes marketing copy), Product Hunt tagline + description + first comment, Show HN title + explainer, landing page copy blocks, demo video brief.
+Generates the launch asset pack. Each asset type is its own branch so they run in parallel and can be regenerated individually: X/LinkedIn launch post, Reddit post (format-aware, Reddit punishes marketing copy), Product Hunt tagline + description + first comment, Show HN title + explainer, landing page copy blocks, demo video brief.
 Output: asset pack, each item independently editable and regenerable.
 
 **`launchkit_targets.pipe`**
 Input: app profile.
-Uses web search/scraping to identify and rank launch venues specific to this app — relevant subreddits, software directories, awesome-lists, Discord/Slack communities, niche newsletters. For each: why it fits this app, its posting rules, audience size signal, and a submission link. Ranked by fit, not by size.
+Uses web search/scraping to identify and rank launch venues specific to this app, relevant subreddits, software directories, awesome-lists, Discord/Slack communities, niche newsletters. For each: why it fits this app, its posting rules, audience size signal, and a submission link. Ranked by fit, not by size.
 Output: ranked target list with rationale per target.
 
-**`launchkit_publish.pipe`** *(v1.5 — see scope)*
+**`launchkit_publish.pipe`** *(v1.5, see scope)*
 Input: approved assets + selected targets.
 Sequences the launch (what goes where, in what order, at what time) and, where a platform offers a clean official API and the builder has authorized it, queues the post. Everything passes through a final human confirm.
 Output: launch plan; queued/published items with status.
 
 ### Node verification required before building
 
-The pipeline designs above assume: GitHub tool, FireCrawl/web-scraping, web search, LLM provider nodes, data extraction/structuring, and HTTP request nodes. **Verify each against the live node catalog** (`docs.rocketride.ai/nodes` and `nodes/src/nodes/` on the develop branch) before writing the pipelines — the catalog changes, and Stage 1 of the app lifecycle requires every step to map to a named, existing node. Where something doesn't map, decide deliberately: custom Python-extensible node, workaround, or scope cut.
+The pipeline designs above assume: GitHub tool, FireCrawl/web-scraping, web search, LLM provider nodes, data extraction/structuring, and HTTP request nodes. **Verify each against the live node catalog** (`docs.rocketride.ai/nodes` and `nodes/src/nodes/` on the develop branch) before writing the pipelines, the catalog changes, and Stage 1 of the app lifecycle requires every step to map to a named, existing node. Where something doesn't map, decide deliberately: custom Python-extensible node, workaround, or scope cut.
 
 Known gap to design around: **there is no cron source node.** Any scheduling (timed launches, follow-up reminders) needs an external scheduler pinging a webhook.
 
@@ -121,7 +121,7 @@ Known gap to design around: **there is no cron source node.** Any scheduling (ti
 - Post-launch analytics and attribution
 - Multi-app campaign management
 
-**v1 ships value with zero publishing risk.** The asset generation and targeting *is* the hard part and the bulk of the value; posting is the easy part the builder can do in ten minutes. Do not let auto-publishing sneak into v1 — it's where all the ToS, deliverability, and reputational risk lives, and it needs its own design pass.
+**v1 ships value with zero publishing risk.** The asset generation and targeting *is* the hard part and the bulk of the value; posting is the easy part the builder can do in ten minutes. Do not let auto-publishing sneak into v1, it's where all the ToS, deliverability, and reputational risk lives, and it needs its own design pass.
 
 **v1.5:** queued publishing to platforms with clean official APIs, with per-platform authorization and a final confirm step.
 **v2:** scheduling, post-launch performance feedback, and using outcomes to improve future targeting.
@@ -173,11 +173,11 @@ Every generated artifact keeps its pipeline execution reference, so any output c
 
 ## Open questions for Stage 1
 
-1. **Node catalog verification** — do all four pipelines map cleanly to existing nodes? (Blocking.)
-2. **Demo video generation** — does this call out to Raylight, to the GMI-node video idea (PromptReel), or does v1 just produce a *video brief* and leave production to the builder? Recommendation: brief only in v1, decide the generator once PromptReel's GMI capability question is resolved.
-3. **Voice/tone capture** — how does the builder tell Launch Kit how they want to sound? Sample of their writing, a few toggles, or inferred from their existing site copy?
-4. **Reddit and Show HN specifically** — these communities are hostile to anything that reads as marketing. Are we confident the generated copy clears that bar, or does it need a dedicated "community-native" prompt treatment and a human warning?
-5. **Clean (tryclean.ai) relationship** — RocketRide is a customer of theirs. Worth a conversation before building anything adjacent to their space; possible partnership rather than parallel build.
+1. **Node catalog verification** do all four pipelines map cleanly to existing nodes? (Blocking.)
+2. **Demo video generation** does this call out to Raylight, to the GMI-node video idea (PromptReel), or does v1 just produce a *video brief* and leave production to the builder? Recommendation: brief only in v1, decide the generator once PromptReel's GMI capability question is resolved.
+3. **Voice/tone capture** how does the builder tell Launch Kit how they want to sound? Sample of their writing, a few toggles, or inferred from their existing site copy?
+4. **Reddit and Show HN specifically** these communities are hostile to anything that reads as marketing. Are we confident the generated copy clears that bar, or does it need a dedicated "community-native" prompt treatment and a human warning?
+5. **Clean (tryclean.ai) relationship** RocketRide is a customer of theirs. Worth a conversation before building anything adjacent to their space; possible partnership rather than parallel build.
 
 ---
 

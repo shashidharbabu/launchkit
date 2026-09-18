@@ -7,7 +7,7 @@ import { ask } from './runner';
  * in the question text (same pattern as every stage's build*Question), the
  * lk_navigator pipe (chat → Claude via compat → answers) returns ONE JSON
  * object { reply, action }. Everything the model may navigate to is validated
- * here against the real app map and the user's real launches — a hallucinated
+ * here against the real app map and the user's real launches, a hallucinated
  * view or project id degrades to reply-only, never to a wrong navigation.
  */
 export const NAV_VIEWS = ['home', 'dashboard', 'launches', 'new-launch', 'runs', 'settings', 'workspace'] as const;

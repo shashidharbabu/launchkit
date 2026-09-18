@@ -56,7 +56,7 @@ export default function RunsPage() {
   const running = (jobs ?? []).filter((j) => j.status === 'running').length;
   const queued = (jobs ?? []).filter((j) => j.status === 'queued').length;
   const failed = (jobs ?? []).filter((j) => j.status === 'error').length;
-  // the fetch is capped at 100 — scope the header claim to what is shown
+  // the fetch is capped at 100, scope the header claim to what is shown
   const atCap = (jobs?.length ?? 0) >= 100;
 
   return (
@@ -90,7 +90,7 @@ export default function RunsPage() {
       {jobs !== null && !apiDown && jobs.length === 0 && (
         <HonestEmpty
           fact="No runs yet."
-          reason="Every pipeline run across all your launches lands here with its result and timing — analysis, drafts, venue ranking, signal searches."
+          reason="Every pipeline run across all your launches lands here with its result and timing, analysis, drafts, venue ranking, signal searches."
           action={
             <Link href="/launches/new">
               <Button variant="secondary">Start your first launch</Button>
@@ -131,11 +131,11 @@ export default function RunsPage() {
                           {j.project_name ?? j.project_id}
                         </Link>
                       ) : (
-                        '—'
+                        ', '
                       )}
                     </Td>
-                    <Td numeric>{j.elapsed_seconds ? elapsedLabel(j.elapsed_seconds) : '—'}</Td>
-                    <Td numeric>{j.created_at ? age(j.created_at) : '—'}</Td>
+                    <Td numeric>{j.elapsed_seconds ? elapsedLabel(j.elapsed_seconds) : ', '}</Td>
+                    <Td numeric>{j.created_at ? age(j.created_at) : ', '}</Td>
                     <Td>
                       {j.error && (
                         <button
@@ -172,7 +172,7 @@ export default function RunsPage() {
           {jobs.length > PAGE && (
             <div className="flex items-center justify-between border-t border-border px-3 py-2">
               <span className="font-mono text-data text-muted-foreground">
-                showing {page * PAGE + 1}–{Math.min((page + 1) * PAGE, jobs.length)} of {jobs.length}{' '}
+                showing {page * PAGE + 1}, {Math.min((page + 1) * PAGE, jobs.length)} of {jobs.length}{' '}
                 runs
               </span>
               <span className="flex gap-2">

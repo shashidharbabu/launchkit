@@ -1,6 +1,6 @@
 // Stage-0 identity probe (doc 01 §7/§8): confirms the staging connection,
 // the org, the developer id, team ids, and which deploy verbs the vendored
-// client actually exposes. Read-only — creates nothing.
+// client actually exposes. Read-only, creates nothing.
 import { RocketRideClient } from 'rocketride';
 
 const client = new RocketRideClient({ persist: true });
@@ -14,7 +14,7 @@ try {
     'teams', 'user', 'email', 'workspace', 'plan']), null, 2));
 
   const devId = res?.developerId ?? res?.developer_id ?? res?.org?.developerId ?? null;
-  console.log('\ndeveloperId:', devId ?? 'NULL — must be claimed on the Deploy tab before scaffolding');
+  console.log('\ndeveloperId:', devId ?? 'NULL, must be claimed on the Deploy tab before scaffolding');
 
   const teams = res?.teams ?? res?.org?.teams ?? [];
   console.log('teams:', Array.isArray(teams)

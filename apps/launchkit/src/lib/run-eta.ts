@@ -25,7 +25,7 @@ export function etaSeconds(kind: string): number {
   return RUN_ETA_SECONDS[kind] ?? 90;
 }
 
-/** "about 2 minutes" — plain words, rounded the way a person would say it. */
+/** "about 2 minutes", plain words, rounded the way a person would say it. */
 export function etaLabel(kind: string): string {
   const s = etaSeconds(kind);
   if (s < 60) return 'about half a minute';

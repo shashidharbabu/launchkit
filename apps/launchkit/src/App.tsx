@@ -49,7 +49,7 @@ function useDesignSystem() {
   }, []);
 }
 
-/** One page per NavState view — the shell-app stand-in for Next routes. */
+/** One page per NavState view, the shell-app stand-in for Next routes. */
 function ActiveView() {
   const { nav } = useNav();
   switch (nav.view) {

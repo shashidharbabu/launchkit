@@ -25,7 +25,7 @@ export interface Voice extends Dict {
   sample_phrase?: string;
 }
 
-/** App profile — output of lk_understand (Gate 1 payload). */
+/** App profile, output of lk_understand (Gate 1 payload). */
 export interface Profile extends Dict {
   one_liner?: string;
   description?: string;
@@ -52,7 +52,7 @@ export interface AssetData extends Dict {
   warnings?: unknown;
 }
 
-/** One ranked venue — element of lk_targets' targets[] (Gate 3 payload). */
+/** One ranked venue, element of lk_targets' targets[] (Gate 3 payload). */
 export interface TargetData extends Dict {
   name?: unknown;
   kind?: unknown;
@@ -72,7 +72,7 @@ export interface RescoreInfo extends Dict {
   why?: unknown;
 }
 
-/** One discussion thread — element of lk_signals' signals[]. */
+/** One discussion thread, element of lk_signals' signals[]. */
 export interface SignalData extends Dict {
   url?: unknown;
   platform?: unknown;

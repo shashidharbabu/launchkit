@@ -16,7 +16,7 @@ for (const r of rows) {
   try { parsed = parseJsonLoose(r.data); } catch { continue; }
   if (!parsed || typeof parsed !== 'object') continue;
   // param stays a plain string; the stored value becomes VALID JSON text,
-  // which asData() parses — same convention as every normal write
+  // which asData() parses, same convention as every normal write
   const res = await q(`UPDATE lk_profiles SET data = $2 WHERE id = $1`,
     [r.id, JSON.stringify(parsed)]);
   console.log('repaired', r.id, 'affected:', res.affected_rows);

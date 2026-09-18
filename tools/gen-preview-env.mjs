@@ -5,7 +5,7 @@
 //   node tools/gen-preview-env.mjs local     → ws://localhost:5565 (docker engine)
 //   node tools/gen-preview-env.mjs staging   → the .env dev pair
 // Tool keys (Anthropic/GMI/Exa/Firecrawl/GitHub) are forwarded from .env either
-// way — a local engine has no org environment, so the client must supply them.
+// way, a local engine has no org environment, so the client must supply them.
 // Deploys are unaffected: they read .env + .env.deploy, never this file.
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -26,7 +26,7 @@ if (target === 'local') { out.ROCKETRIDE_URI = LOCAL_URI; out.ROCKETRIDE_APIKEY 
 
 const body = Object.entries(out).map(([k, v]) => `  '${k}': ${JSON.stringify(v)},`).join('\n');
 writeFileSync('apps/launchkit/preview/env.generated.ts',
-  `// GENERATED preview env — gitignored, never shipped\n` +
+  `// GENERATED preview env, gitignored, never shipped\n` +
   `// target: ${target}  (regenerate: node tools/gen-preview-env.mjs ${target})\n` +
   `export const PREVIEW_ENV: Record<string, string> = {\n${body}\n};\n`);
 console.log(`preview env → ${target} (${out.ROCKETRIDE_URI})`);

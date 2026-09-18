@@ -3,7 +3,7 @@ import { SITE_URL, SITE_NAME, TAGLINE, DESCRIPTION, FAQ } from '@/lib/seo';
 /**
  * JSON-LD for the landing page. Three graphs that answer engines read
  * differently: what the thing is (SoftwareApplication), how the job is done
- * (HowTo — the six stages), and the questions themselves (FAQPage).
+ * (HowTo, the six stages), and the questions themselves (FAQPage).
  */
 
 const softwareApplication = {
@@ -64,7 +64,7 @@ const howTo = {
       '@type': 'HowToStep',
       position: 3,
       name: 'Write platform-native posts',
-      text: 'One post per venue in that venue’s voice — a Reddit post that reads like Reddit, a Show HN that survives Hacker News. Approve each one.',
+      text: 'One post per venue in that venue’s voice, a Reddit post that reads like Reddit, a Show HN that survives Hacker News. Approve each one.',
     },
     {
       '@type': 'HowToStep',

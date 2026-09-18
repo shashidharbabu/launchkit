@@ -39,7 +39,7 @@ const targets = want
 for (const version of targets) {
   const meta = deployments.find((d) => d.registryVersion === version);
   console.log(
-    `\n=== v${version} status=${meta?.buildStatus ?? '?'} — ${meta?.message ?? ''} ===`,
+    `\n=== v${version} status=${meta?.buildStatus ?? '?'}, ${meta?.message ?? ''} ===`,
   );
   try {
     const { log } = await client.buildLog(APP, version);
