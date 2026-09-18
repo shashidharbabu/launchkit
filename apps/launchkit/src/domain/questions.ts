@@ -405,6 +405,11 @@ export function buildRescoreQuestion(summary: Dict, platform: unknown, threadTex
     "decide if replying to this thread with this app is genuinely helpful " +
     "to the thread's author — i.e. they are asking for, or struggling " +
     "with, what this app does. Passing mentions of the topic do NOT count. " +
+    "A thread whose author is announcing, launching, releasing or showing off " +
+    "their OWN tool in this space is NEVER relevant, however close the topic: " +
+    "that person is a builder, not a buyer, and a reply naming this app there " +
+    "reads as an advert. Relevant means the author states a need in the first " +
+    "person or is visibly living the problem this app solves. " +
     "IF AND ONLY IF relevant, also write the reply the builder should " +
     "post. REPLY RULES: open by engaging the author's SPECIFIC situation — " +
     "reference a concrete detail from the thread (their tool, error, " +

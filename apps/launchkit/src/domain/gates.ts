@@ -37,6 +37,59 @@ const GENERIC_HOSTS = new Set([
   "npmjs.com", "pypi.org", "sourceforge.net", "reddit.com", "news.ycombinator.com",
   "x.com", "twitter.com", "producthunt.com", "medium.com", "dev.to", "youtube.com", "linkedin.com",
 ]);
+/**
+ * Buyer or builder. A signal is a person who needs what the app does; the finder
+ * kept returning people who had just built something like it, because the topic
+ * matched. Deterministic and tested against real candidates, so a builder's
+ * launch post or a vendor's trial pitch never reaches the store. Anything the
+ * patterns cannot place is kept for the judge, never dropped on a guess.
+ */
+export type Intent = "buyer" | "builder" | "vendor" | "unclear";
+
+// marketing: a trial, a pitch, a listicle, a savings hook
+const VENDOR = [
+  /\bfree (trial|for \d+ days)\b/i, /\bno credit card\b/i, /\bbook a demo\b/i, /\bsign up (now|today|free)\b/i,
+  /\bsave \$?\d[\d,]*\+?\s*(per|a|\/)\s*(year|month|yr|mo)\b/i, /\balternatives? for 20\d\d\b/i, /\b(top|best) \d+ \b/i,
+  /\bTry [A-Z]\w+\b/, /\b[A-Z]\w+ is a (powerful|simple|fast|free|modern|better|great|lightweight)\b/,
+];
+// an announcement, whoever wrote it: these never become a buyer whatever else the text says
+const HARD_BUILDER = [
+  /^\s*\[?(ann|announce|announcing|release|launch|introducing)\b/i, /\bshow hn\b/i, /\bintroducing\b/i,
+  /\bv?\d+\.\d+(\.\d+)?([-.]?rc\.?\d*)?\b[^.!?]{0,40}\b(released?|is out|now available)\b/i, /\breleased:/i,
+  // "Name: descriptor", the announce shape; the name must be capitalised, the descriptor may be either case
+  /^[A-Z][\w.]+(?: [A-Z][\w.]+)?(?: v?\d+(\.\d+)+)?:\s+([Oo]pen[- ]source|[Aa] |[Aa]n |[Tt]he |[Ss]elf[- ]?host(ed|able)|[Ff]ree|[Ff]ast|[Oo]ffline|[Ff]reie)/,
+  /\bjust (wrapped up|finished|shipped|launched|released|published)\b/i, /^\s*how i (built|made|turned|created)\b/i,
+];
+// the author states a need or is visibly living the problem
+const BUYER = [
+  /\b(i|we) (need|want|am looking|are looking|'m looking|'re looking)\b/i, /\bi'?m looking for\b/i, /\blooking for (a|an|some|something)\b/i,
+  /\bis there (a|an|any)\b/i, /\bany recommend/i, /\brecommendations?\?/i, /\bdoes anyone\b/i, /\banyone (know|found|use|using|tried|recommend)\b/i,
+  /\bwhat (do you|does everyone) (use|recommend)\b/i, /\bwhat is your (way|approach)\b/i, /\bhow are you (doing|handling)\b/i,
+  /\bhow (do|to) (i|you|people|we)?\b[^.!?]{0,80}\b(my|our|i|we)\b/i, /\btired of\b/i, /\bfrustrated\b/i, /\bsick of\b/i,
+  /\bthere has to be a better\b/i, /\bhas to be a better way\b/i, /\bevaluating\b/i, /\bcomparing\b/i, /\bswitch(ing)? from\b/i,
+  /\bcharges? (you|us|me) per\b/i, /\bwhich (one|tool|service) (should|do|would)\b/i,
+  // the pain that precedes a switch: a cancelled subscription, a price rise
+  /\b(cancell?ed|cancel(l)?ing|dropped|ditched) (my|our) \w+ (subscription|plan|account)\b/i,
+  /\braised (their|its|the) prices?\b/i, /\bprice (hike|increase)\b/i, /\bprices? (went|going) up\b/i,
+  // asking how others cope is a need even with no first person after it: "how do people handle this properly?"
+  /\bhow do (people|others|you|you all|you guys|teams) (handle|deal with|solve|manage|approach|do)\b/i,
+  // living the problem, stated as what happened to them: "our conversions dropped", "our audit flagged"
+  /\b(our|my) [\w ]{0,30}\b(dropped|broke|stopped working|failed|flagged|got flagged|keeps? failing)\b/i,
+  /\bshould (we|i) (actually |really |even )?\w+\b[^.!?]{0,40}\?/i,
+];
+// first person past tense on a build: a builder unless a question follows
+const SOFT_BUILDER = [/\b(i|we) (built|made|created|launched|released|open[- ]sourced|wrote|developed)\b/i];
+
+export function classifyIntent(text: string): Intent {
+  const t = String(text ?? "").trim();
+  if (!t) return "unclear";
+  if (VENDOR.some((p) => p.test(t))) return "vendor";
+  if (HARD_BUILDER.some((p) => p.test(t))) return "builder";
+  if (BUYER.some((p) => p.test(t))) return "buyer";
+  if (SOFT_BUILDER.some((p) => p.test(t))) return "builder";
+  return "unclear";
+}
+
 export function gateSignals(signals: SignalData[], ownUrls: unknown[]): { kept: SignalData[]; dropped: GateDropped[] } {
   const domains: string[] = [];
   for (const u of ownUrls) {
@@ -74,7 +127,11 @@ export function gateSignals(signals: SignalData[], ownUrls: unknown[]): { kept: 
     } else if (!THREAD_PAT.test(url)) {
       dropped.push({ url, reason: "not a discussion thread" });
     } else {
-      kept.push(s);
+      // a builder's launch post or a vendor's pitch is on topic and useless: a reply naming the app there is an ad
+      const intent = classifyIntent(pyStr(pyGet(s, "title_or_quote", "")));
+      if (intent === "builder") dropped.push({ url, reason: "a builder announcing their own tool, not a person who needs one" });
+      else if (intent === "vendor") dropped.push({ url, reason: "vendor marketing, not a person" });
+      else kept.push(s);
     }
   }
   kept.forEach((s, i) => {
