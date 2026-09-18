@@ -48,6 +48,20 @@ async function waitIdle(label, maxMs) {
   return { idle: false, secs: Math.round((Date.now() - t0) / 1000) };
 }
 const main = (re) => page.locator('#lk-root main button', { hasText: re }).first();
+// Click only once the button is enabled. Every stage disables its buttons while a run
+// is in flight, and playwright's default actionability window is 30 s, so on
+// 2026-09-18 a single pipe call that stalled turned into four "failed" stages: the
+// driver gave up at 23:11:02 while the runner's own deadline would have retried the
+// call at 23:18:32. Waiting here measures the app instead of the stopwatch.
+const clickWhenEnabled = async (btn, label, ms = 900000) => {
+  const t0 = Date.now();
+  while (Date.now() - t0 < ms) {
+    if (await btn.isEnabled().catch(() => false)) { await btn.click({ timeout: 60000 }); return true; }
+    await page.waitForTimeout(3000);
+  }
+  console.log('STUCK', JSON.stringify({ label, waitedSecs: Math.round(ms / 1000) }));
+  return false;
+};
 const failedLine = async () => ((await text()).match(/[A-Za-z ,:-]{0,40}failed:[^.]{0,220}\./) || [''])[0].slice(0, 260);
 async function stage(name) {
   await page.locator('#lk-root nav[aria-label="Stages"] a:visible', { hasText: name }).first().click({ timeout: 10000 });
@@ -124,10 +138,10 @@ await step('profile', async () => {
 // ---- Brand ----
 await step('brand', async () => {
   await stage(/Brand/);
-  await main(/Extract Business DNA/).click();
+  await clickWhenEnabled(main(/Extract Business DNA/), 'Extract Business DNA');
   const w1 = await waitIdle('dna', 420000);
   await main(/Draft the angles/).waitFor({ state: 'visible', timeout: 15000 });
-  await main(/Draft the angles/).click();
+  await clickWhenEnabled(main(/Draft the angles/), 'Draft the angles');
   const w2 = await waitIdle('angles', 420000);
   const angles = await page.locator('#lk-root main button', { hasText: /Choose this angle/ }).count();
   if (angles > 0) { await main(/Choose this angle/).click(); await page.waitForTimeout(2500); }
@@ -139,7 +153,7 @@ await step('brand', async () => {
 // ---- Commercial ----
 await step('commercial', async () => {
   await stage(/Commercial/);
-  await main(/Draft pricing and listing/).click();
+  await clickWhenEnabled(main(/Draft pricing and listing/), 'Draft pricing and listing');
   const w = await waitIdle('pricing+listing', 1200000);
   const t = await text();
   const plans = await page.locator('#lk-root main [role="radio"], #lk-root main button', { hasText: /^Select$/ }).count();
@@ -161,7 +175,7 @@ await step('social', async () => {
     const btn = page.locator('#lk-root main button', { hasText: new RegExp(`^Draft for ${p}$`) }).first();
     if (!(await btn.count())) { per[p] = { drafted: false, reason: 'no button' }; continue; }
     const t0 = Date.now();
-    await btn.click();
+    if (!(await clickWhenEnabled(btn, `Draft for ${p}`))) { per[p] = { drafted: false, reason: 'button never enabled' }; continue; }
     const w = await waitIdle(p, 300000);
     const t = await text();
     per[p] = { drafted: true, secs: Math.round((Date.now() - t0) / 1000), idle: w.idle, failed: (t.match(new RegExp(`Social Launch, ${p}[^.]*failed[^.]*\\.`)) || [''])[0].slice(0, 160) };
@@ -189,7 +203,7 @@ await step('assets', async () => {
     const btn = main(label);
     if (!(await btn.count())) { out[key] = { skipped: 'no button' }; return; }
     const t0 = Date.now();
-    await btn.click();
+    if (!(await clickWhenEnabled(btn, key))) { out[key] = { skipped: 'button never enabled' }; return; }
     const w = await waitIdle(key, maxMs);
     out[key] = { secs: Math.round((Date.now() - t0) / 1000), idle: w.idle, failed: await failedLine() };
   };
@@ -213,7 +227,7 @@ await step('assets', async () => {
 // ---- Targets ----
 await step('targets', async () => {
   await stage(/Targets/);
-  await main(/Rank venues/).click();
+  await clickWhenEnabled(main(/Rank venues/), 'Rank venues');
   const w = await waitIdle('targets', 600000);
   const rows = await page.evaluate(() => [...document.querySelectorAll('#lk-root table tbody tr')].map((tr) => [...tr.querySelectorAll('td')].map((x) => x.textContent.trim()).slice(0, 4)));
   const boxes = page.locator('#lk-root table tbody input[type="checkbox"]');
@@ -229,7 +243,7 @@ await step('signals', async () => {
   await stage(/Signals/);
   const btn = main(/Search for demand/);
   if (!(await btn.count())) throw new Error('no Search for demand button');
-  await btn.click();
+  await clickWhenEnabled(btn, 'Search for demand');
   const w = await waitIdle('signals', 900000);
   const t = await text();
   await shot('7-signals.png');

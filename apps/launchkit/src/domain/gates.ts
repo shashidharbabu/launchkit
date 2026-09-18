@@ -65,6 +65,8 @@ const HARD_BUILDER = [
   // present participle on a build: "spent the evenings building myself a memory for LLMs"
   /\b(building|making|writing|creating|hacking on|working on) (myself|my own|our own) (an? )?\w+/i,
 ];
+// the nouns people reach for when they name the thing they want
+const TOOL = String.raw`(?:software|tool|tooling|app|application|system|platform|service|library|manager|client|suite|solution|program|utility|extension|plugin|add[- ]?on|alternative|replacement|package|framework|server|editor|tracker|scheduler|dashboard|wiki|cms|crm|database|db)`;
 // the author states a need or is visibly living the problem
 const BUYER = [
   /\b(i|we) (need|want|am looking|are looking|'m looking|'re looking)\b/i, /\bi'?m looking for\b/i, /\blooking for (a|an|some|something)\b/i,
@@ -81,17 +83,43 @@ const BUYER = [
   // living the problem, stated as what happened to them: "our conversions dropped", "our audit flagged"
   /\b(our|my) [\w ]{0,30}\b(dropped|broke|stopped working|failed|flagged|got flagged|keeps? failing)\b/i,
   /\bshould (we|i) (actually |really |even )?\w+\b[^.!?]{0,40}\?/i,
+  // The shapes above are all first person, a question, or a complaint. Most people
+  // asking for a tool write none of those: they write a noun phrase. Measured on
+  // 166 questions from softwarerecs.stackexchange.com, a site where asking for a
+  // tool is the only thing anyone does, these rules took buyer recall from 5% to
+  // 54% without calling a single one of 159 launch announcements a buyer.
+  /\b(looking|searching|hunting) for\b/i,                        // "Looking for backend server ...", no article
+  new RegExp(String.raw`\b(alternative|replacement|substitute)s?\s+(to|for)\b`, "i"),
+  /\bsimilar to\b/i, /\bin place of\b/i, /\binstead of\b[^.!?]{0,40}\?/i,
+  new RegExp(String.raw`\b${TOOL}\s+(for|to|that|which|with|supporting|capable of)\b`, "i"), // "Scheduling Software for meeting clients"
+  new RegExp(String.raw`^\s*(a|an)\s+[\w-]*\s*${TOOL}\b`, "i"),                             // "A note manager with flexible tagging"
+  /^\s*(online|web[- ]based|self[- ]hosted|open[- ]source|free|simple|lightweight|cross[- ]platform)\b[^.!?]{0,60}\b(that|which|with|for|to)\b/i,
+  new RegExp(String.raw`\b(need|want)\s+(a|an|some)?\s*[\w-]*\s*${TOOL}\b`, "i"),
+  new RegExp(String.raw`\b${TOOL}\b[^?]{0,90}\?\s*$`, "i"),                                  // a tool noun inside a question
 ];
 // first person past tense on a build: a builder unless a question follows
 const SOFT_BUILDER = [/\b(i|we) (built|made|created|launched|released|open[- ]sourced|wrote|developed)\b/i];
+// someone who has already chosen is not demand. "I think I found a Calendly
+// alternative that might be better" reads like a request and is not one; let the
+// judge read it rather than counting it as a person to reply to.
+const SATISFIED = /\b(i|we)\b[^.!?]{0,20}\b(found|discovered|came across|settled on|switched to|ended up (with|using)|now use|have been using)\b/i;
+// A venue can carry the intent the words do not. Every question on Software
+// Recommendations is a person asking for a tool; measured 2026-09-18, 166 of them
+// held no builder and no vendor, and 46% were bare noun phrases ("Online
+// appointment book") that no pattern can tell from a product name. Only venues
+// actually measured belong in this list.
+const ASK_VENUES = [/^https?:\/\/(?:[\w-]+\.)*softwarerecs\.stackexchange\.com\//i];
 
-export function classifyIntent(text: string): Intent {
+export function classifyIntent(text: string, url = ""): Intent {
   const t = String(text ?? "").trim();
   if (!t) return "unclear";
   if (VENDOR.some((p) => p.test(t))) return "vendor";
   if (HARD_BUILDER.some((p) => p.test(t))) return "builder";
-  if (BUYER.some((p) => p.test(t))) return "buyer";
+  if (BUYER.some((p) => p.test(t))) return SATISFIED.test(t) && !t.includes("?") ? "unclear" : "buyer";
   if (SOFT_BUILDER.some((p) => p.test(t))) return "builder";
+  // the venue decides what the words could not, and only after vendor and builder
+  // have had their say, so a pitch posted on an asking site still reads as a pitch
+  if (ASK_VENUES.some((p) => p.test(String(url ?? "")))) return "buyer";
   return "unclear";
 }
 
@@ -133,7 +161,7 @@ export function gateSignals(signals: SignalData[], ownUrls: unknown[]): { kept: 
       dropped.push({ url, reason: "not a discussion thread" });
     } else {
       // a builder's launch post or a vendor's pitch is on topic and useless: a reply naming the app there is an ad
-      const intent = classifyIntent(pyStr(pyGet(s, "title_or_quote", "")));
+      const intent = classifyIntent(pyStr(pyGet(s, "title_or_quote", "")), url);
       if (intent === "builder") dropped.push({ url, reason: "a builder announcing their own tool, not a person who needs one" });
       else if (intent === "vendor") dropped.push({ url, reason: "vendor marketing, not a person" });
       else kept.push(s);

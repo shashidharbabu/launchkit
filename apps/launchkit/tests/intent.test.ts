@@ -15,7 +15,7 @@ const fail = (msg: string) => { bad++; console.log('  FAIL ' + msg); };
 const counts: Record<string, number> = {};
 
 for (const row of FIXTURE) {
-  const got: Intent = classifyIntent(row.text);
+  const got: Intent = classifyIntent(row.text, row.url);
   counts[`${row.want}->${got}`] = (counts[`${row.want}->${got}`] ?? 0) + 1;
   if ((row.want === 'builder' || row.want === 'vendor') && got !== row.want) fail(`${row.want} missed as ${got}: "${row.text.slice(0, 70)}" (${row.from})`);
   if (row.want === 'buyer' && (got === 'builder' || got === 'vendor')) fail(`buyer dropped as ${got}: "${row.text.slice(0, 70)}" (${row.from})`);

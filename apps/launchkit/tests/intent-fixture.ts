@@ -11,7 +11,7 @@
  */
 export type Intent = 'buyer' | 'builder' | 'vendor' | 'unclear';
 
-export const FIXTURE: Array<{ text: string; want: Intent; from: string }> = [
+export const FIXTURE: Array<{ text: string; want: Intent; from: string; url?: string }> = [
   // ---- builders the finder wrongly kept (khoj, 2026-09-18)
   { text: 'Vault Cortex: open-source MCP server giving AI tools read/write access to your vault', want: 'builder', from: 'khoj #1' },
   { text: '[ANN] Sonar: Offline semantic search and agentic AI chat for Obsidian', want: 'builder', from: 'khoj #2' },
@@ -62,4 +62,22 @@ export const FIXTURE: Array<{ text: string; want: Intent; from: string }> = [
   { text: 'GDPR cookie consent: how are you doing analytics these days?', want: 'buyer', from: 'plausible forum' },
   { text: 'Thoughts on privacy analytics for small blogs', want: 'unclear', from: 'edge' },
   { text: 'Can private AI actually be trusted? No verification, no privacy guarantees', want: 'unclear', from: 'khoj #5' },
+
+  // ---- the noun-phrase tool request, the shape the first rule missed entirely
+  // (captured 2026-09-18 from softwarerecs.stackexchange.com, where asking for a
+  // tool is the only thing anyone does, plus negative controls beside them)
+  { text: "Self-Hosted Calender System for Scheduling Appointments based on Timeslots, similar to 'Calendly'", want: 'buyer', from: "softwarerecs, text", url: "https://softwarerecs.stackexchange.com/questions/65921/a" },
+  { text: "Scheduling software with Google 2-way sync, redirect URL, limited availablity", want: 'buyer', from: "softwarerecs, text", url: "https://softwarerecs.stackexchange.com/questions/82286/b" },
+  { text: "Looking for backend server for appointment management component of project", want: 'buyer', from: "softwarerecs, text", url: "https://softwarerecs.stackexchange.com/questions/88427/c" },
+  { text: "A note manager with flexible tagging and hierarchies for organizing user feedback", want: 'buyer', from: "softwarerecs, text", url: "https://softwarerecs.stackexchange.com/questions/43303/d" },
+  { text: "Web-based scheduling system which allows booking for custom durations", want: 'buyer', from: "softwarerecs, text", url: "https://softwarerecs.stackexchange.com/questions/80798/e" },
+  { text: "Is there a faster alternative to Google Analytics?", want: 'buyer', from: "stackoverflow, text", url: "https://stackoverflow.com/q/1" },
+  { text: "Online appointment book", want: 'buyer', from: "softwarerecs, venue", url: "https://softwarerecs.stackexchange.com/questions/31344/f" },
+  { text: "Self-hosted web analytics tools", want: 'buyer', from: "softwarerecs, venue", url: "https://softwarerecs.stackexchange.com/questions/20336/g" },
+  { text: "Javascript scheduler library", want: 'buyer', from: "softwarerecs, venue", url: "https://softwarerecs.stackexchange.com/questions/30969/h" },
+  { text: "Auto Repair Garage Manager", want: 'buyer', from: "softwarerecs, venue", url: "https://softwarerecs.stackexchange.com/questions/48752/i" },
+  { text: "Online appointment book", want: 'unclear', from: "same words, no venue" },
+  { text: "Show HN: Cal.com, an open-source Calendly alternative", want: 'builder', from: "hn story, negative control", url: "https://news.ycombinator.com/item?id=1" },
+  { text: "Introducing FormFlow, a self-hosted form builder for teams", want: 'builder', from: "hn story, negative control", url: "https://news.ycombinator.com/item?id=2" },
+  { text: "I think I found a Calendly alternative that might actually be better for small teams", want: 'unclear', from: "already chose, not demand" },
 ];
