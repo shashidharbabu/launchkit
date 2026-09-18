@@ -109,6 +109,25 @@ function extractAnswer(response: Dict): unknown {
   return null;
 }
 
+/**
+ * How long a single pipe call may stay silent. chat() carries no timeout of its own and the
+ * browser transport has no keepalive, so when the socket died mid-run the call hung until the
+ * OS noticed: six runs on 2026-09-17 sat 25 to 34 minutes on a step that never returned, and the
+ * retry below never got its chance. The longest honest signals run measured is 7.7 minutes;
+ * every other pipe finishes inside three. Past the deadline the call is treated as a transport
+ * failure, which is what it was.
+ */
+export const ASK_DEADLINE_MS: Record<string, number> = { 'lk_signals.pipe': 12 * 60 * 1000, default: 8 * 60 * 1000 };
+
+function withDeadline<T>(p: Promise<T>, ms: number, pipeName: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const t = setTimeout(() => reject(new Error(
+      `${pipeName} timed out: no answer after ${Math.round(ms / 60000)} minutes, the connection was probably lost`,
+    )), ms);
+    p.then((v) => { clearTimeout(t); resolve(v); }, (e) => { clearTimeout(t); reject(e); });
+  });
+}
+
 async function askOnceInner(pipeName: string, questionText: string): Promise<{ data: Dict; trace: unknown }> {
   const c = requireClient();
   let response: Dict | null = null;
@@ -117,7 +136,8 @@ async function askOnceInner(pipeName: string, questionText: string): Promise<{ d
       const token = await pipeToken(pipeName);
       const q = new Question({ expectJson: true });
       q.questions.push({ text: questionText });
-      response = (await c.chat({ token, question: q })) as Dict;
+      const deadline = ASK_DEADLINE_MS[pipeName] ?? ASK_DEADLINE_MS.default;
+      response = (await withDeadline(c.chat({ token, question: q }), deadline, pipeName)) as Dict;
       break;
     } catch (e) {
       const msg = String((e as Error)?.message ?? e).toLowerCase();
