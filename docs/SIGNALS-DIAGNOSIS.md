@@ -3,6 +3,126 @@
 Written 2026-09-16 from the ten saved stores in `docs/eval-10/<slug>/appstate.json`.
 Read before changing `apps/launchkit/pipelines/lk_signals.pipe`.
 
+## 2026-09-18: the pipeline is healthy, so the question moved to who the signals are
+
+Four apps were re-run once the transport fixes landed (a 12 minute deadline on
+the pipe call so silence fails fast and the runner's restart-and-retry fires,
+the allowlist as one alternation, titles-only in the ledger so URLs stop being
+cut at 80 characters, the own-content filter no longer banning a repo's last
+path segment). Every run finished, and the count was no longer the problem:
+
+| App | Signals | Status |
+|---|---|---|
+| khoj | 6 | done |
+| cal-com | 5 | done |
+| formbricks | 3 | done |
+| plausible | 5 | done |
+
+The problem was who they were. `classifyIntent` in `domain/gates.ts` sorts a
+signal's title into buyer, builder, vendor or unclear, and over those 19:
+
+| App | Signals | Buyer | Builder | Vendor | Unclear |
+|---|---|---|---|---|---|
+| khoj | 6 | 0 | 5 | 0 | 1 |
+| cal-com | 5 | 2 | 1 | 1 | 1 |
+| formbricks | 3 | 2 | 0 | 0 | 1 |
+| plausible | 5 | 1 | 0 | 0 | 4 |
+| **total** | **19** | **5 (26%)** | **6** | **1** | **7** |
+
+Five of nineteen were a person who needs the app. Six were a person announcing
+the rival they had just built ("[ANN] Sonar: Offline semantic search for
+Obsidian", "I Built an Encrypted Second Brain"). One was a vendor. A reply to any
+of those is a reply to a competitor's launch post, which is worse than no reply.
+
+### The buyer-or-builder rule
+
+The rule now lives in three places: the finder's instructions in
+`lk_signals.pipe` (a BUYER OR BUILDER block before the KEEP list), the rescore
+judge's prompt in `domain/questions.ts`, and the gate in `domain/gates.ts`,
+which drops a builder ("a builder announcing their own tool, not a person who
+needs one") and a vendor ("vendor marketing, not a person") before anything is
+stored. The gate is the one that is verified: `tests/intent.test.ts` runs the
+40 row fixture that the rule was written against and every row lands where it
+was labelled.
+
+The judge's copy of the rule is not verified at runtime and cannot be from the
+preview: the rescore judge fetches each URL from the browser thread, those
+fetches are CORS-blocked, a failed fetch is scored `unverified` and kept, so
+every survivor carries `unverified: fetch failed` and the judge's buyer test
+never runs. That layer only does work in the deployed app.
+
+### Measured on khoj, before and after
+
+khoj was re-run with the rule in place, same pipe, same seed:
+
+| | Signals | Buyer | Builder | Unclear |
+|---|---|---|---|---|
+| before the rule | 6 | 0 | 5 | 1 |
+| after the rule | 2 | 0 | 2 | 0 |
+
+Three builders were dropped at the gate. The two that got through were builder
+shapes the first rule missed ("Spent the last few evenings building myself a
+memory for LLMs", "AetherOS, a local-first, private AI second brain"), and
+those two shapes were added in the following commit, so a run today would
+store zero. That is the honest result for khoj: the sources it searches hold
+people building private AI second brains, not people asking for one, and the
+finder was reporting the builders as demand. Zero is correct there.
+
+### Measured on cal-com, before and after
+
+cal-com had buyers in the before run (2 of 5), so it is the app that shows
+whether the rule keeps buyers while dropping the rest:
+
+| | Signals | Buyer | Builder | Vendor | Unclear |
+|---|---|---|---|---|---|
+| before the rule | 5 | 2 | 1 | 1 | 1 |
+| after the rule, 488 s, `done` | 4 | 0 | 0 | 0 | 4 |
+
+The gate dropped nothing this time: the store holds no builder or vendor drop
+reason, so the four that came back are what the finder returned, and they show
+the next gap rather than the rule at work. Two are the same dev.to author
+writing about Cal.com itself ("Cal.com Has a Free API, Here's How to Build
+Scheduling Into Any App", "Cal.com Has a Free API: Open-Source Scheduling That
+Replaces Calendly"). That is coverage of the app, not a person who needs it,
+and the own-content filter only knows the app's own URLs, so a title that
+names the product on someone else's domain walks through. The other two are
+support questions on rival forums (a Zoom developer who cannot read booking
+details after a booking, a Nylas user asking how to customise the cancel
+form): people inside a competitor's product hitting friction, which is closer
+to a lead than anything in the khoj run but not a request for a new tool, and
+the classifier's unclear is fair. The cal-com number is not a regression
+caused by the rule; it is one more run from a finder whose results vary this
+much between runs, which is why the doc keeps saying a single count should
+not be trusted.
+
+Next gate to add, with a fixture first: drop a signal whose title names the
+app itself unless the title is a question. It would have removed both dev.to
+rows here and costs no buyer, since a buyer asks for the category, not the
+brand.
+
+### What to read into the numbers
+
+The rule is a precision change. A run that returns fewer signals with a higher
+buyer share is the intended outcome, and the score to watch from here is the
+buyer share, not the count. Recall is a separate problem with a separate fix:
+the sources. Exa returns nothing for reddit.com, reddit.com's search endpoint
+is a 403, the GitHub issue search is the strongest source measured (851
+results for one product's pain, real asks at the top), HN wants two-word
+queries (619 results against 10), and Lemmy's open API returned real buyers in
+a manual probe and is the next source to add, as its own pass, measured on its
+own.
+
+### A note on the evidence
+
+The stores for these runs live in `docs/eval-10/<slug>/appstate.rerun.json`,
+which is a tracked file that the driver overwrites in place. A `git checkout`
+run on 2026-09-18 to undo a bad text sweep took its file list from the whole
+modified set and reset cal-com, formbricks and plausible to HEAD, so the row
+level detail of those three verification runs is gone; the counts above are
+from the classifier's output at the time. khoj's before and after are intact
+as `appstate.preintent.json` and `appstate.postintent.json`, which are
+untracked snapshots, and that is now the rule: snapshot before any revert.
+
 ## Resolved 2026-09-17, later the same day
 
 The format was not a guess in the end: the server repo is on this machine, and
