@@ -15,7 +15,11 @@ import { RULEBOOK_CHECKS, type RuleCheck } from "../lib/rulebook-checks";
 /** rr.THREAD_PAT, what counts as a real discussion thread. */
 export const THREAD_PAT = new RegExp(
   "(reddit\\.com/r/.+/comments/|news\\.ycombinator\\.com/item|" +
-  "github\\.com/.+/(discussions|issues)/|stackoverflow\\.com/questions/|" +
+  // stackexchange.com/questions/ covers every SE site, softwarerecs included. It is a
+  // deliberate divergence from rr.py: the pipe is told to search softwarerecs, and
+  // without this every result from the richest buyer source measured is dropped here
+  // as "not a discussion thread".
+  "github\\.com/.+/(discussions|issues)/|stack(overflow|exchange)\\.com/questions/|" +
   "(x|twitter)\\.com/[^/]+/status/|linkedin\\.com/posts/|dev\\.to/[^/]+/|" +
   "indiehackers\\.com/post/|quora\\.com/|" +
   "/t/|/thread|forum)");

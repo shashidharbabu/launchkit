@@ -3,6 +3,77 @@
 Written 2026-09-16 from the ten saved stores in `docs/eval-10/<slug>/appstate.json`.
 Read before changing `apps/launchkit/pipelines/lk_signals.pipe`.
 
+## 2026-09-19: three of the four passes had been dead for two days
+
+The recall story in the section above blames the sources and then the gate. Both
+were wrong about the main cause. Counting `tool_http_request_1` results in every
+stored trace:
+
+| run | HTTP attempted | succeeded | blocked |
+|---|---|---|---|
+| khoj, 09-11, three runs | 4, 7, 5 | all | 0 |
+| cal-com, 09-11 | 10 | all | 0 |
+| every run, 09-17 onward, every app | 1 to 32 | **0** | **all** |
+
+So from 2026-09-17 Signals ran on Exa alone. PASS A (Hacker News), PASS C
+(GitHub and StackExchange) and every verification fetch returned nothing, in
+every run, for two days. The counts this section had been trying to explain, khoj
+6 to 2 and cal-com 5 to 4 and then 0, are mostly that.
+
+### The cause was the allowlist fix, and it was self-inflicted
+
+The 09-17 entry above records changing `urlWhitelist` from strings to objects as
+the fix that made Signals run again. What actually happened is narrower and
+worse. As strings the rows were discarded, and the server's own comment says an
+empty pattern list means allow all, so the guardrail had simply been **off** and
+every fetch worked. Making the rows well formed turned the guardrail **on**, and
+the deployed server then refused every URL, including the three hosts the pattern
+names.
+
+That the pattern is correct was checked three ways, not assumed:
+
+- the committed pattern is byte identical to the one in the file
+- `^https://(hn\.algolia\.com|api\.github\.com|api\.stackexchange\.com)/` matched
+  all three intended API URLs when compiled and run locally
+- the server source on this machine matches with `p.search(url)`, which succeeds
+  on a prefix
+
+and staging refused `https://hn.algolia.com/api/v1/search?query=calendly&tags=story&hitsPerPage=2`
+anyway, raising from `IInstance.py:502` where the source here has that check at
+line 196. The deployed build is not the source in this workspace.
+
+### Proof that emptying the list fixes it
+
+With `urlWhitelist: []` the agent was asked for one HTTP call and returned three
+Hacker News hits:
+
+    42027187  Show HN: Someday, Open-Source Calendly Alternative for Gmail / Google App Script
+    26817795  Calendso: An open source Calendly alternative
+    36785707  NeetoCal, a calendly alternative, is a commodity and is priced accordingly
+
+An independent fetch of the same URL from this machine returned the same three
+ids and titles, byte for byte, so this is not the model reporting success it did
+not have. The next app run through the UI recorded `HTTP attempted=2, ok=1,
+blocked=0`, the first successful HTTP call the app has made since 09-17.
+
+`urlWhitelist` is therefore empty until the server is fixed. Host discipline
+lives in the instructions, which name the three API hosts and tell the agent not
+to fetch a site's own search page. That is the state the app was in for its first
+weeks, when every fetch worked.
+
+### What is still not fixed
+
+Recall is unstable run to run, and that is now the open question rather than a
+solved one. Six Signals runs on the same cal-com store on 09-18 and 09-19
+returned 3, 1, 0, 0, 3 and 1 signals. The last of those is a real buyer ("I
+canceled Calendly last month. Not because of the price, because of the
+principle."), found through LinkedIn via Exa, and the run before it found three
+pricing-pain posts. The agent also used only 2 of its HTTP calls in the run where
+they finally worked, so the four passes are still not all being run.
+
+Measure the next change against several runs per app, not one. A single count
+from this stage does not mean anything.
+
 ## 2026-09-18: the pipeline is healthy, so the question moved to who the signals are
 
 Four apps were re-run once the transport fixes landed (a 12 minute deadline on
