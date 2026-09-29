@@ -62,6 +62,16 @@ function pipeProjectId(pipeName: string): string | null {
   return (PIPES[pipeName] as { project_id?: string } | undefined)?.project_id ?? null;
 }
 
+/** Wait for the client's own reconnect (persist mode) before a retry; returns whether it came back. */
+async function waitForReconnect(c: RocketRideClient, maxMs: number): Promise<boolean> {
+  const t0 = Date.now();
+  while (Date.now() - t0 < maxMs) {
+    try { if (c.isConnected()) return true; } catch { /* an older client without the method: just wait */ }
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+  return false;
+}
+
 function requireClient(): RocketRideClient {
   if (!client) throw new Error('runner not initialized: no shell connection yet');
   return client;
@@ -145,9 +155,12 @@ async function askOnceInner(pipeName: string, questionText: string): Promise<{ d
       const msg = String((e as Error)?.message ?? e).toLowerCase();
       const stalePipe = ['pipeline is not running', 'not running', 'close pipe with id',
         'invalid token', 'unknown token', 'not found'].some((t) => msg.includes(t));
-      const transportish = ['connection', 'websocket', 'timed out', 'closed', 'disconnect']
+      // "Server is not connected" matched none of these, so plausible's targets run failed in one second
+      // instead of retrying (09-29); the client reconnects on its own, so wait for it before the retry
+      const transportish = ['connection', 'websocket', 'timed out', 'closed', 'disconnect', 'not connected', 'socket']
         .some((t) => msg.includes(t));
       if (attempt === 1 && (stalePipe || transportish)) {
+        if (transportish) await waitForReconnect(c, 60000);
         try { await restartPipe(pipeName); } catch { /* fall through to raise */ }
         continue;
       }
