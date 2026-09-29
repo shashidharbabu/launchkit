@@ -114,3 +114,13 @@ test('turn 3: a reel line that says BY HAND without the profile saying so, or an
   assert.deepEqual(flagged, ['pile_line', 'load_n1']);
   assert.deepEqual(scriptRuleBreaks({ pile_line: 'EVERY FORM. BY HAND.' }, '{"pain":"teams copy responses by hand into spreadsheets"}', nums), []);
 });
+
+test('turn 3: origin stories are caught (cal-com, khoj, documenso), plain first-person facts are not', () => {
+  const stories = (body) => gates.gateAsset('reddit_post', { title: 'x', body }, ctx()).blockers.filter((b) => /origin story/.test(b));
+  for (const body of ['We kept running into teams who juggled calendars, so we built Cal.com.', 'I built Documenso because signing was broken.', "That's why we built it."]) {
+    assert.equal(stories(body).length, 1, body);
+  }
+  for (const body of ['I work on Cal.com.', 'We built an embed API that teams use today.', 'Cal.com is open source.']) {
+    assert.deepEqual(stories(body), [], body);
+  }
+});

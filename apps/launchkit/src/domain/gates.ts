@@ -368,10 +368,20 @@ export function replyWithoutSwipes(reply: string, competitors: string[]): string
   return kept.length >= 2 ? kept.join(" ").trim() : "";
 }
 
-/** The provenance and competitor hits for one draft (both hard: the repair pass names and removes them). */
+// An origin story the profile does not hold: GLOBAL_RULES forbids it and every turn still found one (cal-com
+// "We kept running into teams who... so we built Cal.com", khoj "so we built Khoj", documenso "I built Documenso
+// because"). The gate catches the story's shapes; the repair pass removes them.
+const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) running into\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b/i;
+
+/** The provenance, competitor and origin-story hits for one draft (all hard: the repair pass names and removes them). */
 function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
   const hits: CheckHit[] = [];
   for (const [field, text] of fieldsOf(data, "all")) {
+    const story = text.match(ORIGIN_STORY);
+    if (story && ctx.numbers) {
+      hits.push({ id: "origin_story", field, hard: true, detail: `"${story[0]}"`,
+        description: "An origin story APP_PROFILE does not hold: state the problem in the present tense instead" });
+    }
     if (ctx.numbers) {
       const unsourced = numbersIn(text.replace(/\{APP_URL\}/g, ""))
         .filter((n) => n.value > FREE_NUMBERS_MAX && !sourced(n, ctx.numbers!))
