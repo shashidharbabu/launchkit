@@ -48,3 +48,36 @@ export function threadFromExaSearch(body: unknown, url: string): [string, number
   const ms = Date.parse(String(hit.publishedDate ?? ""));
   return [text, Number.isFinite(ms) ? Math.floor(ms / 1000) : null];
 }
+
+/**
+ * Demand is live or it is not: a thread older than this is history, not a buyer to answer. On 09-29 the kept
+ * signals for hoppscotch were from March and May and formbricks' was three months old.
+ */
+export const SIGNAL_MAX_AGE_DAYS = 90;
+
+/** Why a thread is too old to count, or null when it is recent or undated. */
+export function staleThreadWhy(createdEpoch: number | null, nowEpochSeconds: number,
+                               maxDays = SIGNAL_MAX_AGE_DAYS): string | null {
+  if (createdEpoch == null || !Number.isFinite(createdEpoch)) return null;
+  const days = Math.floor((nowEpochSeconds - createdEpoch) / 86400);
+  return days > maxDays ? `posted ${days} days ago, older than ${maxDays} days: not live demand` : null;
+}
+
+/**
+ * A GitHub issue is evidence only when its repository is a real project. On 09-29 both of cal-com's
+ * "verified" buyers were issues in a zero-star repository created minutes before them, and the relevance
+ * judge passed them at 0.97 because their text was flawless.
+ */
+export const REPO_MIN_STARS = 20;
+export const REPO_MIN_AGE_DAYS = 30;
+
+export function untrustedRepoWhy(repo: { stargazers_count?: unknown; created_at?: unknown } | null,
+                                 nowEpochSeconds: number): string | null {
+  if (!repo) return null;
+  const stars = Number(repo.stargazers_count ?? NaN);
+  const created = Date.parse(String(repo.created_at ?? ""));
+  const ageDays = Number.isFinite(created) ? Math.floor((nowEpochSeconds - created / 1000) / 86400) : NaN;
+  if (Number.isFinite(stars) && stars < REPO_MIN_STARS) return `the repository has ${stars} stars: too small to be evidence of demand`;
+  if (Number.isFinite(ageDays) && ageDays < REPO_MIN_AGE_DAYS) return `the repository is ${ageDays} days old: too new to be evidence of demand`;
+  return null;
+}

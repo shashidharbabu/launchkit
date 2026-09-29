@@ -183,6 +183,16 @@ await step('social', async () => {
     const t = await text();
     per[p] = { drafted: true, secs: Math.round((Date.now() - t0) / 1000), idle: w.idle, failed: (t.match(new RegExp(`Social Launch, ${p}[^.]*failed[^.]*\\.`)) || [''])[0].slice(0, 160) };
   }
+  // a click is not a draft: dub's Show HN failed three times and was still recorded as drafted (09-29), so the
+  // store decides, once every run has finished
+  await waitIdle('social-all', 900000);
+  const TYPE_OF = { X: 'x_post', LinkedIn: 'linkedin_post', Reddit: 'reddit_post', 'Product Hunt': 'producthunt', 'Hacker News': 'show_hn', Newsletter: 'newsletter_pitch' };
+  const stored = await page.evaluate(() => {
+    try { return [...new Set((JSON.parse(localStorage.getItem('lk-preview-appstate') || '{}').launchkit?.assets || []).map((a) => a.asset_type))]; } catch { return null; }
+  });
+  if (Array.isArray(stored)) {
+    for (const p of platforms) if (per[p]?.drafted && !stored.includes(TYPE_OF[p])) per[p] = { ...per[p], drafted: false, reason: 'no draft stored' };
+  }
   // approve every draft that passed its hard checks; the rest stay in review, as a founder would leave them
   let approved = 0;
   const blocked = await page.evaluate(() => [...document.querySelectorAll('#lk-root main button[aria-label^="Approve the "]')].filter((b) => Number(b.getAttribute('data-blockers') || 0) > 0).map((b) => b.getAttribute('aria-label')));

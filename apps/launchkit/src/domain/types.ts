@@ -39,6 +39,8 @@ export interface Profile extends Dict {
   voice?: Voice | unknown;
   maturity?: Dict;
   gaps?: unknown[];
+  site_gaps?: unknown[];
+  unverified?: unknown[];
   confidence?: Dict;
   analysis_degraded?: boolean;
 }

@@ -144,6 +144,8 @@ export type PlanData = {
   angles?: Record<string, unknown>[];
   pricing?: SelectedPricing | null;
   listing?: Record<string, unknown> | null;
+  /** Posts started and not approved, and drafts written for another venue: why the plan is not ready. */
+  pending?: { asset_type: string; state: string; note: string }[];
 };
 
 export type AttributionData = {

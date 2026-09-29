@@ -9,8 +9,10 @@ import {
   buildAssetQuestion, buildBrandQuestion, buildCommercialQuestion, buildPricingOptionsQuestion,
   buildSignalsQuestion, buildTargetsQuestion, buildUnderstandQuestion,
 } from '../domain/questions';
-import { gateAsset, gateContext, gateSignals, gateTargets } from '../domain/gates';
-import { buildAttribution, buildPlan, planMarkdown } from '../domain/plan';
+import { ASSET_TYPES } from '../lib/asset-types';
+import { revenueAtPoints } from '../domain/revenue';
+import { gateAsset, gateContext, competitorNames, gateSignals, gateTargets } from '../domain/gates';
+import { buildAttribution, buildPlan, planMarkdown, type PendingItem } from '../domain/plan';
 import {
   BRAND_CAMPAIGNS_PREREQ_ERROR, GATE1_ERROR, NO_PROFILE_TO_APPROVE_ERROR,
   applyAssetEdit, applyTargetsRun, assetJobKind, canRunBrandCampaigns,
@@ -86,6 +88,11 @@ function settleZombie(row: Row): Row {
   if (!Number.isFinite(started) || Date.now() - started < ZOMBIE_RUN_MS) return row;
   update('runs', { id: row.id }, { status: 'error', error: INTERRUPTED, finished_at: new Date().toISOString() });
   return { ...row, status: 'error', error: INTERRUPTED };
+}
+
+/** A blocker without its measurement ("body: Over 200 words (241 words, cap 200)" -> "body: Over 200 words"). */
+function checkOf(blocker: string): string {
+  return blocker.replace(/\s*\([^)]*\)\s*$/, '').trim();
 }
 
 /** The repair ask says what to cut, in the units the check counts: the model overshoots when told only the cap. */
@@ -368,24 +375,20 @@ export const api = {
               .filter((o) => typeof o.name === 'string' && o.name.trim() && Array.isArray(o.tiers) && o.tiers.length > 0)
               .slice(0, 3)
               .map((o) => {
-                const rev = dict(o.revenue_at);
-                const revenue_at: Record<string, number> = {};
-                for (const k of ['10', '50', '200']) {
-                  const n = num(rev[k]);
-                  if (n != null) revenue_at[k] = n;
-                }
+                const tiers = (o.tiers as unknown[]).map(dict).map((t, i) => ({
+                  name: String(t.name ?? '').trim() || `Tier ${i + 1}`,
+                  price_usd_month: num(t.price_usd_month),
+                  who_its_for: String(t.who_its_for ?? '').trim(),
+                  includes: strs(t.includes),
+                }));
                 return {
                   name: String(o.name).trim(),
                   billing: String(o.billing ?? '').trim(),
                   positioning: String(o.positioning ?? '').trim(),
-                  tiers: (o.tiers as unknown[]).map(dict).map((t, i) => ({
-                    name: String(t.name ?? '').trim() || `Tier ${i + 1}`,
-                    price_usd_month: num(t.price_usd_month),
-                    who_its_for: String(t.who_its_for ?? '').trim(),
-                    includes: strs(t.includes),
-                  })),
+                  tiers,
                   market_rate_note: String(o.market_rate_note ?? '').trim(),
-                  revenue_at,
+                  // computed from the tiers, never the model's arithmetic (documenso 09-29: ten times low)
+                  revenue_at: revenueAtPoints(tiers),
                   when_to_pick: String(o.when_to_pick ?? '').trim(),
                 };
               });
@@ -533,10 +536,14 @@ export const api = {
     }
     const rules = rulesBlock(asset_type);
     const meta = rulebookMeta(asset_type);
-    // what the gate needs beyond the draft: a thin profile, a profile with no recorded gap, a RocketRide-owned app
-    const gctx = gateContext(profile, String(projRow?.site_url ?? ''), String(projRow?.repo_url ?? ''));
     // the product's own name, so a mention-ladder count and the drafts agree on what to call it
     const appName = displayName(String(projRow?.name ?? ''), brandDna as Dict | null, profile as unknown as Dict);
+    // what the gate needs beyond the draft: a thin profile, a profile with no recorded gap, a RocketRide-owned
+    // app, the numbers the sources hold (a draft's other numbers are invented) and the competitors' names
+    const gctx = gateContext(profile, String(projRow?.site_url ?? ''), String(projRow?.repo_url ?? ''), {
+      texts: [brandDna, pricing, listing],
+      competitors: competitorNames(profile, pricing, appName),
+    });
     // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
     const draftOnce = async (fb: string, prevDraft: string) => {
       const result = await ask('lk_assets.pipe',
@@ -571,7 +578,12 @@ export const api = {
           const note = `REPAIR: the draft failed these hard checks: ${left.map(repairHint).join('; ')}. Fix exactly these and keep everything else as it is. Count the words and characters yourself before answering; over-length text is cut by deleting whole sentences, never excused in a warning.${harder}` + (feedback ? ` The builder's earlier feedback still applies: ${feedback}` : '');
           try {
             const again = await draftOnce(note, compact(gated, 3500));
-            if (overage(again) < overage(gated)) { again.repaired = first; gated = again; }
+            if (overage(again) < overage(gated)) {
+              // repaired lists only what no longer fires; documenso 09-29 had fixes recorded that were not made
+              const left = new Set((Array.isArray(again.blockers) ? (again.blockers as string[]) : []).map(checkOf));
+              again.repaired = first.filter((b) => !left.has(checkOf(b)));
+              gated = again;
+            }
           } catch { break; /* the best draft so far stands, blockers and all */ }
         }
         // a length blocker the asks would not fix is cut deterministically, and the cut is recorded
@@ -582,7 +594,8 @@ export const api = {
             gated = trimmed.data;
             const warnings = Array.isArray(gated.warnings) ? (gated.warnings as string[]) : [];
             gated.warnings = [`Over the length cap after two rewrites, so the draft check dropped ${trimmed.dropped.join(' and ')} from the middle. Read what is left and put back what you need in your own words.`, ...warnings];
-            gated.repaired = [...(Array.isArray(gated.repaired) ? (gated.repaired as string[]) : first), ...trimmed.dropped];
+            const leftAfterTrim = new Set((Array.isArray(gated.blockers) ? (gated.blockers as string[]) : []).map(checkOf));
+            gated.repaired = [...first.filter((b) => !leftAfterTrim.has(checkOf(b))), ...trimmed.dropped];
           }
         }
         return gated;
@@ -1100,6 +1113,32 @@ export const api = {
     const camps = angles.length > 0 ? await latestCommercial(id, 'brand_campaigns') : null;
     const campList = Array.isArray((camps as Dict | null)?.campaigns) ? ((camps as Dict).campaigns as Dict[]) : [];
     const listingRow = byNewest(select('commercial_results', { project_id: id, kind: 'listing' }))[0];
+    // what keeps the plan from being ready: a post started and never approved, and a Reddit draft written
+    // for a subreddit other than the one chosen in Targets (Social runs before Targets)
+    const pending: PendingItem[] = [];
+    for (const atype of ASSET_TYPES) {
+      const rows = byNewest(select('assets', { project_id: id, asset_type: atype }), 'version');
+      if (rows.some((r) => r.status === 'approved')) continue;
+      if (rows[0]) {
+        const n = Array.isArray((rows[0].data as Dict).blockers) ? ((rows[0].data as Dict).blockers as unknown[]).length : 0;
+        pending.push({ asset_type: atype, state: n > 0 ? 'blocked' : 'draft',
+          note: n > 0 ? `${n} hard-rule failure${n === 1 ? '' : 's'} to fix before it can be approved` : 'drafted, not approved yet' });
+        continue;
+      }
+      const run = byNewest(select('runs', { project_id: id, kind: assetJobKind(atype) }))[0];
+      if (run && run.status === 'error') {
+        pending.push({ asset_type: atype, state: 'failed', note: `the draft failed: ${String(run.error ?? 'no answer').slice(0, 140)}` });
+      }
+    }
+    const chosenSubs = targetRows.map((r) => r.data as Dict).filter((d) => String(d.kind ?? '') === 'subreddit').map((d) => String(d.name ?? ''));
+    const reddit = byNewest(assetRows.filter((r) => r.asset_type === 'reddit_post'), 'version')[0];
+    if (reddit && chosenSubs.length > 0) {
+      const venue = String((reddit.data as Dict).venue ?? '');
+      if (!chosenSubs.some((s) => s && s.toLowerCase() === venue.toLowerCase())) {
+        pending.push({ asset_type: 'reddit_post', state: 'venue',
+          note: `written for ${venue || 'no chosen subreddit'}; Targets selected ${chosenSubs.join(', ')}: redraft it for the subreddit you will post in` });
+      }
+    }
     const plan = buildPlan(
       { id: String(p.id), name: String(p.name), app_url: (p.app_url as string) ?? null, site_url: String(p.site_url) },
       assetRows.map((r) => ({ asset_type: String(r.asset_type), version: Number(r.version), data: r.data as Dict })),
@@ -1109,6 +1148,7 @@ export const api = {
         angles: campList.filter((c) => angles.includes(String(c.name))),
         pricing: p.selected_pricing && typeof p.selected_pricing === 'object' ? (p.selected_pricing as Dict) : null,
         listing: listingRow && listingRow.status === 'approved' ? (listingRow.data as Dict) : null,
+        pending,
       },
     );
     if (fmt === 'markdown') return { markdown: planMarkdown(plan) };

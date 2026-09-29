@@ -421,10 +421,14 @@ export function ProfileStage() {
               variant="flare"
               loading={approving}
               loadingLabel="Approving"
-              disabled={dirty}
+              // approving while "Analyze again" runs approved the old version and left the new one a draft,
+              // locking every later stage with no explanation (hack-judge, 09-29)
+              disabled={dirty || analysing}
               title={
                 dirty
                   ? 'Save your edits first; approval locks the version that unlocks every later stage'
+                  : analysing
+                  ? 'Wait for the new analysis: approving now would approve the version it replaces'
                   : undefined
               }
               onClick={async () => {
@@ -585,10 +589,22 @@ export function ProfileStage() {
                     value={asList(draft.tech_stack)}
                     onChange={(v) => set('tech_stack', v)}
                   />
+                  {/* three lists, never one: posts publish `gaps` as the product's honest limitation, so a page
+                      Launch Kit could not read (a 404, a redirect) must not land there (09-29 eval, ten apps) */}
                   <ReviewListRow
-                    label="What's missing from your site"
+                    label="Limitations your product states"
                     value={asList(draft.gaps)}
                     onChange={(v) => set('gaps', v)}
+                  />
+                  <ReviewListRow
+                    label="What's missing from your site"
+                    value={asList(draft.site_gaps)}
+                    onChange={(v) => set('site_gaps', v)}
+                  />
+                  <ReviewListRow
+                    label="Could not be read or confirmed"
+                    value={asList(draft.unverified)}
+                    onChange={(v) => set('unverified', v)}
                   />
                   <div className="grid gap-1.5 border-t border-border py-3">
                     <Label>How you write</Label>

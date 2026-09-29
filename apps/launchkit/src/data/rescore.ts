@@ -12,7 +12,7 @@
  */
 import { buildRescoreQuestion, buildRescoreSummary } from '../domain/questions';
 import { hnLockCheck, HN_LOCK_REJECTION_WHY } from '../domain/gates';
-import { threadFromExaSearch } from '../domain/thread';
+import { staleThreadWhy, threadFromExaSearch, untrustedRepoWhy } from '../domain/thread';
 import type { Dict, Profile, SignalData } from '../domain/types';
 import { ask } from './runner';
 
@@ -59,7 +59,8 @@ export async function fetchUrlText(url: string): Promise<[string, number | null]
   const gh = url.match(/github\.com\/([^/]+)\/([^/]+)\/(?:issues|discussions)\/(\d+)/);
   if (gh) {
     const issue = await fetchJson(`https://api.github.com/repos/${gh[1]}/${gh[2]}/issues/${gh[3]}`);
-    return [stripTags(`${issue.title ?? ''} ${issue.body ?? ''}`).slice(0, 4000), null];
+    const created = Date.parse(String(issue.created_at ?? ''));
+    return [stripTags(`${issue.title ?? ''} ${issue.body ?? ''}`).slice(0, 4000), Number.isFinite(created) ? Math.floor(created / 1000) : null];
   }
   // generic pages: Exa's copy of the exact thread, then the page itself (CORS refuses most)
   let indexed: [string, number | null] | null = null;
@@ -102,6 +103,18 @@ export async function rescoreSignals(
     }
     if (hnLockCheck(url, created, Date.now() / 1000)) {
       s.rescore = { verdict: 'rejected', why: HN_LOCK_REJECTION_WHY };
+      rejected.push(s);
+      continue;
+    }
+    // recency and source are facts, not judgements: settle them before the relevance judge reads the text
+    const now = Date.now() / 1000;
+    let why = staleThreadWhy(created, now);
+    const repo = url.match(/github\.com\/([^/]+)\/([^/]+)\/(?:issues|discussions)\//);
+    if (!why && repo) {
+      try { why = untrustedRepoWhy(await fetchJson(`https://api.github.com/repos/${repo[1]}/${repo[2]}`), now); } catch { /* the thread still stands */ }
+    }
+    if (why) {
+      s.rescore = { verdict: 'rejected', why };
       rejected.push(s);
       continue;
     }

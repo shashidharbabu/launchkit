@@ -516,6 +516,8 @@ function ReelView({ row, script, imagesRow, voiceRow, disabled, onChanged }: { r
   const staleVoice = Boolean(voiceRow) && asStr(d.voice_id) !== voiceRow?.id;
   // a spoken line past its window is audible in the film; the reel is not approved over it
   const voiceFits = !voiceRow || voiceUsed.length === 0 || asObj(voiceRow.data).all_fit !== false;
+  // a line trimmed to fit its slot can read broken on screen ("KNOW WHAT DRIVES.", 09-29); a person rewrites it first
+  const trimmedLines = script && asStr(d.script_id) === script.id ? asArr(asObj(script.data).clamped).map(asStr) : [];
   const mb = Number(d.bytes ?? 0) / 1048576;
   const approve = async () => {
     setApproving(true);
@@ -580,12 +582,15 @@ function ReelView({ row, script, imagesRow, voiceRow, disabled, onChanged }: { r
             </a>
             {/* the card header carries the Approved stamp; here only the act itself */}
             {!approved && (
-              <Button variant="primary" size="sm" disabled={disabled || !voiceFits} loading={approving} loadingLabel="Approving" onClick={approve}>
+              <Button variant="primary" size="sm" disabled={disabled || !voiceFits || trimmedLines.length > 0} loading={approving} loadingLabel="Approving" onClick={approve}>
                 Approve reel
               </Button>
             )}
             {!approved && !voiceFits && (
               <span className="text-small text-nogo-text">A spoken line runs past its window: shorten it in the voice-over step, speak it again, then render again.</span>
+            )}
+            {!approved && voiceFits && trimmedLines.length > 0 && (
+              <span className="text-small text-nogo-text">{trimmedLines.length === 1 ? 'A line was' : `${trimmedLines.length} lines were`} cut to fit on screen: rewrite {trimmedLines.length === 1 ? 'it' : 'them'} in the script, then render again.</span>
             )}
           </div>
         </div>

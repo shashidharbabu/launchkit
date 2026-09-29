@@ -36,6 +36,15 @@ export interface PlanExtras {
   angles?: Dict[];
   pricing?: Dict | null;
   listing?: Dict | null;
+  /** posts started but not approved (blocked, draft, failed) and drafts written for another venue */
+  pending?: PendingItem[];
+}
+
+/** One thing that keeps a plan from being ready, in the builder's terms. */
+export interface PendingItem {
+  asset_type: string;
+  state: "blocked" | "draft" | "failed" | "venue";
+  note: string;
 }
 
 export interface Plan {
@@ -47,6 +56,7 @@ export interface Plan {
   angles: Dict[];
   pricing: Dict | null;
   listing: Dict | null;
+  pending: PendingItem[];
 }
 
 /**
@@ -127,10 +137,13 @@ export function buildPlan(project: PlanProject, approvedAssets: ApprovedAssetRow
     sequencing,
     targets: targetDicts,
     assets,
-    ready: latest.size > 0 && targetDicts.length > 0,
+    // ready only when nothing started is left open: documenso read "Plan ready" with 2 of 6 posts approved, and
+    // dub with its Show HN failed three times (09-29)
+    ready: latest.size > 0 && targetDicts.length > 0 && (extras.pending ?? []).length === 0,
     angles: extras.angles ?? [],
     pricing: extras.pricing ?? null,
     listing: extras.listing ?? null,
+    pending: extras.pending ?? [],
   };
 }
 
@@ -215,6 +228,12 @@ export function planMarkdown(plan: Plan): string {
     }
     const kw = plan.listing.keywords;
     if (Array.isArray(kw) && kw.length > 0) lines.push(`**keywords:** ${kw.map(String).join(", ")}\n`);
+  }
+  // after everything else, so a complete plan's export is unchanged
+  if ((plan.pending ?? []).length > 0) {
+    lines.push("## Still open");
+    for (const p of plan.pending) lines.push(`- **${p.asset_type}** (${p.state}): ${p.note}`);
+    lines.push("");
   }
   return lines.join("\n");
 }

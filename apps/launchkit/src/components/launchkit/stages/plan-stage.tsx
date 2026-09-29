@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ASSET_LABELS } from '../../../lib/asset-types';
 import { toast } from 'sonner';
 import { Bar, BarChart, Cell, LabelList, XAxis, YAxis, Tooltip as RechartsTooltip } from 'recharts';
 import { useProject } from '../project-provider';
@@ -150,23 +151,28 @@ export function PlanStage() {
           {!plan?.ready &&
             (() => {
               const needsAssets = !assets.some((a) => a.status === 'approved');
+              const pending = plan?.pending ?? [];
+              // with a post approved and a venue chosen, what is left is named, not summarised
+              const onlyPending = !needsAssets && (plan?.targets.length ?? 0) > 0 && pending.length > 0;
               return (
                 <HonestEmpty
                   fact="Plan not ready."
                   reason={
-                    needsAssets
+                    onlyPending
+                      ? `Still open: ${pending.map((x) => `${ASSET_LABELS[x.asset_type] ?? x.asset_type}, ${x.note}`).join('; ')}.`
+                      : needsAssets
                       ? 'The plan assembles your approved posts across your selected venues with sequencing advice. Approve at least one post first, then tick venues in Targets.'
                       : 'The plan assembles your approved posts across your selected venues with sequencing advice. Your posts are approved; now tick at least one venue in Targets.'
                   }
                   action={
                     <a
-                      href={href({ view: 'workspace', projectId: project.id, stage: needsAssets ? 'assets' : 'targets' })}
+                      href={href({ view: 'workspace', projectId: project.id, stage: needsAssets || onlyPending ? 'assets' : 'targets' })}
                       onClick={(e) => {
                         e.preventDefault();
-                        go({ view: 'workspace', projectId: project.id, stage: needsAssets ? 'assets' : 'targets' });
+                        go({ view: 'workspace', projectId: project.id, stage: needsAssets || onlyPending ? 'assets' : 'targets' });
                       }}
                     >
-                      <Button variant="secondary">{needsAssets ? 'Review posts' : 'Choose targets'}</Button>
+                      <Button variant="secondary">{needsAssets || onlyPending ? 'Review posts' : 'Choose targets'}</Button>
                     </a>
                   }
                 />

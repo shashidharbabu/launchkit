@@ -90,8 +90,9 @@ export function clampText(v: string, max: number, end: string): string {
   const cut = v.slice(0, max);
   const sentence = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
   if (sentence >= max * 0.45) return cut.slice(0, sentence + 1);
-  const sp = cut.lastIndexOf(" ");
-  const out = (sp > max * 0.5 ? cut.slice(0, sp) : cut).trim().replace(DANGLING, "").replace(/[,:;-]$/, "");
+  // never inside a word when an earlier space exists: "SCHEDULING INFRASTRUCTUR." (cal-com reel, 09-29)
+  const sp = v.length > max && v[max] !== " " ? cut.lastIndexOf(" ") : cut.length;
+  const out = (sp > 0 ? cut.slice(0, sp) : cut).trim().replace(DANGLING, "").replace(/[,:;-]$/, "");
   return end && !/[.!?…:]$/.test(out) ? out + end : out;
 }
 

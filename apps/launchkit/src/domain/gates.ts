@@ -220,7 +220,7 @@ export function gateAsset(assetType: string, data: AssetData, ctx: GateContext =
   if (assetType === "reddit_post" && pyStr(pyGet(data, "title", "")).startsWith("Show HN")) {
     warnings.push("title uses HN convention, rewrite for Reddit");
   }
-  for (const h of runRulebookCheckHits(assetType, data, ctx)) {
+  for (const h of [...runRulebookCheckHits(assetType, data, ctx), ...sourceHits(data, ctx)]) {
     const w = hitLine(h);
     if (!warnings.includes(w)) warnings.push(w);
     if (h.hard && !blockers.includes(w)) blockers.push(w);
@@ -263,7 +263,119 @@ export type GateContext = {
   noGaps?: boolean;
   /** the app being launched is RocketRide's own, so the RocketRide brand rules bind the draft itself */
   ownApp?: boolean;
+  /** every number the sources hold (profile, brand DNA, pricing, listing), normalised by `numberKey` */
+  numbers?: Set<string>;
+  /** competitors the profile or the pricing research names, so a swipe at one can be caught */
+  competitors?: string[];
 };
+
+// A number in a draft is either in the sources or invented. The 09-29 evaluation found invented figures on
+// all ten apps ("half of them click away", "12 diagrams due", "Up to 100K pageviews", "99.99% uptime SLA"),
+// and GLOBAL_RULES forbidding them did not stop the model, so the gate counts them. Small integers pass
+// (a step count, "one click"), as do numbers written as words; everything else must appear in a source.
+const NUMBER_TOKEN = /(?<![\w.$€£/-])[$€£]?(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)(\s?(?:thousand|million|billion)\b|[a-zA-Z%]{0,8})/g;
+const MULTIPLIERS: Record<string, number> = { k: 1e3, thousand: 1e3, m: 1e6, million: 1e6, b: 1e9, bn: 1e9, billion: 1e9 };
+const FREE_NUMBERS_MAX = 3;
+
+/** A number's comparable value: commas dropped, k/m/bn expanded, units (KB, ms, %) ignored. */
+export function numberKey(digits: string, suffix = ""): string {
+  const value = Number(digits.replace(/,/g, "")) * (MULTIPLIERS[suffix.trim().toLowerCase()] ?? 1);
+  return Number.isFinite(value) ? String(Math.round(value * 100) / 100) : "";
+}
+
+/** Every number in a text, with the words around it for the report. */
+export function numbersIn(text: string): Array<{ key: string; raw: string; value: number }> {
+  const out: Array<{ key: string; raw: string; value: number }> = [];
+  for (const m of text.matchAll(NUMBER_TOKEN)) {
+    const key = numberKey(m[1], m[2]);
+    if (key) out.push({ key, raw: m[0], value: Number(key) });
+  }
+  return out;
+}
+
+/** The comparable keys of every number anywhere in the sources (objects are read as their JSON). */
+export function sourceNumbers(sources: unknown[]): Set<string> {
+  const keys = new Set<string>();
+  for (const s of sources) {
+    if (s == null) continue;
+    const text = typeof s === "string" ? s : JSON.stringify(s);
+    for (const n of numbersIn(text)) keys.add(n.key);
+  }
+  return keys;
+}
+
+/** A draft number is sourced when a source holds it exactly, or rounded ("48k" for 48,213, "1.2M" for 1,180,000). */
+function sourced(n: { key: string; raw: string; value: number }, keys: Set<string>): boolean {
+  if (keys.has(n.key)) return true;
+  // only a rounded form may differ from its source: a magnitude suffix, or a figure ending in 00 ("48,700")
+  if (!/\d\s?(?:k|m|bn|b|thousand|million|billion)\b/i.test(n.raw) && !/00$/.test(n.key)) return false;
+  for (const k of keys) {
+    const v = Number(k);
+    if (v > 0 && Math.abs(v - n.value) / v <= 0.06) return true;
+  }
+  return false;
+}
+
+/** Competitor names from the profile's alternatives and the pricing research, without this app's own name. */
+export function competitorNames(profile: unknown, pricing: unknown, appName = ""): string[] {
+  const names = new Set<string>();
+  const add = (v: unknown) => {
+    const name = (typeof v === "string" ? v : pyStr(pyGet(v as Record<string, unknown>, "name", ""))).split(/[(:,]/)[0].trim();
+    if (name.length >= 3 && name.length <= 40 && name.toLowerCase() !== appName.trim().toLowerCase()) {
+      names.add(name);
+      const words = name.split(/\s+/);
+      const alias = words.map((w) => (/^\d+$/.test(w) ? w : w[0] ?? "")).join("").toUpperCase();
+      // an acronym ("GA4") is matched case-sensitively and only when it cannot be a common word ("AS")
+      if (words.length >= 2 && (alias.length >= 3 || /\d/.test(alias))) names.add(`=${alias}`);
+    }
+  };
+  const icp = pyGet((profile ?? {}) as Record<string, unknown>, "icp", {}) as Record<string, unknown>;
+  const alts = pyGet(icp, "current_alternatives", []);
+  if (Array.isArray(alts)) alts.forEach(add);
+  const comps = pyGet((pricing ?? {}) as Record<string, unknown>, "competitors", []);
+  if (Array.isArray(comps)) comps.forEach(add);
+  return [...names];
+}
+
+// the words that turn a mention into a swipe (hoppscotch "Postman has become slow and paywalled",
+// dub "Bitly ... has no step that connects those clicks", documenso "DocuSign is a closed black box")
+const NEGATIVE = /\b(?:slow(?:er|s)?|sluggish|bloat(?:ed)?|heavy|clunky|paywall(?:s|ed)?|lock(?:s|ed)?[- ]?in|locks? (?:you|your|teams?)|closed|black box|expensive|overpriced|pric(?:ey|ier)|gouge[sd]?|shrinking|outdated|legacy|broken|fails?|failing|can(?:no|')t|does(?: not|n't)|lacks?|lacking|missing|has no|no (?:way|api|step)|forces?|forced|stuck|nickel-and-dimes?|charges? (?:you|for)|but)\b/i;
+
+function escapeRe(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** Sentences that name a competitor next to a negative word. */
+export function competitorSwipes(text: string, competitors: string[]): string[] {
+  if (competitors.length === 0) return [];
+  const plain = competitors.filter((c) => !c.startsWith("="));
+  const exact = competitors.filter((c) => c.startsWith("=")).map((c) => c.slice(1));
+  const named = plain.length ? new RegExp(`\\b(?:${plain.map(escapeRe).join("|")})\\b`, "i") : null;
+  const acronym = exact.length ? new RegExp(`\\b(?:${exact.map(escapeRe).join("|")})\\b`) : null;
+  return text.split(/(?<=[.!?])\s+|\n+/)
+    .filter((s) => (named?.test(s) || acronym?.test(s)) && NEGATIVE.test(s)).map((s) => s.trim());
+}
+
+/** The provenance and competitor hits for one draft (both hard: the repair pass names and removes them). */
+function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
+  const hits: CheckHit[] = [];
+  for (const [field, text] of fieldsOf(data, "all")) {
+    if (ctx.numbers) {
+      const unsourced = numbersIn(text.replace(/\{APP_URL\}/g, ""))
+        .filter((n) => n.value > FREE_NUMBERS_MAX && !sourced(n, ctx.numbers!))
+        .map((n) => n.raw);
+      if (unsourced.length > 0) {
+        hits.push({ id: "unsourced_number", field, hard: true, detail: [...new Set(unsourced)].slice(0, 4).map((r) => `"${r}"`).join(", "),
+          description: "A number that is in no source (APP_PROFILE, BRAND_DNA, pricing, listing): remove it or use the sourced figure" });
+      }
+    }
+    for (const s of competitorSwipes(text, ctx.competitors ?? [])) {
+      hits.push({ id: "competitor_swipe", field, hard: true, detail: `"${s.slice(0, 90)}"`,
+        description: "A competitor named beside a negative word; state facts about this app, never what a rival lacks" });
+    }
+  }
+  return hits;
+}
 
 /** The pseudo-fields a `when` guard may read: "true" or "" so the guard stays a plain regex test. */
 function contextValue(field: string, ctx: GateContext): string {
@@ -272,7 +384,8 @@ function contextValue(field: string, ctx: GateContext): string {
 }
 
 /** The profile facts the gate needs, read once per draft. */
-export function gateContext(profile: unknown, siteUrl = "", repoUrl = ""): GateContext {
+export function gateContext(profile: unknown, siteUrl = "", repoUrl = "",
+                            sources?: { texts?: unknown[]; competitors?: string[] }): GateContext {
   const p = (profile ?? {}) as Record<string, unknown>;
   const conf = Number((p.confidence as Record<string, unknown> | undefined)?.overall ?? NaN);
   const gaps = Array.isArray(p.gaps) ? (p.gaps as unknown[]) : [];
@@ -280,6 +393,7 @@ export function gateContext(profile: unknown, siteUrl = "", repoUrl = ""): GateC
     thin: Boolean(pyTruthy(p.analysis_degraded)) || (Number.isFinite(conf) && conf < 0.5),
     noGaps: gaps.filter((g) => pyStr(g).trim()).length === 0,
     ownApp: /(^|\/\/|\.)rocketride\.(ai|org)(\/|$)/i.test(`${siteUrl} ${repoUrl}`),
+    ...(sources ? { numbers: sourceNumbers([profile, ...(sources.texts ?? [])]), competitors: sources.competitors ?? [] } : {}),
   };
 }
 

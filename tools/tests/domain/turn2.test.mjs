@@ -1,0 +1,89 @@
+// Turn 2 of the 09-29 evaluation loop: each test pins a fix to the evidence that asked for it.
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+import { test } from 'node:test';
+
+const require = createRequire(import.meta.url);
+const gates = require('./.build/domain/gates.js');
+const { revenueAtPoints } = require('./.build/domain/revenue.js');
+const plan = require('./.build/domain/plan.js');
+const { staleThreadWhy, untrustedRepoWhy } = require('./.build/domain/thread.js');
+const { clampText } = require('./.build/domain/studio.js');
+
+const PROFILE = {
+  one_liner: 'Open-source scheduling infrastructure',
+  icp: { current_alternatives: ['Calendly', 'Acuity Scheduling', 'Google Analytics 4'] },
+  proof_points: ['48,213 GitHub stars', '1,000,000+ users'],
+};
+const PRICING = { competitors: [{ name: 'SavvyCal' }], recommendation: { tiers: [{ name: 'Teams', price_usd_month: 12 }] } };
+const ctx = () => gates.gateContext(PROFILE, '', '', { texts: [PRICING], competitors: gates.competitorNames(PROFILE, PRICING, 'Cal.com') });
+const swipes = (data) => gates.gateAsset('reddit_post', { ...data }, ctx()).blockers.filter((b) => /competitor named/.test(b));
+const numbers = (data) => gates.gateAsset('reddit_post', { ...data }, ctx()).blockers.filter((b) => /in no source/.test(b));
+
+test('competitor swipes: the ten-app evidence is caught', () => {
+  for (const body of [
+    'Calendly handles the booking step well; it doesn\'t give you an open API to query your own data.',
+    'Calendly has become slow and paywalled for teams.',
+    'SavvyCal gives you nice links, but every workflow is locked to its cloud.',
+    'GA4 requires cookie banners and legal overhead that slows sites.',
+  ]) assert.equal(swipes({ title: 'x', body }).length, 1, body);
+});
+
+test('competitor swipes: neutral mentions and look-alike words pass', () => {
+  for (const body of [
+    'Teams moving off Calendly can import their event types in one step.',
+    'Per-seat pricing makes scheduling expensive to own as your team grows.',
+    'Cal.com is open source and self-hostable.',
+  ]) assert.deepEqual(swipes({ title: 'x', body }), [], body);
+});
+
+test('competitor names: aliases for multi-word names, never this app, never a common word', () => {
+  const names = gates.competitorNames(PROFILE, PRICING, 'Cal.com');
+  assert.ok(names.includes('Calendly') && names.includes('=GA4'));
+  assert.ok(!names.includes('=AS'), 'a two-letter alias that is a common word is not a competitor');
+  assert.deepEqual(gates.competitorNames({ icp: { current_alternatives: ['Cal.com', 'Doodle'] } }, null, 'Cal.com'), ['Doodle']);
+});
+
+test('invented numbers: a figure in no source is a blocker; sourced, rounded and small ones pass', () => {
+  assert.equal(numbers({ title: 'x', body: 'Half of our 12 reviewers quit after 47 collections.' }).length, 1);
+  assert.deepEqual(numbers({ title: 'x', body: 'Loved by 48k developers and 1M users, $12 a seat, 3 steps.' }), []);
+  assert.deepEqual(numbers({ title: 'x', body: 'Trusted by 48,200 stargazers.' }), []);
+  assert.deepEqual(numbers({ title: 'x', body: 'Book it: {APP_URL}' }), []);
+});
+
+test('revenue is computed from the paid tiers, never the model (documenso 09-29: ten times low)', () => {
+  assert.deepEqual(revenueAtPoints([{ price_usd_month: 0 }, { price_usd_month: 30 }, { price_usd_month: 180 }]), { 10: 1050, 50: 5250, 200: 21000 });
+  assert.deepEqual(revenueAtPoints([{ price_usd_month: 0 }, { price_usd_month: null }]), { 10: 0, 50: 0, 200: 0 });
+});
+
+test('plan: ready only when nothing started is left open, and the export says what is open', () => {
+  const project = { id: 'p1', name: 'documenso', app_url: 'https://documenso.com' };
+  const approved = [{ asset_type: 'x_post', version: 1, data: { post: 'a' } }];
+  const targets = [{ rank: 1, data: { name: 'r/selfhosted', kind: 'subreddit', url: 'https://reddit.com/r/selfhosted' } }];
+  assert.equal(plan.buildPlan(project, approved, targets, null).ready, true);
+  const pending = [{ asset_type: 'show_hn', state: 'failed', note: 'the draft failed: no JSON' }];
+  const p = plan.buildPlan(project, approved, targets, null, { pending });
+  assert.equal(p.ready, false);
+  assert.deepEqual(p.pending, pending);
+  assert.match(plan.planMarkdown(p), /## Still open\n- \*\*show_hn\*\* \(failed\): the draft failed: no JSON/);
+  assert.doesNotMatch(plan.planMarkdown(plan.buildPlan(project, approved, targets, null)), /Still open/);
+});
+
+test('signals: stale threads and planted repositories are rejected before the judge', () => {
+  const now = Date.parse('2026-09-29T00:00:00Z') / 1000;
+  assert.match(staleThreadWhy(Date.parse('2026-05-01T00:00:00Z') / 1000, now), /older than 90 days/);
+  assert.equal(staleThreadWhy(Date.parse('2026-09-01T00:00:00Z') / 1000, now), null);
+  assert.equal(staleThreadWhy(null, now), null);
+  assert.match(untrustedRepoWhy({ stargazers_count: 0, created_at: '2026-09-28T23:50:00Z' }, now), /0 stars/);
+  assert.match(untrustedRepoWhy({ stargazers_count: 400, created_at: '2026-09-20T00:00:00Z' }, now), /days old/);
+  assert.equal(untrustedRepoWhy({ stargazers_count: 48213, created_at: '2021-03-01T00:00:00Z' }, now), null);
+});
+
+test('reel copy is never cut inside a word (cal-com "SCHEDULING INFRASTRUCTUR.")', () => {
+  assert.equal(clampText('SCHEDULING INFRASTRUCTURE.', 24, '.'), 'SCHEDULING.');
+  assert.equal(clampText('EVERY ONE. BY HAND.', 26, '.'), 'EVERY ONE. BY HAND.');
+  for (const [v, max] of [['WHERE DID REVENUE COME FROM?', 24], ['KNOW WHAT DRIVES REVENUE.', 20]]) {
+    const out = clampText(v, max, '.');
+    assert.ok(v.replace(/[.?!]$/, '').split(' ').some((w, i, ws) => ws.slice(0, i + 1).join(' ') === out.replace(/[.?!]$/, '')), `${out} ends on a whole word`);
+  }
+});

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { shareLinks, fillUrl, pickUrl } from './.build-lib/share.js';
+import { shareLinks, fillUrl, pickUrl } from './.build/lib/share.js';
 
 const URL = 'https://example.app';
 test('X opens the compose intent with the post, URL filled', () => {

@@ -38,9 +38,12 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
     "story: the problem a real person has, then this app arriving and proving itself.",
     "RULES: 1) Every slot value is at most its max characters, count them, shorter is better; text renders in " +
     "capitals. 2) Never invent a claim about the product: a product number may appear only if it is in " +
-    "APP_PROFILE, BRAND_DNA or SITE_COPY (use ONE or a plain word otherwise). Beats marked as scenario " +
-    "numbers may use a plausible scene (a count of items, minutes, people) that illustrates the problem; " +
-    "keep them modest and realistic. 3) Ground the how-it-works beats in what the product actually does: " +
+    "APP_PROFILE, BRAND_DNA or SITE_COPY (use ONE or a plain word otherwise). The scenario number slots " +
+    "take a number only when a source states it (a plan limit, a quota, a count on the site); when none " +
+    "fits the scene, write a word such as ALL, EACH or MANY instead of a count: an invented \"12 diagrams, " +
+    "4 reviewers, 30 minutes\" read as fact on every app in the 09-29 evaluation. The pile line says what a " +
+    "person does by hand only when APP_PROFILE says the product replaces that work; otherwise it names the " +
+    "real chore in the product's own words. 3) Ground the how-it-works beats in what the product actually does: " +
     "SITE_COPY holds the site's own labels, buttons and categories; reuse those words for fields, buttons " +
     "and verdict chips instead of inventing features. 4) Write in the brand's voice: if BRAND_DNA is " +
     "present follow its tone_words, vocabulary and dos_and_donts and reuse its key messages; otherwise " +
@@ -439,6 +442,7 @@ export function buildRescoreQuestion(summary: Dict, platform: unknown, threadTex
 export function buildPricingOptionsQuestion(profile: Profile, pricingResult: Dict): string {
   // the research without its query log: the competitors and their tiers, the rejected names, the recommendation
   const compact: Dict = {
+    current_tiers: pricingResult.current_tiers ?? [],
     competitors: pricingResult.competitors ?? [],
     rejected: pricingResult.rejected ?? [],
     recommendation: pricingResult.recommendation ?? {},
@@ -472,8 +476,12 @@ export function buildPricingOptionsQuestion(profile: Profile, pricingResult: Dic
     "price, and revenue_at counts that many purchases in a month; for usage-based it is the expected " +
     "monthly spend of a typical customer on that tier. A free tier has price_usd_month 0.",
     "INCLUDED: a tier's includes never change a quota, a seat count or a feature relative to " +
-    "APP_PROFILE.pricing_current unless the option's positioning says in plain words that it is a product " +
-    "change; a price move keeps what the tier includes.",
+    "APP_PROFILE.pricing_current (or PRICING_RESEARCH.current_tiers, the live tiers read from this app's own " +
+    "pricing page) unless the option's positioning says in plain words that it is a product change; a price " +
+    "move keeps what the tier includes. Never move a feature to another tier, and never add a tier or a " +
+    "feature (SSO, audit logs, priority support, an SLA, custom branding, dedicated onboarding) that neither " +
+    "the live tiers nor APP_PROFILE names: the 09-29 evaluation found invented Team tiers, quotas ten times " +
+    "the real one and Enterprise features moved into cheaper tiers on most apps.",
     "REVENUE: revenue_at is the monthly revenue in USD at 10, 50 and 200 paying customers, computed from " +
     "the option's PAID tiers only (price above 0): spread the paying customers evenly across the paid " +
     "tiers, so revenue equals the number of customers times the average paid price. Do the arithmetic; " +
