@@ -42,7 +42,8 @@ function runOne(app) {
     let out = '';
     child.stdout.on('data', (d) => { out += d; });
     child.stderr.on('data', (d) => { out += d; });
-    const timer = setTimeout(() => { out += '\nRUNNER: killed after 75 minutes\n'; child.kill('SIGKILL'); }, 75 * 60 * 1000);
+    const MAX_MIN = Number(process.env.RUN_EVAL_MAX_MIN) || 75;
+    const timer = setTimeout(() => { out += `\nRUNNER: killed after ${MAX_MIN} minutes\n`; child.kill('SIGKILL'); }, MAX_MIN * 60 * 1000);
     child.on('close', (code) => {
       clearTimeout(timer);
       writeFileSync(logFile, out);

@@ -78,6 +78,11 @@ async function step(slug, fn) {
     summary.errors.push(`${slug}: ${String(e?.message ?? e).slice(0, 200)}`);
   }
   log(slug.toUpperCase(), summary.stages[slug]);
+  // keep the evidence as the drive goes: hack-judge's turn-2 drive was killed in Assets and left no store (09-29)
+  try {
+    const raw = await page.evaluate(() => localStorage.getItem('lk-preview-appstate') || '');
+    if (raw) writeFileSync(path.join(OUTDIR, 'appstate.json'), raw);
+  } catch { /* the final dump still runs */ }
 }
 const rail = async () => page.evaluate(() => [...document.querySelectorAll('#lk-root nav[aria-label="Stages"] a')].filter((a) => a.offsetParent !== null).map((a) => a.getAttribute('aria-label')).filter(Boolean));
 
@@ -162,11 +167,18 @@ await step('commercial', async () => {
   const plans = await page.locator('#lk-root main [role="radio"], #lk-root main button', { hasText: /^Select$/ }).count();
   const use = await main(/Use this pricing/).count();
   if (use) { await main(/Use this pricing/).click(); await page.waitForTimeout(2500); }
+  // a listing drafted before the choice quotes other prices and cannot be approved: redraft it first
+  let listingRedrafted = false;
+  if (/This listing predates your pricing choice/.test(await text())) {
+    const regen = page.locator('#lk-root main button', { hasText: /^Regenerate$/ }).last();
+    if (await clickWhenEnabled(regen, 'Regenerate listing', 300000)) { await waitIdle('listing', 600000); listingRedrafted = true; }
+  }
   const approve = await main(/Approve listing/).count();
-  if (approve) { await main(/Approve listing/).click(); await page.waitForTimeout(2500); }
+  if (approve) await clickWhenEnabled(main(/Approve listing/), 'Approve listing', 60000);
+  await page.waitForTimeout(2500);
   const t2 = await text();
   await shot('3-commercial.png');
-  return { secs: w.secs, idle: w.idle, plans, established: (t.match(/(\d+) competitors read, (\d+) established/) || ['', '?', '?']).slice(1), chosen: /Chosen: /.test(t2), listingApproved: /Approved\./.test(t2), failed: await failedLine() };
+  return { secs: w.secs, idle: w.idle, plans, established: (t.match(/(\d+) competitors read, (\d+) established/) || ['', '?', '?']).slice(1), chosen: /Chosen: /.test(t2), listingRedrafted, listingApproved: /Approved\./.test(t2), failed: await failedLine() };
 });
 
 // ---- Social Launch ----
@@ -212,13 +224,16 @@ await step('social', async () => {
 await step('assets', async () => {
   await stage(/Assets/);
   const out = {};
+  let prereqFailed = false;
   const run = async (label, key, maxMs) => {
     const btn = main(label);
     if (!(await btn.count())) { out[key] = { skipped: 'no button' }; return; }
     const t0 = Date.now();
-    if (!(await clickWhenEnabled(btn, key))) { out[key] = { skipped: 'button never enabled' }; return; }
+    // a step whose prerequisite already failed stays disabled; do not wait fifteen minutes on it
+    if (!(await clickWhenEnabled(btn, key, prereqFailed ? 60000 : 900000))) { out[key] = { skipped: 'button never enabled' }; prereqFailed = true; return; }
     const w = await waitIdle(key, maxMs);
     out[key] = { secs: Math.round((Date.now() - t0) / 1000), idle: w.idle, failed: await failedLine() };
+    if (key === 'probe' && (out[key].failed || !w.idle)) prereqFailed = true;
   };
   await run(/Read the site$/, 'probe', 300000);
   await run(/Make the images$/, 'images', 600000);
@@ -248,8 +263,23 @@ await step('targets', async () => {
   const n = Math.min(3, await boxes.count());
   for (let i = 0; i < n; i++) await boxes.nth(i).check().catch(() => null);
   await page.waitForTimeout(1500);
+  // Reddit is drafted before a subreddit is chosen; redraft it for the chosen one, then approve it if clean
+  let redditRedrafted = false;
+  const redraft = page.locator('#lk-root main button', { hasText: /^Redraft for / }).first();
+  if (await redraft.count()) {
+    if (await clickWhenEnabled(redraft, 'Redraft Reddit', 120000)) {
+      await waitIdle('reddit-redraft', 900000);
+      await stage(/Social Launch/);
+      const ok = page.locator('#lk-root main button[aria-label^="Approve the Reddit"][data-blockers="0"]').first();
+      if (await ok.count()) { await ok.click(); await page.waitForTimeout(2000); }
+      redditRedrafted = true;
+      await stage(/Targets/);
+    }
+  }
   await shot('6-targets.png');
-  return { secs: w.secs, ranked: rows.length, top5: rows.slice(0, 5).map((r) => r.find((c, i) => i > 0 && c && !/^\d+$/.test(c)) || r[0]).map((s) => String(s).slice(0, 40)), selected: n, failed: await failedLine() };
+  // a stage that produced nothing failed, whatever the button did (khoj 09-29: 0 ranked, recorded ok)
+  if (rows.length === 0) throw new Error(`no venues ranked: ${await failedLine() || 'the run returned nothing'}`);
+  return { secs: w.secs, redditRedrafted, ranked: rows.length, top5: rows.slice(0, 5).map((r) => r.find((c, i) => i > 0 && c && !/^\d+$/.test(c)) || r[0]).map((s) => String(s).slice(0, 40)), selected: n, failed: await failedLine() };
 });
 
 // ---- Signals ----
@@ -261,6 +291,7 @@ await step('signals', async () => {
   const w = await waitIdle('signals', 900000);
   const t = await text();
   await shot('7-signals.png');
+  if (!w.idle || /Searching for demand\./.test(t)) throw new Error(`the scan was still running after ${w.secs} s`);
   return { secs: w.secs, idle: w.idle, heading: (t.match(/\d+ signals?[^.]{0,80}/) || [''])[0].slice(0, 100), none: /No signals yet/.test(t), failed: await failedLine() };
 });
 
