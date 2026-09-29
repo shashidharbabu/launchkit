@@ -494,6 +494,10 @@ export const api = {
             })),
             coverage_notes: result.coverage_notes,
             queries: result.search_queries_used,
+            // the tally is counted, not written: plausible's notes said "all 8 signals are GitHub issues from buyers"
+            // while the relevance check rejected all eight (09-29)
+            found: gated.length + dropped.length,
+            kept: kept.length,
           },
         };
       },

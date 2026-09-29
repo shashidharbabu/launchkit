@@ -302,6 +302,8 @@ function ScanReport({ meta }: { meta: Record<string, unknown> }) {
   const dropped = Array.isArray(meta.dropped_by_gate) ? (meta.dropped_by_gate as Array<Record<string, unknown>>) : [];
   const rejected = Array.isArray(meta.rejected_by_rescore) ? (meta.rejected_by_rescore as unknown[]).length : 0;
   const notes = typeof meta.coverage_notes === 'string' ? meta.coverage_notes : '';
+  const found = typeof meta.found === 'number' ? meta.found : null;
+  const kept = typeof meta.kept === 'number' ? meta.kept : null;
   if (!queries.length && !dropped.length && !notes && !rejected) return null;
   return (
     <div className="mt-4 rounded-control border border-border bg-surface">
@@ -309,7 +311,13 @@ function ScanReport({ meta }: { meta: Record<string, unknown> }) {
       {queries.length > 0 && (
         <p className="border-b border-border px-4 py-2 font-mono text-data text-muted-foreground"><span className="text-foreground">Searched</span> {queries.join(', ')}</p>
       )}
-      {notes && <p className="border-b border-border px-4 py-2 text-body text-muted-foreground">{notes}</p>}
+      {found !== null && kept !== null && (
+        <p className="border-b border-border px-4 py-2 font-mono text-data text-muted-foreground">
+          <span className="text-foreground">Found</span> {found} · <span className="text-foreground">dropped</span> {dropped.length} · <span className="text-foreground">rejected</span> {rejected} · <span className="text-foreground">kept</span> {kept}
+        </p>
+      )}
+      {/* the finder writes its notes before any thread is read, so they are labelled as such, never the verdict */}
+      {notes && <p className="border-b border-border px-4 py-2 text-body text-muted-foreground"><span className="text-foreground">The search's notes, before the threads were checked:</span> {notes}</p>}
       {dropped.length > 0 && (
         <div className="px-4 py-2 font-mono text-data text-muted-foreground">
           <span className="text-foreground">Dropped by gate</span> ({dropped.length})

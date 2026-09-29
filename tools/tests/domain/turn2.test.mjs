@@ -150,3 +150,9 @@ test('complianceBlankets: a standard promised on every plan is caught; a standar
   assert.equal(complianceBlankets('21 CFR Part 11 and HIPAA come with the Enterprise plan.').length, 0);
   assert.equal(complianceBlankets('Every plan includes unlimited documents. SOC 2 report available on request.').length, 0);
 });
+
+test('origin story: "we kept running sites where" is a story the profile does not hold', () => {
+  const ctx = gates.gateContext({ name: 'Plausible' }, '', '', { texts: [], competitors: [] });
+  const out = gates.gateAsset('producthunt', { first_comment: 'We kept running sites where the analytics setup had become its own project.', warnings: [], blockers: [] }, ctx);
+  assert.ok(out.blockers.some((b) => /origin story/i.test(b)), JSON.stringify(out.blockers));
+});
