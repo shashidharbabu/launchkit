@@ -143,7 +143,7 @@ function withDeadline<T>(p: Promise<T>, ms: number, pipeName: string): Promise<T
 async function askOnceInner(pipeName: string, questionText: string): Promise<{ data: Dict; trace: unknown }> {
   const c = requireClient();
   let response: Dict | null = null;
-  for (const attempt of [1, 2]) {
+  for (const attempt of [1, 2, 3]) {
     try {
       const token = await pipeToken(pipeName);
       const q = new Question({ expectJson: true });
@@ -166,8 +166,14 @@ async function askOnceInner(pipeName: string, questionText: string): Promise<{ d
       // instead of retrying (09-29); the client reconnects on its own, so wait for it before the retry
       const transportish = ['connection', 'websocket', 'timed out', 'closed', 'disconnect', 'not connected', 'socket']
         .some((t) => msg.includes(t));
-      if (attempt === 1 && (stalePipe || transportish)) {
-        if (transportish) await waitForReconnect(c, 60000);
+      // a transport failure gets two retries with a pause first: hack-judge's targets call died with "Connection
+      // closed normally" and its one immediate retry died too, 7 s in all (09-29), because the client still read
+      // as connected in the instant after the server closed the socket
+      if ((transportish && attempt < 3) || (stalePipe && attempt === 1)) {
+        if (transportish) {
+          await new Promise((r) => setTimeout(r, attempt === 1 ? 5000 : 20000));
+          await waitForReconnect(c, 60000);
+        }
         try { await restartPipe(pipeName); } catch { /* fall through to raise */ }
         continue;
       }
