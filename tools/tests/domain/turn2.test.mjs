@@ -124,3 +124,12 @@ test('turn 3: origin stories are caught (cal-com, khoj, documenso), plain first-
     assert.deepEqual(stories(body), [], body);
   }
 });
+
+test('turn 3: public copy never sees what Launch Kit could not read (hack-judge 503 in a Reddit post)', () => {
+  const q = require('./.build/domain/questions.js');
+  const p = { one_liner: 'x', gaps: ['no mobile app'], unverified: ['landing page returned 503'], site_gaps: ['no demo link'] };
+  assert.deepEqual(q.publicProfile(p), { one_liner: 'x', gaps: ['no mobile app'] });
+  const ask = q.buildAssetQuestion('reddit_post', p, null, '', '', null, '', {});
+  assert.doesNotMatch(ask, /503|no demo link/);
+  assert.match(ask, /no mobile app/);
+});

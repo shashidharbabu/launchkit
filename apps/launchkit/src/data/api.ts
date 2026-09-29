@@ -101,6 +101,8 @@ function repairHint(blocker: string): string {
   if (words) return `${blocker}: delete at least ${Number(words[1]) - Number(words[2]) + 15} words, whole sentences at a time`;
   const chars = blocker.match(/\((\d+) characters, cap (\d+)\)/);
   if (chars) return `${blocker}: delete at least ${Number(chars[1]) - Number(chars[2]) + 20} characters, a clause at a time`;
+  const floor = blocker.match(/\((\d+) words, floor (\d+)\)/);
+  if (floor) return `${blocker}: add at least ${Number(floor[2]) - Number(floor[1]) + 10} words of substance from APP_PROFILE, never filler`;
   const paras = blocker.match(/\((\d+), cap (\d+)\)/);
   if (paras && /paragraph/.test(blocker)) return `${blocker}: merge paragraphs until there are at most ${Number(paras[2]) + 1}`;
   return blocker;

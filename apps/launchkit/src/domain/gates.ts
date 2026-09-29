@@ -420,7 +420,8 @@ export function gateContext(profile: unknown, siteUrl = "", repoUrl = "",
 }
 
 // a founder cannot post over these: platform caps, required shapes, the banned verb, a link where none is allowed
-const HARD_KINDS = new Set(["max_chars", "max_words", "required_prefix", "required_regex", "max_count"]);
+// min_words joined on 09-29: hack-judge's newsletter was approved at 88 words against a floor of 100
+const HARD_KINDS = new Set(["max_chars", "max_words", "min_words", "required_prefix", "required_regex", "max_count"]);
 const HARD_IDS = /banned_verb|brand_banned|s_word|raw_links|raw_urls|url_in_body|link_present|link_once|url_at_most_once|url_max_once|vote_ask|vote_or_reciprocity|no_dash|no_dashes/;
 
 /** What a max_count check counts in a string field: placeholders, raw links, paragraph breaks, the product's name, else hashtags. */
