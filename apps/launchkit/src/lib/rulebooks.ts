@@ -28,6 +28,7 @@ export const GLOBAL_RULES: string[] = [
   'A competitor is named only as a neutral fact (what it is, a public price), never with a negative word attached to its name (locks, buries, overkill, slow, charges for) and never as "we replaced X". When the campaign angle names one, carry the angle without the name.',
   'When the profile is thin (confidence under 0.5, or analysis_degraded true), describe only what its one-liner says and keep every sentence about the product general; never add a mechanism, a workflow, a feature or a number the profile does not state.',
   'When APP_PROFILE.maturity.stage is "sunset" (acquired, archived, shut down or read-only), say so plainly in the first two sentences; never ask anyone to install, start, sign up for or buy it, never promise a feature or a roadmap, and never invent the reason: quote the reason the product\'s own notice gives, or give none.',
+  'A figure or status from a dated source (a benchmark run, a blog post, a changelog entry) carries its date, "in November 2024", and is never stated in the present tense; a feature a dated post called beta or upcoming is described only as that post described it, with its date.',
 ];
 
 /**
