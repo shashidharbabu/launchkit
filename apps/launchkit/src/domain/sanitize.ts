@@ -26,6 +26,8 @@ export function cleanVerbs(s: string): { s: string; n: number } {
   const out = s.replace(BANNED_VERB, (m) => {
     const swap = VERB_SWAP[m.toLowerCase()] ?? m;
     n++;
+    // a line set in capitals (a reel card) stays in capitals: SHIP IT becomes RELEASE IT, not Release IT
+    if (m.length > 1 && m === m.toUpperCase()) return swap.toUpperCase();
     return m[0] === m[0].toUpperCase() ? swap[0].toUpperCase() + swap.slice(1) : swap;
   });
   return { s: out, n };

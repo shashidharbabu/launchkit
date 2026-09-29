@@ -39,6 +39,14 @@ import { getCurrentRun, setCurrentRun } from './trace';
 import { rulebookMeta, rulesBlock } from './rules';
 import { punctuationFixed } from './runner';
 import { sanitizeAuthored, sanitizeProfile, sanitizeVerbs } from '../domain/sanitize';
+
+/**
+ * The reel's script and voice-over are Launch Kit's own copy, so they carry the launch-draft rules too: the
+ * runner only strips dashes, and hoppscotch's reel said "THE BUG SHIPS TO PROD." and "SHIP IT." (09-29).
+ */
+async function askStudio(question: string): Promise<Dict> {
+  return sanitizeVerbs(await ask('lk_studio.pipe', question)).data;
+}
 import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
@@ -366,7 +374,7 @@ export const api = {
           let market_rate = '';
           let options: Dict[] = [];
           try {
-            const drafted = await ask('lk_studio.pipe', buildPricingOptionsQuestion(profile, result));
+            const drafted = await askStudio(buildPricingOptionsQuestion(profile, result));
             models_considered = (Array.isArray(drafted.models_considered) ? drafted.models_considered : [])
               .map(dict)
               .filter((m) => typeof m.model === 'string' && m.model.trim())
@@ -693,7 +701,7 @@ export const api = {
             subject = String((images!.data as Dict).subject ?? '');
             domain = asDomain((images!.data as Dict).domain);
           } else {
-            const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, appName, dna, await campaignAngle()));
+            const written = await askStudio(buildStudioImagesQuestion(plates, profile, appName, dna, await campaignAngle()));
             briefs = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
             subject = typeof written.subject === 'string' ? written.subject.trim() : '';
             domain = asDomain(written.domain);
@@ -749,7 +757,7 @@ export const api = {
       const jobId = await runJob(id, studioJobKind('script'),
         async () => {
           const spec = await forgeConcept(concept);
-          const result = await ask('lk_studio.pipe',
+          const result = await askStudio(
             buildStudioQuestion(spec, profile, appName, String(p.site_url ?? ''), dna, campaignCtx, siteCopy));
           const raw: Dict = result.slots && typeof result.slots === 'object' ? { ...(result.slots as Dict) } : {};
           let norm = normalizeSlots(spec, raw);
@@ -765,7 +773,7 @@ export const api = {
               ...breaks.filter((b) => !norm.clamped.includes(b.id)).map((b) => ({ id: b.id, value: String(raw[b.id] ?? norm.slots[b.id] ?? ''), reason: b.reason })),
             ];
             try {
-              const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, appName));
+              const fix = await askStudio(buildStudioRepairQuestion(spec, offenders, appName));
               const fixed: Dict = fix.slots && typeof fix.slots === 'object' ? (fix.slots as Dict) : {};
               for (const o of offenders) {
                 const s = spec.slots.find((x) => x.id === o.id);
@@ -803,7 +811,7 @@ export const api = {
       const slots = (sd.slots && typeof sd.slots === 'object' ? sd.slots : {}) as Record<string, string>;
       const jobId = await runJob(id, studioJobKind('voice'),
         async () => {
-          const written = await ask('lk_studio.pipe', buildStudioVoiceQuestion(spec, slots, profile, appName, dna, await campaignAngle()));
+          const written = await askStudio(buildStudioVoiceQuestion(spec, slots, profile, appName, dna, await campaignAngle()));
           const texts: Dict = written.segments && typeof written.segments === 'object' ? (written.segments as Dict) : {};
           const lines = vspec.segments.map((s) => ({
             id: s.id, at: s.at, until: s.until, budget: s.words,
@@ -813,7 +821,7 @@ export const api = {
           const repaired: string[] = [];
           const shorten = async (offenders: { id: string; text: string; words: number; budget: number }[]): Promise<boolean> => {
             try {
-              const fix = await ask('lk_studio.pipe', buildStudioVoiceRepairQuestion(offenders, appName));
+              const fix = await askStudio(buildStudioVoiceRepairQuestion(offenders, appName));
               const fixed: Dict = fix.segments && typeof fix.segments === 'object' ? (fix.segments as Dict) : {};
               let changed = false;
               for (const o of offenders) {

@@ -12,7 +12,7 @@
  */
 import { buildRescoreQuestion, buildRescoreSummary } from '../domain/questions';
 import { competitorNames, hnLockCheck, HN_LOCK_REJECTION_WHY, replyWithoutSwipes } from '../domain/gates';
-import { postedWhenEpoch, staleThreadWhy, threadFromExaSearch, untrustedRepoWhy } from '../domain/thread';
+import { postedWhenEpoch, staleThreadWhy, threadFromExaSearch, unreadThreadWhy, untrustedRepoWhy } from '../domain/thread';
 import type { Dict, Profile, SignalData } from '../domain/types';
 import { ask } from './runner';
 
@@ -103,7 +103,8 @@ export async function rescoreSignals(
       created = created ?? reported;
     } catch (e) {
       // an unread thread still gets the age check from the date the finder reported
-      const stale = staleThreadWhy(reported, Date.now() / 1000);
+      const failure = String((e as Error)?.message ?? e);
+      const stale = staleThreadWhy(reported, Date.now() / 1000) ?? unreadThreadWhy(failure);
       if (stale) {
         s.rescore = { verdict: 'rejected', why: stale };
         rejected.push(s);

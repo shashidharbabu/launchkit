@@ -35,3 +35,13 @@ test('no exact match, an empty match or a malformed body is null, never a near m
   assert.equal(threadFromExaSearch(null, URL_A), null);
   assert.equal(threadFromExaSearch(body([{ url: URL_A, highlights: ['t'] }]), ''), null);
 });
+
+test('unreadThreadWhy: a gone page or an unfindable, unreadable thread is rejected; a failed lookup is not', () => {
+  const { unreadThreadWhy } = require('./.build/domain/thread.js');
+  assert.match(unreadThreadWhy('not in the search index; page HTTP 404'), /HTTP 404/);
+  assert.match(unreadThreadWhy('lk_thread_fetch.pipe timed out; page HTTP 410'), /HTTP 410/);
+  assert.match(unreadThreadWhy('not in the search index; page refused: Failed to fetch'), /cannot be shown to exist/);
+  assert.equal(unreadThreadWhy('Server is not connected; page refused: Failed to fetch'), null);
+  assert.match(unreadThreadWhy('not in the search index; page HTTP 503'), /cannot be shown to exist/);
+  assert.equal(unreadThreadWhy('HTTP 403 for https://api.github.com/repos/a/b/issues/1'), null);
+});
