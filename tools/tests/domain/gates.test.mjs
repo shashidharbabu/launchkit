@@ -128,3 +128,29 @@ test('gate_signals: F4 — a shared host (github.com) is never "own"; only the a
   assert.deepEqual(dropped, [{ url: 'https://github.com/acme/termdiff/issues/5', reason: "app's own content" }]);
 });
 
+// Brand rulebook 2.7 blocks revenue, funding and valuation figures, not prices: the first pattern
+// matched any dollar amount and the bare word "raised", and held every Cal.com Product Hunt draft.
+const { FINANCIAL_FIGURES } = require('./.build/lib/rulebook-checks.js');
+const MONEY_CASES = [
+  ["Calendly's $16/seat/month Teams price", false], ['Free $0/mo, Teams $12/mo', false], ['Pro is $29 a month', false],
+  ['standard plan is now $18/seat', false], ['Calendly raised prices on August 19', false], ['We raised the limit to 50 seats', false],
+  ['Enterprise from $2,500+/mo', false], ['costs $16 monthly per user', false],
+  ['We raised $5M from Sequoia', true], ['raised a seed round', true], ['we raised our Series A', true], ['$2M ARR', true],
+  ['$500k in revenue', true], ['hit $1,000,000 in revenue this year', true], ['a $40 million valuation', true],
+  ['our MRR doubled', true], ['closed a funding round', true], ['$3.5bn market', true], ['run-rate of $80k', true],
+];
+
+test('no_financial_figures: prices pass, revenue, funding and valuation figures block', () => {
+  const re = new RegExp(FINANCIAL_FIGURES, 'i');
+  for (const [text, blocked] of MONEY_CASES) assert.equal(re.test(text), blocked, text);
+});
+
+test('no_financial_figures: a Product Hunt draft quoting a competitor price is not blocked by it', () => {
+  const draft = { name: 'Cal.com', tagline: 'Open-source scheduling infrastructure for teams and devs',
+    description: 'Booking links, routing and embeds you can self-host.',
+    first_comment: "Calendly's $16/seat/month Teams price is what most of you pay today. Cal.com is free to self-host." };
+  const out = gates.gateAsset('producthunt', draft);
+  assert.equal(out.blockers.some((b) => /revenue, funding or valuation/.test(b)), false, JSON.stringify(out.blockers));
+  const funded = gates.gateAsset('producthunt', { ...draft, first_comment: 'We raised $5M last year and now we are here.' });
+  assert.equal(funded.blockers.some((b) => /revenue, funding or valuation/.test(b)), true, JSON.stringify(funded.blockers));
+});
