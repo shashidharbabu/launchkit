@@ -95,7 +95,7 @@ export const spec = {
     style: 'A founder pitching in twenty-four seconds: plain words, present tense, confident, spoken to a room of judges and builders as one person talking, never a narrator describing pictures.',
     segments: [
       { id: 'problem', at: 0.4, until: 6.3, words: 14, hint: 'the situation and the load: when it happens, how many, how little time, and that someone does it by hand today' },
-      { id: 'drop', at: 6.7, until: 8.4, words: 5, hint: 'the app, named exactly, and the one thing it does' },
+      { id: 'drop', at: 6.7, until: 8.4, words: 2, hint: 'the app, named exactly, alone or with one short word before it ("Meet Cal.com."): a 1.6 s window, and measured on Chatterbox a third word runs over even 15% faster' },
       { id: 'how', at: 8.7, until: 14.3, words: 13, hint: 'three steps as three short sentences: what you paste or type, what it does to each item, what it catches' },
       { id: 'proof', at: 14.7, until: 18.4, words: 9, hint: 'the outcome, with the one true number if there is one, said plainly' },
       { id: 'close', at: 20.2, until: 23.6, words: 7, hint: 'the ask: what to do next, ending on the app name (the address is on screen, do not read it)' },

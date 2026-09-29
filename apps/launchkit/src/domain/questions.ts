@@ -223,7 +223,8 @@ export function buildStudioVoiceRepairQuestion(offenders: { id: string; text: st
   return [
     `You wrote the voice-over of ${appName}'s launch film. These lines run past their windows when spoken. ` +
     "Rewrite each inside its word budget with room to spare: keep the meaning and the pitch, drop words, never " +
-    "trail off, still one to three short spoken sentences. Count the words before you answer.",
+    `trail off, still one to three short spoken sentences. A line that names ${appName} keeps the name exactly, ` +
+    "even when the budget leaves room for nothing else. Count the words before you answer.",
     `TOO LONG:\n${list}`,
     "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"segments\": {<each id above>: string}}",
   ].join("\n\n");

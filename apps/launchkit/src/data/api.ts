@@ -807,8 +807,11 @@ export const api = {
             const offenders = slow.flatMap((s) => {
               const line = lines.find((x) => x.id === s.id);
               if (!line) return [];
-              const budget = Math.max(3, Math.floor(line.budget * Number(s.window) / Math.max(Number(s.seconds), 0.1)) - 1);
-              return [{ id: line.id, text: line.text, words: wordCount(line.text), budget }];
+              // sized from the words actually spoken, and always shorter than them: a floor above the
+              // line's own length let a 3-word drop line "repair" to itself and fail again
+              const words = wordCount(line.text);
+              const budget = Math.max(1, Math.min(words - 1, Math.floor(words * Number(s.window) / Math.max(Number(s.seconds), 0.1))));
+              return [{ id: line.id, text: line.text, words, budget }];
             });
             if (offenders.length > 0 && await shorten(offenders)) result = await forgeRun('voice', body());
           }
