@@ -149,7 +149,14 @@ async function askOnceInner(pipeName: string, questionText: string): Promise<{ d
       const q = new Question({ expectJson: true });
       q.questions.push({ text: questionText });
       const deadline = ASK_DEADLINE_MS[pipeName] ?? ASK_DEADLINE_MS.default;
-      response = (await withDeadline(c.chat({ token, question: q }), deadline, pipeName)) as Dict;
+      // a pipe call can sit silent for ten minutes (targets, signals); the connection dropped at 643 s with
+      // "Server is not connected" on documenso even in one lane (09-29), so keep it busy while we wait
+      const keepalive = setInterval(() => { void c.ping().catch(() => { /* the answer path reports real failures */ }); }, 45_000);
+      try {
+        response = (await withDeadline(c.chat({ token, question: q }), deadline, pipeName)) as Dict;
+      } finally {
+        clearInterval(keepalive);
+      }
       break;
     } catch (e) {
       const msg = String((e as Error)?.message ?? e).toLowerCase();
