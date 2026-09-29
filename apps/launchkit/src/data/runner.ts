@@ -228,7 +228,11 @@ export async function ask(pipeName: string, questionText: string): Promise<Dict>
       return await askOnce(pipeName, questionText);
     } catch (e) {
       const err = e as Error;
-      if (!String(err?.message ?? e).includes('LLM error')) throw e;
+      const msg = String(err?.message ?? e);
+      // an answer that is not JSON is the model's slip, and a second ask usually lands: hoppscotch's
+      // understand failed at 101 s on 'unexpected character "t" ... in Python literal' (09-29). Once only.
+      const unparsed = /did not parse|Python literal|no JSON object|Unexpected token|Unterminated string/i.test(msg);
+      if (!msg.includes('LLM error') && !(unparsed && attempt === 1)) throw e;
       last = err;
       if (attempt < 3) await new Promise((r) => setTimeout(r, 2000));
     }
