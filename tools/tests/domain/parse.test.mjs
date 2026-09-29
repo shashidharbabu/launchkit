@@ -13,7 +13,7 @@ import { createRequire } from 'node:module';
 import { test } from 'node:test';
 
 const require = createRequire(import.meta.url);
-const { parseJsonLoose, pyLiteralEval } = require('./.build/parse.js');
+const { parseJsonLoose, pyLiteralEval } = require('./.build/domain/parse.js');
 
 const CASES = [
   '```json\n{"a": 1}\n```',

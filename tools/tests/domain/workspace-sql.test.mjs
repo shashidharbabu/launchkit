@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { placeholder, ensureTableSql, loadSql, insertSql, updateSql, normalizeDialect, WORKSPACE_TABLE } from './.build/workspace-sql.js';
+import { placeholder, ensureTableSql, loadSql, insertSql, updateSql, normalizeDialect, WORKSPACE_TABLE } from './.build/domain/workspace-sql.js';
 
 test('placeholders follow the dialect', () => {
   assert.equal(placeholder('postgres', 3), '$3');

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:domain": "rm -rf tools/tests/domain/.build && apps/launchkit/node_modules/.bin/tsc apps/launchkit/src/domain/*.ts --rootDir apps/launchkit/src --outDir tools/tests/domain/.build --module commonjs --target es2022 --moduleResolution node --esModuleInterop --skipLibCheck && node --test tools/tests/domain/*.test.mjs tools/tests/*.test.mjs"
   },
   "keywords": [],
   "author": "",

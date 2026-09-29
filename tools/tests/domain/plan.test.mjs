@@ -15,7 +15,7 @@ import { createRequire } from 'node:module';
 import { test } from 'node:test';
 
 const require = createRequire(import.meta.url);
-const plan = require('./.build/plan.js');
+const plan = require('./.build/domain/plan.js');
 
 const REF_CASES = [{"name": "r/rust", "kind": "subreddit"}, {"name": "  Hacker News!! ", "kind": "forum"}, {"name": "Æther—tool.io (beta)", "kind": "directory"}, {"name": "________"}, {"kind": "newsletter"}, {"name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "kind": "x"}, {"name": "MiXeD CaSe & Punct-uation/slash"}];
 const REF_CODES_GOLDEN = ["lk_subreddit_r_rust", "lk_forum_hacker_news", "lk_directory_ther_tool_io_beta", "lk_x_", "lk_newsletter_venue", "lk_x_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "lk_x_mixed_case_punct_uation_slash"];
@@ -37,7 +37,8 @@ test('refUrl: separator choice and app_url fallback to site_url', () => {
 });
 
 test('planMarkdown: golden parity with main._plan_markdown (missing keys render as None, dumps for non-strings, warnings skipped)', () => {
-  assert.equal(plan.planMarkdown(PLAN_INPUT), PLAN_MARKDOWN_GOLDEN);
+  // a plan with no upstream decisions must still export byte-identical to the Python original
+  assert.equal(plan.planMarkdown({ ...PLAN_INPUT, angles: [], pricing: null, listing: null }), PLAN_MARKDOWN_GOLDEN);
 });
 
 test('buildPlan: newest approved version per type, asset_type-ordered; ref codes attached; ready flag', () => {
@@ -60,7 +61,8 @@ test('buildPlan: newest approved version per type, asset_type-ordered; ref codes
   assert.equal(out.assets.x_post.post, 'newest');                   // version DESC wins
   assert.deepEqual(out.sequencing, ['first', 'second']);
   assert.equal(out.ready, true);
-  assert.deepEqual(out.targets.map((t) => t.name), ['r/rust', 'Hacker News']); // rank order
+  // rank order, then the approved X post with no X venue chosen posts from the builder's own account (f1d43e5)
+  assert.deepEqual(out.targets.map((t) => t.name), ['r/rust', 'Hacker News', 'X (your account)']);
   assert.equal(out.targets[0].ref, 'lk_subreddit_r_rust');
   assert.equal(out.targets[0].ref_url, 'https://termdiff.dev/app?ref=lk_subreddit_r_rust');
   assert.equal(targets[1].data.ref, 'lk_subreddit_r_rust'); // mutates target data, like Python

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { gateTargets } from './.build/gates.js';
+import { gateTargets } from './.build/domain/gates.js';
 
 const T = [
   { rank: 1, name: 'Show HN', kind: 'launch_platform', url: 'https://news.ycombinator.com/show', expected_impact: 'high' },

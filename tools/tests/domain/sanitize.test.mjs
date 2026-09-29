@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sanitizeDraft } from './.build/sanitize.js';
+import { sanitizeDraft } from './.build/domain/sanitize.js';
 
 test('em dash becomes a comma and is counted', () => {
   const { data, changed } = sanitizeDraft({ post: 'ship fast — then fix it' });

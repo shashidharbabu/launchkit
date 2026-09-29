@@ -15,12 +15,13 @@ import { createRequire } from 'node:module';
 import { test } from 'node:test';
 
 const require = createRequire(import.meta.url);
-const gates = require('./.build/gates.js');
+const gates = require('./.build/domain/gates.js');
 
 const GATE_SIGNALS_GOLDEN = {"kept": [{"url": "https://news.ycombinator.com/item?id=1", "title": "a", "rank": 1}, {"url": "https://reddit.com/r/rust/comments/abc/xyz/", "title": "b", "rank": 2}, {"url": "https://stackoverflow.com/questions/123/how", "title": "d", "rank": 3}, {"url": "https://forum.rust-lang.org/t/diffs/99", "title": "e", "rank": 4}], "dropped": [{"url": "https://termdiff.dev/blog/post", "reason": "app's own content"}, {"url": "https://github.com/acme/termdiff/issues/5", "reason": "app's own content"}, {"url": "not-a-url", "reason": "not a url"}, {"url": "https://example.com/article", "reason": "not a discussion thread"}]};
 
 // G2 (2026-09-03): golden regenerated from the TS gate after adding the dash warning (no em/en dash on any platform). Verified: stripping only dash warnings reproduces the Python golden exactly, so parity holds; the divergence is intentional.
-const GATE_ASSET_WARNINGS_GOLDEN = [["post exceeds 280 chars: trim before publishing"],[],["post exceeds 280 chars: trim before publishing"],[],["pre-existing","tagline exceeds 60 chars: trim before publishing"],["title contains an em/en dash, forbidden on every platform","title must start with 'Show HN:'"],[],["title uses HN convention, rewrite for Reddit"],[]];
+// Each case: the Python original's lines first, verbatim and in order, then the Social Launch rulebook's findings (f1d43e5).
+const GATE_ASSET_WARNINGS_GOLDEN = [["post exceeds 280 chars: trim before publishing","post: Post over 280 characters, {APP_URL} included (281 characters, cap 280)","post: Post under 8 words (1 words, floor 8)","post: Missing the {APP_URL} placeholder"],["post: Post under 8 words (1 words, floor 8)","post: Missing the {APP_URL} placeholder"],["post exceeds 280 chars: trim before publishing","post: Post over 280 characters, {APP_URL} included (281 characters, cap 280)","post: Post under 8 words (1 words, floor 8)","post: Missing the {APP_URL} placeholder","post: The rocket, or more than one emoji in a tweet (\"🚀\")"],["post: Post under 8 words (1 words, floor 8)","post: Missing the {APP_URL} placeholder","post: The rocket, or more than one emoji in a tweet (\"🚀\")"],["pre-existing","tagline exceeds 60 chars: trim before publishing","tagline: Tagline over 60 characters (61 characters, cap 60)"],["title contains an em/en dash, forbidden on every platform","title must start with 'Show HN:'","title: Title does not start with \"Show HN: \" (starts \"termdiff — fast diffs\")","title: Em or en dash in the title (\"—\")","warnings: First warning is not the hand-rewrite line, verbatim (empty)","body: The body says how it works; the length trim must keep this sentence (empty)"],["warnings: First warning is not the hand-rewrite line, verbatim (empty)","body: The body says how it works; the length trim must keep this sentence (empty)"],["title uses HN convention, rewrite for Reddit","title: Title under 6 words (3 words, floor 6)","title: A Show HN title on Reddit (\"Show HN:\")"],[]];
 
 function signalsInput() {
   return [
@@ -67,7 +68,7 @@ test('gate_asset: golden parity — limits (code-point counted), prefixes, warni
 });
 
 test('gate_asset: mutates and returns the same data object', () => {
-  const data = { post: 'ok' };
+  const data = { post: 'termdiff renders huge git diffs side by side, right in your terminal: {APP_URL}' };
   const out = gates.gateAsset('x_post', data);
   assert.equal(out, data);
   assert.deepEqual(data.warnings, []);
@@ -113,6 +114,7 @@ test('THREAD_PAT matches the same URL classes as Python', () => {
   for (const u of no) assert.ok(!gates.THREAD_PAT.test(u), u);
 });
 
+
 test('gate_signals: F4 — a shared host (github.com) is never "own"; only the app\'s own repo path is', () => {
   const { kept, dropped } = gates.gateSignals([
     { url: 'https://github.com/krushit1307/CampusConnect/issues/2806', title: 'unrelated repo issue' },
@@ -125,3 +127,4 @@ test('gate_signals: F4 — a shared host (github.com) is never "own"; only the a
   ]);
   assert.deepEqual(dropped, [{ url: 'https://github.com/acme/termdiff/issues/5', reason: "app's own content" }]);
 });
+

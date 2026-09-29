@@ -8,7 +8,7 @@ import { createRequire } from 'node:module';
 import { test } from 'node:test';
 
 const require = createRequire(import.meta.url);
-const status = require('./.build/status.js');
+const status = require('./.build/domain/status.js');
 
 test('Gate 1: which run kinds require an approved profile', () => {
   for (const kind of ['pricing', 'listing', 'targets', 'signals', 'brand_dna', 'brand_campaigns', 'asset']) {
@@ -66,8 +66,14 @@ test('asset semantics: job kind, versioning per type, edit re-gates and marks ed
   assert.equal(status.nextAssetVersion(2), 3);
   const { data, status: st } = status.applyAssetEdit('x_post', { post: 'z'.repeat(281) });
   assert.equal(st, 'edited');
-  assert.deepEqual(data.warnings, ['post exceeds 280 chars: trim before publishing']);
-  const clean = status.applyAssetEdit('x_post', { post: 'short' });
+  // the legacy length line first, then the Social Launch rulebook's own findings (f1d43e5)
+  assert.deepEqual(data.warnings, [
+    'post exceeds 280 chars: trim before publishing',
+    'post: Post over 280 characters, {APP_URL} included (281 characters, cap 280)',
+    'post: Post under 8 words (1 words, floor 8)',
+    'post: Missing the {APP_URL} placeholder',
+  ]);
+  const clean = status.applyAssetEdit('x_post', { post: 'termdiff renders huge git diffs side by side, right in your terminal: {APP_URL}' });
   assert.deepEqual(clean.data.warnings, []);
 });
 
