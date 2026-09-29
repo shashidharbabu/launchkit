@@ -28,6 +28,9 @@ export const THREAD_PAT = new RegExp(
   // branding, Cal.com's exact buyers, were dropped as "not a discussion thread" (2026-09-28).
   // Category and board pages carry a short id or none, and still drop.
   "(community|discuss|discourse|forums?)\\.[a-z0-9.-]+/(?:(?:[^?#]*/)?[a-z0-9]+(?:-[a-z0-9]+){2,}-\\d{3,}(?:[/?#]|$)|[^?#]*/(?:m-p|td-p)/\\d+)|" +
+  // Lemmy instances name a thread /post/<id>, Mastodon a post /@user/<id>: formbricks' only buyer, a
+  // seven-comment Lemmy thread asking for a GDPR-safe Google Forms alternative, was dropped here (09-29)
+  "lemmy[a-z0-9.-]*/post/\\d+|/@[A-Za-z0-9_]+/\\d{9,}(?:[/?#]|$)|" +
   "/t/|/thread|forum)");
 
 /**

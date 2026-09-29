@@ -156,3 +156,10 @@ test('origin story: "we kept running sites where" is a story the profile does no
   const out = gates.gateAsset('producthunt', { first_comment: 'We kept running sites where the analytics setup had become its own project.', warnings: [], blockers: [] }, ctx);
   assert.ok(out.blockers.some((b) => /origin story/i.test(b)), JSON.stringify(out.blockers));
 });
+
+test('THREAD_PAT: a Lemmy thread and a Mastodon post are discussion threads; a Lemmy community page is not', () => {
+  assert.ok(gates.THREAD_PAT.test('https://old.lemmy.net.au/post/723837'));
+  assert.ok(gates.THREAD_PAT.test('https://lemmy.world/post/12345678'));
+  assert.ok(gates.THREAD_PAT.test('https://fosstodon.org/@someone/113245678901234567'));
+  assert.ok(!gates.THREAD_PAT.test('https://lemmy.world/c/selfhosted'));
+});

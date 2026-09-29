@@ -187,6 +187,13 @@ export async function probeSite({ siteUrl, outDir, fileUrl, onStep }) {
     // HSL saturation runs high on near-white greys (#e2e8f0 reads 0.32), so a colour also needs real chroma to count as a brand colour
     const chroma = (c) => (Math.max(c[0], c[1], c[2]) - Math.min(c[0], c[1], c[2])) / 255;
     const distinct = (v) => { const c = parseColor(v); return c && saturation(c) >= 0.3 && chroma(c) >= 0.12 && Math.abs(luminance(c) - luminance(surfaceRgb)) > 0.05; };
+    // two independent marks of the brand agreeing, the declared theme-color and a colour in the logo, outrank the
+    // most common button, which on a component-library site is the library's default: formbricks' buttons are
+    // Tailwind's #3b82f6 while its theme-color and its logo are #00c4b8, and the reel came out blue (09-29)
+    const near = (a, b) => { const x = parseColor(a); const y = parseColor(b); return Boolean(x && y) && Math.hypot(x[0] - y[0], x[1] - y[1], x[2] - y[2]) < 40; };
+    if (dom.theme_color && distinct(dom.theme_color) && logoColors.some((c) => near(c, dom.theme_color))) {
+      setObs('primary', dom.theme_color, 'meta theme-color, matching the logo');
+    }
     for (const b of dom.buttons) if (distinct(b.bg)) { setObs('primary', b.bg, 'most common button background'); break; }
     if (!observed.primary && dom.theme_color && distinct(dom.theme_color)) setObs('primary', dom.theme_color, 'meta theme-color');
     if (!observed.primary) {
