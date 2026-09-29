@@ -366,3 +366,89 @@ their own frames.
 **K11. The mirror sync is in place, not delete-then-copy.** The dev server's watcher
 compiled the half-copied mirror during the deletion window and stayed stuck on a missing
 `../lib/cn`. `sync-ds.mjs` now overwrites and prunes.
+
+## L. End-to-end readiness pass on staging, 2026-09-28
+
+**L1. Pipelines ran in someone else's org.** A fresh Cal.com profile came back "built from
+training knowledge": GitHub 401 Bad Credentials and Firecrawl Unauthorized on every tool
+call, while the same four local keys answered 200 when called directly. `rocketride list
+--json` showed the lk_understand task under team `60f42b96…`, the Development team of
+"Poushali's Workspace" (devId `hackjudge`), which `account.getProfile()` reported as the
+account's `defaultOrgId`. A task runs in the account's default org and dev team, not the
+org the API key belongs to, and resolves secrets there; forwarded client keys did not win.
+Fix: `account.setDefaultOrg(<rocketride_sb org>)` and `account.setDevTeam(<its
+Development team>)`, then `rocketride stop` on the task still running in the other org
+(`useExisting` would re-attach to it). Doc gap: say that dev runs execute in the default
+org and dev team, and that switching orgs in the UI changes where the app's pipelines run.
+
+**L2. The staging org had no Firecrawl, Exa or GitHub secret.** Org, both teams and user
+layers held only an Anthropic key. The preview worked by forwarding local keys; the
+deployed app, which forwards nothing, could not run a Firecrawl or Exa stage for anyone.
+Added the three keys to the org layer. `account.setEnv(scope, …)` replaces the whole dict,
+so it was read, merged and verified (7 keys before, 10 after, the existing 7 unchanged).
+Production needs the same keys in its own org before anything is published there.
+
+**L3. The reel could never be approved: the drop line's budget did not fit its window.**
+The Verdict concept gave the drop beat 5 words in a 1.6 s window; the concept's own rule
+is 2.4 words a second, and measured on Chatterbox "Cal.com." takes 1.05 s, "Meet Cal.com."
+1.13 s, and any three-word line 1.78 s or more even at the 1.15x cap. Every take failed
+`all_fit`, and the app correctly kept "Approve reel" disabled. Budget is now 2 words.
+
+**L4. The voice repair could not shorten short lines.** After a spoken overrun the repair
+budget was `max(3, floor(paperBudget * window / seconds) - 1)`: for a 3-word line it came
+out at 3, so the model returned the same line, it passed the word check and failed the
+window again. The budget is now sized from the words actually spoken and is always below
+them (minimum 1), and the repair prompt keeps the app's name in a line that names it.
+
+**L5. `walk.mjs` found an empty store.** Since 2026-09-18 the preview skips its default
+seed for automated browsers (`navigator.webdriver`), so the walk opens `/?seed=cal-com`.
+16/16.
+
+**L6. The domain suite had stopped running at all.** `sanitize.ts` imports `../lib/`, which
+moved tsc's output to `.build/domain/`; every test file failed to load. The build now
+passes `--rootDir apps/launchkit/src` and the imports point at `.build/domain/`; run it with
+`npm run test:domain`. Eight expectations were stale against deliberate changes (the dash
+rule, the buyer-or-builder rescore rule, the Social Launch rulebook's findings, the
+own-account X venue, the plan's decision fields) and were updated only after checking each
+difference traced to one of those commits; the rulebook findings are appended after the
+Python original's lines, which the golden now pins. 69/69.
+
+**L7. The money rule blocked prices.** `no_financial_figures` (hard, all six platforms)
+matched any dollar amount and the bare word "raised", so "Calendly's $16/seat/month" and
+"Calendly raised prices" held the Cal.com Product Hunt draft on both end-to-end runs (09-18
+and 09-28). Brand rulebook 2.7 is about revenue, funding and valuation. The pattern is now
+one constant, `FINANCIAL_FIGURES` in `lib/rulebook-checks.ts`: ARR/MRR, run rate,
+valuation, a funding round, "raised" followed by money or a round, a figure with a
+magnitude ($2M, $500k), and a figure named as revenue, profit or funding. 19 cases, 11 of
+which the old pattern got wrong, plus a gate test on a Product Hunt draft.
+
+**L8. LinkedIn signals could never be verified.** Rescore fetched every non-API thread from
+the browser; LinkedIn, Reddit, X and forums send no CORS headers, so three of five Cal.com
+signals stayed "unverified". Firecrawl refuses LinkedIn outright (403, "we do not support
+this site"). Exa found those threads in the first place, and an Exa search for a thread's
+own URL (`type: auto`) returns that thread, text and publish date, as the top result. New
+`lk_thread_fetch.pipe` is `chat -> search_exa -> response_answers` with no model in the
+path; `domain/thread.ts` accepts a result only when its URL is the thread's URL. HN,
+StackExchange and GitHub still use their CORS-open APIs; the browser fetch stays as the
+last resort. Verified in the app on two re-scans: every `lk_thread_fetch` call returned
+(about a second each), and two LinkedIn posts were judged on their real text and rejected
+as builders promoting their own rival tools, one of them a post the first run had kept as
+"unverified". Fewer, verified signals is the intended effect; recall itself still varies
+run to run, as before.
+
+**L9. `gen-pipes.mjs` would revert six live pipes.** The templates in
+`launchkit-src/pipelines/` have drifted from the app copies (assets, brand, commercial,
+signals, targets, understand differ; `lk_studio` and the new `lk_thread_fetch` exist only
+in the app). The app copies are the live truth: do not run `gen-pipes` until the templates
+are reconciled. New pipes go straight into `apps/launchkit/pipelines/`.
+
+**L11. Community forum threads were dropped as "not a discussion thread".** A Cal.com re-scan
+found six `community.calendly.com` topics asking how to remove Calendly's branding, the
+white-label buyers the profile describes, and `THREAD_PAT` dropped all six: it knew
+`forum`, `/t/` and `/thread` but not hosted community platforms. It now accepts a
+`community.`/`discuss.`/`discourse.`/`forum.` host whose topic is a slug of three or more
+words with a numeric id of three or more digits (Gainsight/inSided), or `/m-p/` and
+`/td-p/` (Khoros). Category and board pages (`/how-do-i-40`, `/bd-p/APIs`) still drop.
+
+**L10. `deploy-app.mjs`'s tree guard never ran.** The H6 check for tracked files deleted by a
+deploy sat after `process.exit(0)`. It now runs, and a deploy that loses files exits 1.

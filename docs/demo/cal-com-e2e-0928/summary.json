@@ -1,0 +1,174 @@
+{
+  "name": "Cal.com",
+  "site": "https://cal.com",
+  "repo": "https://github.com/calcom/cal.com",
+  "started": "2026-09-28T23:23:54.814Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 69,
+      "understandSecs": 63,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 148,
+      "dnaSecs": 70,
+      "anglesSecs": 73,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 175,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "5",
+        "3"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 1605,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 34,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 184,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 160,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 786,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 130,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 4,
+      "blocked": [
+        "Approve the Product Hunt draft"
+      ],
+      "counts": "4 approved, 1 needs review",
+      "warnings": 5,
+      "repaired": 3
+    },
+    "assets": {
+      "ok": true,
+      "secs": 203,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 28,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a developer's desk with two monitors showing terminal windows and a code editora self-hosted server rack or NAS box humming in the corner of a home office or small stu",
+      "fits": 5,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 163,
+      "ranked": 13,
+      "top5": [
+        "r/selfhosted",
+        "DevHunt",
+        "Peerlist Launchpad",
+        "r/webdev",
+        "r/SideProject"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 589,
+      "idle": true,
+      "heading": "5 signals found: 5 in the queue (2 verified, 3 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Star the Infrastructure",
+      "pricing": "Option 1: Freemium Per-Seat (Recommended), free plus paid tiers: Free $0/mo, Tea"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 283643,
+  "finished": "2026-09-29T00:13:26.773Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://www.linkedin.com/posts/aravind-srinivas-b01757138_calendly-raised-prices-on-august-19-standard-activity-7506673716462972928-WTs1' from origin 'http://localhost:3400' has be",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/jessicatinner_i-canceled-calendly-last-month-not-because-activity-7479897012864376832-CoP6' from origin 'http://localhost:3400' has been blocked by C",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://www.linkedin.com/posts/sera-deva-98b50192_googleworkspace-smallbusiness-nonprofitoperations-activity-7475946259493773312-tgKU' from origin 'http://localhost:3400' has been ",
+    "console: Failed to load resource: net::ERR_FAILED"
+  ]
+}
