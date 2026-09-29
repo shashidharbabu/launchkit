@@ -213,7 +213,8 @@ await step('assets', async () => {
   await run(/Write the script$/, 'script', 600000);
   await run(/Write the voice-over$/, 'voice', 1200000);
   await run(/Render the reel$/, 'reel', 900000);
-  if (await main(/Approve reel/).count()) { await main(/Approve reel/).click(); await page.waitForTimeout(2500); out.approved = true; }
+  // the reel's own render leaves this disabled for a while after the job returns
+  if (await main(/Approve reel/).count()) { out.approved = await clickWhenEnabled(main(/Approve reel/), 'Approve reel', 300000); await page.waitForTimeout(2500); }
   const t = await text();
   const media = await page.evaluate(() => ({
     figures: [...document.querySelectorAll('#lk-root main figure img')].filter((i) => i.naturalWidth > 0).length,

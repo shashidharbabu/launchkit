@@ -14,7 +14,8 @@ const text = () => page.evaluate(() => document.querySelector('#lk-root')?.textC
 const out = [];
 const check = (name, ok, detail) => { out.push({ name, ok, detail }); console.log(`${ok ? 'PASS' : 'FAIL'}  ${name}  ${detail}`); };
 
-await page.goto('http://localhost:3400/', { waitUntil: 'networkidle' });
+// the preview skips its default seed for automated browsers (navigator.webdriver), so ask for it
+await page.goto('http://localhost:3400/?seed=cal-com', { waitUntil: 'networkidle' });
 await page.waitForTimeout(4000);
 
 // ---- home: the navigator page renders (its send button needs a pipe, not clicked)
