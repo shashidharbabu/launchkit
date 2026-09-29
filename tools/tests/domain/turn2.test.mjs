@@ -141,3 +141,12 @@ test('turn 3: sentences split without losing text at a decimal (continue "Apache
   assert.equal(parts.join(''), t);
   assert.deepEqual(parts.map((p) => p.trim()), ['Continue is Apache 2.0 licensed.', 'It runs in VS Code.', '"Use it," they said.']);
 });
+
+test('complianceBlankets: a standard promised on every plan is caught; a standard with its edition is not', async () => {
+  const { complianceBlankets } = gates;
+  assert.equal(complianceBlankets('ESIGN, UETA, 21 CFR Part 11 and HIPAA are covered on all plans, with no add-on fees.').length, 1);
+  assert.equal(complianceBlankets('HIPAA compliance included by default, no add-on tier required.').length, 1);
+  assert.equal(complianceBlankets('Compliance coverage includes ESIGN, UETA, and 21 CFR Part 11 out of the box.').length, 1);
+  assert.equal(complianceBlankets('21 CFR Part 11 and HIPAA come with the Enterprise plan.').length, 0);
+  assert.equal(complianceBlankets('Every plan includes unlimited documents. SOC 2 report available on request.').length, 0);
+});

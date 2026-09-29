@@ -457,7 +457,7 @@ export const api = {
           remove('targets', { project_id: id });
           for (const t of applied.targets) {
             insert('targets', {
-              id: uid(), project_id: id, rank: t.rank, data: t.data,
+              id: uid(), project_id: id, rank: t.rank, data: sanitizeAuthored(t.data).data,
               selected: t.selected, job_id: jobId,
             });
           }
@@ -1152,6 +1152,19 @@ export const api = {
       if (run && run.status === 'error') {
         pending.push({ asset_type: atype, state: 'failed', note: `the draft failed: ${String(run.error ?? 'no answer').slice(0, 140)}` });
       }
+    }
+    // the stages a plan stands on besides posts: documenso read "Plan ready, 6 venues" on its own accounts alone,
+    // with its Targets run failed and its reel never approved (09-29)
+    if (targetRows.length === 0) {
+      const run = byNewest(select('runs', { project_id: id, kind: 'targets' }))[0];
+      const failed = run?.status === 'error';
+      pending.push({ asset_type: 'targets', state: failed ? 'failed' : 'draft',
+        note: failed ? `the venue ranking failed: ${String(run?.error ?? 'no answer').slice(0, 140)}; rank venues again`
+          : 'no launch venue chosen yet: rank venues and tick the ones you will post in' });
+    }
+    const reel = byNewest(select('studio', { project_id: id, kind: 'reel' }))[0];
+    if (reel && reel.status !== 'approved') {
+      pending.push({ asset_type: 'reel', state: 'draft', note: 'rendered, not approved yet' });
     }
     const chosenSubs = targetRows.map((r) => r.data as Dict).filter((d) => String(d.kind ?? '') === 'subreddit').map((d) => String(d.name ?? ''));
     const reddit = byNewest(assetRows.filter((r) => r.asset_type === 'reddit_post'), 'version')[0];

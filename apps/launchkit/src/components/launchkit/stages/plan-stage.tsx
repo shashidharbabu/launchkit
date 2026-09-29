@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { ASSET_LABELS } from '../../../lib/asset-types';
+
+// what the plan can still be waiting on: a post, the Targets run, or the reel
+const OPEN_LABELS: Record<string, string> = { ...ASSET_LABELS, targets: 'Targets', reel: 'Reel' };
 import { toast } from 'sonner';
 import { Bar, BarChart, Cell, LabelList, XAxis, YAxis, Tooltip as RechartsTooltip } from 'recharts';
 import { useProject } from '../project-provider';
@@ -154,25 +157,28 @@ export function PlanStage() {
               const pending = plan?.pending ?? [];
               // with a post approved and a venue chosen, what is left is named, not summarised
               const onlyPending = !needsAssets && (plan?.targets.length ?? 0) > 0 && pending.length > 0;
+              const toTargets = onlyPending ? pending.some((x) => x.asset_type === 'targets') : !needsAssets;
+              const toReel = onlyPending && !toTargets && pending.every((x) => x.asset_type === 'reel');
+              const openStage = toTargets ? 'targets' : toReel ? 'studio' : 'assets';
               return (
                 <HonestEmpty
                   fact="Plan not ready."
                   reason={
                     onlyPending
-                      ? `Still open: ${pending.map((x) => `${ASSET_LABELS[x.asset_type] ?? x.asset_type}, ${x.note}`).join('; ')}.`
+                      ? `Still open: ${pending.map((x) => `${OPEN_LABELS[x.asset_type] ?? x.asset_type}, ${x.note}`).join('; ')}.`
                       : needsAssets
                       ? 'The plan assembles your approved posts across your selected venues with sequencing advice. Approve at least one post first, then tick venues in Targets.'
                       : 'The plan assembles your approved posts across your selected venues with sequencing advice. Your posts are approved; now tick at least one venue in Targets.'
                   }
                   action={
                     <a
-                      href={href({ view: 'workspace', projectId: project.id, stage: needsAssets || onlyPending ? 'assets' : 'targets' })}
+                      href={href({ view: 'workspace', projectId: project.id, stage: openStage })}
                       onClick={(e) => {
                         e.preventDefault();
-                        go({ view: 'workspace', projectId: project.id, stage: needsAssets || onlyPending ? 'assets' : 'targets' });
+                        go({ view: 'workspace', projectId: project.id, stage: openStage });
                       }}
                     >
-                      <Button variant="secondary">{needsAssets || onlyPending ? 'Review posts' : 'Choose targets'}</Button>
+                      <Button variant="secondary">{toTargets ? 'Choose targets' : toReel ? 'Review the reel' : 'Review posts'}</Button>
                     </a>
                   }
                 />
@@ -198,7 +204,7 @@ export function PlanStage() {
               // said "choose venues first" when both were done and only a post was open (continue, 09-29)
               <span className="text-small text-muted-foreground">
                 {(plan?.pending ?? []).length > 0 && (plan?.targets.length ?? 0) > 0
-                  ? `Close what is still open first: ${(plan?.pending ?? []).map((x) => ASSET_LABELS[x.asset_type] ?? x.asset_type).join(', ')}`
+                  ? `Close what is still open first: ${(plan?.pending ?? []).map((x) => OPEN_LABELS[x.asset_type] ?? x.asset_type).join(', ')}`
                   : 'Approve a post and choose venues first'}
               </span>
             )}

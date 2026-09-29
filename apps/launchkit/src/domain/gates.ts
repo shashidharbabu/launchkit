@@ -373,6 +373,18 @@ export function replyWithoutSwipes(reply: string, competitors: string[]): string
 // because"). The gate catches the story's shapes; the repair pass removes them.
 const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) running into\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b/i;
 
+// A compliance standard with a blanket qualifier: documenso's drafts said HIPAA and 21 CFR Part 11 came "on all
+// plans, with no add-on fees" (09-29) while its docs mark both Enterprise only. A certification is sold with a
+// plan or an edition, so a sentence that promises it everywhere is a claim no source can back as written.
+const COMPLIANCE = /\b(?:HIPAA|SOC ?2|SOC ?1|21 CFR(?: Part 11)?|ISO ?27001|FedRAMP|PCI(?:[- ]DSS)?|GDPR|CCPA|HITRUST|eIDAS)\b/i;
+const BLANKET = /\b(?:(?:on|in|with|across) (?:all|every) (?:plans?|tiers?|editions?)|no (?:add-?ons?|extra (?:cost|fees?|charge)|separate (?:compliance )?(?:tier|plan)|upgrade)|without (?:add-?ons?|add-?on fees|an? (?:upgrade|add-?on))|out of the box|included by default|built[- ]in by default|at no (?:extra|additional) (?:cost|charge)|all included)\b/i;
+
+/** Sentences that pair a compliance standard with a promise that it comes on every plan. */
+export function complianceBlankets(text: string): string[] {
+  return String(text ?? "").split(/(?<=[.!?])\s+|\n+/)
+    .filter((s) => COMPLIANCE.test(s) && BLANKET.test(s)).map((s) => s.trim());
+}
+
 /** The provenance, competitor and origin-story hits for one draft (all hard: the repair pass names and removes them). */
 function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
   const hits: CheckHit[] = [];
@@ -390,6 +402,10 @@ function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
         hits.push({ id: "unsourced_number", field, hard: true, detail: [...new Set(unsourced)].slice(0, 4).map((r) => `"${r}"`).join(", "),
           description: "A number that is in no source (APP_PROFILE, BRAND_DNA, pricing, listing): remove it or use the sourced figure" });
       }
+    }
+    for (const s of complianceBlankets(text)) {
+      hits.push({ id: "compliance_blanket", field, hard: true, detail: `"${s.slice(0, 90)}"`,
+        description: "A compliance standard promised on every plan: name the plan or edition it comes with, as the product states it, or drop the qualifier" });
     }
     for (const s of competitorSwipes(text, ctx.competitors ?? [])) {
       hits.push({ id: "competitor_swipe", field, hard: true, detail: `"${s.slice(0, 90)}"`,
