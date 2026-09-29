@@ -1,0 +1,168 @@
+{
+  "name": "Dub",
+  "site": "https://dub.co",
+  "repo": "https://github.com/dubinc/dub",
+  "started": "2026-09-29T10:10:08.356Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 81,
+      "understandSecs": 75,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 126,
+      "dnaSecs": 64,
+      "anglesSecs": 58,
+      "angles": 5,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 166,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "4",
+        "3"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 1116,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 25,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 142,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 76,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 187,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 373,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 5,
+      "blocked": [],
+      "counts": "",
+      "warnings": 5,
+      "repaired": 3
+    },
+    "assets": {
+      "ok": true,
+      "secs": 212,
+      "probe": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a growth marketer at a standing desk covered in sticky notes and browser tabsa wall-mounted monitor showing a live funnel chart with click-to-conversion rowsa whiteboa",
+      "fits": 4,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 115,
+      "ranked": 13,
+      "top5": [
+        "r/affiliatemarketing",
+        "r/SaaS",
+        "r/selfhosted",
+        "Indie Hackers",
+        "r/GrowthHacking"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 253,
+      "idle": true,
+      "heading": "3 signals found: 3 in the queue (2 verified, 1 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Clicks Aren't Revenue",
+      "pricing": "Freemium Subscription (Recommended), free plus paid tiers: Free $0/mo, Pro $49/m"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 307602,
+  "finished": "2026-09-29T10:44:58.285Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://support.tipsandtricks-hq.com/forums/topic/clicks-are-tracked-but-not-the-sales' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allo",
+    "console: Failed to load resource: net::ERR_FAILED"
+  ]
+}

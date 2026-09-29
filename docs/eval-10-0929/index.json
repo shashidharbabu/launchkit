@@ -1,0 +1,193 @@
+{
+  "updated": "2026-09-29T12:09:39.892Z",
+  "results": [
+    {
+      "slug": "hack-judge",
+      "name": "hack-judge",
+      "code": 0,
+      "minutes": 18.3,
+      "done": false,
+      "stages": {
+        "profile": "ok",
+        "brand": "FAIL",
+        "commercial": "FAIL",
+        "social": "FAIL",
+        "assets": "FAIL",
+        "targets": "FAIL",
+        "signals": "FAIL",
+        "plan": "FAIL"
+      },
+      "errors": [
+        "brand: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Draft the angles/ }).first() to be visible\n",
+        "commercial: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Commercial/ }).first()\n",
+        "social: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Social Launch/ }).first()\n",
+        "assets: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Assets/ }).first()\n",
+        "targets: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Targets/ }).first()\n",
+        "signals: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Signals/ }).first()\n",
+        "plan: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Plan/ }).first()\n"
+      ]
+    },
+    {
+      "slug": "excalidraw",
+      "name": "Excalidraw",
+      "code": 0,
+      "minutes": 24,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "cal-com",
+      "name": "Cal.com",
+      "code": 0,
+      "minutes": 33.9,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "plausible",
+      "name": "Plausible",
+      "code": 0,
+      "minutes": 35.5,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "formbricks",
+      "name": "Formbricks",
+      "code": 0,
+      "minutes": 26.3,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "documenso",
+      "name": "Documenso",
+      "code": 0,
+      "minutes": 38.5,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "dub",
+      "name": "Dub",
+      "code": 0,
+      "minutes": 34.8,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "hoppscotch",
+      "name": "Hoppscotch",
+      "code": 0,
+      "minutes": 27.9,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "continue",
+      "name": "Continue",
+      "code": 0,
+      "minutes": 40.8,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    },
+    {
+      "slug": "khoj",
+      "name": "Khoj",
+      "code": 0,
+      "minutes": 72,
+      "done": true,
+      "stages": {
+        "profile": "ok",
+        "brand": "ok",
+        "commercial": "ok",
+        "social": "ok",
+        "assets": "ok",
+        "targets": "ok",
+        "signals": "ok",
+        "plan": "ok"
+      },
+      "errors": []
+    }
+  ]
+}

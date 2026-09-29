@@ -1,0 +1,170 @@
+{
+  "name": "Plausible",
+  "site": "https://plausible.io",
+  "repo": "https://github.com/plausible/analytics",
+  "started": "2026-09-29T09:15:29.980Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 77,
+      "understandSecs": 71,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 132,
+      "dnaSecs": 55,
+      "anglesSecs": 73,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 205,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "6",
+        "5"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 1129,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 85,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 97,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 76,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 85,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 473,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 5,
+      "blocked": [
+        "Approve the Hacker News draft"
+      ],
+      "counts": "5 approved, 1 needs review",
+      "warnings": 6,
+      "repaired": 5
+    },
+    "assets": {
+      "ok": true,
+      "secs": 221,
+      "probe": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 67,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 34,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 28,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a solo developer or indie founder at a standing deska single-page analytics dashboard glowing on a monitora lightweight script weight indicator on a second screena con",
+      "fits": 4,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 178,
+      "ranked": 14,
+      "top5": [
+        "r/selfhosted",
+        "Indie Hackers",
+        "r/privacy",
+        "Uneed",
+        "Peerlist Launchpad"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 164,
+      "idle": true,
+      "heading": "1 signal found: 1 in the queue (0 verified, 1 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "No Cookies, Just Insights",
+      "pricing": "Traffic-Based Monthly Tiers (Recommended), monthly subscription: Starter $9/mo,"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 294227,
+  "finished": "2026-09-29T09:50:56.568Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://www.indiehackers.com/post/we-tested-18-ga4-alternatives-because-our-own-conversion-data-was-lying-to-us' from origin 'http://localhost:3400' has been blocked by CORS policy",
+    "console: Failed to load resource: net::ERR_FAILED"
+  ]
+}

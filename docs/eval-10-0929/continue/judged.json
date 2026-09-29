@@ -1,0 +1,250 @@
+{
+  "slug": "continue",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 3, "assets": 2, "targets": 3, "signals": 1, "plan": 3},
+  "post_scores": {"x_post": 3, "linkedin_post": 4, "reddit_post": 2, "producthunt": 2, "show_hn": 4, "newsletter_pitch": 4},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The product is acquired, read-only and no longer maintained, but maturity is recorded as a live launch, and nothing downstream stops or reframes the run. Every later stage goes on to push installs, signups and venue launches for an end-of-life product.",
+      "evidence": "profiles.data.maturity.stage: \"launched\" while maturity.signals says \"Repository marked read-only; no longer actively maintained (README.md)\" and \"Acquired by Cursor, product lifecycle complete\"; live site h1: \"Continue has joined Cursor\"",
+      "systemic": true,
+      "cause_hint": "profile pipe maturity enum has no archived/acquired/sunset value, and there is no gate in the stage flow for EOL products"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The ICP pain accuses named competitors, one of them the acquirer, of lock-in and opaque code upload. No source supports that claim, and it later feeds false competitor statements in Reddit and the signals replies.",
+      "evidence": "icp.pain: \"Existing AI coding tools (Copilot, Cursor) lock developers into specific models or IDEs and send code to third-party servers without transparency\"",
+      "systemic": true,
+      "cause_hint": "profile pipe writes icp.pain as a contrast with named alternatives and has no sourcing requirement"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "Gaps include Launch Kit's own read failures rather than product gaps, and a proof point spins open issues on an archived repo as engagement.",
+      "evidence": "gaps: \"Docs site (docs.continue.dev) not scraped, feature details unverified\"; proof_points: \"841 open issues indicating active community engagement at time of archival\"",
+      "systemic": true,
+      "cause_hint": "profile gaps prompt does not exclude scrape failures"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Angles invent causality for the star count and aim install/signup campaigns and a create-and-share walkthrough at a product that is read-only with authentication removed.",
+      "evidence": "brand_campaigns 'Amplified, Not Automated' sample_copy: \"Continue reached 36,055 GitHub stars because developers wanted AI coding assistance that kept them in control\"; 'No Lock-In, No Opacity' cta: \"Install the extension, it's free\"; 'Custom Agents, Your Way': \"shows a developer creating a custom AI code agent inside VS Code\"",
+      "systemic": true,
+      "cause_hint": "campaigns pipe does not condition objectives on archived maturity"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The chosen angle is framed against a generic competitor category, which carries into the X thread and the reel.",
+      "evidence": "chosen campaign big_idea: \"frames Continue's philosophy as a counterpoint to black-box AI coding tools\"",
+      "systemic": true,
+      "cause_hint": "campaigns prompt allows adversarial framing without naming"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The approved listing states a fact found nowhere on the site or in the repo: that development continues at Cursor.",
+      "evidence": "listing.description_long: \"New development continues under Cursor's stewardship.\" (site says only \"that commitment carries on in the work ahead\")",
+      "systemic": false,
+      "cause_hint": "listing pipe paraphrased the mission line into a product claim"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The listing tells readers their code stays on their infrastructure, and its own FAQ contradicts that.",
+      "evidence": "listing.description_long: \"removed all anonymous telemetry and authentication requirements, keeping your code on your infrastructure\" vs listing.faq: \"Your code goes only to the LLM provider you configure\"",
+      "systemic": false,
+      "cause_hint": "listing pipe"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The chosen pricing option is labelled 'free plus paid tiers' but has one $0 tier. The contradiction reaches the plan.",
+      "evidence": "project.selected_pricing: \"option\": \"Open-Source Free\", \"billing\": \"free plus paid tiers\", one tier price_usd_month 0; plan screen: \"Open-Source Free, free plus paid tiers: Open Source $0/mo\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe billing field is copied from the best-fit model rather than the option's actual shape"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The annual option claims a discount against monthly, but its $16 equivalent costs more than the $12 monthly Pro option in the same set.",
+      "evidence": "options[2].positioning: \"$192/user/year ($16/user/month equivalent) ... offering a modest discount versus monthly\" vs options[1] Pro \"price_usd_month\": 12",
+      "systemic": true,
+      "cause_hint": "pricing pipe has no cross-option consistency check"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Cursor, the company that acquired the product, is rated a 'niche' competitor on one mention and used as a price anchor.",
+      "evidence": "pricing.competitors Cursor: \"notability\": \"niche\", \"evidence_of_standing\": \"Named in 1 independent result\"",
+      "systemic": true,
+      "cause_hint": "competitor notability is scored by mention count from one search query (search_queries_used has 1 entry); no check against the profile's acquisition fact"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The listing CTA and title invite installs of an unmaintained extension.",
+      "evidence": "listing.cta: \"View the source on GitHub and install the extension today\"",
+      "systemic": false,
+      "cause_hint": "listing pipe"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post opens with a false, negative claim about GitHub Copilot. Copilot offers several model families and bring-your-own-key local models such as Ollama.",
+      "evidence": "reddit_post.body: \"GitHub Copilot works well if you're comfortable with one model and one provider. It doesn't let you swap in a local model, point at your own inference endpoint, or keep your code off third-party servers.\"",
+      "systemic": true,
+      "cause_hint": "reddit rule 143 (name the alternative and what it does not do) sourced from the unsupported profile icp.pain; the gate does not check facts about competitors"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post dates the acquisition with no source. The gate flagged the phrase and still approved the draft.",
+      "evidence": "reddit_post.body: \"the project was acquired by Cursor earlier this year\"; warnings: \"A personal history with a tool or a dated event the profile may not hold ... (\\\"earlier this year\\\")\"",
+      "systemic": true,
+      "cause_hint": "social gate: dated-event check is a warning, not a blocker"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit draft defaults to r/SideProject at level 2/3, but the plan pairs it with the selected r/LocalLLaMA and r/vscode. r/vscode is level 1 (product unnamed, no link). The cause is that Targets runs after Social.",
+      "evidence": "reddit_post.warnings: \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"; targets selected: r/LocalLLaMA, r/vscode (created 11:10 vs reddit draft 10:53)",
+      "systemic": true,
+      "cause_hint": "stage order Social before Targets; plan does not re-check the Reddit draft against the selected sub's mention level"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt first comment gives a wrong current competitor price. The stored pricing shows Copilot has a $0 Free tier.",
+      "evidence": "producthunt.first_comment: \"GitHub Copilot is a subscription coding assistant that runs in VS Code and JetBrains, starting at $10 per user per month\" vs pricing.competitors GitHub Copilot tiers: \"Free\", \"price\": \"$0\"",
+      "systemic": true,
+      "cause_hint": "producthunt rule 190/205 template picks a paid tier as 'public price' without taking the lowest tier"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt comment claims nothing leaves the environment without the user knowing, which the product does not guarantee, and opens with a swipe at unnamed competitors.",
+      "evidence": "producthunt.first_comment: \"so nothing leaves your environment without you knowing\"; \"The AI coding tools worth using either required a specific editor or sent your code to servers you had no visibility into.\"",
+      "systemic": false,
+      "cause_hint": "producthunt draft"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The X thread makes the competitor-category swipe that its own warning says was dropped, and the main post never says the product is archived or acquired.",
+      "evidence": "x_post.thread_extension[0]: \"Proprietary AI coding tools tie you to one model or one IDE.\"; warnings: \"the comparison framing was dropped\"; post: \"36,055 stars on a single belief\"",
+      "systemic": true,
+      "cause_hint": "x_post drafting; warnings are self-reported and not checked against the text"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The LinkedIn post implies Continue ran without telemetry for its whole life, but telemetry was removed only in 2.0.0. The AI-tell gate also flags the brand's own mission word.",
+      "evidence": "linkedin_post.post: \"For a few years ... with any LLM you chose, no telemetry, no lock-in.\"; warnings: \"post: AI-tell vocabulary (\\\"amplified\\\")\"",
+      "systemic": true,
+      "cause_hint": "AI-tell word list in the social gate does not exempt BRAND_DNA vocabulary"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel's drop line was clamped mid-phrase. It reverses the brand line and still passed approval.",
+      "evidence": "studio reel slots.drop_line: \"AMPLIFIED, NOT.\"; script.clamped: [\"drop_line\"]; script.claims_used: \"drop_line 'AMPLIFIED, NOT AUTOMATED.'\"",
+      "systemic": true,
+      "cause_hint": "studio-forge slot clamp truncates at a word boundary after the claims check; reel approval does not re-read clamped slots"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel uses template scenario numbers and invents product mechanics: agent checking, verdict chips, a Create button. Voice line: 'We check every one'.",
+      "evidence": "slots: \"load_n1\": \"14\", \"load_l1\": \"TABS OPEN\", \"load_n3\": \"1\", \"load_l3\": \"HOUR LEFT\", \"step2_label\": \"EVERY AGENT, CHECKED.\", chips \"SHARED\", \"IN USE\", \"AVAILABLE\"; voice how: \"Add your agent. We check every one: open, shared, available. Your call.\"",
+      "systemic": true,
+      "cause_hint": "Verdict concept spec (load/read/catch beats) forces a scan-and-verdict mechanism onto products that have none"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The 'live product' beat shows the acquisition notice screenshot, captioned as if it were the product. The close tells viewers to start with an archived tool.",
+      "evidence": "reel.screenshot_used: true; probe title: \"Continue (acquired by Cursor)\", h1 \"Continue has joined Cursor\"; product_line \"YOUR IDE. YOUR MODEL.\"; voice close: \"Build on it. Start with Continue.\"",
+      "systemic": true,
+      "cause_hint": "reel always uses probe site screenshot; no archived-product variant"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The black site logo is placed on the near-black reel canvas and is barely visible on the poster. The lavender primary also disagrees with the brand DNA's black and white palette.",
+      "evidence": "poster.jpg lockup: dark grey 'Continue' logo on #060409 canvas; probe palette primary \"#a88cd9\" source \"css variable --brand-border\" vs brand_dna.visual.colors \"#ffffff\", \"#000000\"",
+      "systemic": true,
+      "cause_hint": "reel lockup does not check logo contrast against the canvas"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The image judge failed and fell back, and a voice line uses 'ship', which the brand rulebook bans.",
+      "evidence": "images.judge: \"fell_back\": true, \"errors\": [\"fetch failed\"]; voice problem: \"one hour to ship.\"",
+      "systemic": true,
+      "cause_hint": "image judge connectivity; voice prompt lacks the brand banned-word list"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Venues are launch platforms and directories meant for new products, which does not fit an acquired, archived tool. Continue very likely already has AlternativeTo and awesome-code-ai entries. All 13 rules are unverified.",
+      "evidence": "targets: DevHunt \"launch_platform\", Peerlist Launchpad, AlternativeTo \"submission_url\": \"https://alternativeto.net/manage-item/\", awesome-code-ai; every row \"rules_summary\": \"not verified\"",
+      "systemic": true,
+      "cause_hint": "targets pipe ignores archived maturity and does not check existing listings"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "The sequencing advice contradicts the ranking. It says to start with directories and post Show HN last, but the ranking puts subreddits first. It also justifies Show HN with acquisition news, which is not a Show HN.",
+      "evidence": "sequencing_advice: \"Start with low-effort directories (AlternativeTo, StackShare, ...)\" vs rank 1-2 r/LocalLLaMA, r/vscode; Show HN why_fit: \"Cursor acquisition + archival of 36k-star OSS dev tool is a legitimate new story for HN\"",
+      "systemic": true,
+      "cause_hint": "targets_meta sequencing drafted separately from ranking"
+    },
+    {
+      "stage": "signals",
+      "severity": "blocker",
+      "summary": "Drafted replies make false claims about GitHub Copilot. Copilot offers Claude and Gemini models and Ollama BYOK in VS Code.",
+      "evidence": "signal rank 6 (the only verified one): \"GitHub Copilot doesn't support Ollama as a backend, and that's unlikely to change since it's tied to their infrastructure.\"; rank 2: \"Copilot works well but locks you to Microsoft's models.\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt allows competitor statements; seeded by profile icp.pain"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "Five of six replies recommend Continue as a current tool and do not say it is archived and unmaintained. Two use an unverifiable superlative.",
+      "evidence": "rank 3: \"Continue (continuedev/continue) is the most mature open-source option\"; rank 4: \"Continue ... is worth trying\" (no archived disclosure); only rank 6 says \"The repo is now read-only after an acquisition\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt has no archived-status rule like newsletter rule 264"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "Kept signals fail the bar. Five are unverified because the verifier's connection failed, two are 15 to 19 months old, one has no date, and the top one is a news thread rather than a buyer.",
+      "evidence": "rescore.why: \"judge failed: Server is not connected\" / \"fetch failed: Not authenticated\"; posted_when \"2025-02-08\", \"2025-06-17\", \"unknown\"; rank 1 title \"Inside ZCode: Silently uploading your Git history to the cloud\"",
+      "systemic": true,
+      "cause_hint": "rescore judge connectivity; no recency cutoff; unverified signals still enter the queue"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "Tracked links point at continue.dev, now an acquisition notice with no signup. Attribution cannot work, and the Show HN warning says {APP_URL} is the GitHub repo.",
+      "evidence": "targets ref_url: \"https://continue.dev?ref=lk_subreddit_r_localllama\"; show_hn warnings: \"{APP_URL} opens the GitHub repo, not a running app\"",
+      "systemic": true,
+      "cause_hint": "ref links always built on site_url; app_url is empty for this project"
+    },
+    {
+      "stage": "plan",
+      "severity": "low",
+      "summary": "The plan shows the contradictory pricing label and marks itself ready while the Signals rail step shows as not done.",
+      "evidence": "8-plan.png Decisions: \"Open-Source Free, free plus paid tiers: Open Source $0/mo\"; rail shows Signals as \"7\" (not ticked) with \"Plan ready\"",
+      "systemic": true,
+      "cause_hint": "plan decision formatter reads selected_pricing.billing"
+    }
+  ],
+  "best": "The Show HN and newsletter drafts. Both state the archived, read-only, acquired status plainly, keep to profile facts, and follow their rulebooks (hand-rewrite warning, repeat-thread warning, archived disclosure per newsletter rule 264).",
+  "worst": "Signals. The only verified lead is 19 months old, and its reply tells a stranger that Copilot does not support Ollama, which is false. Four other replies recommend an unmaintained extension without saying so.",
+  "notes": "Facts were checked against the live continue.dev (an acquisition notice: \"Continue has joined Cursor\"), the README (read-only, final 2.0.0, telemetry and auth removed) and docs.continue.dev (source of the observed tagline and the 'create, share, and use custom AI code agents' line, so the brand DNA is grounded). The root problem is systemic: Launch Kit has no archived/acquired mode. Maturity is recorded as 'launched', and the stages then generate install CTAs, a launch-platform venue list, a reel ending 'Start with Continue', and replies that pitch the tool as current. The social gate approved all six posts with no blockers, even though it flagged a dated event, a foundation-model mention and a false-positive AI tell. Competitor falsehoods trace back to the profile's unsourced icp.pain. Several verifier and judge calls failed on connectivity (image judge fell back, 5 of 6 signal rescores failed), so reported verification is weaker than the stage 'ok' flags suggest."
+}

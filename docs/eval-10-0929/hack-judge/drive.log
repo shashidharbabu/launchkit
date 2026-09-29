@@ -1,0 +1,11 @@
+PROFILE {"ok":true,"secs":90,"understandSecs":84,"partial":true,"retried":true,"rail":["Profile: approved","Brand: not started"]}
+STUCK {"label":"Extract Business DNA","waitedSecs":900}
+BRAND {"ok":false,"secs":945,"error":"locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Draft the angles/ }).first() to be visible\n"}
+COMMERCIAL {"ok":false,"secs":10,"error":"locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Commercial/ }).first()\n"}
+SOCIAL {"ok":false,"secs":10,"error":"locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Social Launch/ }).first()\n"}
+ASSETS {"ok":false,"secs":10,"error":"locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Assets/ }).first()\n"}
+TARGETS {"ok":false,"secs":10,"error":"locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Targets/ }).first()\n"}
+SIGNALS {"ok":false,"secs":10,"error":"locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Signals/ }).first()\n"}
+PLAN {"ok":false,"secs":10,"error":"locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Plan/ }).first()\n"}
+SUMMARY {"ok":["profile"],"failed":["brand","commercial","social","assets","targets","signals","plan"],"errors":7}
+FULL_PARTIAL

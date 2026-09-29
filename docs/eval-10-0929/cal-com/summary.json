@@ -1,0 +1,167 @@
+{
+  "name": "Cal.com",
+  "site": "https://cal.com",
+  "repo": "https://github.com/calcom/cal.com",
+  "started": "2026-09-29T09:09:47.586Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 77,
+      "understandSecs": 71,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 117,
+      "dnaSecs": 49,
+      "anglesSecs": 64,
+      "angles": 5,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 166,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "6",
+        "3"
+      ],
+      "chosen": true,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 1029,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 28,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 205,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 76,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 292,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 5,
+      "blocked": [
+        "Approve the LinkedIn draft"
+      ],
+      "counts": "5 approved, 1 needs review",
+      "warnings": 6,
+      "repaired": 3
+    },
+    "assets": {
+      "ok": true,
+      "secs": 221,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 34,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a developer's dual-monitor workstation with a terminal and a calendar grid glowing side by sidea booking-link page open in a browser tab, half-built and unstyleda roun",
+      "fits": 5,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 145,
+      "ranked": 13,
+      "top5": [
+        "r/selfhosted",
+        "Indie Hackers",
+        "Dev.to",
+        "r/webdev",
+        "r/EntrepreneurRideAlong"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 259,
+      "idle": true,
+      "heading": "2 signals found: 2 in the queue (2 verified, 0 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Infrastructure, Not a Tool",
+      "pricing": "Freemium Per-Seat (Recommended), free plus paid tiers: Free $0/mo, Teams $12/mo,"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 295492,
+  "finished": "2026-09-29T09:43:42.594Z",
+  "page_errors": []
+}

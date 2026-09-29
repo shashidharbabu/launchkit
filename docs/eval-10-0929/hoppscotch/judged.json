@@ -1,0 +1,202 @@
+{
+  "slug": "hoppscotch",
+  "scores": {"profile": 3, "brand": 3, "commercial": 3, "social": 2, "assets": 2, "targets": 3, "signals": 2, "plan": 3},
+  "post_scores": {"x_post": 3, "linkedin_post": 1, "reddit_post": 2, "producthunt": 3, "show_hn": 2, "newsletter_pitch": 4},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The LinkedIn post sells SSO, RBAC and audit logs on the $6 Business plan, but on the live pricing page those features are in Enterprise at $11.",
+      "evidence": "assets.linkedin_post.data.post: \"If your team needs SSO, RBAC, or audit logs, there's a Business plan at $6/user/month.\" vs hoppscotch.com/pricing: Enterprise \"$11 per user/month, billed annually ... Role-based access controls, SAML-based SSO and OpenID Connect ... Audit logs\"",
+      "systemic": false,
+      "cause_hint": "linkedin_post draft mixed up profile.pricing_current tiers; no post gate checks a price and its feature list against selected_pricing"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The LinkedIn post opens with an invented first-person migration story that is not in the profile. It also claims request history transfers, which nothing supports. The post was approved with only a warning.",
+      "evidence": "assets.linkedin_post.data.post: \"Migrated from Postman to Hoppscotch in one click. Here's what transferred and what I left behind.\\n\\nYour collections, environments, and request history come with you.\"; own warning: \"The profile holds no personal migration story.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns hook for the chosen angle (\"Migrated from Postman to Hoppscotch in one click. Here's what I kept and what I dropped.\") is fed as CAMPAIGN_ANGLE; GLOBAL_RULES line 27 (no tool you used to use) is only a warning, not a blocker, in the LinkedIn gate"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Show HN closing question invents an internal debate about moving Community Edition collaboration features to a paid tier. That is harmful to post for an MIT project and breaks show_hn rule 222.",
+      "evidence": "assets.show_hn.data.body: \"should the Community Edition stay MIT with no feature limits, or should some collaboration features move to a paid self-hosted tier?\"",
+      "systemic": true,
+      "cause_hint": "show_hn closer hook ('The choice I want a second opinion on is ...') fills option B freely; no gate enforces rulebooks.ts show_hn 'never an internal debate the profile does not mention'"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Show HN attaches negative words to Postman, taken straight from the profile's ICP pain. The competitor-negativity gate did not catch it.",
+      "evidence": "assets.show_hn.data.body: \"Postman has become slow and paywalled for teams.\" (profile.icp.pain: \"Postman has become bloated, slow, and increasingly paywalled\")",
+      "systemic": true,
+      "cause_hint": "show_hn rule 225 tells the writer to state the problem from icp.pain, which conflicts with GLOBAL_RULES line 28; the negative-word gate list (it repaired \"paywalls\" in reddit) misses \"paywalled\" and \"slow\""
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post invents a personal history with Postman and attaches negative words to it. The repair only removed the word \"paywalls\".",
+      "evidence": "assets.reddit_post.data.body: \"Postman's free tier caps collaboration and the desktop client has grown heavy enough that it's the first thing I notice on a slow machine.\"; repaired: [\"... (\\\"paywalls\\\")\"]",
+      "systemic": true,
+      "cause_hint": "reddit rule 143 ('never X worked fine until', no negative word on its name); the gate phrase list does not cover 'caps', 'grown heavy', or experiential framing"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The limitation repeated across X, Reddit, Product Hunt, Show HN and the listing is partly wrong. The docs say the AI bot is available on Enterprise Self-Host and the MCP server works on self-hosted instances.",
+      "evidence": "assets.reddit_post: \"If you run everything on-prem, those features aren't accessible yet\"; listing FAQ: \"AI-powered features are currently in alpha and available on cloud plans only. The MCP server integration (GA) is available on Business and Enterprise cloud tiers.\" vs docs.hoppscotch.io/documentation/features/ai-features: \"The AI bot is available on Enterprise Cloud and Enterprise Self-Host\" and MCP \"works with both Hoppscotch Cloud and self-hosted instances\"",
+      "systemic": false,
+      "cause_hint": "profile.gaps compressed the AI features page into \"not available in self-hosted editions\"; the profile read hoppscotch.io, not the hoppscotch.com home that announces \"New: Enterprise Cloud + AI bot\""
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN presents a profile-editorial pricing gap as a founder admission, and the builder never reached that conclusion.",
+      "evidence": "assets.show_hn.data.body: \"Self-host Enterprise pricing is higher than cloud Enterprise, and we have not documented the rationale on the pricing page yet.\"",
+      "systemic": true,
+      "cause_hint": "limitation rule pulls any profile.gaps entry, including the profiler's opinions about pricing presentation, into a first-person post"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "An X alt variant invents a cURL import mechanism: the import does not generate environment variables.",
+      "evidence": "assets.x_post.data.alt_variants[0]: \"Paste a cURL command. Hoppscotch turns it into a saved request with headers, body, and environment variables.\"",
+      "systemic": false,
+      "cause_hint": "x_post alt_variants drafting; no fact check against profile differentiators"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Product Hunt warnings contain gate noise: a stale check for a phrase that is not in the draft, a hype word flagged but left unrepaired, and a meta-warning about a warning.",
+      "evidence": "assets.producthunt.data.warnings: \"first_comment: Review the phrase 'the same wall' and replace ...\"; \"first_comment: Hype words ... (\\\"AI-powered\\\")\"; \"warnings[2]: A warning that is a count, a compliance boast ...\"",
+      "systemic": true,
+      "cause_hint": "producthunt gate appends check output to warnings instead of repairing; model echoes rule examples ('the same wall')"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Reddit draft targets r/SideProject by default, while the selected venue is r/selfhosted (mention level 2, different flair), and it calls the app URL \"the repo\".",
+      "evidence": "assets.reddit_post.data.warnings[0]: \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"; body: \"the repo is at {APP_URL}\" (app_url is hoppscotch.io); targets rank 1 selected: \"r/selfhosted\"",
+      "systemic": true,
+      "cause_hint": "social stage runs before targets, so no TARGET is passed and nothing redrafts the post after a venue is selected"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The profile gaps include Launch Kit's own read failures and a domain misread, not real product gaps.",
+      "evidence": "profile.gaps: \"package.json / pyproject.toml could not be fetched (GitHub 404), full dependency list unverified\"; \"hoppscotch.io/pricing returns a 404, pricing is only discoverable at hoppscotch.com/pricing (split domain may confuse visitors)\"; \"No demo video found on hoppscotch.io, the main app URL renders the live tool\"",
+      "systemic": true,
+      "cause_hint": "profile pipe gap extraction does not filter sources_read ok=false into confidence notes only; the app domain (hoppscotch.io) is treated as the marketing site"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle's big idea and hook include competitor negativity and an invented first-person story, which the social stage then carried into the posts.",
+      "evidence": "brand_campaigns.campaigns[0].big_idea: \"Developers stuck on Postman know the pain: paywalls, bloat, forced accounts.\"; hook: \"Migrated from Postman to Hoppscotch in one click. Here's what I kept and what I dropped.\"",
+      "systemic": true,
+      "cause_hint": "brand campaigns prompt has no competitor-negativity or invented-story rule; GLOBAL_RULES apply only at the post stage"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The DNA palette has only meta theme colours, misses the brand green of the logo, and leaves logo_url empty, although the studio probe later found both.",
+      "evidence": "brand_dna.visual.colors: \"#09090b\", \"#181818\", \"#ffffff\"; \"logo_url\": \"\"; studio probe: \"accent\": {\"value\": \"#00c899\", \"source\": \"the apple touch icon's second colour\"}",
+      "systemic": true,
+      "cause_hint": "brand DNA reads markdown scrape only (no CSS, no icon), per its own confidence note"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The annual-discount option treats the live prices as monthly rates, but they are already billed annually, so its \"17-18% discount\" has no basis.",
+      "evidence": "pricing.options[1].positioning: \"Business at $5/user/month ($60/user/year charged upfront) and Enterprise at $9/user/month ... each a roughly 17-18% discount versus the monthly-equivalent rates\" vs options[0]: \"Business at $6/user/month and Enterprise Cloud at $11/user/month billed annually\"",
+      "systemic": false,
+      "cause_hint": "pricing pipe options drafting"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The recommended tier lists add features the pricing page does not list, and competitor prices that were never scraped feed the market rate as fact.",
+      "evidence": "pricing.options[0] Self-Host Enterprise includes: \"Dedicated onboarding\", \"Docker/on-prem support\"; confidence.notes: \"tier prices for Insomnia are from market knowledge, not scraped\" yet market_rate: \"Insomnia charges $8/user/month for its Individual plan.\"",
+      "systemic": true,
+      "cause_hint": "pricing prompt allows unscraped competitor tiers into market_rate; no check that 'current pricing' options copy only profile.pricing_current features"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The revenue maths for the recommended option uses a different per-seat rate at 10 seats than at 50 and 200 seats.",
+      "evidence": "pricing.options[0].revenue_at: {\"10\": 120, \"50\": 595, \"200\": 2380} (12.0 per seat vs 11.9 per seat)",
+      "systemic": true,
+      "cause_hint": "revenue_at is model-written in the pricing pipe, not computed (commercial-stage.tsx only parses it)"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel runs the 'verdict' template's review scenario with invented numbers, and its beats misstate the product. Hoppscotch does not check every request automatically, and 'nothing lost' is an unproven migration claim. The reel was still approved.",
+      "evidence": "reel.slots: \"open_line\": \"MONDAY. API REVIEW.\", \"load_n1\": \"47\", \"load_l1\": \"COLLECTIONS\", \"load_n2\": \"1\", \"load_l2\": \"REVIEWER\", \"step2_label\": \"EVERY REQUEST, CHECKED.\", \"payoff_line\": \"SWITCHED. NOTHING LOST.\"; voice: \"Every request gets checked instantly.\"",
+      "systemic": true,
+      "cause_hint": "studio script concept 'verdict' (load/pile/verdict-chips beats) forced onto a non-review product; script gate accepts chips mapped from test snippet buttons as 'the product's real categories'"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel and a plate brief frame a named competitor negatively: a Postman window behind a paywall modal, then 'YOU PAY. THEY LOCK YOU IN.'",
+      "evidence": "images.pile.brief: \"eyes fixed on a Postman window showing a long list of collections with a paywall modal overlaid\"; reel.slots.cost_line: \"YOU PAY. THEY LOCK YOU IN.\"",
+      "systemic": true,
+      "cause_hint": "image brief and script prompts do not apply GLOBAL_RULES competitor rule; claims_used cites \"CAMPAIGN_ANGLE big_idea 'paywalls, bloat, forced accounts'\""
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The LinkedIn card headline repeats the invented first-person migration hook.",
+      "evidence": "kit.images linkedin headline: \"Migrated from Postman to Hoppscotch in one click. Here's what transferred and what I left behind.\"",
+      "systemic": true,
+      "cause_hint": "card headlines copy post line 1 without a claims check"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The sequencing advice recommends a venue the stage itself dropped, and none of the 13 venues has verified rules.",
+      "evidence": "targets_meta.dropped: \"awesome-postman-alternatives\" (\"a file inside a repository is not a venue\") vs sequencing_advice: \"Start with low-effort evergreen directories (AlternativeTo, SaaSHub, StackShare, awesome-postman-alternatives) immediately\"; every target: \"rules_summary\": \"not verified\"",
+      "systemic": true,
+      "cause_hint": "targets pipe writes sequencing_advice before the drop filter and never regenerates it"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "Both kept signals are months old, although the scan applies a 14-day window elsewhere. The first author had already moved to Bruno, the same reason two other threads were rejected.",
+      "evidence": "signals[0].url: \"https://www.linkedin.com/posts/alexc01_from-postman-to-bruno-activity-...\", posted_when \"2026-05-13\"; signals[1] posted_when \"2026-03-05\"; rejected_by_rescore: \"The author has already found and adopted Bruno as their Postman replacement\"; coverage_notes: \"HN had no fresh buyer comments within 14-day window\"",
+      "systemic": true,
+      "cause_hint": "signals pipe: recency window not enforced on LinkedIn/Exa results; rescore does not read the URL slug"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The replies claim 'I built Hoppscotch' for a team product, and one disparages Bruno.",
+      "evidence": "signals[0].drafted_reply: \"Bruno is solid but its browser-less, file-only approach can feel limiting ... I built Hoppscotch as a lightweight, open-source option\"; signals[1].drafted_reply: \"I built Hoppscotch (hoppscotch.io)\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt lacks the reddit rule 144 disclosure logic (\"I work on\" for a team or a product older than a year) and the GLOBAL competitor rule"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan routes Product Hunt and Show HN as live venues. The targets stage ranked both last as repeat venues and did not select them.",
+      "evidence": "8-plan.png tracked links: \"Product Hunt ... lk_platform_product_hunt\", \"Hacker News Show HN ... lk_platform_hacker_news_show_hn\" vs targets rank 9: \"REPEAT venue (80k stars, launched 2019). Only justified for a major new version\", selected: false",
+      "systemic": true,
+      "cause_hint": "plan adds every approved post's platform as a venue regardless of target selection"
+    },
+    {
+      "stage": "plan",
+      "severity": "low",
+      "summary": "The plan's pricing line drops 'per user' and the billing period, which misstates the tiers.",
+      "evidence": "8-plan.png Decisions: \"Free $0/mo, Business $6/mo, Enterprise Cloud $11/mo, Self-Host Enterprise $19/mo\"",
+      "systemic": true,
+      "cause_hint": "plan decisions formatter renders price_usd_month without the unit or the billing period"
+    }
+  ],
+  "best": "The newsletter pitch: one real proof point (80,547 GitHub stars), no competitor named, correct placeholders for editor and builder, true one-liner. Close second: the commercial recommendation mirrors the live $0/$6/$11 pricing accurately.",
+  "worst": "The LinkedIn post: it opens with a first-person Postman migration story the profile does not hold, and it sells SSO, RBAC and audit logs on the $6 Business plan when they are Enterprise ($11) features. Close second: the Show HN closing question, which invents a debate about moving Community Edition features behind a paywall.",
+  "notes": "Facts checked live on 2026-09-29: hoppscotch.com/pricing confirms Free $0, Business $6 and Enterprise $11 (per user, billed annually), plus 'MCP server support' in Business. The hoppscotch.com home confirms 'One-Click Migration: Migrate from Postman, Insomnia, cURL with a single click', '5M+ requests every month' and 'Most popular API development tool on GitHub'. The AI features docs say the AI bot is on Enterprise Cloud and Enterprise Self-Host, and the MCP server works on self-hosted instances, which contradicts the 'not available in self-hosted' limitation in four posts and the listing. The main failure pattern is systemic: the chosen angle's competitor-negative and first-person hook, plus the icp.pain wording, flow into LinkedIn, Reddit, Show HN, the reel and a plate brief, and the negative-word gate caught only 'paywalls'. Plan content was judged from 8-plan.png because the plan is not stored in appstate. Postman, Bruno and Insomnia competitor prices were not re-verified."
+}

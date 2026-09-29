@@ -1,0 +1,66 @@
+{
+  "name": "hack-judge",
+  "site": "https://hackathon-judge-aid.onrender.com",
+  "repo": "",
+  "started": "2026-09-29T08:51:22.403Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 90,
+      "understandSecs": 84,
+      "partial": true,
+      "retried": true,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": false,
+      "secs": 945,
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Draft the angles/ }).first() to be visible\n"
+    },
+    "commercial": {
+      "ok": false,
+      "secs": 10,
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Commercial/ }).first()\n"
+    },
+    "social": {
+      "ok": false,
+      "secs": 10,
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Social Launch/ }).first()\n"
+    },
+    "assets": {
+      "ok": false,
+      "secs": 10,
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Assets/ }).first()\n"
+    },
+    "targets": {
+      "ok": false,
+      "secs": 10,
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Targets/ }).first()\n"
+    },
+    "signals": {
+      "ok": false,
+      "secs": 10,
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Signals/ }).first()\n"
+    },
+    "plan": {
+      "ok": false,
+      "secs": 10,
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Plan/ }).first()\n"
+    }
+  },
+  "errors": [
+    "brand: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Draft the angles/ }).first() to be visible\n",
+    "commercial: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Commercial/ }).first()\n",
+    "social: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Social Launch/ }).first()\n",
+    "assets: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Assets/ }).first()\n",
+    "targets: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Targets/ }).first()\n",
+    "signals: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Signals/ }).first()\n",
+    "plan: locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Plan/ }).first()\n"
+  ],
+  "appstate_bytes": 104071,
+  "finished": "2026-09-29T09:09:41.339Z",
+  "page_errors": []
+}

@@ -7,14 +7,20 @@ Vision: [VISION.md](VISION.md). Judge: [JUDGE.md](JUDGE.md). Cap: 3 turns. Evide
 | Turn | profile | brand | commercial | social | assets | targets | signals | plan | overall | posts (X, LI, Reddit, PH, HN, NL) |
 |---|---|---|---|---|---|---|---|---|---|---|
 | baseline 09-11 | 3.8 | 3.6 | 2.6 | 2.9 | 2.9 | 3.1 | 1.7 | 3.1 | 3.0 | 3.2, 3.3, 2.4, 3.0, 2.8, 3.5 (v4 rerun mean 3.52) |
+| turn 1 (9 apps) | 3.0 | 2.8 | 2.1 | 2.2 | 2.4 | 2.7 | 2.0 | 2.6 | 2.5 | 2.8, 2.7, 1.9, 2.3, 1.9, 3.6 |
 
 ## Turns
 
 | Turn | Date | What | Gate result | Verifier | Next |
 |---|---|---|---|---|---|
-| 1 | 09-29 | Pre-flight: 76/76 domain tests, typecheck, walk 16/16, staging tasks in rocketride_sb with all four org secrets. Ten apps, all eight stages, two lanes: `EVAL_OUT=docs/eval-10-0929 node run-eval.mjs` | running | | judge all ten |
+| 1 | 09-29 | Pre-flight: 76/76 domain tests, typecheck, walk 16/16, staging tasks in rocketride_sb with all four org secrets. Ten apps, all eight stages, two lanes: `EVAL_OUT=docs/eval-10-0929 node run-eval.mjs` | 9 of 10 drives completed; hack-judge stopped after Profile (Q1). Bar not met: overall 2.5, no stage at 3.5, 27 blockers | One judge per app, fresh context, JUDGE.md, facts checked against live sites: 242 issues | turn 2 |
+| 2 | 09-29 | Fixes F1 to F9 plus Q1, Q4 and signal replies (commits 20fc116, 7752758; 85 domain tests, walk 16/16, all changed pipes validated). All ten apps re-run from scratch: `EVAL_OUT=docs/eval-10-0929-t2` | running | | judge all ten |
 
 ## Fixes
+
+**Scale note.** Turn 1 (2.5) sits below the 09-11 baseline (3.0), but the judges are not comparable: these judges checked every claim against the live site, repo and pricing pages, and the brief pins four severities. Turns 1 to 3 share one brief, so they compare with each other; the 09-11 row is context only.
+
+**Queued for turn 3 (from continue and khoj).** An acquired, archived or sunset product has no mode: maturity is idea/alpha/beta/launched, so continue (acquired by Cursor) and khoj (cloud shut down) got a normal launch, relaunch pricing for a service that no longer exists and an invented reason for the shutdown. Runs that die with "Connection closed unexpectedly" (khoj Show HN, Targets, Signals) leave Signals `running` forever while the page shows the empty-state copy, and the drive marks those stages ok; the drive's stage check must read the store for Targets and Signals too.
 
 Queued (the app and pipes cannot change while turn 1's drives run):
 - **Q1, app.** "Approve profile" stays enabled while "Analyze again" is re-running understand. Approving then approves the old version, the re-analysis lands as a new draft, and every later stage stays locked with no explanation. Found on hack-judge (09-29 08:52: v1 approved during the v2 run; Brand's "Extract Business DNA" never enabled in 15 min). Disable approval while an understand run for the project is in flight.

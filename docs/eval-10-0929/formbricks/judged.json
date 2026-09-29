@@ -1,0 +1,290 @@
+{
+  "slug": "formbricks",
+  "scores": {"profile": 3, "brand": 3, "commercial": 3, "social": 3, "assets": 2, "targets": 3, "signals": 2, "plan": 3},
+  "post_scores": {"x_post": 3, "linkedin_post": 4, "reddit_post": 3, "producthunt": 3, "show_hn": 2, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The top gap is false: the homepage links an interactive demo, but the profile says there is none, and the X and Show HN posts then publish that claim as a limitation.",
+      "evidence": "profiles.data.gaps[0]: \"No live interactive demo linked from the homepage, only static mockups and survey flow illustrations\"; live homepage (and studio probe copy): \"Running a webshop? [Test out E-Commerce Customer Journey](/demo/e-commerce)\"",
+      "systemic": true,
+      "cause_hint": "understand pipe: gaps are drawn from marketing-site impressions and not checked against links in the scraped copy; the posts then use gaps as product limitations"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The gaps list site-marketing problems (no case studies, no video tour, unquantified G2 logos), not product gaps, and later stages treat them as product limitations.",
+      "evidence": "gaps: \"No public case studies with measurable outcomes\", \"No video walkthrough or product tour on the homepage\"",
+      "systemic": true,
+      "cause_hint": "understand prompt: the gaps field does not separate product gaps from website gaps"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Sample copy for the GDPR campaign attaches a negative to a named competitor.",
+      "evidence": "brand_campaigns[1].sample_copy.body: \"When auditors ask 'where does user data go?', 'on Qualtrics' is not a comfortable answer.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns pipe does not apply the GLOBAL_RULES competitor rule to sample_copy"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The newsletter campaign hook states GDPR law wrongly: GDPR permits transfers outside the EU under safeguards.",
+      "evidence": "brand_campaigns[4].hook: \"Product teams need user insights. GDPR says data can't leave the EU. Most survey tools don't solve both.\"",
+      "systemic": false,
+      "cause_hint": "brand_campaigns model output; no factual check on legal claims"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle is a Show HN for a product that already has two Show HN threads (122 points in 2022, 155 points in Oct 2023), and the angle gives no major-change hook to justify a repeat.",
+      "evidence": "projects.selected_campaigns: [\"Show HN: Own Your Survey Data\"]; HN Algolia: \"2023-10-31 155 Show HN: Formbricks – Open-source alternative to Typeform and Sprig\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns does not weigh maturity or prior launches when it proposes launch-platform angles for an established product"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The DNA has no logo and no typography even though the probe later found both (a footer logo SVG, Jost and Poppins).",
+      "evidence": "brand_dna.visual.logo_url: \"\"; typography.evidence: \"Scrape returned markdown without CSS; no font-family declarations\"",
+      "systemic": true,
+      "cause_hint": "brand_dna reads firecrawl markdown only; the studio probe's DOM read is not fed back"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The annual-discount option has wrong maths: two months free on $74 and $325 is $740 and $3,250 a year ($61.67 and $270.83 a month), not $617 and $2,708.",
+      "evidence": "pricing.options[1].positioning: \"so Pro is $617 per year ($51 per month) and Scale is $2,708 per year ($226 per month)\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe: the annual price is computed by the model with no arithmetic check (it took monthly/12 then multiplied by 10); revenue_at inherits the error"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "It claims no established rival has a free cloud tier, but SurveyMonkey, one of its own anchor competitors, has a free Basic plan.",
+      "evidence": "pricing.models_considered[4].why: \"no established rival offers a free cloud tier, giving Formbricks a clear wedge\"",
+      "systemic": false,
+      "cause_hint": "pricing pipe generalised from the single competitor page it scraped (Survicate)"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The 35% positioning compares Formbricks' monthly price with Survicate's annual-billed price, and 2,000 responses with 250, while calling the tiers comparable.",
+      "evidence": "pricing.recommendation.tiers[1].rationale: \"At $74 vs Survicate Growth $114, Pro undercuts the nearest established rival by 35%\"; competitors[0].tiers[0]: \"$114\", \"month (billed annually)\", \"250 responses/mo\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe does not normalise billing period or quota before it compares"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The Hobby tier lists 'Community support', which the live pricing page does not list.",
+      "evidence": "selected_pricing.tiers[0].includes: \"Community support\"; live Hobby list: \"Link-based surveys ... Full API access (incl. MCP) ... Hosted in Frankfurt\"",
+      "systemic": false,
+      "cause_hint": "pricing pipe filled in a plausible feature"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The listing says no proprietary SDK is required, but in-app surveys run through Formbricks' own JS and iOS/Android SDKs.",
+      "evidence": "listing.description_long: \"all from one no-code editor. No proprietary SDK required.\"",
+      "systemic": false,
+      "cause_hint": "carried over from profile icp.buying_trigger wording"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Show HN body treats this as a first submission: it neither links nor names the earlier HN threads, which breaks the repeat-Show-HN rule even though a warning notes the rule.",
+      "evidence": "show_hn.body opens \"Hi HN, Formbricks is an open-source experience management platform that takes survey triggers...\"; warning: \"Search HN for the earlier thread, link it in the body with one sentence on what changed since\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts show_hn rule 228 and the repeat opener: the profile has only a badge link, so the draft pushes the job to a warning instead of using the README badge link item?id=32303986"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Show HN states limitations that are false or are not about the product: a live demo needs no account, and 'no public case studies' is a marketing gap.",
+      "evidence": "show_hn.body: \"Limitations: the cloud demo requires account creation before you can see a live survey; enterprise self-hosting pricing requires contacting the team; no public case studies with measured response rates exist.\"",
+      "systemic": true,
+      "cause_hint": "posts copy profile.gaps into limitation slots; show_hn rule 221 allows any gap"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN invents part of the mechanism: email sends are not survey triggers, since email surveys are embedded links.",
+      "evidence": "show_hn.body: \"takes survey triggers from in-app events, page visits, or email sends, and stores the responses in a database you control\"",
+      "systemic": false,
+      "cause_hint": "show_hn how-it-works written without a documented data flow (the warning admits the profile records none)"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The X thread invents a quoted scenario and a roadmap commitment, and presents a website gap as something the product does not do.",
+      "evidence": "x_post.thread_extension[0]: \"the answer is 'somewhere in the US on a vendor's infrastructure'\"; [2]: \"What it does not do yet: there is no live interactive demo on the homepage ... Both are on the list.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES line 27 forbids inventing a limitation; the X thread template asks for a limitation and the model filled it from gaps plus an invented roadmap"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "An X alt variant flattens the privacy claim into an absolute while offering the Frankfurt cloud, and the warning flagging it was left unresolved.",
+      "evidence": "x_post.alt_variants[0]: \"No third-party server holds your responses. AGPLv3, Docker, Frankfurt cloud option.\"; warning: \"An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option\"",
+      "systemic": true,
+      "cause_hint": "x_post rule 78 (privacy qualifier) is detected as a warning but not repaired"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The PH first comment invents a singular founder origin story ('I built') for a company product with a team.",
+      "evidence": "producthunt.first_comment: \"Product teams needed contextual in-app surveys, but every hosted tool stored responses on third-party servers ... That is the problem I built Formbricks to solve.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES line 27 (no origin story) and PH rule 188 (singular when the profile names no team): the profile never records team size, so solo framing is the default"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The PH draft does not flag that Formbricks already launched on Product Hunt (455 upvotes), so it reads as a first launch rather than a relaunch that needs a new-version reason.",
+      "evidence": "producthunt.warnings: \"The 455 Product Hunt upvotes proof point was not used in any field\"; targets rank 12: \"REPEAT venue, prior launch earned 455 upvotes; only relaunch for a major new version\"",
+      "systemic": true,
+      "cause_hint": "producthunt rulebook has no repeat-launch rule, unlike show_hn"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The PH description makes a sweeping claim about the whole field.",
+      "evidence": "producthunt.description: \"Closed-source survey tools store your responses on servers you do not control.\"",
+      "systemic": false,
+      "cause_hint": "PH rule 184 allows contrast but not absolute field claims"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post was written for r/SideProject, but the selected venues are r/selfhosted and r/gdpr, so the approved draft does not match where the plan sends it.",
+      "evidence": "reddit_post.warnings: \"No TARGET subreddit was specified. This draft defaults to r/SideProject per platform rules.\"; targets selected: r/selfhosted, Show HN, r/gdpr",
+      "systemic": true,
+      "cause_hint": "stage order: Social Launch drafts before Targets are chosen, and nothing re-drafts after venue selection"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Reddit title is not first person and uses a spaced hyphen as a dash.",
+      "evidence": "reddit_post.title: \"Formbricks - open-source, self-hostable survey platform for product teams\"",
+      "systemic": false,
+      "cause_hint": "reddit rule 140"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch opens with a confused, invented claim about consent banners and an absolute about most survey tools, and its paragraph-count warning was left unresolved.",
+      "evidence": "newsletter_pitch.pitch: \"That is the moment the consent banner stops being a checkbox and starts being a liability, and most survey tools offer no way out of it.\"; warning: \"pitch: Six or more paragraph breaks\"",
+      "systemic": true,
+      "cause_hint": "newsletter rule 249 shape gate reports but does not repair; no gate on absolute field claims"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The LinkedIn post has no first-person voice at all, against the platform's pronoun rule.",
+      "evidence": "linkedin_post.post: \"Formbricks is open-source experience management you self-host ... If you're running user research and data residency is a constraint, try the Hobby plan free.\"",
+      "systemic": false,
+      "cause_hint": "linkedin rule 105"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel and voice-over invent a compliance-checking feature: Formbricks does not check or stamp surveys as COMPLIANT or GDPR-READY.",
+      "evidence": "script.slots.step2_label: \"EVERY SURVEY, CHECKED.\", chip_1: \"COMPLIANT\", chip_3: \"GDPR-READY\"; voice how: \"Every survey gets checked and stamped. Your data stays on your server.\"",
+      "systemic": true,
+      "cause_hint": "Verdict concept template (scan line plus verdict chips) forces a checking mechanism onto products that have none"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel opens with invented scenario numbers that do not match the product's problem (14 survey tools, 48 hours, responses pulled by hand).",
+      "evidence": "voice problem: \"GDPR audit hits. Fourteen survey tools, one team, forty-eight hours, every response pulled by hand.\"; slots load_n1 \"14\" / load_n3 \"48\"",
+      "systemic": true,
+      "cause_hint": "Verdict spec beat 'The load... Scenario numbers, not product claims' invites invented numbers"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The kit and reel use blue #3b82f6 as the brand colour, against the DNA's teal #00C4B8, so the poster title renders in a colour that is not Formbricks'.",
+      "evidence": "kit.palette.roles.primary: {\"hex\": \"#3b82f6\", \"source\": \"most common button background\"}; brand_dna.visual.colors[0]: \"#00C4B8\", role \"primary\"; reel.vars.brand \"#3b82f6\"",
+      "systemic": true,
+      "cause_hint": "studio probe palette picks the most common button colour and ignores theme_color and brand_dna"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "On the poster lockup, the dark navy Formbricks wordmark sits on a near-black canvas and is nearly invisible.",
+      "evidence": "poster.jpg: the logo wordmark 'Formbricks' at the top of the lockup is dark navy on canvas #040609",
+      "systemic": true,
+      "cause_hint": "reel lockup does not contrast-check or invert the site logo on a dark canvas"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The reel was approved despite the invented mechanism and numbers, and the voice contradicts itself on where data lives.",
+      "evidence": "reel.status \"approved\"; voice how: \"Self-host or use cloud. ... Your data stays on your server.\"",
+      "systemic": true,
+      "cause_hint": "reel approval has no claim check against the profile"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "All 14 venue rules summaries are unverified, including for the three selected subreddits.",
+      "evidence": "targets[*].data.rules_summary: \"not verified\"; targets_meta: \"All subreddit rules unverified due to Reddit blocking scrapers.\"",
+      "systemic": true,
+      "cause_hint": "targets pipe cannot read Reddit; no fallback to the stored venues.rules_summary"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The Show HN justification cites only the 2022 thread and asserts that v5.3 qualifies as a major overhaul; it misses the 2023 Show HN (155 points).",
+      "evidence": "targets rank 2 why_fit: \"v5.3 major release; prior 122-point Show HN was earlier version, new release qualifies for repeat.\"",
+      "systemic": true,
+      "cause_hint": "targets pipe does not search HN for prior submissions"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "r/gdpr is ranked 3rd with high expected impact, but it is a legal-discussion community where a vendor launch post is unlikely to fit.",
+      "evidence": "targets rank 3: \"r/gdpr\", \"expected_impact\": \"high\", \"rules_summary\": \"not verified\"",
+      "systemic": false,
+      "cause_hint": "targets ranking by ICP pain keyword rather than venue norms"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The only kept signal is a three-month-old thought-leadership post by a commentator arguing for encrypted survey platforms, not a buyer looking for a tool, and it is rated high intent.",
+      "evidence": "signals[0].posted_when: \"2026-06-16\", intent_strength: \"high\"; post text ends: \"The GDPR transfer problem disappears when the platform can't read the responses in the first place. Encryption removes the question instead of answering it.\"",
+      "systemic": true,
+      "cause_hint": "signals rescore gate accepts LinkedIn opinion posts as buyer intent and has no recency cap for LinkedIn (HN used a 14-day window)"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The drafted reply invents a solo builder, offers legal opinion, and turns into a pitch with a link in a stranger's thread.",
+      "evidence": "drafted_reply: \"without it the SCC is essentially decorative ... I built Formbricks (formbricks.com) as an open-source, self-hostable alternative for exactly this architecture.\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt defaults to 'I built' and allows a product link"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan routes the Product Hunt draft even though Targets ranked Product Hunt 12th, left it unselected and warned it is a repeat venue.",
+      "evidence": "8-plan.png tracked links: \"Product Hunt platform lk_platform_product_hunt\"; targets rank 12 selected false: \"REPEAT venue ... only relaunch for a major new version\"",
+      "systemic": true,
+      "cause_hint": "plan assembles venues from approved posts plus selected targets without reconciling them"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The sequencing advice leads with venues that were not selected (AlternativeTo, SaaSHub, Peerlist, DevHunt, Indie Hackers, r/SideProject).",
+      "evidence": "targets_meta.sequencing_advice[0]: \"Start with AlternativeTo, SaaSHub, and Peerlist/DevHunt\"; plan: \"Sequencing advice drafted, not verified\"",
+      "systemic": true,
+      "cause_hint": "sequencing advice is generated over all ranked targets, not the selected set"
+    }
+  ],
+  "best": "The profile and current-pricing choice: tiers ($0/$74/$325, 250/2,000/5,000 responses, 1/3/5 workspaces), testimonials, the 13,040 stars and the Frankfurt hosting all match the live site, and the LinkedIn post uses them cleanly.",
+  "worst": "The assets reel and the Show HN: the reel invents a survey compliance checker ('Every survey gets checked and stamped', COMPLIANT and GDPR-READY chips) behind invented scenario numbers and was approved anyway; the Show HN ignores two prior HN threads and publishes a false 'demo requires account creation' limitation.",
+  "notes": "Systemic threads: (1) profile.gaps mix website gaps with product gaps, and one is false (the homepage links /demo/e-commerce); the posts copy them in as product limitations. (2) Warnings detect rule breaks (absolute privacy claims, paragraph counts, repeat Show HN) but nothing repairs them. (3) Social is drafted before venues are chosen, so the Reddit draft targets r/SideProject while the plan sends it to r/selfhosted and r/gdpr. (4) The Verdict reel template pushes a checking mechanism and scenario numbers onto a product that has neither. (5) Pricing arithmetic for the annual option is unchecked. Facts checked live: formbricks.com and /pricing, the README, the GitHub API (13,040 stars), HN Algolia (prior Show HN threads from 2022 and 2023), survicate.com/pricing, and the signal's LinkedIn post."
+}

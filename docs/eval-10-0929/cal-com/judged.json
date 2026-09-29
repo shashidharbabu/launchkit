@@ -1,0 +1,266 @@
+{
+  "slug": "cal-com",
+  "scores": {"profile": 2, "brand": 3, "commercial": 2, "social": 2, "assets": 2, "targets": 2, "signals": 1, "plan": 3},
+  "post_scores": {"x_post": 2, "linkedin_post": 2, "reddit_post": 2, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "blocker",
+      "summary": "The profile credits Cal.com with the MIT licence and 'no Enterprise Edition split' that belong only to the Cal.diy fork, which the README says has Teams, Organizations, Workflows and SSO removed and is for non-production use; this conflation feeds every later stage.",
+      "evidence": "profiles.data.differentiators[0]: \"100% MIT-licensed open-source codebase with a self-hostable edition (Cal.diy), no proprietary 'Enterprise Edition' split (README.md)\" vs calcom/cal.diy README: \"a fork of Cal.com with all enterprise/commercial code removed\" ... \"No enterprise features: Teams, Organizations, Insights, Workflows, SSO/SAML ... have been removed\" ... \"strictly recommended for personal, non-production use\"",
+      "systemic": true,
+      "cause_hint": "understand/profile prompt: repo README facts about a fork are merged into the hosted product's differentiators without checking which product a claim belongs to"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "Two gaps come from what the read missed rather than from the product: cal.com/customers has customer stories and a user count, and the homepage logo wall is images the markdown scrape could not see.",
+      "evidence": "profiles.data.gaps: \"No published user count, ARR, or customer logo wall...\" and \"No case studies or detailed ROI benchmarks found on the site\" vs https://cal.com/customers: \"Customer stories Meet our customers Trusted by more than 1,000,000+ users\"",
+      "systemic": true,
+      "cause_hint": "profile read only 4 sources (homepage, pricing, README, repo metadata); gaps are written from absence of evidence, and confidence 0.88 does not reflect the narrow read"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The profile says Cal.diy and Cal.com share a repo, but Cal.diy is a fork (calcom/cal.com now redirects to calcom/cal.diy), and posts repeat the wrong framing.",
+      "evidence": "profiles.data.gaps[3]: \"Cal.diy (self-hosted OSS) and Cal.com (hosted SaaS) are separate products sharing a repo\"; show_hn body: \"The hosted product and the self-hosted repo share a codebase\"",
+      "systemic": false,
+      "cause_hint": "profile synthesis over a renamed repo"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The ICP pain puts a claim about Calendly into the profile that no source supports, and later stages treat it as fact.",
+      "evidence": "profiles.data.icp.pain: \"Calendly and similar tools are expensive per-seat, hard to white-label, and lock scheduling data behind proprietary APIs\"",
+      "systemic": true,
+      "cause_hint": "profile prompt lets the model write competitor characterisations into icp.pain without a source"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The DNA visual layer is empty (no colours, logo or fonts) because the scrape returned markdown, but the site has Cal Sans, a logo and #0099ff, which the later probe found easily.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"logo_url\": \"\", \"evidence\": \"Scrape returned markdown without HTML/CSS\" vs studio probe: \"fonts\": {\"heading\": \"Cal Sans\"}, \"accent\": {\"value\": \"#0099ff\"}",
+      "systemic": true,
+      "cause_hint": "brand DNA pipe reads firecrawl markdown only; probe results are not fed back into DNA"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The r/selfhosted angle has the company pose as an ordinary user who self-hosted Cal.diy, and credits Cal.diy with features the README says were removed.",
+      "evidence": "brand_campaigns[3].hook: \"I self-hosted my scheduling stack with Cal.diy, here's what the setup actually looks like.\"; sample_copy.body: \"Cal.diy ... gives you the full scheduling stack under MIT license: booking pages, availability routing, 100+ app integrations, and Cal Video conferencing\"",
+      "systemic": true,
+      "cause_hint": "campaigns prompt allows first-person user voice for the builder; inherits the profile licence conflation"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The Show HN angle promises a live demo that the profile says does not exist.",
+      "evidence": "brand_campaigns[1].sample_copy.cta: \"Repo and live demo at cal.com\" vs profiles.data.gaps[0]: \"No interactive live demo, 'Book a demo' links to a sales call\"",
+      "systemic": true,
+      "cause_hint": "campaign sample copy is not checked against profile gaps"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The approved listing repeats the licence conflation as fact: the hosted codebase is described as 100% MIT and Cal.diy as the 'full stack'.",
+      "evidence": "listing.description_long: \"with a codebase that is 100% MIT-licensed and auditable by anyone. Run it on Cal.com's cloud or self-host the full stack on your own servers with Cal.diy.\"",
+      "systemic": true,
+      "cause_hint": "listing prompt trusts profile differentiators; no check against the README's 'what's different' section"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The listing misquotes Guillermo Rauch and inflates Kent C. Dodds's one-line testimonial.",
+      "evidence": "listing.description_long: \"Guillermo Rauch (Vercel CEO) calls it \\\"great and well designed.\\\" Kent C. Dodds migrated his entire workflow to it.\" vs proof_points: \"I think Cal.com has a very good chance of creating a new category around being both great and well designed.\" and \"I just migrated from Calendly to Cal.com.\"",
+      "systemic": true,
+      "cause_hint": "listing prompt has no verbatim-quote rule like the LinkedIn rulebook's quote rule"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The recommended Organizations tier includes 'Priority support', which cal.com/pricing lists only under Enterprise.",
+      "evidence": "pricing.recommendation.tiers[2].includes: \"Priority support\" vs cal.com/pricing Enterprise tier: \"Priority Slack & account support\" (Organizations lists SAML SSO and SCIM, sub-teams, subdomain, no priority support)",
+      "systemic": false,
+      "cause_hint": "pricing pipe tier synthesis"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The monthly 'higher-positioned' option ($15/$32) sits below Cal.com's current monthly prices, since the page shows the $12 and $28 annual prices as 'Save 25%', yet it is framed as a premium.",
+      "evidence": "pricing.options[2].positioning: \"willing to pay a slight premium over Calendly by pricing Teams at $15/user/month and Organizations at $32/user/month on flexible monthly billing\" vs cal.com/pricing: \"$12 per month/user Save 25%\"",
+      "systemic": false,
+      "cause_hint": "pricing pipe did not derive current monthly rates from the annual discount"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "An unsourced competitor price appears in a rationale, and the listing's confidence note says no competitor is named even though 'Calendly alternative' is a keyword.",
+      "evidence": "pricing.recommendation.tiers[2].rationale: \"far below Calendly Enterprise ($15k/yr)\"; listing.confidence.notes: \"No competitor names used\" vs keywords: \"Calendly alternative\"",
+      "systemic": true,
+      "cause_hint": "pricing rationale not limited to scraped competitor tiers; listing self-check is not mechanical"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Reddit post opens with false claims about Calendly, which has a public API and removes branding on paid plans; this is the competitor swipe the rules forbid, presented as neutral.",
+      "evidence": "reddit_post.body: \"Calendly handles the booking step well; it doesn't give you an open API to query your own scheduling data, and white-labeling the booking page sits behind an enterprise contract.\"; warnings: \"Calendly is named as a neutral fact ... using only information from APP_PROFILE.icp.pain\"",
+      "systemic": true,
+      "cause_hint": "reddit rule 'name the obvious existing alternative and state the one thing it does or does not do' plus an unsourced icp.pain; no gate checks competitor facts"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Product Hunt first comment says hosted and self-hosted give the same features and the whole codebase is MIT, both false per the Cal.diy README.",
+      "evidence": "producthunt.first_comment: \"The whole codebase is MIT-licensed: self-host it with Cal.diy, or use our managed cloud, same features either way.\"",
+      "systemic": true,
+      "cause_hint": "inherits profile differentiators[0]; no claim gate against README"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The X post and newsletter present Cal.com as escaping per-seat pricing, although the chosen pricing and the site charge $12 per user for Teams.",
+      "evidence": "x_post.post: \"Embeds, webhooks, round-robin routing, and Cal Video built in. No per-seat lock-in.\"; newsletter_pitch.pitch: \"without paying a per-seat fee for every person added to the team\" vs selected_pricing Teams: \"price_usd_month\": 12 (per user, per cal.com/pricing \"per month/user\")",
+      "systemic": true,
+      "cause_hint": "drafts use the icp.pain framing without a cross-stage consistency check against COMMERCIAL"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Fork counts are turned into an unsupported claim that many teams run Cal.com on their own infrastructure, though Cal.diy has team features removed and is labelled non-production.",
+      "evidence": "x_post.thread_extension[2]: \"15,237 forks means a lot of teams already do.\"; linkedin_post: \"People aren't just using it, they're running it themselves.\"; reddit_post: \"which gives you a sense of how much the self-hosting path actually gets used\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES allow proof-point numbers but not the inference drawn from them; no gate on number interpretation"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The LinkedIn draft still has its unresolved antithesis blocker, and the gate missed a second 'not just / they're' contrast that the rule names explicitly.",
+      "evidence": "linkedin_post.blockers: \"(\\\"Scheduling isn't just about booking meetings. It's\\\")\"; uncaught in post: \"People aren't just using it, they're running it themselves.\"",
+      "systemic": true,
+      "cause_hint": "antithesis detector matches only the first hit or only adjacent-sentence shapes; LinkedIn repair did not run"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN contradicts the product (a per-seat SaaS calling itself 'not a per-seat SaaS') and closes on an invented architecture debate that its own warning admits the profile does not record.",
+      "evidence": "show_hn.body: \"not a per-seat SaaS with your data locked behind a proprietary API\" and \"Docker Compose for a single-machine deploy or a Kubernetes-ready Helm chart as the default?\"; warnings: \"The self-host deployment question (Docker Compose vs Helm) is inferred\"",
+      "systemic": true,
+      "cause_hint": "show_hn rule 'never an internal debate the profile does not mention' is warned, not enforced"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit draft targets r/SideProject by default although the selected venue is r/selfhosted, and its title is not first person while claiming Cal.com is MIT licensed.",
+      "evidence": "reddit_post.warnings[0]: \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"; title: \"Cal.com - open-source scheduling infrastructure, MIT licensed, 48k GitHub stars\"; targets rank 1 selected: \"r/selfhosted\"",
+      "systemic": true,
+      "cause_hint": "social stage runs before targets, so no TARGET is passed to the reddit prompt"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt first comment invents a roadmap commitment for the sandbox gap.",
+      "evidence": "producthunt.first_comment: \"The demo link goes to a sales call, not a live environment you can poke around in. That is on the list.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES forbid inventing a limitation but not a plan to fix one"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The X hook copies the rulebook's example template word for word.",
+      "evidence": "x_post.post: \"48,727 GitHub stars and one job: scheduling infrastructure you own.\" vs rulebooks.ts x_post pattern: \"[N] GitHub stars and one job: it fails the build when...\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts x_post hook pattern example is too literal"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter pitch is thin: one proof point, a first paragraph of three sentences where the rule allows one or two, and six paragraph breaks.",
+      "evidence": "newsletter_pitch.warnings: \"pitch: Six or more paragraph breaks\"; first paragraph has three sentences beginning \"Freelancers, startup founders, and engineering teams...\"",
+      "systemic": true,
+      "cause_hint": "newsletter repair did not run on a warning-level shape break"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The approved reel carries a truncated, misspelled drop line and repaired lines that no longer read as English or match the site.",
+      "evidence": "reel.slots: \"drop_line\": \"SCHEDULING INFRASTRUCTUR.\" (clamped), \"breathe_line\": \"NO DOUBLE BOOKS. EVER.\", \"payoff_unit\": \"BOOK LINK.\", \"step1_button\": \"GET GOING\" vs claims_used: \"step1_button 'GET STARTED' from SITE_COPY\"",
+      "systemic": true,
+      "cause_hint": "studio script clamp cuts characters instead of words; slot repair rewrites site words; reel approval does not check clamped slots"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel opens on template scenario numbers and an absolute promise not taken from the product.",
+      "evidence": "script.slots: \"load_n1\": \"14\", \"load_l1\": \"MEETINGS SET\", \"load_n3\": \"2\", \"load_l3\": \"HOURS LEFT\", \"cost_line\": \"SOMEONE SHOWS UP TWICE.\", \"breathe_line\": \"NO DOUBLE BOOKS. EVER.\"",
+      "systemic": true,
+      "cause_hint": "verdict concept spec requires scenario numbers in the load beat"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The X card repeats the false 'No per-seat lock-in' line, and the poster sets the product name in low-contrast grey on near black.",
+      "evidence": "kit.images[x].headline: \"... No per-seat lock-in.\"; reel.vars: \"canvas\": \"#090404\", \"brand\": \"#606060\" (poster.jpg title CAL.COM rendered in that grey)",
+      "systemic": true,
+      "cause_hint": "cards reuse draft copy verbatim; brand var derived from a colourless palette without a contrast floor"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Several venues do not fit a five-year-old product with more than 1M users: Indie Hackers, DevHunt, Peerlist Launchpad and r/EntrepreneurRideAlong are early-builder venues, and Hacker News is missing even though a Show HN was drafted.",
+      "evidence": "targets rank 2 \"Indie Hackers\" why_fit: \"Bootstrapped founders and indie consultants are core ICP\"; rank 8 \"DevHunt\"; rank 7 \"Peerlist Launchpad\"; no Hacker News row among 13 targets",
+      "systemic": true,
+      "cause_hint": "targets prompt does not weight profile.maturity 'launched' (repo created 2021-03-22)"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The directory venues tell the founder to submit where Cal.com is already listed (its own pricing page links its G2 reviews), and every rules summary is unverified.",
+      "evidence": "targets rank 13 G2 submission_url: \"https://sell.g2.com/list-your-product\"; cal.com/pricing footer links \"...products/cal-com/reviews\"; every row: \"rules_summary\": \"not verified\"",
+      "systemic": true,
+      "cause_hint": "no existing-listing check for directories; FireCrawl rules fetch failed for all venues"
+    },
+    {
+      "stage": "signals",
+      "severity": "blocker",
+      "summary": "Both kept signals are synthetic test issues in a zero-star 'benchmark' repo created minutes before them, not real buyers, yet the rescore passed them at 0.97.",
+      "evidence": "signals[0].url: \"https://github.com/operatorx4569-a11y/distribution-eval/issues/2\"; repo description: \"Reality validation benchmark repository for autonomous distribution\" (created 2026-09-06T16:34:53Z, issues opened 16:36)",
+      "systemic": true,
+      "cause_hint": "signals rescore does not check author/repo legitimacy (repo age, stars, description, single-author issue clusters)"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The replies point a multi-tenant platform and an internal portal at Cal.diy, which the README says is non-production and lacks team features, while also promising round-robin.",
+      "evidence": "signals[0].drafted_reply: \"round-robin routing is built into team event types ... Self-hosting via the MIT-licensed Cal.diy edition also means you own the data and can namespace booking links per tenant\"; signals[1]: \"Self-hosting via Cal.diy is MIT-licensed, so no licensing friction for an internal tool\"",
+      "systemic": true,
+      "cause_hint": "reply prompt inherits profile licence conflation"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "Each reply claims 'I built Cal.com', an identity the profile does not give the user.",
+      "evidence": "signals[0].drafted_reply: \"I built Cal.com, you can explore the self-hosted path at https://cal.com.\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt lacks the [Builder first name]/'I am one of the builders' rule used in social rulebooks"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan puts Product Hunt in the launch order although the targets stage ranked it 9th, left it unselected and advised saving it for a major release.",
+      "evidence": "8-plan.png tracked links: \"Product Hunt platform lk_platform_product_hunt\" vs targets_meta.sequencing_advice: \"save Product Hunt for a major version release only\"",
+      "systemic": true,
+      "cause_hint": "plan adds a platform venue for every approved post without reconciling with targets"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan shows 'Plan ready' while the LinkedIn draft is blocked and dropped without a word, and it states per-seat prices as flat monthly prices.",
+      "evidence": "8-plan.png: \"Plan ready\" with Social Launch rail at \"4\"; Pricing: \"Teams $12/mo, Organizations $28/mo\" (site: \"per month/user\")",
+      "systemic": true,
+      "cause_hint": "plan decisions renderer drops the per-user unit; readiness ignores blocked posts"
+    }
+  ],
+  "best": "Commercial pricing anchors: the recommended tiers reproduce Cal.com's live $0 / $12 / $28 prices with correct 14-day trials, and the competitor prices (Calendly $10/$16, SavvyCal $10/$17) are plausible and sourced; the Show HN is the most usable post, in shape and honest about the sandbox and enterprise-pricing gaps.",
+  "worst": "Signals: both 'verified' buyers are synthetic issues in a benchmark repo, and the replies steer them to the non-production Cal.diy fork. Close behind is the licence conflation that starts in the profile and puts false claims into the approved listing and the Product Hunt and Reddit posts ('same features either way', '100% MIT-licensed').",
+  "notes": "The root cause of most blockers is one profile error: the README for calcom/cal.diy (the renamed repo) describes an MIT fork with Teams, Organizations, Workflows and SSO removed, and the profile applied those properties to hosted Cal.com. No later stage checked claims against the README. The gates did not catch the false Calendly claims in the Reddit post (the warning called them neutral), the second antithesis in LinkedIn, or the clamped reel line. Social ran without a TARGET, so Reddit drafted for r/SideProject while r/selfhosted was selected. No em dashes or banned words were found in stored drafts. Facts checked live on 2026-09-29: cal.com/pricing (Teams $12, Orgs $28, 'Save 25%', priority support Enterprise-only), cal.com/customers ('1,000,000+ users', customer stories), GitHub API for calcom/cal.diy and operatorx4569-a11y/distribution-eval."
+}

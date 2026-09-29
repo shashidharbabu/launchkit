@@ -1,0 +1,210 @@
+{
+  "slug": "documenso",
+  "scores": {"profile": 3, "brand": 2, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 2, "linkedin_post": 2, "reddit_post": 2, "producthunt": 2, "show_hn": 2, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "Three of the five recorded gaps are read failures of the analysis, not product gaps.",
+      "evidence": "profiles[0].data.gaps: \"Customer logo strip on homepage is image-only; company names are not readable in scraped text\", \"Open Startup page (documenso.com/open) was not scraped\", \"Pricing FAQ answers were not rendered in the scraped content\"",
+      "systemic": true,
+      "cause_hint": "profile/understand prompt: gaps field is not restricted to product gaps; read failures belong in confidence.notes"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The profile adds a claim the site does not make, and it then spreads to the listing and four posts.",
+      "evidence": "profiles[0].data.differentiators: \"enterprise-ready without custom legal work\" (site says only \"Fully compliant signatures in your embeds, links, and emails. Right out of the box.\")",
+      "systemic": false,
+      "cause_hint": "profile model paraphrase"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The chosen angle's title is false and names a competitor: Documenso did not open-source DocuSign.",
+      "evidence": "projects[0].selected_campaigns: [\"Show HN: We Open-Sourced DocuSign\"]",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt allows competitor names in angle names; GLOBAL_RULES competitor rule is applied only at the post stage"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "Three of six angles carry negative copy about a named competitor.",
+      "evidence": "brand_campaigns sample_copy: \"DocuSign is a closed black box.\"; \"DocuSign's API costs scale against you.\"; \"DocuSign is expensive, closed-source, and hard to embed.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt has no competitor-negativity rule (rulebook.md 4.1 show, don't tell)"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The brand DNA captured no colours, typography or logo, although the studio probe later found both logo and accent colour on the same site.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"logo_url\": \"\"; studio kit: \"accent\": {\"hex\": \"#5cb31e\"}, \"logo\": {\"kind\": \"apple-touch-icon\"}",
+      "systemic": true,
+      "cause_hint": "brand DNA pipe reads Framer markdown only; it does not reuse the studio probe's computed styles"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "Revenue figures for the two subscription options are ten times too low.",
+      "evidence": "pricing.options[0] tiers 25/40/250 (average 105) but \"revenue_at\": {\"10\": 105, \"50\": 525, \"200\": 2100}; options[1] tiers 20/40/250 but \"revenue_at\": {\"10\": 103, \"50\": 517, \"200\": 2067}",
+      "systemic": true,
+      "cause_hint": "apps/launchkit/src/domain/questions.ts REVENUE rule is left to the model; api.ts stores revenue_at without recomputing it"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen tiers list features the live pricing page does not offer, against the INCLUDED rule.",
+      "evidence": "selected_pricing Teams includes \"Approval workflows\", \"Priority support\"; Individual includes \"Email + chat support\"; site Teams lists \"Email Support\", \"Embedded Signing\" and Individual lists \"Email Support\"",
+      "systemic": true,
+      "cause_hint": "questions.ts INCLUDED rule is not enforced by any gate against pricing_current"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The recommendation quotes a DocuSign API price although the research says DocuSign's pricing page was unreachable.",
+      "evidence": "recommendation Platform rationale: \"DocuSign API plans run $400-$600+/mo at scale.\"; confidence.notes: \"DocuSign ... returned 404; their tiers are excluded per rules.\"",
+      "systemic": true,
+      "cause_hint": "questions.ts RULES 1 (never invent a competitor price) is not checked by code"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The annual option invents a $240/yr Individual price, contradicting the current $300/yr, and the rationale misreads SignNow's per-account price as per-user.",
+      "evidence": "options[1].positioning: \"billed annually at $240/yr (Individual)\"; site: \"$300 billed yearly\"; recommendation: \"$8/user matches SignNow Business per-account rate\"",
+      "systemic": false,
+      "cause_hint": "pricing model draft"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing FAQ calls HIPAA a certification and adds the invented 'no custom legal work' promise.",
+      "evidence": "listing.faq: \"meets ESIGN Act, UETA, 21 CFR Part 11, SOC2, and HIPAA requirements out of the box, no custom legal work required.\"; \"SOC2 and HIPAA certifications\"",
+      "systemic": false,
+      "cause_hint": "inherits the profile differentiator"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The approved LinkedIn post invents a first-person origin story.",
+      "evidence": "linkedin_post.post: \"I built Documenso because document signing touches contracts, compliance, and customer trust, and none of that should run on code you can't read or audit.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES 'Never invent an origin story' is not gated; the post was approved with blockers: []"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "An X thread tweet is 309 characters, over X's 280 limit, and no gate catches it; the only blocker is on a different, 251-character tweet.",
+      "evidence": "x_post.thread_extension second tweet \"Documenso is open-source under AGPLv3. The signing logic is public. ... user management.\" (309 chars); blockers: [\"thread_extension[1]: A thread tweet over 250 characters (251 characters, cap 250)\"]",
+      "systemic": true,
+      "cause_hint": "thread length check in the draft gate reports one violation, or indexes the wrong tweet"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Show HN body keeps a builder placeholder and an unresolved blocker that the row claims it repaired.",
+      "evidence": "show_hn.body: \"[Builder: add one more limitation if relevant.]\" and \"{APP_URL} opens the hosted app.\"; repaired: [\"body: {APP_URL} inside a sentence; put it on its own line\"] while blockers still lists it",
+      "systemic": true,
+      "cause_hint": "repair loop marks items repaired without re-checking; show_hn limitation rule only allows the exact placeholder when the profile has no gap"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Product Hunt still has four topics although 'repaired' says the topic cap was fixed, and the trimmed description no longer says what the product is.",
+      "evidence": "producthunt.topics: [\"Developer Tools\", \"Open Source\", \"SaaS\", \"Productivity\"]; repaired: \"topics: More than 3 topics\"; description: \"Closed signing infrastructure gives you no way to audit the logic, control where data lives, or embed a native signing experience without hitting API pricing walls.\"",
+      "systemic": true,
+      "cause_hint": "length-cap trim drops closing sentences blindly (the product sentence went); repaired list is not verified"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Posts invent roadmap commitments around the recorded gap.",
+      "evidence": "reddit_post.body: \"We don't have a public roadmap line for that yet.\"; producthunt.first_comment: \"That is the next thing we want to fix.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES limitation rule does not forbid adding intent; no check"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The approved Reddit post keeps a banned phrase the gate flagged, and it is written for r/SideProject while the selected venue is r/selfhosted.",
+      "evidence": "reddit_post.body: \"The honest gap right now is that there's no sandbox\"; warnings: \"body: AI-tell vocabulary and the limitation-template phrases (\\\"The honest gap\\\")\", \"this draft defaults to r/SideProject\"",
+      "systemic": true,
+      "cause_hint": "banned-phrase check is a warning not a blocker; social stage runs before targets so no venue reaches the draft"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter blocker is a false positive: the pitch holds only one proof point.",
+      "evidence": "newsletter_pitch.blockers: \"Two proof points (a second traction figure or a customer list) where rule 3 allows exactly one\"; pitch's only figure: \"It has 15,251 stars on GitHub\"",
+      "systemic": true,
+      "cause_hint": "newsletter proof-point detector in the draft gate"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "LinkedIn opener treats every GitHub star as a developer and asserts an unsupported market claim.",
+      "evidence": "linkedin_post.post: \"15,251 developers starred Documenso on GitHub. Teams are done treating signing infrastructure as a closed black box.\"",
+      "systemic": false,
+      "cause_hint": "hook pattern"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel opens on invented scenario numbers and a generic by-hand pile, not the product's real world.",
+      "evidence": "reel.slots: \"load_n1\": \"18\", \"load_l1\": \"DOCUMENTS\", \"load_n2\": \"3\", \"load_l2\": \"SIGNERS\", \"load_n3\": \"2\", \"load_l3\": \"HOURS LEFT\", \"pile_line\": \"EVERY DOC. SENT BY HAND.\"",
+      "systemic": true,
+      "cause_hint": "verdict concept spec asks for 'Scenario numbers, not product claims' in the load beat"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The poster's product name is dark grey on black and hard to read.",
+      "evidence": "reel.vars: \"canvas\": \"#090404\", \"brand\": \"#606060\"; poster.jpg shows DOCUMENSO in grey on black",
+      "systemic": true,
+      "cause_hint": "reel palette: brand derived from a black primary with no contrast check against canvas"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The plates show a late-night server-room devops office rather than signing contracts.",
+      "evidence": "images.scene.brief: \"a glass-fronted server rack blinking amber in the corner ... terminal windows and document-queue lists\"",
+      "systemic": true,
+      "cause_hint": "image world prompt defaults to developer/ops tropes for dev-tool profiles"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The sequencing advice treats features that already exist as future launch milestones.",
+      "evidence": "targets_meta.sequencing_advice: \"Reserve Show HN and Product Hunt for a major version milestone (Platform plan GA, v2, or HIPAA certification announcement)\"; the profile lists the Platform plan at $250/mo and HIPAA as current",
+      "systemic": false,
+      "cause_hint": "targets pipe advice drafting"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "All 14 venues have unverified rules, and low-reach launchpads rank top for a funded product with 15k stars that is already listed on AlternativeTo and Product Hunt.",
+      "evidence": "every target: \"rules_summary\": \"not verified\"; rank 1 \"Peerlist Launchpad\", rank 2 \"DevHunt\"; pricing.rejected: \"https://alternativeto.net/software/documenso\"",
+      "systemic": true,
+      "cause_hint": "FireCrawl rate limits (targets_meta.confidence.notes); ranking does not weigh maturity or check for existing listings"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "Empty result is honest, but Reddit, where 'DocuSign alternative' threads are common, was not searchable.",
+      "evidence": "signals_meta.coverage_notes: \"Reddit not searchable from this pipeline. All 10 calls exhausted.\"",
+      "systemic": true,
+      "cause_hint": "signals pipe search coverage"
+    },
+    {
+      "stage": "plan",
+      "severity": "high",
+      "summary": "The plan carries a Show HN angle while Show HN is not a selected venue and its post is an unapproved draft; two selected venues have no post at all.",
+      "evidence": "Plan: Angle \"Show HN: We Open-Sourced DocuSign\"; tracked links: Peerlist Launchpad, DevHunt, r/selfhosted, LinkedIn; show_hn status \"draft\"; summary.social.counts \"2 approved, 4 need review\" yet \"Plan ready\"",
+      "systemic": true,
+      "cause_hint": "plan readiness gate needs only one approved post and one venue; no consistency check between angle, venues and posts"
+    }
+  ],
+  "best": "The profile's facts and the listing's plan line-up match the live pricing page ($0 / $25 / $40 +$8 per user / $250, 5 docs and 10 recipients free). The newsletter pitch is clean and uses a single real proof point.",
+  "worst": "Commercial and brand: revenue maths off by 10x, invented tier features and an invented DocuSign price in the chosen pricing, and a chosen angle, 'We Open-Sourced DocuSign', that is false and names a competitor, carried into the plan.",
+  "notes": "Live site checked (documenso.com, /pricing, /compliance) and HN search. The site's $25/$40/$250 are billed-yearly rates; no stage notes that monthly billing costs more. No prior 'Show HN' for Documenso exists, only plain submissions, so 'Repeat venue' in targets is loosely true. Four of six posts end with blockers, and the 'repaired' lists claim fixes (PH topics, Show HN URL) that the stored drafts do not show."
+}

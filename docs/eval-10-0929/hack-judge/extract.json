@@ -1,0 +1,223 @@
+{
+ "slug": "hack-judge",
+ "name": "hack-judge",
+ "site": "https://hackathon-judge-aid.onrender.com",
+ "repo": "",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 90,
+   "error": null
+  },
+  "brand": {
+   "ok": false,
+   "secs": 945,
+   "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Draft the angles/ }).first() to be visible\n"
+  },
+  "commercial": {
+   "ok": false,
+   "secs": 10,
+   "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Commercial/ }).first()\n"
+  },
+  "social": {
+   "ok": false,
+   "secs": 10,
+   "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Social Launch/ }).first()\n"
+  },
+  "assets": {
+   "ok": false,
+   "secs": 10,
+   "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Assets/ }).first()\n"
+  },
+  "targets": {
+   "ok": false,
+   "secs": 10,
+   "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Targets/ }).first()\n"
+  },
+  "signals": {
+   "ok": false,
+   "secs": 10,
+   "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Signals/ }).first()\n"
+  },
+  "plan": {
+   "ok": false,
+   "secs": 10,
+   "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root nav[aria-label=\"Stages\"] a:visible').filter({ hasText: /Plan/ }).first()\n"
+  }
+ },
+ "profile": {
+  "status": "draft",
+  "data": {
+   "one_liner": "An aid tool for hackathon judges, likely helps evaluate and score hackathon submissions, for event organizers and judges.",
+   "description": "Hackathon Judge Aid appears to be a web application designed to assist judges at hackathon events with evaluating and scoring participant submissions. The app name strongly implies structured judging workflows, rubric management, or scoring aggregation. No live content could be retrieved to confirm specific features.",
+   "category": "Event Management / Judging Tools",
+   "target_user": "Hackathon organizer or assigned judge who needs to evaluate and score multiple team submissions",
+   "icp": {
+    "who": "Hackathon organizers and volunteer judges at tech events, universities, or corporate innovation programs",
+    "pain": "Coordinating scores from multiple judges across many teams using spreadsheets is error-prone, slow, and hard to aggregate fairly",
+    "current_alternatives": [
+     "Google Sheets",
+     "Devpost",
+     "HackerEarth"
+    ],
+    "buying_trigger": "Organizing an upcoming hackathon and needing a structured, shareable way to collect and tally judge scores"
+   },
+   "differentiators": [],
+   "proof_points": [],
+   "tech_stack": [
+    "Render (hosting platform, inferred from render.com domain)"
+   ],
+   "pricing_current": "none found",
+   "voice": {
+    "tone": [
+     "unknown"
+    ],
+    "sample_phrase": "No copy could be retrieved, site returned 503 on all attempts."
+   },
+   "maturity": {
+    "stage": "alpha",
+    "signals": [
+     "Hosted on Render free tier (app sleeps when idle, causing 503 on scrape)",
+     "No custom domain, using render.com subdomain",
+     "No repo supplied, suggesting early/private development"
+    ]
+   },
+   "gaps": [
+    "Live site unreachable (503), no screenshots, copy, or feature list could be verified",
+    "No pricing page found or readable",
+    "No demo video or walkthrough found",
+    "No testimonials or social proof found",
+    "No GitHub repository supplied, tech stack and features unverifiable",
+    "No custom domain, discoverability and credibility gap"
+   ],
+   "confidence": {
+    "overall": 0.1,
+    "notes": "All sources failed: https://hackathon-judge-aid.onrender.com returned 503 on every attempt (Render sleeping instance), /pricing also 503, site map returned 0 links, and no GitHub repo was supplied. Profile is inferred entirely from the subdomain name 'hackathon-judge-aid'. No claims about features, pricing, tech stack, or copy can be verified."
+   },
+   "sources_read": [
+    {
+     "source": "https://hackathon-judge-aid.onrender.com/",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "503 Service Unavailable, Render app sleeping, no content"
+    },
+    {
+     "source": "https://hackathon-judge-aid.onrender.com/pricing",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "503 Service Unavailable, Render app sleeping, no content"
+    },
+    {
+     "source": "https://hackathon-judge-aid.onrender.com (map)",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "Site map returned 0 links, app unreachable"
+    }
+   ],
+   "analysis_degraded": true
+  }
+ },
+ "brand": {
+  "dna": {},
+  "angles": [],
+  "chosen": []
+ },
+ "commercial": {
+  "competitors": [],
+  "rejected": null,
+  "recommendation": null,
+  "options": null,
+  "models_considered": null,
+  "market_rate": null,
+  "confidence": null,
+  "selected_pricing": null,
+  "listing": {},
+  "listing_status": null
+ },
+ "posts": {},
+ "assets": {
+  "images": {
+   "domain": null,
+   "subject": null,
+   "model": null,
+   "plates": []
+  },
+  "script": {
+   "slots": null,
+   "clamped": null,
+   "repaired": null,
+   "tagline": null,
+   "claims_used": null
+  },
+  "voice": {
+   "engine": null,
+   "tone": null,
+   "all_fit": null,
+   "segments": []
+  },
+  "reel": {
+   "video_url": null,
+   "poster_url": null,
+   "plates_used": null,
+   "voice_used": null,
+   "status": null
+  },
+  "cards": {
+   "count": 0,
+   "images": 0,
+   "zip": false
+  }
+ },
+ "targets": [],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 4,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T08:51:24.681Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 4,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T08:51:24.681Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T08:51:24.681Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 4,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T08:51:24.681Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 4,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T08:51:24.681Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T08:51:24.681Z"
+  }
+ ]
+}

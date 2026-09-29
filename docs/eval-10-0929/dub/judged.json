@@ -1,0 +1,202 @@
+{
+  "slug": "dub",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 2, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 2, "reddit_post": 1, "producthunt": 3, "show_hn": 0, "newsletter_pitch": 4},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Show HN draft was never produced: lk_assets.pipe failed three runs of four attempts each on unparseable JSON, yet the drive recorded Hacker News as drafted and the plan says ready.",
+      "evidence": "runs: asset:show_hn status \"error\", elapsed 611, error \"LLM error: Exception: Failed to get valid JSON response after 4 attempts. Cause: Unterminated string starting at: line 3 column 14 (char 213). Last response: ```json {\\\"thought\\\": \\\"I have all the information needed ... \\\"scratch\\\": \\\"Writing Show HN for Dub. Key constraints...\" ; summary.json social.per \"Hacker News\": {\"drafted\": true, \"secs\": 301, \"idle\": false, \"failed\": \"\"}; assets table has 5 rows, no show_hn",
+      "systemic": true,
+      "cause_hint": "lk_assets.pipe show_hn prompt: the model's long 'thought'/'scratch' preamble breaks the JSON contract (unterminated string, likely output cap or raw newlines) and /opt/rocketride/ai/common/chat.py:633 gives up after 4 tries; launchkit-src/frontend/drive.full.mjs marks a platform drafted without checking an assets row exists"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The chosen pricing invents a new price sheet (Pro $49, Business $149, $10K payouts) for a launched product whose public prices are Pro $30, Business $90, Advanced $300, and the plan carries it as the decision.",
+      "evidence": "projects.selected_pricing: {\"name\": \"Pro\", \"price_usd_month\": 49 ...}, {\"name\": \"Business\", \"price_usd_month\": 149, ... \"Up to $10K partner payouts/mo\"}; live dub.co/pricing/links: \"Pro $30 per month\", \"Business Best Value $90 per month\", \"Advanced $300 per month\"; dub.co/pricing: \"$2.5K partner payouts/month\"",
+      "systemic": true,
+      "cause_hint": "lk_commercial.pipe TASK: pricing treats a launched product with public prices as unpriced because the profile said amounts were not captured; no rule forces the recommendation to anchor on the app's own current prices"
+    },
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile claims Dub's prices could not be read, but the pricing page renders them as plain text; this read miss drove the invented pricing downstream.",
+      "evidence": "profiles.data.pricing_current: \"Exact monthly dollar amounts not captured (animated counter on pricing page).\" vs dub.co/pricing: \"### Business $90 per month\" and \"### Advanced Best Value $300 per month\"",
+      "systemic": true,
+      "cause_hint": "lk_understand.pipe firecrawl scrape of dub.co/pricing (or the prompt's reading of it); confidence 0.85 was not lowered for the miss"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "A read gap is recorded as a product gap: Dub publishes an active changelog, but the profile says none exists.",
+      "evidence": "profiles.data.gaps: \"No public product roadmap or changelog found in sources read\"; live dub.co/changelog lists entries dated September 22, 2026 and September 11, 2026",
+      "systemic": true,
+      "cause_hint": "lk_understand.pipe only reads README, package.json, homepage and pricing, then lists unread things as gaps"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Reddit post states a false limitation (no public changelog) that came from Launch Kit's own read gap, uses the banned phrase 'The honest limitation', and still carries an unfilled placeholder; it was approved with only warnings.",
+      "evidence": "reddit_post.body: \"The honest limitation I'll flag: we don't have a public product roadmap or changelog published anywhere right now ... Limitation: [builder to add one specific product gap here].\" ; its own warning: \"The 'no public roadmap' note in the profile is a Launch Kit scrape artifact, not a confirmed product limitation\"",
+      "systemic": true,
+      "cause_hint": "reddit_post rule 'A read failure ... is Launch Kit's own scrape artifact, never a limitation' is only a warning in the gate, not a blocker; profile gaps mix read failures with product gaps"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post opens by attacking a named competitor and frames two more competitors negatively, breaking GLOBAL_RULES on neutral competitor mentions.",
+      "evidence": "reddit_post.body: \"Bitly tracks clicks; it has no step that connects those clicks to actual revenue or affiliate payouts.\" and \"Tools like Impact.com and PartnerStack exist for affiliate management, and Bitly exists for link shortening, but they don't talk to each other.\"",
+      "systemic": true,
+      "cause_hint": "reddit rulebook 'the existing tool named' pushes toward comparison; the competitor-negativity check did not fire on 'has no step'"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post is written for r/SideProject, which is not one of the three selected venues, and r/SideProject is a poor fit for a 24,838-star commercial product.",
+      "evidence": "reddit_post.warnings: \"No TARGET subreddit was specified; this draft defaults to r/SideProject\"; targets selected: r/affiliatemarketing, r/SaaS, r/selfhosted",
+      "systemic": true,
+      "cause_hint": "Social Launch runs before Targets, so no TARGET is passed to lk_assets.pipe for reddit_post"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The LinkedIn opener invents a claim about Dub's own traffic that reads as a product failure, and the gate caught it but let it through as a warning.",
+      "evidence": "linkedin_post.post: \"100 million clicks a month run through Dub. Most of them never get connected to a single dollar of revenue.\" ; warnings: \"post: A star, fork, click or user count followed by a claim about why those people did it ... (\\\"100 million clicks a month run through Dub. Most of them\\\")\"",
+      "systemic": true,
+      "cause_hint": "linkedin_post rule 116 violation is classified as a warning, not a blocker, in the post gate; status approved anyway"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Every post introduces Dub as if it were new; none writes the launch as a release naming a change, as the rules require for a product with a star count and years of history.",
+      "evidence": "x_post.alt_variants[1]: \"We built Dub because clicks aren't revenue.\"; x_post rule 79: \"When APP_PROFILE shows prior releases, a version number, a star count or a founding year, write the launch as a release, not a debut\"; dub.co/changelog: \"Introducing retainer-style rewards\" (September 11, 2026)",
+      "systemic": true,
+      "cause_hint": "profile never reads the changelog, so there is no release to name; the release-not-debut rule has no gate check"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The X post uses two proof points where the rule allows exactly one, and the thread adds a third (a customer list).",
+      "evidence": "x_post.post: \"24,838 stars. ... 100M+ clicks tracked monthly in production.\"; thread_extension[2]: \"Twilio, Framer, Vercel, and Raycast run on it in production.\"",
+      "systemic": true,
+      "cause_hint": "x_post rule 'Use exactly one proof point' has no counting check in the gate (the newsletter gate has one and repaired it)"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Product Hunt maker comment keeps the banned word 'genuinely' even though the gate flagged it.",
+      "evidence": "producthunt.first_comment: \"Two things I'd genuinely like to know\"; warnings: \"AI-tell or hype vocabulary the brand rulebook bans ... (\\\"genuinely\\\")\"",
+      "systemic": true,
+      "cause_hint": "banned-vocabulary check is a warning, not a repair or blocker"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The listing FAQ describes Dub's real Partners plans while the chosen pricing says something else, so the two stages contradict each other on tiers and payout limits.",
+      "evidence": "listing.faq: \"Dub Partners plans include Business (14-day trial, up to $2.5K partner payouts/month, 500 partners), Advanced (...up to $15K partner payouts/month...)\" vs selected_pricing Business: \"Up to $10K partner payouts/mo\" at $149",
+      "systemic": true,
+      "cause_hint": "lk_commercial.pipe TASK: listing reads the profile, not the chosen pricing option"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The recommended Free tier contradicts the live free plan's limits.",
+      "evidence": "pricing Free tier: \"1 custom domain\", \"Community support\" vs dub.co/pricing/links Free: \"3 custom domains\", \"API access\", \"Basic support\"",
+      "systemic": true,
+      "cause_hint": "pricing tiers copied from competitor anchors ('Mirrors Bitly Free') rather than the app's own plans"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "Enterprise is priced at 0 in the recommendation but null in the option, and the listing CTA claims no credit card is needed, which no stored source states.",
+      "evidence": "recommendation Enterprise: \"price_usd_month\": 0; options Enterprise: \"price_usd_month\": null; listing.cta: \"Start your 14-day free trial, no credit card required\"",
+      "systemic": false,
+      "cause_hint": "lk_commercial.pipe output normalisation"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Two campaign angles carry invented or banned framing: a made-up first-person story and a 'Dub replaces all three' competitor line.",
+      "evidence": "brand_campaigns 'The Affiliate Stack Audit' hook: \"(We counted ours and it was embarrassing.)\"; 'It Starts With a Link' big_idea: \"teams were stitching together Bitly, Impact.com, and a spreadsheet, Dub replaces all three.\"",
+      "systemic": true,
+      "cause_hint": "lk_brand.pipe TASK: campaigns is not held to GLOBAL_RULES (no invented origin, never 'we replaced X')"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The brand DNA has no colours, typography or logo, though the Assets probe later found all three on the same site.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"logo_url\": \"\"; studio probe: \"primary\": {\"value\": \"#3b82f6\"}, \"fonts\": {\"heading\": \"satoshi\", \"body\": \"Inter\"}",
+      "systemic": true,
+      "cause_hint": "lk_brand.pipe reads markdown scrapes only; the studio-forge probe result is not fed back into brand_dna"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel uses the site mock's domain-DNS statuses ('Verified', 'Pending') as if they were attribution verdicts, and the pile beat is a template 'hand-checked' chore that is not Dub's problem.",
+      "evidence": "script.slots: \"step2_label\": \"EVERY LINK, ATTRIBUTED.\", \"chip_1\": \"VERIFIED\", \"chip_3\": \"PENDING\", \"step3_chip\": \"VERIFIED\", \"pile_line\": \"EVERY LINK. HAND-CHECKED.\"; probe copy: \"p: To use try.acme.com for your short link domain, ensure the records below are configured.\"",
+      "systemic": true,
+      "cause_hint": "Verdict concept spec forces 'real categories' chips and a by-hand pile beat; lk_studio.pipe grabs any status word from SITE_COPY"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "Two clamped lines are ungrammatical or truncated, yet the reel was approved while its script row is still a draft.",
+      "evidence": "script.clamped: [\"doubt_2\", \"breathe_line\"]; \"doubt_2\": \"WHERE DID REVENUE COME?\", \"breathe_line\": \"KNOW WHAT DRIVES.\"; studio script status \"draft\", reel status \"approved\"",
+      "systemic": true,
+      "cause_hint": "studio-forge slot clamp cuts words instead of re-asking; reel approval does not check script status"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The voice-over overclaims: conversions need an integration, so 'every conversion gets caught' from pasting a link is not true.",
+      "evidence": "voice segment how: \"Paste your link. Every click gets attributed. Every conversion gets caught.\"",
+      "systemic": false,
+      "cause_hint": "lk_studio.pipe voice prompt"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "No venue has verified rules, and r/selfhosted is selected for a marketing attribution tool whose self-host depends on PlanetScale, Upstash and Tinybird.",
+      "evidence": "every target: \"rules_summary\": \"not verified\"; r/selfhosted selected: true, why_fit \"Dub's AGPLv3 self-hosting option and 24,838 GitHub stars signal strong open-source community fit\"; profile tech_stack: \"PlanetScale (MySQL database)\", \"Upstash (Redis)\", \"Tinybird (analytics)\"",
+      "systemic": true,
+      "cause_hint": "lk_targets.pipe: 'All Reddit rules unverified due to scraping blocks'"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "The ranking includes no Hacker News entry although a Show HN campaign and post were planned, and ranks directories (G2, AlternativeTo) without checking whether Dub is already listed.",
+      "evidence": "targets ranks 1 to 13 contain no Hacker News; brand_campaigns 'Show HN: We Open-Sourced Link Attribution'; rank 12 G2 why_fit \"Enterprise buyers ... evaluate affiliate/link management tools on G2\"",
+      "systemic": true,
+      "cause_hint": "lk_targets.pipe venue pool and maturity filter"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The kept signals are weak: one is six months old, one kept thread was never verified and has no date, and one author is giving advice rather than seeking a tool.",
+      "evidence": "signal 1 \"posted_when\": \"2026-03-23\"; signal 3 \"posted_when\": \"unknown\", rescore \"verdict\": \"unverified\", \"why\": \"fetch failed: not in the search index; page refused: Failed to fetch\"; signal 2 rescore: \"explicitly recommending server-to-server postback as the fix\"",
+      "systemic": true,
+      "cause_hint": "lk_signals.pipe recency window; unverified threads stay in the queue; browser-side thread fetch hits CORS (summary page_errors)"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "Replies describe mechanisms the profile never states and switch between 'built' and 'build' voice.",
+      "evidence": "signal 1 reply: \"it links a referring click to a customer ID once, then listens to Stripe events for upgrades, downgrades, and cancellations ... I built it: dub.co.\"; signal 3 reply: \"I build Dub ({APP_URL})\"",
+      "systemic": true,
+      "cause_hint": "lk_rescore.pipe reply writer is not held to 'claim only capabilities APP_PROFILE states'"
+    },
+    {
+      "stage": "plan",
+      "severity": "high",
+      "summary": "The plan says ready and lists Product Hunt (ranked as a repeat-only, unselected venue) but silently drops Hacker News, the post that failed, and carries the invented pricing.",
+      "evidence": "8-plan.png: \"Plan ready\", \"7 venues\", Pricing \"Free $0/mo, Pro $49/mo, Business $149/mo, Enterprise\", tracked link \"Product Hunt\"; targets rank 9 Product Hunt: \"REPEAT venue only: prior launch exists.\", selected false",
+      "systemic": true,
+      "cause_hint": "plan assembly builds platform venues from approved posts, never reports a missing post, and does not reconcile with targets"
+    }
+  ],
+  "best": "Brand DNA voice: it quotes the site's own lines verbatim ('Marketing isn't just about clicks. It's about outcomes.') and the chosen 'Clicks Aren't Revenue' angle is true to the product; the newsletter pitch is the cleanest post.",
+  "worst": "Commercial pricing: a launched product with public prices ($30/$90/$300) got a new invented sheet ($49/$149, $10K payouts) because the profile wrongly said the prices were unreadable, and the plan carries it as the launch decision.",
+  "notes": "Missing post is show_hn: lk_assets.pipe errored three times (each 'Failed to get valid JSON response after 4 attempts ... Unterminated string'), runs row asset:show_hn status error after 611 s; the drive misreported it as drafted. Four gate findings that should block (false limitation, invented LinkedIn claim, banned word, extra proof points) were left as warnings and every draft was approved. The root cause of most stage faults is the profile: it missed readable prices and the changelog, so pricing was invented, a false limitation reached Reddit, and no post could be framed as a release."
+}

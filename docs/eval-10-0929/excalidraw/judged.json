@@ -1,0 +1,186 @@
+{
+  "slug": "excalidraw",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 4, "plan": 3},
+  "post_scores": {"x_post": 4, "linkedin_post": 3, "reddit_post": 1, "producthunt": 2, "show_hn": 2, "newsletter_pitch": 4},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Reddit post has the maintainer publicly state a false product fact: that the pricing page redirects to the app and shows no comparison. plus.excalidraw.com/pricing has a full Free vs Plus table at $6 a month per user.",
+      "evidence": "assets.reddit_post.data.body: \"The pricing page redirects to the app rather than showing a comparison table, so it's genuinely unclear to new users what they'd get by upgrading. That's something we need to fix.\" Live site plus.excalidraw.com/pricing: \"Plus $6 a month per user ... Everything in Free + Unlimited scenes and folders ...\" and an \"Excalidraw vs. Excalidraw+\" comparison table",
+      "systemic": true,
+      "cause_hint": "profile.gaps turns a Firecrawl read failure (excalidraw.com/pricing redirect) into a product gap. The social pipe then uses gaps as the limitation, against the reddit rule 'A read failure ... is Launch Kit's own scrape artifact, never a limitation of the product'. The post-draft gate does not catch it."
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "Product Hunt and Show HN use the same read failure as their stated limitation, which is false because Excalidraw+ documents its pricing and feature split publicly.",
+      "evidence": "producthunt.first_comment: \"One honest limitation: Excalidraw+ (the premium tier) does not have its pricing and feature differences documented in a place I can point you to right now.\" show_hn.body: \"Limitation: the feature differences between the free tier and Excalidraw+ are not fully documented publicly yet.\"",
+      "systemic": true,
+      "cause_hint": "Same root as the Reddit issue. It breaks producthunt rule 'Never a documentation gap, a pricing page Launch Kit could not read' and show_hn rule 'never a read failure of the analysis ... dressed as a product gap'. The model's own warnings admit the fact is unverified but the text stays in the body."
+    },
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "Two of the four gaps are Launch Kit read failures, not product gaps, and a third is false: the Excalidraw+ site carries testimonials that the brand stage itself quoted.",
+      "evidence": "profiles.data.gaps: \"No dedicated pricing page on excalidraw.com, /pricing redirects to the app; Excalidraw+ pricing tiers could not be verified\", \"Excalidraw+ feature differentiation vs free tier not documented on the scraped pages\", \"No customer testimonials or case study pages found on excalidraw.com\"; brand_dna.voice.evidence_quotes: \"The messy aesthetic has me focusing on what I'm trying to say and not on how it looks.\"",
+      "systemic": true,
+      "cause_hint": "Profile/understand pipe: it never reads plus.excalidraw.com, and the gaps prompt allows 'could not be verified' and 'on the scraped pages' items instead of forcing them into warnings or confidence notes"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The chosen pricing invents a Team tier at $12 with SSO, audit logs, custom branding and priority support. Excalidraw+ has only Free and Plus, and team management is already in Plus.",
+      "evidence": "projects.selected_pricing.tiers[2]: {\"name\": \"Team\", \"price_usd_month\": 12, \"includes\": [\"Everything in Plus\", \"Team admin dashboard\", \"SSO and audit logs\", \"Priority support\", \"Custom branding\"]}; live plus.excalidraw.com/pricing Plus includes \"Teams management & collaboration\" and shows no third tier",
+      "systemic": true,
+      "cause_hint": "Pricing pipe: its recommendation is not constrained to the product's current public tiers even when it scraped them (confidence note: \"Excalidraw+ pricing scraped directly at $6/mo\")"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The Plus tier is shown at $8 as the chosen price, while the real current price is $6. The raise is written only in a rationale field, and the plan shows $8 as if it were the price.",
+      "evidence": "pricing.recommendation.tiers[1].rationale: \"Raise from $6 to $8 to match Miro Starter\"; plan screen Decisions: \"Free $0/mo, Plus $8/mo, Team $12/mo\"",
+      "systemic": true,
+      "cause_hint": "Pricing options and plan Decisions have no field that separates current price from proposed price"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The stages disagree about whether Excalidraw+ pricing is known: pricing says it scraped $6, but profile, listing and campaigns all say it is unknown.",
+      "evidence": "pricing.confidence.notes: \"Excalidraw+ pricing scraped directly at $6/mo\" vs listing.confidence.notes: \"Excalidraw+ pricing tiers are unknown so FAQ describes features only\" and profile.pricing_current: \"pricing details were not accessible during scraping\"",
+      "systemic": true,
+      "cause_hint": "Facts found by the pricing pipe are not written back to the profile or passed to the listing, campaign or social pipes"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing names Excalidraw+ features the pricing page does not list, and one competitor price is stated from memory.",
+      "evidence": "listing.description_long: \"Excalidraw+ adds persistent cloud storage, version history, and team workspaces\" (the live pricing page has no 'version history'); pricing.confidence.notes: \"Whimsical ... tier shown is approximate from memory\" with price \"~$10\"",
+      "systemic": true,
+      "cause_hint": "Listing and pricing prompts allow claims that no scraped source supports"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The 'Embed It Yourself' angle says the npm package brings real-time collaboration with no backend. The package does not include a collaboration server, so embedders must run one.",
+      "evidence": "brand_campaigns[3].sample_copy.body: \"Drop it into your product and your users get an infinite canvas, hand-drawn style diagrams, and real-time collaboration, end-to-end encrypted. No backend to run.\"",
+      "systemic": true,
+      "cause_hint": "Campaign pipe fills in a mechanism ('No backend to run') that the profile does not state"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The angles treat logo-wall customers (Netflix, Stripe, Supabase) as companies that embed Excalidraw in their products, which the README does not say.",
+      "evidence": "brand_campaigns[1].big_idea: \"the list of companies (Netflix, Meta, Stripe, Supabase) that embed Excalidraw in their own products\"; README 'Who's integrating Excalidraw' lists Google Cloud, Meta, CodeSandbox, Obsidian Excalidraw, Replit, Slite, Notion, HackerRank",
+      "systemic": true,
+      "cause_hint": "The campaign prompt merges brand_dna.proof_points_observed ('Trusted by the largest companies') with profile integration proof points"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The DNA records a single colour, #121212 (the dark theme-color meta), labelled as the brand background, and misses the real brand purple that the probe later found.",
+      "evidence": "brand_dna.visual.colors: [{\"value\": \"#121212\", \"role\": \"background\"}]; studio.probe.palette.primary: \"#6965db\" (\"most common button background\")",
+      "systemic": true,
+      "cause_hint": "The brand DNA pipe reads markdown only (\"Scrape returned markdown without CSS\"), and the probe's palette is not fed back into the DNA"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post opens by criticising draw.io with an invented detail, against the competitor rule. It is also drafted for r/SideProject when the selected Reddit venue is r/softwarearchitecture.",
+      "evidence": "reddit_post.body: \"draw.io gives you unlimited diagrams for free, but every shape snaps to a grid and the output looks like a formal spec doc. That rigidity is fine for some things...\"; warnings: \"This draft defaults to r/SideProject\"; targets rank 1 selected: \"r/softwarearchitecture\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES competitor rule is not enforced by the gate. Selected targets are not passed to the reddit draft as TARGET (targets run after social)."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN invents an internal architecture debate and a mechanism. It closes on an edge-vs-server question the profile never mentions and says the app 'takes freehand input and produces hand-drawn style diagrams'.",
+      "evidence": "show_hn.body: \"The choice I want a second opinion on is the collab architecture: keeping socket.io on a dedicated server versus moving it to the edge.\" and \"takes freehand input and produces hand-drawn style diagrams\"",
+      "systemic": true,
+      "cause_hint": "Breaks show_hn rules 'never an internal debate the profile does not mention' and 'Never infer a mechanism from a name'; the gate does not check either"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "LinkedIn says why the stars exist and claims a superlative, both against its rules.",
+      "evidence": "linkedin_post.post line 2: \"The number reflects something real: it's the fastest way to get a sketch in front of someone.\"",
+      "systemic": true,
+      "cause_hint": "Breaks linkedin rule 'A star, fork, download or click count is a count and nothing more' and the no-evaluative-claims rule; not gated"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt first comment makes a 'used by' claim, which PH rules ban, and adds a generic why-built moment the profile does not record. It also says no offer exists, although the DNA records a 14-day Excalidraw+ trial.",
+      "evidence": "producthunt.first_comment: \"The npm package (@excalidraw/excalidraw) is what Google Cloud, Meta, Notion, and Replit embed in their own products\"; \"Every time a team needed to sketch something fast, a diagramming tool got in the way...\"; brand_dna proof_points_observed: \"14 days of free trial (Excalidraw+)\"",
+      "systemic": true,
+      "cause_hint": "PH rule 'No ... used by teams at ... in first comment' is not gated. BRAND_DNA offers are not passed to the offer rule."
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Every post carries a false-positive 'foundation model provider' warning for Google Cloud as an integrator, and Reddit has a false-positive traction warning for a figure that is in proof_points.",
+      "evidence": "x_post.warnings: \"A foundation model provider is named ... (\\\"Google\\\")\"; reddit_post.warnings: \"A traction number ... that must appear in the profile proof points (\\\"15,517 forks\\\")\" while profile.proof_points has \"with 15,517 forks (repo metadata)\"",
+      "systemic": true,
+      "cause_hint": "Warning gate: its keyword match on 'Google' ignores context, and its proof-point match does not normalise the text"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "For a six-year-old product, the X post reads as a debut and names no release or change. The thread also makes an absolute claim that ignores Excalidraw+ accounts.",
+      "evidence": "x_post.post: \"133,206 GitHub stars. Open a browser tab, sketch a system architecture, share a link. No account, no install.\"; thread_extension[2]: \"No account, ever.\"",
+      "systemic": false,
+      "cause_hint": "X rule 'write the launch as a release, not a debut' is not followed because the profile records no current release"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel script uses template beats and invented scenario numbers that do not fit a whiteboard. Its problem beat ('every sketch by hand') contradicts a product whose selling point is hand-drawn sketching, yet the reel was approved.",
+      "evidence": "studio.script.slots: \"load_n1\": \"12\", \"load_l1\": \"DIAGRAMS DUE\", \"load_n2\": \"4\", \"load_l2\": \"REVIEWERS\", \"load_n3\": \"30\", \"load_l3\": \"MINUTES LEFT\", \"pile_line\": \"EVERY SKETCH. BY HAND.\"; voice.problem: \"Meeting starts, diagrams due, thirty minutes, every sketch done by hand.\"; reel status approved",
+      "systemic": true,
+      "cause_hint": "The 'verdict' concept template (scan-and-verdict beats, a load beat that asks for 'Scenario numbers') is applied to every product; the script pipe does not reject beats that do not fit"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "On the reel poster lockup the logo is black on a near-black canvas and almost invisible. The probe also recorded the site fonts as the fallback 'Times'.",
+      "evidence": "poster.jpg: black Excalidraw pen mark on #040409 canvas above \"FOR DEVELOPERS AND TEAMS\"; studio.probe.fonts: {\"heading\": \"Times\", \"body\": \"Times\"}",
+      "systemic": true,
+      "cause_hint": "studio-forge reel lockup does not check the logo's contrast or swap in a light variant for dark canvases; the probe reads computed fonts before webfonts load"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The venues fit an unknown indie tool, not a 133k-star product from 2020. Some fit claims are wrong: an 'indie origin' is invented, and a node-based UI list is proposed for a whiteboard.",
+      "evidence": "targets rank 8 r/SideProject why_fit: \"Excalidraw's indie open-source origin and free tier resonate with side-project builders\"; rank 13 xyflow/awesome-node-based-uis: \"exact overlap with Excalidraw's React/TypeScript node-based diagramming niche\"; ranks 2-3 selected: DevHunt, Peerlist Launchpad",
+      "systemic": true,
+      "cause_hint": "The targets pipe does not use profile.maturity (launched, 133k stars) to rank venues or drop listing sites the product is likely already on"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Every venue's rules summary is 'not verified', so the rules column gives the founder nothing.",
+      "evidence": "targets[*].rules_summary: \"not verified\"; targets_meta.confidence.notes: \"All subreddit rules unverified due to scrape blocks.\"",
+      "systemic": true,
+      "cause_hint": "Targets pipe: its scrape of subreddit rules is blocked"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan tracks Product Hunt and Show HN as launch venues although Targets judged Product Hunt unjustified for this product, and it carries the invented Team tier as a decision.",
+      "evidence": "targets rank 9 Product Hunt why_fit: \"Repeat venue only; Excalidraw launched 2020 with 133k stars. Only justified for a major new version\" (selected false); plan Tracked links include \"Product Hunt\" and \"Hacker News Show HN\"; Decisions: \"Team $12/mo\"",
+      "systemic": true,
+      "cause_hint": "Plan assembly adds every approved post as a platform venue whatever Targets decided"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The empty result is honest and the two rejections are correct. Coverage is thin, though: Reddit could not be searched and most HN hits fell outside the window.",
+      "evidence": "signals_meta.coverage_notes: \"Reddit not searchable from this pipeline. Atlassian community URL was truncated in tool result and could not be used. Most HN hits outside 14-day window.\"",
+      "systemic": true,
+      "cause_hint": "Signals pipe search sources"
+    }
+  ],
+  "best": "The newsletter pitch and the X post: short, true to the profile (133,206 stars and 15,517 forks both match the live repo), no competitor framing, placeholders used correctly. The signals stage correctly rejected two builder threads and reported an honest empty result.",
+  "worst": "The Reddit post, where a self-declared maintainer publicly states a false fact: that Excalidraw's pricing page redirects and needs fixing. This comes from a Launch Kit scrape failure. The same false limitation appears in Product Hunt and Show HN, and the chosen pricing invents a $12 Team tier with SSO and audit logs that Excalidraw+ does not sell.",
+  "notes": "Facts checked live. The GitHub API returns 133,208 stars, 15,517 forks, created 2020-01-02, MIT. The README 'Who's integrating Excalidraw' list names Google Cloud, Meta, CodeSandbox, Obsidian Excalidraw, Replit, Slite, Notion and HackerRank, not Netflix, Stripe or Supabase. plus.excalidraw.com/pricing has two tiers: Free, and Plus at $6 a month per user (annual saves 14 percent), with a 14-day trial and a comparison table. One root cause does most of the damage: the profile turned a read failure on excalidraw.com/pricing into gaps, and every downstream stage either repeated it as a product limitation or disagreed with the pricing stage, which did scrape $6. Both xyflow/awesome-node-based-uis and j-river/awesome-diagramming exist. The Signals step in the plan rail shows as incomplete although the drive recorded it ok. The assets screenshot was too large to read in detail, so assets were judged from the stored briefs, slots, plates.jpg and poster.jpg."
+}
