@@ -119,6 +119,9 @@ await step('profile', async () => {
       await again.click();
       const t1 = Date.now();
       await page.waitForTimeout(5000);
+      // the old version's Approve stays enabled while the re-analysis runs; approving it then leaves the new
+      // version as a draft and every later stage locked (hack-judge, 09-29), so wait for the run to finish first
+      await waitIdle('reanalyze', 600000);
       while (Date.now() - t1 < 600000) {
         const b = await page.evaluate(() => { const x = [...document.querySelectorAll('#lk-root button')].find((y) => /Approve profile/.test(y.textContent || '')); return Boolean(x && !x.disabled); }).catch(() => false);
         if (b) break;
