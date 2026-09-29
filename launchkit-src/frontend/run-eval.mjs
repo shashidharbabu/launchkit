@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const ROOT = '/Users/shashidharbabu/rocketride-apps-gtm';
-const OUT = path.join(ROOT, 'docs', 'eval-10');
+const OUT = process.env.EVAL_OUT ? path.resolve(process.env.EVAL_OUT) : path.join(ROOT, 'docs', 'eval-10');
 const LANES = Math.max(1, Number(process.env.LANES) || 2);
 const ONLY = new Set((process.env.ONLY || '').split(',').map((s) => s.trim()).filter(Boolean));
 const SKIP = process.env.SKIP || '';

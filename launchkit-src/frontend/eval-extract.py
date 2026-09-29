@@ -6,7 +6,7 @@ voice fits, reel), targets, signals, and the decisions. Also writes
 docs/eval-10/matrix.json with one row per app of the mechanical facts."""
 import json, os, re, sys
 
-ROOT = '/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10'
+ROOT = os.environ.get('EVAL_OUT') or '/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10'
 # RERUN=1 reads each app's appstate.rerun.json (the store after a re-run) and writes extract.rerun.json and
 # matrix.rerun.json beside the originals, so the first run's record is never overwritten
 RERUN = os.environ.get('RERUN') == '1'

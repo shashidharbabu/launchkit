@@ -5,7 +5,7 @@ Studio service's out dir through the file paths in the store dump."""
 import json, os, shutil
 from PIL import Image, ImageDraw
 
-ROOT = '/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10'
+ROOT = os.environ.get('EVAL_OUT') or '/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10'
 for slug in sorted(os.listdir(ROOT)):
     d = os.path.join(ROOT, slug)
     p = os.path.join(d, 'appstate.json')

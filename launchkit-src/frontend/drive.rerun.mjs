@@ -19,7 +19,7 @@ const MAX = Number(process.env.MAX_MS) || 1200000;
 // discards every earlier re-run in it. SEED=original forces the first-run store instead.
 const SEED_FILE = process.env.SEED === 'original' ? 'appstate.json' : 'appstate.rerun.json';
 if (!SLUG) { console.error('SLUG is required'); process.exit(2); }
-const DIR = path.join('/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10', SLUG);
+const DIR = path.join(process.env.EVAL_OUT ? path.resolve(process.env.EVAL_OUT) : '/Users/shashidharbabu/rocketride-apps-gtm/docs/eval-10', SLUG);
 const b = await chromium.launch();
 const page = await b.newPage({ viewport: { width: 1600, height: 1100 } });
 const text = async () => page.evaluate(() => document.querySelector('#lk-root')?.textContent || '');
