@@ -48,8 +48,12 @@ await page.waitForTimeout(1500);
 await page.locator('#lk-root nav[aria-label="Stages"] a:visible', { hasText: new RegExp(STAGE) }).first().click({ timeout: 10000 });
 await page.waitForTimeout(1500);
 
-const findButton = async (wanted) => {
-  let btn = page.locator('#lk-root main button', { hasText: new RegExp(wanted) }).first();
+// "The reel >> Render again" looks only inside the section whose label contains "The reel": the cards and the
+// reel both have a "Render again" button, and the first on the page is the cards' (formbricks, 09-29)
+const findButton = async (spec) => {
+  const [scope, wanted] = spec.includes('>>') ? spec.split('>>').map((x) => x.trim()) : [null, spec];
+  const root = scope ? page.locator(`#lk-root main section[aria-label*="${scope}"]`).first() : page.locator('#lk-root main');
+  let btn = root.locator('button', { hasText: new RegExp(wanted) }).first();
   if (await btn.count()) return btn;
   const platform = (wanted.match(/^Draft for (.+)$/) || [])[1];
   if (platform) {
