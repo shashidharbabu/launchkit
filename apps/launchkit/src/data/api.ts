@@ -1177,10 +1177,20 @@ export const api = {
     const chosenSubs = targetRows.map((r) => r.data as Dict).filter((d) => String(d.kind ?? '') === 'subreddit').map((d) => String(d.name ?? ''));
     const reddit = byNewest(assetRows.filter((r) => r.asset_type === 'reddit_post'), 'version')[0];
     if (reddit && chosenSubs.length > 0) {
-      const venue = String((reddit.data as Dict).venue ?? '');
-      if (!chosenSubs.some((s) => s && s.toLowerCase() === venue.toLowerCase())) {
-        pending.push({ asset_type: 'reddit_post', state: 'venue',
-          note: `written for ${venue || 'no chosen subreddit'}; Targets selected ${chosenSubs.join(', ')}: redraft it for the subreddit you will post in` });
+      const onChosen = (row: Dict | undefined) => {
+        const v = String(((row?.data as Dict | undefined) ?? {}).venue ?? '');
+        return chosenSubs.some((s) => s && s.toLowerCase() === v.toLowerCase());
+      };
+      // the newest draft, approved or not: cal-com and plausible were told to redraft for the chosen subreddit when
+      // that redraft already existed and only waited for approval (09-29)
+      const newest = byNewest(select('assets', { project_id: id, asset_type: 'reddit_post' }), 'version')[0];
+      if (!onChosen(reddit)) {
+        const venue = String((reddit.data as Dict).venue ?? '');
+        pending.push(newest && newest.status !== 'approved' && onChosen(newest)
+          ? { asset_type: 'reddit_post', state: 'draft',
+              note: `the redraft for ${String((newest.data as Dict).venue)} is written; approve it to replace the one written for ${venue || 'no chosen subreddit'}` }
+          : { asset_type: 'reddit_post', state: 'venue',
+              note: `written for ${venue || 'no chosen subreddit'}; Targets selected ${chosenSubs.join(', ')}: redraft it for the subreddit you will post in` });
       }
     }
     const plan = buildPlan(
