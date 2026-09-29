@@ -114,6 +114,22 @@ test('THREAD_PAT matches the same URL classes as Python', () => {
   for (const u of no) assert.ok(!gates.THREAD_PAT.test(u), u);
 });
 
+test('THREAD_PAT: hosted community forum topics are threads, their category and board pages are not', () => {
+  const yes = [
+    'https://community.calendly.com/asked-answered-79/disabling-the-powered-by-calendly-banner-4970',
+    'https://community.calendly.com/how-do-i-40/remove-powered-by-calendly-branding-from-router-form-2859?sort=mostRecentFirst',
+    'https://community.calendly.com/api-webhook-help-61/embed-parameter-branding-issues-1098?postid=3788',
+    'https://community.hubspot.com/t5/apis-integrations/embed-meetings-without-branding/m-p/123456',
+  ];
+  const no = [
+    'https://community.calendly.com/asked-answered-79',
+    'https://community.calendly.com/how-do-i-40/',
+    'https://community.hubspot.com/t5/apis-integrations/bd-p/APIs',
+    'https://www.calendly.com/blog/remove-branding-from-your-page-2024',
+  ];
+  for (const u of yes) assert.ok(gates.THREAD_PAT.test(u), u);
+  for (const u of no) assert.ok(!gates.THREAD_PAT.test(u), u);
+});
 
 test('gate_signals: F4 — a shared host (github.com) is never "own"; only the app\'s own repo path is', () => {
   const { kept, dropped } = gates.gateSignals([

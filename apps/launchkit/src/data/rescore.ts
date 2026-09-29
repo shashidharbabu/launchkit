@@ -3,12 +3,16 @@
  * thread's REAL content, enforce HN replyability in code, then have the
  * lk_rescore pipe judge relevance AND write the final help-first reply.
  *
- * Fetches run in the browser; HN (Algolia), StackExchange, and GitHub APIs
- * are CORS-open. A fetch failure keeps the signal marked unverified, network
- * flakiness must not silently empty the queue (same rule as the Python).
+ * HN (Algolia), StackExchange, and GitHub APIs are CORS-open and fetched in the
+ * browser. Every other page (LinkedIn, Reddit, X, dev.to, forums) is read from
+ * Exa's index through lk_thread_fetch, exact URL match only, because the
+ * browser is refused by CORS and Firecrawl will not read LinkedIn. A fetch
+ * failure keeps the signal marked unverified, network flakiness must not
+ * silently empty the queue (same rule as the Python).
  */
 import { buildRescoreQuestion, buildRescoreSummary } from '../domain/questions';
 import { hnLockCheck, HN_LOCK_REJECTION_WHY } from '../domain/gates';
+import { threadFromExaSearch } from '../domain/thread';
 import type { Dict, Profile, SignalData } from '../domain/types';
 import { ask } from './runner';
 
@@ -57,9 +61,23 @@ export async function fetchUrlText(url: string): Promise<[string, number | null]
     const issue = await fetchJson(`https://api.github.com/repos/${gh[1]}/${gh[2]}/issues/${gh[3]}`);
     return [stripTags(`${issue.title ?? ''} ${issue.body ?? ''}`).slice(0, 4000), null];
   }
-  // generic pages: browsers enforce CORS, so most fail → caught by the caller
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  // generic pages: Exa's copy of the exact thread, then the page itself (CORS refuses most)
+  let indexed: [string, number | null] | null = null;
+  let indexError = '';
+  try {
+    indexed = threadFromExaSearch(await ask('lk_thread_fetch.pipe', url), url);
+    if (!indexed) indexError = 'not in the search index';
+  } catch (e) {
+    indexError = String((e as Error)?.message ?? e);
+  }
+  if (indexed) return indexed;
+  let res: Response;
+  try {
+    res = await fetch(url);
+  } catch (e) {
+    throw new Error(`${indexError}; page refused: ${String((e as Error)?.message ?? e)}`);
+  }
+  if (!res.ok) throw new Error(`${indexError}; page HTTP ${res.status}`);
   return [stripTags(await res.text()).slice(0, 4000), null];
 }
 

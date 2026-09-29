@@ -22,6 +22,12 @@ export const THREAD_PAT = new RegExp(
   "github\\.com/.+/(discussions|issues)/|stack(overflow|exchange)\\.com/questions/|" +
   "(x|twitter)\\.com/[^/]+/status/|linkedin\\.com/posts/|dev\\.to/[^/]+/|" +
   "indiehackers\\.com/post/|quora\\.com/|" +
+  // Hosted community forums (Gainsight/inSided, Khoros, Discourse on a community./discuss.
+  // host) name a topic by a slug of three or more words and a numeric id, or /m-p/ and
+  // /td-p/. Without this, six Calendly community threads asking how to remove Calendly's
+  // branding, Cal.com's exact buyers, were dropped as "not a discussion thread" (2026-09-28).
+  // Category and board pages carry a short id or none, and still drop.
+  "(community|discuss|discourse|forums?)\\.[a-z0-9.-]+/(?:(?:[^?#]*/)?[a-z0-9]+(?:-[a-z0-9]+){2,}-\\d{3,}(?:[/?#]|$)|[^?#]*/(?:m-p|td-p)/\\d+)|" +
   "/t/|/thread|forum)");
 
 /**

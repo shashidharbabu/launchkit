@@ -1,0 +1,57 @@
+{
+ "components": [
+  {
+   "id": "chat_1",
+   "provider": "chat",
+   "name": "Chat",
+   "config": {
+    "hideForm": true,
+    "mode": "Source",
+    "parameters": {},
+    "type": "chat"
+   }
+  },
+  {
+   "id": "search_exa_1",
+   "provider": "search_exa",
+   "name": "Exa Search",
+   "config": {
+    "profile": "default",
+    "default": {
+     "apikey": "${ROCKETRIDE_EXA_KEY}",
+     "type": "auto",
+     "numResults": 3,
+     "includeHighlights": true,
+     "highlightChars": 4000
+    }
+   },
+   "input": [
+    {
+     "lane": "questions",
+     "from": "chat_1"
+    }
+   ]
+  },
+  {
+   "id": "response_answers_1",
+   "provider": "response_answers",
+   "name": "Return Answers",
+   "config": {
+    "laneName": "answers"
+   },
+   "input": [
+    {
+     "lane": "answers",
+     "from": "search_exa_1"
+    }
+   ]
+  }
+ ],
+ "project_id": "2de89217-9dff-45a2-904d-2e1c86729b96",
+ "viewport": {
+  "x": 0,
+  "y": 0,
+  "zoom": 1
+ },
+ "version": 1
+}
