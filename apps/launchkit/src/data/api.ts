@@ -493,7 +493,11 @@ export const api = {
               url: r.url, why: (r.rescore as Dict | undefined)?.why,
             })),
             coverage_notes: result.coverage_notes,
-            queries: result.search_queries_used,
+            // only what was searched: cal-com's list held the finder's own tool calls ("memory.peek wave-2.r0
+            // results[2].url") beside its queries (09-29)
+            queries: Array.isArray(result.search_queries_used)
+              ? (result.search_queries_used as unknown[]).map(String).filter((q) => !/^memory\.|\bwave-\d+\.|\bresults\[\d+\]|\bjson\.items\b/.test(q))
+              : result.search_queries_used,
             // the tally is counted, not written: plausible's notes said "all 8 signals are GitHub issues from buyers"
             // while the relevance check rejected all eight (09-29)
             found: gated.length + dropped.length,
