@@ -12,7 +12,7 @@
  */
 import { buildRescoreQuestion, buildRescoreSummary } from '../domain/questions';
 import { competitorNames, hnLockCheck, HN_LOCK_REJECTION_WHY, replyWithoutSwipes } from '../domain/gates';
-import { staleThreadWhy, threadFromExaSearch, untrustedRepoWhy } from '../domain/thread';
+import { postedWhenEpoch, staleThreadWhy, threadFromExaSearch, unreadThreadWhy, untrustedRepoWhy } from '../domain/thread';
 import type { Dict, Profile, SignalData } from '../domain/types';
 import { ask } from './runner';
 
@@ -56,7 +56,9 @@ export async function fetchUrlText(url: string): Promise<[string, number | null]
     } catch { /* answers are a bonus; the question suffices */ }
     return [stripTags(parts.join(' ')).slice(0, 4000), null];
   }
-  const gh = url.match(/github\.com\/([^/]+)\/([^/]+)\/(?:issues|discussions)\/(\d+)/);
+  // issues only: the REST issues API 404s a discussion, which then stayed "unverified" and undated (continue,
+  // 09-29); a discussion goes through the index like any other page and gets its date there
+  const gh = url.match(/github\.com\/([^/]+)\/([^/]+)\/issues\/(\d+)/);
   if (gh) {
     const issue = await fetchJson(`https://api.github.com/repos/${gh[1]}/${gh[2]}/issues/${gh[3]}`);
     const created = Date.parse(String(issue.created_at ?? ''));
@@ -95,9 +97,19 @@ export async function rescoreSignals(
     const url = String(s.url ?? '');
     let text: string;
     let created: number | null;
+    const reported = postedWhenEpoch((s as Dict).posted_when, Date.now() / 1000);
     try {
       [text, created] = await fetchUrlText(url);
+      created = created ?? reported;
     } catch (e) {
+      // an unread thread still gets the age check from the date the finder reported
+      const failure = String((e as Error)?.message ?? e);
+      const stale = staleThreadWhy(reported, Date.now() / 1000) ?? unreadThreadWhy(failure);
+      if (stale) {
+        s.rescore = { verdict: 'rejected', why: stale };
+        rejected.push(s);
+        continue;
+      }
       s.rescore = { verdict: 'unverified', why: `fetch failed: ${String((e as Error)?.message ?? e)}` };
       kept.push(s);
       continue;

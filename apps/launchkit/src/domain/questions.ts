@@ -56,12 +56,14 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
     "of another product: 10) the film names no other product or company, ever; say what this app does instead. " +
     "11) The how-it-works beats show what the product actually does to an item (its own field, its own states, " +
     "its own rule) from SITE_COPY; when the product has no catch, no penalty and no timer, use its plain states " +
-    "and leave optional slots such as payoff_timer empty rather than inventing a mechanism.",
+    "and leave optional slots such as payoff_timer empty rather than inventing a mechanism. 12) When " +
+    "APP_PROFILE.maturity.stage is 'sunset', the film says the product is acquired, archived or shut down " +
+    "and never ends on an invitation to start, install or buy it.",
     `THE FILM (beats in order):\n${beats}`,
     `SLOTS:\n${slots}`,
     `APP_NAME: ${appName}`,
     `SITE_HOST: ${host}`,
-    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+    `APP_PROFILE: ${pyJsonDumps(publicProfile(profile))}`,
   ];
   if (pyTruthy(dna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
@@ -87,20 +89,20 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
  * limits: rewrite only those, keeping the meaning and the voice, so the film
  * never shows a mechanically cut fragment. New in the short-video branch.
  */
-export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: string; value: string }[],
+export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: string; value: string; reason?: string }[],
                                           appName: string): string {
   const byId = new Map(spec.slots.map((s) => [s.id, s]));
   const list = offenders.map((o) => {
     const s = byId.get(o.id);
     return `- ${o.id} (max ${s?.max ?? 0} chars, currently ${o.value.length}): "${o.value}"` +
-      (s?.hint ? ` Slot: ${s.hint}` : "");
+      (o.reason ? ` Problem: ${o.reason}.` : "") + (s?.hint ? ` Slot: ${s.hint}` : "");
   }).join("\n");
   return [
     `You wrote the on-screen copy for a ${spec.duration} second launch film for ${appName} ("${spec.title}"). ` +
-    "These slot values are over their character limits and would be cut mid-sentence on screen. Rewrite " +
-    "each one to fit inside its limit with room to spare (aim two characters under). Keep the meaning, the " +
-    "voice and the punctuation style; shorten by choosing tighter words, never by trailing off. Count the " +
-    "characters of every value before you answer.",
+    "These slot values are over their character limits, and would be cut mid-sentence on screen, or break " +
+    "the rule named after them. Rewrite each one to fit inside its limit with room to spare (aim two " +
+    "characters under) and to fix its named problem. Keep the voice and the punctuation style; shorten by " +
+    "choosing tighter words, never by trailing off. Count the characters of every value before you answer.",
     `OVER LIMIT:\n${list}`,
     "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<each id above>: string}}",
   ].join("\n\n");
@@ -159,7 +161,7 @@ export function buildStudioImagesQuestion(plates: PlateSpec[], profile: Profile,
     "unrelated product; never borrow their subject, their place or their props.",
     `PLATES:\n${list}`,
     `APP_NAME: ${appName}`,
-    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+    `APP_PROFILE: ${pyJsonDumps(publicProfile(profile))}`,
   ];
   if (pyTruthy(dna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
@@ -206,7 +208,7 @@ export function buildStudioVoiceQuestion(spec: ConceptSpec, slots: Record<string
     `THE FILM (what is on screen in each beat, so your lines land on the right moment):\n${beats}`,
     `SEGMENTS TO WRITE:\n${segs}`,
     `APP_NAME: ${appName}`,
-    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+    `APP_PROFILE: ${pyJsonDumps(publicProfile(profile))}`,
   ];
   if (pyTruthy(dna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(dna)}`);
@@ -237,6 +239,16 @@ function isDict(v: unknown): v is Dict {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
+/**
+ * The profile public copy is written from: without `unverified` and `site_gaps`, which record what Launch Kit
+ * could not read. hack-judge's approved Reddit post published "the main landing page is currently returning
+ * 503" as the product's limitation (09-29, turn 2) because the whole profile reached the prompt.
+ */
+export function publicProfile(profile: Profile): Profile {
+  const { unverified: _u, site_gaps: _s, ...rest } = (profile ?? {}) as Profile & { unverified?: unknown; site_gaps?: unknown };
+  return rest as Profile;
+}
+
 /** rr.run_understand, repo_url may be empty: site-only analysis is supported. */
 export function buildUnderstandQuestion(repoUrl: string, siteUrl: string, feedback = ""): string {
   const repoLine = repoUrl
@@ -254,7 +266,7 @@ export function buildUnderstandQuestion(repoUrl: string, siteUrl: string, feedba
 /** rr.run_commercial, task: 'pricing' | 'listing'. */
 export function buildCommercialQuestion(task: string, profile: Profile, currentListing = "",
                                         chosenPricing = ""): string {
-  const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
+  const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(task === 'listing' ? publicProfile(profile) : profile)}`];
   if (currentListing) {
     parts.push(`CURRENT_LISTING: ${currentListing}`);
   }
@@ -276,7 +288,7 @@ export function buildTargetsQuestion(profile: Profile, curatedVenues?: unknown[]
 /** rr.run_brand, task: 'dna' (scrape SITE_URL) or 'campaigns' (DNA + profile). */
 export function buildBrandQuestion(task: string, profile: Profile, siteUrl = "",
                                    dna?: BrandDna | null, feedback = ""): string {
-  const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
+  const parts = [`TASK: ${task}`, `APP_PROFILE: ${pyJsonDumps(task === 'campaigns' ? publicProfile(profile) : profile)}`];
   if (siteUrl) {
     parts.push(`SITE_URL: ${siteUrl}`);
   }
@@ -304,7 +316,7 @@ export function buildAssetQuestion(assetType: string, profile: Profile,
                                    target?: TargetData | null, tone = "",
                                    feedback = "", brandDna?: BrandDna | null, rules = "",
                                    extras?: { commercial?: string; campaign?: string; previousDraft?: string }): string {
-  const parts = [`ASSET_TYPE: ${assetType}`, `APP_PROFILE: ${pyJsonDumps(profile)}`];
+  const parts = [`ASSET_TYPE: ${assetType}`, `APP_PROFILE: ${pyJsonDumps(publicProfile(profile))}`];
   if (pyTruthy(brandDna)) {
     parts.push(`BRAND_DNA: ${pyJsonDumps(brandDna)}`);
   }
@@ -492,7 +504,7 @@ export function buildPricingOptionsQuestion(profile: Profile, pricingResult: Dic
     "unanchored instead of quoting one. 2) Plain concrete sentences, no hype words, no markdown. 3) " +
     "Keep it compact: at most 4 tiers per option, at most 5 short items in includes, one sentence for " +
     "why, positioning, market_rate_note and when_to_pick.",
-    `APP_PROFILE: ${pyJsonDumps(profile)}`,
+    `APP_PROFILE: ${pyJsonDumps(publicProfile(profile))}`,
     `PRICING_RESEARCH: ${pyJsonDumps(compact)}`,
     "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"models_considered\": [{\"model\": " +
     "string (one of the five names), \"fit\": \"good\"|\"possible\"|\"poor\", \"why\": string}], " +

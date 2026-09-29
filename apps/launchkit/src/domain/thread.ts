@@ -81,3 +81,39 @@ export function untrustedRepoWhy(repo: { stargazers_count?: unknown; created_at?
   if (Number.isFinite(ageDays) && ageDays < REPO_MIN_AGE_DAYS) return `the repository is ${ageDays} days old: too new to be evidence of demand`;
   return null;
 }
+
+/**
+ * The finder's own `posted_when` ("2025-03-12", "March 12, 2025", "3 months ago", "unknown") as epoch
+ * seconds, so a thread that cannot be read still gets the age check: excalidraw kept two unread threads over
+ * a year old on 09-29 because only a read thread carried a date.
+ */
+export function postedWhenEpoch(text: unknown, nowEpochSeconds: number): number | null {
+  const s = String(text ?? "").trim().toLowerCase();
+  if (!s || s === "unknown") return null;
+  const rel = s.match(/(\d+|a|an|one)\s+(hour|day|week|month|year)s?\s+ago/);
+  if (rel) {
+    const n = /^\d+$/.test(rel[1]) ? Number(rel[1]) : 1;
+    const unit = { hour: 3600, day: 86400, week: 7 * 86400, month: 30 * 86400, year: 365 * 86400 }[rel[2] as "hour"];
+    return Math.floor(nowEpochSeconds - n * unit);
+  }
+  if (/\b(?:today|yesterday|just now)\b/.test(s)) return Math.floor(nowEpochSeconds - 86400);
+  const ms = Date.parse(s.replace(/(\d)(st|nd|rd|th)\b/g, "$1"));
+  return Number.isFinite(ms) ? Math.floor(ms / 1000) : null;
+}
+
+/**
+ * Why a thread that could not be read is still not worth keeping, or null when the failure says nothing about
+ * the thread itself (the index call failed, the network dropped). On 09-29 hoppscotch kept four "unverified"
+ * threads that the search index did not hold and whose pages were 404 or unreadable: three were dead links
+ * and the fourth five months old. The finder searches that same index, so a thread it cannot find again by
+ * its own URL was mangled or invented; a 404 or 410 is gone whatever the index says.
+ */
+export function unreadThreadWhy(failure: string): string | null {
+  const msg = String(failure ?? "");
+  const gone = msg.match(/page HTTP (404|410)\b/);
+  if (gone) return `the thread page returns HTTP ${gone[1]}: it no longer exists`;
+  if (/not in the search index/.test(msg) && /page (refused|HTTP \d{3})/.test(msg)) {
+    return "the thread is not in the search index and its page cannot be read: it cannot be shown to exist";
+  }
+  return null;
+}

@@ -183,3 +183,37 @@ export function displayName(projectName: string, dna: Dict | null, profile: Dict
   if (!slugLike) return typed;
   return s(dna?.brand_name) || s((profile?.brand as Dict | undefined)?.name) || s(profile?.name) || typed;
 }
+
+/**
+ * Script lines that break a content rule, not a length: "BY HAND" when the profile never says the product
+ * replaces manual work (excalidraw's reel said "EVERY SKETCH. BY HAND." for a hand-drawn sketching tool on
+ * both 09-29 turns), and a scene number in a load tile that no source states ("12 DIAGRAMS", "47 COLLECTIONS").
+ */
+export function scriptRuleBreaks(slots: Record<string, string>, profileText: string,
+                                 sourceNumbers: Set<string>): Array<{ id: string; reason: string }> {
+  const out: Array<{ id: string; reason: string }> = [];
+  const manual = /\b(?:by hand|manual(?:ly)?|spreadsheets?|hand-?(?:tracked|written|copied))\b/i.test(profileText);
+  for (const [id, value] of Object.entries(slots)) {
+    if (!manual && /\bBY HAND\b|\bHAND-TRACKED\b/i.test(value)) {
+      out.push({ id, reason: "says BY HAND, but the profile never says this product replaces manual work: name the real chore instead" });
+      continue;
+    }
+    if (/^load_n\d$/.test(id)) {
+      const n = value.replace(/,/g, "").match(/^\d+(?:\.\d+)?$/);
+      if (n && Number(n[0]) > 3 && !sourceNumbers.has(String(Number(n[0])))) {
+        out.push({ id, reason: `the number ${value} is in no source: use a number the profile or site states, or a word such as ALL, EACH or MANY` });
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * Whole sentences with their trailing space, nothing lost: a boundary is . ! or ? followed by whitespace and a
+ * capital, quote or bracket. The old matcher needed whitespace after every full stop, so "Apache 2.0" made it
+ * restart after the decimal point and silently drop everything before it: continue's Product Hunt description
+ * came out as "...config file. 0, available as a VS Code extension" (09-29).
+ */
+export function splitSentences(text: string): string[] {
+  return text.split(/(?<=[.!?]["')\]]?\s+)(?=["'(\[]?[A-Z0-9])/).filter((x) => x.length > 0);
+}

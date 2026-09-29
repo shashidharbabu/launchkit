@@ -153,7 +153,8 @@ const MONEY_CASES = [
   ['Enterprise from $2,500+/mo', false], ['costs $16 monthly per user', false],
   ['We raised $5M from Sequoia', true], ['raised a seed round', true], ['we raised our Series A', true], ['$2M ARR', true],
   ['$500k in revenue', true], ['hit $1,000,000 in revenue this year', true], ['a $40 million valuation', true],
-  ['our MRR doubled', true], ['closed a funding round', true], ['$3.5bn market', true], ['run-rate of $80k', true],
+  ['our MRR doubled', true], ['closed a funding round', true], ['run-rate of $80k', true],
+  ['Business includes a $2.5K monthly payout cap', false], ['a $3.5bn market', false],
 ];
 
 test('no_financial_figures: prices pass, revenue, funding and valuation figures block', () => {

@@ -95,3 +95,64 @@ test('signal replies lose their swipes; a reply left too short is dropped (conti
   assert.equal(gates.replyWithoutSwipes('Copilot doesn\'t support Ollama. Try this.', comps), '');
   assert.equal(gates.replyWithoutSwipes('Happy to help. Here is how.', comps), 'Happy to help. Here is how.');
 });
+
+test('turn 3: the finder\'s posted_when dates an unread thread', () => {
+  const { postedWhenEpoch } = require('./.build/domain/thread.js');
+  const now = Date.parse('2026-09-29T00:00:00Z') / 1000;
+  assert.equal(postedWhenEpoch('2025-03-12', now), Date.parse('2025-03-12') / 1000);
+  assert.equal(postedWhenEpoch('March 12th, 2025', now), Date.parse('March 12, 2025') / 1000);
+  assert.equal(postedWhenEpoch('3 months ago', now), now - 90 * 86400);
+  assert.equal(postedWhenEpoch('a year ago', now), now - 365 * 86400);
+  assert.equal(postedWhenEpoch('unknown', now), null);
+  assert.equal(postedWhenEpoch('', now), null);
+});
+
+test('turn 3: a reel line that says BY HAND without the profile saying so, or an unsourced tile, is flagged', () => {
+  const { scriptRuleBreaks } = require('./.build/domain/studio.js');
+  const nums = new Set(['10000']);
+  const flagged = scriptRuleBreaks({ pile_line: 'EVERY SKETCH. BY HAND.', load_n1: '12', load_n2: '10000', load_n3: 'ALL' }, '{"one_liner":"whiteboard"}', nums).map((b) => b.id);
+  assert.deepEqual(flagged, ['pile_line', 'load_n1']);
+  assert.deepEqual(scriptRuleBreaks({ pile_line: 'EVERY FORM. BY HAND.' }, '{"pain":"teams copy responses by hand into spreadsheets"}', nums), []);
+});
+
+test('turn 3: origin stories are caught (cal-com, khoj, documenso), plain first-person facts are not', () => {
+  const stories = (body) => gates.gateAsset('reddit_post', { title: 'x', body }, ctx()).blockers.filter((b) => /origin story/.test(b));
+  for (const body of ['We kept running into teams who juggled calendars, so we built Cal.com.', 'I built Documenso because signing was broken.', "That's why we built it."]) {
+    assert.equal(stories(body).length, 1, body);
+  }
+  for (const body of ['I work on Cal.com.', 'We built an embed API that teams use today.', 'Cal.com is open source.']) {
+    assert.deepEqual(stories(body), [], body);
+  }
+});
+
+test('turn 3: public copy never sees what Launch Kit could not read (hack-judge 503 in a Reddit post)', () => {
+  const q = require('./.build/domain/questions.js');
+  const p = { one_liner: 'x', gaps: ['no mobile app'], unverified: ['landing page returned 503'], site_gaps: ['no demo link'] };
+  assert.deepEqual(q.publicProfile(p), { one_liner: 'x', gaps: ['no mobile app'] });
+  const ask = q.buildAssetQuestion('reddit_post', p, null, '', '', null, '', {});
+  assert.doesNotMatch(ask, /503|no demo link/);
+  assert.match(ask, /no mobile app/);
+});
+
+test('turn 3: sentences split without losing text at a decimal (continue "Apache 2.0")', () => {
+  const { splitSentences } = require('./.build/domain/studio.js');
+  const t = 'Continue is Apache 2.0 licensed. It runs in VS Code. "Use it," they said.';
+  const parts = splitSentences(t);
+  assert.equal(parts.join(''), t);
+  assert.deepEqual(parts.map((p) => p.trim()), ['Continue is Apache 2.0 licensed.', 'It runs in VS Code.', '"Use it," they said.']);
+});
+
+test('complianceBlankets: a standard promised on every plan is caught; a standard with its edition is not', async () => {
+  const { complianceBlankets } = gates;
+  assert.equal(complianceBlankets('ESIGN, UETA, 21 CFR Part 11 and HIPAA are covered on all plans, with no add-on fees.').length, 1);
+  assert.equal(complianceBlankets('HIPAA compliance included by default, no add-on tier required.').length, 1);
+  assert.equal(complianceBlankets('Compliance coverage includes ESIGN, UETA, and 21 CFR Part 11 out of the box.').length, 1);
+  assert.equal(complianceBlankets('21 CFR Part 11 and HIPAA come with the Enterprise plan.').length, 0);
+  assert.equal(complianceBlankets('Every plan includes unlimited documents. SOC 2 report available on request.').length, 0);
+});
+
+test('origin story: "we kept running sites where" is a story the profile does not hold', () => {
+  const ctx = gates.gateContext({ name: 'Plausible' }, '', '', { texts: [], competitors: [] });
+  const out = gates.gateAsset('producthunt', { first_comment: 'We kept running sites where the analytics setup had become its own project.', warnings: [], blockers: [] }, ctx);
+  assert.ok(out.blockers.some((b) => /origin story/i.test(b)), JSON.stringify(out.blockers));
+});

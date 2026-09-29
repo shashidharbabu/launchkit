@@ -75,7 +75,7 @@ export const spec = {
     { id: 'breathe_line', lines: 2, max: 24, default: 'NO MORE GUESSING.', example: 'SLEEP THROUGH THE NIGHT.', face: 'mono', size: 44, selector: '#breathe-line', hint: 'one quiet line for the breath' },
     { id: 'arrive_line', max: 22, default: 'JUDGE WITH PROOF.', example: 'KNOW FIRST.', face: 'anton', size: 130, selector: '#arr-line', hint: 'the call to action, three or four words' },
     { id: 'arrive_chip', max: 40, default: '', example: 'PULSEBOARD.APP', face: 'mono', size: 30, selector: '#arr-chip', optional: true, hint: 'the site host, uppercase, no protocol' },
-    { id: 'lock_top', max: 30, default: 'FOR TEAMS WHO SHIP', example: 'FOR SMALL ON-CALL TEAMS', face: 'sg', size: 56, selector: '#lock-top', hint: 'who it is for' },
+    { id: 'lock_top', max: 30, default: 'FOR TEAMS ON A DEADLINE', example: 'FOR SMALL ON-CALL TEAMS', face: 'sg', size: 56, selector: '#lock-top', hint: 'who it is for' },
     { id: 'lock_title', max: 16, default: 'THIS APP', example: 'PULSEBOARD', face: 'anton', size: 140, selector: '#lock-title', hint: 'the app name, shown in the brand colour' },
     { id: 'lock_tag', lines: 2, max: 44, default: 'NOW LIVE', example: 'UPTIME MONITORING FOR SMALL TEAMS', face: 'sg', size: 40, selector: '#lock-tag', hint: 'the tagline in the brand\'s own words' },
     { id: 'lock_host', max: 40, default: '', example: 'PULSEBOARD.APP', face: 'sg', size: 52, selector: '#lock-host', optional: true, hint: 'the site host, uppercase, no protocol' },

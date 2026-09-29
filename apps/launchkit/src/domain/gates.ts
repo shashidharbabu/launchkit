@@ -368,10 +368,32 @@ export function replyWithoutSwipes(reply: string, competitors: string[]): string
   return kept.length >= 2 ? kept.join(" ").trim() : "";
 }
 
-/** The provenance and competitor hits for one draft (both hard: the repair pass names and removes them). */
+// An origin story the profile does not hold: GLOBAL_RULES forbids it and every turn still found one (cal-com
+// "We kept running into teams who... so we built Cal.com", khoj "so we built Khoj", documenso "I built Documenso
+// because", plausible "We kept running sites where the analytics setup had become its own project"). The gate catches the story's shapes; the repair pass removes them.
+const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) (?:running into|running (?:sites?|apps?|teams?|projects?|servers?|stores?)|hitting|seeing|watching|getting asked|fighting)\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b/i;
+
+// A compliance standard with a blanket qualifier: documenso's drafts said HIPAA and 21 CFR Part 11 came "on all
+// plans, with no add-on fees" (09-29) while its docs mark both Enterprise only. A certification is sold with a
+// plan or an edition, so a sentence that promises it everywhere is a claim no source can back as written.
+const COMPLIANCE = /\b(?:HIPAA|SOC ?2|SOC ?1|21 CFR(?: Part 11)?|ISO ?27001|FedRAMP|PCI(?:[- ]DSS)?|GDPR|CCPA|HITRUST|eIDAS)\b/i;
+const BLANKET = /\b(?:(?:on|in|with|across) (?:all|every) (?:plans?|tiers?|editions?)|no (?:add-?ons?|extra (?:cost|fees?|charge)|separate (?:compliance )?(?:tier|plan)|upgrade)|without (?:add-?ons?|add-?on fees|an? (?:upgrade|add-?on))|out of the box|included by default|built[- ]in by default|at no (?:extra|additional) (?:cost|charge)|all included)\b/i;
+
+/** Sentences that pair a compliance standard with a promise that it comes on every plan. */
+export function complianceBlankets(text: string): string[] {
+  return String(text ?? "").split(/(?<=[.!?])\s+|\n+/)
+    .filter((s) => COMPLIANCE.test(s) && BLANKET.test(s)).map((s) => s.trim());
+}
+
+/** The provenance, competitor and origin-story hits for one draft (all hard: the repair pass names and removes them). */
 function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
   const hits: CheckHit[] = [];
   for (const [field, text] of fieldsOf(data, "all")) {
+    const story = text.match(ORIGIN_STORY);
+    if (story && ctx.numbers) {
+      hits.push({ id: "origin_story", field, hard: true, detail: `"${story[0]}"`,
+        description: "An origin story APP_PROFILE does not hold: state the problem in the present tense instead" });
+    }
     if (ctx.numbers) {
       const unsourced = numbersIn(text.replace(/\{APP_URL\}/g, ""))
         .filter((n) => n.value > FREE_NUMBERS_MAX && !sourced(n, ctx.numbers!))
@@ -380,6 +402,10 @@ function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
         hits.push({ id: "unsourced_number", field, hard: true, detail: [...new Set(unsourced)].slice(0, 4).map((r) => `"${r}"`).join(", "),
           description: "A number that is in no source (APP_PROFILE, BRAND_DNA, pricing, listing): remove it or use the sourced figure" });
       }
+    }
+    for (const s of complianceBlankets(text)) {
+      hits.push({ id: "compliance_blanket", field, hard: true, detail: `"${s.slice(0, 90)}"`,
+        description: "A compliance standard promised on every plan: name the plan or edition it comes with, as the product states it, or drop the qualifier" });
     }
     for (const s of competitorSwipes(text, ctx.competitors ?? [])) {
       hits.push({ id: "competitor_swipe", field, hard: true, detail: `"${s.slice(0, 90)}"`,
@@ -410,7 +436,8 @@ export function gateContext(profile: unknown, siteUrl = "", repoUrl = "",
 }
 
 // a founder cannot post over these: platform caps, required shapes, the banned verb, a link where none is allowed
-const HARD_KINDS = new Set(["max_chars", "max_words", "required_prefix", "required_regex", "max_count"]);
+// min_words joined on 09-29: hack-judge's newsletter was approved at 88 words against a floor of 100
+const HARD_KINDS = new Set(["max_chars", "max_words", "min_words", "required_prefix", "required_regex", "max_count"]);
 const HARD_IDS = /banned_verb|brand_banned|s_word|raw_links|raw_urls|url_in_body|link_present|link_once|url_at_most_once|url_max_once|vote_ask|vote_or_reciprocity|no_dash|no_dashes/;
 
 /** What a max_count check counts in a string field: placeholders, raw links, paragraph breaks, the product's name, else hashtags. */

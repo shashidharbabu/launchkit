@@ -26,6 +26,8 @@ export function cleanVerbs(s: string): { s: string; n: number } {
   const out = s.replace(BANNED_VERB, (m) => {
     const swap = VERB_SWAP[m.toLowerCase()] ?? m;
     n++;
+    // a line set in capitals (a reel card) stays in capitals: SHIP IT becomes RELEASE IT, not Release IT
+    if (m.length > 1 && m === m.toUpperCase()) return swap.toUpperCase();
     return m[0] === m[0].toUpperCase() ? swap[0].toUpperCase() + swap.slice(1) : swap;
   });
   return { s: out, n };
@@ -80,12 +82,14 @@ const QUOTED_FIELDS = new Set([
  * itself: pricing plans, the store listing, brand DNA, campaign angles. Only
  * drafts were ever cleaned, so an em dash the model put in a plan name reached
  * the screen, and the store listing is the most public copy the app has.
- * Quoted and observed fields are left exactly as they were read.
+ * Quoted and observed fields are left exactly as they were read. The banned launch verb goes the same way:
+ * documenso's chosen angle, its store listing and its targets advice all used the verb (09-29), because only
+ * social drafts were ever swept for it.
  */
 export function sanitizeAuthored<T>(value: T): { data: T; changed: number } {
   let changed = 0;
   const walk = (v: unknown): unknown => {
-    if (typeof v === 'string') { const r = cleanString(v); changed += r.n; return r.s; }
+    if (typeof v === 'string') { const r = cleanString(v); const w = cleanVerbs(r.s); changed += r.n + w.n; return w.s; }
     if (Array.isArray(v)) return v.map(walk);
     if (v && typeof v === 'object') {
       return Object.fromEntries(Object.entries(v as Record<string, unknown>).map(

@@ -11,7 +11,7 @@ import {
 } from '../domain/questions';
 import { ASSET_TYPES } from '../lib/asset-types';
 import { revenueAtPoints } from '../domain/revenue';
-import { gateAsset, gateContext, competitorNames, gateSignals, gateTargets } from '../domain/gates';
+import { gateAsset, gateContext, competitorNames, gateSignals, gateTargets, sourceNumbers } from '../domain/gates';
 import { buildAttribution, buildPlan, planMarkdown, type PendingItem } from '../domain/plan';
 import {
   BRAND_CAMPAIGNS_PREREQ_ERROR, GATE1_ERROR, NO_PROFILE_TO_APPROVE_ERROR,
@@ -28,9 +28,9 @@ import { forgeConcept, forgeRun } from './studio';
 import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion, buildStudioVoiceQuestion, buildStudioVoiceRepairQuestion } from '../domain/questions';
 import { fillUrl } from '../lib/share';
 import {
-  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, displayName, isStudioStep, kitCopy, normalizeSlots, studioJobKind, wordCount,
+  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, displayName, isStudioStep, kitCopy, normalizeSlots, scriptRuleBreaks, studioJobKind, wordCount,
   type ConceptSpec,
-} from '../domain/studio';
+splitSentences } from '../domain/studio';
 import {
   byNewest, byNumber, count, currentActor, flush, insert, remove,
   select, selectOne, uid, update, currentOwnerId, ownedByMe, type Row,
@@ -39,6 +39,14 @@ import { getCurrentRun, setCurrentRun } from './trace';
 import { rulebookMeta, rulesBlock } from './rules';
 import { punctuationFixed } from './runner';
 import { sanitizeAuthored, sanitizeProfile, sanitizeVerbs } from '../domain/sanitize';
+
+/**
+ * The reel's script and voice-over are Launch Kit's own copy, so they carry the launch-draft rules too: the
+ * runner only strips dashes, and hoppscotch's reel said "THE BUG SHIPS TO PROD." and "SHIP IT." (09-29).
+ */
+async function askStudio(question: string): Promise<Dict> {
+  return sanitizeVerbs(await ask('lk_studio.pipe', question)).data;
+}
 import { activeWorkspaceId } from './workspace-state';
 
 // ---------------------------------------------------------------- url normalization (main._norm_url)
@@ -101,6 +109,8 @@ function repairHint(blocker: string): string {
   if (words) return `${blocker}: delete at least ${Number(words[1]) - Number(words[2]) + 15} words, whole sentences at a time`;
   const chars = blocker.match(/\((\d+) characters, cap (\d+)\)/);
   if (chars) return `${blocker}: delete at least ${Number(chars[1]) - Number(chars[2]) + 20} characters, a clause at a time`;
+  const floor = blocker.match(/\((\d+) words, floor (\d+)\)/);
+  if (floor) return `${blocker}: add at least ${Number(floor[2]) - Number(floor[1]) + 10} words of substance from APP_PROFILE, never filler`;
   const paras = blocker.match(/\((\d+), cap (\d+)\)/);
   if (paras && /paragraph/.test(blocker)) return `${blocker}: merge paragraphs until there are at most ${Number(paras[2]) + 1}`;
   return blocker;
@@ -123,7 +133,7 @@ function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>, 
       const [, field, , capStr] = chars;
       const cap = Number(capStr);
       const text = typeof data[field] === 'string' ? (data[field] as string) : '';
-      const sentences = text.match(/[^.!?]+[.!?]+(?:\s+|$)/g) ?? [];
+      const sentences = splitSentences(text);
       if (sentences.length < 2) continue;
       let kept = sentences.slice();
       while (kept.length > 1 && kept.join('').trim().length > cap) {
@@ -364,7 +374,7 @@ export const api = {
           let market_rate = '';
           let options: Dict[] = [];
           try {
-            const drafted = await ask('lk_studio.pipe', buildPricingOptionsQuestion(profile, result));
+            const drafted = await askStudio(buildPricingOptionsQuestion(profile, result));
             models_considered = (Array.isArray(drafted.models_considered) ? drafted.models_considered : [])
               .map(dict)
               .filter((m) => typeof m.model === 'string' && m.model.trim())
@@ -447,7 +457,7 @@ export const api = {
           remove('targets', { project_id: id });
           for (const t of applied.targets) {
             insert('targets', {
-              id: uid(), project_id: id, rank: t.rank, data: t.data,
+              id: uid(), project_id: id, rank: t.rank, data: sanitizeAuthored(t.data).data,
               selected: t.selected, job_id: jobId,
             });
           }
@@ -484,6 +494,10 @@ export const api = {
             })),
             coverage_notes: result.coverage_notes,
             queries: result.search_queries_used,
+            // the tally is counted, not written: plausible's notes said "all 8 signals are GitHub issues from buyers"
+            // while the relevance check rejected all eight (09-29)
+            found: gated.length + dropped.length,
+            kept: kept.length,
           },
         };
       },
@@ -516,8 +530,12 @@ export const api = {
     const compact = (v: unknown, n: number) => { const s = JSON.stringify(v ?? null); return s.length > n ? s.slice(0, n) + '…' : s; };
     const pricing = await latestCommercial(id, 'pricing');
     const listing = await latestCommercial(id, 'listing');
-    const commercialCtx = pricing || listing ? compact({ pricing, listing }, 3500) : '';
     const projRow = selectOne('projects', { id });
+    // the builder's chosen pricing, when there is one, is the price every post quotes: excalidraw's posts said
+    // $6 from the research while the chosen plan said $8 (09-29)
+    const chosenPricing = projRow?.selected_pricing && typeof projRow.selected_pricing === 'object' ? (projRow.selected_pricing as Dict) : null;
+    const commercialCtx = chosenPricing || pricing || listing
+      ? compact(chosenPricing ? { chosen_pricing: chosenPricing, listing } : { pricing, listing }, 3500) : '';
     const angles = Array.isArray(projRow?.selected_campaigns) ? (projRow.selected_campaigns as unknown[]).map(String) : [];
     let campaignCtx = '';
     if (angles.length > 0) {
@@ -541,7 +559,7 @@ export const api = {
     // what the gate needs beyond the draft: a thin profile, a profile with no recorded gap, a RocketRide-owned
     // app, the numbers the sources hold (a draft's other numbers are invented) and the competitors' names
     const gctx = gateContext(profile, String(projRow?.site_url ?? ''), String(projRow?.repo_url ?? ''), {
-      texts: [brandDna, pricing, listing],
+      texts: [brandDna, chosenPricing, pricing, listing],
       competitors: competitorNames(profile, pricing, appName),
     });
     // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
@@ -687,7 +705,7 @@ export const api = {
             subject = String((images!.data as Dict).subject ?? '');
             domain = asDomain((images!.data as Dict).domain);
           } else {
-            const written = await ask('lk_studio.pipe', buildStudioImagesQuestion(plates, profile, appName, dna, await campaignAngle()));
+            const written = await askStudio(buildStudioImagesQuestion(plates, profile, appName, dna, await campaignAngle()));
             briefs = written.briefs && typeof written.briefs === 'object' ? (written.briefs as Dict) : {};
             subject = typeof written.subject === 'string' ? written.subject.trim() : '';
             domain = asDomain(written.domain);
@@ -743,16 +761,23 @@ export const api = {
       const jobId = await runJob(id, studioJobKind('script'),
         async () => {
           const spec = await forgeConcept(concept);
-          const result = await ask('lk_studio.pipe',
+          const result = await askStudio(
             buildStudioQuestion(spec, profile, appName, String(p.site_url ?? ''), dna, campaignCtx, siteCopy));
           const raw: Dict = result.slots && typeof result.slots === 'object' ? { ...(result.slots as Dict) } : {};
           let norm = normalizeSlots(spec, raw);
           const repaired: string[] = [];
-          if (norm.clamped.length > 0) {
-            // a second small ask rewrites only the over-limit slots, so the film never shows a cut fragment
-            const offenders = norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? '') }));
+          // lines that break a content rule go through the same repair as over-length ones
+          const sources = sourceNumbers([profile, dna, siteCopy]);
+          const profileText = JSON.stringify(profile ?? {});
+          const breaks = scriptRuleBreaks(norm.slots, profileText, sources);
+          if (norm.clamped.length > 0 || breaks.length > 0) {
+            // a second small ask rewrites only the offending slots, so the film never shows a cut fragment
+            const offenders = [
+              ...norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? ''), reason: '' })),
+              ...breaks.filter((b) => !norm.clamped.includes(b.id)).map((b) => ({ id: b.id, value: String(raw[b.id] ?? norm.slots[b.id] ?? ''), reason: b.reason })),
+            ];
             try {
-              const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, appName));
+              const fix = await askStudio(buildStudioRepairQuestion(spec, offenders, appName));
               const fixed: Dict = fix.slots && typeof fix.slots === 'object' ? (fix.slots as Dict) : {};
               for (const o of offenders) {
                 const s = spec.slots.find((x) => x.id === o.id);
@@ -762,8 +787,10 @@ export const api = {
               if (repaired.length > 0) norm = normalizeSlots(spec, raw);
             } catch { /* keep the mechanical clamp */ }
           }
+          // what the repair did not fix stays flagged, and a flagged line blocks the reel's approval
+          const flagged = scriptRuleBreaks(norm.slots, profileText, sources).map((b) => b.id);
           return {
-            concept, ...norm, repaired,
+            concept, ...norm, repaired, flagged,
             tagline: typeof result.tagline === 'string' ? result.tagline.trim().slice(0, 80) : '',
             one_liner: typeof result.one_liner === 'string' ? result.one_liner.trim().slice(0, 160) : '',
             claims_used: Array.isArray(result.claims_used) ? result.claims_used : [],
@@ -788,7 +815,7 @@ export const api = {
       const slots = (sd.slots && typeof sd.slots === 'object' ? sd.slots : {}) as Record<string, string>;
       const jobId = await runJob(id, studioJobKind('voice'),
         async () => {
-          const written = await ask('lk_studio.pipe', buildStudioVoiceQuestion(spec, slots, profile, appName, dna, await campaignAngle()));
+          const written = await askStudio(buildStudioVoiceQuestion(spec, slots, profile, appName, dna, await campaignAngle()));
           const texts: Dict = written.segments && typeof written.segments === 'object' ? (written.segments as Dict) : {};
           const lines = vspec.segments.map((s) => ({
             id: s.id, at: s.at, until: s.until, budget: s.words,
@@ -798,7 +825,7 @@ export const api = {
           const repaired: string[] = [];
           const shorten = async (offenders: { id: string; text: string; words: number; budget: number }[]): Promise<boolean> => {
             try {
-              const fix = await ask('lk_studio.pipe', buildStudioVoiceRepairQuestion(offenders, appName));
+              const fix = await askStudio(buildStudioVoiceRepairQuestion(offenders, appName));
               const fixed: Dict = fix.segments && typeof fix.segments === 'object' ? (fix.segments as Dict) : {};
               let changed = false;
               for (const o of offenders) {
@@ -1129,6 +1156,19 @@ export const api = {
       if (run && run.status === 'error') {
         pending.push({ asset_type: atype, state: 'failed', note: `the draft failed: ${String(run.error ?? 'no answer').slice(0, 140)}` });
       }
+    }
+    // the stages a plan stands on besides posts: documenso read "Plan ready, 6 venues" on its own accounts alone,
+    // with its Targets run failed and its reel never approved (09-29)
+    if (targetRows.length === 0) {
+      const run = byNewest(select('runs', { project_id: id, kind: 'targets' }))[0];
+      const failed = run?.status === 'error';
+      pending.push({ asset_type: 'targets', state: failed ? 'failed' : 'draft',
+        note: failed ? `the venue ranking failed: ${String(run?.error ?? 'no answer').slice(0, 140)}; rank venues again`
+          : 'no launch venue chosen yet: rank venues and tick the ones you will post in' });
+    }
+    const reel = byNewest(select('studio', { project_id: id, kind: 'reel' }))[0];
+    if (reel && reel.status !== 'approved') {
+      pending.push({ asset_type: 'reel', state: 'draft', note: 'rendered, not approved yet' });
     }
     const chosenSubs = targetRows.map((r) => r.data as Dict).filter((d) => String(d.kind ?? '') === 'subreddit').map((d) => String(d.name ?? ''));
     const reddit = byNewest(assetRows.filter((r) => r.asset_type === 'reddit_post'), 'version')[0];

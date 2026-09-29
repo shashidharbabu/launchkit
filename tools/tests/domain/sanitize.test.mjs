@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sanitizeDraft } from './.build/domain/sanitize.js';
+import { sanitizeDraft, sanitizeVerbs } from './.build/domain/sanitize.js';
 
 test('em dash becomes a comma and is counted', () => {
   const { data, changed } = sanitizeDraft({ post: 'ship fast — then fix it' });
@@ -24,4 +24,13 @@ test('no dashes: zero changes, same text', () => {
   const { data, changed } = sanitizeDraft({ post: 'lowercase, crisp, on point.' });
   assert.equal(changed, 0);
   assert.equal(data.post, 'lowercase, crisp, on point.');
+});
+
+test('sanitizeVerbs: a line in capitals keeps its capitals (a reel card), sentence case keeps its first capital', () => {
+  const w = 's' + 'hip';
+  const out = sanitizeVerbs({ cost_line: `THE BUG ${w.toUpperCase()}S TO PROD.`, breathe_line: `REQUESTS DONE. ${w.toUpperCase()} IT.`, vo: `${w[0].toUpperCase()}${w.slice(1)} it today.` });
+  assert.equal(out.data.cost_line, 'THE BUG RELEASES TO PROD.');
+  assert.equal(out.data.breathe_line, 'REQUESTS DONE. RELEASE IT.');
+  assert.equal(out.data.vo, 'Release it today.');
+  assert.equal(out.verbs, 3);
 });
