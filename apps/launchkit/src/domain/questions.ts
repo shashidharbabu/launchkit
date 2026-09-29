@@ -56,7 +56,9 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
     "of another product: 10) the film names no other product or company, ever; say what this app does instead. " +
     "11) The how-it-works beats show what the product actually does to an item (its own field, its own states, " +
     "its own rule) from SITE_COPY; when the product has no catch, no penalty and no timer, use its plain states " +
-    "and leave optional slots such as payoff_timer empty rather than inventing a mechanism.",
+    "and leave optional slots such as payoff_timer empty rather than inventing a mechanism. 12) When " +
+    "APP_PROFILE.maturity.stage is 'sunset', the film says the product is acquired, archived or shut down " +
+    "and never ends on an invitation to start, install or buy it.",
     `THE FILM (beats in order):\n${beats}`,
     `SLOTS:\n${slots}`,
     `APP_NAME: ${appName}`,

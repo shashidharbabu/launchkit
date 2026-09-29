@@ -12,7 +12,7 @@ export type Rulebook = { platform: string; name: string; summary: string; rules:
  * from an older default (never edited by the owner) is replaced by the newer
  * default; an owner-edited rulebook is always kept.
  */
-export const RULEBOOK_VERSION = 4;
+export const RULEBOOK_VERSION = 5;
 
 export const GLOBAL_RULES: string[] = [
   'Never use an em dash (—) or an en dash (–) anywhere. Use a comma, a period, or the word "and". This is checked by code and fails the draft.',
@@ -27,6 +27,7 @@ export const GLOBAL_RULES: string[] = [
   'Never invent an origin story, a previous job, a tool you used to use, the moment that made you build it, or a limitation. When APP_PROFILE holds none, state the problem in the present tense from the ICP pain; for a required limitation use the honest gap the profile records (an early stage, a missing platform, a feature not there yet) or write "Limitation: [builder to add one]".',
   'A competitor is named only as a neutral fact (what it is, a public price), never with a negative word attached to its name (locks, buries, overkill, slow, charges for) and never as "we replaced X". When the campaign angle names one, carry the angle without the name.',
   'When the profile is thin (confidence under 0.5, or analysis_degraded true), describe only what its one-liner says and keep every sentence about the product general; never add a mechanism, a workflow, a feature or a number the profile does not state.',
+  'When APP_PROFILE.maturity.stage is "sunset" (acquired, archived, shut down or read-only), say so plainly in the first two sentences; never ask anyone to install, start, sign up for or buy it, never promise a feature or a roadmap, and never invent the reason: quote the reason the product\'s own notice gives, or give none.',
 ];
 
 /**

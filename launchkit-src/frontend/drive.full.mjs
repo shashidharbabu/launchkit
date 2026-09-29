@@ -249,6 +249,8 @@ await step('targets', async () => {
   for (let i = 0; i < n; i++) await boxes.nth(i).check().catch(() => null);
   await page.waitForTimeout(1500);
   await shot('6-targets.png');
+  // a stage that produced nothing failed, whatever the button did (khoj 09-29: 0 ranked, recorded ok)
+  if (rows.length === 0) throw new Error(`no venues ranked: ${await failedLine() || 'the run returned nothing'}`);
   return { secs: w.secs, ranked: rows.length, top5: rows.slice(0, 5).map((r) => r.find((c, i) => i > 0 && c && !/^\d+$/.test(c)) || r[0]).map((s) => String(s).slice(0, 40)), selected: n, failed: await failedLine() };
 });
 
@@ -261,6 +263,7 @@ await step('signals', async () => {
   const w = await waitIdle('signals', 900000);
   const t = await text();
   await shot('7-signals.png');
+  if (!w.idle || /Searching for demand\./.test(t)) throw new Error(`the scan was still running after ${w.secs} s`);
   return { secs: w.secs, idle: w.idle, heading: (t.match(/\d+ signals?[^.]{0,80}/) || [''])[0].slice(0, 100), none: /No signals yet/.test(t), failed: await failedLine() };
 });
 

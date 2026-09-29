@@ -200,8 +200,17 @@ export function SignalsStage() {
             <>
               <HonestEmpty
                 runKind="signals"
-                fact={searchFailed ? 'The search failed.' : 'No signals yet.'}
-                reason={searchFailed ? `${error} Search again; a second pass usually completes.` : "Nobody is publicly asking for what your app does right now; that's common before launch. Search again after your first posts, or widen the pain phrasing in your profile."}
+                // "nobody is asking" is a finding only after a scan finished; khoj's page said it mid-scan (09-29)
+                fact={searching ? 'Searching for demand.' : searchFailed ? 'The search failed.' : meta ? 'No signals yet.' : 'Not searched yet.'}
+                reason={
+                  searching
+                    ? 'The scan reads forums, Reddit, Hacker News and GitHub, then reads each thread it keeps. It takes up to ten minutes; results land here when it finishes.'
+                    : searchFailed
+                    ? `${error} Search again; a second pass usually completes.`
+                    : meta
+                    ? "Nobody is publicly asking for what your app does right now; that's common before launch. Search again after your first posts, or widen the pain phrasing in your profile."
+                    : 'Search to find people who are asking for what your app does right now.'
+                }
                 action={
                   <Button
                     variant="secondary"
