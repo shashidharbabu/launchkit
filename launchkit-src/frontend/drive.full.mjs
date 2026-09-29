@@ -78,6 +78,11 @@ async function step(slug, fn) {
     summary.errors.push(`${slug}: ${String(e?.message ?? e).slice(0, 200)}`);
   }
   log(slug.toUpperCase(), summary.stages[slug]);
+  // keep the evidence as the drive goes: hack-judge's turn-2 drive was killed in Assets and left no store (09-29)
+  try {
+    const raw = await page.evaluate(() => localStorage.getItem('lk-preview-appstate') || '');
+    if (raw) writeFileSync(path.join(OUTDIR, 'appstate.json'), raw);
+  } catch { /* the final dump still runs */ }
 }
 const rail = async () => page.evaluate(() => [...document.querySelectorAll('#lk-root nav[aria-label="Stages"] a')].filter((a) => a.offsetParent !== null).map((a) => a.getAttribute('aria-label')).filter(Boolean));
 
@@ -219,13 +224,16 @@ await step('social', async () => {
 await step('assets', async () => {
   await stage(/Assets/);
   const out = {};
+  let prereqFailed = false;
   const run = async (label, key, maxMs) => {
     const btn = main(label);
     if (!(await btn.count())) { out[key] = { skipped: 'no button' }; return; }
     const t0 = Date.now();
-    if (!(await clickWhenEnabled(btn, key))) { out[key] = { skipped: 'button never enabled' }; return; }
+    // a step whose prerequisite already failed stays disabled; do not wait fifteen minutes on it
+    if (!(await clickWhenEnabled(btn, key, prereqFailed ? 60000 : 900000))) { out[key] = { skipped: 'button never enabled' }; prereqFailed = true; return; }
     const w = await waitIdle(key, maxMs);
     out[key] = { secs: Math.round((Date.now() - t0) / 1000), idle: w.idle, failed: await failedLine() };
+    if (key === 'probe' && (out[key].failed || !w.idle)) prereqFailed = true;
   };
   await run(/Read the site$/, 'probe', 300000);
   await run(/Make the images$/, 'images', 600000);
