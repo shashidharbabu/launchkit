@@ -81,3 +81,22 @@ export function untrustedRepoWhy(repo: { stargazers_count?: unknown; created_at?
   if (Number.isFinite(ageDays) && ageDays < REPO_MIN_AGE_DAYS) return `the repository is ${ageDays} days old: too new to be evidence of demand`;
   return null;
 }
+
+/**
+ * The finder's own `posted_when` ("2025-03-12", "March 12, 2025", "3 months ago", "unknown") as epoch
+ * seconds, so a thread that cannot be read still gets the age check: excalidraw kept two unread threads over
+ * a year old on 09-29 because only a read thread carried a date.
+ */
+export function postedWhenEpoch(text: unknown, nowEpochSeconds: number): number | null {
+  const s = String(text ?? "").trim().toLowerCase();
+  if (!s || s === "unknown") return null;
+  const rel = s.match(/(\d+|a|an|one)\s+(hour|day|week|month|year)s?\s+ago/);
+  if (rel) {
+    const n = /^\d+$/.test(rel[1]) ? Number(rel[1]) : 1;
+    const unit = { hour: 3600, day: 86400, week: 7 * 86400, month: 30 * 86400, year: 365 * 86400 }[rel[2] as "hour"];
+    return Math.floor(nowEpochSeconds - n * unit);
+  }
+  if (/\b(?:today|yesterday|just now)\b/.test(s)) return Math.floor(nowEpochSeconds - 86400);
+  const ms = Date.parse(s.replace(/(\d)(st|nd|rd|th)\b/g, "$1"));
+  return Number.isFinite(ms) ? Math.floor(ms / 1000) : null;
+}

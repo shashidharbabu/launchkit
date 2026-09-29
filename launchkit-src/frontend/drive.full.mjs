@@ -162,11 +162,18 @@ await step('commercial', async () => {
   const plans = await page.locator('#lk-root main [role="radio"], #lk-root main button', { hasText: /^Select$/ }).count();
   const use = await main(/Use this pricing/).count();
   if (use) { await main(/Use this pricing/).click(); await page.waitForTimeout(2500); }
+  // a listing drafted before the choice quotes other prices and cannot be approved: redraft it first
+  let listingRedrafted = false;
+  if (/This listing predates your pricing choice/.test(await text())) {
+    const regen = page.locator('#lk-root main button', { hasText: /^Regenerate$/ }).last();
+    if (await clickWhenEnabled(regen, 'Regenerate listing', 300000)) { await waitIdle('listing', 600000); listingRedrafted = true; }
+  }
   const approve = await main(/Approve listing/).count();
-  if (approve) { await main(/Approve listing/).click(); await page.waitForTimeout(2500); }
+  if (approve) await clickWhenEnabled(main(/Approve listing/), 'Approve listing', 60000);
+  await page.waitForTimeout(2500);
   const t2 = await text();
   await shot('3-commercial.png');
-  return { secs: w.secs, idle: w.idle, plans, established: (t.match(/(\d+) competitors read, (\d+) established/) || ['', '?', '?']).slice(1), chosen: /Chosen: /.test(t2), listingApproved: /Approved\./.test(t2), failed: await failedLine() };
+  return { secs: w.secs, idle: w.idle, plans, established: (t.match(/(\d+) competitors read, (\d+) established/) || ['', '?', '?']).slice(1), chosen: /Chosen: /.test(t2), listingRedrafted, listingApproved: /Approved\./.test(t2), failed: await failedLine() };
 });
 
 // ---- Social Launch ----
@@ -248,10 +255,23 @@ await step('targets', async () => {
   const n = Math.min(3, await boxes.count());
   for (let i = 0; i < n; i++) await boxes.nth(i).check().catch(() => null);
   await page.waitForTimeout(1500);
+  // Reddit is drafted before a subreddit is chosen; redraft it for the chosen one, then approve it if clean
+  let redditRedrafted = false;
+  const redraft = page.locator('#lk-root main button', { hasText: /^Redraft for / }).first();
+  if (await redraft.count()) {
+    if (await clickWhenEnabled(redraft, 'Redraft Reddit', 120000)) {
+      await waitIdle('reddit-redraft', 900000);
+      await stage(/Social Launch/);
+      const ok = page.locator('#lk-root main button[aria-label^="Approve the Reddit"][data-blockers="0"]').first();
+      if (await ok.count()) { await ok.click(); await page.waitForTimeout(2000); }
+      redditRedrafted = true;
+      await stage(/Targets/);
+    }
+  }
   await shot('6-targets.png');
   // a stage that produced nothing failed, whatever the button did (khoj 09-29: 0 ranked, recorded ok)
   if (rows.length === 0) throw new Error(`no venues ranked: ${await failedLine() || 'the run returned nothing'}`);
-  return { secs: w.secs, ranked: rows.length, top5: rows.slice(0, 5).map((r) => r.find((c, i) => i > 0 && c && !/^\d+$/.test(c)) || r[0]).map((s) => String(s).slice(0, 40)), selected: n, failed: await failedLine() };
+  return { secs: w.secs, redditRedrafted, ranked: rows.length, top5: rows.slice(0, 5).map((r) => r.find((c, i) => i > 0 && c && !/^\d+$/.test(c)) || r[0]).map((s) => String(s).slice(0, 40)), selected: n, failed: await failedLine() };
 });
 
 // ---- Signals ----

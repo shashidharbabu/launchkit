@@ -12,6 +12,7 @@ import {
 import { ChevronDown, ChevronRight, ChevronUp, ExternalLink } from 'lucide-react';
 import { useProject } from '../project-provider';
 import { Card, CardBody, CardHeader, HonestEmpty, LockedGate, Orient } from '../stage-common';
+import { Banner } from '@launchkit/design-system/components/banner';
 import { Button } from '@launchkit/design-system/components/button';
 import { ProvenanceLine } from '@launchkit/design-system/components/provenance-line';
 import { StatusStamp } from '@launchkit/design-system/components/status-stamp';
@@ -55,7 +56,7 @@ const columns = [
 const PAGE = 50;
 
 export function TargetsStage() {
-  const { project, gate1, targets, running, runJob, refresh, setError } = useProject();
+  const { project, gate1, targets, assets, running, runJob, refresh, setError } = useProject();
   const [expanded, setExpanded] = React.useState<Set<string>>(new Set());
   const [page, setPage] = React.useState(0);
 
@@ -89,6 +90,12 @@ export function TargetsStage() {
   if (!gate1) return <LockedGate />;
 
   const selectedCount = targets.filter((t) => t.selected).length;
+  // Social runs before Targets, so the Reddit draft usually names no chosen subreddit; offer the redraft here,
+  // where the subreddit is chosen (09-29: every app's Reddit draft went to r/SideProject)
+  const chosenSub = targets.find((t) => t.selected && String(t.data.kind ?? '') === 'subreddit');
+  const redditDraft = [...assets].filter((a) => a.asset_type === 'reddit_post').sort((x, y) => y.version - x.version)[0];
+  const redditVenue = String(redditDraft?.data.venue ?? '');
+  const redditMismatch = Boolean(chosenSub && redditDraft && redditVenue.toLowerCase() !== String(chosenSub.data.name ?? '').toLowerCase());
   const rows = table.getRowModel().rows;
   const paged = rows.length > PAGE ? rows.slice(page * PAGE, (page + 1) * PAGE) : rows;
 
@@ -144,6 +151,25 @@ export function TargetsStage() {
         }
         detail="Gate 3: only the venues you select get tracked links in the launch plan. Each venue's rules are summarised, not verified; read them before you post."
       />
+
+      {redditMismatch && chosenSub && (
+        <Banner
+          tone="hold"
+          title={`Your Reddit post was written for ${redditVenue || 'no chosen subreddit'}; you chose ${String(chosenSub.data.name ?? '')}.`}
+          action={
+            <Button
+              variant="secondary"
+              size="sm"
+              disabled={Boolean(running)}
+              onClick={() => runJob('asset:reddit_post', () => api.runAsset(project.id, 'reddit_post', chosenSub.id)).then(refresh)}
+            >
+              {`Redraft for ${String(chosenSub.data.name ?? 'it')}`}
+            </Button>
+          }
+        >
+          Each subreddit has its own norms and title style. Redraft the post for the one you will post in, then approve it in Social Launch.
+        </Banner>
+      )}
 
       {/* ---- Step 1: Rank ---- */}
       <Card>

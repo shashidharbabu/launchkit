@@ -89,20 +89,20 @@ export function buildStudioQuestion(spec: ConceptSpec, profile: Profile, appName
  * limits: rewrite only those, keeping the meaning and the voice, so the film
  * never shows a mechanically cut fragment. New in the short-video branch.
  */
-export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: string; value: string }[],
+export function buildStudioRepairQuestion(spec: ConceptSpec, offenders: { id: string; value: string; reason?: string }[],
                                           appName: string): string {
   const byId = new Map(spec.slots.map((s) => [s.id, s]));
   const list = offenders.map((o) => {
     const s = byId.get(o.id);
     return `- ${o.id} (max ${s?.max ?? 0} chars, currently ${o.value.length}): "${o.value}"` +
-      (s?.hint ? ` Slot: ${s.hint}` : "");
+      (o.reason ? ` Problem: ${o.reason}.` : "") + (s?.hint ? ` Slot: ${s.hint}` : "");
   }).join("\n");
   return [
     `You wrote the on-screen copy for a ${spec.duration} second launch film for ${appName} ("${spec.title}"). ` +
-    "These slot values are over their character limits and would be cut mid-sentence on screen. Rewrite " +
-    "each one to fit inside its limit with room to spare (aim two characters under). Keep the meaning, the " +
-    "voice and the punctuation style; shorten by choosing tighter words, never by trailing off. Count the " +
-    "characters of every value before you answer.",
+    "These slot values are over their character limits, and would be cut mid-sentence on screen, or break " +
+    "the rule named after them. Rewrite each one to fit inside its limit with room to spare (aim two " +
+    "characters under) and to fix its named problem. Keep the voice and the punctuation style; shorten by " +
+    "choosing tighter words, never by trailing off. Count the characters of every value before you answer.",
     `OVER LIMIT:\n${list}`,
     "OUTPUT: ONLY one RFC 8259 JSON object, no fences, no commentary: {\"slots\": {<each id above>: string}}",
   ].join("\n\n");

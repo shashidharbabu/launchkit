@@ -95,3 +95,22 @@ test('signal replies lose their swipes; a reply left too short is dropped (conti
   assert.equal(gates.replyWithoutSwipes('Copilot doesn\'t support Ollama. Try this.', comps), '');
   assert.equal(gates.replyWithoutSwipes('Happy to help. Here is how.', comps), 'Happy to help. Here is how.');
 });
+
+test('turn 3: the finder\'s posted_when dates an unread thread', () => {
+  const { postedWhenEpoch } = require('./.build/domain/thread.js');
+  const now = Date.parse('2026-09-29T00:00:00Z') / 1000;
+  assert.equal(postedWhenEpoch('2025-03-12', now), Date.parse('2025-03-12') / 1000);
+  assert.equal(postedWhenEpoch('March 12th, 2025', now), Date.parse('March 12, 2025') / 1000);
+  assert.equal(postedWhenEpoch('3 months ago', now), now - 90 * 86400);
+  assert.equal(postedWhenEpoch('a year ago', now), now - 365 * 86400);
+  assert.equal(postedWhenEpoch('unknown', now), null);
+  assert.equal(postedWhenEpoch('', now), null);
+});
+
+test('turn 3: a reel line that says BY HAND without the profile saying so, or an unsourced tile, is flagged', () => {
+  const { scriptRuleBreaks } = require('./.build/domain/studio.js');
+  const nums = new Set(['10000']);
+  const flagged = scriptRuleBreaks({ pile_line: 'EVERY SKETCH. BY HAND.', load_n1: '12', load_n2: '10000', load_n3: 'ALL' }, '{"one_liner":"whiteboard"}', nums).map((b) => b.id);
+  assert.deepEqual(flagged, ['pile_line', 'load_n1']);
+  assert.deepEqual(scriptRuleBreaks({ pile_line: 'EVERY FORM. BY HAND.' }, '{"pain":"teams copy responses by hand into spreadsheets"}', nums), []);
+});

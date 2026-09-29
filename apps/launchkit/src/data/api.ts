@@ -11,7 +11,7 @@ import {
 } from '../domain/questions';
 import { ASSET_TYPES } from '../lib/asset-types';
 import { revenueAtPoints } from '../domain/revenue';
-import { gateAsset, gateContext, competitorNames, gateSignals, gateTargets } from '../domain/gates';
+import { gateAsset, gateContext, competitorNames, gateSignals, gateTargets, sourceNumbers } from '../domain/gates';
 import { buildAttribution, buildPlan, planMarkdown, type PendingItem } from '../domain/plan';
 import {
   BRAND_CAMPAIGNS_PREREQ_ERROR, GATE1_ERROR, NO_PROFILE_TO_APPROVE_ERROR,
@@ -28,7 +28,7 @@ import { forgeConcept, forgeRun } from './studio';
 import { buildStudioImagesQuestion, buildStudioQuestion, buildStudioRepairQuestion, buildStudioVoiceQuestion, buildStudioVoiceRepairQuestion } from '../domain/questions';
 import { fillUrl } from '../lib/share';
 import {
-  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, displayName, isStudioStep, kitCopy, normalizeSlots, studioJobKind, wordCount,
+  NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, displayName, isStudioStep, kitCopy, normalizeSlots, scriptRuleBreaks, studioJobKind, wordCount,
   type ConceptSpec,
 } from '../domain/studio';
 import {
@@ -516,8 +516,12 @@ export const api = {
     const compact = (v: unknown, n: number) => { const s = JSON.stringify(v ?? null); return s.length > n ? s.slice(0, n) + '…' : s; };
     const pricing = await latestCommercial(id, 'pricing');
     const listing = await latestCommercial(id, 'listing');
-    const commercialCtx = pricing || listing ? compact({ pricing, listing }, 3500) : '';
     const projRow = selectOne('projects', { id });
+    // the builder's chosen pricing, when there is one, is the price every post quotes: excalidraw's posts said
+    // $6 from the research while the chosen plan said $8 (09-29)
+    const chosenPricing = projRow?.selected_pricing && typeof projRow.selected_pricing === 'object' ? (projRow.selected_pricing as Dict) : null;
+    const commercialCtx = chosenPricing || pricing || listing
+      ? compact(chosenPricing ? { chosen_pricing: chosenPricing, listing } : { pricing, listing }, 3500) : '';
     const angles = Array.isArray(projRow?.selected_campaigns) ? (projRow.selected_campaigns as unknown[]).map(String) : [];
     let campaignCtx = '';
     if (angles.length > 0) {
@@ -541,7 +545,7 @@ export const api = {
     // what the gate needs beyond the draft: a thin profile, a profile with no recorded gap, a RocketRide-owned
     // app, the numbers the sources hold (a draft's other numbers are invented) and the competitors' names
     const gctx = gateContext(profile, String(projRow?.site_url ?? ''), String(projRow?.repo_url ?? ''), {
-      texts: [brandDna, pricing, listing],
+      texts: [brandDna, chosenPricing, pricing, listing],
       competitors: competitorNames(profile, pricing, appName),
     });
     // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
@@ -748,9 +752,16 @@ export const api = {
           const raw: Dict = result.slots && typeof result.slots === 'object' ? { ...(result.slots as Dict) } : {};
           let norm = normalizeSlots(spec, raw);
           const repaired: string[] = [];
-          if (norm.clamped.length > 0) {
-            // a second small ask rewrites only the over-limit slots, so the film never shows a cut fragment
-            const offenders = norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? '') }));
+          // lines that break a content rule go through the same repair as over-length ones
+          const sources = sourceNumbers([profile, dna, siteCopy]);
+          const profileText = JSON.stringify(profile ?? {});
+          const breaks = scriptRuleBreaks(norm.slots, profileText, sources);
+          if (norm.clamped.length > 0 || breaks.length > 0) {
+            // a second small ask rewrites only the offending slots, so the film never shows a cut fragment
+            const offenders = [
+              ...norm.clamped.map((sid) => ({ id: sid, value: String(raw[sid] ?? ''), reason: '' })),
+              ...breaks.filter((b) => !norm.clamped.includes(b.id)).map((b) => ({ id: b.id, value: String(raw[b.id] ?? norm.slots[b.id] ?? ''), reason: b.reason })),
+            ];
             try {
               const fix = await ask('lk_studio.pipe', buildStudioRepairQuestion(spec, offenders, appName));
               const fixed: Dict = fix.slots && typeof fix.slots === 'object' ? (fix.slots as Dict) : {};
@@ -762,8 +773,10 @@ export const api = {
               if (repaired.length > 0) norm = normalizeSlots(spec, raw);
             } catch { /* keep the mechanical clamp */ }
           }
+          // what the repair did not fix stays flagged, and a flagged line blocks the reel's approval
+          const flagged = scriptRuleBreaks(norm.slots, profileText, sources).map((b) => b.id);
           return {
-            concept, ...norm, repaired,
+            concept, ...norm, repaired, flagged,
             tagline: typeof result.tagline === 'string' ? result.tagline.trim().slice(0, 80) : '',
             one_liner: typeof result.one_liner === 'string' ? result.one_liner.trim().slice(0, 160) : '',
             claims_used: Array.isArray(result.claims_used) ? result.claims_used : [],

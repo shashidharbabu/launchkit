@@ -645,6 +645,12 @@ export function CommercialStage() {
   const neither = !pricing && !listing;
   const runningKind = running?.kind;
   const chosenPricing = project.selected_pricing ?? null;
+  // a listing drafted before the pricing choice quotes the research's prices: excalidraw's said $6 beside a
+  // chosen $8 (09-29). Stale = a chosen paid tier's price appears nowhere in the listing.
+  const listingText = listing ? JSON.stringify(listing) : '';
+  const staleListing = Boolean(listing && chosenPricing && (chosenPricing.tiers ?? []).some((t) =>
+    t.included !== false && typeof t.price_usd_month === 'number' && t.price_usd_month > 0 &&
+    !listingText.includes(String(t.price_usd_month))));
 
   const listingCopyText = listing
     ? [asStr(listing.title), asStr(listing.tagline), '', asStr(listing.description_short), '', asStr(listing.description_long)].filter(Boolean).join('\n')
@@ -816,6 +822,11 @@ export function CommercialStage() {
               <span className="text-shimmer text-small">Rewriting your store listing</span>
             ) : listing ? (
               <div className="grid gap-5">
+                {staleListing && (
+                  <Banner tone="nogo" title="This listing predates your pricing choice.">
+                    It quotes prices other than the tiers you chose. Regenerate it so the listing and the plan agree.
+                  </Banner>
+                )}
                 {listingApproved ? (
                   <Banner tone="go" title="Approved.">
                     The plan carries this copy, and the Assets stage uses its tagline on the cards. Regenerate to start a new draft.
@@ -825,7 +836,7 @@ export function CommercialStage() {
                     tone="hold"
                     title="Read it as a visitor would, then approve it."
                     action={
-                      <Button variant="primary" size="sm" disabled={Boolean(runningKind)} loading={approving} loadingLabel="Approving" onClick={approveListing}>
+                      <Button variant="primary" size="sm" disabled={Boolean(runningKind) || staleListing} loading={approving} loadingLabel="Approving" onClick={approveListing}>
                         Approve listing
                       </Button>
                     }
