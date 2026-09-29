@@ -163,3 +163,10 @@ test('THREAD_PAT: a Lemmy thread and a Mastodon post are discussion threads; a L
   assert.ok(gates.THREAD_PAT.test('https://fosstodon.org/@someone/113245678901234567'));
   assert.ok(!gates.THREAD_PAT.test('https://lemmy.world/c/selfhosted'));
 });
+
+test('complianceBlankets: a security feature promised on both or every plan is caught (excalidraw E2EE)', () => {
+  const { complianceBlankets } = gates;
+  assert.equal(complianceBlankets('Every canvas is end-to-end encrypted, on both the free and Plus plans.').length, 1);
+  assert.equal(complianceBlankets('SSO and audit logs on every plan.').length, 1);
+  assert.equal(complianceBlankets('End-to-end encryption comes with the free plan.').length, 0);
+});

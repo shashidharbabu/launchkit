@@ -379,8 +379,10 @@ const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|s
 // A compliance standard with a blanket qualifier: documenso's drafts said HIPAA and 21 CFR Part 11 came "on all
 // plans, with no add-on fees" (09-29) while its docs mark both Enterprise only. A certification is sold with a
 // plan or an edition, so a sentence that promises it everywhere is a claim no source can back as written.
-const COMPLIANCE = /\b(?:HIPAA|SOC ?2|SOC ?1|21 CFR(?: Part 11)?|ISO ?27001|FedRAMP|PCI(?:[- ]DSS)?|GDPR|CCPA|HITRUST|eIDAS)\b/i;
-const BLANKET = /\b(?:(?:on|in|with|across) (?:all|every) (?:plans?|tiers?|editions?)|no (?:add-?ons?|extra (?:cost|fees?|charge)|separate (?:compliance )?(?:tier|plan)|upgrade)|without (?:add-?ons?|add-?on fees|an? (?:upgrade|add-?on))|out of the box|included by default|built[- ]in by default|at no (?:extra|additional) (?:cost|charge)|all included)\b/i;
+// security features are sold by plan the same way: excalidraw's listing promised end-to-end encryption "on both
+// the free and Plus plans" while its pricing page lists it on Free only (09-29)
+const COMPLIANCE = /\b(?:HIPAA|SOC ?2|SOC ?1|21 CFR(?: Part 11)?|ISO ?27001|FedRAMP|PCI(?:[- ]DSS)?|GDPR|CCPA|HITRUST|eIDAS|E2EE|end-to-end encrypt(?:ed|ion)|SSO|SAML|SCIM|audit logs?)\b/i;
+const BLANKET = /\b(?:(?:on|in|with|across) (?:all|every|both(?: the)? [\w+ ]{1,24}? and [\w+]{1,16}) (?:plans?|tiers?|editions?)|no (?:add-?ons?|extra (?:cost|fees?|charge)|separate (?:compliance )?(?:tier|plan)|upgrade)|without (?:add-?ons?|add-?on fees|an? (?:upgrade|add-?on))|out of the box|included by default|built[- ]in by default|at no (?:extra|additional) (?:cost|charge)|all included)\b/i;
 
 /** Sentences that pair a compliance standard with a promise that it comes on every plan. */
 export function complianceBlankets(text: string): string[] {
