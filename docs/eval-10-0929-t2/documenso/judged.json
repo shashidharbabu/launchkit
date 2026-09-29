@@ -1,0 +1,234 @@
+{
+  "slug": "documenso",
+  "scores": {"profile": 3, "brand": 2, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 1, "plan": 3},
+  "post_scores": {"x_post": 2, "linkedin_post": 2, "reddit_post": 2, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile asserts every compliance standard comes with no add-on fees, but Documenso's own docs list 21 CFR Part 11 and HIPAA as Enterprise only, and the repo's packages/ee/FEATURES puts 21 CFR under the commercial Enterprise Edition licence; the edition condition was never captured, and this one false claim spread to every later stage.",
+      "evidence": "profiles[0].data.differentiators: \"Compliance out of the box: ESIGN Act, UETA, 21 CFR Part 11, SOC2, HIPAA listed on site without add-on fees (documenso.com homepage)\". docs.documenso.com/docs/compliance/certifications: \"21 CFR Part 11 | Compliant (Enterprise)\", \"HIPAA | Compliant (Enterprise)\". github packages/ee/FEATURES: \"- 21 CFR\".",
+      "systemic": true,
+      "cause_hint": "understand pipe: adds an inferred qualifier ('without add-on fees') that the source does not state, and reads only README/home/pricing, never the compliance docs; the profile's 'unverified' entry for SOC2/HIPAA is not enforced downstream"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The profile records the yearly-billed prices as the monthly prices; the site shows $25/$40/$250 as 'Billed yearly' with 'Save $60/$120/$600', so the rate billed monthly is higher and was never captured.",
+      "evidence": "profiles[0].data.pricing_current: \"Individual: $25/mo ($300/yr, unlimited docs, API)\". documenso.com/pricing: \"$25 per/month $300 billed yearly Save $60 Billed yearly\".",
+      "systemic": true,
+      "cause_hint": "understand pipe pricing extraction ignores the billing-period toggle on pricing pages"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The DNA value props and a whole angle ('Compliance Without the Add-Ons') rest on the false claim that all five standards are included with no add-on fees.",
+      "evidence": "brand_dna.messaging.value_props[0]: \"Fully compliant e-signatures out of the box, ESIGN, UETA, 21 CFR Part 11, SOC2, HIPAA, no add-on fees\"; brand_campaigns[4].sample_copy.headline: \"ESIGN. UETA. 21 CFR Part 11. SOC2. HIPAA. All included.\"",
+      "systemic": true,
+      "cause_hint": "brand_dna / brand_campaigns pipes trust profile differentiators without the edition qualifier"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Brand DNA has no visual identity at all (no colours, fonts or logo), even though the later studio probe found the logo and the green accent on the same site.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"logo_url\": \"\", typography.evidence: \"Scrape returned markdown without CSS; no font-family declarations...\"",
+      "systemic": true,
+      "cause_hint": "brand_dna pipe reads firecrawl markdown only; studio probe results are not fed back into the DNA"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle's copy uses the banned verb and overclaims openness: the Enterprise Edition code (21 CFR, embed authoring, white label) is under a commercial licence, not AGPLv3.",
+      "evidence": "brand_campaigns[0].sample_copy.headline: \"Our signing backend is fully open. Here's everything we've shipped.\"; hook: \"We open-sourced the entire signing backend\". github packages/ee/LICENSE: \"The Documenso Commercial License\".",
+      "systemic": true,
+      "cause_hint": "brand_campaigns pipe has no banned-word gate (GLOBAL_RULES 's-h-i-p' ban is only enforced on social drafts)"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "Two pairs of angles overlap heavily: 'Signing Backend for Builders' and 'Embed It in a Weekend' both pitch API plus React embedding to product engineers, and 'Open Signing Movement' and 'Open Company, Open Metrics' both pitch public code and metrics.",
+      "evidence": "brand_campaigns[1].hook: \"Your product needs signing. Here's how to embed it without building it from scratch.\"; brand_campaigns[5].hook: \"Embedded signing in your product. Here's the full integration path, start to finish.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt lacks a distinctness check across angles"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The approved store listing says every compliance standard is covered on all plans with no add-on fees, which contradicts Documenso's docs (21 CFR Part 11 and HIPAA are Enterprise).",
+      "evidence": "listing.faq[2].a: \"ESIGN Act, UETA, 21 CFR Part 11, SOC2, and HIPAA are covered out of the box on all plans, with no add-on fees.\"; description_long: \"coverage is included, no add-on fees, no separate compliance tier.\"",
+      "systemic": true,
+      "cause_hint": "listing pipe copies the profile differentiator; there is no gate for the rulebooks.ts rule that a compliance claim must carry its edition"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen option is called 'Monthly Billing' but uses the yearly-billed rates, and the 'Annual Commit, Discounted Rate' option charges the same prices, so the two options contradict each other and the chosen one misstates the current monthly price.",
+      "evidence": "pricing.options[0].name: \"Current Tiers, Monthly Billing\" with Individual price_usd_month 25; options[1].positioning: \"sells annual-only at the existing annual prices ($300/yr Individual...) shown as monthly equivalents of $25, $40, and $250\"; site: \"$25 per/month $300 billed yearly Save $60\".",
+      "systemic": true,
+      "cause_hint": "pricing pipe inherits the profile's billing-period confusion; current_tiers is empty so nothing checks against the live page"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Tier inclusions are invented: the site offers 'Email Support' on Teams and 'Enterprise addons available' on Platform, but the chosen pricing lists 'Priority support' and a 'Compliance bundle'.",
+      "evidence": "projects[0].selected_pricing.tiers[2].includes: \"Priority support\"; tiers[3].includes: \"Compliance bundle\". Site Teams: \"Email Support\"; Platform: \"Integration Support (Slack) Enterprise addons available\".",
+      "systemic": true,
+      "cause_hint": "pricing pipe writes tier includes freely; no check against scraped current tiers (current_tiers: [])"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing uses the banned verb and an unsupported speed claim.",
+      "evidence": "listing.description_long: \"let you ship document signing inside your own product in hours.\"",
+      "systemic": true,
+      "cause_hint": "listing pipe has no banned-word or unsupported-number gate (brand rulebook 1.1)"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "current_tiers is empty although the profile holds the full live price table, so no option is mechanically anchored to it.",
+      "evidence": "pricing.current_tiers: []",
+      "systemic": true,
+      "cause_hint": "pricing pipe does not populate current_tiers from profile.pricing_current"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "Five of the six drafts state that 21 CFR Part 11 (and in four of them HIPAA) is included with no add-on tier, which is false for every plan except Enterprise; this breaks the rulebook rule that a compliance claim must carry its edition.",
+      "evidence": "x_post.thread_extension[2]: \"Compliance is built in: ESIGN Act, UETA, 21 CFR Part 11, SOC2, HIPAA. No add-on tier required.\"; reddit_post.body: \"HIPAA compliance included by default, no add-on tier required\"; producthunt.first_comment: \"are included without add-on fees\"; show_hn.body: \"Compliance coverage includes ESIGN, UETA, and 21 CFR Part 11 out of the box.\"; linkedin_post: \"come out of the box, no add-on fees.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts X rule 'A privacy, security or compliance claim ... carries the condition and the edition' has no code gate; the profile never recorded the edition"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The X warnings describe a softening that is not in the text: they say a qualifying clause was added to avoid an absolute claim, but 'No add-on tier required' is still absolute.",
+      "evidence": "x_post.warnings[0]: \"a qualifying clause ('depends on hosted vs self-hosted') was added to the thread tweet to avoid an absolute claim.\" vs thread: \"No add-on tier required.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts X rule 'warnings ... describes the draft exactly as returned' is not verified by the gate"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The LinkedIn post says why people starred the repo and invents the writer's reaction, both of which the LinkedIn rules forbid; it also uses a second proof point.",
+      "evidence": "linkedin_post.post: \"That number surprised me too, until I understood what it represents: developers who want to see the code behind the documents they're legally depending on.\" ... \"We're at 3,292 forks and still going.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts linkedin rule 'A star, fork, download or click count is a count and nothing more' has no gate; the one-proof-point repair only runs on x_post"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post invents a product limitation and mechanism not in the profile, and it is false: Teams share templates.",
+      "evidence": "reddit_post.body: \"Right now you manage templates within your own account only.\" Profile gap is only: \"Template Store is 'Coming Soon', not yet available\".",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES 'Never invent ... a limitation' is not gated; the model elaborated the gap"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post defaults to r/SideProject, the wrong venue for a funded company with 15k stars, while Targets later ranks r/selfhosted first.",
+      "evidence": "reddit_post.warnings[0]: \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"",
+      "systemic": true,
+      "cause_hint": "Social runs before Targets, so the reddit draft has no TARGET; the default sub is not chosen by maturity"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Product Hunt copy is negative about the whole category, and it claims the whole codebase is AGPLv3 although the EE package uses a commercial licence.",
+      "evidence": "producthunt.description: \"Proprietary e-signature tools are expensive, closed-source, and hard to embed or audit.\"; first_comment: \"Most signing tools are expensive to scale, impossible to audit, and painful to embed ... The codebase is AGPLv3, so you can read, fork, and audit every line.\"",
+      "systemic": true,
+      "cause_hint": "competitor-negativity repair only catches a named rival beside a negative word, not category swipes"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt draft is written as a first launch, although the profile records a Top Post badge from an earlier launch; there is no what-changed line and no repeat-launch warning.",
+      "evidence": "profile.proof_points: \"Product Hunt Top Post badge and Featured badge shown in README\"; producthunt.warnings has no repeat-launch entry.",
+      "systemic": true,
+      "cause_hint": "producthunt rules have no repeat-launch rule (Show HN has one at rulebooks.ts line 228)"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN post invents an internal uncertainty about the team's own embedding strategy.",
+      "evidence": "show_hn.body: \"we are not sure whether teams building on the API actually want the components or prefer to render their own UI.\"",
+      "systemic": true,
+      "cause_hint": "show_hn rule asking for a decision to get a second opinion on pushes the model to invent one when the profile holds none"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter pitch repeats 'GitHub', adds a sentence saying what the number proves (which its rule forbids), and leaves a paragraph-count warning unresolved.",
+      "evidence": "newsletter_pitch.pitch: \"The repo has 15,254 GitHub stars on GitHub, which gives a sense of how many builders have already looked at the code.\"; warnings: \"pitch: Six or more paragraph breaks\"",
+      "systemic": true,
+      "cause_hint": "newsletter rule 'state the figure without a sentence saying what it proves' is not gated"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The lockup shows the brand name in dark grey on near-black and leaves out Documenso's green; the probe's accent source label is also wrong.",
+      "evidence": "reel.vars: \"brand\": \"#606060\", \"canvas\": \"#090404\"; probe.palette.accent: \"#5cb31e\" source \"most common link colour\" while evidence.links shows rgb(92,179,30) n=1 vs rgb(145,145,145) n=40; poster.jpg shows DOCUMENSO in grey on black",
+      "systemic": true,
+      "cause_hint": "studio-forge probe palette role picking (primary falls back to body ink) and the lockup's brand var"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The call to action cuts the campaign phrase into broken English, both on screen and in the voice-over.",
+      "evidence": "script.slots.arrive_line: \"JOIN THE OPEN SIGNING.\"; voice.segments[4].text: \"Join the open signing. That's Documenso.\"",
+      "systemic": true,
+      "cause_hint": "reel script slot length clamp truncates 'Join the Open Signing Movement' without re-wording"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The hero plate reads as a generic office (the judge scored domain 3/10) and brings in a second, unnamed colleague; the reel was left unapproved, which is correct, but the drive stalled on it.",
+      "evidence": "images.hero.takes[0]: \"domain\": 3, \"why\": \"Clear standing-desk office scene but reads as a generic office\"; drive.log: STUCK {\"label\":\"Approve reel\",\"waitedSecs\":300}",
+      "systemic": true,
+      "cause_hint": "image judge picks the chosen take on composition even when domain is 3"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Two venues are already done and one reason is false: Documenso is already listed on awesome-selfhosted and has a SaaSHub page, yet SaaSHub is ranked on the claim that Documenso is absent.",
+      "evidence": "targets rank 10 why_fit: \"DocuSign alternatives page scraped (13 listed); Documenso absent.\"; rank 13 awesome-selfhosted. awesome-selfhosted README: \"[Documenso](https://documenso.com) - Digital document signing platform (alternative to DocuSign).\"; saashub.com/documenso returns 200.",
+      "systemic": true,
+      "cause_hint": "targets pipe infers 'not listed' from an alternatives page instead of checking the product's own listing URL"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Most rules summaries are 'not verified', even Show HN, whose rules are public, and r/smallbusiness is a poor fit for a developer-first launch.",
+      "evidence": "targets rank 2 Show HN rules_summary: \"not verified\"; rank 6 r/smallbusiness why_fit: \"SMB operators replacing DocuSign due to pricing\"",
+      "systemic": true,
+      "cause_hint": "targets_meta notes: \"All reddit rules unverified due to FireCrawl blocking old.reddit.\""
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The signals run failed on a dropped connection in 0 seconds, yet the page tells the founder that nobody is asking and the drive recorded the stage as ok; there is no scan report.",
+      "evidence": "runs: signals error 0 \"Server is not connected\"; 7-signals.png: \"No signals yet. Nobody is publicly asking for what your app does right now\"; summary.stages.signals: {\"ok\": true, \"none\": true}; commercial_results has no signals_meta row.",
+      "systemic": true,
+      "cause_hint": "Signals page empty state does not read the last run's error; run-eval treats none=true as success"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan says 'Plan ready' with 6 venues while Targets had failed and Assets was unapproved; the 6 are only the owned platforms, and the decisions carry the mislabelled 'Monthly Billing' pricing.",
+      "evidence": "8-plan.png: \"Plan ready  6 venues\", \"Assembled from approved posts and selected venues\", \"Pricing: Current Tiers, Monthly Billing, free plus paid tiers: Free $0/mo, Individual $25/mo\"; stage rail shows Assets 5 and Targets 6 unchecked.",
+      "systemic": true,
+      "cause_hint": "plan readiness counts own-platform rows as venues and does not require the Targets stage"
+    },
+    {
+      "stage": "plan",
+      "severity": "low",
+      "summary": "The re-run sequencing advice uses the banned verb and says to hold Show HN until a new feature launches, which contradicts the Show HN draft that is approved and ready now.",
+      "evidence": "targets_meta.sequencing_advice[2]: \"Post Show HN once a meaningful new feature ships (e.g., Template Store)\"",
+      "systemic": true,
+      "cause_hint": "targets pipe sequencing prompt has no banned-word gate and does not see the social stage"
+    }
+  ],
+  "best": "The Show HN draft: an accurate tech stack (Hono, Prisma, PostgreSQL, React Router v7, @libpdf/core), the profile's real gaps (Template Store, payments) named as not ready, and a correct repeat-Show-HN warning. It needs only the 21 CFR edition fixed and the invented uncertainty removed.",
+  "worst": "The compliance claim. 'ESIGN, UETA, 21 CFR Part 11, SOC2, HIPAA ... no add-on fees / on all plans' runs from the profile through the DNA, an angle, the approved listing FAQ and five of six posts, while Documenso's own docs mark 21 CFR Part 11 and HIPAA as Enterprise only.",
+  "notes": "Judged from appstate.rerun.json (newest rows). The live site confirms the price points, the testimonials and the gaps. docs.documenso.com/docs/compliance/certifications and packages/ee/FEATURES were fetched to check the compliance claims. The site shows the paid prices as 'Billed yearly, Save $60/$120/$600', so the monthly-billed rate is higher than the $25/$40/$250 used as 'Monthly Billing'; the exact monthly figure was not shown in the scrape. The missing venue selection in Targets was not scored against the app, per instructions. The signals stage never ran a scan (connection error), so it scores 1 for presenting a failure as honest empty demand, not for its count. No em dashes are used in this report."
+}

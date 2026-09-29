@@ -1,0 +1,194 @@
+{
+  "slug": "continue",
+  "scores": {"profile": 4, "brand": 4, "commercial": 3, "social": 2, "assets": 2, "targets": 3, "signals": 2, "plan": 2},
+  "post_scores": {"x_post": 4, "linkedin_post": 4, "reddit_post": 2, "producthunt": 2, "show_hn": 2, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Product Hunt description is broken text: the length trim split 'Apache 2.0' at its period and left a stray '0,' opening the last sentence.",
+      "evidence": "assets.producthunt.data.description: \"...customise agent behaviour through a config file. 0, available as a VS Code extension, JetBrains plugin, and CLI.\" (repaired lists \"description: Description over 260 characters\")",
+      "systemic": true,
+      "cause_hint": "apps/launchkit/src/data/api.ts trimParagraphsToCap (the deterministic length cut splits sentences on '.' and cuts inside version numbers like 2.0); no gate re-reads the cut text"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Product Hunt maker comment invents an origin story, which GLOBAL_RULES forbid (the profile records no why_built).",
+      "evidence": "assets.producthunt.data.first_comment: \"We built Continue because we kept running into the same wall: every AI coding tool we tried made the model choice for us, and moving code off our machines felt like a given, not a decision.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts producthunt rule (2) 'why you built it, the specific moment or pain' pulls against GLOBAL 'Never invent an origin story'; the gate only flagged 'the same wall' as a template phrase and did not block"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post makes a false claim about a named competitor: Copilot offers model selection (the stage's own pricing data says so), so 'a fixed set of hosted models' is untrue and reads as a swipe.",
+      "evidence": "assets.reddit_post.data.body: \"GitHub Copilot provides completions and chat through a fixed set of hosted models.\" vs commercial_results.pricing competitors GitHub Copilot Pro key_limits: \"Unlimited completions, cloud agent, model selection\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts reddit rule requires naming the alternative and what it 'does or does not do'; the swipe repair only rewords the negative word and never checks the fact against COMMERCIAL"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Show HN body infers mechanisms from stack names, which its rulebook forbids, and asks about a 'single JSON config' when Continue's config.json is deprecated in favour of config.yaml.",
+      "evidence": "assets.show_hn.data.body: \"LanceDB for local vector storage, and a Rust sync module. A socket.io layer connects the IDE extension to the agent process.\" and \"is a single JSON config the right abstraction\"; docs.continue.dev lists \"config.json Reference (Deprecated)\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts show_hn 'How it works... from stack names alone, list the names and stop. Never infer a mechanism from a name' is not enforced by a gate; the model's own warning admits the flow is unverified"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit draft was written for r/SideProject, not the selected r/LocalLLaMA or r/vscode, so the plan cannot assemble.",
+      "evidence": "assets.reddit_post.data.warnings: \"No TARGET subreddit was specified. This draft is written for r/SideProject\"; plan page: \"Still open: Reddit, written for no chosen subreddit; Targets selected r/LocalLLaMA, r/vscode: redraft it\"",
+      "systemic": true,
+      "cause_hint": "stage order: social drafts before targets are chosen, and there is no redraft after target selection"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt comment keeps a word the brand rulebook bans, and promises all-day presence for a project whose team has left.",
+      "evidence": "assets.producthunt.data.first_comment: \"Two questions I genuinely want answered\" ... \"Tell me in the comments and I will be here all day.\" (warning lists \"genuinely\" but it was not repaired)",
+      "systemic": true,
+      "cause_hint": "the slop swap does not cover 'genuinely' even though the check flags it"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch invents a timing fact and makes an unsupported sweeping claim about the major tools.",
+      "evidence": "assets.newsletter_pitch.data.pitch: \"It reached 36,064 stars on GitHub before the acquisition closed.\" (the profile says \"36,064 GitHub stars as of September 2026\") and \"still have no clean answer from the major AI coding tools\"",
+      "systemic": false,
+      "cause_hint": "newsletter_pitch drafting prompt"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The gates raise false-positive warnings: forks are in the proof points, 'amplified' is the brand's own mission word, and '2.0.0' is a version, not a thread number.",
+      "evidence": "reddit_post warning: \"A traction number ... must appear in the profile proof points (\\\"5,445 forks\\\")\" while profile.proof_points has \"5,445 forks on GitHub\"; linkedin_post: \"AI-tell vocabulary (\\\"amplified\\\")\"; x_post: \"A 1/ 2. 3) prefix on a thread tweet (\\\"2.\\\")\" on \"2.0.0 removed telemetry\"",
+      "systemic": true,
+      "cause_hint": "apps/launchkit/src/lib/rulebook-checks.ts regexes (proof-point match, AI-tell list, thread-prefix regex)"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "An X alternate variant presents 846 open issues as proof of care, which puts a spin on a count of unresolved issues and PRs.",
+      "evidence": "assets.x_post.data.alt_variants[1]: \"846 open issues from a community that cared.\"; profile.proof_points: \"846 open issues indicating active community engagement prior to acquisition\"",
+      "systemic": false,
+      "cause_hint": "understand pipe proof_points wording"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel lockup puts the black site logo on a near-black canvas, so the mark is almost invisible.",
+      "evidence": "poster.jpg: dark-grey 'Continue' logo on #060409; studio.reel vars \"canvas\": \"#060409\" with logo \"continue-logo-black.svg\"",
+      "systemic": true,
+      "cause_hint": "studio-forge reel composition: no contrast check or inversion for a dark logo on the dark canvas"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The probe picked a lavender primary from a border variable, which contradicts the black-and-white brand DNA and the site.",
+      "evidence": "studio.probe palette primary \"#a88cd9\" source \"css variable --brand-border\"; brand_dna.visual.colors: \"#ffffff\" background, \"#000000\" text; site --primary \"#0f172a\"",
+      "systemic": true,
+      "cause_hint": "studio-forge probe palette picker prefers a --brand-* variable over --primary and the screenshot's monochrome"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel script carries template beats and cut-off copy, and one beat uses the brand rulebook's banned word 'ship'.",
+      "evidence": "studio.script slots: \"open_line\": \"LATE NIGHT. YOUR IDE.\", \"load_l1\": \"MODELS OUT\", \"pile_sub\": \"LOCK-IN · LIMITS · NO\", \"cost_line\": \"YOU SHIP ON THEIR TERMS.\"; voice: \"no time to decide which one you can trust\"",
+      "systemic": true,
+      "cause_hint": "verdict concept template (the load/pile/squeeze beats force a scenario onto a non-workflow product); the clamp truncates pile_sub"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The X image card headline is the whole tweet including the URL, not card copy.",
+      "evidence": "studio.kit images x.headline: \"36,064 stars later, Continue 2.0.0 is the final release. No telemetry, no auth, fully self-contained. We always believed developers should be amplified, not automated. https://continue.dev\"",
+      "systemic": true,
+      "cause_hint": "studio kit: headline taken from the x_post body verbatim"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The reel's product beat captions the acquisition-notice screenshot with a feature line, and the voice changes the brand's mission phrase.",
+      "evidence": "probe title \"Continue (acquired by Cursor)\", screenshot_used true, product_line \"CUSTOM AI AGENTS. YOUR WAY.\"; breathe_line \"AMPLIFIED. NOT REPLACED.\" vs the site's \"amplified, not automated\"",
+      "systemic": false,
+      "cause_hint": "reel uses the probe's site screenshot as the product frame"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The chosen pricing option is labelled 'free plus paid tiers' but has only a free tier, and that contradiction carries into the plan's decisions.",
+      "evidence": "projects.selected_pricing: \"billing\": \"free plus paid tiers\", tiers: [Free $0]; listing FAQ: \"There is no paid tier, no subscription\"; plan: \"Open-Source Foundation (as-is), free plus paid tiers: Free $0/mo\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe options schema forces a billing model from the fixed list; no check that billing matches the tier set"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The fork options invent features and quote revenue without saying what tier mix they assume.",
+      "evidence": "Hosted Fork Pro includes \"Managed cloud config and sync\"; Team Subscription Fork revenue_at \"10\": 250 at $15 and $35 tiers, with no mix stated",
+      "systemic": true,
+      "cause_hint": "pricing pipe prompt asks for revenue at N without stating the tier mix"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The profile records current pricing as simply Free and misses that the site's FAQ asks 'What about my subscription?', which implies a paid plan existed before the acquisition.",
+      "evidence": "profile.pricing_current: \"Free (Apache 2.0 open-source; VS Code Marketplace listing shows pricing: Free)\"; continue.dev FAQ: \"What about my subscription?\"",
+      "systemic": false,
+      "cause_hint": "understand pipe: FAQ answers not rendered (profile.unverified admits it)"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Two campaigns aim installs and compliance-driven self-hosting at teams, for software whose own repo says it will receive no fixes.",
+      "evidence": "brand_campaigns \"Self-Host Your AI Coding Agent\" objective: \"reach engineering teams evaluating self-hosted AI coding tools for compliance or privacy reasons\"; profile.gaps: \"no new features or bug fixes will be released\"; pricing risks: \"No active maintenance means security and compatibility issues will accumulate\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt: angle objectives are not checked against maturity signals such as read-only or unmaintained"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The only signal is a thread from 14 February 2026 (about 227 days old). It passed because the rescore sent a GitHub Discussion URL to the issues API, got a 404 and left the signal 'unverified' instead of dropping it.",
+      "evidence": "signals[0].url \"https://github.com/ggml-org/llama.cpp/discussions/19619\", posted_when \"unknown\", rescore \"fetch failed: HTTP 404 for https://api.github.com/repos/ggml-org/llama.cpp/issues/19619\"; the live thread shows datetime=\"2026-02-14T06:41:14Z\"",
+      "systemic": true,
+      "cause_hint": "apps/launchkit/src/data/rescore.ts lines 59-61 map /discussions/N to /repos/.../issues/N; discussions need the GraphQL API or an HTML fetch"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The drafted reply pitches before it helps, claims 'works well' without evidence and carries a raw {APP_URL} placeholder into the copy text.",
+      "evidence": "signals[0].drafted_reply: \"Continue (now open-source foundation after Cursor acquisition) works well with local models via llama.cpp... Check {APP_URL}, I'm one of the builders.\"",
+      "systemic": true,
+      "cause_hint": "signals pipe reply prompt; the UI's Copy reply does not substitute APP_URL"
+    },
+    {
+      "stage": "plan",
+      "severity": "high",
+      "summary": "The plan did not assemble, and the page shows stale text telling the user to approve posts and choose venues when both were already done.",
+      "evidence": "8-plan.png: \"Plan not ready.\" and \"Approve a post and choose venues first\" beside \"Assembled from approved posts and selected venues | 7 venues\"",
+      "systemic": true,
+      "cause_hint": "plan page disabled-button caption does not reflect the real blocking reason (the Reddit target mismatch)"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Every venue's rules are unverified, and Show HN is ranked third and selected for what the sequencing advice calls an acquisition 'narrative', which is news rather than a Show HN.",
+      "evidence": "targets rules_summary \"not verified\" on all 14; targets_meta sequencing_advice: \"Submit Show HN with the 2.0.0 final release + acquisition narrative\"",
+      "systemic": true,
+      "cause_hint": "targets pipe: FireCrawl blocked on Reddit (targets_meta notes), and there is no fallback rules source"
+    },
+    {
+      "stage": "plan",
+      "severity": "low",
+      "summary": "The tracked links point at continue.dev, which is now an acquisition notice with no install or signup, so attribution cannot record anything.",
+      "evidence": "targets ref_url \"https://continue.dev?ref=lk_subreddit_r_localllama\"; probe h1 \"Continue has joined Cursor\"",
+      "systemic": false,
+      "cause_hint": "APP_URL defaults to site_url when app_url is empty"
+    }
+  ],
+  "best": "The profile and listing handle an unusual case honestly: the acquisition by Cursor, the read-only repo and the JetBrains deprecation are stated plainly, the star and fork counts match the live GitHub API exactly (36,064 / 5,445), and the X and LinkedIn posts lead with the true state of the project.",
+  "worst": "The Product Hunt draft: its description has a broken '0, available as...' fragment left by the length trim, and its maker comment invents an origin story ('we kept running into the same wall'). Close behind are the Reddit post's false claim about Copilot and the one signal, a 227-day-old thread kept only because the rescore hit the wrong GitHub API.",
+  "notes": "Verified against the live README (read-only, final 2.0.0, telemetry and auth removed, CLI recommended over JetBrains), continue.dev (acquisition page; FAQ mentions subscriptions), the GitHub API (36064 stars, 5445 forks, 846 open issues) and docs.continue.dev (config.json deprecated). The reel was left unapproved, which was correct given the invisible logo and the template beats. Several gate warnings are false positives (forks, 'amplified', '2.0.0'), while real faults (the '0,' fragment, 'genuinely', the invented origin and mechanisms) passed with no blockers. summary.json marks every stage ok, yet the plan never assembled."
+}

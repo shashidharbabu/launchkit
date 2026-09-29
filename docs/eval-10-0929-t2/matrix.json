@@ -1,0 +1,1025 @@
+{
+ "apps": [
+  {
+   "slug": "cal-com",
+   "name": "Cal.com",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.82,
+    "notes": "All four sources returned ok:true. Confidence is capped at 0.82 because the supplied repo URL redirects to calcom/cal.diy (a community/self-host fork with features removed), meaning the repository does not represent the hosted product's full feature set. Profile of the hosted product is built primarily from cal.com and cal.com/pricing, which were fully readable."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 5,
+   "established": 3,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 3,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    8,
+    8,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "approved",
+   "targets": 14,
+   "signals": 0,
+   "signals_new": 0
+  },
+  {
+   "slug": "continue",
+   "name": "Continue",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.75,
+    "notes": "continue.dev/pricing returned 404 (ok=false), so pricing beyond the free open-source model cannot be confirmed. All other core facts (acquisition, repo status, features, star count, tech stack) are well-evidenced from the repo and site."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 6,
+   "established": 6,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 11,
+     "blockers": 0,
+     "repaired": 3,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    9,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 14,
+   "signals": 1,
+   "signals_new": 1
+  },
+  {
+   "slug": "documenso",
+   "name": "Documenso",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [
+    "targets"
+   ],
+   "profile_confidence": {
+    "overall": 0.88,
+    "notes": "All primary sources (README, homepage, /pricing) were successfully read. Confidence is high for features, pricing, tech stack, and maturity. Slight uncertainty on self-hosted license pricing (/self-hosted not scraped) and exact names of logo-carousel companies (images only). No failed fetches among core sources."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 6,
+   "established": 5,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 4,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    8,
+    9,
+    7
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 0,
+   "signals": 0,
+   "signals_new": 0
+  },
+  {
+   "slug": "dub",
+   "name": "Dub",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.8,
+    "notes": "High confidence on features, customers, tech stack, and maturity from README.md and dub.co homepage (both fully readable). Pricing tier structure and feature gating confirmed from dub.co/pricing. Confidence capped at 0.8 because exact dollar amounts for Business and Advanced plans could not be confirmed, they are rendered via animated counter and were not present as static text in the scraped content."
+   },
+   "dna_tone_words": 4,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 6,
+   "established": 5,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 4,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 14,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 3,
+     "blockers": 0,
+     "repaired": 4,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 3,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    8,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 14,
+   "signals": 0,
+   "signals_new": 0
+  },
+  {
+   "slug": "excalidraw",
+   "name": "Excalidraw",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.9,
+    "notes": "All primary sources (README, package.json, plus.excalidraw.com, plus.excalidraw.com/pricing) read successfully. excalidraw.com and excalidraw.com/pricing both returned app UI rather than marketing content, so site_gaps and voice are inferred from plus.excalidraw.com copy instead. No fabricated claims."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 6,
+   "established": 4,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 3,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 10,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 4,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 3,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    8,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "approved",
+   "targets": 14,
+   "signals": 3,
+   "signals_new": 3
+  },
+  {
+   "slug": "formbricks",
+   "name": "Formbricks",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.9,
+    "notes": "All four sources (repo metadata, README.md, formbricks.com, formbricks.com/pricing) were read successfully. Minor uncertainty on G2/TrustPilot numeric scores (not rendered in scrape) and the unverified 'largest open source survey platform' superlative."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 5,
+   "established": 3,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 9,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    9,
+    9,
+    9
+   ],
+   "voice_all_fit": null,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 0,
+   "signals": 0,
+   "signals_new": 0
+  },
+  {
+   "slug": "hack-judge",
+   "name": "hack-judge",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.45,
+    "notes": "Main product page (https://hackathon-judge-aid.onrender.com) returned 503 and could not be read. No repository was supplied. Profile is built entirely from the OpenAPI spec (/openapi.json) and Swagger UI (/docs). All feature descriptions are inferred from endpoint names and schema field names, not from marketing copy or documentation."
+   },
+   "dna_tone_words": 4,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 3,
+   "established": 1,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 11,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "draft",
+     "warnings": 10,
+     "blockers": 2,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    8,
+    9,
+    8
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 14,
+   "signals": 0,
+   "signals_new": 0
+  },
+  {
+   "slug": "hoppscotch",
+   "name": "Hoppscotch",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.75,
+    "notes": "High confidence on features, tech stack, and maturity from the fully-read README and repo metadata. Confidence capped at 0.75 because https://hoppscotch.io/pricing and https://hoppscotch.io/support both returned 'page not found' content (ok=false equivalent, rendered as 404 state), leaving pricing and support details unverified. Root package.json was also a 404."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 5,
+   "established": 4,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 3,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 10,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 3,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    8,
+    8,
+    9,
+    9
+   ],
+   "voice_all_fit": false,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 13,
+   "signals": 4,
+   "signals_new": 4
+  },
+  {
+   "slug": "khoj",
+   "name": "Khoj",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.78,
+    "notes": "khoj.dev/pricing (404) and khoj.dev/teams (404) could not be read. No active hosted product exists to evaluate UX. Profile is built from the open-source repo (well-documented) and the static khoj.dev homepage plus blog. Core technical facts are high-confidence; commercial/pricing history is unverifiable."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 5,
+   "established": 3,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 4,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    8,
+    8,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 14,
+   "signals": 1,
+   "signals_new": 1
+  },
+  {
+   "slug": "plausible",
+   "name": "Plausible",
+   "stages_ok": [
+    "profile",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.8,
+    "notes": "High confidence on features, pricing tiers, testimonials, and tech stack, all read from README and homepage. Confidence capped at 0.8 because plausible.io/pricing returned ok=false (404). No claims rest solely on that failed source; pricing was confirmed from the homepage #pricing section."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 5,
+   "established": 3,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "x_post": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "reddit_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 4,
+     "blockers": 0,
+     "repaired": 3,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    },
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 5,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 4
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    9,
+    8,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 0,
+   "signals": 0,
+   "signals_new": 0
+  }
+ ]
+}

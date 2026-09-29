@@ -1,0 +1,1490 @@
+{
+ "slug": "khoj",
+ "name": "Khoj",
+ "site": "https://khoj.dev",
+ "repo": "https://github.com/khoj-ai/khoj",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 109,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 160,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 190,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 423,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 506,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 127,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 478,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Self-hostable open-source AI second brain that answers questions from your docs and the web, for privacy-conscious knowledge workers",
+   "description": "Khoj is an open-source, self-hostable AI assistant that lets you chat with local or cloud LLMs, search across your personal documents (PDFs, Markdown, Notion, Word, org-mode), and run deep web research. It supports agents, automations, image generation, voice chat, and integrates with Obsidian, Emacs, desktop, mobile, and WhatsApp. Khoj Cloud was sunset on April 15, 2026; the product is now exclusively self-hosted.",
+   "category": "AI Productivity / Personal Knowledge Management",
+   "target_user": "Privacy-conscious developer, researcher, or knowledge worker who wants a self-hosted AI assistant over their own documents and the web",
+   "icp": {
+    "who": "Solo developers, researchers, and technical knowledge workers who manage large personal document libraries and distrust cloud AI services with their data",
+    "pain": "Existing AI assistants send data to third-party clouds, can't search private documents, and lack deep multi-hop research capabilities",
+    "current_alternatives": [
+     "Perplexity AI",
+     "ChatGPT",
+     "Notion AI",
+     "Obsidian Copilot",
+     "Mem.ai"
+    ],
+    "buying_trigger": "User wants AI answers grounded in their own private notes/docs without sending data to a SaaS provider, or needs deeper research-mode reasoning than standard chatbots offer"
+   },
+   "differentiators": [
+    "Fully self-hostable under AGPL-3.0 with no mandatory cloud dependency, confirmed by app.khoj.dev sunset notice and repo Dockerfile/docker-compose",
+    "Research mode achieves 63.5% on Google FRAMES benchmark (141% improvement over gemini-1.5-flash baseline) and 86% on OpenAI SimpleQA (2x o1-preview), per blog.khoj.dev/posts/evaluate-khoj-quality/",
+    "Broad client ecosystem: Obsidian plugin, Emacs client, desktop app, mobile app, WhatsApp, listed in README.md",
+    "Supports local LLMs alongside cloud providers (OpenAI, Anthropic, Google) with MCP, E2B code interpreter, and multi-modal inputs (voice, image), pyproject.toml dependencies"
+   ],
+   "proof_points": [
+    "37,538 GitHub stars and 2,496 forks as of September 2026 (github.com/khoj-ai/khoj)",
+    "FRAMES benchmark: Khoj Research mode scores 63.5%, a 141.4% improvement over gemini-1.5-flash baseline of 26.3% (blog.khoj.dev/posts/evaluate-khoj-quality/)",
+    "SimpleQA benchmark: Khoj scores 86% in Research mode vs. o1-preview's 43.5% baseline, 'close to human performance' (blog.khoj.dev/posts/evaluate-khoj-quality/)",
+    "Automated eval workflow runs on every release via GitHub Actions, providing a public audit trail (blog.khoj.dev/posts/evaluate-khoj-quality/)",
+    "pyproject.toml classifies project as 'Development Status :: 5 - Production/Stable'"
+   ],
+   "tech_stack": [
+    "Python",
+    "FastAPI",
+    "Django",
+    "PostgreSQL + pgvector",
+    "PyTorch",
+    "sentence-transformers",
+    "OpenAI / Anthropic / Google-genai SDKs",
+    "MCP (Model Context Protocol)",
+    "E2B code interpreter",
+    "Whisper (voice)",
+    "RapidOCR",
+    "Twilio",
+    "Docker"
+   ],
+   "pricing_current": "None found, Khoj Cloud was sunset April 15, 2026; the software is free and open-source (AGPL-3.0) for self-hosting. No active pricing page exists (khoj.dev/pricing returns 404).",
+   "voice": {
+    "tone": [
+     "direct",
+     "hacker-spirited",
+     "transparent",
+     "understated",
+     "research-driven"
+    ],
+    "sample_phrase": "We’re a tiny team of hackers building safe, useful AI software."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "pyproject.toml: Development Status :: 5 - Production/Stable",
+     "37,538 GitHub stars and active commit history through August 2026",
+     "Khoj Cloud operated as a paid SaaS before being sunset April 15, 2026",
+     "Automated benchmark evaluation runs on every release via GitHub Actions",
+     "Multiple client integrations released: Obsidian, Emacs, desktop, mobile, WhatsApp"
+    ]
+   },
+   "gaps": [
+    "Khoj Cloud (hosted SaaS) was permanently sunset April 15, 2026, users must now self-host (app.khoj.dev)",
+    "Research mode described as 'still in beta' at time of benchmark blog post (blog.khoj.dev/posts/evaluate-khoj-quality/)"
+   ],
+   "site_gaps": [
+    "No pricing page, khoj.dev/pricing returns 404",
+    "No live demo or hosted trial, app.khoj.dev shows sunset notice only",
+    "khoj.dev homepage has minimal copy (944 chars) with no feature screenshots or product walkthrough"
+   ],
+   "unverified": [
+    "khoj.dev/teams returned 404, any team/enterprise offering cannot be confirmed",
+    "Stripe is a production dependency in pyproject.toml but no active pricing or payment flow is reachable; prior cloud pricing tiers are unknown",
+    "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002; current scores with newer models are not published on the site",
+    "User testimonials mentioned in blog post ('users often mentioned Khoj felt more accurate') are anecdotal and unquantified"
+   ],
+   "confidence": {
+    "overall": 0.78,
+    "notes": "khoj.dev/pricing (404) and khoj.dev/teams (404) could not be read. No active hosted product exists to evaluate UX. Profile is built from the open-source repo (well-documented) and the static khoj.dev homepage plus blog. Core technical facts are high-confidence; commercial/pricing history is unverifiable."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Feature list, client integrations, project description"
+    },
+    {
+     "source": "pyproject.toml",
+     "via": "github",
+     "ok": true,
+     "note": "Tech stack, dependencies, production/stable classifier"
+    },
+    {
+     "source": "https://github.com/khoj-ai/khoj",
+     "via": "github",
+     "ok": true,
+     "note": "37538 stars, 2496 forks, Python, AGPL-3.0"
+    },
+    {
+     "source": "https://khoj.dev/",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Homepage copy: AI for Humans, tiny hacker team"
+    },
+    {
+     "source": "https://khoj.dev/pricing",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "404, no pricing page exists"
+    },
+    {
+     "source": "https://khoj.dev/teams",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "404, no teams page exists"
+    },
+    {
+     "source": "https://app.khoj.dev/",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Cloud sunset notice, April 15 2026, self-host only"
+    },
+    {
+     "source": "https://blog.khoj.dev/posts/evaluate-khoj-quality/",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Benchmark results: FRAMES 63.5%, SimpleQA 86%"
+    }
+   ],
+   "analysis_degraded": false,
+   "wording_fixed": 1
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Khoj",
+   "tagline_observed": "AI for Humans",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "hacker-spirited",
+     "transparent",
+     "understated",
+     "research-driven"
+    ],
+    "sentence_style": "Short declaratives in first-person plural, mission-forward, no marketing jargon",
+    "vocabulary": [
+     "open-source",
+     "self-host",
+     "second brain",
+     "agents",
+     "automations",
+     "safe",
+     "useful",
+     "transparent",
+     "adaptable",
+     "human flourishing"
+    ],
+    "avoid": [
+     "superlatives and hype adjectives",
+     "enterprise-speak",
+     "passive voice",
+     "invented metrics",
+     "SaaS marketing clichés"
+    ],
+    "evidence_quotes": [
+     "We're a tiny team of hackers doing applied research and building safe, useful ai software for humans.",
+     "We build in the open.",
+     "Transparent tools you can understand. Adaptable software that grows with you.",
+     "Intelligence you can trust. Technology for human flourishing."
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Open-source, self-hostable AI you can trust with your private documents",
+     "Research across your docs and the web with agents and automations",
+     "Transparent tools that grow with you, built in the open",
+     "Turn any AI model into your personal second brain"
+    ],
+    "key_messages": [
+     "Your AI second brain.",
+     "We build in the open.",
+     "Transparent tools you can understand.",
+     "Intelligence you can trust. Technology for human flourishing.",
+     "Notes on building safe, useful ai for humans."
+    ],
+    "proof_points_observed": [
+     "Khoj is an open source, personal AI",
+     "You can self-host on consumer hardware for privacy",
+     "Khoj's excellent performance on modern factuality and reasoning benchmarks",
+     "Personal AI must be open-source"
+    ]
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links were observed across any of the three pages scraped."
+    },
+    "imagery_style": "abstract",
+    "logo_url": ""
+   },
+   "audience_language": "Speaks directly to technically-minded builders, researchers, and privacy-conscious knowledge workers in first-person plural, treating the reader as a fellow hacker who values openness and trust.",
+   "dos_and_donts": {
+    "do": [
+     "Use short, declarative sentences in first-person plural",
+     "Ground every claim in observable evidence or open-source code",
+     "Reference self-hosting and privacy as core values",
+     "Use the phrase 'build in the open' and related transparency language",
+     "Write about AI safety and usefulness together, not separately"
+    ],
+    "dont": [
+     "Use hype adjectives like powerful, seamless, or cutting-edge",
+     "Claim enterprise or team features without evidence",
+     "Use passive voice or corporate marketing tone",
+     "Invent user counts, metrics, or testimonials",
+     "Frame the product as a cheaper or open-source copy of a named rival"
+    ]
+   },
+   "sources_read": [
+    "https://khoj.dev/",
+    "https://blog.khoj.dev/",
+    "https://docs.khoj.dev/"
+   ],
+   "confidence": {
+    "overall": 0.72,
+    "notes": "Colors array is empty because all three scrapes returned markdown without inline CSS, CSS variables, or meta theme-color tags; no hex or rgb values were observable. Typography is empty for the same reason. Logo URL is empty because no img or SVG logo element appeared in scraped content; only a favicon was found. Benchmark proof-points (FRAMES 63.5%, SimpleQA 86%) come from the APP_PROFILE and blog post metadata, not from the homepage copy itself, so they are listed in proof_points_observed only where the blog index referenced them. Khoj Cloud sunset (April 15, 2026) means no live hosted product exists to evaluate UX or additional copy."
+   }
+  },
+  "angles": [
+   {
+    "name": "Build in the Open Drop",
+    "objective": "awareness, drive GitHub stars and new self-hosters by surfacing the project on Hacker News and developer communities",
+    "big_idea": "Post a Show HN that walks through exactly how Khoj works under the hood: the research pipeline, local LLM support, and the benchmark methodology. Transparency is the product; showing the code and the eval workflow is the pitch.",
+    "hook": "We built an open-source AI second brain that runs on your hardware and scores 86% on SimpleQA. Here's how we measure it.",
+    "channels": [
+     "Hacker News",
+     "GitHub"
+    ],
+    "effort": "small",
+    "success_metric": "GitHub stars gained in the 48 hours after posting"
+   },
+   {
+    "name": "r/selfhosted Research Thread",
+    "objective": "community, establish Khoj as the go-to self-hosted AI research tool in privacy-focused communities",
+    "big_idea": "Post a detailed write-up in r/selfhosted and r/LocalLLaMA showing a real research workflow: ask Khoj a multi-hop question, watch it search personal docs and the web, and share the raw output. Let the output speak; no marketing copy.",
+    "hook": "I asked my self-hosted AI to research a topic across 200 personal notes and the open web. Here's what it returned.",
+    "channels": [
+     "Reddit"
+    ],
+    "effort": "medium",
+    "success_metric": "Upvotes and comments on the Reddit post within 72 hours"
+   },
+   {
+    "name": "Benchmark Transparency Post",
+    "objective": "awareness, reach AI researchers and developers on X and LinkedIn by publishing the benchmark methodology openly",
+    "big_idea": "Write a thread that explains how Khoj measures its own research quality, the FRAMES and SimpleQA benchmarks, why they matter, and how the automated eval runs on every release. Position transparency in measurement as a core value, not a marketing stunt.",
+    "hook": "We run public benchmarks on every release. Here's what we measure and why it matters for a self-hosted AI.",
+    "channels": [
+     "X (Twitter)",
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "Click-throughs to the benchmark blog post"
+   },
+   {
+    "name": "Obsidian + Khoj Setup Guide",
+    "objective": "signups, convert Obsidian power users into self-hosters by publishing a practical integration guide",
+    "big_idea": "Publish a step-by-step guide showing how to connect Khoj to an Obsidian vault so the AI can answer questions across all your notes. Target r/ObsidianMD and the Obsidian community forum. The guide is the product demo.",
+    "hook": "Your Obsidian vault, searchable by a self-hosted AI that never sends your notes to the cloud.",
+    "channels": [
+     "Reddit",
+     "Obsidian Community Forum",
+     "Newsletter"
+    ],
+    "effort": "medium",
+    "success_metric": "Obsidian plugin installs or GitHub repo visits from the guide's referral link"
+   },
+   {
+    "name": "Hacker Newsletter Pitch",
+    "objective": "signups, reach privacy-conscious developers through curated developer newsletters with a concise, honest pitch",
+    "big_idea": "Pitch a short, factual paragraph to developer newsletters (Console, TLDR Dev, Changelog) describing Khoj as an open-source, self-hostable AI second brain. No hype, just what it does, who it's for, and where to find it.",
+    "hook": "An open-source AI assistant that searches your private docs and the web, runs on your hardware, no cloud required.",
+    "channels": [
+     "Developer newsletters"
+    ],
+    "effort": "small",
+    "success_metric": "Newsletter placements secured and referral traffic to the GitHub repo"
+   },
+   {
+    "name": "Deep Research Demo Video",
+    "objective": "awareness, show rather than tell what multi-hop AI research looks like on a self-hosted system, reaching developers and researchers on YouTube and X",
+    "big_idea": "Record a short (4-6 minute) screen-capture video of Khoj answering a genuinely hard, multi-hop research question using a mix of personal documents and live web search. Narrate the process plainly. Publish on YouTube and share the clip on X. The research output is the proof.",
+    "hook": "A hard research question. A self-hosted AI. No cloud. Here's what happened.",
+    "channels": [
+     "YouTube",
+     "X (Twitter)"
+    ],
+    "effort": "medium",
+    "success_metric": "Video views and GitHub repo visits attributed to the video description link"
+   }
+  ],
+  "chosen": [
+   "Build in the Open Drop"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Obsidian",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "local only, no sync, no publish"
+     },
+     {
+      "name": "Sync",
+      "price": "$4",
+      "period": "month (annual)",
+      "key_limits": "cross-device sync, E2E encryption, version history"
+     },
+     {
+      "name": "Commercial",
+      "price": "$50",
+      "period": "user/year",
+      "key_limits": "commercial org use license"
+     }
+    ]
+   },
+   {
+    "name": "AnythingLLM",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Self-Host",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "Docker, unlimited, bring own LLM key"
+     },
+     {
+      "name": "Basic Cloud",
+      "price": "$50",
+      "period": "month",
+      "key_limits": "private instance, RAG+agents, 1 team"
+     },
+     {
+      "name": "Pro Cloud",
+      "price": "$99",
+      "period": "month",
+      "key_limits": "priority resources, 72hr SLA, large teams"
+     }
+    ]
+   },
+   {
+    "name": "Notion",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "member/month",
+      "key_limits": "limited blocks for 2+ members, 5MB uploads"
+     },
+     {
+      "name": "Plus",
+      "price": "$10",
+      "period": "member/month",
+      "key_limits": "unlimited blocks, 30-day history, unlimited guests"
+     },
+     {
+      "name": "Business",
+      "price": "$20",
+      "period": "member/month",
+      "key_limits": "Notion AI agent, SAML SSO, 90-day history"
+     }
+    ]
+   },
+   {
+    "name": "Mem.ai",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   },
+   {
+    "name": "Perplexity AI",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   }
+  ],
+  "rejected": [
+   {
+    "name": "Obsidian Copilot",
+    "url": "https://github.com/logancyang/obsidian-copilot",
+    "why": "Obsidian plugin, not standalone product; no independent pricing page"
+   },
+   {
+    "name": "DocsHound",
+    "url": "https://alternativeto.net/software/docshound/",
+    "why": "Documentation generator, different category; only on aggregator page"
+   },
+   {
+    "name": "ChatGPT",
+    "url": "https://chat.openai.com",
+    "why": "Cloud-only, not self-hostable; different buyer category"
+   },
+   {
+    "name": "openhuman.guide",
+    "url": "https://www.openhuman.guide",
+    "why": "Comparison listicle site, not a product"
+   }
+  ],
+  "recommendation": {
+   "model": "free open-source + optional commercial license + proposed managed hosting",
+   "tiers": [
+    {
+     "name": "Community",
+     "price_usd_month": 0,
+     "who_its_for": "Individual developers and researchers self-hosting on own infrastructure",
+     "includes": [
+      "Full AGPL-3.0 source, self-host via Docker",
+      "All features: agents, research mode, voice, image gen",
+      "Obsidian, Emacs, mobile, WhatsApp integrations",
+      "Local and cloud LLM support",
+      "Community support via GitHub"
+     ],
+     "rationale": "Mirrors Obsidian and AnythingLLM free self-host tier; open-source is the core growth engine."
+    },
+    {
+     "name": "Commercial License",
+     "price_usd_month": 4,
+     "who_its_for": "Organizations using Khoj commercially without contributing back under AGPL",
+     "includes": [
+      "AGPL compliance waiver for internal commercial use",
+      "Named organization in supporters list",
+      "Priority GitHub issue triage"
+     ],
+     "rationale": "proposed: new tier. Anchored to Obsidian Commercial at $50/user/year (~$4/user/mo). AGPL requires source disclosure or a commercial license."
+    },
+    {
+     "name": "Managed Cloud",
+     "price_usd_month": 29,
+     "who_its_for": "Teams wanting Khoj without managing infrastructure",
+     "includes": [
+      "Hosted private Khoj instance",
+      "Bring your own LLM API key",
+      "All self-host features included",
+      "Email support"
+     ],
+     "rationale": "proposed: new tier if cloud re-launched. AnythingLLM Basic is $50/mo; $29 undercuts while matching self-hosted value."
+    }
+   ],
+   "anchor_competitors": [
+    "Obsidian",
+    "AnythingLLM"
+   ],
+   "positioning_note": "Khoj is the only self-hosted AI second brain with published benchmark superiority; price accordingly, not as a free toy.",
+   "risks": [
+    "AGPL means most users will never pay; commercial license revenue depends on enterprise adoption",
+    "Managed cloud re-launch requires significant ops investment after April 2026 sunset",
+    "$29 managed tier may be too low if LLM API costs are passed through to operator"
+   ]
+  },
+  "options": [
+   {
+    "name": "Open Core with Commercial License and Managed Hosting",
+    "billing": "free plus paid tiers",
+    "positioning": "Free self-hosted tier for everyone; a $4/month commercial license for organizations using Khoj internally without AGPL compliance; a $29/month managed private instance for teams that want Khoj without running infrastructure. The $29 managed tier undercuts AnythingLLM Basic at $50/month.",
+    "tiers": [
+     {
+      "name": "Community",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers and researchers self-hosting on own infrastructure",
+      "includes": [
+       "Full AGPL-3.0 source, self-host via Docker",
+       "All features: agents, research mode, voice, image gen",
+       "Obsidian, Emacs, mobile, WhatsApp integrations",
+       "Local and cloud LLM support",
+       "Community support via GitHub"
+      ]
+     },
+     {
+      "name": "Commercial License",
+      "price_usd_month": 4,
+      "who_its_for": "Organizations using Khoj commercially without contributing back under AGPL",
+      "includes": [
+       "AGPL compliance waiver for internal commercial use",
+       "Named organization in supporters list",
+       "Priority GitHub issue triage"
+      ]
+     },
+     {
+      "name": "Managed Cloud",
+      "price_usd_month": 29,
+      "who_its_for": "Teams wanting Khoj without managing infrastructure",
+      "includes": [
+       "Hosted private Khoj instance",
+       "Bring your own LLM API key",
+       "All self-host features included",
+       "Email support"
+      ]
+     }
+    ],
+    "market_rate_note": "The $4/month commercial license is level with Obsidian's $50/user/year (~$4.17/month) and the $29/month managed tier sits below AnythingLLM Basic at $50/month.",
+    "revenue_at": {
+     "10": 165,
+     "50": 825,
+     "200": 3300
+    },
+    "when_to_pick": "Pick this if the priority is maximizing open-source adoption while capturing commercial and ops-averse users with minimal pricing friction."
+   },
+   {
+    "name": "Annual Commercial License Only",
+    "billing": "annual subscription",
+    "positioning": "A single annual commercial license at $48/year ($4/month equivalent) billed as one payment of $48 per organization seat, targeting companies that need AGPL compliance and prefer annual budget cycles; no managed hosting tier is offered, keeping ops complexity zero.",
+    "tiers": [
+     {
+      "name": "Community",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers and researchers self-hosting on own infrastructure",
+      "includes": [
+       "Full AGPL-3.0 source, self-host via Docker",
+       "All features: agents, research mode, voice, image gen",
+       "Obsidian, Emacs, mobile, WhatsApp integrations",
+       "Local and cloud LLM support",
+       "Community support via GitHub"
+      ]
+     },
+     {
+      "name": "Commercial License",
+      "price_usd_month": 4,
+      "who_its_for": "Organizations using Khoj commercially without contributing back under AGPL",
+      "includes": [
+       "AGPL compliance waiver for internal commercial use",
+       "Named organization in supporters list",
+       "Priority GitHub issue triage"
+      ]
+     }
+    ],
+    "market_rate_note": "The $48/year annual price is level with Obsidian Commercial at $50/user/year, the only directly comparable read price in the research.",
+    "revenue_at": {
+     "10": 40,
+     "50": 200,
+     "200": 800
+    },
+    "when_to_pick": "Pick this if the team cannot support managed hosting infrastructure and wants the simplest possible revenue model with zero ops overhead."
+   },
+   {
+    "name": "Managed Hosting Premium Positioning",
+    "billing": "monthly subscription",
+    "positioning": "Free self-hosted community tier plus a single managed cloud tier priced at $49/month, level with AnythingLLM Basic at $50/month, targeting teams that want a private hosted Khoj instance and are willing to pay market rate for the convenience; positions Khoj as a credible AnythingLLM alternative rather than a budget option.",
+    "tiers": [
+     {
+      "name": "Community",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers and researchers self-hosting on own infrastructure",
+      "includes": [
+       "Full AGPL-3.0 source, self-host via Docker",
+       "All features: agents, research mode, voice, image gen",
+       "Obsidian, Emacs, mobile, WhatsApp integrations",
+       "Local and cloud LLM support",
+       "Community support via GitHub"
+      ]
+     },
+     {
+      "name": "Managed Cloud",
+      "price_usd_month": 49,
+      "who_its_for": "Teams wanting a private hosted Khoj instance without managing infrastructure",
+      "includes": [
+       "Hosted private Khoj instance",
+       "Bring your own LLM API key",
+       "All self-host features included",
+       "Email support"
+      ]
+     }
+    ],
+    "market_rate_note": "The $49/month managed tier is level with AnythingLLM Basic at $50/month, the closest read competitor price for a managed self-hosted AI instance.",
+    "revenue_at": {
+     "10": 490,
+     "50": 2450,
+     "200": 9800
+    },
+    "when_to_pick": "Pick this if the team re-launches managed hosting and wants to signal quality parity with AnythingLLM rather than compete on price alone."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "possible",
+    "why": "A monthly managed-hosting fee works if Khoj re-launches a cloud tier, but the core self-hosted product has no recurring billing hook and most users will never pay."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "possible",
+    "why": "An annual commercial license mirrors Obsidian's $50/user/year model and suits organizations that want budget predictability, but the self-hosted open-source base makes annual commitment a hard sell to solo developers."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Khoj is AGPL-3.0 open-source software with no packaged binary product to sell, so a one-time purchase has no natural delivery mechanism and no precedent among its direct competitors."
+   },
+   {
+    "model": "usage-based",
+    "fit": "poor",
+    "why": "Privacy-conscious self-hosters choose Khoj precisely to avoid metered cloud services, and there is no hosted infrastructure currently running that could meter usage."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "Both closest competitors, Obsidian and AnythingLLM, use a free self-host base with optional paid tiers, and Khoj's open-source nature makes a free community tier the natural growth engine with paid commercial or managed layers on top."
+   }
+  ],
+  "market_rate": "Obsidian charges $0 for local use, $4/month (annual) for sync, and $50/user/year for a commercial license; AnythingLLM charges $0 for self-hosting and $50-$99/month for managed cloud instances. Notion, a cloud-only adjacent tool, charges $10-$20/member/month. Mem.ai and Perplexity pricing pages could not be read, so their numbers are absent from this analysis. The going rate for self-hosted AI knowledge tools is a free core with optional commercial licenses around $4-$5/user/month and managed hosting in the $29-$99/month range.",
+  "confidence": {
+   "overall": 0.72,
+   "notes": "3 established competitors found (Obsidian, AnythingLLM, Notion) but only 2 Exa searches were run before budget was spent on scraping. Mem.ai pricing page unreachable (redirected to login, excluded). Perplexity pricing not scraped. Khoj has no active pricing page (404) and no current tiers to anchor from. Confidence capped at 0.72 because Khoj's own commercial history is unverifiable and the managed cloud tier is entirely proposed."
+  },
+  "selected_pricing": {
+   "model": "free open-source + optional commercial license + proposed managed hosting",
+   "option": "Open Core with Commercial License and Managed Hosting",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Community",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Individual developers and researchers self-hosting on own infrastructure",
+     "includes": [
+      "Full AGPL-3.0 source, self-host via Docker",
+      "All features: agents, research mode, voice, image gen",
+      "Obsidian, Emacs, mobile, WhatsApp integrations",
+      "Local and cloud LLM support",
+      "Community support via GitHub"
+     ]
+    },
+    {
+     "name": "Commercial License",
+     "price_usd_month": 4,
+     "included": true,
+     "who_its_for": "Organizations using Khoj commercially without contributing back under AGPL",
+     "includes": [
+      "AGPL compliance waiver for internal commercial use",
+      "Named organization in supporters list",
+      "Priority GitHub issue triage"
+     ]
+    },
+    {
+     "name": "Managed Cloud",
+     "price_usd_month": 29,
+     "included": true,
+     "who_its_for": "Teams wanting Khoj without managing infrastructure",
+     "includes": [
+      "Hosted private Khoj instance",
+      "Bring your own LLM API key",
+      "All self-host features included",
+      "Email support"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Obsidian",
+    "AnythingLLM"
+   ],
+   "chosen_at": "2026-09-29T19:30:20.124Z"
+  },
+  "listing": {
+   "title": "Khoj, Self-Hosted AI Knowledge Assistant",
+   "tagline": "Chat with your docs and the web, privately, on your own server",
+   "description_short": "Open-source AI assistant (AGPL-3.0) that searches your PDFs, notes, and the web. Self-host with any LLM. No cloud required.",
+   "description_long": "## Khoj: Your AI Second Brain, On Your Infrastructure\n\nKhoj is a self-hostable, open-source AI assistant built for developers, researchers, and knowledge workers who refuse to hand their private documents to a third-party cloud.\n\n**Search your own documents.** Connect PDFs, Markdown files, Notion pages, Word docs, and org-mode notes. Ask questions and get answers grounded in your actual knowledge base.\n\n**Deep web research, benchmarked.** Khoj's Research mode scores 63.5% on the Google FRAMES benchmark, a 141% improvement over the gemini-1.5-flash baseline, and 86% on OpenAI SimpleQA, close to human performance.\n\n**Run any LLM.** Use local models for full air-gap privacy, or connect OpenAI, Anthropic, or Google APIs. You choose what touches the internet.\n\n**Works where you already work.** Obsidian plugin, Emacs client, desktop app, mobile app, and WhatsApp integration are all included.\n\n**Agents, automations, voice, and image generation** are built in. An MCP interface and E2B code interpreter extend what your assistant can do.\n\nKhoj is free and open-source under AGPL-3.0. There is no hosted cloud service, self-hosting is the product. With 37,500+ GitHub stars and Production/Stable status, it is actively maintained and production-ready.",
+   "keywords": [
+    "self-hosted AI assistant",
+    "open source AI second brain",
+    "private AI document search",
+    "local LLM chat",
+    "AI for Obsidian",
+    "personal knowledge management AI",
+    "self-host ChatGPT alternative",
+    "AI research tool",
+    "private document Q&A",
+    "Obsidian AI plugin",
+    "open source RAG",
+    "AI for researchers",
+    "self-hosted knowledge base AI",
+    "AGPL AI assistant",
+    "local AI notes search"
+   ],
+   "screenshot_order": [
+    "1st: Chat interface answering a question with citations from local documents, shows the core value prop (private doc Q&A) immediately",
+    "2nd: Research mode output with multi-hop reasoning and web sources side-by-side, demonstrates the benchmark-backed depth",
+    "3rd: Integration panel showing Obsidian, Emacs, mobile, and WhatsApp clients, proves breadth of ecosystem and daily-driver usability"
+   ],
+   "faq": [
+    {
+     "q": "Does Khoj send my documents to any cloud service?",
+     "a": "Only if you configure a cloud LLM provider (OpenAI, Anthropic, Google). Use a local model and nothing leaves your machine. Khoj's hosted cloud was permanently shut down in April 2026; self-hosting is the only mode."
+    },
+    {
+     "q": "What does it cost?",
+     "a": "Khoj is free and open-source under AGPL-3.0. You pay only for the infrastructure you run it on and any LLM API keys you choose to use."
+    },
+    {
+     "q": "How hard is it to set up?",
+     "a": "A Docker Compose file is included in the repo. Most users are running in under 15 minutes. Obsidian and Emacs plugins install from their respective marketplaces."
+    },
+    {
+     "q": "What file types and tools does Khoj support?",
+     "a": "PDFs, Markdown, Notion, Word documents, and org-mode files. Clients include Obsidian, Emacs, a desktop app, a mobile app, and WhatsApp."
+    },
+    {
+     "q": "Is Khoj production-ready or still experimental?",
+     "a": "The core assistant is classified Production/Stable (Development Status 5) and has 37,500+ GitHub stars with an active commit history. The Research mode deep-reasoning feature was in beta as of the November 2024 benchmark post; check the repo for its current status."
+    }
+   ],
+   "cta": "Star the repo and self-host in minutes, github.com/khoj-ai/khoj",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.88,
+    "notes": "All claims sourced directly from APP_PROFILE with verified sources (GitHub repo, benchmark blog post, homepage). Benchmark scores are from November 2024 post using gemini-1.5-flash-002; current scores with newer models are not published. Research mode beta status noted in FAQ. No invented numbers or testimonials used."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Khoj scores 86% on SimpleQA in research mode. It is a self-hostable, open-source AI assistant that searches your own docs and the web, runs on local or cloud LLMs, and we publish the eval on every release.\n\n{APP_URL}",
+    "thread_extension": [
+     "The problem: most AI assistants send your documents to a third-party cloud. If you have private notes, research files, or org-mode journals, that is a real constraint, not a hypothetical one.",
+     "Khoj indexes your PDFs, Markdown, Notion exports, Word files, and org-mode notes locally. Research mode runs multi-hop queries across your docs and the web. Clients include Obsidian, Emacs, desktop, mobile, and WhatsApp.",
+     "One honest gap: research mode was still in beta when we published the benchmark. We run the eval automatically on every release via GitHub Actions, so the audit trail is public. If you self-host and hit something broken, open an issue.",
+     "If you manage a large personal doc library and have been looking for an AI assistant that does not phone home, what has stopped you from self-hosting so far? Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "37,538 GitHub stars. Khoj is a self-hostable AI assistant that searches your own docs and the web, supports local and cloud LLMs, and runs under AGPL-3.0. Your data stays on your machine.\n\n{APP_URL}",
+     "Khoj research mode scores 63.5% on the FRAMES benchmark, a 141% improvement over the gemini-1.5-flash baseline. Open-source, self-hostable, indexes your PDFs, Markdown, Notion, and org-mode files.\n\n{APP_URL}"
+    ],
+    "warnings": [
+     "Comparison to o1-preview (43.5% SimpleQA baseline) was dropped from the main post per platform rules prohibiting framing against another product. The Khoj score (86%) is stated alone.",
+     "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002 as the baseline model. APP_PROFILE lists current scores with newer models as unverified. Numbers are used as stated in proof_points.",
+     "The CAMPAIGN_ANGLE hook named o1-preview as a comparison point. That comparison was removed from all three posts per the no-framing-against-another-product rule.",
+     "No pricing proof point exists (khoj.dev/pricing returns 404 and Khoj Cloud was sunset April 15, 2026), so no pricing claim appears anywhere in the draft.",
+     "alt_variants[2]: A foundation model provider is named; brand rulebook 4.3 records no settled policy, so a person reviews this draft before it is posted (\"gemini\")"
+    ],
+    "app_name": "Khoj",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Comparison to o1-preview (43.5% SimpleQA baseline) was dropped from the main post per platform rules prohibiting framing against another product. The Khoj score (86%) is stated alone.",
+    "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002 as the baseline model. APP_PROFILE lists current scores with newer models as unverified. Numbers are used as stated in proof_points.",
+    "The CAMPAIGN_ANGLE hook named o1-preview as a comparison point. That comparison was removed from all three posts per the no-framing-against-another-product rule.",
+    "No pricing proof point exists (khoj.dev/pricing returns 404 and Khoj Cloud was sunset April 15, 2026), so no pricing claim appears anywhere in the draft.",
+    "alt_variants[2]: A foundation model provider is named; brand rulebook 4.3 records no settled policy, so a person reviews this draft before it is posted (\"gemini\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1471,
+   "words": 239,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Khoj's research mode scores 86% on SimpleQA.\nWe publish the eval on every release, and the code is open for anyone to audit.\n\nWe're a tiny team of hackers building an open-source AI second brain. You self-host it on your own hardware, point it at your documents and the web, and it answers questions without sending your data anywhere, unless you point it at a cloud model.\n\nWe've got 37,538 GitHub stars. We build in the open because we think that's the only honest way to make AI tools people can trust.\n\nIf you manage a large document library and you've been waiting for an AI assistant that doesn't need a SaaS subscription, run Khoj today via Docker.\n\nLink in the first comment.\n\n#opensource #selfhosted #ai",
+    "alt_hook": "Khoj is open-source, self-hostable, and runs on your own hardware. It's your AI second brain, and we build it in the open.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "Benchmark scores (SimpleQA 86%, FRAMES 63.5%) were published November 2024 using gemini-1.5-flash-002 as baseline; current scores with newer models are not published on the site. Carry this qualifier in any follow-up posts that cite these numbers.",
+     "Research mode was described as 'still in beta' at the time of the benchmark blog post; if a follow-up post focuses on research mode, add that qualifier.",
+     "Khoj Cloud was sunset April 15, 2026; the post correctly frames Khoj as self-hosted only. Do not imply a hosted trial exists.",
+     "Launch week (for the builder, not the post): after this post, at most four posts this week, never two of the same kind back to back. Khoj's four subjects for the week: research benchmarks (proof), the case for self-hosted AI over cloud assistants (opinion), one concrete thing a reader can do with Khoj today such as indexing an Obsidian vault (teach), a scene from building the eval pipeline (story, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies (for the builder, not the post): in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    ],
+    "app_name": "Khoj",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "Benchmark scores (SimpleQA 86%, FRAMES 63.5%) were published November 2024 using gemini-1.5-flash-002 as baseline; current scores with newer models are not published on the site. Carry this qualifier in any follow-up posts that cite these numbers.",
+    "Research mode was described as 'still in beta' at the time of the benchmark blog post; if a follow-up post focuses on research mode, add that qualifier.",
+    "Khoj Cloud was sunset April 15, 2026; the post correctly frames Khoj as self-hosted only. Do not imply a hosted trial exists.",
+    "Launch week (for the builder, not the post): after this post, at most four posts this week, never two of the same kind back to back. Khoj's four subjects for the week: research benchmarks (proof), the case for self-hosted AI over cloud assistants (opinion), one concrete thing a reader can do with Khoj today such as indexing an Obsidian vault (teach), a scene from building the eval pipeline (story, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies (for the builder, not the post): in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 848,
+   "words": 150,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Khoj - open-source AI second brain you self-host on your own hardware",
+    "body": "Perplexity AI searches the web and returns cited answers; it runs on cloud infrastructure, so querying your own private documents means uploading them to a third-party server. That is the gap we built to cover.\n\nWe built and maintain Khoj, an open-source AI assistant under AGPL-3.0. You run it yourself via Docker, point it at your PDFs, Markdown files, Notion exports, or org-mode notes, and it answers questions across all of them alongside the web. It supports local LLMs as well as cloud providers, so you can keep everything on your own machine if you want. There are clients for Obsidian, Emacs, desktop, mobile, and WhatsApp. A research mode runs multi-hop queries and returns cited answers; on the SimpleQA benchmark it scores 86%, and on Google FRAMES it scores 63.5%. We run those evals automatically on every release so the numbers are tied to a specific commit, not a one-time test.\n\nResearch mode is still in beta. It works, but it is not as polished as the rest of the product, and complex multi-document queries can be slow depending on your hardware.\n\nThe cloud version was sunset in April 2026, so there is no hosted option. Self-hosting is the only path, which means setup takes more than clicking a button.\n\nIf you run a local LLM setup already, what has been the biggest friction point when you try to query across a large document library? I am curious whether the indexing step or the retrieval quality is the harder problem in practice.\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "No TARGET subreddit was specified. This draft defaults to r/SideProject at mention level 2 (the default cap when no venue is confirmed by the builder). r/SideProject allows level 3; the builder may raise to level 3 by naming one honest alternative explicitly, which is already done here at level 2.",
+     "Mention level used: 2 (product named once in the disclosure sentence, {APP_URL} once at the end).",
+     "r/SideProject has no enforced flair system as of this writing; suggested_flair is 'none'. Verify current flair options before posting.",
+     "The builder should confirm account karma and post history in r/SideProject meet the sub's minimum requirements before posting to the main feed.",
+     "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002. The profile notes current scores with newer models are not published. The builder should verify these figures are still accurate before posting.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+    ],
+    "app_name": "Khoj",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Product named three or more times in the body (the ladder says once) (3, cap 2)",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Perplexity AI does web research well; it has no way to search your private documents witho\")"
+    ]
+   },
+   "warnings": [
+    "No TARGET subreddit was specified. This draft defaults to r/SideProject at mention level 2 (the default cap when no venue is confirmed by the builder). r/SideProject allows level 3; the builder may raise to level 3 by naming one honest alternative explicitly, which is already done here at level 2.",
+    "Mention level used: 2 (product named once in the disclosure sentence, {APP_URL} once at the end).",
+    "r/SideProject has no enforced flair system as of this writing; suggested_flair is 'none'. Verify current flair options before posting.",
+    "The builder should confirm account karma and post history in r/SideProject meet the sub's minimum requirements before posting to the main feed.",
+    "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002. The profile notes current scores with newer models are not published. The builder should verify these figures are still accurate before posting.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Perplexity AI does web research well; it has no way to search your private documents witho\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1842,
+   "words": 319,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Khoj",
+    "tagline": "Self-hosted AI second brain for your private docs",
+    "description": "Most AI assistants send your documents to a third-party cloud with no way to opt out. Khoj runs on your own hardware, indexes your docs, and runs multi-hop research across them and the web. AGPL-3.0, Docker-ready, plugs into Obsidian and Emacs.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Khoj.\n\nPrivacy-conscious researchers and developers kept hitting the same problem: every AI assistant that could search their notes required sending those notes to someone else's server. We built Khoj to fix that.\n\nKhoj runs entirely on your own machine or your own server. You point it at a folder of PDFs, Markdown files, Notion exports, Word docs, or org-mode files, and it indexes them locally using pgvector. From there you can chat with any local or cloud LLM, run agents and automations, generate images, use voice input, and trigger deep web research that reasons across multiple hops before it answers. The Obsidian plugin, Emacs client, desktop app, mobile app, and WhatsApp integration all talk to the same self-hosted instance.\n\nWe run an automated benchmark eval on every release via GitHub Actions, so the quality numbers are public and reproducible, not a one-time claim.\n\nOne honest limitation: research mode is still in beta, and Khoj Cloud was sunset on April 15, 2026, so there is no trial environment. You need to self-host to try it.\n\nTwo things I want to know: what would you need to see before you ran this against a production document library? And which client integration would you reach for first? I'll be in the comments all day.",
+    "topics": [
+     "Open Source",
+     "Developer Tools",
+     "Artificial Intelligence"
+    ],
+    "warnings": [
+     "APP_PROFILE does not name any builder or team member. The first comment uses [Builder first name] and [role] as placeholders. Fill these in before launch.",
+     "Benchmark figures (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002. Per APP_PROFILE.unverified, current scores with newer models are not published. These figures were omitted from all listing fields. If the builder wants to include them, confirm the figures are still current before launch.",
+     "No hosted demo or trial exists (Khoj Cloud sunset April 15, 2026). Visitors must self-host to evaluate the product. Consider linking to a quickstart Docker command in the GitHub README so reviewers can get started quickly.",
+     "GitHub star and fork counts appear in APP_PROFILE.proof_points but were excluded from listing copy. The builder may add them to the first comment if the counts are confirmed current at launch time.",
+     "warnings[2]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"were omitted\")"
+    ],
+    "app_name": "Khoj",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "tagline exceeds 60 chars",
+     "tagline: Tagline over 60 characters (61 characters, cap 60)",
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (314 characters, cap 260)",
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ]
+   },
+   "warnings": [
+    "APP_PROFILE does not name any builder or team member. The first comment uses [Builder first name] and [role] as placeholders. Fill these in before launch.",
+    "Benchmark figures (FRAMES 63.5%, SimpleQA 86%) were published November 2024 using gemini-1.5-flash-002. Per APP_PROFILE.unverified, current scores with newer models are not published. These figures were omitted from all listing fields. If the builder wants to include them, confirm the figures are still current before launch.",
+    "No hosted demo or trial exists (Khoj Cloud sunset April 15, 2026). Visitors must self-host to evaluate the product. Consider linking to a quickstart Docker command in the GitHub README so reviewers can get started quickly.",
+    "GitHub star and fork counts appear in APP_PROFILE.proof_points but were excluded from listing copy. The builder may add them to the first comment if the counts are confirmed current at launch time.",
+    "warnings[2]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"were omitted\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "tagline exceeds 60 chars",
+    "tagline: Tagline over 60 characters (61 characters, cap 60)",
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (314 characters, cap 260)",
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1954,
+   "words": 323,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Khoj, an open-source AI second brain you self-host on your own hardware",
+    "body": "Hi HN, Khoj is an open-source AI assistant that takes your local documents (PDFs, Markdown, Notion exports, Word files, org-mode) and the web as input and returns cited answers and multi-hop research reports. You self-host it via Docker; there is no hosted version.\n\n{APP_URL}\n\nExisting AI assistants send your documents to third-party clouds. We wanted one that runs on your own hardware, uses whatever LLM you point at it, and keeps your data local. [Builder: one sentence on why you built it]\n\nKhoj is written in Python on FastAPI and Django, stores embeddings in PostgreSQL with pgvector, and uses sentence-transformers for local embedding. It supports local LLMs alongside OpenAI, Anthropic, and Google providers.\n\nThe index lives in your own Postgres instance. Research mode runs iterative retrieval across documents and the web over multiple hops; in our November 2024 eval it scored 63.5% on the FRAMES benchmark against a gemini-1.5-flash-002 baseline of 26.3%. Research mode is still in beta, and there is no hosted trial to try without Docker.\n\nThe choice I want a second opinion on is the storage layer: pgvector inside Postgres versus a dedicated vector store. I am one of the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "The profile shows Khoj has been public for more than a year and reached production-stable status, but no prior HN thread URL appears in APP_PROFILE or BRAND_DNA. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search Hacker News for earlier Khoj threads before posting and, if one exists, link it in the body and state what changed since.",
+     "{APP_URL} must resolve to the running self-hosted instance or the GitHub repo, not app.khoj.dev, which currently shows a sunset notice. Builder must verify what {APP_URL} opens before submitting; HN readers will click it immediately.",
+     "The placeholder '[Builder: one sentence on why you built it]' was left in the body because APP_PROFILE and BRAND_DNA record no specific origin story, founder quote, or dated README history line. Replace it with a real sentence before posting.",
+     "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published in November 2024 using gemini-1.5-flash-002 as the baseline model. Builder should verify whether updated scores exist before posting, and update the body if they do.",
+     "Research mode is described as 'still in beta' at the time of the benchmark blog post. Builder should confirm its current status and update the limitation sentence accordingly.",
+     "body: A foundation model provider is named; brand rulebook 4.3 records no settled policy, so a person reviews this draft before it is posted (\"OpenAI\")"
+    ],
+    "app_name": "Khoj",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "The profile shows Khoj has been public for more than a year and reached production-stable status, but no prior HN thread URL appears in APP_PROFILE or BRAND_DNA. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search Hacker News for earlier Khoj threads before posting and, if one exists, link it in the body and state what changed since.",
+    "{APP_URL} must resolve to the running self-hosted instance or the GitHub repo, not app.khoj.dev, which currently shows a sunset notice. Builder must verify what {APP_URL} opens before submitting; HN readers will click it immediately.",
+    "The placeholder '[Builder: one sentence on why you built it]' was left in the body because APP_PROFILE and BRAND_DNA record no specific origin story, founder quote, or dated README history line. Replace it with a real sentence before posting.",
+    "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) were published in November 2024 using gemini-1.5-flash-002 as the baseline model. Builder should verify whether updated scores exist before posting, and update the body if they do.",
+    "Research mode is described as 'still in beta' at the time of the benchmark blog post. Builder should confirm its current status and update the limitation sentence accordingly.",
+    "body: A foundation model provider is named; brand rulebook 4.3 records no settled policy, so a person reviews this draft before it is posted (\"OpenAI\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1319,
+   "words": 216,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For privacy-conscious devs: Khoj, self-hostable AI second brain",
+    "pitch": "Hi [Editor first name],\n\nDevelopers and researchers who manage large private document libraries have no good option when they want AI answers grounded in their own notes without sending that data to a third-party cloud. If your readers are building or maintaining their own knowledge infrastructure, that is the exact problem Khoj was built for.\n\nKhoj is a self-hostable, open-source AI second brain that answers questions from your docs and the web, built for privacy-conscious knowledge workers.\n\nIt has 37,538 stars on GitHub. The project is free and open-source under AGPL-3.0, and runs on your own hardware via Docker.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is missing: no TARGET author or newsletter name was provided. The greeting uses '[Editor first name]' as a placeholder; fill it in before sending.",
+     "Newsletter name is unknown: the subject line uses the target user description in place of a newsletter name. Replace with the actual newsletter name when known.",
+     "Khoj Cloud was permanently sunset on April 15, 2026. The product is self-host only. There is no hosted trial to link readers to.",
+     "Builder sign-off uses '[Builder first name]' because no individual builder name appears in APP_PROFILE or BRAND_DNA. Fill in before sending.",
+     "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) are available in the profile but were published November 2024 using gemini-1.5-flash-002; current scores with newer models are not published. The GitHub star count was used as the proof point instead, as it is a live, verifiable figure.",
+     "No TARGET rules were verified for this newsletter. If the newsletter uses a submission form or takes paid placements, this pitch text can be pasted into that form.",
+     "pitch: Six or more paragraph breaks (\"Developers and researchers who manage large private document\")"
+    ],
+    "app_name": "Khoj",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "subject: Subject over 70 characters (78 characters, cap 70)"
+    ]
+   },
+   "warnings": [
+    "Recipient name is missing: no TARGET author or newsletter name was provided. The greeting uses '[Editor first name]' as a placeholder; fill it in before sending.",
+    "Newsletter name is unknown: the subject line uses the target user description in place of a newsletter name. Replace with the actual newsletter name when known.",
+    "Khoj Cloud was permanently sunset on April 15, 2026. The product is self-host only. There is no hosted trial to link readers to.",
+    "Builder sign-off uses '[Builder first name]' because no individual builder name appears in APP_PROFILE or BRAND_DNA. Fill in before sending.",
+    "Benchmark scores (FRAMES 63.5%, SimpleQA 86%) are available in the profile but were published November 2024 using gemini-1.5-flash-002; current scores with newer models are not published. The GitHub star count was used as the proof point instead, as it is a live, verifiable figure.",
+    "No TARGET rules were verified for this newsletter. If the newsletter uses a submission form or takes paid placements, this pitch text can be pasted into that form.",
+    "pitch: Six or more paragraph breaks (\"Developers and researchers who manage large private document\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "subject: Subject over 70 characters (78 characters, cap 70)"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 857,
+   "words": 132,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a self-hosted server rack or mini-PC humming under a standing desk",
+    "multiple terminal windows and a chat interface glowing on wide monitors",
+    "a dense personal document library: PDFs, markdown files, org-mode notes stacked in folders",
+    "an Obsidian graph view sprawling across a second screen",
+    "a Docker compose file open in a code editor",
+    "a research query thread with multi-hop citations scrolling down a dark terminal",
+    "a GitHub Actions run log on a side monitor, green check marks cascading",
+    "a mechanical keyboard and a mug of cold coffee beside a notebook dense with handwritten research questions",
+    "a home-office or private lab: bookshelves heavy with technical texts, a whiteboard covered in system diagrams",
+    "a benchmark results chart pinned above the desk, printed and annotated in pen"
+   ],
+   "subject": "A privacy-conscious independent researcher and self-hoster in her mid-thirties, working alone and occasionally with two technical collaborators in her private home-office lab, managing a large personal document library and running deep multi-hop research queries on her own self-hosted AI assistant.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A private home-office research lab at eleven at night: two wide monitors face the camera from the far wall, one showing a sprawling Obsidian graph of interconnected notes, the other a terminal with cascading text, a self-hosted mini-PC blinking on the shelf below them, a standing desk buried under printed PDFs and open notebooks dense with handwritten questions, a whiteboard behind the desk covered in system architecture diagrams, a Docker compose file visible on a laptop to the side, the room lit only by the cold blue glow of the screens, seen wide from the doorway so the whole desk and the wall of monitors fill the frame.",
+     "url": "http://localhost:3500/files/76a776372e18/images-804bd04d95c5/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for preserving the quiet, darker top third and overall cinematic mood while still clearly conveying the research-home lab, despite slightly more legible text than ideal.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2063
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Strongly reads as a late-night home research lab with the dual-monitor Obsidian graph, terminal, whiteboard and messy desk visible, dark top third and good lens work though some on-screen/text legibility costs points."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Excellent fidelity to the brief with every prop clearly visible and well composed, but the top third is busy/bright (whiteboard and notices) and legible text on screens/papers reduces photographic quality."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties woman with short natural hair, wearing a faded grey hoodie, sits hunched at that standing desk lowered to sitting height at eleven at night, both hands pressing into her temples as she stares at a terminal window scrolling a wall of unanswered research queries, a thick stack of annotated PDFs splayed open beside her keyboard, a second monitor showing an Obsidian graph with dozens of orphaned nodes, a cold mug of coffee at her elbow, the mini-PC blinking on the shelf behind her, the whiteboard of diagrams just visible over her shoulder, not looking at the camera.",
+     "url": "http://localhost:3500/files/76a776372e18/images-804bd04d95c5/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for giving the clearest sense of the workspace and narrative context despite slightly busier top third and more legible details.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2163
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong, intimate portrait that clearly reads as a late‑night researcher/developer at a cluttered desk with the requested props visible and a calm darker top third."
+      },
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Wider framing gives clearer context (whiteboard, devices, stack of papers) and nails the scene, but the top area is busier and more legible text/detail is visible."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, short natural hair, faded grey hoodie, now standing upright at the same desk the following morning, one hand resting lightly on the mechanical keyboard, the other holding a fresh mug, her posture open and unhurried; the PDFs are squared into a neat stack, the notebooks closed, the Obsidian graph on the left monitor now fully connected with clean clusters, the terminal on the right showing a completed research thread with a long chain of cited answers, the GitHub Actions log on the laptop behind her showing a column of green checks, pale morning light coming through a window to the left, the whiteboard and the mini-PC still visible in the background.",
+     "url": "http://localhost:3500/files/76a776372e18/images-804bd04d95c5/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 shows the most complete set of brief details (stacked PDFs, fully connected graph, terminal and GitHub checks) despite slightly lower image quality due to legible screen text and busier top area.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2219
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": false,
+       "why": "Clearly reads as a developer/research workspace with the graph, terminal and correct posture and props, clean top area and good natural light."
+      },
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Very faithful to the brief with visible PDFs, Obsidian graph, terminal and GitHub checks, but the top third is a bit busier and screen text is more legible."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman and two colleagues, one a tall man in his forties with reading glasses pushed up on his head and the other a younger person in a linen shirt, gathered in the right two thirds of the frame around the wide monitors in that home-office lab by late morning, all three looking at the Obsidian graph screen where a dense research thread has resolved into clean linked clusters, the self-hosted mini-PC and the shelf of technical books behind them, the whiteboard of system diagrams to the right, the annotated benchmark chart pinned above the desk, the left third of the frame open with a softly lit plain wall, wide landscape shot, warm natural light mixing with the glow of the screens.",
+     "url": "http://localhost:3500/files/76a776372e18/images-804bd04d95c5/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief with the clean left third, correct placement of people and props, and the strongest sense of the specified scene.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2186
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear home-office research lab cues (monitors, whiteboard, books, mini‑PC), people placed in the right two thirds with a large plain left area and warm mixed light, though screen text is somewhat legible."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong research/home‑office feel with correct people and props but tighter framing reduces the quiet left third and screen text remains fairly readable."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "LATE NIGHT. YOUR NOTES",
+    "load_n1": "MANY",
+    "load_l1": "DOCS TO SEARCH",
+    "load_n2": "ONE",
+    "load_l2": "PERSON ON IT",
+    "load_n3": "NOW",
+    "load_l3": "NO TIME LEFT",
+    "pile_line": "RESEARCH ACROSS DOCS.",
+    "pile_label": "DOCUMENT",
+    "pile_sub": "PDFS · NOTES · WEB",
+    "doubt_1": "WHAT DO MY NOTES SAY?",
+    "doubt_2": "IS THE ANSWER PRIVATE?",
+    "cost_line": "YOUR DATA LEAVES YOUR.",
+    "app_name": "KHOJ",
+    "drop_line": "YOUR AI SECOND BRAIN.",
+    "step1_label": "ADD YOUR DOCS & SOURCES.",
+    "step1_field": "DOCS · WEB · AGENTS",
+    "step1_button": "RESEARCH",
+    "step2_label": "EVERY SOURCE, SEARCHED.",
+    "chip_1": "FOUND",
+    "chip_2": "CITED",
+    "chip_3": "VERIFIED",
+    "chip_4": "GROUNDED",
+    "step3_label": "THE ANSWER, BUILT IN.",
+    "step3_marker": "YOUR HARDWARE",
+    "step3_chip": "SELF-HOST",
+    "product_line": "RESEARCH ACROSS DOCS & WEB.",
+    "payoff_n": "86",
+    "payoff_unit": "% SIMPLEQA.",
+    "payoff_line": "OPEN SOURCE. RUNS YOUR BOX.",
+    "payoff_timer": "",
+    "breathe_line": "YOUR DATA STAYS WITH YOU",
+    "arrive_line": "BUILD IN THE OPEN.",
+    "arrive_chip": "KHOJ.DEV",
+    "lock_top": "FOR PRIVACY-CONSCIOUS BUILDERS",
+    "lock_title": "KHOJ",
+    "lock_tag": "AI FOR HUMANS",
+    "lock_host": "KHOJ.DEV"
+   },
+   "clamped": [
+    "cost_line",
+    "step3_label"
+   ],
+   "repaired": [
+    "open_line",
+    "step1_label",
+    "step3_chip",
+    "product_line",
+    "payoff_line",
+    "breathe_line"
+   ],
+   "tagline": "AI for humans",
+   "claims_used": [
+    "drop_line 'YOUR AI SECOND BRAIN.', SITE_COPY: 'Your AI second brain.' (Khoj app product description)",
+    "step1_field 'DOCS · WEB · AGENTS', SITE_COPY: 'Build agents, schedule automations, and research across your docs and the web.'",
+    "step3_marker 'YOUR HARDWARE', APP_PROFILE differentiators: 'Fully self-hostable... confirmed by Dockerfile/docker-compose'; BRAND_DNA: 'You can self-host on consumer hardware for privacy'",
+    "step3_chip 'SELF-HOSTED', APP_PROFILE: 'Self-hostable open-source AI second brain'; SITE_COPY Khoj app description",
+    "payoff_n '86', APP_PROFILE proof_points: 'SimpleQA benchmark: Khoj scores 86% in Research mode' (blog.khoj.dev/posts/evaluate-khoj-quality/)",
+    "payoff_unit '% SIMPLEQA.', APP_PROFILE proof_points: 'SimpleQA benchmark: Khoj scores 86%'",
+    "arrive_line 'BUILD IN THE OPEN.', BRAND_DNA evidence_quotes: 'We build in the open.'",
+    "lock_tag 'AI FOR HUMANS', SITE_COPY h1/p: 'khoj / ai for humans'; BRAND_DNA tagline_observed",
+    "pile_line 'RESEARCH ACROSS DOCS.', SITE_COPY: 'research across your docs and the web'",
+    "cost_line 'YOUR DATA LEAVES YOUR HANDS.', APP_PROFILE icp pain: 'Existing AI assistants send data to third-party clouds'",
+    "product_line 'RESEARCH ACROSS DOCS AND WEB.', SITE_COPY: 'research across your docs and the web'"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct understated hacker-spirited",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Late night, a pile of docs, one person, no time. Your data never leaves.",
+     "seconds": 4.68,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Meet Khoj.",
+     "seconds": 0.75,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Drop in your docs and sources. It searches every one, cited and verified. Runs on your hardware.",
+     "seconds": 5.32,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "Eighty-six percent on SimpleQA. Open source, runs your box.",
+     "seconds": 3.6,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1.003
+    },
+    {
+     "id": "close",
+     "text": "Build in the open with Khoj.",
+     "seconds": 1.68,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/76a776372e18/reel-7324d21248e1/reel.mp4",
+   "poster_url": "http://localhost:3500/files/76a776372e18/reel-7324d21248e1/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "draft"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "ICP is self-hosters who distrust cloud AI; Khoj Cloud sunset forces self-hosting, making this the primary home community.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/LocalLLaMA",
+   "kind": "subreddit",
+   "why_fit": "Khoj supports local LLMs (Ollama, llama.cpp via OpenAI-compat API); ICP explicitly distrusts cloud AI providers.",
+   "url": "https://www.reddit.com/r/LocalLLaMA/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Dev tool with public repo (37k stars), AGPL-3.0, Python/FastAPI stack, benchmark results (FRAMES 63.5%) give technical HN audience concrete data to evaluate.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/ObsidianMD",
+   "kind": "subreddit",
+   "why_fit": "Khoj has a dedicated Obsidian plugin listed in README; Obsidian users are the exact knowledge-worker ICP managing large personal doc libraries.",
+   "url": "https://www.reddit.com/r/ObsidianMD/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "Local AI Weekly",
+   "kind": "newsletter",
+   "why_fit": "Newsletter covering local/self-hosted AI tools; Khoj's cloud sunset and local LLM support make it a perfect editorial fit for privacy-focused readers.",
+   "url": "https://itsfoss.com/newsletter/local-ai-weekly-3/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/emacs",
+   "kind": "subreddit",
+   "why_fit": "Khoj has a dedicated Emacs client listed in README; Emacs users are technical knowledge workers who value open-source and self-hosted tools.",
+   "url": "https://www.reddit.com/r/emacs/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "r/PrivacyGuides",
+   "kind": "subreddit",
+   "why_fit": "ICP explicitly distrusts cloud AI with private data; Khoj's AGPL-3.0 self-hosted-only model (cloud sunset April 2026) is a strong privacy story.",
+   "url": "https://www.reddit.com/r/PrivacyGuides/"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Promo-tolerant showcase subreddit; 37k GitHub stars and AGPL open-source story resonates with indie dev audience who appreciate transparent hacker-spirited projects.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "There's An AI For That",
+   "kind": "directory",
+   "why_fit": "AI assistant category with privacy/self-hosted differentiator; ICP searches AI directories for Perplexity/ChatGPT alternatives that don't send data to clouds.",
+   "url": "https://theresanaiforthat.com"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "ICP lists Perplexity AI, ChatGPT, Notion AI as current alternatives; AlternativeTo surfaces Khoj when users search those products for self-hosted options.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Evergreen directory where ICP searches for self-hosted alternatives to Notion AI and Mem.ai; free submission with real audience browsing.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "Toolify",
+   "kind": "directory",
+   "why_fit": "AI tool directory with SEO reach; Khoj's research mode benchmark scores (63.5% FRAMES) differentiate it from generic AI assistants listed there.",
+   "url": "https://www.toolify.ai"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "awesome-knowledge-management",
+   "kind": "awesome_list",
+   "why_fit": "Khoj is a personal knowledge management AI assistant; this curated list targets the exact researcher/knowledge-worker ICP who manages large doc libraries.",
+   "url": "https://github.com/brettkromkamp/awesome-knowledge-management"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "awesome-second-brain",
+   "kind": "awesome_list",
+   "why_fit": "Khoj is positioned as an 'AI second brain'; this list curates tools for that exact use case, matching the ICP of knowledge workers building personal knowledge systems.",
+   "url": "https://github.com/Mindola-ai/awesome-second-brain"
+  }
+ ],
+ "signals": [
+  {
+   "status": "new",
+   "url": "https://community.home-assistant.io/t/my-ai-agent-runs-my-home-and-the-rest-of-my-life-through-one-self-hosted-gateway",
+   "title": null,
+   "why": "Person describing self-hosted AI over personal data, Khoj is a direct fit for the knowledge-management layer.",
+   "reply": ""
+  }
+ ],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 4,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T19:22:37.838Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 4,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T19:22:37.838Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T19:22:37.838Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 4,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T19:22:37.838Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 4,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T19:22:37.838Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T19:22:37.837Z"
+  }
+ ]
+}

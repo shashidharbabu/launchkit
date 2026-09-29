@@ -1,0 +1,226 @@
+{
+  "slug": "hoppscotch",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 3, "assets": 3, "targets": 3, "signals": 1, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 2, "reddit_post": 3, "producthunt": 3, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile says Hoppscotch has no public pricing, but hoppscotch.com/pricing publishes Free $0, Business $6/user/mo and Enterprise $11/user/mo (billed annually); the reader only looked at routes on the app domain hoppscotch.io.",
+      "evidence": "profiles.data.pricing_current: \"Enterprise Edition pricing not publicly listed, /pricing page returns 404\"; live https://hoppscotch.com/pricing: \"$6 per user/month, billed annually ... Team workspaces and real-time collaboration\" and \"$11 per user/month, billed annually ... SAML-based SSO and OpenID Connect\"",
+      "systemic": true,
+      "cause_hint": "understand pipe reads only site_url routes; when site_url is an app shell (SPA) it never finds the product's marketing domain or searches for '<name> pricing'"
+    },
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "site_gaps lists two read failures as product gaps: SPA routes on the app domain that render a not-found image.",
+      "evidence": "profiles.data.site_gaps: \"No public pricing page, /pricing returns a 'page not found' image with no pricing information\", \"No dedicated support page, /support returns a 'page not found' image\"",
+      "systemic": true,
+      "cause_hint": "understand prompt / site_gaps rule does not separate a scrape of an app route from a missing page"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The profile makes the admin dashboard an Enterprise-only feature, but the README footnotes only SSO as an EE feature; the admin dashboard is listed as a general feature.",
+      "evidence": "profiles.data.differentiators: \"Enterprise Edition adds SSO/OIDC, admin dashboard, and on-prem deployment for security-conscious teams (README.md footnote)\"; README: \"SSO (Single Sign-On)[^EE]\" and \"Admin dashboard: Manage your team and invite members.\" (no EE mark)",
+      "systemic": false,
+      "cause_hint": "understand pipe over-reading the README footnote"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The chosen pricing adds a $9 'Cloud Pro' tier described as a new tier where none exists, while Hoppscotch already sells a $6 Business tier and an $11 Enterprise tier; every option is anchored on competitors and ignores the product's own current prices.",
+      "evidence": "commercial_results.pricing.recommendation.tiers[1].rationale: \"Proposed: new tier from none to $9/user/mo; matches Postman Solo, above Bruno Pro $6.\"; pricing.current_tiers: []; live hoppscotch.com/pricing: \"$6 per user/month, billed annually\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe inherits profile.pricing_current and never searches for the subject app's own pricing page"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The approved listing FAQ states Enterprise pricing is on request, which is wrong: the cloud Enterprise plan is published at $11/user/month.",
+      "evidence": "commercial_results.listing.faq[0].a: \"Enterprise Edition pricing is available on request.\"",
+      "systemic": true,
+      "cause_hint": "listing pipe takes pricing facts from the profile's false 'not publicly listed'"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Option 2's positioning text says $7 sits below Bruno Pro's $6, and the option 3 revenue quietly assumes a 50/50 mix of a $12 and a $22 tier without saying so.",
+      "evidence": "pricing.options[1].positioning: \"Single paid plan at $7/user/month billed annually ($84/user/year); positions below Postman Team ($19) and Bruno Pro ($6 annual) midpoint\"; options[2].revenue_at: {\"10\": 170, \"50\": 850, \"200\": 3400}",
+      "systemic": true,
+      "cause_hint": "pricing pipe prompt: no rule that revenue_at state its seat mix; no numeric check on positioning prose"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "Cloud Pro is a per-user team plan but is anchored on Postman Solo, which is a single-user plan, so the comparison is not like for like.",
+      "evidence": "pricing.options[0].market_rate_note: \"Cloud Pro at $9/user/month sits at the Postman Solo price point\"; postman.com/pricing: Solo \"For individuals who want to move faster with AI and automation\"",
+      "systemic": false,
+      "cause_hint": "pricing pipe"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle and the PH angle make up a community-run origin; Hoppscotch is a company with paid cloud plans.",
+      "evidence": "brand_campaigns.campaigns[0].sample_copy.body: \"The community built it, the community runs it.\"; campaigns[3].sample_copy.body: \"Built by the community, for the community.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt does not bind sample_copy claims to profile facts"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The Brand DNA missed the product's green brand colour and its logo: it records only the page's black and white theme colours and an empty logo_url, although the probe later found the green planet icon at hoppscotch.io/icon.png.",
+      "evidence": "brand_dna.visual.colors: [\"#181818\" background, \"#ffffff\" background], \"logo_url\": \"\"; studio.probe.evidence.logo_colors: [\"#00c899\", ...]",
+      "systemic": true,
+      "cause_hint": "brand_dna pipe reads markdown only; it does not reuse the studio probe's computed colours and logo"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "One campaign is named after the tool that wrote it, not after the idea.",
+      "evidence": "brand_campaigns.campaigns[3].name: \"Launch Kit PH Drop\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt leaks the app's own name into campaign names"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The LinkedIn post claims the poster personally built Hoppscotch, a 7-year team project, and mixes 'I built' with 'We've had' in one post; the other posts in this run use 'I work on' or 'one of the builders'.",
+      "evidence": "assets.linkedin_post.data.post: \"I built Hoppscotch as an open-source API development ecosystem.\" ... \"We've had 6,134 forks and active commits since 2019.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts linkedin_post lacks the release-not-debut / 'never I built for a product the profile says has existed for years' rule the X rulebook has; the gate does not check first-person consistency across posts"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch makes an unsourced ranking claim.",
+      "evidence": "assets.newsletter_pitch.data.pitch: \"It has 80,551 stars on GitHub, which puts it among the most starred API tools in that category.\"",
+      "systemic": true,
+      "cause_hint": "profile.maturity.signals invented 'one of the most starred API tools on GitHub'; newsletter gate checks numbers, not rank claims"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN attacks the category in general with a claim that also describes Hoppscotch's own $6 paid team plan, and its closing question sets up a false choice between Docker hosting and the browser PWA.",
+      "evidence": "assets.show_hn.data.body: \"API clients have grown heavy and started putting team collaboration behind paid plans.\" and \"The choice I want a second opinion on is the self-hosting path: Docker-based deployment or the browser PWA for teams that cannot run their own infrastructure?\"",
+      "systemic": true,
+      "cause_hint": "show_hn closer template 'option A or option B' filled from unrelated profile items; icp.pain restated as a category swipe"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post was written for r/SideProject, a poor fit for a 7-year, 80k-star product, while the selected venues are r/selfhosted and r/webdev. It opens on a competitor fact rather than the builder's problem, and the plan blocks on it.",
+      "evidence": "assets.reddit_post.data.warnings[0]: \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"; body opens \"Postman's team workspaces and collection sharing are on paid plans. That's the gap this project fills.\"; plan page: \"Still open: Reddit, written for no chosen subreddit\"",
+      "systemic": true,
+      "cause_hint": "social stage runs before targets, and the reddit default venue ignores product maturity"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The PH first comment makes up a general scene with an implied dig at a rival client, and there is no warning that Hoppscotch has launched on Product Hunt before.",
+      "evidence": "assets.producthunt.data.first_comment: \"Every time a developer joins a new team, the first thing they do is install a large API client, log in, accept the terms, and wait for it to sync.\"; warnings contain no relaunch note",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts producthunt has no repeat-launch rule equivalent to show_hn's"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The X post is written as a debut with no version or change named, though the rulebook asks for a release framing when the profile shows a star count and a founding year. The thread adds an origin claim and ends on a salesy question.",
+      "evidence": "assets.x_post.data.post: \"80,551 GitHub stars. Hoppscotch is an open-source API client that runs in the browser, no install needed.\"; thread_extension[0]: \"It started as a PWA\"; thread_extension[3]: \"what is stopping you from trying it?\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts x_post release rule not enforced by the gate"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "A gate warning flags a traction number that is in fact a verbatim proof point, and the newsletter keeps an unresolved paragraph warning for a shape the rulebook itself asks for.",
+      "evidence": "reddit_post.warnings: \"body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\\\"6,134 forks\\\")\"; newsletter_pitch.warnings: \"pitch: Six or more paragraph breaks\"",
+      "systemic": true,
+      "cause_hint": "proof-point matcher in the social gate (number inside a sentence with source note not matched); newsletter paragraph counter counts greeting, link and sign-off lines"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel overclaims: it says every request is checked and every response asserted, but Hoppscotch runs only the tests a user writes.",
+      "evidence": "studio.script.slots.step2_label: \"EVERY REQUEST, CHECKED.\", step3_label: \"THE RESPONSE, VERIFIED.\"; studio.voice.segments[how].text: \"Every request gets checked. Every response, asserted.\"",
+      "systemic": true,
+      "cause_hint": "verdict concept template forces a 'catch' beat onto a tool that is not a checker"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel has template filler beats and uses the brand-banned word 'ship' twice.",
+      "evidence": "studio.script.slots: \"load_n3\": \"NOW\", \"load_l3\": \"DEADLINE\", \"cost_line\": \"THE BUG SHIPS TO PROD.\", \"breathe_line\": \"REQUESTS DONE. SHIP IT.\"",
+      "systemic": true,
+      "cause_hint": "lk_studio script prompt: no banned-vocabulary check (brand rulebook 1.1) on slots; load beat forced when no real numbers exist"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "One voice segment overruns its window and the reel was rendered anyway; the X image headline is the whole 197-character tweet.",
+      "evidence": "studio.voice: \"id\": \"proof\" ... \"fits\": false, \"all_fit\": false; studio.kit.images[x].headline: \"80,551 GitHub stars. Hoppscotch is an open-source API client that runs in the browser, no install needed. REST, GraphQL, WebSocket, SSE, Socket.IO, and MQTT in one tool. Self-host it or use it now.\"",
+      "systemic": true,
+      "cause_hint": "studio-forge reel does not block on all_fit=false; kit uses the full post as the image headline"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The sequencing advice starts with directories where an 80k-star tool is almost certainly already listed, and the awesome list venue already includes Hoppscotch.",
+      "evidence": "targets_meta.sequencing_advice[0]: \"Start with AlternativeTo and SaaSHub (low effort, evergreen Postman-alternative search traffic captures ICP immediately).\"; github.com/mrmykey/awesome-http-clients README already mentions hoppscotch",
+      "systemic": true,
+      "cause_hint": "targets pipe does not check whether the app is already listed on a directory or list"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "No venue has verified rules, and the r/webdev entry does not say that self-promotion is limited to Showoff Saturday. One why_fit uses competitive framing.",
+      "evidence": "targets r/webdev.rules_summary: \"not verified: read https://www.reddit.com/r/webdev/about/rules before posting\"; AlternativeTo.why_fit: \"Hoppscotch's open-source MIT self-hostable angle wins on this comparison platform.\"",
+      "systemic": true,
+      "cause_hint": "targets pipe rules fetch"
+    },
+    {
+      "stage": "signals",
+      "severity": "blocker",
+      "summary": "Three of the four kept signals point to pages that return 404, and none were verified. The only live thread is on Postman's own community forum, where promoting a competitor is inappropriate, and it is five months old.",
+      "evidence": "signals ranks 1,3,4 URLs (club.ministryoftesting.com/t/postman-free-team-plans-are-going-away..., dev.to/nikolas_dimitroulakis_d23/..., dev.to/auden/...) return HTTP 404; rank 2: \"https://community.postman.com/t/best-way-to-handle-api-collaboration-in-small-teams-on-postman-free-plan\", \"posted_when\": \"2026-04-20\"",
+      "systemic": true,
+      "cause_hint": "signals pipe keeps search-snippet URLs without resolving them; rescore fetch runs in the browser and is CORS-blocked (summary.page_errors), so every kept row ends 'unverified'"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The drafted replies make up experience and numbers.",
+      "evidence": "signals rank 1 drafted_reply: \"Most QA teams I've seen move to Bruno (git-native, offline) or Hoppscotch\"; rank 2: \"Takes about 10 minutes with Docker.\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt lacks the GLOBAL_RULES no-invented-experience/number rule"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The scan report's coverage note contradicts its own rescore: it says an HN thread was included, but the same report rejected it.",
+      "evidence": "signals_meta.coverage_notes: \"HN item 46942116 date unverified; included as high-intent Ask HN.\"; rejected_by_rescore: \"HN thread locked (older than 14 days), cannot reply\"",
+      "systemic": true,
+      "cause_hint": "signals_meta coverage_notes written before rescore"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan is not ready. The download notice asks the user to approve a post and choose venues, though six posts are approved and three venues selected. It also adds tracked links for Product Hunt and Show HN, which Targets said to hold back and which were not selected.",
+      "evidence": "plan page: \"Approve a post and choose venues first\" and \"Plan not ready\"; tracked links include \"Product Hunt\" and \"Hacker News Show HN\"; targets_meta: \"Reserve Show HN and Product Hunt for a major new version milestone\"",
+      "systemic": true,
+      "cause_hint": "plan page disabled-button copy is static; plan adds platform venues from approved posts without checking target selection"
+    },
+    {
+      "stage": "plan",
+      "severity": "high",
+      "summary": "The plan carries the wrong pricing decision into the launch document.",
+      "evidence": "plan Decisions: \"Freemium Cloud Launch, free plus paid tiers: Community $0/mo, Cloud Pro $9/mo, Enterprise\"",
+      "systemic": true,
+      "cause_hint": "inherited from pricing pipe"
+    }
+  ],
+  "best": "Plates and the lockup poster: the right green planet logo, a believable backend-developer world with no invented product UI. The listing copy is also clean and well grounded in the README.",
+  "worst": "Signals and pricing. Three of four kept signal URLs are dead, the replies invent experience, and nothing was verified. The chosen pricing proposes a '$9 Cloud Pro, new tier from none' while Hoppscotch already publishes $6 Business and $11 Enterprise plans on hoppscotch.com/pricing.",
+  "notes": "Root cause for most commercial errors: site_url is the app (hoppscotch.io), a SPA whose /pricing and /support render a not-found image. The pipeline treated that as the product having no public pricing and no support page, instead of finding hoppscotch.com. Postman, Bruno and Thunder Client prices checked against live pages and are correct. Repo facts (80,551 stars, 843 issues, created 2019-08-21) match live GitHub; forks are now 6,135. The reel was correctly left unapproved. No em dashes found in the store."
+}

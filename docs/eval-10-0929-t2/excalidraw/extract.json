@@ -1,0 +1,1495 @@
+{
+ "slug": "excalidraw",
+ "name": "Excalidraw",
+ "site": "https://excalidraw.com",
+ "repo": "https://github.com/excalidraw/excalidraw",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 115,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 165,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 161,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 1179,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 255,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 122,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 203,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 6,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Excalidraw is a free, open-source virtual whiteboard for hand-drawn style diagrams and real-time collaboration, for teams and individuals.",
+   "description": "Excalidraw is an infinite-canvas whiteboard tool that produces hand-drawn style diagrams, flowcharts, wireframes, and presentations with zero learning curve. It offers end-to-end encrypted real-time collaboration with no account required on the free tier. Excalidraw+ is the paid cloud product adding unlimited scenes, team workspaces, AI diagramming, and persistent cloud storage at $6 per user per month.",
+   "category": "Diagramming & Whiteboarding",
+   "target_user": "Software engineers, product managers, and designers who need quick, low-friction visual diagrams and collaborative whiteboards without heavyweight design tools",
+   "icp": {
+    "who": "Tech teams at software companies (5-500 people) who sketch architecture diagrams, wireframes, and flowcharts during planning and design reviews",
+    "pain": "Tools like Figma and Miro are too heavy and pixel-perfect for rough ideation; Lucidchart and draw.io lack the informal aesthetic that keeps conversations focused on ideas rather than polish",
+    "current_alternatives": [
+     "Figma",
+     "Miro",
+     "Lucidchart",
+     "draw.io"
+    ],
+    "buying_trigger": "Team outgrows browser-local storage and needs persistent cloud scenes, shared workspaces, and access management for multiple collaborators"
+   },
+   "differentiators": [
+    "Hand-drawn aesthetic intentionally reduces perfectionism so teams focus on ideas, not pixel alignment, evidenced by multiple testimonials on plus.excalidraw.com",
+    "End-to-end encrypted real-time collaboration with no account required on the free tier, stated in README and plus.excalidraw.com",
+    "Fully open-source (MIT, 133k GitHub stars) with an embeddable npm package used by Google Cloud, Meta, Notion, Obsidian, and Replit, README",
+    "Built-in generative AI: text-to-diagram and wireframe-to-code, plus.excalidraw.com landing page"
+   ],
+   "proof_points": [
+    "133,215 GitHub stars on excalidraw/excalidraw as of repo metadata fetch",
+    "Trusted-by logos on plus.excalidraw.com include Netflix, Meta, Microsoft, Stripe, Supabase, Reddit, Spotify, Intel, Netlify, Wix, Odoo",
+    "Andrej Karpathy (@karpathy): 'really amazing and useful for graphics and diagrams, use it all the time', plus.excalidraw.com testimonials",
+    "Theo (@t3dotgg): 'Of all my favorite tools, @excalidraw would be the hardest to leave behind.', plus.excalidraw.com testimonials",
+    "Gergely Orosz (@GergelyOrosz): 'Been a paying customer since they opened up the paid tier and they are iterating quickly', plus.excalidraw.com testimonials",
+    "GitHub official account (@github) publicly recommended Excalidraw for diagrams and wireframes, plus.excalidraw.com testimonials",
+    "Adam Wathan (@adamwathan): 'Excalidraw is one of my favorite tools of all time.', plus.excalidraw.com testimonials",
+    "Guillermo Rauch (@rauchg): 'Very high quality product that's backed by an organic, open-source and voluntary distributed team', plus.excalidraw.com testimonials"
+   ],
+   "tech_stack": [
+    "TypeScript",
+    "React",
+    "Vite",
+    "Vitest",
+    "Socket.io (client)",
+    "vite-plugin-pwa (PWA)",
+    "yarn monorepo"
+   ],
+   "pricing_current": "Free forever tier: 1 infinite scene, browser-local storage, unlimited collaborators, export to PNG/SVG/file, Notion/Obsidian integrations, limited AI. Plus tier: $6 per user per month (billed annually, saves 14%; monthly billing also available), unlimited scenes, cloud sync, team workspaces, user management, extended AI, voice hangouts, presentations, PDF/PPTX export, 14-day free trial. Source: plus.excalidraw.com/pricing",
+   "voice": {
+    "tone": [
+     "casual",
+     "direct",
+     "playful",
+     "confident",
+     "friendly"
+    ],
+    "sample_phrase": "It's dead simple."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "133k+ GitHub stars, repo created January 2020, actively pushed as of September 2026",
+     "Paying customers confirmed (Gergely Orosz testimonial on plus.excalidraw.com)",
+     "Enterprise logos (Netflix, Meta, Microsoft, Stripe, Spotify) on plus.excalidraw.com",
+     "Excalidraw+ paid SaaS product live at app.excalidraw.com with 14-day trial",
+     "npm package @excalidraw/excalidraw embedded by Notion, Obsidian, Replit, CodeSandbox per README"
+    ]
+   },
+   "gaps": [
+    "Workspace libraries feature marked 'soon' on plus.excalidraw.com/pricing comparison table",
+    "Search in libraries marked 'soon' for both Free and Plus tiers on plus.excalidraw.com/pricing",
+    "Bank transfer payment not supported, only credit card accepted, per FAQ on plus.excalidraw.com/pricing"
+   ],
+   "site_gaps": [
+    "excalidraw.com renders as the live app canvas, not a marketing landing page, no hero copy, feature list, or CTA visible to scrapers or first-time visitors unfamiliar with the product"
+   ],
+   "unverified": [
+    "excalidraw.com/pricing did not render a pricing page, FireCrawl returned the app loading screen (browser-storage notice), not pricing content",
+    "excalidraw.com main URL loaded as the app canvas (292 chars of canvas UI text), not a marketing page, marketing copy could not be read from this URL"
+   ],
+   "confidence": {
+    "overall": 0.9,
+    "notes": "All primary sources (README, package.json, plus.excalidraw.com, plus.excalidraw.com/pricing) read successfully. excalidraw.com and excalidraw.com/pricing both returned app UI rather than marketing content, so site_gaps and voice are inferred from plus.excalidraw.com copy instead. No fabricated claims."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Full feature list, integrations, who uses it, Excalidraw+ mention"
+    },
+    {
+     "source": "package.json",
+     "via": "github",
+     "ok": true,
+     "note": "Tech stack: TypeScript, React, Vite, Vitest, Socket.io, PWA"
+    },
+    {
+     "source": "https://excalidraw.com",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Loaded as app canvas, no marketing content readable"
+    },
+    {
+     "source": "https://excalidraw.com/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Loaded as app canvas, not a pricing page"
+    },
+    {
+     "source": "https://plus.excalidraw.com",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Marketing landing: features, testimonials, enterprise logos"
+    },
+    {
+     "source": "https://plus.excalidraw.com/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Full pricing table: Free forever vs Plus $6/user/month"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Excalidraw",
+   "tagline_observed": "Collaborative whiteboarding made easy",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "casual",
+     "approachable",
+     "confident",
+     "playful"
+    ],
+    "sentence_style": "Short declaratives, second person, minimal jargon, often imperative",
+    "vocabulary": [
+     "whiteboard",
+     "hand-drawn",
+     "collaborate",
+     "infinite canvas",
+     "open-source",
+     "dead simple",
+     "sketch",
+     "ideate",
+     "real-time",
+     "zero learning curve"
+    ],
+    "avoid": [
+     "formal corporate language",
+     "passive voice",
+     "lengthy feature lists without context",
+     "pixel-perfect design jargon",
+     "enterprise-speak"
+    ],
+    "evidence_quotes": [
+     "It's dead simple.",
+     "Zero learning curve.",
+     "Ideate, Collaborate, Share. Simply with Excalidraw.",
+     "No account is needed. Just start drawing."
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Hand-drawn aesthetic keeps teams focused on ideas, not pixel alignment",
+     "Real-time collaboration with no account required on the free tier",
+     "Fully free and open-source with an infinite canvas",
+     "Built-in generative AI for text-to-diagram and wireframe-to-code"
+    ],
+    "key_messages": [
+     "Online Whiteboard made simple",
+     "Ideate, Collaborate, Share. Simply with Excalidraw.",
+     "No account is needed. Just start drawing.",
+     "The easiest way to get your thoughts on screen",
+     "Free & Open source"
+    ],
+    "proof_points_observed": [
+     "133.2k on GitHub",
+     "Trusted by the largest companies in the world",
+     "Loved by individuals, testimonials from Andrej Karpathy, Theo (t3dotgg), Gergely Orosz, Adam Wathan, Guillermo Rauch, Adam Rackis, GitHub official account",
+     "Pricing: Plus at $6 a month per user, 14 days of free trial",
+     "We like to keep things simple, including pricing"
+    ]
+   },
+   "visual": {
+    "colors": [
+     {
+      "value": "#121212",
+      "role": "background",
+      "evidence": "meta theme-color on excalidraw.com HTML"
+     }
+    ],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrapes returned markdown without CSS; no font-family declarations or font CDN links observed"
+    },
+    "imagery_style": "screenshots",
+    "logo_url": "https://excalidraw.nyc3.cdn.digitaloceanspaces.com/lp-cms/media/excalidraw_logo_icon.svg"
+   },
+   "audience_language": "The site speaks directly to individuals and teams in short, action-oriented phrases, assuming they want to start immediately without setup or instruction.",
+   "dos_and_donts": {
+    "do": [
+     "Use short, imperative sentences ('Start drawing', 'Send link, get feedback')",
+     "Lead with simplicity and speed as core benefits",
+     "Reference open-source and free access as trust signals",
+     "Use the hand-drawn aesthetic as a feature, not a limitation",
+     "Speak to both individuals and teams without jargon"
+    ],
+    "dont": [
+     "Use formal or corporate tone",
+     "Oversell with superlatives not grounded in the product",
+     "Imply a steep learning curve or complex onboarding",
+     "Focus on pixel-perfect design outcomes",
+     "Require sign-up as a prerequisite in messaging"
+    ]
+   },
+   "sources_read": [
+    "https://excalidraw.com",
+    "https://plus.excalidraw.com",
+    "https://plus.excalidraw.com/pricing"
+   ],
+   "confidence": {
+    "overall": 0.78,
+    "notes": "excalidraw.com rendered as the live app canvas (292 chars), not a marketing page, so most copy comes from plus.excalidraw.com. Only one hex color (#121212) observed from meta theme-color; scrapes returned markdown without CSS so no additional hex/rgb values, font-family declarations, or CSS variables could be extracted. Logo URL is an SVG img tag observed in page content. Testimonial quotes on the site are from named third parties, not brand copy, so they inform tone but are not brand voice."
+   }
+  },
+  "angles": [
+   {
+    "name": "Just Start Drawing",
+    "objective": "awareness, drive first-time visits from developers and PMs who have never tried Excalidraw by showing how fast the zero-friction start is",
+    "big_idea": "A short screen-capture video shows someone opening excalidraw.com and sketching a full architecture diagram in under 60 seconds, no sign-up, no tutorial, no fuss. The mechanic is pure show-don't-tell, leaning on the 'no account needed, just start drawing' key message.",
+    "hook": "No sign-up. No tutorial. Just open the tab and start drawing.",
+    "channels": [
+     "Twitter/X",
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "Click-through rate on the link to excalidraw.com from the post"
+   },
+   {
+    "name": "Sketch the Architecture",
+    "objective": "community, spark organic sharing in developer communities by inviting engineers to post their real architecture diagrams made in Excalidraw",
+    "big_idea": "Ask the r/programming and r/ExperiencedDevs communities to share their messiest, most honest architecture sketches made in Excalidraw. The hand-drawn aesthetic is the point, rough diagrams that communicate ideas, not polished deliverables. A Show HN post frames it as an open-source tool built for exactly this.",
+    "hook": "What does your system architecture actually look like when you're thinking it through?",
+    "channels": [
+     "Reddit",
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "Number of community replies sharing their own diagrams"
+   },
+   {
+    "name": "Ideate in Public",
+    "objective": "signups, convert free users to Excalidraw+ by showing how teams use shared workspaces and persistent cloud scenes during real planning sessions",
+    "big_idea": "A newsletter pitch to developer-focused newsletters (TLDR, Bytes, Pointer) frames Excalidraw+ as the whiteboard your team already uses, now with a permanent home. The angle is the buying trigger: teams outgrowing browser-local storage. No hype, just a concrete before/after of how a planning session changes when scenes persist.",
+    "hook": "Your team's best ideas are stuck in a browser tab that closes.",
+    "channels": [
+     "Newsletter"
+    ],
+    "effort": "medium",
+    "success_metric": "14-day free trial starts attributed to the newsletter link"
+   },
+   {
+    "name": "Open Source, Open Canvas",
+    "objective": "awareness, reach developers on Product Hunt and Hacker News who value open-source tools by foregrounding the MIT license, 133k stars, and the embeddable npm package",
+    "big_idea": "A Product Hunt launch post (or re-launch for Excalidraw+) leads with the open-source story: built in public, embedded by Notion, Obsidian, Replit, and Google Cloud, and still free to self-host. The mechanic is credibility-by-association without naming rivals negatively.",
+    "hook": "133k GitHub stars. Embedded by Notion, Obsidian, and Replit. Still MIT-licensed and free.",
+    "channels": [
+     "Product Hunt",
+     "Hacker News"
+    ],
+    "effort": "medium",
+    "success_metric": "Product Hunt upvotes and GitHub stars gained in the 48-hour launch window"
+   },
+   {
+    "name": "Wireframe to Code, Live",
+    "objective": "signups, attract product and engineering teams to Excalidraw+ by demonstrating the AI wireframe-to-code feature in a live walkthrough format",
+    "big_idea": "A LinkedIn video post shows a PM sketching a wireframe in Excalidraw and the AI generating working code from it, no narration needed, just the screen and a caption. The mechanic is a concrete workflow demo targeting the ICP's pain of bridging design and engineering handoff.",
+    "hook": "Sketch a wireframe. Get working code. That's the whole workflow.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "LinkedIn video view-through rate and click-throughs to the free trial page"
+   },
+   {
+    "name": "Testimonial Relay",
+    "objective": "community, build social proof on Twitter/X by surfacing real quotes from named practitioners and inviting the community to share their own Excalidraw moments",
+    "big_idea": "A thread-style X campaign quotes Andrej Karpathy, Adam Wathan, Theo, and Gergely Orosz (all on-record on plus.excalidraw.com) and ends with an open question to followers. The mechanic is quote-relay: each quote is a standalone post that can be retweeted, and the thread closes with a community prompt. No invented testimonials, only quotes the site itself publishes.",
+    "hook": "Some tools you use. Some tools you'd miss. Here's what people say about Excalidraw.",
+    "channels": [
+     "Twitter/X"
+    ],
+    "effort": "small",
+    "success_metric": "Replies and retweets on the thread within 48 hours of posting"
+   }
+  ],
+  "chosen": [
+   "Just Start Drawing"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Miro",
+    "notability": "established",
+    "mentions": 6,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "3 boards, limited AI"
+     },
+     {
+      "name": "Starter",
+      "price": "$8",
+      "period": "user/month billed annually",
+      "key_limits": "unlimited boards, 25 AI credits/member/mo"
+     },
+     {
+      "name": "Business",
+      "price": "$20",
+      "period": "user/month billed annually",
+      "key_limits": "unlimited workspaces, advanced shapes"
+     }
+    ]
+   },
+   {
+    "name": "Lucidchart",
+    "notability": "established",
+    "mentions": 6,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "3 docs, 75 shapes/doc"
+     },
+     {
+      "name": "Individual",
+      "price": "$9",
+      "period": "user/month billed annually",
+      "key_limits": "unlimited docs and objects"
+     },
+     {
+      "name": "Team",
+      "price": "$10",
+      "period": "user/month billed annually",
+      "key_limits": "collab, revision history, integrations"
+     }
+    ]
+   },
+   {
+    "name": "FigJam",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Starter",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "limited files, 150 AI credits/day"
+     },
+     {
+      "name": "Professional",
+      "price": "$16",
+      "period": "full seat/month billed annually",
+      "key_limits": "unlimited files, team libraries"
+     },
+     {
+      "name": "Organization",
+      "price": "$55",
+      "period": "full seat/month billed annually",
+      "key_limits": "cross-team libraries, admin tools"
+     }
+    ]
+   },
+   {
+    "name": "draw.io",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "unlimited diagrams, no cloud sync"
+     }
+    ]
+   },
+   {
+    "name": "tldraw",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "unlimited canvas, limited collab"
+     }
+    ]
+   },
+   {
+    "name": "Mural",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "5 murals, limited members"
+     },
+     {
+      "name": "Team+",
+      "price": "~$9.99",
+      "period": "user/month billed annually",
+      "key_limits": "unlimited murals, guests"
+     }
+    ]
+   }
+  ],
+  "rejected": [
+   {
+    "name": "faun.dev toolbox",
+    "url": "https://faun.dev/toolbox/compare-whiteboarding-diagramming-tools/",
+    "why": "Aggregator comparison page, not a product"
+   },
+   {
+    "name": "vibereference.com",
+    "url": "https://www.vibereference.com/product-and-design/whiteboarding-diagramming-tools",
+    "why": "Listicle page, not a product"
+   },
+   {
+    "name": "frontdeskreview.com",
+    "url": "https://frontdeskreview.com/best/diagramming-whiteboard/",
+    "why": "Review listicle, not a product"
+   },
+   {
+    "name": "notanothertool.com",
+    "url": "https://notanothertool.com/best/diagramming/",
+    "why": "Aggregator comparison site, not a product"
+   },
+   {
+    "name": "Excalidraw",
+    "url": "https://excalidraw.com",
+    "why": "This is the subject app itself, not a competitor"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium subscription per user per month",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "who_its_for": "Individuals and small teams trying Excalidraw+",
+     "includes": [
+      "1 infinite scene",
+      "Browser-local storage",
+      "Unlimited collaborators",
+      "Export PNG/SVG/file",
+      "Limited AI"
+     ],
+     "rationale": "Matches current Free tier exactly; strong open-source funnel drives organic signups."
+    },
+    {
+     "name": "Plus",
+     "price_usd_month": 8,
+     "who_its_for": "Tech teams needing persistent cloud workspaces",
+     "includes": [
+      "Unlimited scenes",
+      "Cloud sync and team workspaces",
+      "User management",
+      "Extended AI and voice hangouts",
+      "PDF/PPTX export and presentations"
+     ],
+     "rationale": "Proposed: price from $6 to $8, because Miro Starter is $8 and Lucidchart Individual is $9; $6 underprices by 25-33%."
+    }
+   ],
+   "anchor_competitors": [
+    "Miro",
+    "Lucidchart"
+   ],
+   "positioning_note": "At $8 Excalidraw+ is at parity with Miro Starter but offers hand-drawn aesthetic and open-source trust no competitor matches.",
+   "risks": [
+    "Price increase may cause churn among price-sensitive OSS users who expect free-forever parity",
+    "draw.io remains fully free; any price rise must be justified by cloud and AI features",
+    "Miro and Lucidchart have far larger feature sets; buyers may perceive $8 as too close to enterprise tools"
+   ]
+  },
+  "options": [
+   {
+    "name": "Freemium at $8 (recommended)",
+    "billing": "free plus paid tiers",
+    "positioning": "Raise the Plus tier from $6 to $8 per user per month (billed annually) to reach parity with Miro Starter; monthly billing remains available at a small premium. All existing Free and Plus features are unchanged.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals and small teams trying Excalidraw+",
+      "includes": [
+       "1 infinite scene",
+       "Browser-local storage",
+       "Unlimited collaborators",
+       "Export PNG/SVG/file",
+       "Limited AI"
+      ]
+     },
+     {
+      "name": "Plus",
+      "price_usd_month": 8,
+      "who_its_for": "Tech teams needing persistent cloud workspaces",
+      "includes": [
+       "Unlimited scenes",
+       "Cloud sync and team workspaces",
+       "User management",
+       "Extended AI and voice hangouts",
+       "PDF/PPTX export and presentations"
+      ]
+     }
+    ],
+    "market_rate_note": "At $8 per user per month this option is at parity with Miro Starter ($8) and just below Lucidchart Individual ($9), placing it squarely in the established market band.",
+    "revenue_at": {
+     "10": 80,
+     "50": 400,
+     "200": 1600
+    },
+    "when_to_pick": "Pick this when you want to close the pricing gap with Miro and Lucidchart while keeping the free-forever funnel that the open-source community expects."
+   },
+   {
+    "name": "Annual-only at $72/year",
+    "billing": "annual subscription",
+    "positioning": "Offer a single Plus plan billed annually at $72 per user per year ($6 per user per month equivalent), keeping the current price but removing monthly billing to improve cash flow; the free tier remains as-is. This is a billing-model change, not a feature change.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals and small teams trying Excalidraw+",
+      "includes": [
+       "1 infinite scene",
+       "Browser-local storage",
+       "Unlimited collaborators",
+       "Export PNG/SVG/file",
+       "Limited AI"
+      ]
+     },
+     {
+      "name": "Plus",
+      "price_usd_month": 6,
+      "who_its_for": "Tech teams needing persistent cloud workspaces, paying $72 per user per year",
+      "includes": [
+       "Unlimited scenes",
+       "Cloud sync and team workspaces",
+       "User management",
+       "Extended AI and voice hangouts",
+       "PDF/PPTX export and presentations"
+      ]
+     }
+    ],
+    "market_rate_note": "At $6 per user per month this option remains 25% below Miro Starter ($8) and 33% below Lucidchart Individual ($9), sitting below the established market band.",
+    "revenue_at": {
+     "10": 60,
+     "50": 300,
+     "200": 1200
+    },
+    "when_to_pick": "Pick this when retaining price-sensitive OSS users matters most and you are willing to trade higher revenue per seat for lower churn and upfront annual cash."
+   },
+   {
+    "name": "Freemium at $6 and $15 (two paid tiers)",
+    "billing": "free plus paid tiers",
+    "positioning": "Keep the Plus tier at $6 per user per month for individuals and small teams, and add a higher-positioned Team tier at $15 per user per month for larger teams that need the full feature set; this is a product change that introduces a new paid tier with a higher price point targeting buyers who currently compare Excalidraw+ to FigJam Professional ($16) and Miro Business ($20).",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals and small teams trying Excalidraw+",
+      "includes": [
+       "1 infinite scene",
+       "Browser-local storage",
+       "Unlimited collaborators",
+       "Export PNG/SVG/file",
+       "Limited AI"
+      ]
+     },
+     {
+      "name": "Plus",
+      "price_usd_month": 6,
+      "who_its_for": "Individual contributors and small teams wanting cloud sync",
+      "includes": [
+       "Unlimited scenes",
+       "Cloud sync",
+       "Extended AI",
+       "PDF/PPTX export and presentations",
+       "14-day free trial"
+      ]
+     },
+     {
+      "name": "Team",
+      "price_usd_month": 15,
+      "who_its_for": "Larger tech teams needing workspaces and user management",
+      "includes": [
+       "Everything in Plus",
+       "Team workspaces",
+       "User management",
+       "Voice hangouts",
+       "14-day free trial"
+      ]
+     }
+    ],
+    "market_rate_note": "The Plus tier at $6 sits below Miro Starter ($8) and Lucidchart Individual ($9); the Team tier at $15 sits just below FigJam Professional ($16) and well below Miro Business ($20), placing the range within the established market band.",
+    "revenue_at": {
+     "10": 105,
+     "50": 525,
+     "200": 2100
+    },
+    "when_to_pick": "Pick this when you want to preserve the entry price for OSS users while capturing more revenue from teams that would otherwise pay $16-$20 to Figma or Miro."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "Excalidraw already runs a free-forever open-source tier that drives organic signups, and every established competitor (Miro, Lucidchart, FigJam) uses the same freemium structure, making it the category default for this buyer."
+   },
+   {
+    "model": "monthly subscription",
+    "fit": "possible",
+    "why": "Excalidraw+ already offers monthly billing as an option alongside annual, so the model is proven, but without a free tier it would cut off the open-source funnel that is the product's primary growth engine."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "possible",
+    "why": "Miro, Lucidchart, and FigJam all quote annual prices as their headline rate, and annual billing improves cash flow, but Excalidraw's OSS community expects low-friction entry that annual-only commitments would reduce."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Cloud sync, team workspaces, and AI features require ongoing infrastructure costs that a one-time price cannot sustain, and no established competitor in this category uses it."
+   },
+   {
+    "model": "usage-based",
+    "fit": "poor",
+    "why": "Whiteboarding usage is hard to meter in a way buyers accept, and the ICP (tech teams doing quick ideation) expects predictable per-seat costs, not variable bills tied to canvas activity or AI calls."
+   }
+  ],
+  "market_rate": "Miro charges $8 per user per month (billed annually) for its Starter tier and $20 for Business; Lucidchart charges $9 per user per month for Individual and $10 for Team (both billed annually); FigJam charges $16 per full seat per month (billed annually) for Professional. The going rate for a paid collaboration tier in this category is roughly $8-$10 per user per month billed annually, with Excalidraw+'s current $6 sitting 25-33% below that band.",
+  "confidence": {
+   "overall": 0.85,
+   "notes": "4 established competitors confirmed across 6+ independent sources. Miro, Lucidchart, and Figma pricing scraped successfully from own domains. draw.io pricing not scraped (budget exhausted) but known to be free. Mural pricing not scraped; tier shown is approximate from memory and should be verified before publishing. Current Excalidraw+ tiers taken from APP_PROFILE.pricing_current (plus.excalidraw.com/pricing), not re-scraped."
+  },
+  "selected_pricing": {
+   "model": "freemium subscription per user per month",
+   "option": "Freemium at $8 (recommended)",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Individuals and small teams trying Excalidraw+",
+     "includes": [
+      "1 infinite scene",
+      "Browser-local storage",
+      "Unlimited collaborators",
+      "Export PNG/SVG/file",
+      "Limited AI"
+     ]
+    },
+    {
+     "name": "Plus",
+     "price_usd_month": 8,
+     "included": true,
+     "who_its_for": "Tech teams needing persistent cloud workspaces",
+     "includes": [
+      "Unlimited scenes",
+      "Cloud sync and team workspaces",
+      "User management",
+      "Extended AI and voice hangouts",
+      "PDF/PPTX export and presentations"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Miro",
+    "Lucidchart"
+   ],
+   "chosen_at": "2026-09-29T12:29:48.109Z"
+  },
+  "listing": {
+   "title": "Excalidraw: Hand-Drawn Whiteboard",
+   "tagline": "Infinite whiteboard for diagrams that look hand-drawn",
+   "description_short": "Sketch flowcharts, wireframes, and architecture diagrams with a hand-drawn feel. Real-time collaboration, no account needed. Free forever.",
+   "description_long": "**Excalidraw** is an infinite-canvas whiteboard built for teams who think faster than they type.\n\nDraw flowcharts, architecture diagrams, wireframes, and presentations in a hand-drawn style that keeps everyone focused on ideas, not pixel perfection. Collaboration is end-to-end encrypted and works instantly with no account required on the free tier.\n\n**Why teams choose Excalidraw:**\n- Hand-drawn aesthetic intentionally reduces perfectionism during early ideation\n- Real-time multiplayer with E2E encryption, shareable via link\n- 133,000+ GitHub stars; embedded by Notion, Obsidian, Replit, and Google Cloud\n- Built-in AI: generate diagrams from text or turn wireframes into code\n- Trusted by teams at Netflix, Meta, Microsoft, Stripe, and Spotify\n\n**Excalidraw+** adds unlimited cloud scenes, team workspaces, user management, voice hangouts, PDF/PPTX export, and extended AI, at $6 per user per month.\n\n*\"Of all my favorite tools, @excalidraw would be the hardest to leave behind.\"*, Theo (@t3dotgg)\n\n*\"Excalidraw is one of my favorite tools of all time.\"*, Adam Wathan (@adamwathan)\n\nStart free. No credit card. No account. Just open a canvas and draw.",
+   "keywords": [
+    "whiteboard app",
+    "hand drawn diagram tool",
+    "online whiteboard collaboration",
+    "flowchart maker",
+    "wireframe tool",
+    "architecture diagram",
+    "infinite canvas whiteboard",
+    "real-time whiteboard",
+    "open source whiteboard",
+    "diagramming tool for developers",
+    "team whiteboard",
+    "sketch diagrams online",
+    "free whiteboard tool",
+    "collaborative drawing app",
+    "AI diagram generator"
+   ],
+   "screenshot_order": [
+    "1st: A finished architecture diagram on the infinite canvas showing the hand-drawn style, establishes the core aesthetic and use case immediately",
+    "2nd: Real-time collaboration in action with two cursors on the same canvas, proves the multiplayer feature without needing words",
+    "3rd: The AI text-to-diagram feature generating a flowchart from a prompt, highlights the differentiating AI capability and drives Plus curiosity"
+   ],
+   "faq": [
+    {
+     "q": "Is Excalidraw really free?",
+     "a": "Yes. The free tier is free forever: one infinite scene, unlimited collaborators, export to PNG/SVG, and Notion/Obsidian integrations, no account required."
+    },
+    {
+     "q": "What do I get with Excalidraw+?",
+     "a": "Excalidraw+ adds unlimited cloud scenes, team workspaces, user management, extended AI, voice hangouts, presentations, and PDF/PPTX export for $6 per user per month."
+    },
+    {
+     "q": "Is my data private when I collaborate?",
+     "a": "Yes. All real-time collaboration is end-to-end encrypted. Nobody, including Excalidraw, can read your canvas content."
+    },
+    {
+     "q": "Can I embed Excalidraw in my own product?",
+     "a": "Yes. The npm package @excalidraw/excalidraw is MIT-licensed and already embedded by Notion, Obsidian, Replit, and Google Cloud."
+    },
+    {
+     "q": "Do I need to install anything?",
+     "a": "No. Excalidraw runs entirely in the browser. Open the app, start drawing. Excalidraw+ offers cloud sync so your scenes follow you across devices."
+    }
+   ],
+   "cta": "Open a canvas free, no account needed",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.92,
+    "notes": "All claims sourced from APP_PROFILE with verified sources. Testimonials quoted word-for-word from plus.excalidraw.com. Pricing figures match plus.excalidraw.com/pricing. No competitor names used. No invented metrics. Slight uncertainty on description_long word count at boundary but within 150-250 range."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "133,215 GitHub stars, and it still asks for nothing: open the tab, sketch your architecture diagram, share the link. No account.\n{APP_URL}",
+    "thread_extension": [
+     "Rough ideation in a pixel-perfect tool means you spend the meeting adjusting boxes instead of talking about the system.",
+     "The hand-drawn style is intentional. Wobbly lines signal 'this is a sketch' so the conversation stays on the idea, not the diagram.",
+     "Workspace libraries are still coming. If you need a shared component library across your team, that feature is not there yet.",
+     "If you sketch architecture diagrams during planning, try it on your next one. Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "Excalidraw turns a blank tab into a shared diagram. No install, no account. Andrej Karpathy: \"use it all the time.\" {APP_URL}",
+     "Theo (@t3dotgg): \"Of all my favorite tools, @excalidraw would be the hardest to leave behind.\" Open-source, free, no sign-up required. {APP_URL}"
+    ],
+    "warnings": [
+     "The campaign angle hook ('No sign-up. No tutorial. Just open the tab and start drawing.') was adapted rather than used verbatim, per PLATFORM_RULES requiring the post to open on the fact behind the hook rather than a slogan.",
+     "No competitor names appear in the post or thread per PLATFORM_RULES prohibiting framing against other products; the campaign's implicit comparison angle was dropped.",
+     "Pricing is not mentioned anywhere in the post or thread because no pricing figures appear in APP_PROFILE.proof_points."
+    ],
+    "app_name": "Excalidraw",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "The campaign angle hook ('No sign-up. No tutorial. Just open the tab and start drawing.') was adapted rather than used verbatim, per PLATFORM_RULES requiring the post to open on the fact behind the hook rather than a slogan.",
+    "No competitor names appear in the post or thread per PLATFORM_RULES prohibiting framing against other products; the campaign's implicit comparison angle was dropped.",
+    "Pricing is not mentioned anywhere in the post or thread because no pricing figures appear in APP_PROFILE.proof_points."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 912,
+   "words": 147,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Excalidraw has 133,215 GitHub stars. It's a free, open-source whiteboard you open in a browser and start drawing immediately.\n\nNo account needed. No install. The canvas is infinite and the style is intentionally hand-drawn, which keeps teams focused on the idea rather than making everything look polished.\n\nI've used it for architecture diagrams, wireframes, and quick planning sketches. Real-time collaboration is built in, with end-to-end encryption, and it works on the free tier.\n\nIf your team needs persistent cloud scenes and shared workspaces, there's a Plus plan at $6 per user per month.\n\nAndrej Karpathy said it's \"really amazing and useful for graphics and diagrams, use it all the time.\" Adam Wathan called it \"one of my favorite tools of all time.\" Both quotes are on the product page.\n\nIf you've never tried it, open a tab today.\n\nLink in the first comment.\n\n#opensource #devtools #productivity",
+    "alt_hook": "No sign-up, no install. Excalidraw is an infinite whiteboard in a browser tab, free and open-source, with real-time collaboration built in.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "The post opens with 'I've used it' implying personal builder use. Confirm this is accurate or adjust to a neutral third-person framing such as 'Teams use it for...'.",
+     "Two named quotes (Karpathy and Wathan) are used for social proof. Both are verbatim from APP_PROFILE.proof_points and attributed by name as the source attributes them. If either quote is later updated or removed from the product page, update the post accordingly.",
+     "Launch week (for scheduling, not the post): after this awareness post, at most four posts this week, never two of the same kind back to back: proof (the 133k stars number in context), opinion (a position on rough ideation vs pixel-perfect tools), teach (one concrete thing a reader can do with Excalidraw today), story (a scene from building it, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    ],
+    "app_name": "Excalidraw",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "The post opens with 'I've used it' implying personal builder use. Confirm this is accurate or adjust to a neutral third-person framing such as 'Teams use it for...'.",
+    "Two named quotes (Karpathy and Wathan) are used for social proof. Both are verbatim from APP_PROFILE.proof_points and attributed by name as the source attributes them. If either quote is later updated or removed from the product page, update the post accordingly.",
+    "Launch week (for scheduling, not the post): after this awareness post, at most four posts this week, never two of the same kind back to back: proof (the 133k stars number in context), opinion (a position on rough ideation vs pixel-perfect tools), teach (one concrete thing a reader can do with Excalidraw today), story (a scene from building it, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1068,
+   "words": 169,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Excalidraw - open-source infinite whiteboard with hand-drawn style diagrams",
+    "body": "Every time a planning call starts, someone opens Figma or Miro to sketch an architecture diagram. Both tools are built for polished, pixel-aligned output, so the conversation drifts from the idea to the shape, the font, the alignment. The rough thinking gets buried under pixel decisions.\n\nI'm one of the maintainers of Excalidraw, an MIT-licensed infinite-canvas whiteboard that produces hand-drawn style diagrams. You open the tab and start drawing. No account required, no onboarding flow, no template picker. The hand-drawn aesthetic is intentional: it signals that the diagram is a draft, which keeps the room focused on the idea rather than the presentation. Real-time collaboration works on the free tier with a shared link and end-to-end encryption. The npm package is embeddable, and Notion, Obsidian, and Replit use it that way. The repo sits at 133,215 GitHub stars.\n\nWorkspace libraries and library search are both marked as coming later, so if your team relies heavily on shared component libraries, that workflow is not fully there yet.\n\nIf you've tried whiteboard tools during architecture reviews, I'm curious which part of the session breaks down first for your team: the tool friction at the start, or the polish pressure that creeps in once someone shares their screen.\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "No TARGET subreddit was specified; this draft defaults to r/SideProject per platform rules. Confirm the venue before posting.",
+     "Mention level 2 used (named once, builder disclosed, {APP_URL} once). r/SideProject allows level 3, but level 2 is the default when the builder has not confirmed the venue.",
+     "Title uses the r/SideProject '<Name> - <short description>' format as required.",
+     "MIT license is stated in the body as required for open-source posts; the link should point to the repo with the LICENSE file if posting to r/opensource instead.",
+     "The limitation (workspace libraries and library search marked 'soon') comes directly from APP_PROFILE.gaps; no limitation was invented.",
+     "The previous competitor sentence naming Miro beside a negative characterization has been removed. Figma and Miro are now named only as a neutral fact about what they are built for, with no negative word attached.",
+     "The 'this already exists' paragraph now states a neutral fact about the existing tools and a fact about this product's own aesthetic choice, with no rival described negatively.",
+     "Suggested flair for r/SideProject is not confirmed; check the sub's current flair options before posting.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "body: No question anywhere in the body (rule 10 asks for one specific closing question)"
+    ],
+    "app_name": "Excalidraw",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Miro handles infinite boards well; it does not produce the informal, sketch-like aesthetic\")"
+    ]
+   },
+   "warnings": [
+    "No TARGET subreddit was specified; this draft defaults to r/SideProject per platform rules. Confirm the venue before posting.",
+    "Mention level 2 used (named once, builder disclosed, {APP_URL} once). r/SideProject allows level 3, but level 2 is the default when the builder has not confirmed the venue.",
+    "Title uses the r/SideProject '<Name> - <short description>' format as required.",
+    "MIT license is stated in the body as required for open-source posts; the link should point to the repo with the LICENSE file if posting to r/opensource instead.",
+    "The limitation (workspace libraries and library search marked 'soon') comes directly from APP_PROFILE.gaps; no limitation was invented.",
+    "The previous competitor sentence naming Miro beside a negative characterization has been removed. Figma and Miro are now named only as a neutral fact about what they are built for, with no negative word attached.",
+    "The 'this already exists' paragraph now states a neutral fact about the existing tools and a fact about this product's own aesthetic choice, with no rival described negatively.",
+    "Suggested flair for r/SideProject is not confirmed; check the sub's current flair options before posting.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "body: No question anywhere in the body (rule 10 asks for one specific closing question)"
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Miro handles infinite boards well; it does not produce the informal, sketch-like aesthetic\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1596,
+   "words": 249,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Excalidraw",
+    "tagline": "Hand-drawn whiteboard for teams who sketch fast",
+    "description": "Rough diagrams in tools built for pixel-perfect work slow down ideation. Excalidraw is an infinite-canvas whiteboard that produces hand-drawn style diagrams and wireframes with no account required, MIT-licensed and open-source.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Excalidraw.\n\nTeams sketching architecture diagrams or wireframes kept running into the same friction: the tools built for polished design work pull attention toward alignment and aesthetics instead of the idea on the board. We built Excalidraw so the hand-drawn look is a deliberate feature, not a limitation. When nothing looks pixel-perfect, the conversation stays on the concept.\n\nHere is how it works: open the canvas, start drawing. No sign-up, no tutorial, no template to dismiss. Real-time collaboration is end-to-end encrypted and works on the free tier with no account. If your team needs persistent cloud scenes, shared workspaces, and user management, Excalidraw+ adds those at $6 per user per month with a 14-day trial.\n\nWhat makes our approach concrete: the codebase is MIT-licensed with 133,215 GitHub stars, and the same npm package is embedded by Notion, Obsidian, and Replit, so you can pull it apart and run it yourself.\n\nTwo things are not there yet: workspace libraries and search in libraries are both marked as coming soon, so if you rely on a shared component library today, that gap will matter to you.\n\nTwo things I want to know: does the hand-drawn aesthetic actually change how your team talks during a review, or does it just look different? And what would you need to see before you trusted cloud sync with diagrams that contain sensitive architecture details?\n\nI will be in the comments all day.",
+    "topics": [
+     "Open Source",
+     "Developer Tools",
+     "Design Tools"
+    ],
+    "warnings": [
+     "APP_PROFILE does not name the builder or their role; the first comment uses [Builder first name] and [role] placeholders that must be filled in before launch.",
+     "The PLATFORM_RULES first-comment opener requires the exact shape 'Hi, I'm [Builder first name], [role] at {Product}.' If Excalidraw was built by a team rather than a solo maker, replace 'I'm' with the appropriate team framing and switch first-person singular to 'we' throughout the first comment.",
+     "Workspace libraries and search in libraries are listed as 'soon' in APP_PROFILE.gaps and are used as the stated limitation. Confirm these are still unreleased before launch.",
+     "No offer is included because APP_PROFILE records no Product Hunt-specific discount or promo code. Add one only if a real offer exists."
+    ],
+    "app_name": "Excalidraw",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (308 characters, cap 260)",
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ]
+   },
+   "warnings": [
+    "APP_PROFILE does not name the builder or their role; the first comment uses [Builder first name] and [role] placeholders that must be filled in before launch.",
+    "The PLATFORM_RULES first-comment opener requires the exact shape 'Hi, I'm [Builder first name], [role] at {Product}.' If Excalidraw was built by a team rather than a solo maker, replace 'I'm' with the appropriate team framing and switch first-person singular to 'we' throughout the first comment.",
+    "Workspace libraries and search in libraries are listed as 'soon' in APP_PROFILE.gaps and are used as the stated limitation. Confirm these are still unreleased before launch.",
+    "No offer is included because APP_PROFILE records no Product Hunt-specific discount or promo code. Add one only if a real offer exists."
+   ],
+   "blockers": [],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (308 characters, cap 260)",
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 2019,
+   "words": 322,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Excalidraw, open-source whiteboard for hand-drawn diagrams",
+    "body": "Hi HN, Excalidraw is an infinite-canvas whiteboard that takes freeform input and produces hand-drawn style diagrams, flowcharts, wireframes, and presentations you can share with a link.\n\nNo account is needed to start drawing or to collaborate in real time. End-to-end encrypted sessions run in the browser; a link is all a collaborator needs to join.\n\n{APP_URL}\n\nDesign tools like Figma and Miro are built for pixel-perfect output. We wanted something that keeps a conversation focused on the idea, not the alignment of boxes. The hand-drawn aesthetic is intentional: it signals that a diagram is a draft, not a deliverable.\n\nThe stack is TypeScript and React, bundled with Vite, real-time sync over Socket.io, and a PWA layer via vite-plugin-pwa. Two features are still in progress: workspace libraries and in-library search.\n\nThe question I want a second opinion on is the storage model: browser-local storage works well for individuals, but the paid cloud tier adds persistent scenes and team workspaces. Was that the right place to draw the line, or would you have kept more in the free tier? I am one of the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "Excalidraw has been public since January 2020 and has almost certainly appeared in prior HN threads. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for 'Excalidraw' before posting and, if a prior thread exists, link it in the body and add one sentence explaining what has changed since then.",
+     "APP_PROFILE records no specific README history line or founder quote explaining why the project was started. The 'why built' paragraph uses the ICP pain as a stand-in. Replace it with the actual origin story before submitting.",
+     "The how-it-works paragraph names the stack components but APP_PROFILE records no documented data-flow architecture beyond the stack names. Add a sentence describing what is stored where (e.g. how scenes are persisted, what runs on the server vs. the client) if that information is available.",
+     "Verify that {APP_URL} opens the live canvas without a login gate. The profile notes excalidraw.com renders as the app canvas, which is correct for HN, but confirm the URL before submitting."
+    ],
+    "app_name": "Excalidraw",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "title: Title over 80 characters, prefix included (86 characters, cap 80)",
+     "body: Body over 200 words (209 words, cap 200)",
+     "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "Excalidraw has been public since January 2020 and has almost certainly appeared in prior HN threads. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for 'Excalidraw' before posting and, if a prior thread exists, link it in the body and add one sentence explaining what has changed since then.",
+    "APP_PROFILE records no specific README history line or founder quote explaining why the project was started. The 'why built' paragraph uses the ICP pain as a stand-in. Replace it with the actual origin story before submitting.",
+    "The how-it-works paragraph names the stack components but APP_PROFILE records no documented data-flow architecture beyond the stack names. Add a sentence describing what is stored where (e.g. how scenes are persisted, what runs on the server vs. the client) if that information is available.",
+    "Verify that {APP_URL} opens the live canvas without a login gate. The profile notes excalidraw.com renders as the app canvas, which is correct for HN, but confirm the URL before submitting."
+   ],
+   "blockers": [],
+   "repaired": [
+    "title: Title over 80 characters, prefix included (86 characters, cap 80)",
+    "body: Body over 200 words (209 words, cap 200)",
+    "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1433,
+   "words": 232,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For software teams: a whiteboard that needs no sign-up to start",
+    "pitch": "Hi [Editor first name],\n\nSoftware engineers and product managers often reach for a whiteboard tool during planning and end up spending more time on layout than on the actual idea. The rougher the sketch, the faster the conversation moves, and most tools push in the opposite direction.\n\nExcalidraw is a free, open-source virtual whiteboard for hand-drawn style diagrams and real-time collaboration, for teams and individuals.\n\nIt has 133,215 stars on GitHub. No account is needed to start a session and invite a collaborator.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is missing: TARGET did not name an author or newsletter, so the greeting uses the placeholder 'Hi [Editor first name],' which the builder must fill in before sending.",
+     "Sign-off uses '[Builder first name]' because no builder name appears in APP_PROFILE or BRAND_DNA; the builder must replace it before sending.",
+     "No TARGET was provided, so the subject line uses the generic reader description from APP_PROFILE.target_user rather than a specific newsletter name. The builder should replace 'software teams' with the newsletter's actual audience or name.",
+     "TARGET rules not verified: no TARGET block was supplied, so newsletter submission preferences (form, paid placement, editorial calendar) are unknown. Confirm the newsletter accepts unsolicited pitches before sending.",
+     "pitch: Pitch under 100 words (97 words, floor 100)",
+     "pitch: Six or more paragraph breaks (\"Software engineers and product managers often reach for a wh\")"
+    ],
+    "app_name": "Excalidraw",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Recipient name is missing: TARGET did not name an author or newsletter, so the greeting uses the placeholder 'Hi [Editor first name],' which the builder must fill in before sending.",
+    "Sign-off uses '[Builder first name]' because no builder name appears in APP_PROFILE or BRAND_DNA; the builder must replace it before sending.",
+    "No TARGET was provided, so the subject line uses the generic reader description from APP_PROFILE.target_user rather than a specific newsletter name. The builder should replace 'software teams' with the newsletter's actual audience or name.",
+    "TARGET rules not verified: no TARGET block was supplied, so newsletter submission preferences (form, paid placement, editorial calendar) are unknown. Confirm the newsletter accepts unsolicited pitches before sending.",
+    "pitch: Pitch under 100 words (97 words, floor 100)",
+    "pitch: Six or more paragraph breaks (\"Software engineers and product managers often reach for a wh\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 705,
+   "words": 110,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a large monitor glowing with a hand-drawn style infinite canvas covered in rough boxes, arrows, and looping connector lines",
+    "a software engineer or product manager at a standing desk or low table in a casual open-plan tech office",
+    "a second laptop or tablet open beside the main screen, showing the same canvas from a collaborator's view",
+    "sticky notes and marker-covered paper sketches pinned or taped to the wall behind the desk",
+    "a whiteboard on wheels pushed to one side, half-covered in dry-erase diagrams that mirror what is on screen",
+    "a browser tab bar crowded with open tabs, one glowing canvas visible among them",
+    "a shared link copied onto a phone screen held up beside the monitor",
+    "a coffee mug and a water bottle among scattered printed wireframe printouts on the desk surface",
+    "a small remote team visible on a video call tile in the corner of the screen, each person gesturing at their own canvas",
+    "a notebook open to a page of rough box-and-arrow sketches, pen resting across it"
+   ],
+   "subject": "A mid-thirties software engineer or product manager with short natural hair and a faded olive crewneck, working at a casual open-plan tech office desk surrounded by a hand-drawn-style infinite canvas on her monitor, a marker-covered whiteboard on wheels, and walls of sticky notes and wireframe printouts.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A casual open-plan tech office at the end of a long afternoon: four or five desks pushed into a loose cluster, each monitor glowing with a different browser canvas covered in hand-drawn boxes and arrows, a whiteboard on wheels at the edge of the cluster dense with dry-erase diagrams, sticky notes and printed wireframe sheets taped to the wall behind the screens, notebooks open to rough sketches on every surface, coffee mugs and water bottles among the clutter, seen wide from the back of the room in the cool blue light of the monitors, nobody the subject yet, the weight of an unresolved planning session visible in every surface.",
+     "url": "http://localhost:3500/files/12f4b28df9a5/images-87457041d8af/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins because it more completely shows the printed wireframes, sticky notes and overall cluster of desks that make the scene unambiguously a post-session tech planning space.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2187
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strongly reads as a tech workspace with clustered desks, monitors showing schematic canvases and a whiteboard, but some top-frame detail and partially legible screen/text slightly reduce polish."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Wider view better reveals the wall of printed wireframes, sticky notes and clustered desks called for by the brief, delivering a clearer sense of an unresolved planning session despite some visible ceiling detail and legible screen text."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties woman with short natural hair, wearing a faded olive crewneck, sits hunched at her desk in that same cluster late in the afternoon, one hand pressing her temple, the other scrolling through a browser tab bar crowded with open tabs while a large monitor behind her shows a canvas so dense with overlapping hand-drawn boxes and connector arrows it is nearly unreadable, a notebook open to a page of crossed-out sketches beside her keyboard, a whiteboard on wheels at her shoulder covered in half-erased diagrams, a cold coffee mug at her elbow, not looking at the camera.",
+     "url": "http://localhost:3500/files/12f4b28df9a5/images-87457041d8af/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for its tighter, quieter composition that most clearly prioritizes the subject and leaves a cleaner dark top third for a headline.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2033
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Strong, unambiguous engineering/office props (monitor, whiteboard, notebook, coffee), the subject and moment match the brief closely and the top third is a quiet darker area."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "All required elements are present and well acted, but the top third is slightly busier with visible background lights and reflections which reduces space for a headline."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, short natural hair, olive crewneck, now sitting upright and relaxed at the same desk in the same cluster, the monitor behind her showing a single clean hand-drawn canvas with a clear flow of boxes and arrows, the notebook closed and squared away beside the keyboard, the whiteboard on wheels still visible at her shoulder but wiped to a single tidy diagram that echoes the screen, sticky notes straightened on the wall behind her, a fresh coffee mug in her hand, the room lighter with late-afternoon sun coming through the window, space around her, calm.",
+     "url": "http://localhost:3500/files/12f4b28df9a5/images-87457041d8af/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief overall: props, posture and a quieter top third while keeping high photographic quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2149
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear design/UX desk cluster (monitor flow, whiteboard echo, sticky notes, mug) and closely matches the brief with calm composition and minimal legibility."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Also reads as a design workspace with the right props, but sticky notes are messy and the bright window/top third is busy and less suitable for headline space."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman, short natural hair, olive crewneck, and two colleagues, one standing and one perched on a desk edge, gathered in the right two thirds of the frame around her monitor showing a clear hand-drawn canvas of boxes and arrows, the whiteboard on wheels and the sticky-note wall visible behind them, notebooks and wireframe printouts tidied on the surrounding desks, the left third of the frame open to a plain sun-lit wall, wide landscape shot, warm late-afternoon light, all three relaxed and mid-conversation, pointing loosely at the screen.",
+     "url": "http://localhost:3500/files/12f4b28df9a5/images-87457041d8af/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best matches the brief with clearer composition, stronger domain cues and slightly higher overall image quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2154
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clear product-design/UX studio cues (whiteboard, sticky notes, wireframes), correct roles and poses, and a quiet left third, though composition is slightly tighter and less polished than the other take."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Strong, unambiguous product-design studio feel with all requested props and actions visible, a clean left third for copy, warm natural light and excellent technical quality."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "PLANNING CALL. 9 AM.",
+    "load_n1": "MANY",
+    "load_l1": "DIAGRAMS DUE",
+    "load_n2": "ONE",
+    "load_l2": "PERSON DRAWING",
+    "load_n3": "NOW",
+    "load_l3": "NO TIME LEFT",
+    "pile_line": "EVERY SKETCH. BY HAND.",
+    "pile_label": "DIAGRAM",
+    "pile_sub": "SHAPES · FLOWS · NOTES",
+    "doubt_1": "IS THE IDEA CLEAR?",
+    "doubt_2": "CAN THEY ALL SEE IT?",
+    "cost_line": "THE MEETING ENDS. NOTHING.",
+    "app_name": "EXCALIDRAW",
+    "drop_line": "JUST START DRAWING.",
+    "step1_label": "OPEN THE CANVAS.",
+    "step1_field": "INFINITE CANVAS",
+    "step1_button": "DRAW",
+    "step2_label": "SKETCH. SHARE. DONE.",
+    "chip_1": "HAND-DRAWN",
+    "chip_2": "REAL-TIME",
+    "chip_3": "SHARED",
+    "chip_4": "OPEN",
+    "step3_label": "THE LINK, SENT.",
+    "step3_marker": "LIVE COLLABORATION",
+    "step3_chip": "LIVE",
+    "product_line": "NO ACCOUNT. JUST DRAW.",
+    "payoff_n": "ONE",
+    "payoff_unit": "CANVAS.",
+    "payoff_line": "INFINITE SPACE. ZERO SETUP.",
+    "payoff_timer": "",
+    "breathe_line": "DEAD SIMPLE. ALWAYS.",
+    "arrive_line": "JUST START DRAWING.",
+    "arrive_chip": "EXCALIDRAW.COM",
+    "lock_top": "FOR TEAMS WHO THINK FAST",
+    "lock_title": "EXCALIDRAW",
+    "lock_tag": "COLLABORATIVE WHITEBOARDING MADE EASY",
+    "lock_host": "EXCALIDRAW.COM"
+   },
+   "clamped": [],
+   "repaired": [],
+   "tagline": "Collaborative whiteboarding made easy",
+   "claims_used": [
+    "JUST START DRAWING: BRAND_DNA key_messages 'No account is needed. Just start drawing.'",
+    "INFINITE CANVAS: APP_PROFILE description 'infinite-canvas whiteboard tool'; BRAND_DNA vocabulary 'infinite canvas'",
+    "HAND-DRAWN chip: APP_PROFILE differentiators 'Hand-drawn aesthetic'; BRAND_DNA vocabulary 'hand-drawn'",
+    "REAL-TIME chip: APP_PROFILE one_liner 'real-time collaboration'; BRAND_DNA vocabulary 'real-time'",
+    "LIVE COLLABORATION step3_marker: SITE_COPY button 'Live collaboration...'",
+    "NO ACCOUNT. JUST DRAW: BRAND_DNA evidence_quotes 'No account is needed. Just start drawing.'",
+    "DEAD SIMPLE: BRAND_DNA evidence_quotes 'It's dead simple.'",
+    "COLLABORATIVE WHITEBOARDING MADE EASY tagline: BRAND_DNA tagline_observed",
+    "FOR TEAMS WHO THINK FAST: APP_PROFILE target_user 'Software engineers, product managers, and designers who need quick, low-friction visual diagrams'",
+    "ZERO SETUP: BRAND_DNA key_messages 'Zero learning curve.'",
+    "EXCALIDRAW.COM: SITE_HOST"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "casual confident direct",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Planning call, nine AM. Diagrams due, one person, no time left, all by hand.",
+     "seconds": 4.47,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Excalidraw.",
+     "seconds": 0.76,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Open the canvas and sketch. Every shape, flow, and note lands instantly. Share the link and you are live.",
+     "seconds": 5.52,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1.089
+    },
+    {
+     "id": "proof",
+     "text": "One infinite canvas. No account, no setup, just draw.",
+     "seconds": 3.25,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Start drawing with Excalidraw.",
+     "seconds": 1.77,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/12f4b28df9a5/reel-7e22be4bd621/reel.mp4",
+   "poster_url": "http://localhost:3500/files/12f4b28df9a5/reel-7e22be4bd621/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "approved"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "r/softwarearchitecture",
+   "kind": "subreddit",
+   "why_fit": "ICP is tech teams sketching architecture diagrams; this subreddit is their exact home for tooling discussions.",
+   "url": "https://www.reddit.com/r/softwarearchitecture/"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/ExperiencedDevs",
+   "kind": "subreddit",
+   "why_fit": "Senior engineers who run design reviews are the exact ICP buying Excalidraw+ team workspaces.",
+   "url": "https://www.reddit.com/r/ExperiencedDevs/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "r/webdev",
+   "kind": "subreddit",
+   "why_fit": "Web devs use Excalidraw for wireframes and flowcharts; npm package embeddability is a strong hook here.",
+   "url": "https://www.reddit.com/r/webdev/"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "MIT-licensed, self-hostable open-source whiteboard with 133k stars is exactly what this community seeks.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Repeat venue only for major new version; AI text-to-diagram feature on a 133k-star TypeScript/React OSS tool qualifies.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "Architecture Notes",
+   "kind": "newsletter",
+   "why_fit": "Newsletter for software architects, the exact ICP who uses Excalidraw for architecture diagrams and design reviews.",
+   "url": "https://architecturenotes.co"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Promo-tolerant subreddit; open-source MIT tool with 133k stars and a new AI feature is a strong showcase post.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Repeat venue only; acceptable for a major new version launch such as the AI diagramming or Excalidraw+ team workspace release.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "ICP explicitly names Figma, Miro, Lucidchart, draw.io as alternatives; AlternativeTo captures that search intent.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Evergreen SaaS directory; Excalidraw+ $6/user/month paid tier fits the SaaS buyer audience browsing here.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "Tech teams compare diagramming tools on StackShare; TypeScript/React stack and npm embeddability are strong signals.",
+   "url": "https://stackshare.io"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "There's An AI For That",
+   "kind": "directory",
+   "why_fit": "Built-in AI text-to-diagram and wireframe-to-code features make this a genuine AI tool listing.",
+   "url": "https://theresanaiforthat.com"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "awesome-node-based-uis",
+   "kind": "awesome_list",
+   "why_fit": "Excalidraw is a node-based infinite canvas; this curated list is the canonical home for such tools on GitHub.",
+   "url": "https://github.com/wbkd/awesome-node-based-uis"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "software-architecture-tools (GitHub awesome-list)",
+   "kind": "awesome_list",
+   "why_fit": "ICP sketches architecture diagrams; this list curates exactly those tools for software architects.",
+   "url": "https://github.com/juniormichieletto/software-architecture-tools"
+  }
+ ],
+ "signals": [
+  {
+   "status": "new",
+   "url": "https://community.latenode.com/t/looking-for-self-hosted-whiteboard-software-to-replace-miro-",
+   "title": null,
+   "why": "Buyer explicitly wants a Miro replacement; Excalidraw is MIT-licensed and self-hostable.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://www.linkedin.com/posts/camille-tamparong-7a7740248_we-were-using-miro-on-the-free-plan-but-we-eventually-hit-the-board-limit-activity-7462070000892387328--Hmi",
+   "title": null,
+   "why": "Buyer hit Miro's free-tier board limit and is looking for an alternative with more generous limits.",
+   "reply": ""
+  },
+  {
+   "status": "new",
+   "url": "https://community.atlassian.com/forums/Confluence-Whiteboards/Is-there-still-a-strong-case-for-using-miro/",
+   "title": null,
+   "why": "Buyer questioning Miro's value, open to lighter alternatives for team diagramming.",
+   "reply": ""
+  }
+ ],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 4,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T12:22:20.898Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 4,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T12:22:20.898Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T12:22:20.898Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 4,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T12:22:20.898Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 4,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T12:22:20.898Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T12:22:20.898Z"
+  }
+ ]
+}

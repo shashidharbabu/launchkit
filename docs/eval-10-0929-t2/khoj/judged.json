@@ -1,0 +1,226 @@
+{
+  "slug": "khoj",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 3, "assets": 2, "targets": 3, "signals": 1, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 4, "reddit_post": 2, "producthunt": 3, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile read the sunset notice but dropped its central fact: the team has moved its effort to Open Paper and Pipali, so every later stage treats Khoj as a product under active push.",
+      "evidence": "app.khoj.dev (live, and listed in profile sources_read as 'Cloud sunset notice, April 15 2026, self-host only'): \"We're focusing our efforts on Open Paper, a research assistant ... and Pipali, an AI coworker\"; khoj.dev lists Open Paper and Pipali above 'Khoj app'. Profile maturity: {\"stage\": \"launched\"}; listing: \"it is actively maintained and production-ready\".",
+      "systemic": true,
+      "cause_hint": "understand pipe / profile prompt: no field for maintainer status or company focus; the sunset page is summarised to one line"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The founders are named on a page the profile read, yet the profile names no builder, so every post falls back to [Builder first name] placeholders.",
+      "evidence": "app.khoj.dev signs off \"Saba & Debanjum\"; blog post byline \"Debanjum Singh Solanky\". producthunt warnings: \"APP_PROFILE does not name any builder or team member.\"",
+      "systemic": true,
+      "cause_hint": "profile schema has no builders/founders field populated from sources_read"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen pricing proposes a $29/month managed cloud for a product whose founders shut the cloud down five months ago because a subscription, cloud-first service did not work, and the plan carries it as a decision.",
+      "evidence": "projects.selected_pricing tier: {\"name\": \"Managed Cloud\", \"price_usd_month\": 29, \"includes\": [\"Hosted private Khoj instance\", ...]}; app.khoj.dev: \"initial bets we made for Khoj, a subscription, cloud-first service ... made it very difficult to scale\".",
+      "systemic": true,
+      "cause_hint": "pricing pipe proposes new tiers without weighing the profile's sunset fact; no rule against re-proposing a product the owner retired"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The Commercial License tier is mis-anchored and mis-describes the licence: a flat $4/month per organisation copied from Obsidian's per-user price, sold as an 'AGPL compliance waiver for internal commercial use' although AGPL does not restrict internal use, plus invented perks.",
+      "evidence": "pricing.recommendation: \"Anchored to Obsidian Commercial at $50/user/year (~$4/user/mo)\" vs tier {\"name\": \"Commercial License\", \"price_usd_month\": 4, \"who_its_for\": \"Organizations using Khoj commercially without contributing back under AGPL\", \"includes\": [\"AGPL compliance waiver for internal commercial use\", \"Named organization in supporters list\", \"Priority GitHub issue triage\"]}",
+      "systemic": true,
+      "cause_hint": "pricing pipe: anchoring copies a competitor number without unit (per user vs per org) and invents tier contents"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The approved listing contradicts the chosen pricing: it says Khoj is free with no hosted service while the selected option sells a $4 licence and a $29 hosted instance.",
+      "evidence": "listing.faq: \"What does it cost?\" \"Khoj is free and open-source under AGPL-3.0. You pay only for the infrastructure...\"; listing.description_long: \"There is no hosted cloud service, self-hosting is the product.\" vs selected_pricing \"Commercial License $4/mo, Managed Cloud $29/mo\" (8-plan.png Decisions).",
+      "systemic": true,
+      "cause_hint": "listing pipe runs from the profile, not from selected_pricing; no consistency check between listing and chosen pricing"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing invents a setup-time claim that appears nowhere in the profile or on the site.",
+      "evidence": "listing.faq: \"A Docker Compose file is included in the repo. Most users are running in under 15 minutes.\"",
+      "systemic": true,
+      "cause_hint": "listing prompt lacks the no-invented-time-claim rule the social rulebooks carry"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The pricing positioning note makes an unverifiable superlative, and revenue_at silently assumes an even split between the $4 and $29 tiers.",
+      "evidence": "pricing.recommendation.positioning_note: \"Khoj is the only self-hosted AI second brain with published benchmark superiority\"; options[0].revenue_at: {\"10\": 165, \"50\": 825, \"200\": 3300} (165 = 10 x 16.5, the mean of 4 and 29, assumption not stated).",
+      "systemic": true,
+      "cause_hint": "pricing pipe prompt"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Brand DNA reports no colours, fonts or logo although the site probe found a yellow lantern logo, #fecb09, Roboto and Source Serif 4.",
+      "evidence": "brand_dna.visual: {\"colors\": [], \"typography\": {\"headings\": \"\", \"body\": \"\"}, \"logo_url\": \"\"}; studio probe: \"primary\": {\"value\": \"#fecb09\"}, \"fonts\": {\"heading\": \"Roboto\", \"body\": \"Source Serif 4\"}, logo source \"https://khoj.dev/favicon.png\".",
+      "systemic": true,
+      "cause_hint": "brand_dna pipe reads markdown scrapes only; it does not use the studio probe's computed styles"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle's sample copy uses the banned launch verb and overclaims reproducibility, and five of six angles lean on the same November 2024 benchmark numbers, so the angles are not very distinct.",
+      "evidence": "brand_campaigns 'Build in the Open Drop' sample_copy.body: \"...and ships with an automated eval pipeline on every release.\"; 'Benchmark Transparency Post': \"Every score is reproducible.\" (blog: \"error margins of ~6%\" on a 200-question subset).",
+      "systemic": true,
+      "cause_hint": "banned-word and dash gates run on drafts only, not on brand_campaigns output"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Benchmarks from a November 2024 run on gemini-1.5-flash-002 are stated in the present tense as Khoj's current score in the X, LinkedIn, Reddit posts and the reel, although the profile marks current scores as unverified.",
+      "evidence": "x_post.post: \"Khoj scores 86% on SimpleQA in research mode.\"; linkedin_post line 1: \"Khoj's research mode scores 86% on SimpleQA.\"; reddit body: \"on the SimpleQA benchmark it scores 86% ... We run those evals automatically on every release so the numbers are tied to a specific commit\"; profile.unverified: \"Benchmark scores ... were published November 2024 using gemini-1.5-flash-002; current scores with newer models are not published\".",
+      "systemic": true,
+      "cause_hint": "rulebooks allow any proof_point without carrying its date; the warning is written but the post is not changed"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post invents a product limitation that no source records, which GLOBAL_RULES forbid.",
+      "evidence": "reddit_post.body: \"It works, but it is not as polished as the rest of the product, and complex multi-document queries can be slow depending on your hardware.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES rule 10 / reddit rule 'Include one real limitation'; no gate checks a limitation against profile.gaps"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Research mode's beta status from November 2024 is stated as current in three posts; the profile only says it was beta at the time of the blog post.",
+      "evidence": "reddit_post: \"Research mode is still in beta.\"; producthunt first_comment: \"research mode is still in beta\"; show_hn: \"Research mode is still in beta\"; profile.gaps: \"Research mode described as 'still in beta' at time of benchmark blog post\".",
+      "systemic": true,
+      "cause_hint": "limitation rules copy profile gaps but drop their time qualifier"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit draft targets r/SideProject because Social ran before Targets, and it was never redrafted for the selected r/selfhosted or r/LocalLLaMA; it also opens on a competitor rather than a scene.",
+      "evidence": "reddit_post.warnings[0]: \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"; targets selected: r/selfhosted, r/LocalLLaMA, Show HN; body opens: \"Perplexity AI searches the web and returns cited answers; it runs on cloud infrastructure...\"",
+      "systemic": true,
+      "cause_hint": "stage order: social drafts before targets; plan catches it but nothing redrafts"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt maker comment invents a 'kept hitting the same problem' origin, and its description makes an absolute claim about every other assistant, while the real origin (a 2021 hobby project for desktop search) is public.",
+      "evidence": "producthunt.first_comment: \"Privacy-conscious researchers and developers kept hitting the same problem ... We built Khoj to fix that.\"; description: \"Most AI assistants send your documents to a third-party cloud with no way to opt out.\"",
+      "systemic": true,
+      "cause_hint": "producthunt rule 'why you built it, the specific moment' pushes the model to invent when the profile has no origin"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN body keeps an unfilled placeholder, gets the benchmark baseline model wrong, and makes an absolute claim about the field.",
+      "evidence": "show_hn.body: \"[Builder: one sentence on why you built it]\"; \"it scored 63.5% on the FRAMES benchmark against a gemini-1.5-flash-002 baseline of 26.3%\" (blog table: baseline \"26.3 (flash-1.5-001)\"); \"Existing AI assistants send your documents to third-party clouds.\"",
+      "systemic": false,
+      "cause_hint": "show_hn draft; the absolute-claim rule exists but no gate enforces it"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "An X alt variant drops the cloud-model qualifier on a privacy claim, against X rule 78.",
+      "evidence": "x_post.alt_variants[0]: \"...supports local and cloud LLMs, and runs under AGPL-3.0. Your data stays on your machine.\"",
+      "systemic": true,
+      "cause_hint": "x_post privacy-qualifier rule not checked by the gate on alt_variants"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter pitch has no reason for an editor to run it now, asserts that readers have 'no good option', and leaves a paragraph-count warning unresolved.",
+      "evidence": "newsletter_pitch.pitch: \"Developers and researchers who manage large private document libraries have no good option...\"; warnings: \"pitch: Six or more paragraph breaks\".",
+      "systemic": false,
+      "cause_hint": "newsletter_pitch draft"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Stock filler phrases the rulebooks warn against remain in two posts, and a gate self-warning is left in Product Hunt's warnings for the builder to read.",
+      "evidence": "x_post thread: \"One honest gap: research mode was still in beta\"; producthunt first_comment: \"One honest limitation:\"; producthunt.warnings[4]: \"warnings[2]: A warning that is a count, a compliance boast or a claim that a rule was followed\".",
+      "systemic": true,
+      "cause_hint": "banned-phrase list is per platform (reddit only); warnings gate appends but does not repair"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel carries a clamped, broken line of text on screen.",
+      "evidence": "studio reel.slots.cost_line: \"YOUR DATA LEAVES YOUR.\" (script claims_used intended \"YOUR DATA LEAVES YOUR HANDS.\"; script.clamped: [\"cost_line\", \"step3_label\"]).",
+      "systemic": true,
+      "cause_hint": "studio script clamp truncates by word count without re-checking grammar"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The voice-over's problem line says the product's promise in the problem beat, flatly contradicting the on-screen cost line and dropping the cloud-model condition.",
+      "evidence": "voice segment 'problem' (repaired): \"Late night, a pile of docs, one person, no time. Your data never leaves.\" while screen shows \"YOUR DATA LEAVES YOUR.\"",
+      "systemic": true,
+      "cause_hint": "voice repair step rewrites 'problem' without the beat's role"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The load beat is template filler and a chip claims a capability the profile does not state.",
+      "evidence": "script slots: \"load_n1\": \"MANY\", \"load_l1\": \"DOCS TO SEARCH\", \"load_n2\": \"ONE\", \"load_n3\": \"NOW\", \"load_l3\": \"NO TIME LEFT\"; \"chip_3\": \"VERIFIED\"; \"step3_label\": \"THE ANSWER, BUILT IN.\"; voice 'how': \"cited and verified\".",
+      "systemic": true,
+      "cause_hint": "verdict concept template forces three scenario numbers and four chips"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The reel and cards send viewers to khoj.dev, a company page whose featured products are Open Paper and Pipali, not the Khoj app.",
+      "evidence": "reel.slots: \"arrive_chip\": \"KHOJ.DEV\", \"lock_host\": \"KHOJ.DEV\"; probe copy: \"a: NEWPipali - Our desktop AI co-worker\", \"h3: Open Paper\".",
+      "systemic": true,
+      "cause_hint": "studio uses project site_url as the destination"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Every venue's rules are 'not verified' although the social rulebook already records r/selfhosted and r/LocalLLaMA rules, and Show HN is ranked third with no note that Khoj has an earlier Show HN.",
+      "evidence": "targets rank 1: \"rules_summary\": \"not verified: read https://old.reddit.com/r/selfhosted/about/rules before posting\"; rank 3 Show HN: \"rules_summary\": \"not verified\"; HN Algolia: earlier \"Show HN: Khoj, Chat offline with your second brain\" (Debanjum and Saba, 2023).",
+      "systemic": true,
+      "cause_hint": "targets pipe does not reuse rulebooks.ts venue rules or search HN for prior threads"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Tracked links point at khoj.dev rather than the repo where the Khoj app lives, and one newsletter entry links a single back issue instead of a submission page.",
+      "evidence": "targets rank 1: \"ref_url\": \"https://khoj.dev?ref=lk_subreddit_r_selfhosted\"; rank 5: \"submission_url\": \"https://itsfoss.com/newsletter/local-ai-weekly-3/\".",
+      "systemic": true,
+      "cause_hint": "ref_url built from project site_url"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The only kept signal is a builder showcasing his own project (Postern) in a 'Share your Projects!' thread, and the drafted reply pitches Khoj into it.",
+      "evidence": "signals rank 1 url community.home-assistant.io/t/my-ai-agent-runs-my-home-and-the-rest-of-my-life-through-one-self-hosted-gateway; live page: \"I built it, it's open source (Apache-2.0)\"; drafted_reply: \"Khoj ({APP_URL}) is worth a look, it's fully self-hosted ... Disclosure: I work on Khoj.\"; rescore: {\"verdict\": \"unverified\", \"why\": \"fetch failed\"}.",
+      "systemic": true,
+      "cause_hint": "signals gate keeps a candidate as 'unverified' when the fetch fails instead of dropping it; builder filter runs only on fetched text"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The scan report contradicts the result it describes.",
+      "evidence": "signals_meta.coverage_notes: \"Only 3 genuine buyer signals found.\" vs one kept (a builder), one dropped as a builder, one rejected as 176 days old.",
+      "systemic": true,
+      "cause_hint": "coverage_notes written before the gate and rescore"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan is not ready and carries the contradictory commercial decisions without flagging them: $4 and $29 paid tiers beside a listing that says Khoj is free with no hosted service.",
+      "evidence": "8-plan.png Decisions: \"Commercial License $4/mo, Managed Cloud $29/mo\" and Listing \"Khoj, Self-Hosted AI Knowledge Assistant\"; \"Plan not ready. Still open: Reddit, written for no chosen subreddit\".",
+      "systemic": true,
+      "cause_hint": "plan checks post/venue readiness only, not cross-stage consistency"
+    }
+  ],
+  "best": "The LinkedIn post: a true proof point in line 1, the privacy claim carries its own condition ('unless you point it at a cloud model'), 126 words, link in the first comment, and it needs only a date on the benchmark.",
+  "worst": "Commercial: it proposes relaunching the hosted cloud the founders shut down in April 2026 at $29/month, adds a $4/month per-organisation 'AGPL waiver' anchored to a per-user price, and approves a listing that says the product is free with no hosted service.",
+  "notes": "The profile's biggest miss drives most of the run: app.khoj.dev and khoj.dev say the team has moved to Open Paper and Pipali, but Launch Kit treats Khoj as a product under active push, so the posts read as launch copy for a project its owners have deprioritised. Facts checked live: 37,538 stars, AGPL-3.0, last push 2026-08-02, benchmark figures match the Nov 2024 blog (but the FRAMES baseline was flash-001, not flash-002). Reel correctly left unapproved. Signals page fetch failed with CORS in the drive, but the thread loads, and it is a project showcase."
+}

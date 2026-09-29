@@ -1,6 +1,6 @@
 # Staging evals: state
 
-Vision: [VISION.md](VISION.md). Judge: [JUDGE.md](JUDGE.md). Cap: 3 turns. Evidence: `docs/eval-10-0929/`.
+Vision: [VISION.md](VISION.md). Judge: [JUDGE.md](JUDGE.md). Cap: 3 turns. Evidence: `docs/eval-10-0929/` (turn 1), `docs/eval-10-0929-t2/` (turn 2).
 
 ## Scores per turn (stage means over ten apps, 1 to 5)
 
@@ -8,17 +8,23 @@ Vision: [VISION.md](VISION.md). Judge: [JUDGE.md](JUDGE.md). Cap: 3 turns. Evide
 |---|---|---|---|---|---|---|---|---|---|---|
 | baseline 09-11 | 3.8 | 3.6 | 2.6 | 2.9 | 2.9 | 3.1 | 1.7 | 3.1 | 3.0 | 3.2, 3.3, 2.4, 3.0, 2.8, 3.5 (v4 rerun mean 3.52) |
 | turn 1 (9 apps) | 3.0 | 2.8 | 2.1 | 2.2 | 2.4 | 2.7 | 2.0 | 2.6 | 2.5 | 2.8, 2.7, 1.9, 2.3, 1.9, 3.6 |
+| turn 2 (10 apps) | 3.3 | 2.9 | 2.2 | 2.6 | 2.7 | 2.8 | 2.1 | 2.5 | 2.64 | 3.1, 3.0, 2.3, 2.4, 2.8, 2.8 |
+| turn 2, same 9 apps as turn 1 | 3.44 | 3.00 | 2.22 | 2.67 | 2.67 | 2.89 | 1.89 | 2.44 | 2.65 (from 2.47) | 3.2, 3.0, 2.3, 2.4, 2.9, 2.9; blockers 27 to 14 |
 
 ## Turns
 
 | Turn | Date | What | Gate result | Verifier | Next |
 |---|---|---|---|---|---|
 | 1 | 09-29 | Pre-flight: 76/76 domain tests, typecheck, walk 16/16, staging tasks in rocketride_sb with all four org secrets. Ten apps, all eight stages, two lanes: `EVAL_OUT=docs/eval-10-0929 node run-eval.mjs` | 9 of 10 drives completed; hack-judge stopped after Profile (Q1). Bar not met: overall 2.5, no stage at 3.5, 27 blockers | One judge per app, fresh context, JUDGE.md, facts checked against live sites: 242 issues | turn 2 |
-| 2 | 09-29 | Fixes F1 to F9 plus Q1, Q4 and signal replies (commits 20fc116, 7752758; 85 domain tests, walk 16/16, all changed pipes validated). All ten apps re-run from scratch: `EVAL_OUT=docs/eval-10-0929-t2` | running | | judge all ten |
+| 2 | 09-29 | Fixes F1 to F9 plus Q1, Q4 and signal replies (commits 20fc116, 7752758; 85 domain tests, walk 16/16, all changed pipes validated). All ten apps re-run from scratch in two lanes: `EVAL_OUT=docs/eval-10-0929-t2`; infrastructure-failed stages re-run in one lane from the saved stores (hoppscotch in full; documenso, plausible, formbricks Targets; plausible, formbricks Signals; formbricks voice-over and reel) | Bar not met: overall 2.64, no stage at 3.5, profile 3.3 highest, signals 2.1 lowest, 17 blockers (14 on the nine apps of turn 1, from 27) | One judge per app, fresh context, JUDGE.md: 270 issues (17 blocker, 58 high, 134 medium, 61 low) | turn 3, the last |
 
 ## Fixes
 
 **Scale note.** Turn 1 (2.5) sits below the 09-11 baseline (3.0), but the judges are not comparable: these judges checked every claim against the live site, repo and pricing pages, and the brief pins four severities. Turns 1 to 3 share one brief, so they compare with each other; the 09-11 row is context only.
+
+**Turn 2 result (all ten judged).** Per app: plausible 3.00, formbricks 2.88, cal-com, continue and dub 2.75, excalidraw, hack-judge and hoppscotch 2.50, documenso and khoj 2.38. Up on the nine apps of turn 1: profile (+0.44, the `unverified` split), social (+0.45; Show HN 1.9 to 2.9, X 2.8 to 3.2), brand, assets, targets; blockers 27 to 14. Flat or down: commercial 2.2 (every app at 2 or 3), signals 1.9, plan 2.4, newsletter 3.6 to 2.9. Recurring causes behind the flat stages: prices read from the app host instead of the marketing site (hoppscotch), yearly rates written as monthly (documenso), rivals compared at different usage levels (plausible), compliance promised on every plan (documenso, blocker on five posts and the listing), annual arithmetic (formbricks); dead or unread threads kept as "unverified" (hoppscotch), a scan report written before the rescore (plausible, formbricks), a signals run that failed shown as "nobody is asking" (documenso); a plan "ready" with Targets failed or the reel unapproved (documenso, formbricks).
+
+**Turn 3 branch `eval-turn3` (fixes from turns 1 and 2, before the run).** Sunset mode (continue, khoj); honest Signals empty state (searching, failed, never searched); the drive fails empty Targets and unfinished Signals; reel rule breaks (BY HAND, unsourced load numbers) repaired and blocking; posts use the chosen pricing, a stale listing is flagged and blocked; Reddit redrafted for the chosen subreddit; finder dates checked; no-promo venues out of the top five; fork recorded as a gap; hard origin-story check; public copy never reads `unverified` or `site_gaps`; dated facts keep their date; transport retry, keepalive and one parse retry. From the turn-2 judges: dead or unfindable threads rejected (hoppscotch); prices looked for on the brand's marketing site (hoppscotch); banned-verb swap on the reel script, voice-over, pricing options and every saved stage result (hoppscotch, documenso); compliance-on-every-plan is a hard check and the profile and listing carry the edition and the billing period (documenso); a plan is not ready while Targets failed or chose nothing or the reel is unapproved (documenso); the scan report opens with a counted tally (plausible); more origin-story shapes (plausible); like-for-like price comparisons (plausible). 94 domain tests.
 
 **Turn 2, excalidraw (judge: profile 4, brand 3, commercial 2, social 3, assets 3, targets 2, signals 1, plan 2; posts 4, 3, 3, 3, 3, 3).** Profile up (read failures now in `unverified`, no false limitation reached a post); Reddit 1 to 3, Product Hunt and Show HN 2 to 3. Regressions with named causes: (a) signals kept three unverified threads, two over a year old: the 90-day check runs only on threads that were read, so an unread thread skips it; (b) the plan is honestly "not ready" because Reddit was drafted before a subreddit was chosen: the stage order, not the plan, is the fault; (c) posts and the listing quote $6 while the chosen pricing says $8: posts read `pricing` (the research) instead of the chosen pricing, and the listing is written before the choice; (d) r/ExperiencedDevs ranked 2nd and selected though its rules forbid naming a product; (e) the reel still wrote "EVERY SKETCH. BY HAND." for a hand-drawn tool.
 

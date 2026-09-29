@@ -1,0 +1,170 @@
+{
+  "slug": "dub",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 3, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 4, "reddit_post": 2, "producthunt": 3, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The recommended and chosen pricing ($79 Business, $199 Advanced) is built on the claim that Dub's prices are undisclosed, but the live pricing page shows $90 and $300, so the recommendation is a silent price cut presented as filling a gap.",
+      "evidence": "pricing.recommendation.tiers[0].rationale: \"proposed: price from undisclosed to $79/month, because Rewardful Growth is $99\"; project.selected_pricing: Business price_usd_month 79, Advanced 199. Live dub.co/pricing: \"Business $90 per month\", \"Advanced Best Value $300per month\".",
+      "systemic": true,
+      "cause_hint": "Pricing pipe trusts the profile's 'animated counter, not scraped' note and invents prices instead of re-reading the page; the firecrawl read of dub.co/pricing lost the static price text"
+    },
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile says the Business and Advanced prices could not be read and that there are three tiers, but the prices are plain text on the page and Dub also publishes a Free ($0) and Pro ($30) Dub Links plan that the profile never mentions.",
+      "evidence": "profile.pricing_current: \"Three tiers with 14-day trial ... Exact monthly dollar amounts not confirmed, displayed via animated counter on dub.co/pricing.\" Live dub.co/pricing/links: \"Free $0 free forever\", \"Pro $30 per month\"; dub.co/pricing: \"$90 per month\".",
+      "systemic": true,
+      "cause_hint": "understand pipe: firecrawl scrape of the pricing page and no follow of the Dub Links / Dub Partners tab; read failure reported as a site property"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The pricing analysis states the hosted product has no free plan, which is false and skews every option away from a freemium entry tier.",
+      "evidence": "pricing.models_considered[4].why: \"the hosted product has no published free plan\". Live dub.co/pricing/links: \"$0 free forever, the most generous free plan on the market\".",
+      "systemic": true,
+      "cause_hint": "Downstream of the incomplete profile pricing_current"
+    },
+    {
+      "stage": "plan",
+      "severity": "high",
+      "summary": "The plan carries the wrong prices as the launch's pricing decision and is not ready because the Reddit draft was never redrafted for the selected subreddits.",
+      "evidence": "Plan screen: \"Pricing: Recommended: Monthly Subscription, monthly subscription: Business $79/mo, Advanced $199/mo\" and \"Plan not ready. Still open: Reddit, written for no chosen subreddit; Targets selected r/affiliatemarketing, r/GrowthHacking, r/selfhosted\".",
+      "systemic": true,
+      "cause_hint": "Social stage runs before targets; the drive does not redraft the Reddit post after venue selection (summary.targets.redditRedrafted false)"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post opens by stating what a named competitor cannot do, the exact framing the repair gate removed for Impact.com and PartnerStack but missed for Bitly.",
+      "evidence": "reddit_post.body: \"Bitly shortens links and tells you how many clicks you got. It has no way to tell you how much revenue those clicks drove, or which partner sent the customer who actually converted.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES competitor rule; the negative-word gate only matches listed negative words, not 'has no way to' lack statements"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Every post uses a pricing-tier cap as the product's 'honest limitation', which reads as a Dub employee apologising for their own upsell and, on Show HN, is wrong for the self-hostable open-source code.",
+      "evidence": "reddit_post.body: \"The honest constraint right now is the Business plan cap: 500 partners and $2,500 in partner payouts per month ... I don't have a workaround for that within the current plan structure.\"; show_hn.body: \"Current limitations: the Business plan caps partner programs at 500 partners; the embedded referral dashboard is not available on the Business plan; SAML/SSO is Enterprise-only.\"",
+      "systemic": true,
+      "cause_hint": "Profile gaps list only plan gates (understand prompt), and the platform rulebooks require a limitation drawn from profile.gaps"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "All six gaps are pricing-plan feature gates rather than product gaps.",
+      "evidence": "profile.gaps: \"Business plan capped at 500 partners and $2.5K partner payouts/month (dub.co/pricing)\", \"SAML/SSO and audit logs are Enterprise-only features (dub.co/pricing)\"",
+      "systemic": true,
+      "cause_hint": "understand pipe gap instructions accept tier gating as a gap"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt maker comment invents a team experience and a CSV workflow the profile does not hold.",
+      "evidence": "producthunt.first_comment: \"The specific pain we kept running into: a link gets thousands of clicks ... You end up exporting CSVs from three different tools and guessing.\"",
+      "systemic": true,
+      "cause_hint": "GLOBAL_RULES 'never invent an origin story ... the moment that made you build it' not enforced by a gate on first_comment"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN body invents an architecture claim and an odd input/output mechanism not in the profile or README, and was approved with an unfilled placeholder.",
+      "evidence": "show_hn.body: \"takes a URL and tracking parameters and produces branded short links, real-time conversion analytics, and affiliate program payouts\"; \"Dub keeps short links, conversion events, and partner payouts in a single data model so attribution does not require a join across three vendors.\"; \"[Builder: one sentence on why you built Dub.]\"",
+      "systemic": true,
+      "cause_hint": "show_hn how-it-works rule pushes for a mechanism paragraph; approval does not block bracketed placeholders"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The confidentiality gate treats a public plan payout cap as a revenue figure and applies it inconsistently: removed from X and Show HN, kept in Reddit and Product Hunt.",
+      "evidence": "x_post.repaired: \"A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\\\"$2.5K\\\")\"; producthunt.first_comment still says \"the Business plan caps partner payouts at $2,500 per month\".",
+      "systemic": true,
+      "cause_hint": "Brand 2.7 dollar-figure gate regex matches '$2.5K' but not '$2,500', and does not distinguish a public price or plan limit from revenue"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN draft does not acknowledge that this would be a repeat Show HN even though the README badge links the earlier thread.",
+      "evidence": "show_hn.warnings: \"The APP_PROFILE records a Hacker News badge showing 255 points but no direct thread URL.\" README badge: \"https://news.ycombinator.com/item?id=32939407\".",
+      "systemic": true,
+      "cause_hint": "Understand pipe keeps the badge label but drops its href"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The X post keeps a contrast template and a category swipe in the thread.",
+      "evidence": "x_post.post: \"Dub tells you which ones drove revenue, not just how many landed.\"; thread_extension[0]: \"Most link shorteners hand you a click count and call it a day.\"",
+      "systemic": false,
+      "cause_hint": "X rulebook does not carry the LinkedIn antithesis ban"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter pitch stacks ten customer names, cites its source awkwardly, and was approved with an unresolved paragraph warning.",
+      "evidence": "newsletter_pitch.pitch: \"Teams at Twilio, Framer, Vercel, Perplexity, Raycast, Zillow, Beehiiv, Superhuman, Buffer, and Polymarket use it, as listed on the Dub homepage and README.\"; warnings: \"pitch: Six or more paragraph breaks\"",
+      "systemic": false,
+      "cause_hint": "newsletter_pitch rule 251 (one proof point)"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Two angles invent a founding team experience and a claim that Twilio and Vercel run partner programs on Dub; the profile only names them as customers.",
+      "evidence": "brand_campaigns 'Reddit Attribution Thread' sample_copy: \"Our team ran an affiliate program with a link shortener and a separate analytics tool.\"; 'Product Hunt Launch' sample_copy: \"Twilio, Vercel, Framer, and Raycast already run their partner programs on Dub.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt lacks the GLOBAL_RULES origin-story and proof-point bans"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The brand DNA has no colours, fonts or logo although the studio probe read them from the same site minutes later, and the chosen angle's hook is a rhetorical question with an invented click count.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"logo_url\": \"\"; studio kit palette primary \"#3b82f6\", fonts heading \"satoshi\"; chosen campaign hook: \"Your link got 10,000 clicks. How much revenue did it drive?\"",
+      "systemic": true,
+      "cause_hint": "brand_dna pipe reads markdown only (no CSS); probe results are not fed back to brand"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The approved listing CTA promises no credit card is required, which the live site does not state.",
+      "evidence": "listing.cta: \"Start your 14-day free trial, no credit card required\"; dub.co/pricing says only \"Start 14-day trial\".",
+      "systemic": true,
+      "cause_hint": "listing prompt allows stock SaaS CTA phrasing"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The listing FAQ lists only Business, Advanced and Enterprise as the managed plans, omitting the Free and Pro plans.",
+      "evidence": "listing.faq[1].a: \"The managed cloud plans (Business, Advanced, Enterprise) include a 14-day free trial\"",
+      "systemic": true,
+      "cause_hint": "Downstream of incomplete profile pricing_current"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel script uses template beats that contradict the product's own pain, and it takes website chrome as product categories.",
+      "evidence": "script.slots: load \"MANY / LINKS SENT\", \"ONE / TOOL TO CHECK\", \"NOW / NO ANSWERS\" against profile pain of three stitched tools; step1_button \"SIGN UP\" for creating a link; chips \"VERIFIED\", \"PENDING\" are the homepage's domain DNS statuses; voice: \"Pile of links, one tool, no answers.\"",
+      "systemic": true,
+      "cause_hint": "studio script 'verdict' concept slots force a load/pile/doubt structure and pull chips from SITE_COPY spans"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "All rules are unverified, one venue reason invents revenue milestones, and a funded company with Twilio as a customer is pointed at r/SideProject.",
+      "evidence": "targets rank 8 Indie Hackers why_fit: \"named revenue milestones resonate with IH audience\"; rank 4 r/SideProject: \"100M+ clicks milestone resonates with indie builder audience\"; every rules_summary: \"not verified\"",
+      "systemic": true,
+      "cause_hint": "targets pipe: Reddit rules fetch blocked (targets_meta: 'All Reddit rules unverified due to FireCrawl Reddit block')"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The scan report shows an internal tool call as a search query, and the empty state says 'before launch' for a product that has been live for years.",
+      "evidence": "signals_meta.queries: \"peek wave-3.r0 results[2:8]\"; Signals screen: \"Nobody is publicly asking for what your app does right now; that's common before launch.\"",
+      "systemic": true,
+      "cause_hint": "signals pipe records every tool call as a query; empty-state copy in the Signals page is fixed text"
+    }
+  ],
+  "best": "The LinkedIn post: it opens on a real proof point (\"Dub processes 100M+ clicks a month\"), carries the Clicks vs. Outcomes angle, keeps to one idea, and names only real customers.",
+  "worst": "Commercial pricing: it recommends $79 and $199 as if Dub's prices were undisclosed, when the live page shows $90 and $300 plus a Free and a Pro plan. That wrong decision goes straight into the plan.",
+  "notes": "Every stage produced output and no run errored. The Reddit post was written before targets and never redrafted, so the plan is not ready. The profile's pricing read failure (firecrawl lost the static prices and the Links/Partners tab) spreads into pricing, the listing FAQ, and every post's 'limitation'. That is the main systemic fault. The reel was left as a draft, which is right given its script. Plates show a generic marketing office that fits the ICP. The poster sets the DUB wordmark in blue, which Dub's own mark does not use."
+}

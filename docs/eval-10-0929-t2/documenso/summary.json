@@ -1,0 +1,163 @@
+{
+  "name": "Documenso",
+  "site": "https://documenso.com",
+  "repo": "https://github.com/documenso/documenso",
+  "started": "2026-09-29T17:11:43.698Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 77,
+      "understandSecs": 71,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 163,
+      "dnaSecs": 91,
+      "anglesSecs": 67,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 193,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "6",
+        "5"
+      ],
+      "chosen": true,
+      "listingRedrafted": false,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 462,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 46,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 37,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 100,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 73,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 163,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 25,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 6,
+      "blocked": [],
+      "counts": "",
+      "warnings": 6,
+      "repaired": 4
+    },
+    "assets": {
+      "ok": true,
+      "secs": 1084,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 58,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": false,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a startup operations lead at a standing desk covered in printed contracts and sticky-note remindersa laptop open to a terminal window alongside a PDF viewer showing a ",
+      "fits": 5,
+      "over": 0
+    },
+    "targets": {
+      "ok": false,
+      "secs": 643,
+      "error": "no venues ranked: the run returned nothing"
+    },
+    "signals": {
+      "ok": true,
+      "secs": 390,
+      "idle": true,
+      "heading": "",
+      "none": true,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": true,
+      "notReady": false,
+      "decisions": true,
+      "angle": "Open Signing Movement",
+      "pricing": "Current Tiers, Monthly Billing, free plus paid tiers: Free $0/mo, Individual $25"
+    }
+  },
+  "errors": [
+    "targets: no venues ranked: the run returned nothing"
+  ],
+  "appstate_bytes": 246122,
+  "finished": "2026-09-29T18:02:14.474Z",
+  "page_errors": [
+    "console: WebSocket connection to 'wss://staging.rocketride.ai/task/service' failed: Error in connection establishment: net::ERR_NAME_NOT_RESOLVED",
+    "console: WebSocket connection to 'wss://staging.rocketride.ai/task/service' failed: Error in connection establishment: net::ERR_NAME_NOT_RESOLVED",
+    "console: WebSocket connection to 'wss://staging.rocketride.ai/task/service' failed: Error in connection establishment: net::ERR_NAME_NOT_RESOLVED"
+  ]
+}

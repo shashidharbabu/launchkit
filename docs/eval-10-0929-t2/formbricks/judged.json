@@ -1,0 +1,234 @@
+{
+  "slug": "formbricks",
+  "scores": {"profile": 4, "brand": 3, "commercial": 3, "social": 3, "assets": 2, "targets": 3, "signals": 2, "plan": 3},
+  "post_scores": {"x_post": 4, "linkedin_post": 3, "reddit_post": 2, "producthunt": 2, "show_hn": 4, "newsletter_pitch": 2},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The newsletter pitch names the Linux Foundation as a client; the site only carries a testimonial from a Linux Foundation VP, and the Linux Foundation is not among the client logos.",
+      "evidence": "assets.newsletter_pitch.pitch: \"The project has 13,040 stars on GitHub, and clients include Siemens, IKEA, and the Linux Foundation.\" Profile proof point: \"Testimonial: 'Formbricks proves that open source surveys can be both powerful and user-friendly.', Jonathan Reimer, VP Developer Products @ Linux Foundation\". Live formbricks.com has no Linux Foundation logo in its client strip.",
+      "systemic": true,
+      "cause_hint": "lk_assets.pipe newsletter prompt merges testimonial affiliations into the customer list; the gate has no check that a named customer appears in the profile's client list (GLOBAL_RULES 'Never invent a person ... customer')"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt first comment claims the $74 Pro plan covers most of the enterprise features, but teams, access roles, workflows and quota management sit on Scale ($325) or behind the enterprise add-ons.",
+      "evidence": "assets.producthunt.first_comment: \"If you need those features without a license conversation, the cloud Pro plan at $74/month covers most of them.\" Live pricing page: Scale ($325) lists \"Teams & access roles\", \"Quota management\", \"Workflows\"; Pro lists integrations, SDKs, AI translations.",
+      "systemic": true,
+      "cause_hint": "lk_assets.pipe producthunt prompt: the limitation rule (rulebook producthunt 'copied from the gap APP_PROFILE records') lets the model add a remedy sentence the profile does not state"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Reddit post opens by naming Typeform with an invented detail and the banned 'fine until' shape, then names it again as a comparison, which reads as a competitor swipe.",
+      "evidence": "assets.reddit_post.body: \"Typeform stores every response on its own servers. That's fine until your legal team runs a GDPR audit and asks where the data actually lives, and the answer is 'a third-party SaaS in the US.'\" and \"Typeform is a hosted SaaS product. Formbricks is self-hostable under AGPLv3, which is the difference that matters\". The profile records no hosting location for Typeform.",
+      "systemic": true,
+      "cause_hint": "reddit rule 'name the obvious existing alternative within the first 120 words' pulls a named rival into the opener; the repair pass (repaired: 'A competitor named beside a negative word') fixed one sentence and left the scene"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The LinkedIn hook assigns a motive to the GitHub star count, an invented claim the rulebook forbids, and the same line was printed on the LinkedIn card.",
+      "evidence": "assets.linkedin_post.post line 1: \"13,040 GitHub stars. That's how many developers decided they'd rather own their survey data than store it on someone else's server.\" Rulebook hook 'The number you can check': \"the number is stated bare, never with what those people think\". studio.kit images linkedin headline carries the same sentence.",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts linkedin/x hook patterns; no gate check for a proof-point number followed by an interpretive clause"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt first comment names customers, which the Product Hunt rulebook forbids anywhere in the draft, and still carries a stock phrase the gate flagged.",
+      "evidence": "assets.producthunt.first_comment: \"enterprise clients including Siemens, IKEA, and Flixbus are running it today\" and \"Product and compliance teams kept running into the same wall\". Rule: \"No user counts, star ratings, testimonials, 'trusted by', 'used by teams at' ... anywhere in name, tagline, description or first comment\". warnings: \"first_comment: A rulebook phrase or a cross-draft template sentence used as prose ... (\\\"kept running into the same wall\\\")\"",
+      "systemic": true,
+      "cause_hint": "lk_assets.pipe producthunt: the gate reports the stock phrase as a warning instead of repairing it; no customer-name check for Product Hunt"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt draft does not say this is a relaunch, although the profile records an earlier 455-upvote launch; the Show HN draft handles the same fact correctly.",
+      "evidence": "profile.proof_points: \"455 Product Hunt upvotes and 122 Hacker News points (README.md badges)\"; assets.producthunt warnings contain no relaunch line, while assets.show_hn warnings say \"an earlier Show HN thread exists ... Search HN for the earlier thread before posting\".",
+      "systemic": true,
+      "cause_hint": "Product Hunt rulebook has no repeat-launch rule equivalent to the Show HN repeat opener"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch joins two proof points with 'and' and keeps a paragraph-count fault the gate only reported.",
+      "evidence": "assets.newsletter_pitch.pitch: \"13,040 stars on GitHub, and clients include Siemens, IKEA...\"; rule: \"Use exactly one proof point ... never two joined with 'and'\"; warnings: \"pitch: Six or more paragraph breaks\"",
+      "systemic": true,
+      "cause_hint": "newsletter gate reports, does not repair; no check for two proof points"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit body ends without a question, the fault is left as a warning, and the post defaults to r/SideProject although r/selfhosted is the obvious fit for this app.",
+      "evidence": "assets.reddit_post.body ends \"I'm curious what the hardest part of the setup was for your team, whether that was data residency, SSO, or something else entirely.\" warnings: \"body: No question anywhere in the body (rule 10 asks for one specific closing question)\" and \"No TARGET subreddit was specified. This draft defaults to r/SideProject\"",
+      "systemic": true,
+      "cause_hint": "reddit gate: closing-question fault is a warning not a repair; default venue rule 154"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Gate self-talk and compliance boasts are left in the builder's warnings list, which is noise the builder has to read past.",
+      "evidence": "assets.x_post.warnings: \"warnings[1]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\\\"complies with\\\")\" and \"...which complies with the no-negative-competitor-framing rule.\"",
+      "systemic": true,
+      "cause_hint": "lk_assets gate appends its own finding about warnings to warnings instead of stripping the boast"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Show HN puts the app link and the first sentence on adjoining lines and says responses land in a Postgres database you control, which is not true for the cloud link it points to.",
+      "evidence": "assets.show_hn.body: \"stores them in a Postgres database you control.\\n\\n{APP_URL}\\nThe link above opens the cloud version\"",
+      "systemic": false,
+      "cause_hint": "repair of '{APP_URL} inside a sentence' left no blank line after it"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The annual option miscomputes the 'two months free' prices: ten months of $74 is $740/yr ($61.67/mo) and of $325 is $3,250/yr ($270.83/mo), not $617 and $2,708, so its revenue figures are wrong too.",
+      "evidence": "commercial_results.pricing.options[1].positioning: \"billed annually at the equivalent of 10 months, so Pro is $617/yr ($51/mo) and Scale is $2,708/yr ($226/mo)\"; revenue_at: {\"10\": 1385, \"50\": 6925, \"200\": 27700}",
+      "systemic": true,
+      "cause_hint": "lk_commercial.pipe pricing: model does the arithmetic (divided by 12 twice); no code-side recomputation of annual prices or revenue_at"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The annual option's market note says $51 is below Typeform Basic at $39, which is false as written.",
+      "evidence": "commercial_results.pricing.options[1].market_rate_note: \"Pro at $51/mo equivalent is below Typeform Basic ($39 for only 100 responses) on a per-response basis\"",
+      "systemic": false,
+      "cause_hint": "lk_commercial.pipe pricing reasoning"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The chosen Hobby tier lists 'Link and email surveys', but the live Hobby plan lists link-based and in-product surveys; the headline in-app capability is dropped from the free tier and email is added.",
+      "evidence": "projects.selected_pricing.tiers[0].includes: \"Link and email surveys\"; live formbricks.com/pricing Hobby: \"Link-based surveys\", \"In-product surveys\", \"Full API access (incl. MCP)\"",
+      "systemic": false,
+      "cause_hint": "lk_commercial.pipe tier includes written from memory of the one-liner rather than the pricing page"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The recommendation records Enterprise at $0 per month while the options record it as null, which a reader or downstream code can read as free.",
+      "evidence": "commercial_results.pricing.recommendation.tiers[3]: {\"name\": \"Enterprise\", \"price_usd_month\": 0 ... \"Contact sales\"}",
+      "systemic": true,
+      "cause_hint": "pricing schema has no contact-sales value in recommendation.tiers"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The listing says targeting needs no code changes while also naming SDKs, and adds 'not bolted on' puffery the profile does not support.",
+      "evidence": "commercial_results.listing.description_long: \"Trigger surveys by user behaviour, segment, or event using iOS, Android, and web SDKs, no code changes required.\" and \"GDPR, CCPA, and HIPAA positioning baked into the architecture, not bolted on.\"",
+      "systemic": false,
+      "cause_hint": "lk_commercial.pipe listing"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle's sample copy overclaims compliance and says Siemens and IKEA self-host, neither of which the profile or site states.",
+      "evidence": "brand_campaigns 'Own Your Data' sample_copy.body: \"stay GDPR, CCPA, and HIPAA compliant by design. 10,000+ teams, including Siemens and IKEA, already run their experience management this way.\" Profile: \"GDPR, CCPA, and HIPAA compliance positioning\".",
+      "systemic": true,
+      "cause_hint": "lk_brand.pipe campaigns prompt: 'positioning' is upgraded to 'compliant by design' and logos to a deployment claim"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "Two other angles invent a motive for customers or contradict themselves on where cloud data lives.",
+      "evidence": "brand_campaigns 'GDPR Audit Survival Guide': \"used by teams at Siemens, IKEA, and the University of Copenhagen for exactly this reason\"; 'In-Product Survey Teardown': \"no data leaving your infrastructure. Self-hosted or cloud, the workflow is the same.\"",
+      "systemic": false,
+      "cause_hint": "lk_brand.pipe campaigns"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The kit and reel use a generic Tailwind blue as the brand colour instead of the Formbricks teal the DNA stage found, and the poster puts the dark navy logo wordmark on a near-black canvas where it barely shows.",
+      "evidence": "studio.kit.palette.roles.primary: {\"hex\": \"#3b82f6\", \"source\": \"most common button background\"}; reel vars \"brand\": \"#3b82f6\"; brand_dna.visual.colors: \"#00C4B8\" primary. poster.jpg: 'FORMBRICKS' in blue, the logo wordmark dark on black.",
+      "systemic": true,
+      "cause_hint": "studio-forge probe palette picks the most common button background over theme_color (#00C4B8) and DNA; no logo-on-canvas contrast check in the reel lockup"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel script fills the Verdict template's load and pile beats with filler that misframes the product as a fix for checking survey responses by hand, which Formbricks does not claim.",
+      "evidence": "studio.script.slots: \"load_n1\": \"MANY\", \"load_l2\": \"CHECKING\", \"load_n3\": \"NOW\", \"pile_line\": \"EVERY RESPONSE. BY HAND.\"; studio.voice problem line: \"Audit day. A pile of survey responses, one person checking, all done by hand.\"",
+      "systemic": true,
+      "cause_hint": "lk_studio.pipe script: the 'verdict' concept is forced on an app whose problem is data location, not manual workload; no concept-fit check"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "Reel chips and the button make claims or labels the site does not carry: a bare 'COMPLIANT' chip and a 'GET GOING' button that the script itself sources to 'Get started free'.",
+      "evidence": "studio.script.slots \"chip_4\": \"COMPLIANT\", \"step1_button\": \"GET GOING\"; claims_used: \"GET STARTED button: SITE_COPY 'Get started free'\"; repaired includes \"step1_button\"",
+      "systemic": true,
+      "cause_hint": "lk_studio.pipe script repair rewrites site copy into slot-length words"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The X card headline is the whole three-sentence post, too long for a card image.",
+      "evidence": "studio.kit.images x headline: \"Your survey tool stores user responses on someone else's server. That is a compliance decision you did not make. Formbricks is self-hostable under AGPLv3, full data ownership, 13,040 GitHub stars.\"",
+      "systemic": true,
+      "cause_hint": "studio-forge kit copies the post body into the card headline without a length cap"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The Show HN venue invents a qualifying reason (MCP support in v5.3) that the profile does not record, and it contradicts the stage's own advice to wait for v6.0.",
+      "evidence": "targets rank 8 why_fit: \"only repost for a major version (v5.3 MCP support qualifies)\"; targets_meta.sequencing_advice: \"Reserve Show HN and Product Hunt for a major version milestone (e.g., v6.0 or a significant enterprise feature drop)\"",
+      "systemic": true,
+      "cause_hint": "lk_targets.pipe: why_fit and sequencing_advice are written in separate passes with no consistency check"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "G2 is ranked as a new listing target although Formbricks already shows G2 review badges on its site, and no privacy or product newsletter is kept even though the run searched for them and drafted a newsletter pitch.",
+      "evidence": "targets rank 13 G2: \"Free listing submission; paid tiers for review campaigns only.\"; profile.proof_points: \"G2, TrustPilot, and Product Hunt review logos displayed on homepage and pricing page\"; targets_meta search_queries_used: \"GDPR privacy newsletter product managers user research open source tools\"",
+      "systemic": true,
+      "cause_hint": "lk_targets.pipe excludes existing listings only for awesome-selfhosted; no newsletter kind kept"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "r/SideProject and r/EntrepreneurRideAlong are weak fits for a 13k-star company product sold to mid-market compliance buyers.",
+      "evidence": "targets rank 7 r/SideProject why_fit: \"indie builders and SaaS founders are secondary ICP who need lightweight survey tooling\"; rank 9 r/EntrepreneurRideAlong expected_impact \"low\"",
+      "systemic": false,
+      "cause_hint": "lk_targets.pipe promo-tolerant venue defaults"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The gate dropped the one real buyer thread as 'not a discussion thread', although it is a live Lemmy discussion with 7 comments asking for a GDPR-compliant alternative to Google Forms.",
+      "evidence": "signals_meta.dropped_by_gate: {\"url\": \"https://old.lemmy.net.au/post/723837\", \"reason\": \"not a discussion thread\"}; the live page: \"A secure, privacy and GDPR compliant alternative to Google Forms ... 7 comments ... Hi, my employer is sponsoring an academic research ... circulated these questions on Google Forms\"",
+      "systemic": true,
+      "cause_hint": "signals thread gate does not recognise Lemmy/old.lemmy post URLs as discussion threads"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The scan report contradicts itself: it says one genuine buyer signal was found while nothing is kept or rejected by rescore, and the empty-state copy calls a launched product 'before launch'.",
+      "evidence": "signals_meta.coverage_notes: \"Only 1 genuine buyer signal found.\"; signals rows: 0; rejected_by_rescore: []; rerun-signals.png: \"Nobody is publicly asking for what your app does right now; that's common before launch.\"",
+      "systemic": true,
+      "cause_hint": "coverage_notes is written before the gate runs; empty-state copy ignores profile.maturity.stage 'launched'"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "Reddit is not searched, which removes the main venue where this app's self-hosting buyers ask for tools.",
+      "evidence": "signals_meta.coverage_notes: \"Reddit not searchable from this pipeline.\"",
+      "systemic": true,
+      "cause_hint": "lk_signals.pipe source list"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan reports 'Plan ready' with six generic platform venues and unverified sequencing while Assets was never approved and no ranked venue is selected, and the pricing decision is cut off at 'Enterprise'.",
+      "evidence": "8-plan.png: \"Plan ready\", \"6 venues | Sequencing advice drafted, not verified\", venues \"X (your account)\", \"Reddit\", \"Newsletter pitches (email)\"; Pricing: \"Hobby $0/mo, Pro $74/mo, Scale $325/mo, Enterprise\"; sidebar Assets and Targets not complete.",
+      "systemic": true,
+      "cause_hint": "plan readiness only checks approved posts; pricing summary drops null-priced tier labels"
+    }
+  ],
+  "best": "The profile: every price, tier limit, star count and gap matches the live pricing page and README (Pro $74, Scale $325, 250/2,000/5,000 responses, the Enterprise License Key and no-white-label gaps), with confidence and unverified items stated honestly. The Show HN draft is the strongest post: plain, no star counts, real limitations from the README, and a correct warning about the earlier 122-point thread.",
+  "worst": "The newsletter pitch turns a Linux Foundation VP's testimonial into 'clients include ... the Linux Foundation', an invented customer an editor could check in one click; close behind are the Product Hunt claim that Pro covers most enterprise features and the annual pricing maths ($617/yr for ten months of $74).",
+  "notes": "Judged from appstate.rerun.json (newest rows). Live checks on 2026-09-29: formbricks.com/pricing (Hobby 250 responses, link and in-product surveys, API incl. MCP; Pro $74, 2,000 responses, unlimited seats, SDKs; Scale $325, 5,000 responses, teams and access roles, workflows; annual 'Get 2 months free'), homepage client logos (no Linux Foundation), open-source-form-builder page ('10,000+ teams ... trust Formbricks' is real), GitHub API (13,039 stars, 2,548 forks), README (SpiceDB and Valkey in the dev stack, Enterprise License Key, no white-labeling, earlier HN item 32303986). The re-run ranked but did not select venues; the plan screenshot predates the re-run, so the plan was judged on its decisions and readiness, not on the missing selection. Reel status is draft (not approved), which is correct given the script faults."
+}

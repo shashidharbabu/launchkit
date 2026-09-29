@@ -1,0 +1,1512 @@
+{
+ "slug": "dub",
+ "name": "Dub",
+ "site": "https://dub.co",
+ "repo": "https://github.com/dubinc/dub",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 77,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 136,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 202,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 609,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 503,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 145,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 322,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Dub is the open-source link attribution platform for short links, conversion tracking, and affiliate programs for marketing teams.",
+   "description": "Dub unifies branded short links, real-time conversion analytics, and affiliate/partner program management into a single platform. It powers 100M+ clicks and 2M+ links monthly for world-class marketing teams at companies like Twilio, Framer, Vercel, and Perplexity. The platform is open-source (AGPLv3) with a self-hosting option and an enterprise edition for larger organizations.",
+   "category": "Marketing / Link Attribution",
+   "target_user": "Growth marketers and marketing engineers at SaaS companies running affiliate or referral programs",
+   "icp": {
+    "who": "Marketing and growth teams at B2B/B2C SaaS companies with 10-500 employees who run affiliate, referral, or creator partnership programs",
+    "pain": "Fragmented tooling forces teams to stitch together a link shortener, a separate analytics tool, and a third-party affiliate platform, making it impossible to attribute revenue back to a specific link or partner",
+    "current_alternatives": [
+     "Bitly",
+     "Impact.com",
+     "PartnerStack",
+     "Rewardful"
+    ],
+    "buying_trigger": "Team launches an affiliate or referral program and realizes their current link shortener cannot track conversions or automate partner payouts"
+   },
+   "differentiators": [
+    "Unified platform: short links, conversion analytics, and affiliate program management in one product (dub.co homepage)",
+    "Open-source core (AGPLv3) with self-hosting option, giving teams full data control (README.md)",
+    "Proven scale: powers 100M+ clicks and 2M+ links monthly with enterprise customers including Twilio, Vercel, and Framer (README.md)",
+    "Developer-first with REST API, MCP Server, real-time webhooks, and deep link support (dub.co/pricing)"
+   ],
+   "proof_points": [
+    "100M+ clicks and 2M+ links processed monthly, README.md",
+    "Named customers: Twilio, Buffer, Framer, Perplexity, Vercel, Laravel, Raycast, Zillow, Beehiiv, Superhuman, Polymarket, README.md and dub.co homepage",
+    "Testimonial from Ian Mackey, VP at Scicomm Media: 'What you all have built is fantastic. I've used platforms like Bitly for years, and Dub is hands down the best.', dub.co homepage",
+    "Testimonial from Koen Bok, CEO of Framer: 'Dub is the ultimate partner infrastructure for every startup. If you're looking to 10x your community / product-led growth, I cannot recommend building a partner program with Dub enough.', dub.co/pricing",
+    "Hacker News badge showing 255 points, README.md",
+    "Case studies available for Raycast, Framer, Tella, and Wisprflow, dub.co homepage"
+   ],
+   "tech_stack": [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Prisma (ORM)",
+    "PlanetScale (MySQL database)",
+    "Upstash (Redis)",
+    "Tinybird (analytics)",
+    "NextAuth.js",
+    "BoxyHQ (SAML/SSO)",
+    "Turborepo (monorepo)",
+    "Stripe (payments)",
+    "Resend (email)",
+    "Vercel (deployments)"
+   ],
+   "pricing_current": "Three tiers with 14-day trial: Business (up to 500 partners, $2.5K payouts/month, 10K new links/month), Advanced (unlimited partners, $15K payouts/month, 50K new links/month, email campaigns, embedded referral dashboard), Enterprise (custom annual billing, unlimited payouts, SAML/SSO, audit logs, dedicated Slack support). Payout fees: 5% on Business and Advanced, 3% on Enterprise. Yearly billing offers 10% discount. Exact monthly dollar amounts not confirmed, displayed via animated counter on dub.co/pricing.",
+   "voice": {
+    "tone": [
+     "confident",
+     "modern",
+     "direct",
+     "aspirational",
+     "developer-friendly"
+    ],
+    "sample_phrase": "Because you deserve more than vanity metrics. You deserve clarity."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "Enterprise customers including Twilio, Vercel, Framer, and Zillow (README.md, homepage)",
+     "100M+ clicks and 2M+ links processed monthly (README.md)",
+     "Three-tier paid pricing with 14-day trial and enterprise custom billing (dub.co/pricing)",
+     "Active open-source repo with contributor guide, seed scripts, and recommended version pinning (README.md)",
+     "Open Core model with a commercial Enterprise Edition (/ee directory) (README.md)"
+    ]
+   },
+   "gaps": [
+    "Business plan capped at 500 partners and $2.5K partner payouts/month (dub.co/pricing)",
+    "Embedded referral dashboard not available on Business plan, Advanced and above only (dub.co/pricing)",
+    "Email campaigns and messaging center restricted to Advanced plan and above (dub.co/pricing)",
+    "SAML/SSO and audit logs are Enterprise-only features (dub.co/pricing)",
+    "Partner Network access and Program Marketplace listing are Enterprise-only (dub.co/pricing)",
+    "Enterprise Edition features (the /ee directory) require a commercial license beyond AGPLv3 (README.md)"
+   ],
+   "site_gaps": [],
+   "unverified": [
+    "Exact monthly dollar prices for Business and Advanced plans, displayed via animated counter on dub.co/pricing and could not be scraped as static text",
+    "Yearly discount pricing amounts, counter-animated on dub.co/pricing",
+    "The dubinc/dub GitHub repository is the open-source/self-host edition; README confirms Open Core model where the hosted product may include additional Enterprise Edition features not present in the public repo"
+   ],
+   "confidence": {
+    "overall": 0.8,
+    "notes": "High confidence on features, customers, tech stack, and maturity from README.md and dub.co homepage (both fully readable). Pricing tier structure and feature gating confirmed from dub.co/pricing. Confidence capped at 0.8 because exact dollar amounts for Business and Advanced plans could not be confirmed, they are rendered via animated counter and were not present as static text in the scraped content."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Full README: intro, tech stack, self-hosting, license, stats"
+    },
+    {
+     "source": "(root directory listing)",
+     "via": "github",
+     "ok": true,
+     "note": "Confirmed monorepo structure: apps, packages, turbo.json"
+    },
+    {
+     "source": "https://dub.co",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Homepage: features, customers, testimonials, screenshots"
+    },
+    {
+     "source": "https://dub.co/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Pricing tiers, feature comparison, testimonial; prices animated"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Dub",
+   "tagline_observed": "Turn clicks into revenue",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "confident",
+     "outcome-focused",
+     "aspirational"
+    ],
+    "sentence_style": "Short declaratives, second person, fragments used for emphasis, no jargon",
+    "vocabulary": [
+     "link attribution",
+     "conversion tracking",
+     "affiliate programs",
+     "partner payouts",
+     "vanity metrics",
+     "clarity",
+     "revenue",
+     "short links",
+     "real-time analytics",
+     "scales with you"
+    ],
+    "avoid": [
+     "passive voice",
+     "feature-list prose without outcomes",
+     "corporate hedging",
+     "long compound sentences",
+     "buzzword stacking"
+    ],
+    "evidence_quotes": [
+     "Marketing isn't just about clicks. It's about outcomes.",
+     "It's fast. It's reliable. It's beautiful. And it scales with you.",
+     "Because you deserve more than vanity metrics. You deserve clarity.",
+     "Turn clicks into revenue"
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Unified platform for short links, conversion analytics, and affiliate program management",
+     "Understand exactly how your marketing drives revenue with Dub's powerful attribution engine",
+     "All-in-one partner management platform for building profitable affiliate and referral programs",
+     "Simple and transparent pricing that includes a 14-day trial, built to scale as you grow"
+    ],
+    "key_messages": [
+     "Turn clicks into revenue",
+     "Marketing isn't just about clicks. It's about outcomes.",
+     "Because you deserve more than vanity metrics. You deserve clarity.",
+     "It's fast. It's reliable. It's beautiful. And it scales with you.",
+     "Dub is the modern link attribution platform that unifies short links, real-time analytics, and affiliate programs, all in one place."
+    ],
+    "proof_points_observed": [
+     "Named customers: Twilio, Framer, Vercel, Perplexity, Raycast, Zillow, Beehiiv, Superhuman, Buffer, Polymarket",
+     "Case studies available for Raycast, Framer, Tella, and Wisprflow",
+     "Testimonial from Ian Mackey, VP at Scicomm Media: 'What you all have built is fantastic. I've used platforms like Bitly for years, and Dub is hands down the best.'",
+     "Testimonial from Koen Bok, CEO of Framer: 'Dub is the ultimate partner infrastructure for every startup.'",
+     "14-day free trial on all paid plans"
+    ]
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrapes returned markdown without CSS; no font-family declarations or font CDN links observed"
+    },
+    "imagery_style": "screenshots",
+    "logo_url": ""
+   },
+   "audience_language": "The site speaks directly to growth-minded marketers and builders, using second-person imperatives and outcome-first framing that assumes the reader already knows what a link shortener is and wants more from it.",
+   "dos_and_donts": {
+    "do": [
+     "Lead with outcomes and revenue, not feature lists",
+     "Use short, punchy declaratives and fragments for emphasis",
+     "Name real customers and real use cases",
+     "Frame the product around clarity and attribution, not just clicks",
+     "Use second-person voice to speak directly to the reader"
+    ],
+    "dont": [
+     "Use vanity metrics as selling points",
+     "Write long, hedged corporate sentences",
+     "Lead with technology before benefit",
+     "Use filler adjectives not grounded in a specific claim",
+     "Bury the revenue/outcome angle in feature descriptions"
+    ]
+   },
+   "sources_read": [
+    "https://dub.co",
+    "https://dub.co/pricing",
+    "https://dub.co/blog"
+   ],
+   "confidence": {
+    "overall": 0.72,
+    "notes": "All three pages returned markdown without CSS; colors array is empty because no hex/rgb values were observed in the scraped content. Typography is empty for the same reason. No <img> or SVG logo URL was present in the markdown output, so logo_url is empty (favicon excluded per rules). Exact monthly dollar prices for Business and Advanced plans were not present as static text (rendered via animated counter). Confidence capped at 0.72 due to missing visual layer."
+   }
+  },
+  "angles": [
+   {
+    "name": "Clicks vs. Outcomes",
+    "objective": "awareness, drive top-of-funnel recognition among growth marketers who rely on link shorteners without conversion visibility",
+    "big_idea": "A short, punchy content series that contrasts what a click tells you versus what revenue attribution tells you. Each post ends with the same line: 'Marketing isn't just about clicks. It's about outcomes.' The series runs on X and LinkedIn over four weeks.",
+    "hook": "Your link got 10,000 clicks. How much revenue did it drive?",
+    "channels": [
+     "X (Twitter)",
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "Profile link clicks to dub.co from X and LinkedIn posts over the 4-week run"
+   },
+   {
+    "name": "Show HN: Open-Source Link Attribution",
+    "objective": "community, introduce Dub's open-source core to the Hacker News developer and builder audience and drive GitHub stars and self-host signups",
+    "big_idea": "A Show HN post that leads with the technical architecture and open-source story, not the marketing pitch. It explains how Dub unifies link attribution, real-time analytics, and affiliate payouts in a single open-core platform, and invites builders to self-host or contribute.",
+    "hook": "Show HN: Dub, open-source link attribution for short links, conversion tracking, and affiliate programs",
+    "channels": [
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "GitHub stars gained in the 48 hours after the Show HN post goes live"
+   },
+   {
+    "name": "Affiliate Launch Playbook",
+    "objective": "signups, capture demand at the exact buying trigger moment when a SaaS team is launching an affiliate or referral program",
+    "big_idea": "A practical, no-fluff guide published on the Dub blog and promoted via a newsletter pitch: 'How to launch an affiliate program that attributes revenue, not just clicks.' The guide is gated behind a free trial signup, turning content into a conversion funnel.",
+    "hook": "Launching an affiliate program? Here's what most teams get wrong before the first partner link goes live.",
+    "channels": [
+     "Blog",
+     "Newsletter / email outreach",
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "Trial signups attributed to the blog post UTM link within 30 days of publication"
+   },
+   {
+    "name": "Reddit Attribution Thread",
+    "objective": "community, build credibility in SaaS and affiliate marketing subreddits by answering the real question builders ask before choosing an attribution tool",
+    "big_idea": "Post a genuine, value-first thread in r/SaaS or r/affiliatemarketing framing the core problem: 'How do you know which partner link actually drove a paying customer?' Answer the question thoroughly, mention Dub as the tool the team built to solve it, and invite discussion. No hard sell.",
+    "hook": "We kept asking: which partner link actually drove revenue? We couldn't answer it with our old stack. Here's what we built.",
+    "channels": [
+     "Reddit"
+    ],
+    "effort": "small",
+    "success_metric": "Upvotes and comments on the Reddit thread within 72 hours"
+   },
+   {
+    "name": "Partner Program Teardown",
+    "objective": "awareness, attract growth engineers and marketing leads by publishing a public teardown of how a real partner program is architected on Dub, using a named case study",
+    "big_idea": "A video walkthrough (or detailed blog post with screenshots) showing exactly how a team like Raycast or Tella set up their affiliate program on Dub, branded links, conversion events, partner dashboard, payouts. Real setup, real workflow, no invented numbers.",
+    "hook": "Here's exactly how a real affiliate program is set up on Dub, from the first short link to the first partner payout.",
+    "channels": [
+     "YouTube",
+     "X (Twitter)",
+     "LinkedIn"
+    ],
+    "effort": "large",
+    "success_metric": "Video views and trial signups attributed to the video's CTA link within 30 days"
+   },
+   {
+    "name": "Product Hunt Launch",
+    "objective": "signups, generate a concentrated spike of signups and visibility among the Product Hunt audience of founders, marketers, and builders evaluating new tools",
+    "big_idea": "A Product Hunt launch positioned around the core insight: link shorteners track clicks, Dub tracks revenue. The listing leads with the tagline 'Turn clicks into revenue,' uses named customers as social proof, and drives to the 14-day trial. Maker comments stay in the direct, outcome-first voice.",
+    "hook": "Turn clicks into revenue, link attribution for affiliate programs, built for marketing teams.",
+    "channels": [
+     "Product Hunt"
+    ],
+    "effort": "medium",
+    "success_metric": "Product Hunt upvotes and trial signups on launch day"
+   }
+  ],
+  "chosen": [
+   "Clicks vs. Outcomes"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Impact.com",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Custom",
+      "price": "custom",
+      "period": "annual",
+      "key_limits": "pricing page returned 522 timeout, no tiers scraped"
+     }
+    ]
+   },
+   {
+    "name": "PartnerStack",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Custom",
+      "price": "custom",
+      "period": "annual",
+      "key_limits": "based on program size, features, support level"
+     }
+    ]
+   },
+   {
+    "name": "Rewardful",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Starter",
+      "price": "$49",
+      "period": "month",
+      "key_limits": "up to $7,500/month affiliate revenue, 1 campaign, 2 team members"
+     },
+     {
+      "name": "Growth",
+      "price": "$99",
+      "period": "month",
+      "key_limits": "up to $15,000/month affiliate revenue, unlimited campaigns"
+     },
+     {
+      "name": "Enterprise",
+      "price": "$149+",
+      "period": "month",
+      "key_limits": "up to $30,000/month affiliate revenue entry tier"
+     }
+    ]
+   },
+   {
+    "name": "Refersion",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Unknown",
+      "price": "not scraped",
+      "period": "month",
+      "key_limits": "pricing page not scraped, budget exhausted"
+     }
+    ]
+   },
+   {
+    "name": "Bitly",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Unknown",
+      "price": "not scraped",
+      "period": "month",
+      "key_limits": "pricing page not scraped, budget exhausted"
+     }
+    ]
+   },
+   {
+    "name": "RedTrack",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "Unknown",
+      "price": "not scraped",
+      "period": "month",
+      "key_limits": "pricing page not scraped, budget exhausted"
+     }
+    ]
+   }
+  ],
+  "rejected": [
+   {
+    "name": "FirstPromoter",
+    "url": "https://firstpromoter.com",
+    "why": "Only 2 independent mentions, emerging only; list full with 6 competitors"
+   },
+   {
+    "name": "RefStack",
+    "url": "https://refstack.io",
+    "why": "Single mention on own site only, no independent discussion found"
+   },
+   {
+    "name": "Komissio",
+    "url": "https://komissio.io",
+    "why": "Single mention on own site only, no independent discussion found"
+   },
+   {
+    "name": "TrackRev",
+    "url": "https://www.trackrev.io",
+    "why": "All evidence from trackrev.io own domain only, not independently discussed"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium-to-subscription with usage-based payout caps",
+   "tiers": [
+    {
+     "name": "Business",
+     "price_usd_month": 79,
+     "who_its_for": "Early-stage SaaS teams launching first affiliate or referral program",
+     "includes": [
+      "500 partners",
+      "$2.5K payouts/month",
+      "10K new links/month",
+      "Basic reward structures, dual-sided incentives",
+      "REST API, webhooks, real-time analytics"
+     ],
+     "rationale": "proposed: price from undisclosed to $79/month, because Rewardful Growth is $99 with fewer features; $79 undercuts while signaling more value"
+    },
+    {
+     "name": "Advanced",
+     "price_usd_month": 199,
+     "who_its_for": "Scaling teams needing high-volume affiliate traffic and white-labeling",
+     "includes": [
+      "Unlimited partners",
+      "$15K payouts/month",
+      "50K new links/month",
+      "Email campaigns, embedded referral dashboard, messaging center",
+      "Risk monitoring, partner group rules"
+     ],
+     "rationale": "proposed: price from undisclosed to $199/month, because PartnerStack and Impact are custom enterprise; $199 captures mid-market before custom pricing"
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": 0,
+     "who_its_for": "Large organizations needing volume discounts, SSO, and dedicated support",
+     "includes": [
+      "Unlimited payouts, 3% payout fee",
+      "SAML/SSO, audit logs, custom SLA",
+      "Partner Network access, Program Marketplace",
+      "Dedicated Slack support",
+      "Custom annual billing"
+     ],
+     "rationale": "Keep as custom annual; aligns with PartnerStack and Impact.com enterprise-only positioning"
+    }
+   ],
+   "anchor_competitors": [
+    "Rewardful",
+    "PartnerStack"
+   ],
+   "positioning_note": "Dub bundles link shortening plus affiliate management; Rewardful charges $99 for affiliate alone, making $79-$199 defensible.",
+   "risks": [
+    "Animated pricing hides actual current prices; if Business is already above $79, this recommendation conflicts with live tiers",
+    "Impact.com pricing page timed out; if Impact has a mid-market tier below $199, Advanced tier faces pressure",
+    "5% payout fee on Business and Advanced adds variable cost buyers may compare unfavorably to Rewardful 0% transaction fee"
+   ]
+  },
+  "options": [
+   {
+    "name": "Recommended: Monthly Subscription",
+    "billing": "monthly subscription",
+    "positioning": "Three tiers at $79, $199, and custom annual; Business undercuts Rewardful Growth ($99) while bundling link shortening that Rewardful does not include, and Advanced captures mid-market teams before custom enterprise pricing.",
+    "tiers": [
+     {
+      "name": "Business",
+      "price_usd_month": 79,
+      "who_its_for": "Early-stage SaaS teams launching first affiliate or referral program",
+      "includes": [
+       "500 partners",
+       "$2.5K payouts/month",
+       "10K new links/month",
+       "Basic reward structures, dual-sided incentives",
+       "REST API, webhooks, real-time analytics"
+      ]
+     },
+     {
+      "name": "Advanced",
+      "price_usd_month": 199,
+      "who_its_for": "Scaling teams needing high-volume affiliate traffic and white-labeling",
+      "includes": [
+       "Unlimited partners",
+       "$15K payouts/month",
+       "50K new links/month",
+       "Email campaigns, embedded referral dashboard, messaging center",
+       "Risk monitoring, partner group rules"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large organizations needing volume discounts, SSO, and dedicated support",
+      "includes": [
+       "Unlimited payouts, 3% payout fee",
+       "SAML/SSO, audit logs, custom SLA",
+       "Partner Network access, Program Marketplace",
+       "Dedicated Slack support",
+       "Custom annual billing"
+      ]
+     }
+    ],
+    "market_rate_note": "At $79 and $199, Dub prices below Rewardful Growth ($99) on the entry tier and above Rewardful Enterprise entry ($149+) on the mid tier, which is defensible given the bundled link attribution that Rewardful does not offer.",
+    "revenue_at": {
+     "10": 1390,
+     "50": 6950,
+     "200": 27800
+    },
+    "when_to_pick": "Pick this when you want to publish clear self-serve prices immediately, undercut Rewardful on the entry tier, and keep Enterprise on custom annual to protect deal size."
+   },
+   {
+    "name": "Alternative A: Annual Subscription with Discount",
+    "billing": "annual subscription",
+    "positioning": "Same two self-serve tiers billed annually at $854/year (Business, equivalent to $71/month) and $2,148/year (Advanced, equivalent to $179/month), a 10% discount matching Dub's existing yearly offer; Enterprise remains custom annual.",
+    "tiers": [
+     {
+      "name": "Business",
+      "price_usd_month": 71,
+      "who_its_for": "Early-stage SaaS teams launching first affiliate or referral program who commit annually",
+      "includes": [
+       "500 partners",
+       "$2.5K payouts/month",
+       "10K new links/month",
+       "Basic reward structures, dual-sided incentives",
+       "REST API, webhooks, real-time analytics"
+      ]
+     },
+     {
+      "name": "Advanced",
+      "price_usd_month": 179,
+      "who_its_for": "Scaling teams needing high-volume affiliate traffic and white-labeling who commit annually",
+      "includes": [
+       "Unlimited partners",
+       "$15K payouts/month",
+       "50K new links/month",
+       "Email campaigns, embedded referral dashboard, messaging center",
+       "Risk monitoring, partner group rules"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large organizations needing volume discounts, SSO, and dedicated support",
+      "includes": [
+       "Unlimited payouts, 3% payout fee",
+       "SAML/SSO, audit logs, custom SLA",
+       "Partner Network access, Program Marketplace",
+       "Dedicated Slack support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $71 and $179 per month (billed annually), Dub sits below Rewardful's monthly rates and aligns with the 10% annual discount Dub already advertises; PartnerStack and Impact.com annual rates were not scraped so no further anchor is available.",
+    "revenue_at": {
+     "10": 1250,
+     "50": 6250,
+     "200": 25000
+    },
+    "when_to_pick": "Pick this when improving cash flow and reducing churn matter more than maximizing monthly flexibility, and you are willing to push buyers toward an upfront annual commitment."
+   },
+   {
+    "name": "Alternative B: Higher-Positioned Two-Tier Monthly",
+    "billing": "monthly subscription",
+    "positioning": "Collapse to two paid tiers priced at $149 and $349/month, repositioning Dub above Rewardful's entire published range and signaling parity with PartnerStack's mid-market positioning; Enterprise remains custom.",
+    "tiers": [
+     {
+      "name": "Business",
+      "price_usd_month": 149,
+      "who_its_for": "Growth teams at SaaS companies who need a unified affiliate and link platform and are willing to pay for it",
+      "includes": [
+       "500 partners",
+       "$2.5K payouts/month",
+       "10K new links/month",
+       "Basic reward structures, dual-sided incentives",
+       "REST API, webhooks, real-time analytics"
+      ]
+     },
+     {
+      "name": "Advanced",
+      "price_usd_month": 349,
+      "who_its_for": "Scaling teams running high-volume affiliate programs who need unlimited partners and email campaigns",
+      "includes": [
+       "Unlimited partners",
+       "$15K payouts/month",
+       "50K new links/month",
+       "Email campaigns, embedded referral dashboard, messaging center",
+       "Risk monitoring, partner group rules"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large organizations needing volume discounts, SSO, and dedicated support",
+      "includes": [
+       "Unlimited payouts, 3% payout fee",
+       "SAML/SSO, audit logs, custom SLA",
+       "Partner Network access, Program Marketplace",
+       "Dedicated Slack support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $149 and $349, Dub prices above Rewardful's entire published range ($49-$149+) and positions itself closer to PartnerStack's custom enterprise tier, which is a deliberate premium move unanchored by any scraped PartnerStack or Impact.com price.",
+    "revenue_at": {
+     "10": 2490,
+     "50": 12450,
+     "200": 49800
+    },
+    "when_to_pick": "Pick this when you want to signal that Dub is a premium unified platform worth more than a standalone affiliate tool, and you have enough proof points (Twilio, Vercel, Framer) to justify pricing above Rewardful without a price fight."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "good",
+    "why": "Marketing teams at SaaS companies budget software monthly, Rewardful charges monthly, and Dub's tiered feature gates (partner caps, payout limits, link quotas) map cleanly to recurring subscription tiers."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "possible",
+    "why": "Dub already offers a 10% yearly discount and Enterprise is custom annual, so annual billing is viable but most mid-market buyers in this category start monthly before committing."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Affiliate program management is an ongoing operational need with continuous link clicks, payouts, and analytics, making a one-time purchase model unworkable for this category."
+   },
+   {
+    "model": "usage-based",
+    "fit": "possible",
+    "why": "Dub already layers a percentage payout fee on top of flat tiers, so a pure usage-based model is conceivable, but buyers running affiliate programs prefer predictable monthly costs over variable spend."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "possible",
+    "why": "Dub's open-source self-hosting option acts as a de facto free tier, but the hosted product has no published free plan, and the affiliate-program buyer is a commercial buyer who expects to pay from day one."
+   }
+  ],
+  "market_rate": "Rewardful, the only established competitor with fully scraped pricing, charges $49/month (Starter), $99/month (Growth), and $149+/month (Enterprise) for affiliate management alone with 0% transaction fees. PartnerStack and Impact.com both require a demo and charge custom annual pricing, signaling that mid-to-upper market affiliate platforms do not publish prices. Refersion and Bitly pricing pages were not scraped due to budget exhaustion, so their rates are unknown. The going rate for a hosted affiliate-plus-link platform sits roughly in the $79-$199/month range for self-serve tiers, with enterprise on custom annual contracts.",
+  "confidence": {
+   "overall": 0.82,
+   "notes": "5 established competitors confirmed across 3+ independent sources each. Rewardful pricing fully scraped. PartnerStack confirmed custom/demo pricing. Impact.com pricing page returned 522 timeout and was excluded from tier data. Dub own prices are animated counters and could not be confirmed as static text, so current_tiers show structure only. Confidence capped at 0.82 because Refersion and Bitly pricing pages were not scraped due to budget exhaustion."
+  },
+  "selected_pricing": {
+   "model": "freemium-to-subscription with usage-based payout caps",
+   "option": "Recommended: Monthly Subscription",
+   "billing": "monthly subscription",
+   "tiers": [
+    {
+     "name": "Business",
+     "price_usd_month": 79,
+     "included": true,
+     "who_its_for": "Early-stage SaaS teams launching first affiliate or referral program",
+     "includes": [
+      "500 partners",
+      "$2.5K payouts/month",
+      "10K new links/month",
+      "Basic reward structures, dual-sided incentives",
+      "REST API, webhooks, real-time analytics"
+     ]
+    },
+    {
+     "name": "Advanced",
+     "price_usd_month": 199,
+     "included": true,
+     "who_its_for": "Scaling teams needing high-volume affiliate traffic and white-labeling",
+     "includes": [
+      "Unlimited partners",
+      "$15K payouts/month",
+      "50K new links/month",
+      "Email campaigns, embedded referral dashboard, messaging center",
+      "Risk monitoring, partner group rules"
+     ]
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": null,
+     "included": true,
+     "who_its_for": "Large organizations needing volume discounts, SSO, and dedicated support",
+     "includes": [
+      "Unlimited payouts, 3% payout fee",
+      "SAML/SSO, audit logs, custom SLA",
+      "Partner Network access, Program Marketplace",
+      "Dedicated Slack support",
+      "Custom annual billing"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Rewardful",
+    "PartnerStack"
+   ],
+   "chosen_at": "2026-09-29T18:09:20.362Z"
+  },
+  "listing": {
+   "title": "Dub, Link Attribution Platform",
+   "tagline": "Short links, conversion tracking, and affiliate programs",
+   "description_short": "Dub unifies branded short links, real-time conversion analytics, and affiliate program management. Powers 100M+ clicks monthly for teams at Twilio, Vercel, and Framer.",
+   "description_long": "**Stop stitching together three tools to answer one question: which link drove that sale?**\n\nDub is the open-source link attribution platform built for growth marketers and marketing engineers who run affiliate, referral, and creator partnership programs.\n\n**What you get in one platform:**\n- **Branded short links**, custom domains, deep links, device targeting\n- **Real-time conversion analytics**, click-to-revenue attribution, not just vanity click counts\n- **Affiliate and partner program management**, partner onboarding, automated payouts, embedded referral dashboards, and an email campaigns center\n\n**Proven at scale:** 100M+ clicks and 2M+ links processed every month. World-class teams at Twilio, Vercel, Framer, Perplexity, Zillow, Beehiiv, and Raycast trust Dub to power their growth programs.\n\n**Developer-first by design:** REST API, MCP Server, real-time webhooks, and deep link support so your engineering team can integrate attribution into any workflow.\n\n**Open-source core (AGPLv3):** self-host for full data control, or use the managed cloud with a 14-day free trial. Enterprise edition available with SAML/SSO, audit logs, and a dedicated Slack channel.\n\nBecause you deserve more than vanity metrics. You deserve clarity.",
+   "keywords": [
+    "link attribution platform",
+    "affiliate program management",
+    "branded short links",
+    "conversion tracking",
+    "referral program software",
+    "partner program management",
+    "link shortener analytics",
+    "open source link management",
+    "affiliate tracking software",
+    "marketing link management",
+    "click to revenue attribution",
+    "referral tracking tool",
+    "partner payout automation",
+    "SaaS affiliate platform",
+    "growth marketing analytics"
+   ],
+   "screenshot_order": [
+    "1st: The unified dashboard showing a short link alongside its real-time conversion funnel (clicks → leads → revenue), proves the core value prop of attribution in one view",
+    "2nd: The affiliate/partner program management screen showing partner list, payout status, and embedded referral dashboard, shows the affiliate management depth buyers compare against standalone tools",
+    "3rd: The analytics breakdown by link, campaign, or partner with named customer logos visible, social proof and scale evidence at the moment a buyer is evaluating"
+   ],
+   "faq": [
+    {
+     "q": "Is Dub only a link shortener?",
+     "a": "No. Dub combines branded short links, real-time conversion analytics, and full affiliate and partner program management in a single platform. You can attribute revenue back to a specific link or partner without stitching together separate tools."
+    },
+    {
+     "q": "Can I self-host Dub to keep full control of my data?",
+     "a": "Yes. Dub's core is open-source under AGPLv3 and fully self-hostable. The managed cloud plans (Business, Advanced, Enterprise) include a 14-day free trial if you prefer not to manage infrastructure."
+    },
+    {
+     "q": "What are the pricing tiers?",
+     "a": "Business supports up to 500 partners and $2,500 in partner payouts per month. Advanced adds unlimited partners, $15,000 in monthly payouts, email campaigns, and an embedded referral dashboard. Enterprise offers custom annual billing, unlimited payouts, SAML/SSO, audit logs, and dedicated Slack support. A 5% payout fee applies on Business and Advanced; 3% on Enterprise. Yearly billing saves 10%."
+    },
+    {
+     "q": "Which companies use Dub in production?",
+     "a": "Twilio, Vercel, Framer, Perplexity, Zillow, Buffer, Beehiiv, Raycast, Superhuman, Laravel, and Polymarket, among others. Dub processes over 100 million clicks and 2 million links every month across these teams."
+    },
+    {
+     "q": "Does Dub have an API for custom integrations?",
+     "a": "Yes. Dub is developer-first: it ships a REST API, an MCP Server, real-time webhooks, and deep link support so engineering teams can embed attribution into any product or data pipeline."
+    }
+   ],
+   "cta": "Start your 14-day free trial, no credit card required",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.85,
+    "notes": "High confidence. APP_PROFILE is detailed with verified proof points, named customers, testimonials (quoted verbatim), confirmed pricing tier structure, and clear differentiators. Confidence capped at 0.85 because exact monthly dollar prices for Business and Advanced plans were not confirmed in the profile (animated counter, not static text), so the FAQ quotes structural limits rather than dollar amounts."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "100M+ clicks tracked monthly. Dub tells you which ones drove revenue, not just how many landed. Short links, conversion analytics, and affiliate programs in one place.\n{APP_URL}",
+    "thread_extension": [
+     "Most link shorteners hand you a click count and call it a day. That number tells you nothing about which partner drove a signup, which campaign closed a deal, or which link paid for itself.",
+     "Dub connects the click to the conversion. You get branded short links, real-time attribution, and affiliate program management in one platform, so every link traces back to a revenue outcome.",
+     "One honest gap: the Business plan caps both the number of partners and monthly payouts. If your program is larger, that is the Advanced or Enterprise tier. Worth knowing before you set it up.",
+     "If you are running an affiliate or referral program and your current setup cannot tell you which link drove a paid conversion, that is the problem Dub is built to fix. Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "Twilio, Framer, and Vercel use Dub to connect their links to revenue. Short links, real-time conversion analytics, and affiliate program management, one platform instead of three.\n{APP_URL}",
+     "Marketing isn't just about clicks. It's about outcomes. Dub unifies branded short links, conversion tracking, and affiliate programs so you can see exactly what each link drove.\n{APP_URL}"
+    ],
+    "warnings": [
+     "Campaign angle hook ('Your link got 10,000 clicks. How much revenue did it drive?') is a rhetorical question, which violates the platform rule against rhetorical-question openers. The hook was rewritten as a declarative using the 100M+ clicks proof point.",
+     "The series tagline 'Marketing isn't just about clicks. It's about outcomes.' appears in alt_variant 2 rather than the main post, to avoid leading with a slogan instead of a fact as the platform rules require.",
+     "No competitor names used in any variant, per platform rules against framing against another product.",
+     "thread_extension[2]: The Business plan partner and payout caps are described without dollar amounts, per brand rulebook 2.7 which prohibits disclosing revenue or payout figures. The tier structure (Business, Advanced, Enterprise) is confirmed in APP_PROFILE.pricing_current."
+    ],
+    "app_name": "Dub",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "thread_extension[3]: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$2.5K\")"
+    ]
+   },
+   "warnings": [
+    "Campaign angle hook ('Your link got 10,000 clicks. How much revenue did it drive?') is a rhetorical question, which violates the platform rule against rhetorical-question openers. The hook was rewritten as a declarative using the 100M+ clicks proof point.",
+    "The series tagline 'Marketing isn't just about clicks. It's about outcomes.' appears in alt_variant 2 rather than the main post, to avoid leading with a slogan instead of a fact as the platform rules require.",
+    "No competitor names used in any variant, per platform rules against framing against another product.",
+    "thread_extension[2]: The Business plan partner and payout caps are described without dollar amounts, per brand rulebook 2.7 which prohibits disclosing revenue or payout figures. The tier structure (Business, Advanced, Enterprise) is confirmed in APP_PROFILE.pricing_current."
+   ],
+   "blockers": [],
+   "repaired": [
+    "thread_extension[3]: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$2.5K\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1470,
+   "words": 236,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Dub processes 100M+ clicks a month. Most teams still can't tell you which click drove a sale.\n\nThat's the gap between a link shortener and link attribution. A short link tells you someone clicked. It doesn't tell you they converted, or which partner sent them, or what that partner is owed at the end of the month.\n\nDub closes that gap. It's one platform for branded short links, real-time conversion analytics, and affiliate program management. Teams at Twilio, Framer, Vercel, and Perplexity run on it today.\n\nRevenue is the number the program is measured on. Dub tracks it back to the link.\n\nIf you're running an affiliate or referral program and your current tools can't connect a link to a revenue number, that's exactly the problem Dub is built to solve.\n\nLink in the first comment.\n\n#linkattribution #affiliatemarketing #opensource",
+    "alt_hook": "Your affiliate program is live. Your link shortener still can't tell you which partner drove a sale.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "The testimonials from Ian Mackey (VP, Scicomm Media) and Koen Bok (CEO, Framer) were not used in the post body because both contain competitor comparisons or superlatives that would require rewriting; they are available for the first comment if the builder wants to paste them verbatim.",
+     "No origin story or why_built scene exists in APP_PROFILE, so the post opens on the receipt proof point (100M+ clicks) and the ICP pain rather than a personal founding moment.",
+     "Second idea cut: the open-source / self-hosting angle (AGPLv3, data control) is a strong standalone post for later in the launch week; it was removed to keep this post to one idea.",
+     "Launch week plan (four posts max, never two of the same kind back to back, Tuesday to Thursday 7:30 to 9:30 am audience timezone): Day 1 proof, this post, the one hard number and what Dub does; Day 2 opinion, a position on why clicks without conversion data are a liability not an asset; Day 3 teach, one concrete thing the reader can do with Dub today, for example setting up a branded short link with conversion tracking in under ten minutes; Day 4 story, a scene from building it, only if the builder can supply one the profile does not currently hold.",
+     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+     "Repair applied: the banned 'not X, it's Y' line ('Marketing isn't just about clicks. It's about outcomes.') was replaced with two positive declaratives ('Revenue is the number the program is measured on. Dub tracks it back to the link.') that carry the campaign angle without the banned contrast shape."
+    ],
+    "app_name": "Dub",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"Marketing isn't just about clicks. It's\")"
+    ]
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "The testimonials from Ian Mackey (VP, Scicomm Media) and Koen Bok (CEO, Framer) were not used in the post body because both contain competitor comparisons or superlatives that would require rewriting; they are available for the first comment if the builder wants to paste them verbatim.",
+    "No origin story or why_built scene exists in APP_PROFILE, so the post opens on the receipt proof point (100M+ clicks) and the ICP pain rather than a personal founding moment.",
+    "Second idea cut: the open-source / self-hosting angle (AGPLv3, data control) is a strong standalone post for later in the launch week; it was removed to keep this post to one idea.",
+    "Launch week plan (four posts max, never two of the same kind back to back, Tuesday to Thursday 7:30 to 9:30 am audience timezone): Day 1 proof, this post, the one hard number and what Dub does; Day 2 opinion, a position on why clicks without conversion data are a liability not an asset; Day 3 teach, one concrete thing the reader can do with Dub today, for example setting up a branded short link with conversion tracking in under ten minutes; Day 4 story, a scene from building it, only if the builder can supply one the profile does not currently hold.",
+    "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+    "Repair applied: the banned 'not X, it's Y' line ('Marketing isn't just about clicks. It's about outcomes.') was replaced with two positive declaratives ('Revenue is the number the program is measured on. Dub tracks it back to the link.') that carry the campaign angle without the banned contrast shape."
+   ],
+   "blockers": [],
+   "repaired": [
+    "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"Marketing isn't just about clicks. It's\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1161,
+   "words": 199,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Dub - open-source link attribution with conversion tracking and affiliate programs",
+    "body": "Bitly shortens links and tells you how many clicks you got. It has no way to tell you how much revenue those clicks drove, or which partner sent the customer who actually converted. That gap is what we built Dub to cover.\n\nI work on Dub, an open-source link attribution platform (AGPLv3) that puts branded short links, real-time conversion analytics, and affiliate program management in one place. The idea is simple: a click is not an outcome. When a growth team runs an affiliate or referral program, they need to know which link, which partner, and which campaign produced paying customers, not just traffic. It connects those dots by tracking the full conversion path from the short link through to the revenue event.\n\nImpact.com and PartnerStack are the established options for partner management. The platform combines the link layer and the affiliate layer in one place, so the attribution path stays intact from click to conversion.\n\nThe honest constraint right now is the Business plan cap: 500 partners and $2,500 in partner payouts per month. Teams with larger programs need to move to a higher tier. I don't have a workaround for that within the current plan structure.\n\nThe platform processes 100M+ clicks and 2M+ links monthly, and teams at Twilio, Framer, and Vercel use it in production.\n\nIf you've run an affiliate or referral program before, I'm curious how you handled attribution when a partner's link and your own paid channel touched the same conversion. Did last-click win, or did you build something custom?\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "No TARGET subreddit was specified. This draft defaults to r/SideProject per platform rules. Verify the sub allows this post type before submitting.",
+     "Mention level 2 used (product named twice, builder disclosed, {APP_URL} once). r/SideProject allows level 3, but level 2 is the default when no builder has confirmed the venue.",
+     "Title is 13 words and 79 characters, within the 6-16 word and 100-character limits.",
+     "r/SideProject flair is listed as 'none' because the sub's current flair list was not verified. Builder should check the sub's flair options before posting.",
+     "The post uses 'I work on' rather than 'I built' because Dub is a launched product with named enterprise customers and a team, not a solo side project. Builder should adjust to 'we built' or their own accurate disclosure.",
+     "Limitation used: Business plan cap at 500 partners and $2,500 payouts/month, taken directly from APP_PROFILE.gaps. No roadmap language added because the profile states none.",
+     "Bitly is named as a neutral fact (what it does, what it lacks in the attribution layer) with no negative word attached to its name, per GLOBAL_RULES.",
+     "Impact.com and PartnerStack are named as neutral facts ('established options for partner management') with no negative word attached. The prior draft's negative framing ('they don't own the link layer') has been removed and replaced with a plain statement of what the platform does.",
+     "'Dub' appears exactly twice in the body (disclosure sentence and the 'I work on' sentence). All other references use 'it' or 'the platform'.",
+     "Traction numbers (100M+ clicks, 2M+ links monthly) and customer names (Twilio, Framer, Vercel) are taken directly from APP_PROFILE.proof_points.",
+     "Campaign angle (Clicks vs. Outcomes) is carried through the body without being stated explicitly.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"$2\")",
+     "body: Customer or logo name-dropping (used by, trusted by, teams at, companies like) that must appear in the profile proof points (\"teams at T\")"
+    ],
+    "app_name": "Dub",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Product named three or more times in the body (the ladder says once) (4, cap 2)",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Tools like Impact.com and PartnerStack handle partner management, but they don't own the l\")"
+    ]
+   },
+   "warnings": [
+    "No TARGET subreddit was specified. This draft defaults to r/SideProject per platform rules. Verify the sub allows this post type before submitting.",
+    "Mention level 2 used (product named twice, builder disclosed, {APP_URL} once). r/SideProject allows level 3, but level 2 is the default when no builder has confirmed the venue.",
+    "Title is 13 words and 79 characters, within the 6-16 word and 100-character limits.",
+    "r/SideProject flair is listed as 'none' because the sub's current flair list was not verified. Builder should check the sub's flair options before posting.",
+    "The post uses 'I work on' rather than 'I built' because Dub is a launched product with named enterprise customers and a team, not a solo side project. Builder should adjust to 'we built' or their own accurate disclosure.",
+    "Limitation used: Business plan cap at 500 partners and $2,500 payouts/month, taken directly from APP_PROFILE.gaps. No roadmap language added because the profile states none.",
+    "Bitly is named as a neutral fact (what it does, what it lacks in the attribution layer) with no negative word attached to its name, per GLOBAL_RULES.",
+    "Impact.com and PartnerStack are named as neutral facts ('established options for partner management') with no negative word attached. The prior draft's negative framing ('they don't own the link layer') has been removed and replaced with a plain statement of what the platform does.",
+    "'Dub' appears exactly twice in the body (disclosure sentence and the 'I work on' sentence). All other references use 'it' or 'the platform'.",
+    "Traction numbers (100M+ clicks, 2M+ links monthly) and customer names (Twilio, Framer, Vercel) are taken directly from APP_PROFILE.proof_points.",
+    "Campaign angle (Clicks vs. Outcomes) is carried through the body without being stated explicitly.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"$2\")",
+    "body: Customer or logo name-dropping (used by, trusted by, teams at, companies like) that must appear in the profile proof points (\"teams at T\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Product named three or more times in the body (the ladder says once) (4, cap 2)",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Tools like Impact.com and PartnerStack handle partner management, but they don't own the l\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1925,
+   "words": 319,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Dub",
+    "tagline": "Link attribution for short links, analytics, and affiliates",
+    "description": "Stitching together a link shortener, an analytics tool, and an affiliate platform means losing the thread between a click and a conversion. Dub connects branded short links, real-time conversion analytics, and affiliate program management in one place.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Dub.\n\nThe specific pain we kept running into: a link gets thousands of clicks, and you still cannot tell which partner, campaign, or short link actually drove a paying customer. You end up exporting CSVs from three different tools and guessing.\n\nDub connects branded short links, real-time conversion analytics, and affiliate or referral program management in a single platform. When someone clicks a Dub short link and later converts, the attribution chain stays intact: you see the partner, the link, and the revenue in one place. The REST API, webhooks, and MCP Server let engineering teams wire it into their existing stack without rebuilding their data pipeline.\n\nThe core is open-source (AGPLv3), so you can read the attribution logic, self-host it, and own your data. The hosted platform processes 100M+ clicks and 2M+ links monthly for teams at Twilio, Framer, Vercel, and Raycast.\n\nHonest limitation: the Business plan caps partner payouts at $2,500 per month and 500 partners. If your program is already larger than that, you will need the Advanced or Enterprise tier before you start.\n\nTwo things I want to know: at what point in your affiliate program growth did your current link shortener stop giving you useful conversion data? And what would you need to see in the attribution reporting before you trusted it enough to base partner payouts on it?\n\nI will be in the comments all day.",
+    "topics": [
+     "Marketing",
+     "Open Source",
+     "Developer Tools"
+    ],
+    "warnings": [
+     "Builder first name and role are placeholders: [Builder first name] and [role] must be filled in before launch, as APP_PROFILE and BRAND_DNA do not name the builder.",
+     "Exact monthly dollar prices for Business and Advanced plans could not be confirmed from static text (rendered via animated counter on dub.co/pricing); the first comment references tier names and limits only, not dollar amounts.",
+     "No offer is included because APP_PROFILE contains no Product Hunt-specific offer or discount code."
+    ],
+    "app_name": "Dub",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "tagline exceeds 60 chars",
+     "tagline: Tagline over 60 characters (67 characters, cap 60)",
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (383 characters, cap 260)",
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ]
+   },
+   "warnings": [
+    "Builder first name and role are placeholders: [Builder first name] and [role] must be filled in before launch, as APP_PROFILE and BRAND_DNA do not name the builder.",
+    "Exact monthly dollar prices for Business and Advanced plans could not be confirmed from static text (rendered via animated counter on dub.co/pricing); the first comment references tier names and limits only, not dollar amounts.",
+    "No offer is included because APP_PROFILE contains no Product Hunt-specific offer or discount code."
+   ],
+   "blockers": [],
+   "repaired": [
+    "tagline exceeds 60 chars",
+    "tagline: Tagline over 60 characters (67 characters, cap 60)",
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (383 characters, cap 260)",
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 2097,
+   "words": 339,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Dub, open-source link attribution, short links and affiliate programs",
+    "body": "Hi HN, Dub is an open-source link attribution platform that takes a URL and tracking parameters and produces branded short links, real-time conversion analytics, and affiliate program payouts in one place. Marketing teams stitch together a link shortener, an analytics tool, and a third-party affiliate platform, and revenue cannot be traced to a specific link or partner. [Builder: one sentence on why you built Dub.]\n\nThe stack is Next.js and TypeScript in a Turborepo monorepo, with Prisma over PlanetScale for link and partner data, Upstash Redis for edge-layer state, Tinybird for analytics ingestion, and Vercel for deployments.\n\nDub keeps short links, conversion events, and partner payouts in a single data model so attribution does not require a join across three vendors. Current limitations: the Business plan caps partner programs at 500 partners; the embedded referral dashboard is not available on the Business plan; SAML/SSO is Enterprise-only. The choice I want a second opinion on is the Tinybird layer for analytics: is a dedicated columnar pipeline worth the operational overhead at this scale, or would a simpler approach inside PlanetScale serve most teams just as well? I am one of the builders and will be in the thread.\n\n{APP_URL}",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "The APP_PROFILE records a Hacker News badge showing 255 points but no direct thread URL. Search news.ycombinator.com for an earlier Dub Show HN thread before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. If an earlier thread exists, link it in the body and add one sentence on what changed since.",
+     "The 'why you built it' sentence is a placeholder because APP_PROFILE and BRAND_DNA record no founder quote, README history line, or dated origin. The builder must fill in [Builder: one sentence on why you built Dub.] before submitting.",
+     "{APP_URL} must point to the running product itself, not a landing page, waitlist, or Product Hunt page. Confirm the URL opens Dub directly and note in the body whether it requires an account.",
+     "The how-it-works paragraph names stack components from APP_PROFILE.tech_stack but does not describe a verified data flow beyond what the profile states. The builder should verify and expand the technical paragraph with accurate internal architecture details."
+    ],
+    "app_name": "Dub",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (222 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)",
+     "body: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$2.5K\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "The APP_PROFILE records a Hacker News badge showing 255 points but no direct thread URL. Search news.ycombinator.com for an earlier Dub Show HN thread before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. If an earlier thread exists, link it in the body and add one sentence on what changed since.",
+    "The 'why you built it' sentence is a placeholder because APP_PROFILE and BRAND_DNA record no founder quote, README history line, or dated origin. The builder must fill in [Builder: one sentence on why you built Dub.] before submitting.",
+    "{APP_URL} must point to the running product itself, not a landing page, waitlist, or Product Hunt page. Confirm the URL opens Dub directly and note in the body whether it requires an account.",
+    "The how-it-works paragraph names stack components from APP_PROFILE.tech_stack but does not describe a verified data flow beyond what the profile states. The builder should verify and expand the technical paragraph with accurate internal architecture details."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Body over 200 words (222 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)",
+    "body: A revenue, funding or valuation figure; brand rulebook 2.7 keeps these confidential without exception (\"$2.5K\")"
+   ],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 1553,
+   "words": 244,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For growth marketers: link attribution that tracks revenue",
+    "pitch": "Hi [Editor first name],\n\nGrowth and marketing teams at SaaS companies often launch an affiliate or referral program and then realize their link shortener only counts clicks, not the revenue those clicks actually drove. Stitching together a separate analytics tool and a third-party affiliate platform to fill that gap is the part that breaks attribution entirely.\n\nDub is the open-source link attribution platform for short links, conversion tracking, and affiliate programs for marketing teams.\n\nTeams at Twilio, Framer, Vercel, Perplexity, Raycast, Zillow, Beehiiv, Superhuman, Buffer, and Polymarket use it, as listed on the Dub homepage and README.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient author first name is not known from TARGET; greeting uses placeholder 'Hi [Editor first name],' which the builder must fill in before sending.",
+     "Builder first name is not present in APP_PROFILE or BRAND_DNA; sign-off uses placeholder '[Builder first name]' which the builder must fill in.",
+     "No TARGET newsletter name was provided; the subject line uses the target_user descriptor instead of a newsletter name. Builder should replace with the actual newsletter name if known.",
+     "Exact monthly dollar prices for Business and Advanced plans could not be confirmed (rendered via animated counter); no pricing figures were used in the pitch.",
+     "TARGET rules not verified: no submission form or paid placement policy was provided. If the newsletter uses a submission form, this pitch text can be pasted into it.",
+     "pitch: Six or more paragraph breaks (\"Growth and marketing teams at SaaS companies often launch an\")"
+    ],
+    "app_name": "Dub",
+    "blockers": [],
+    "rulebook_version": 4,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Recipient author first name is not known from TARGET; greeting uses placeholder 'Hi [Editor first name],' which the builder must fill in before sending.",
+    "Builder first name is not present in APP_PROFILE or BRAND_DNA; sign-off uses placeholder '[Builder first name]' which the builder must fill in.",
+    "No TARGET newsletter name was provided; the subject line uses the target_user descriptor instead of a newsletter name. Builder should replace with the actual newsletter name if known.",
+    "Exact monthly dollar prices for Business and Advanced plans could not be confirmed (rendered via animated counter); no pricing figures were used in the pitch.",
+    "TARGET rules not verified: no submission form or paid placement policy was provided. If the newsletter uses a submission form, this pitch text can be pasted into it.",
+    "pitch: Six or more paragraph breaks (\"Growth and marketing teams at SaaS companies often launch an\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 4,
+   "rulebook_source": "default",
+   "chars": 820,
+   "words": 121,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a growth marketer at a standing desk covered in sticky notes and browser tabs",
+    "a wide analytics dashboard glowing with click-volume charts and funnel graphs",
+    "a partner roster spreadsheet printed and marked up with highlighter",
+    "a second monitor showing a live affiliate payout queue",
+    "a Slack sidebar dense with unread channel notifications",
+    "a whiteboard grid mapping campaign links to revenue columns",
+    "a coffee mug beside a stack of campaign-brief printouts",
+    "a laptop open to a terminal with API call logs scrolling",
+    "a phone propped against the monitor showing a referral leaderboard",
+    "a notebook open to a hand-drawn attribution funnel diagram",
+    "a row of browser tabs, each a different link-shortener or analytics tool",
+    "a wall-mounted screen cycling through real-time conversion numbers"
+   ],
+   "subject": "A growth marketer in her early thirties, dark hair pulled back and wearing a faded olive crewneck, working at a SaaS marketing team's open-plan standing-desk workspace surrounded by analytics dashboards, affiliate payout queues, and campaign attribution materials.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A SaaS marketing team's open workspace at late afternoon, the hour before a campaign deadline: four standing desks pushed together under a wall-mounted screen cycling through real-time conversion numbers, every monitor blazing with browser tabs and funnel charts, a whiteboard behind the desks covered in a hand-drawn attribution grid with arrows and question marks, printed partner rosters spread across the surface, coffee mugs and highlighters scattered among the stacks, the room shot wide from the back corner in the flat, cool light of the overhead fluorescents, nobody the subject yet, the load visible in every surface.",
+     "url": "http://localhost:3500/files/ba406d0884a8/images-1725f7e8cd70/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief overall: strongest sense of the specific SaaS campaign workspace and the clean quieter top third for a headline.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2243
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear SaaS/analytics workspace with multiple funnel charts on the wall monitor, whiteboard attribution grid, printed rosters, mugs and highlighters, shot from the rear corner in flat cool light so the brief is strongly met."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Also a convincing marketing/analytics desk cluster with charts, whiteboard and paperwork, but a busier/brighter ceiling area and a closer foreground crop make the headline area and sense of place slightly weaker."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A woman in her early thirties, dark hair pulled back, wearing a faded olive crewneck, sits hunched at one of those standing desks now lowered to sitting height, both hands pressing into the desk on either side of a laptop showing a wall of browser tabs, a link shortener in one, a separate analytics tool in another, a third-party affiliate payout sheet in a third, a printed partner roster beside the keyboard dense with highlighter and handwritten question marks, the whiteboard attribution grid looming behind her half-erased and re-drawn, a phone propped against the monitor showing a referral leaderboard frozen mid-refresh, her eyes moving between screens, not looking at the camera, the room lit cold and flat.",
+     "url": "http://localhost:3500/files/ba406d0884a8/images-1725f7e8cd70/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 conveys the intended analytics/ops world most clearly and reads best as the specific scene in the brief while maintaining strong fidelity and composition.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2163
+     },
+     "takes": [
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Strong, authentic desk scene with the right props and posture but reads as a generic office more than a specific affiliate/analytics ops room and the top third is busy with a legible whiteboard."
+      },
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Clearer sense of an analytics/operations workspace with multiple screens and roster visible, faithful to the brief and better composed for a launch card though the whiteboard and screens remain somewhat legible."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, dark hair pulled back, olive crewneck, stands upright at the same desk, now raised to standing height, one hand resting lightly on the keyboard, the other holding a coffee mug; the printed partner rosters are squared into a neat stack at the corner, the highlighters capped and lined up, the whiteboard behind her now holds a single clean attribution funnel with no question marks, the wall-mounted screen behind her cycles through conversion numbers all trending upward, the browser tabs on her laptop collapsed to one glowing dashboard with calm funnel charts, the room warmer now in early-morning side-light coming through the window to her left, space around her, unhurried.",
+     "url": "http://localhost:3500/files/ba406d0884a8/images-1725f7e8cd70/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best balances clear fidelity to the brief with a quieter top third and stronger, more composed light that sells the intended world.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2182
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clear analytics/office cues (charts, funnel, laptop) and almost everything from the brief are present, but the top third is somewhat busy with the screen and whiteboard competing for headline space."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Everything in the brief is faithfully composed with calmer top‑third space and stronger early‑morning side light, making the analytics/office context immediately readable."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman in the olive crewneck and two colleagues, a tall man in a grey hoodie and a shorter woman in a rust-colored shirt, gathered in the right two thirds of the frame around one monitor showing a live conversion dashboard with affiliate payout rows and a clean funnel chart, the whiteboard attribution grid visible and resolved behind them, the wall-mounted screen cycling through real-time numbers above, printed campaign briefs squared on the desk beside a notebook open to a hand-drawn funnel diagram, the left third of the frame open to a plain painted wall catching warm morning light, wide landscape shot, all three looking at the screen, relaxed and oriented toward the data.",
+     "url": "http://localhost:3500/files/ba406d0884a8/images-1725f7e8cd70/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief: strong fidelity to props and placement with a clear quiet left third and a convincing analytics workspace.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2227
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear analytics/marketing workspace with dashboards, whiteboard and briefs visible, subjects placed in the right two-thirds and engaging the monitor."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "All required people and props are present but the group and monitor encroach toward center/left, reducing the clean left third and the unmistakable 'data team' composition."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "LAUNCH DAY. ONE LINK.",
+    "load_n1": "MANY",
+    "load_l1": "LINKS SENT",
+    "load_n2": "ONE",
+    "load_l2": "TOOL TO CHECK",
+    "load_n3": "NOW",
+    "load_l3": "NO ANSWERS",
+    "pile_line": "EVERY CLICK. NO REVENUE.",
+    "pile_label": "LINK",
+    "pile_sub": "CLICKS · PARTNERS · CASH",
+    "doubt_1": "WHICH LINK DROVE SALES?",
+    "doubt_2": "WHO EARNED THE PAYOUT?",
+    "cost_line": "VANITY METRICS.",
+    "app_name": "DUB",
+    "drop_line": "TURNS CLICKS TO REVENUE.",
+    "step1_label": "CREATE YOUR SHORT LINK.",
+    "step1_field": "DESTINATION URL",
+    "step1_button": "SIGN UP",
+    "step2_label": "EVERY LINK, ATTRIBUTED.",
+    "chip_1": "VERIFIED",
+    "chip_2": "PENDING",
+    "chip_3": "CONVERSION",
+    "chip_4": "REVENUE",
+    "step3_label": "THE PARTNER, TRACKED.",
+    "step3_marker": "PAYOUT THRESHOLD",
+    "step3_chip": "VERIFIED",
+    "product_line": "CLICKS, REVENUE, PARTNERS.",
+    "payoff_n": "ONE",
+    "payoff_unit": "PLATFORM.",
+    "payoff_line": "EVERY CLICK. EVERY OUTCOME.",
+    "payoff_timer": "",
+    "breathe_line": "YOU DESERVE CLARITY.",
+    "arrive_line": "START FOR FREE.",
+    "arrive_chip": "DUB.CO",
+    "lock_top": "FOR GROWTH MARKETING TEAMS",
+    "lock_title": "DUB",
+    "lock_tag": "TURN CLICKS INTO REVENUE",
+    "lock_host": "DUB.CO"
+   },
+   "clamped": [
+    "cost_line"
+   ],
+   "repaired": [
+    "pile_sub",
+    "drop_line"
+   ],
+   "tagline": "Turn clicks into revenue",
+   "claims_used": [
+    "VANITY METRICS: BRAND_DNA evidence_quotes 'Because you deserve more than vanity metrics. You deserve clarity.'",
+    "TURNS CLICKS INTO REVENUE: BRAND_DNA tagline_observed 'Turn clicks into revenue' and SITE_COPY h1",
+    "VERIFIED / PENDING chips: SITE_COPY span 'Verified' and span 'Pending'",
+    "EVERY LINK, ATTRIBUTED: APP_PROFILE one_liner 'link attribution platform'",
+    "PAYOUT THRESHOLD marker: APP_PROFILE pricing_current 'partner payouts/month' and 'Payout fees'",
+    "ONE PLATFORM: APP_PROFILE description 'unifies branded short links, real-time conversion analytics, and affiliate/partner program management into a single platform'",
+    "YOU DESERVE CLARITY: BRAND_DNA evidence_quotes 'Because you deserve more than vanity metrics. You deserve clarity.'",
+    "START FOR FREE: SITE_COPY a 'Start for free'",
+    "TURN CLICKS INTO REVENUE tagline: BRAND_DNA tagline_observed and SITE_COPY h1",
+    "FOR GROWTH MARKETING TEAMS: APP_PROFILE target_user 'Growth marketers and marketing engineers at SaaS companies'",
+    "CLICKS, REVENUE, PARTNERS: APP_PROFILE one_liner 'short links, conversion tracking, and affiliate programs'",
+    "DESTINATION URL field: consistent with APP_PROFILE description of short link creation",
+    "SIGN UP button: SITE_COPY a 'Sign Up'"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, confident, outcome-focused",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Pile of links, one tool, no answers. Which link drove the sale?",
+     "seconds": 3.6,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Meet Dub.",
+     "seconds": 0.67,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Paste your link. Every click gets attributed. Every partner gets tracked.",
+     "seconds": 3.99,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "Clicks, revenue, partners. One platform, every outcome.",
+     "seconds": 3.04,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Start free today. That's Dub.",
+     "seconds": 1.65,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/ba406d0884a8/reel-cce250fb4298/reel.mp4",
+   "poster_url": "http://localhost:3500/files/ba406d0884a8/reel-cce250fb4298/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "draft"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "r/affiliatemarketing",
+   "kind": "subreddit",
+   "why_fit": "ICP is marketers running affiliate/referral programs; this community is their exact home.",
+   "url": "https://www.reddit.com/r/affiliatemarketing/"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/GrowthHacking",
+   "kind": "subreddit",
+   "why_fit": "Growth marketers at SaaS companies are the ICP; conversion tracking and partner programs are core growth topics.",
+   "url": "https://www.reddit.com/r/GrowthHacking/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "Dub is AGPLv3 open-source with a self-hosting option; self-hosters actively seek link management alternatives.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Promo-tolerant; open-source launch story and 100M+ clicks milestone resonates with indie builder audience.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "Dev.to",
+   "kind": "community",
+   "why_fit": "Marketing engineers in ICP use Next.js/TypeScript; a technical deep-dive on Dub's open-source architecture fits Dev.to.",
+   "url": "https://dev.to"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/webdev",
+   "kind": "subreddit",
+   "why_fit": "Marketing engineers building on Next.js/TypeScript are core ICP; Dub's REST API and MCP Server are relevant.",
+   "url": "https://www.reddit.com/r/webdev/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Repeat venue (prior 255pt HN badge); only appropriate for a major new version such as the affiliate program launch.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "Indie Hackers",
+   "kind": "community",
+   "why_fit": "Open-source, open-core business model and named revenue milestones resonate with IH audience of builder-founders.",
+   "url": "https://www.indiehackers.com"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Repeat venue for established product; only justified for a major new feature launch like the affiliate program tier.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "ICP actively searches for alternatives to Bitly, Impact.com, PartnerStack, and Rewardful, all named in profile.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "G2",
+   "kind": "directory",
+   "why_fit": "Enterprise buyers at Twilio, Vercel, Framer-scale companies evaluate tools on G2; named customers validate credibility.",
+   "url": "https://www.g2.com"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "B2B SaaS directory; ICP is marketing teams at 10-500 employee SaaS companies evaluating link attribution tools.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "Dub is built on Next.js, TypeScript, Prisma, Upstash, Tinybird, engineering teams researching this stack will find it.",
+   "url": "https://stackshare.io"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "awesome-url-shortener",
+   "kind": "awesome_list",
+   "why_fit": "Curated GitHub list of URL shorteners; Dub's open-source link shortener core belongs here for developer discovery.",
+   "url": "https://github.com/738/awesome-url-shortener"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 4,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T18:02:22.169Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 4,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T18:02:22.169Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T18:02:22.169Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 4,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T18:02:22.169Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 4,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T18:02:22.169Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 4,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T18:02:22.169Z"
+  }
+ ]
+}

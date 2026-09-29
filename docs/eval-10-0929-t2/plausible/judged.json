@@ -1,0 +1,202 @@
+{
+  "slug": "plausible",
+  "scores": {"profile": 4, "brand": 3, "commercial": 2, "social": 3, "assets": 3, "targets": 3, "signals": 3, "plan": 3},
+  "post_scores": {"x_post": 3, "linkedin_post": 3, "reddit_post": 3, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The Product Hunt first comment puts an invented origin story in the founders' mouths; the profile records no origin, and GLOBAL_RULES forbid inventing one.",
+      "evidence": "assets.producthunt.first_comment: \"We kept running sites where the analytics setup had become its own project: cookie consent logic, GDPR audits, and a dashboard so deep that getting a simple pageview count took five clicks. We wanted one page that told us what was happening on a site, nothing more.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts GLOBAL_RULES 'Never invent an origin story' is not enforced by a gate on the producthunt first_comment; the Show HN and newsletter drafts correctly used a placeholder instead"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The approved listing states the current $9/$14/$19 prices while the chosen pricing is $12/$19/$29, so the listing and the pricing decision contradict each other in the plan.",
+      "evidence": "listing.faq: \"Plans start at $9/month (Starter, 1 site), $14/month (Growth, 3 sites, 3 members), and $19/month (Business...\" and listing.description_long \"Cloud plans start at $9/month\" vs projects.selected_pricing: Starter price_usd_month 12, Growth 19, Business 29 (listing created 13:51:04, pricing chosen 13:51:07)",
+      "systemic": true,
+      "cause_hint": "listing pipe runs before or without the selected_pricing decision; no re-check of the listing when pricing is chosen"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The price-raise rationale compares Plausible's 10k-pageview price with Fathom's 100k-pageview price, so the claim that Plausible is priced 40 to 55% below market is false.",
+      "evidence": "pricing.recommendation.tiers[0].rationale: \"$9 is 40% below the next cheapest paid privacy analytics tool and signals low quality\"; positioning_note: \"Plausible is priced 40-55% below Fathom and Matomo\"; competitor Fathom Starter key_limits \"100k pageviews\"; site: \"Up to 10k monthly pageviews\" for $9",
+      "systemic": true,
+      "cause_hint": "pricing prompt does not require normalising competitor tiers to the same usage volume before comparing"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "current_tiers is empty although the profile holds the full public price list, and the recommended model is labelled freemium with no free tier.",
+      "evidence": "pricing.current_tiers: [] vs profile.pricing_current \"Starter $9/mo (1 site, 3yr retention); Growth $14/mo...\"; recommendation.model \"freemium + subscription\" with tiers Starter 12, Growth 19, Business 29, Enterprise custom",
+      "systemic": true,
+      "cause_hint": "pricing pipe does not parse profile.pricing_current into current_tiers; model label not checked against the tier list"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The listing FAQ invents a script size: 54 times smaller with 135 KB saved implies about 2.5 KB, not 1 KB.",
+      "evidence": "listing.faq: \"The tracking script is 54x smaller than Google Analytics, adding only about 1 KB instead of 135 KB per page load.\"; site: \"Our script is 54 times smaller than Google Analytics. Every visitor that loads your site downloads 135KB less JavaScript.\"",
+      "systemic": false,
+      "cause_hint": "listing pipe filled a number not in the profile"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing calls the stats API cloud-only; the README lists the sites API, not the stats API, as a premium feature.",
+      "evidence": "listing.faq: \"Cloud plans add funnels, ecommerce revenue goals, and the stats API\"; README: \"Premium features (marketing funnels, ecommerce revenue goals, SSO and sites API) are not available\"",
+      "systemic": false,
+      "cause_hint": "stats API vs sites API conflation, also in brand_campaigns 'Self-Host or Cloud'"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "One angle invents a profitability date and headlines an adoption number the Show HN rules ban.",
+      "evidence": "brand_campaigns 'Show HN: We Track 313 Billion Pageviews Without a Single Cookie' sample_copy: \"We are a bootstrapped team of 10, profitable since 2022, no outside investors.\" (site: \"bootstrapped and profitable team of 10, running since 2018\")",
+      "systemic": true,
+      "cause_hint": "angles pipe merges the DNA '$1 million ARR in 2022' into a profitability claim; angle hooks not checked against the HN number rule"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The self-host angle claims EU infrastructure for a self-hosted install and calls the stats API cloud-only; both are wrong.",
+      "evidence": "brand_campaigns 'Self-Host or Cloud, Your Call' sample_copy: \"cookie-free tracking, one-page dashboard, goal tracking, and EU-infrastructure if you run it yourself. Funnels, ecommerce revenue goals, SSO, and the stats API are cloud-only.\"",
+      "systemic": false,
+      "cause_hint": "angles pipe"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The DNA has no colours or fonts, but the studio probe read the logo colours from the same site.",
+      "evidence": "brand_dna.visual.colors: [] with note \"Scrape returned markdown without CSS\"; studio kit palette primary \"#909cf7\" source \"the site logo's own colour\"",
+      "systemic": true,
+      "cause_hint": "DNA pipe reads Firecrawl markdown only; the studio probe's computed palette is not fed back into the DNA"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Repairing the Google comparison left a vague referent in the X thread, and the absolute EU claim sits next to a self-host tweet with its gate warning unresolved.",
+      "evidence": "x_post.thread_extension[0]: \"The tracking script is 54 times smaller than the standard and saves every visitor 135KB of JavaScript per page load.\"; [1] \"never leaves the EU\"; [2] \"You can self-host the Community Edition\"; warning \"An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option\"",
+      "systemic": true,
+      "cause_hint": "repair step replaces the named product with 'the standard' instead of dropping the ratio; rulebooks.ts x_post privacy-claim rule is left as a warning, not repaired"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The X hook invents a single cause for 21,000 subscriptions.",
+      "evidence": "x_post.post: \"21,000 paying subscribers, and one reason: no cookies, no consent banner, no personal data stored.\"",
+      "systemic": false,
+      "cause_hint": "x_post draft"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The LinkedIn post mixes a solo 'I' founder voice with 'we' for a two-founder team.",
+      "evidence": "linkedin_post.post: \"I've been running it since 2018, bootstrapped, profitable, no outside investors. We've processed 313 billion pageviews\"; site signs \"Uku and Marko, Co-founders\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts LinkedIn first-person rule not tied to profile team size; only flagged in warnings"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit post opens with an unsourced claim about GA4 rather than the builder's own problem, and it targets r/SideProject, a poor fit for a 2018 company with 21k subscribers.",
+      "evidence": "reddit_post.body: \"That compliance overhead is baked into how it works, not a configuration option you can turn off.\"; warning: \"This draft is written for r/SideProject\"",
+      "systemic": true,
+      "cause_hint": "reddit default venue is r/SideProject when TARGET is empty; GLOBAL_RULES competitor rule (neutral fact only)"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN uses the new-product opener and a why-I-built placeholder, not the repeat-Show-HN opener its own rules require for a product public since 2018.",
+      "evidence": "show_hn.body: \"Hi HN, Plausible Analytics is an open-source web analytics tool that takes page visits as input and gives you a single-page dashboard... [Builder: one sentence on why you specifically built Plausible.]\"; rulebooks.ts: \"Opener for a repeat Show HN: <Name> has been public since <repo creation date from the profile>\"",
+      "systemic": true,
+      "cause_hint": "show_hn pipe only warns about the repeat case and does not switch opener"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch breaks its own length floor and paragraph rule, and the violations were approved as warnings.",
+      "evidence": "newsletter_pitch.warnings: \"pitch: Pitch under 100 words (96 words, floor 100)\", \"pitch: Six or more paragraph breaks\"; body line \"The product has 21,000 paying subscribers, reported on the Plausible homepage.\"",
+      "systemic": true,
+      "cause_hint": "newsletter gate reports but does not repair; approval allowed with rule failures in warnings"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Gate text leaks into Product Hunt warnings, and the description makes an unsourced claim about most other tools.",
+      "evidence": "producthunt.warnings: \"warnings[2]: A warning that is a count, a compliance boast or a claim that a rule was followed...\"; description: \"Most analytics tools require a cookie consent banner and send visitor data to third-party ad ecosystems.\"",
+      "systemic": true,
+      "cause_hint": "warnings-lint gate appends its own finding to warnings instead of fixing warnings[2]"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel script is template filler with meaningless load numbers and clamped, truncated lines.",
+      "evidence": "script.slots: \"load_n1\": \"MANY\", \"load_l1\": \"PAGES TRACKED\", \"load_n2\": \"ONE\", \"load_l2\": \"PERSON READING\", \"load_n3\": \"NOW\", \"load_l3\": \"CONSENT NEEDED\", \"open_line\": \"MONDAY. YOUR SITE. GA.\", \"drop_line\": \"NO COOKIES. JUST.\", \"pile_sub\": \"COOKIES · CONSENT ·\"",
+      "systemic": true,
+      "cause_hint": "Verdict concept's load beat needs scenario numbers the profile lacks; the clamp truncates 'No cookies, just insights' mid-phrase"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "A voice line says nothing is stored, but Plausible stores aggregate stats.",
+      "evidence": "voice.segments proof: \"Everything you need, one dashboard, nothing stored.\"; README: \"No data collection beyond aggregated, anonymized stats\"",
+      "systemic": false,
+      "cause_hint": "voice pipe paraphrased 'no personal data stored'"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The poster places the dark light-theme wordmark on a near-black canvas, where it is barely legible, and repeats the name.",
+      "evidence": "poster.jpg: dark-navy 'Plausible' wordmark over canvas \"#040509\" above \"PLAUSIBLE\"; kit.logo.source \"https://plausible.io/assets/images/icon/plausible_logo.svg\" (DNA observed plausible_logo_dark.svg)",
+      "systemic": true,
+      "cause_hint": "studio-forge logo pick ignores canvas luminance; no contrast check on the logo"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Several venues are submissions for listings Plausible already has, including an awesome list that already includes it.",
+      "evidence": "targets rank 14: \"spekulatius/awesome-privacy-friendly-web-analytics\" why_fit \"Plausible is cookie-free, GDPR-compliant, exact category match\"; sequencing: \"Submit to spekulatius awesome-privacy-friendly-web-analytics via PR\" (the list's README already names Plausible); AlternativeTo, G2, SaaSHub and StackShare are also offered as new submissions",
+      "systemic": true,
+      "cause_hint": "targets pipe does not check for existing listings for a launched product"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Rules are unverified for 12 of 14 venues, and one why_fit invents 'profitable since 2018'.",
+      "evidence": "Indie Hackers why_fit: \"Bootstrapped, profitable since 2018 with 21k paying customers\"; r/selfhosted rules_summary \"not verified: read https://www.reddit.com/r/selfhosted/about/rules before posting\"",
+      "systemic": true,
+      "cause_hint": "FireCrawl cannot read reddit (targets_meta confidence note)"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The scan report says all 8 signals are real buyers, yet all 8 were rejected and none were kept.",
+      "evidence": "signals_meta.coverage_notes: \"All 8 signals are GitHub issues from buyers actively choosing or needing cookieless analytics.\" vs rejected_by_rescore lists 8 URLs and the signals table is empty",
+      "systemic": true,
+      "cause_hint": "coverage_notes written before the rescore gate and not updated after it"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan holds contradictory decisions: $12/$19/$29 pricing beside a listing selling $9 plans, and a Show HN venue although the targets advice says to hold Show HN for a major version.",
+      "evidence": "8-plan.png Decisions: \"Starter $12/mo, Growth $19/mo, Business $29/mo\" with Listing \"Plausible Analytics\" (faq \"Plans start at $9/month\"); tracked link \"Hacker News Show HN\"; targets_meta.sequencing_advice \"Reserve Show HN for a major new version only; do not repeat a general launch post.\"",
+      "systemic": true,
+      "cause_hint": "plan assembly does not cross-check the listing against selected_pricing or the platform venues against targets advice"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The tech stack is incomplete and partly unverified: it omits Phoenix, PostgreSQL, ClickHouse and React from the README and adds Jekyll.",
+      "evidence": "profile.tech_stack: [\"Elixir\", \"Jekyll (marketing site)\", \"Docker\"]; README: \"Backend: Elixir + Phoenix; Databases: PostgreSQL (general data), ClickHouse (analytics); Frontend: React\"",
+      "systemic": false,
+      "cause_hint": "understand pipe"
+    }
+  ],
+  "best": "The profile: prices ($9/$14/$19, 30-day trial, no card), proof points (21k subscribers, 313B pageviews, 99.99% uptime, 54x/135KB), testimonials and the CE-vs-cloud gaps all match the live site and README; confidence and the /pricing 404 note are honest.",
+  "worst": "The Commercial stage: the price rise rests on an apples-to-oranges comparison (10k vs 100k pageviews); the approved listing sells $9 plans while the chosen pricing is $12/$19/$29; and the FAQ invents a '1 KB' script size. Next worst is the Product Hunt first comment's invented origin story.",
+  "notes": "Judged from appstate.rerun.json. Targets were ranked but none ticked, as the brief expects for the re-run, and this is not scored against the app. The signals table is empty after the re-run; the empty result is honest but its scan report contradicts itself. The reel was left in draft (not approved), which is correct given the template script. Plates and cards fit the product's world and use the real logo colours (#909cf7/#4b38d8). Checked against plausible.io (live) and the plausible/analytics README."
+}
