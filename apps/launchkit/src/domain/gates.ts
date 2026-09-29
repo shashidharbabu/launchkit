@@ -356,6 +356,18 @@ export function competitorSwipes(text: string, competitors: string[]): string[] 
     .filter((s) => (named?.test(s) || acronym?.test(s)) && NEGATIVE.test(s)).map((s) => s.trim());
 }
 
+/**
+ * A drafted signal reply without its swipes: the sentences that name a competitor beside a negative word go,
+ * and a reply left with under two sentences is dropped. continue's replies said "Copilot ... locks you to
+ * Microsoft's models" (09-29), false and against the competitor rule.
+ */
+export function replyWithoutSwipes(reply: string, competitors: string[]): string {
+  const swipes = new Set(competitorSwipes(reply, competitors));
+  if (swipes.size === 0) return reply;
+  const kept = reply.split(/(?<=[.!?])\s+/).filter((s) => !swipes.has(s.trim()));
+  return kept.length >= 2 ? kept.join(" ").trim() : "";
+}
+
 /** The provenance and competitor hits for one draft (both hard: the repair pass names and removes them). */
 function sourceHits(data: AssetData, ctx: GateContext): CheckHit[] {
   const hits: CheckHit[] = [];

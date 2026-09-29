@@ -87,3 +87,11 @@ test('reel copy is never cut inside a word (cal-com "SCHEDULING INFRASTRUCTUR.")
     assert.ok(v.replace(/[.?!]$/, '').split(' ').some((w, i, ws) => ws.slice(0, i + 1).join(' ') === out.replace(/[.?!]$/, '')), `${out} ends on a whole word`);
   }
 });
+
+test('signal replies lose their swipes; a reply left too short is dropped (continue 09-29)', () => {
+  const comps = ['GitHub Copilot', 'Copilot', 'Tabnine'];
+  const r = 'Local models work well here. Copilot locks you to Microsoft\'s models. You can point Continue at Ollama.';
+  assert.equal(gates.replyWithoutSwipes(r, comps), 'Local models work well here. You can point Continue at Ollama.');
+  assert.equal(gates.replyWithoutSwipes('Copilot doesn\'t support Ollama. Try this.', comps), '');
+  assert.equal(gates.replyWithoutSwipes('Happy to help. Here is how.', comps), 'Happy to help. Here is how.');
+});

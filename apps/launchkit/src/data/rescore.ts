@@ -11,7 +11,7 @@
  * silently empty the queue (same rule as the Python).
  */
 import { buildRescoreQuestion, buildRescoreSummary } from '../domain/questions';
-import { hnLockCheck, HN_LOCK_REJECTION_WHY } from '../domain/gates';
+import { competitorNames, hnLockCheck, HN_LOCK_REJECTION_WHY, replyWithoutSwipes } from '../domain/gates';
 import { staleThreadWhy, threadFromExaSearch, untrustedRepoWhy } from '../domain/thread';
 import type { Dict, Profile, SignalData } from '../domain/types';
 import { ask } from './runner';
@@ -89,6 +89,7 @@ export async function rescoreSignals(
   const kept: SignalData[] = [];
   const rejected: SignalData[] = [];
   const summary = buildRescoreSummary(profile);
+  const competitors = competitorNames(profile, null);
 
   for (const s of signals) {
     const url = String(s.url ?? '');
@@ -127,7 +128,7 @@ export async function rescoreSignals(
         confidence: verdict.confidence as number | undefined,
         why: verdict.why as string | undefined,
       };
-      const reply = String(verdict.reply ?? '').trim();
+      const reply = replyWithoutSwipes(String(verdict.reply ?? '').trim(), competitors);
       if (relevant && reply) s.drafted_reply = reply; // the finder drafted from a snippet; this read the thread
       (relevant ? kept : rejected).push(s);
     } catch (e) {
