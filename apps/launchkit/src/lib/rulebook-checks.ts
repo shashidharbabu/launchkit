@@ -19,8 +19,8 @@ export type RuleCheck = { id: string; description: string; kind: string; value: 
  * A price is not one of them: the first version matched any dollar amount and the word
  * "raised" alone, so "Calendly's $16/seat/month" and "Calendly raised prices" blocked the
  * Product Hunt draft on every end-to-end run. It now blocks ARR/MRR, run rate, valuation,
- * a funding round, "raised" followed by money or a round, a figure with a magnitude
- * ($2M, $500k, $1.2 billion) and a figure named as revenue, profit or funding.
+ * a funding round, "raised" followed by money or a round, and a figure named as revenue, profit or funding.
+ * A magnitude alone is not revenue: "$2.5K payout cap" is a public plan limit and was blocked on dub (09-29).
  * Cases: tools/tests/domain/gates.test.mjs.
  */
 /**
@@ -35,7 +35,6 @@ export const PROVIDER_NAMED =
 export const FINANCIAL_FIGURES =
   '\\bMRR\\b|\\bARR\\b|\\brun[- ]rate\\b|\\bvaluation\\b|\\bfunding round\\b' +
   '|\\braised\\s+(?:(?:a|an|our|their|its|his|her)\\s+)?(?:[$€£]|\\d|(?:pre-)?seed\\b|series\\s+[a-z]\\b|rounds?\\b|funding\\b|capital\\b|money\\b)' +
-  '|[$€£]\\s?\\d[\\d,.]*\\s?(?:k|m|bn|million|billion)\\b' +
   '|[$€£]\\s?\\d[\\d,.]*[^.!?\\n]{0,40}?\\b(?:revenue|in sales|profit|funding|valuation|raised|investment)\\b';
 
 export const RULEBOOK_CHECKS: Record<string, RuleCheck[]> = {
