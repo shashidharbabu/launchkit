@@ -30,7 +30,7 @@ import { fillUrl } from '../lib/share';
 import {
   NEEDS_PROBE_ERROR, NEEDS_SCRIPT_ERROR, displayName, isStudioStep, kitCopy, normalizeSlots, scriptRuleBreaks, studioJobKind, wordCount,
   type ConceptSpec,
-} from '../domain/studio';
+splitSentences } from '../domain/studio';
 import {
   byNewest, byNumber, count, currentActor, flush, insert, remove,
   select, selectOne, uid, update, currentOwnerId, ownedByMe, type Row,
@@ -125,7 +125,7 @@ function trimParagraphsToCap(assetType: string, gated: Record<string, unknown>, 
       const [, field, , capStr] = chars;
       const cap = Number(capStr);
       const text = typeof data[field] === 'string' ? (data[field] as string) : '';
-      const sentences = text.match(/[^.!?]+[.!?]+(?:\s+|$)/g) ?? [];
+      const sentences = splitSentences(text);
       if (sentences.length < 2) continue;
       let kept = sentences.slice();
       while (kept.length > 1 && kept.join('').trim().length > cap) {

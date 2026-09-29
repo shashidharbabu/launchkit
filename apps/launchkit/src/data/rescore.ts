@@ -56,7 +56,9 @@ export async function fetchUrlText(url: string): Promise<[string, number | null]
     } catch { /* answers are a bonus; the question suffices */ }
     return [stripTags(parts.join(' ')).slice(0, 4000), null];
   }
-  const gh = url.match(/github\.com\/([^/]+)\/([^/]+)\/(?:issues|discussions)\/(\d+)/);
+  // issues only: the REST issues API 404s a discussion, which then stayed "unverified" and undated (continue,
+  // 09-29); a discussion goes through the index like any other page and gets its date there
+  const gh = url.match(/github\.com\/([^/]+)\/([^/]+)\/issues\/(\d+)/);
   if (gh) {
     const issue = await fetchJson(`https://api.github.com/repos/${gh[1]}/${gh[2]}/issues/${gh[3]}`);
     const created = Date.parse(String(issue.created_at ?? ''));

@@ -195,7 +195,12 @@ export function PlanStage() {
               Download the plan (PDF)
             </Button>
             {!canBuild && (
-              <span className="text-small text-muted-foreground">Approve a post and choose venues first</span>
+              // said "choose venues first" when both were done and only a post was open (continue, 09-29)
+              <span className="text-small text-muted-foreground">
+                {(plan?.pending ?? []).length > 0 && (plan?.targets.length ?? 0) > 0
+                  ? `Close what is still open first: ${(plan?.pending ?? []).map((x) => ASSET_LABELS[x.asset_type] ?? x.asset_type).join(', ')}`
+                  : 'Approve a post and choose venues first'}
+              </span>
             )}
             {markdown ? (
               <CopyButton

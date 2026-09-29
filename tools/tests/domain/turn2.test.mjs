@@ -133,3 +133,11 @@ test('turn 3: public copy never sees what Launch Kit could not read (hack-judge 
   assert.doesNotMatch(ask, /503|no demo link/);
   assert.match(ask, /no mobile app/);
 });
+
+test('turn 3: sentences split without losing text at a decimal (continue "Apache 2.0")', () => {
+  const { splitSentences } = require('./.build/domain/studio.js');
+  const t = 'Continue is Apache 2.0 licensed. It runs in VS Code. "Use it," they said.';
+  const parts = splitSentences(t);
+  assert.equal(parts.join(''), t);
+  assert.deepEqual(parts.map((p) => p.trim()), ['Continue is Apache 2.0 licensed.', 'It runs in VS Code.', '"Use it," they said.']);
+});

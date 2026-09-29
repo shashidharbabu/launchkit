@@ -207,3 +207,13 @@ export function scriptRuleBreaks(slots: Record<string, string>, profileText: str
   }
   return out;
 }
+
+/**
+ * Whole sentences with their trailing space, nothing lost: a boundary is . ! or ? followed by whitespace and a
+ * capital, quote or bracket. The old matcher needed whitespace after every full stop, so "Apache 2.0" made it
+ * restart after the decimal point and silently drop everything before it: continue's Product Hunt description
+ * came out as "...config file. 0, available as a VS Code extension" (09-29).
+ */
+export function splitSentences(text: string): string[] {
+  return text.split(/(?<=[.!?]["')\]]?\s+)(?=["'(\[]?[A-Z0-9])/).filter((x) => x.length > 0);
+}
