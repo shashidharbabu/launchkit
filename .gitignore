@@ -3,6 +3,9 @@
 
 # Dependencies and build output (machine-generated)
 **/node_modules/
+# the slash above matches directories only; a node_modules SYMLINK (a worktree's) slipped through and a merge
+# replaced apps/launchkit's installed packages with it (09-30)
+**/node_modules
 **/dist/
 .env.deploy
 
