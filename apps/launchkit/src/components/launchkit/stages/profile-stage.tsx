@@ -435,8 +435,11 @@ export function ProfileStage() {
                 setApproving(true);
                 try {
                   await api.approveProfile(project.id);
-                  toast('Profile approved. Next: Brand');
                   await refresh();
+                  // the research every launch needs starts now, side by side, instead of one stage at a time;
+                  // each stage fills in as its step lands, and every decision stays the builder's
+                  void runJob('research:all', () => api.runResearch(project.id));
+                  toast('Profile approved. Researching brand, pricing, venues and demand together.');
                   go({ view: 'workspace', projectId: project.id, stage: 'brand' });
                 } catch (e) {
                   setError(actionError('approve the profile', e));

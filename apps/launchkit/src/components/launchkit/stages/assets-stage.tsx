@@ -381,7 +381,7 @@ function latestByType(assets: AssetRow[]): Map<string, AssetRow> {
 }
 
 export function AssetsStage() {
-  const { project, gate1, assets, brandCampaigns, running, runJob } = useProject();
+  const { project, gate1, assets, brandCampaigns, running, isBusy, runJob } = useProject();
   const { go, href } = useNav();
   if (!project) return null;
   if (!gate1) return <LockedGate />;
@@ -478,7 +478,7 @@ export function AssetsStage() {
             {ASSET_TYPES.map((t) => {
               const rb = rulesFor(t);
               const a = latest.get(t);
-              const drafting = runningAsset === t || (draftingAll && !latest.get(t));
+              const drafting = runningAsset === t || isBusy(`asset:${t}`);
               return (
                 <li key={t} className="grid gap-3 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-4">
                   <PlatformTile

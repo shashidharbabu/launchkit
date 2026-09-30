@@ -37,6 +37,8 @@ type Ctx = {
   setError: (e: string) => void;
   gate1: boolean;
   running: Running;
+  /** Whether a step of this kind is running, alone or inside a parent job (all posts, the research). */
+  isBusy: (kind: string) => boolean;
   /** The last failed job kind, so the error banner can offer Retry. */
   failed: string | null;
   retryFailed: () => void;
@@ -86,6 +88,9 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
   const [error, setError] = React.useState('');
   const [running, setRunning] = React.useState<Running>(null);
   const [failed, setFailed] = React.useState<string | null>(null);
+  // the child steps of a parent job still in flight, so each stage shows its own work while the research or the
+  // six posts run together, and each result appears as it lands instead of when the last one does
+  const [liveKinds, setLiveKinds] = React.useState<string[]>([]);
 
   const refresh = React.useCallback(async () => {
     try {
@@ -187,12 +192,31 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
     const start = () => {
       if (kind === 'understand') return api.runUnderstand(id);
       if (kind === 'asset:all') return api.runAllAssets(id);
+      if (kind === 'research:all') return api.runResearch(id);
       if (kind.startsWith('asset:')) return api.runAsset(id, kind.slice('asset:'.length));
       if (isStudioStep(studioStep)) return api.runStudio(id, studioStep);
       return api.runStage(id, kind);
     };
     runJob(kind, start);
   }, [failed, id, runJob]);
+
+  const parentKind = running?.kind.endsWith(':all') ? running.kind : null;
+  React.useEffect(() => {
+    if (!parentKind) { setLiveKinds([]); return; }
+    let alive = true;
+    const tick = async () => {
+      try {
+        const rows = (await api.jobs(id)) as Array<{ kind: string; status: string }>;
+        if (!alive) return;
+        setLiveKinds(rows.filter((r) => (r.status === 'running' || r.status === 'queued') && !r.kind.endsWith(':all')).map((r) => r.kind));
+        void refresh();
+      } catch { /* the next tick tries again */ }
+    };
+    void tick();
+    const timer = setInterval(tick, 4000);
+    return () => { alive = false; clearInterval(timer); };
+  }, [parentKind, id, refresh]);
+  const isBusy = React.useCallback((kind: string) => running?.kind === kind || liveKinds.includes(kind), [running?.kind, liveKinds]);
 
   const gate1 = project?.profile?.status === 'approved';
 
@@ -243,6 +267,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
         setError,
         gate1: Boolean(gate1),
         running,
+        isBusy,
         failed,
         retryFailed,
         stageDots,

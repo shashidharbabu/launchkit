@@ -126,7 +126,7 @@ function SignalCard({ signal }: { signal: SignalRow }) {
 }
 
 export function SignalsStage() {
-  const { project, gate1, signals, running, runJob, failed, error } = useProject();
+  const { project, gate1, signals, running, isBusy, runJob, failed, error } = useProject();
   // the last scan's report (queries, coverage, drop reasons), an empty result must be explainable
   const [meta, setMeta] = React.useState<Record<string, unknown> | null>(null);
   // the stored run, not only this session's banner: formbricks' search timed out and the page, redrawn, said
@@ -163,7 +163,7 @@ export function SignalsStage() {
   const unverified = queue.length - verified;
   const dismissed = signals.length - queue.length - replied;
   const hasSignals = signals.length > 0;
-  const searching = running?.kind === 'signals';
+  const searching = isBusy('signals');
   const search = () => runJob('signals', () => api.runStage(project.id, 'signals'));
 
   return (

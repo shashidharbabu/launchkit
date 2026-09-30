@@ -622,7 +622,7 @@ function PricingChooser({ projectId, pricing, rec, researched, chosen, disabled,
 }
 
 export function CommercialStage() {
-  const { project, gate1, pricing, listing, listingApproved, running, runJob, refresh } = useProject();
+  const { project, gate1, pricing, listing, listingApproved, running, isBusy, runJob, refresh } = useProject();
   const [approving, setApproving] = React.useState(false);
   if (!project) return null;
   if (!gate1) return <LockedGate />;
@@ -693,7 +693,7 @@ export function CommercialStage() {
       )}
 
       {/* ---- Step 1: Pricing ---- */}
-      {(pricing || runningKind === 'pricing' || (!neither && !pricing)) && (
+      {(pricing || isBusy('pricing') || (!neither && !pricing)) && (
         <Card>
           <CardHeader
             title="Step 1 of 2: Pricing"
@@ -710,7 +710,7 @@ export function CommercialStage() {
             }
           />
           <CardBody>
-            {runningKind === 'pricing' ? (
+            {isBusy('pricing') ? (
               <span className="text-shimmer text-small">Finding who competes with you, reading their pricing pages, then drafting three plans</span>
             ) : pricing ? (
               <div className="grid gap-6">
@@ -800,7 +800,7 @@ export function CommercialStage() {
       )}
 
       {/* ---- Step 2: Listing ---- */}
-      {(listing || runningKind === 'listing' || (!neither && !listing)) && (
+      {(listing || isBusy('listing') || (!neither && !listing)) && (
         <Card>
           <CardHeader
             title="Step 2 of 2: Store listing"
@@ -818,7 +818,7 @@ export function CommercialStage() {
             }
           />
           <CardBody>
-            {runningKind === 'listing' ? (
+            {isBusy('listing') ? (
               <span className="text-shimmer text-small">Rewriting your store listing</span>
             ) : listing ? (
               <div className="grid gap-5">

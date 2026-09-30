@@ -33,7 +33,8 @@ export function loadRun(dir) {
       judged,
       stageSecs: Object.fromEntries(STAGES.map((s) => [s, summary?.stages?.[s]?.secs ?? null])),
       stageOk: Object.fromEntries(STAGES.map((s) => [s, summary?.stages?.[s]?.ok ?? null])),
-      driveSecs: STAGES.reduce((a, s) => a + (Number(summary?.stages?.[s]?.secs) || 0), 0),
+      // every timed step, the research wait included: the parallel launch spends its time there
+      driveSecs: Object.values(summary?.stages ?? {}).reduce((a, st) => a + (Number(st?.secs) || 0), 0),
       pipeSecs: runs.reduce((a, r) => a + r.elapsed_seconds, 0),
     };
   }

@@ -289,7 +289,7 @@ function AngleCard({ c, chosen, busy, disabled, onToggle }: {
 }
 
 export function BrandStage() {
-  const { project, gate1, brandDna, brandCampaigns, running, runJob, refresh } = useProject();
+  const { project, gate1, brandDna, brandCampaigns, running, isBusy, runJob, refresh } = useProject();
   const { go, href } = useNav();
   const [busyName, setBusyName] = React.useState<string | null>(null);
   if (!project) return null;
@@ -352,7 +352,7 @@ export function BrandStage() {
           }
         />
         <CardBody>
-          {runningKind === 'brand_dna' ? (
+          {isBusy('brand_dna') ? (
             <span className="text-shimmer text-small">Reading your site for brand voice, colors, and messaging</span>
           ) : dna ? (
             <DnaView dna={dna} fallbackName={project.name} />
@@ -395,7 +395,7 @@ export function BrandStage() {
           }
         />
         <CardBody className="grid gap-5">
-          {runningKind === 'brand_campaigns' ? (
+          {isBusy('brand_campaigns') ? (
             <span className="text-shimmer text-small">Drafting campaign angles in your brand voice</span>
           ) : campaigns.length > 0 ? (
             <>

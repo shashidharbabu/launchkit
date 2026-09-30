@@ -143,14 +143,27 @@ await step('profile', async () => {
   return { understandSecs: Math.round((Date.now() - t0) / 1000), partial, retried, rail: (await rail()).slice(0, 2) };
 });
 
+// ---- Research: approving the profile starts brand, pricing, venues and demand side by side ----
+await step('research', async () => {
+  await stage(/Brand/);
+  const w = await waitIdle('research', 1500000);
+  return { secs: w.secs, idle: w.idle, failed: await failedLine() };
+});
+
 // ---- Brand ----
 await step('brand', async () => {
   await stage(/Brand/);
-  await clickWhenEnabled(main(/Extract Business DNA/), 'Extract Business DNA');
-  const w1 = await waitIdle('dna', 420000);
-  await main(/Draft the angles/).waitFor({ state: 'visible', timeout: 15000 });
-  await clickWhenEnabled(main(/Draft the angles/), 'Draft the angles');
-  const w2 = await waitIdle('angles', 420000);
+  // each run button is there only when its result is not: the research may already have produced it
+  let w1 = { secs: 0, idle: true };
+  if (await main(/Extract Business DNA/).count()) {
+    await clickWhenEnabled(main(/Extract Business DNA/), 'Extract Business DNA');
+    w1 = await waitIdle('dna', 420000);
+  }
+  let w2 = { secs: 0, idle: true };
+  if (await main(/Draft the angles/).count()) {
+    await clickWhenEnabled(main(/Draft the angles/), 'Draft the angles');
+    w2 = await waitIdle('angles', 420000);
+  }
   const angles = await page.locator('#lk-root main button', { hasText: /Choose this angle/ }).count();
   if (angles > 0) { await main(/Choose this angle/).click(); await page.waitForTimeout(2500); }
   const t = await text();
@@ -161,12 +174,20 @@ await step('brand', async () => {
 // ---- Commercial ----
 await step('commercial', async () => {
   await stage(/Commercial/);
-  await clickWhenEnabled(main(/Draft pricing and listing/), 'Draft pricing and listing');
-  const w = await waitIdle('pricing+listing', 1200000);
+  let w = { secs: 0, idle: true };
+  if (await main(/Draft pricing and listing/).count()) {
+    await clickWhenEnabled(main(/Draft pricing and listing/), 'Draft pricing and listing');
+    w = await waitIdle('pricing+listing', 1200000);
+  }
   const t = await text();
   const plans = await page.locator('#lk-root main [role="radio"], #lk-root main button', { hasText: /^Select$/ }).count();
   const use = await main(/Use this pricing/).count();
   if (use) { await main(/Use this pricing/).click(); await page.waitForTimeout(2500); }
+  // the listing after the pricing choice, so it quotes the chosen prices and is never stale
+  if (await page.locator('#lk-root main button', { hasText: /^Draft listing$/ }).count()) {
+    await clickWhenEnabled(page.locator('#lk-root main button', { hasText: /^Draft listing$/ }).first(), 'Draft listing', 300000);
+    await waitIdle('listing', 600000);
+  }
   // a listing drafted before the choice quotes other prices and cannot be approved: redraft it first
   let listingRedrafted = false;
   if (/This listing predates your pricing choice/.test(await text())) {
@@ -272,8 +293,11 @@ await step('assets', async () => {
 // ---- Targets ----
 await step('targets', async () => {
   await stage(/Targets/);
-  await clickWhenEnabled(main(/Rank venues/), 'Rank venues');
-  const w = await waitIdle('targets', 600000);
+  let w = { secs: 0, idle: true };
+  if (await main(/Rank venues/).count()) {
+    await clickWhenEnabled(main(/Rank venues/), 'Rank venues');
+    w = await waitIdle('targets', 600000);
+  }
   const rows = await page.evaluate(() => [...document.querySelectorAll('#lk-root table tbody tr')].map((tr) => [...tr.querySelectorAll('td')].map((x) => x.textContent.trim()).slice(0, 4)));
   const boxes = page.locator('#lk-root table tbody input[type="checkbox"]');
   const n = Math.min(3, await boxes.count());
@@ -302,9 +326,13 @@ await step('targets', async () => {
 await step('signals', async () => {
   await stage(/Signals/);
   const btn = main(/Search for demand/);
-  if (!(await btn.count())) throw new Error('no Search for demand button');
-  await clickWhenEnabled(btn, 'Search for demand');
-  const w = await waitIdle('signals', 900000);
+  let w = { secs: 0, idle: true };
+  if (await btn.count()) {
+    await clickWhenEnabled(btn, 'Search for demand');
+    w = await waitIdle('signals', 900000);
+  } else if (!(await main(/Search again/).count())) {
+    throw new Error('no Search for demand button');
+  }
   const t = await text();
   await shot('7-signals.png');
   if (!w.idle || /Searching for demand\./.test(t)) throw new Error(`the scan was still running after ${w.secs} s`);

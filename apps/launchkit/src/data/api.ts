@@ -532,6 +532,38 @@ export const api = {
   },
 
   /**
+   * The research a launch needs once its profile is approved, in parallel instead of stage by stage: brand DNA
+   * then its campaign angles, pricing research, and the venue ranking then the demand search (Signals reads the
+   * ranked venues' subreddits). Only those two orders are real dependencies; the rest waited on nothing but the
+   * next click, about 11 minutes of pipeline time one after another against about 6.5 for the longest chain.
+   * The builder still makes every decision (angle, pricing, venues) on the stage pages; nothing is chosen here.
+   */
+  runResearch: async (id: string) => {
+    await approvedProfile(id); // Gate 1, before any child starts
+    const chain = async (kinds: string[]) => {
+      const out: Array<{ kind: string; status: string; error: string | null }> = [];
+      for (const kind of kinds) {
+        const { job_id } = await api.runStage(id, kind);
+        const j = await waitForJob(job_id);
+        out.push({ kind, status: j?.status ?? 'done', error: j?.error ?? null });
+        if (j?.status === 'error') break; // the next link needs this one
+      }
+      return out;
+    };
+    const jobId = await runJob(id, 'research:all',
+      async () => {
+        const settled = (await Promise.all([chain(['brand_dna', 'brand_campaigns']), chain(['pricing']), chain(['targets', 'signals'])])).flat();
+        const failed = settled.filter((x) => x.status === 'error');
+        if (failed.length === settled.length) {
+          throw new Error(`every research step failed: ${failed.map((x) => `${x.kind}: ${x.error ?? 'no answer'}`).join('; ').slice(0, 600)}`);
+        }
+        return { done: settled.filter((x) => x.status !== 'error').map((x) => x.kind), failed: failed.map((x) => x.kind) };
+      },
+      async () => { /* each step saved itself */ });
+    return { job_id: jobId };
+  },
+
+  /**
    * Every platform's post at once. Drafting them one after another was the slowest stage of a launch (a median
    * 10 minutes of 34 in the 09-29 evals); staging answers several questions on one task in parallel in the time
    * of one (probe 09-30: three drafts in 15 s, one in 16 s). Each post keeps its own run and gates; the parent job

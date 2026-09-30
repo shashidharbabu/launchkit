@@ -56,7 +56,7 @@ const columns = [
 const PAGE = 50;
 
 export function TargetsStage() {
-  const { project, gate1, targets, assets, running, runJob, refresh, setError } = useProject();
+  const { project, gate1, targets, assets, running, isBusy, runJob, refresh, setError } = useProject();
   const [expanded, setExpanded] = React.useState<Set<string>>(new Set());
   const [page, setPage] = React.useState(0);
 
@@ -135,7 +135,7 @@ export function TargetsStage() {
   };
 
   const ranked = targets.length > 0;
-  const ranking = running?.kind === 'targets';
+  const ranking = isBusy('targets');
   const rank = () => runJob('targets', () => api.runStage(project.id, 'targets'));
 
   return (
