@@ -186,7 +186,23 @@ await step('social', async () => {
   await stage(/Social Launch/);
   const platforms = ['X', 'LinkedIn', 'Reddit', 'Product Hunt', 'Hacker News', 'Newsletter'];
   const per = {};
+  const TYPE_OF_ALL = { X: 'x_post', LinkedIn: 'linkedin_post', Reddit: 'reddit_post', 'Product Hunt': 'producthunt', 'Hacker News': 'show_hn', Newsletter: 'newsletter_pitch' };
+  // every post at once when the app offers it; a platform whose draft did not land gets its own button below
+  const all = page.locator('#lk-root main button', { hasText: /^Draft all \d+ posts$/ }).first();
+  let parallelSecs = null;
+  if (await all.count()) {
+    const t0 = Date.now();
+    if (await clickWhenEnabled(all, 'Draft all posts')) {
+      const w = await waitIdle('social-parallel', 1200000);
+      parallelSecs = Math.round((Date.now() - t0) / 1000);
+      const stored = await page.evaluate(() => {
+        try { return [...new Set((JSON.parse(localStorage.getItem('lk-preview-appstate') || '{}').launchkit?.assets || []).map((a) => a.asset_type))]; } catch { return []; }
+      });
+      for (const p of platforms) if (stored.includes(TYPE_OF_ALL[p])) per[p] = { drafted: true, secs: parallelSecs, idle: w.idle, parallel: true, failed: '' };
+    }
+  }
   for (const p of platforms) {
+    if (per[p]?.drafted) continue;
     const btn = page.locator('#lk-root main button', { hasText: new RegExp(`^Draft for ${p}$`) }).first();
     if (!(await btn.count())) { per[p] = { drafted: false, reason: 'no button' }; continue; }
     const t0 = Date.now();
@@ -217,7 +233,7 @@ await step('social', async () => {
   }
   const t = await text();
   await shot('4-social.png');
-  return { per, approved, blocked, counts: (t.match(/\d+ approved, \d+ needs? review/) || [''])[0], warnings: (t.match(/\d+ warnings? from the draft check/g) || []).length, repaired: (t.match(/hard-rule failures? repaired/g) || []).length };
+  return { per, parallelSecs, approved, blocked, counts: (t.match(/\d+ approved, \d+ needs? review/) || [''])[0], warnings: (t.match(/\d+ warnings? from the draft check/g) || []).length, repaired: (t.match(/hard-rule failures? repaired/g) || []).length };
 });
 
 // ---- Assets ----

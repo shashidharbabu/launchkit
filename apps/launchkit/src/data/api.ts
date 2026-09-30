@@ -219,6 +219,15 @@ async function runJob(
   return id;
 }
 
+/** Resolves when an in-memory job settles; a job this session never started counts as settled. */
+async function waitForJob(jobId: string): Promise<JobRow | null> {
+  for (;;) {
+    const j = jobs.get(jobId);
+    if (!j || j.status === 'done' || j.status === 'error') return j ?? null;
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+}
+
 // ---------------------------------------------------------------- row helpers (main.py query mirrors)
 
 async function projectRow(id: string): Promise<Dict> {
@@ -519,6 +528,28 @@ export const api = {
         }
         await saveCommercial(id, 'signals_meta', result.meta as Dict, jobId);
       });
+    return { job_id: jobId };
+  },
+
+  /**
+   * Every platform's post at once. Drafting them one after another was the slowest stage of a launch (a median
+   * 10 minutes of 34 in the 09-29 evals); staging answers several questions on one task in parallel in the time
+   * of one (probe 09-30: three drafts in 15 s, one in 16 s). Each post keeps its own run and gates; the parent job
+   * finishes when the last one does and fails only when every post failed.
+   */
+  runAllAssets: async (id: string, types: readonly string[] = ASSET_TYPES) => {
+    await approvedProfile(id); // Gate 1, before any child starts
+    const children = await Promise.all(types.map(async (t) => ({ t, job: await api.runAsset(id, t) })));
+    const jobId = await runJob(id, 'asset:all',
+      async () => {
+        const settled = await Promise.all(children.map(async (c) => ({ t: c.t, job: await waitForJob(c.job.job_id) })));
+        const failed = settled.filter((x) => x.job?.status === 'error');
+        if (failed.length === settled.length) {
+          throw new Error(`every post failed: ${failed.map((x) => `${x.t}: ${x.job?.error ?? 'no answer'}`).join('; ').slice(0, 600)}`);
+        }
+        return { drafted: settled.length - failed.length, failed: failed.map((x) => x.t) };
+      },
+      async () => { /* each post saved itself */ });
     return { job_id: jobId };
   },
 

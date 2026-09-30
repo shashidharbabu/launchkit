@@ -387,6 +387,7 @@ export function AssetsStage() {
   if (!gate1) return <LockedGate />;
 
   const runningAsset = running?.kind.startsWith('asset:') ? running.kind.split(':')[1] : null;
+  const draftingAll = runningAsset === 'all';
   const chosenAngles = project.selected_campaigns ?? [];
   const campaigns = (Array.isArray(brandCampaigns?.campaigns) ? brandCampaigns.campaigns : []) as Record<string, unknown>[];
   const chosenCampaigns = campaigns.filter((c) => chosenAngles.includes(asStr(c.name)));
@@ -399,6 +400,8 @@ export function AssetsStage() {
     return a ? [a] : [];
   });
   const firstPendingId = shown.find((a) => a.status !== 'approved')?.id;
+  // every platform without a draft, drafted together: one after another was ten minutes of a launch
+  const undrafted = ASSET_TYPES.filter((t) => !latest.has(t));
   const approvedCount = shown.filter((a) => a.status === 'approved').length;
   const pendingCount = shown.length - approvedCount;
 
@@ -450,7 +453,18 @@ export function AssetsStage() {
           title="Posts"
           description="One per platform, written to that platform's rulebook from your angle and voice. Draft each platform, read the draft beside its tile, then approve the ones you would post."
           actions={
-            shown.length > 0 ? (
+            undrafted.length > 0 ? (
+              <Button
+                variant="primary"
+                size="sm"
+                disabled={Boolean(running)}
+                loading={draftingAll}
+                loadingLabel={`Drafting ${undrafted.length}`}
+                onClick={() => runJob('asset:all', () => api.runAllAssets(project.id, undrafted))}
+              >
+                {undrafted.length === ASSET_TYPES.length ? `Draft all ${undrafted.length} posts` : `Draft the other ${undrafted.length}`}
+              </Button>
+            ) : shown.length > 0 ? (
               <StatusStamp
                 kind={pendingCount === 0 ? 'go' : 'hold'}
                 label={pendingCount === 0 ? `${approvedCount} approved` : `${approvedCount} approved, ${pendingCount} need${pendingCount === 1 ? 's' : ''} review`}
@@ -464,7 +478,7 @@ export function AssetsStage() {
             {ASSET_TYPES.map((t) => {
               const rb = rulesFor(t);
               const a = latest.get(t);
-              const drafting = runningAsset === t;
+              const drafting = runningAsset === t || (draftingAll && !latest.get(t));
               return (
                 <li key={t} className="grid gap-3 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-4">
                   <PlatformTile

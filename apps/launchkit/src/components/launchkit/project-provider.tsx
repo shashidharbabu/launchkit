@@ -186,6 +186,7 @@ export function ProjectProvider({ id, children }: { id: string; children: React.
     }
     const start = () => {
       if (kind === 'understand') return api.runUnderstand(id);
+      if (kind === 'asset:all') return api.runAllAssets(id);
       if (kind.startsWith('asset:')) return api.runAsset(id, kind.slice('asset:'.length));
       if (isStudioStep(studioStep)) return api.runStudio(id, studioStep);
       return api.runStage(id, kind);

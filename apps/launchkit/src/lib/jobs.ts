@@ -19,6 +19,7 @@ export function jobLabel(kind: string): string {
   if (kind === 'listing') return 'Commercial: listing';
   if (kind === 'targets') return 'Targets: venue ranking';
   if (kind === 'signals') return 'Signals: search';
+  if (kind === 'asset:all') return 'Social Launch, all posts';
   if (kind.startsWith('asset:')) {
     const t = kind.slice('asset:'.length);
     return `Social Launch, ${ASSET_LABELS[t] ?? t}`;
