@@ -164,7 +164,10 @@ async function askOnceInner(pipeName: string, questionText: string): Promise<{ d
         'invalid token', 'unknown token', 'not found'].some((t) => msg.includes(t));
       // "Server is not connected" matched none of these, so plausible's targets run failed in one second
       // instead of retrying (09-29); the client reconnects on its own, so wait for it before the retry
-      const transportish = ['connection', 'websocket', 'timed out', 'closed', 'disconnect', 'not connected', 'socket']
+      // a call that ran into its own deadline is not a dropped connection: the pipe was busy for eight minutes, and a
+      // retry only repeats it. continue's and formbricks' Show HN each sat 35 to 120 minutes that way (turn 3, 09-29)
+      const overDeadline = msg.includes('timed out: no answer after');
+      const transportish = !overDeadline && ['connection', 'websocket', 'timed out', 'closed', 'disconnect', 'not connected', 'socket']
         .some((t) => msg.includes(t));
       // a transport failure gets two retries with a pause first: hack-judge's targets call died with "Connection
       // closed normally" and its one immediate retry died too, 7 s in all (09-29), because the client still read
