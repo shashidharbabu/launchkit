@@ -644,6 +644,8 @@ export function CommercialStage() {
   const confidence = asObj(pricing?.confidence);
   const neither = !pricing && !listing;
   const runningKind = running?.kind;
+  // a decision waits only for its own step, not for the whole parallel research (hoppscotch, 09-30)
+  const decisionBusy = (Boolean(runningKind) && !String(runningKind).endsWith(':all')) || isBusy('pricing');
   const chosenPricing = project.selected_pricing ?? null;
   // a listing drafted before the pricing choice quotes the research's prices: excalidraw's said $6 beside a
   // chosen $8 (09-29). Stale = a chosen paid tier's price appears nowhere in the listing.
@@ -722,7 +724,7 @@ export function CommercialStage() {
                     rec={recommendation}
                     researched={{ read: competitors.length, established: established.length }}
                     chosen={chosenPricing}
-                    disabled={Boolean(runningKind)}
+                    disabled={decisionBusy}
                     onChosen={refresh}
                   />
                 ) : (
@@ -836,7 +838,7 @@ export function CommercialStage() {
                     tone="hold"
                     title="Read it as a visitor would, then approve it."
                     action={
-                      <Button variant="primary" size="sm" disabled={Boolean(runningKind) || staleListing} loading={approving} loadingLabel="Approving" onClick={approveListing}>
+                      <Button variant="primary" size="sm" disabled={decisionBusy || isBusy('listing') || staleListing} loading={approving} loadingLabel="Approving" onClick={approveListing}>
                         Approve listing
                       </Button>
                     }

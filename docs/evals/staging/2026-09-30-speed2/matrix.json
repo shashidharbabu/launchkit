@@ -1,0 +1,108 @@
+{
+ "apps": [
+  {
+   "slug": "hoppscotch",
+   "name": "Hoppscotch",
+   "stages_ok": [
+    "profile",
+    "research",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [
+    "brand",
+    "commercial"
+   ],
+   "profile_confidence": {
+    "overall": 0.9,
+    "notes": "All key sources loaded successfully: README.md, hoppscotch.com homepage, and hoppscotch.com/pricing. The hoppscotch.io/pricing page returned a 404 (page not found) but pricing was found on hoppscotch.com/pricing as expected. Self-host pricing tier prices were not captured in the scrape (toggle state may not have rendered). All other claims are directly evidenced."
+   },
+   "dna_tone_words": 4,
+   "angles": 6,
+   "angle_chosen": false,
+   "competitors": 5,
+   "established": 4,
+   "pricing_options": 3,
+   "pricing_chosen": false,
+   "listing_approved": false,
+   "posts": {
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "x_post": {
+     "status": "approved",
+     "warnings": 1,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "reddit_post": {
+     "status": "draft",
+     "warnings": 10,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 4,
+     "blockers": 0,
+     "repaired": 3,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    8,
+    8,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "approved",
+   "targets": 14,
+   "signals": 0,
+   "signals_new": 0
+  }
+ ]
+}

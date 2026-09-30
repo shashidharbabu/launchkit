@@ -144,10 +144,22 @@ await step('profile', async () => {
 });
 
 // ---- Research: approving the profile starts brand, pricing, venues and demand side by side ----
+// the page cannot say when a parent job ends (its disabled buttons are ones waitIdle ignores), so read the run itself
+const runLive = (kind) => page.evaluate((k) => {
+  try { return (JSON.parse(localStorage.getItem('lk-preview-appstate') || '{}').launchkit?.runs || []).some((r) => r.kind === k && (r.status === 'running' || r.status === 'queued')); } catch { return false; }
+}, kind);
 await step('research', async () => {
   await stage(/Brand/);
-  const w = await waitIdle('research', 1500000);
-  return { secs: w.secs, idle: w.idle, failed: await failedLine() };
+  const t0 = Date.now();
+  await page.waitForTimeout(4000);
+  let started = false;
+  while (Date.now() - t0 < 1500000) {
+    const live = await runLive('research:all');
+    if (live) started = true;
+    if (!live && (started || Date.now() - t0 > 20000)) break;
+    await page.waitForTimeout(3000);
+  }
+  return { secs: Math.round((Date.now() - t0) / 1000), started, failed: await failedLine() };
 });
 
 // ---- Brand ----

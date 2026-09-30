@@ -1,0 +1,180 @@
+{
+  "name": "Hoppscotch",
+  "site": "https://hoppscotch.io",
+  "repo": "https://github.com/hoppscotch/hoppscotch",
+  "started": "2026-09-30T21:50:54.520Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 85,
+      "understandSecs": 79,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "research": {
+      "ok": true,
+      "secs": 112,
+      "idle": true,
+      "failed": ""
+    },
+    "brand": {
+      "ok": false,
+      "secs": 32,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Choose this angle/ }).first()\n    - locator resolved to <button disabled type=\"button\" aria-pressed=\"false\" class=\"relative inline-flex shrink-0 select-none items-center justify-cent"
+    },
+    "commercial": {
+      "ok": false,
+      "secs": 32,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Use this pricing/ }).first()\n    - locator resolved to <button disabled type=\"button\" class=\"relative inline-flex shrink-0 select-none items-center justify-center gap-2 whitespace-no"
+    },
+    "social": {
+      "ok": true,
+      "secs": 192,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 175,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 175,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 175,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 175,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 175,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 175,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        }
+      },
+      "parallelSecs": 175,
+      "approved": 6,
+      "blocked": [],
+      "counts": "",
+      "warnings": 6,
+      "repaired": 4
+    },
+    "assets": {
+      "ok": true,
+      "secs": 197,
+      "probe": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 58,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": true,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a developer at a standing desk or low workbench covered in stickers and open terminalsmultiple browser tabs and split-screen code editors glowing on wide monitorsa sha",
+      "fits": 3,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 0,
+      "redditRedrafted": true,
+      "ranked": 14,
+      "top5": [
+        "r/webdev",
+        "r/selfhosted",
+        "API Developer Weekly",
+        "APIs You Won't Hate",
+        "Show HN"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 247,
+      "idle": true,
+      "heading": "",
+      "none": true,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": false,
+      "notReady": true,
+      "decisions": false,
+      "angle": "",
+      "pricing": ""
+    }
+  },
+  "errors": [
+    "brand: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Choose this angle/ }).first()\n    - locator resolved to <button disabled type=\"but",
+    "commercial: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#lk-root main button').filter({ hasText: /Use this pricing/ }).first()\n    - locator resolved to <button disabled type=\"butt"
+  ],
+  "appstate_bytes": 290926,
+  "finished": "2026-09-30T22:06:24.522Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://club.ministryoftesting.com/t/postman-free-team-plans-are-going-away-what-postman-alternative-are-qa-teams-using/89234' from origin 'http://localhost:3400' has been blocked ",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://discuss.jsonapi.org/t/2026-update-postman-free-plan-limits-and-alternatives/1847' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Al",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Failed to load resource: the server responded with a status of 404 ()",
+    "console: Access to fetch at 'https://club.ministryoftesting.com/t/postman-free-team-plans-are-going-away-what-postman-alternative-are-qa-teams-using/88234' from origin 'http://localhost:3400' has been blocked ",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://discuss.jsonapi.org/t/2026-update-postman-free-plan-limits-and-alternatives/' from origin 'http://localhost:3400' has been blocked by CORS policy: No 'Access-Control-Allow-",
+    "console: Failed to load resource: net::ERR_FAILED",
+    "console: Access to fetch at 'https://community.postman.com/t/best-way-to-handle-api-collaboration-in-small-teams-on-postman-free-plan/' from origin 'http://localhost:3400' has been blocked by CORS policy: No '"
+  ]
+}

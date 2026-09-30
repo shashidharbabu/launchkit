@@ -1,0 +1,176 @@
+{
+  "name": "Hoppscotch",
+  "site": "https://hoppscotch.io",
+  "repo": "https://github.com/hoppscotch/hoppscotch",
+  "started": "2026-09-30T21:15:33.240Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 105,
+      "understandSecs": 99,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 148,
+      "dnaSecs": 82,
+      "anglesSecs": 61,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 181,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "3",
+        "3"
+      ],
+      "chosen": true,
+      "listingRedrafted": false,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 575,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 559,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 559,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 559,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 559,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 559,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 559,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        }
+      },
+      "parallelSecs": 559,
+      "approved": 5,
+      "blocked": [
+        "Approve the Product Hunt draft"
+      ],
+      "counts": "5 approved, 1 needs review",
+      "warnings": 6,
+      "repaired": 4
+    },
+    "assets": {
+      "ok": true,
+      "secs": 515,
+      "probe": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 67,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 73,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 31,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": false,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:backend and full-stack developers at standing desks and low-lit workstationsmultiple browser tabs and terminal windows glowing with JSON response bodies and status cod",
+      "fits": 4,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 94,
+      "redditRedrafted": true,
+      "ranked": 14,
+      "top5": [
+        "r/selfhosted",
+        "r/webdev",
+        "Show HN",
+        "APIs You Won't Hate",
+        "r/devops"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 295,
+      "idle": true,
+      "heading": "",
+      "none": true,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": false,
+      "notReady": true,
+      "decisions": true,
+      "angle": "Self-Host and Own It",
+      "pricing": "Current Pricing, Free plus paid tiers, annual billing, free plus paid tiers: Fre"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 299426,
+  "finished": "2026-09-30T21:48:17.281Z",
+  "page_errors": []
+}

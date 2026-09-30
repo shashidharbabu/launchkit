@@ -296,6 +296,9 @@ export function BrandStage() {
   if (!gate1) return <LockedGate />;
 
   const runningKind = running?.kind;
+  // a decision waits only for its own step: during the parallel research the angles are ready minutes before the
+  // demand search ends, and every choice stayed locked until it did (hoppscotch, 09-30)
+  const decisionBusy = (Boolean(runningKind) && !String(runningKind).endsWith(':all')) || isBusy('brand_campaigns');
   const dna = brandDna;
   const campaigns = asArr(brandCampaigns?.campaigns) as Campaign[];
   const chosenAngles = project.selected_campaigns ?? [];
@@ -463,7 +466,7 @@ export function BrandStage() {
                       c={c}
                       chosen={chosenAngles.includes(name)}
                       busy={busyName === name}
-                      disabled={Boolean(runningKind) || (busyName !== null && busyName !== name)}
+                      disabled={decisionBusy || (busyName !== null && busyName !== name)}
                       onToggle={() => toggle(name)}
                     />
                   );
