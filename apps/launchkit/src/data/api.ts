@@ -493,7 +493,11 @@ export const api = {
               url: r.url, why: (r.rescore as Dict | undefined)?.why,
             })),
             coverage_notes: result.coverage_notes,
-            queries: result.search_queries_used,
+            // only what was searched: cal-com's list held the finder's own tool calls ("memory.peek wave-2.r0
+            // results[2].url") beside its queries (09-29)
+            queries: Array.isArray(result.search_queries_used)
+              ? (result.search_queries_used as unknown[]).map(String).filter((q) => !/^memory\.|\bwave-\d+\.|\bresults\[\d+\]|\bjson\.items\b/.test(q))
+              : result.search_queries_used,
             // the tally is counted, not written: plausible's notes said "all 8 signals are GitHub issues from buyers"
             // while the relevance check rejected all eight (09-29)
             found: gated.length + dropped.length,
@@ -1173,10 +1177,20 @@ export const api = {
     const chosenSubs = targetRows.map((r) => r.data as Dict).filter((d) => String(d.kind ?? '') === 'subreddit').map((d) => String(d.name ?? ''));
     const reddit = byNewest(assetRows.filter((r) => r.asset_type === 'reddit_post'), 'version')[0];
     if (reddit && chosenSubs.length > 0) {
-      const venue = String((reddit.data as Dict).venue ?? '');
-      if (!chosenSubs.some((s) => s && s.toLowerCase() === venue.toLowerCase())) {
-        pending.push({ asset_type: 'reddit_post', state: 'venue',
-          note: `written for ${venue || 'no chosen subreddit'}; Targets selected ${chosenSubs.join(', ')}: redraft it for the subreddit you will post in` });
+      const onChosen = (row: Dict | undefined) => {
+        const v = String(((row?.data as Dict | undefined) ?? {}).venue ?? '');
+        return chosenSubs.some((s) => s && s.toLowerCase() === v.toLowerCase());
+      };
+      // the newest draft, approved or not: cal-com and plausible were told to redraft for the chosen subreddit when
+      // that redraft already existed and only waited for approval (09-29)
+      const newest = byNewest(select('assets', { project_id: id, asset_type: 'reddit_post' }), 'version')[0];
+      if (!onChosen(reddit)) {
+        const venue = String((reddit.data as Dict).venue ?? '');
+        pending.push(newest && newest.status !== 'approved' && onChosen(newest)
+          ? { asset_type: 'reddit_post', state: 'draft',
+              note: `the redraft for ${String((newest.data as Dict).venue)} is written; approve it to replace the one written for ${venue || 'no chosen subreddit'}` }
+          : { asset_type: 'reddit_post', state: 'venue',
+              note: `written for ${venue || 'no chosen subreddit'}; Targets selected ${chosenSubs.join(', ')}: redraft it for the subreddit you will post in` });
       }
     }
     const plan = buildPlan(

@@ -17,6 +17,8 @@ export const SLOP_SWAPS: ReadonlyArray<readonly [string, string]> = [
   ['in today\'s digital age', 'right now'],
   ['had the opportunity to', 'got to'],
   ['when it comes to', 'with'],
+  // banned outright for Product Hunt and Show HN and still written there (documenso, turn 3): a plain swap, not a blocker
+  ['genuinely', 'really'],
   ['a wide range of', 'many'],
   ['dive deep into', 'get into'],
   ['a testament to', 'proof of'],

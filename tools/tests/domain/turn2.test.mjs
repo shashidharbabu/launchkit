@@ -163,3 +163,23 @@ test('THREAD_PAT: a Lemmy thread and a Mastodon post are discussion threads; a L
   assert.ok(gates.THREAD_PAT.test('https://fosstodon.org/@someone/113245678901234567'));
   assert.ok(!gates.THREAD_PAT.test('https://lemmy.world/c/selfhosted'));
 });
+
+test('complianceBlankets: a security feature promised on both or every plan is caught (excalidraw E2EE)', () => {
+  const { complianceBlankets } = gates;
+  assert.equal(complianceBlankets('Every canvas is end-to-end encrypted, on both the free and Plus plans.').length, 1);
+  assert.equal(complianceBlankets('SSO and audit logs on every plan.').length, 1);
+  assert.equal(complianceBlankets('End-to-end encryption comes with the free plan.').length, 0);
+});
+
+test('competitorSwipes: a comparison that puts a rival behind a paid tier or a separate tool is a swipe (hoppscotch r/selfhosted)', () => {
+  const c = ['Postman', 'Insomnia'];
+  assert.equal(gates.competitorSwipes('Postman covers REST and GraphQL well; getting WebSocket, MQTT, or Server-Sent Events into the same workflow means a separate tool or a plan upgrade.', c).length, 1);
+  assert.equal(gates.competitorSwipes('Postman and Insomnia both handle REST and GraphQL; neither covers all six protocols in a single free interface without a paid tier or a separate client.', c).length, 1);
+  assert.equal(gates.competitorSwipes('Teams moving from Postman can import their collections in one step.', c).length, 0);
+});
+
+test('origin story: "every team we talked to" is a story the profile does not hold (documenso turn 3)', () => {
+  const ctx = gates.gateContext({ name: 'Documenso' }, '', '', { texts: [], competitors: [] });
+  const out = gates.gateAsset('producthunt', { first_comment: 'Every team we talked to wanted signing they could audit.', warnings: [], blockers: [] }, ctx);
+  assert.ok(out.blockers.some((b) => /origin story/i.test(b)), JSON.stringify(out.blockers));
+});

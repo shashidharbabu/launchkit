@@ -341,8 +341,9 @@ export function competitorNames(profile: unknown, pricing: unknown, appName = ""
 }
 
 // the words that turn a mention into a swipe (hoppscotch "Postman has become slow and paywalled",
-// dub "Bitly ... has no step that connects those clicks", documenso "DocuSign is a closed black box")
-const NEGATIVE = /\b(?:slow(?:er|s)?|sluggish|bloat(?:ed)?|heavy|clunky|paywall(?:s|ed)?|lock(?:s|ed)?[- ]?in|locks? (?:you|your|teams?)|closed|black box|expensive|overpriced|pric(?:ey|ier)|gouge[sd]?|shrinking|outdated|legacy|broken|fails?|failing|can(?:no|')t|does(?: not|n't)|lacks?|lacking|missing|has no|no (?:way|api|step)|forces?|forced|stuck|nickel-and-dimes?|charges? (?:you|for)|but)\b/i;
+// dub "Bitly ... has no step that connects those clicks", documenso "DocuSign is a closed black box"; a comparison
+// is a swipe too: hoppscotch's Reddit redraft said Postman needs "a separate tool or a plan upgrade", turn 3)
+const NEGATIVE = /\b(?:slow(?:er|s)?|sluggish|bloat(?:ed)?|heavy|clunky|paywall(?:s|ed)?|lock(?:s|ed)?[- ]?in|locks? (?:you|your|teams?)|closed|black box|expensive|overpriced|pric(?:ey|ier)|gouge[sd]?|shrinking|outdated|legacy|broken|fails?|failing|can(?:no|')t|does(?: not|n't)|lacks?|lacking|missing|has no|no (?:way|api|step)|forces?|forced|stuck|nickel-and-dimes?|charges? (?:you|for)|but|neither|nor|separate (?:tool|client|app|product)|(?:paid|higher|pricier)[- ]tier|(?:plan|paid) upgrade|upgrade to|without (?:a|an) (?:paid|upgrade|add-?on))\b/i;
 
 function escapeRe(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -374,13 +375,15 @@ export function replyWithoutSwipes(reply: string, competitors: string[]): string
 // An origin story the profile does not hold: GLOBAL_RULES forbids it and every turn still found one (cal-com
 // "We kept running into teams who... so we built Cal.com", khoj "so we built Khoj", documenso "I built Documenso
 // because", plausible "We kept running sites where the analytics setup had become its own project"). The gate catches the story's shapes; the repair pass removes them.
-const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) (?:running into|running (?:sites?|apps?|teams?|projects?|servers?|stores?)|hitting|seeing|watching|getting asked|fighting)\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b/i;
+const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) (?:running into|running (?:sites?|apps?|teams?|projects?|servers?|stores?)|hitting|seeing|watching|getting asked|fighting)\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b|\bevery (?:team|founder|customer|user|developer) (?:we|I) (?:talked|spoke) (?:to|with)\b/i;
 
 // A compliance standard with a blanket qualifier: documenso's drafts said HIPAA and 21 CFR Part 11 came "on all
 // plans, with no add-on fees" (09-29) while its docs mark both Enterprise only. A certification is sold with a
 // plan or an edition, so a sentence that promises it everywhere is a claim no source can back as written.
-const COMPLIANCE = /\b(?:HIPAA|SOC ?2|SOC ?1|21 CFR(?: Part 11)?|ISO ?27001|FedRAMP|PCI(?:[- ]DSS)?|GDPR|CCPA|HITRUST|eIDAS)\b/i;
-const BLANKET = /\b(?:(?:on|in|with|across) (?:all|every) (?:plans?|tiers?|editions?)|no (?:add-?ons?|extra (?:cost|fees?|charge)|separate (?:compliance )?(?:tier|plan)|upgrade)|without (?:add-?ons?|add-?on fees|an? (?:upgrade|add-?on))|out of the box|included by default|built[- ]in by default|at no (?:extra|additional) (?:cost|charge)|all included)\b/i;
+// security features are sold by plan the same way: excalidraw's listing promised end-to-end encryption "on both
+// the free and Plus plans" while its pricing page lists it on Free only (09-29)
+const COMPLIANCE = /\b(?:HIPAA|SOC ?2|SOC ?1|21 CFR(?: Part 11)?|ISO ?27001|FedRAMP|PCI(?:[- ]DSS)?|GDPR|CCPA|HITRUST|eIDAS|E2EE|end-to-end encrypt(?:ed|ion)|SSO|SAML|SCIM|audit logs?)\b/i;
+const BLANKET = /\b(?:(?:on|in|with|across) (?:all|every|both(?: the)? [\w+ ]{1,24}? and [\w+]{1,16}) (?:plans?|tiers?|editions?)|no (?:add-?ons?|extra (?:cost|fees?|charge)|separate (?:compliance )?(?:tier|plan)|upgrade)|without (?:add-?ons?|add-?on fees|an? (?:upgrade|add-?on))|out of the box|included by default|built[- ]in by default|at no (?:extra|additional) (?:cost|charge)|all included)\b/i;
 
 /** Sentences that pair a compliance standard with a promise that it comes on every plan. */
 export function complianceBlankets(text: string): string[] {
