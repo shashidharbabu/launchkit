@@ -292,6 +292,8 @@ await step('signals', async () => {
   const t = await text();
   await shot('7-signals.png');
   if (!w.idle || /Searching for demand\./.test(t)) throw new Error(`the scan was still running after ${w.secs} s`);
+  // a failed or never-finished scan is a failed stage: formbricks' timed out and was recorded ok (turn 3, 09-29)
+  if (/The search failed\.|Not searched yet\./.test(t)) throw new Error(`the scan did not finish: ${await failedLine() || 'no result after the click'}`);
   return { secs: w.secs, idle: w.idle, heading: (t.match(/\d+ signals?[^.]{0,80}/) || [''])[0].slice(0, 100), none: /No signals yet/.test(t), failed: await failedLine() };
 });
 

@@ -127,10 +127,24 @@ function SignalCard({ signal }: { signal: SignalRow }) {
 
 export function SignalsStage() {
   const { project, gate1, signals, running, runJob, failed, error } = useProject();
-  const searchFailed = failed === 'signals' && Boolean(error);
   // the last scan's report (queries, coverage, drop reasons), an empty result must be explainable
   const [meta, setMeta] = React.useState<Record<string, unknown> | null>(null);
+  // the stored run, not only this session's banner: formbricks' search timed out and the page, redrawn, said
+  // "Not searched yet" (turn 3, 09-29)
+  const [lastError, setLastError] = React.useState('');
+  const searchFailed = (failed === 'signals' && Boolean(error)) || Boolean(lastError);
   const projectId = project?.id;
+  React.useEffect(() => {
+    if (!projectId) return;
+    let alive = true;
+    api.jobs(projectId)
+      .then((rows) => {
+        const last = (rows as Array<{ kind: string; status: string; error?: string | null }>).find((r) => r.kind === 'signals');
+        if (alive) setLastError(last && last.status === 'error' ? String(last.error ?? 'the search failed') : '');
+      })
+      .catch(() => { if (alive) setLastError(''); });
+    return () => { alive = false; };
+  }, [projectId, signals.length, running?.kind]);
   React.useEffect(() => {
     if (!projectId) return;
     let alive = true;
@@ -206,7 +220,7 @@ export function SignalsStage() {
                   searching
                     ? 'The scan reads forums, Reddit, Hacker News and GitHub, then reads each thread it keeps. It takes up to ten minutes; results land here when it finishes.'
                     : searchFailed
-                    ? `${error} Search again; a second pass usually completes.`
+                    ? `${error || lastError} Search again; a second pass usually completes.`
                     : meta
                     ? "Nobody is publicly asking for what your app does right now; that's common before launch. Search again after your first posts, or widen the pain phrasing in your profile."
                     : 'Search to find people who are asking for what your app does right now.'
