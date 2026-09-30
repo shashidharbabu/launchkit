@@ -1,0 +1,393 @@
+{
+  "current": {
+    "apps": 10,
+    "bar": 3.5,
+    "stageMeans": {
+      "profile": 3.4,
+      "brand": 3,
+      "commercial": 2.4,
+      "social": 2.5,
+      "assets": 2.8,
+      "targets": 2.9,
+      "signals": 2.6,
+      "plan": 2.1
+    },
+    "stageMins": {
+      "profile": 2,
+      "brand": 2,
+      "commercial": 2,
+      "social": 2,
+      "assets": 2,
+      "targets": 2,
+      "signals": 1,
+      "plan": 2
+    },
+    "postMeans": {
+      "x_post": 3,
+      "linkedin_post": 2.8,
+      "reddit_post": 2.4,
+      "producthunt": 2.4,
+      "show_hn": 2.8,
+      "newsletter_pitch": 3.2
+    },
+    "overall": 2.71,
+    "severities": {
+      "blocker": 8,
+      "high": 54,
+      "medium": 128,
+      "low": 59
+    },
+    "timing": {
+      "driveMinMedian": 31.21,
+      "pipeMinMedian": 24.6,
+      "slowestApp": "formbricks",
+      "stageMinMedian": {
+        "profile": 1.65,
+        "brand": 2.15,
+        "commercial": 2.99,
+        "social": 9.75,
+        "assets": 8.37,
+        "targets": 1.54,
+        "signals": 4.17,
+        "plan": 0.07
+      }
+    },
+    "gates": {
+      "everyStageAtBar": false,
+      "noStageBelow2": false,
+      "postsAtBar": false,
+      "zeroBlockers": false
+    },
+    "barMet": false,
+    "perApp": {
+      "cal-com": {
+        "overall": 2.75,
+        "blockers": 1,
+        "driveMin": 35.18,
+        "failedStages": []
+      },
+      "continue": {
+        "overall": 2.75,
+        "blockers": 1,
+        "driveMin": 20.08,
+        "failedStages": []
+      },
+      "documenso": {
+        "overall": 2.88,
+        "blockers": 0,
+        "driveMin": 32.1,
+        "failedStages": []
+      },
+      "dub": {
+        "overall": 2.88,
+        "blockers": 0,
+        "driveMin": 29.85,
+        "failedStages": []
+      },
+      "excalidraw": {
+        "overall": 2.63,
+        "blockers": 2,
+        "driveMin": 27.48,
+        "failedStages": []
+      },
+      "formbricks": {
+        "overall": 2.75,
+        "blockers": 2,
+        "driveMin": 39.45,
+        "failedStages": []
+      },
+      "hack-judge": {
+        "overall": 2,
+        "blockers": 0,
+        "driveMin": 33.83,
+        "failedStages": [
+          "targets"
+        ]
+      },
+      "hoppscotch": {
+        "overall": 2.88,
+        "blockers": 1,
+        "driveMin": 20.9,
+        "failedStages": []
+      },
+      "khoj": {
+        "overall": 2.88,
+        "blockers": 0,
+        "driveMin": 30.32,
+        "failedStages": []
+      },
+      "plausible": {
+        "overall": 2.75,
+        "blockers": 1,
+        "driveMin": 33.73,
+        "failedStages": []
+      }
+    },
+    "unjudged": [],
+    "compared": {
+      "apps": 10,
+      "bar": 3.5,
+      "stageMeans": {
+        "profile": 3.4,
+        "brand": 3,
+        "commercial": 2.4,
+        "social": 2.5,
+        "assets": 2.8,
+        "targets": 2.9,
+        "signals": 2.6,
+        "plan": 2.1
+      },
+      "stageMins": {
+        "profile": 2,
+        "brand": 2,
+        "commercial": 2,
+        "social": 2,
+        "assets": 2,
+        "targets": 2,
+        "signals": 1,
+        "plan": 2
+      },
+      "postMeans": {
+        "x_post": 3,
+        "linkedin_post": 2.8,
+        "reddit_post": 2.4,
+        "producthunt": 2.4,
+        "show_hn": 2.8,
+        "newsletter_pitch": 3.2
+      },
+      "overall": 2.71,
+      "severities": {
+        "blocker": 8,
+        "high": 54,
+        "medium": 128,
+        "low": 59
+      },
+      "timing": {
+        "driveMinMedian": 31.21,
+        "pipeMinMedian": 24.6,
+        "slowestApp": "formbricks",
+        "stageMinMedian": {
+          "profile": 1.65,
+          "brand": 2.15,
+          "commercial": 2.99,
+          "social": 9.75,
+          "assets": 8.37,
+          "targets": 1.54,
+          "signals": 4.17,
+          "plan": 0.07
+        }
+      },
+      "gates": {
+        "everyStageAtBar": false,
+        "noStageBelow2": false,
+        "postsAtBar": false,
+        "zeroBlockers": false
+      },
+      "barMet": false,
+      "perApp": {
+        "cal-com": {
+          "overall": 2.75,
+          "blockers": 1,
+          "driveMin": 35.18,
+          "failedStages": []
+        },
+        "continue": {
+          "overall": 2.75,
+          "blockers": 1,
+          "driveMin": 20.08,
+          "failedStages": []
+        },
+        "documenso": {
+          "overall": 2.88,
+          "blockers": 0,
+          "driveMin": 32.1,
+          "failedStages": []
+        },
+        "dub": {
+          "overall": 2.88,
+          "blockers": 0,
+          "driveMin": 29.85,
+          "failedStages": []
+        },
+        "excalidraw": {
+          "overall": 2.63,
+          "blockers": 2,
+          "driveMin": 27.48,
+          "failedStages": []
+        },
+        "formbricks": {
+          "overall": 2.75,
+          "blockers": 2,
+          "driveMin": 39.45,
+          "failedStages": []
+        },
+        "hack-judge": {
+          "overall": 2,
+          "blockers": 0,
+          "driveMin": 33.83,
+          "failedStages": [
+            "targets"
+          ]
+        },
+        "hoppscotch": {
+          "overall": 2.88,
+          "blockers": 1,
+          "driveMin": 20.9,
+          "failedStages": []
+        },
+        "khoj": {
+          "overall": 2.88,
+          "blockers": 0,
+          "driveMin": 30.32,
+          "failedStages": []
+        },
+        "plausible": {
+          "overall": 2.75,
+          "blockers": 1,
+          "driveMin": 33.73,
+          "failedStages": []
+        }
+      },
+      "unjudged": []
+    },
+    "comparedOn": [
+      "cal-com",
+      "continue",
+      "documenso",
+      "dub",
+      "excalidraw",
+      "formbricks",
+      "hack-judge",
+      "hoppscotch",
+      "khoj",
+      "plausible"
+    ]
+  },
+  "previous": {
+    "apps": 10,
+    "bar": 3.5,
+    "stageMeans": {
+      "profile": 3.3,
+      "brand": 2.9,
+      "commercial": 2.2,
+      "social": 2.6,
+      "assets": 2.7,
+      "targets": 2.8,
+      "signals": 2.1,
+      "plan": 2.5
+    },
+    "stageMins": {
+      "profile": 2,
+      "brand": 2,
+      "commercial": 2,
+      "social": 2,
+      "assets": 2,
+      "targets": 2,
+      "signals": 1,
+      "plan": 2
+    },
+    "postMeans": {
+      "x_post": 3.1,
+      "linkedin_post": 3,
+      "reddit_post": 2.3,
+      "producthunt": 2.4,
+      "show_hn": 2.8,
+      "newsletter_pitch": 2.8
+    },
+    "overall": 2.64,
+    "severities": {
+      "blocker": 17,
+      "high": 58,
+      "medium": 134,
+      "low": 61
+    },
+    "timing": {
+      "driveMinMedian": 34.33,
+      "pipeMinMedian": 27.96,
+      "slowestApp": "plausible",
+      "stageMinMedian": {
+        "profile": 1.55,
+        "brand": 2.57,
+        "commercial": 3.19,
+        "social": 9.62,
+        "assets": 8.93,
+        "targets": 1.98,
+        "signals": 5.93,
+        "plan": 0.07
+      }
+    },
+    "gates": {
+      "everyStageAtBar": false,
+      "noStageBelow2": false,
+      "postsAtBar": false,
+      "zeroBlockers": false
+    },
+    "barMet": false,
+    "perApp": {
+      "cal-com": {
+        "overall": 2.75,
+        "blockers": 4,
+        "driveMin": 31.03,
+        "failedStages": []
+      },
+      "continue": {
+        "overall": 2.75,
+        "blockers": 2,
+        "driveMin": 34.8,
+        "failedStages": []
+      },
+      "documenso": {
+        "overall": 2.38,
+        "blockers": 2,
+        "driveMin": 50.27,
+        "failedStages": [
+          "targets"
+        ]
+      },
+      "dub": {
+        "overall": 2.75,
+        "blockers": 1,
+        "driveMin": 33.3,
+        "failedStages": []
+      },
+      "excalidraw": {
+        "overall": 2.5,
+        "blockers": 1,
+        "driveMin": 36.77,
+        "failedStages": []
+      },
+      "formbricks": {
+        "overall": 2.88,
+        "blockers": 1,
+        "driveMin": 66.68,
+        "failedStages": []
+      },
+      "hack-judge": {
+        "overall": 2.5,
+        "blockers": 3,
+        "driveMin": 33.85,
+        "failedStages": []
+      },
+      "hoppscotch": {
+        "overall": 2.5,
+        "blockers": 2,
+        "driveMin": 28.38,
+        "failedStages": []
+      },
+      "khoj": {
+        "overall": 2.38,
+        "blockers": 0,
+        "driveMin": 33.28,
+        "failedStages": []
+      },
+      "plausible": {
+        "overall": 3,
+        "blockers": 1,
+        "driveMin": 69.47,
+        "failedStages": []
+      }
+    },
+    "unjudged": []
+  },
+  "compare": "docs/eval-10-0929-t2"
+}
