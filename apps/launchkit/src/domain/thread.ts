@@ -71,9 +71,11 @@ export function staleThreadWhy(createdEpoch: number | null, nowEpochSeconds: num
 export const REPO_MIN_STARS = 20;
 export const REPO_MIN_AGE_DAYS = 30;
 
-export function untrustedRepoWhy(repo: { stargazers_count?: unknown; created_at?: unknown } | null,
+export function untrustedRepoWhy(repo: { stargazers_count?: unknown; created_at?: unknown; archived?: unknown } | null,
                                  nowEpochSeconds: number): string | null {
   if (!repo) return null;
+  // an archived repository is read-only: hack-judge kept a 2021 discussion in one archived in November 2025 (turn 3)
+  if (repo.archived === true) return "the repository is archived: nobody can reply there";
   const stars = Number(repo.stargazers_count ?? NaN);
   const created = Date.parse(String(repo.created_at ?? ""));
   const ageDays = Number.isFinite(created) ? Math.floor((nowEpochSeconds - created / 1000) / 86400) : NaN;

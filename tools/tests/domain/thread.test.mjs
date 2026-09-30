@@ -45,3 +45,9 @@ test('unreadThreadWhy: a gone page or an unfindable, unreadable thread is reject
   assert.match(unreadThreadWhy('not in the search index; page HTTP 503'), /cannot be shown to exist/);
   assert.equal(unreadThreadWhy('HTTP 403 for https://api.github.com/repos/a/b/issues/1'), null);
 });
+
+test('untrustedRepoWhy: an archived repository is never evidence, however many stars it has', () => {
+  const { untrustedRepoWhy } = require('./.build/domain/thread.js');
+  assert.match(untrustedRepoWhy({ stargazers_count: 5000, created_at: '2019-01-01T00:00:00Z', archived: true }, Date.now() / 1000), /archived/);
+  assert.equal(untrustedRepoWhy({ stargazers_count: 5000, created_at: '2019-01-01T00:00:00Z', archived: false }, Date.now() / 1000), null);
+});
