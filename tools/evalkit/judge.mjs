@@ -36,6 +36,21 @@ const prompt = (slug) => template.replaceAll('{{ROOT}}', ROOT).replaceAll('{{DIR
 // the judge reads, fetches the live site, and writes exactly one file
 const TOOLS = ['Read', 'Glob', 'Grep', 'WebFetch', 'WebSearch', `Write(${dir}/**/judged.json)`, 'Bash(python3:*)', 'Bash(curl:*)'];
 
+/** The last JSON object in a judge's output that has the brief's shape (scores for all eight stages, issues). */
+export function lastVerdict(text) {
+  const blocks = [...text.matchAll(/```json\s*([\s\S]*?)```/g)].map((m) => m[1]);
+  const i = text.lastIndexOf('{\n  "slug"');
+  if (i >= 0) blocks.push(text.slice(i));
+  for (const raw of blocks.reverse()) {
+    try {
+      const v = JSON.parse(raw.trim());
+      const stages = ['profile', 'brand', 'commercial', 'social', 'assets', 'targets', 'signals', 'plan'];
+      if (v && v.scores && stages.every((k) => Number.isFinite(v.scores[k])) && Array.isArray(v.issues)) return v;
+    } catch { /* not this block */ }
+  }
+  return null;
+}
+
 function judge(slug) {
   return new Promise((resolve) => {
     const t0 = Date.now();
@@ -45,7 +60,13 @@ function judge(slug) {
     child.stderr.on('data', (b) => { out += b; });
     child.on('close', (code) => {
       writeFileSync(path.join(dir, slug, 'judge.log'), out);
-      const ok = existsSync(path.join(dir, slug, 'judged.json'));
+      // the judge returns its verdict as its final message; when its own write was refused, keep it from there
+      const target = path.join(dir, slug, 'judged.json');
+      if (!existsSync(target)) {
+        const verdict = lastVerdict(out);
+        if (verdict) writeFileSync(target, JSON.stringify(verdict, null, 2));
+      }
+      const ok = existsSync(target);
       console.log(`${ok ? 'JUDGED' : 'NO_VERDICT'} ${slug} in ${Math.round((Date.now() - t0) / 60000)} min (exit ${code})`);
       resolve(ok);
     });
