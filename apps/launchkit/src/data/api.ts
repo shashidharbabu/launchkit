@@ -630,10 +630,10 @@ export const api = {
       competitors: competitorNames(profile, pricing, appName),
     });
     // one ask, then the gate: the hard failures (a cap, a shape, a link where none is allowed) come back named
-    const draftOnce = async (fb: string, prevDraft: string) => {
+    const draftOnce = async (fb: string, prevDraft: string, attempts = 3) => {
       const result = await ask('lk_assets.pipe',
         buildAssetQuestion(asset_type, profile, target, '', fb, brandDna, rules,
-          { commercial: commercialCtx, campaign: campaignCtx, previousDraft: prevDraft }));
+          { commercial: commercialCtx, campaign: campaignCtx, previousDraft: prevDraft }), { attempts });
       const changed = punctuationFixed(result);
       // the banned launch verb is swapped in the draft itself (never in quoted or observed text elsewhere)
       const swapped = sanitizeVerbs(result as Dict);
@@ -662,7 +662,8 @@ export const api = {
           const harder = attempt === 2 ? ' The previous attempt did not cut enough: this time delete a whole sentence or a whole paragraph, not words inside sentences.' : '';
           const note = `REPAIR: the draft failed these hard checks: ${left.map(repairHint).join('; ')}. Fix exactly these and keep everything else as it is. Count the words and characters yourself before answering; over-length text is cut by deleting whole sentences, never excused in a warning.${harder}` + (feedback ? ` The builder's earlier feedback still applies: ${feedback}` : '');
           try {
-            const again = await draftOnce(note, compact(gated, 3500));
+            // one try: a draft already stands, and a failed repair keeps its blockers for the builder
+            const again = await draftOnce(note, compact(gated, 3500), 1);
             if (overage(again) < overage(gated)) {
               // repaired lists only what no longer fires; documenso 09-29 had fixes recorded that were not made
               const left = new Set((Array.isArray(again.blockers) ? (again.blockers as string[]) : []).map(checkOf));

@@ -229,10 +229,13 @@ async function askOnce(pipeName: string, questionText: string): Promise<Dict> {
   }
 }
 
-/** rr.ask: three bounded attempts on engine-side "LLM error" flakiness. */
-export async function ask(pipeName: string, questionText: string): Promise<Dict> {
+/** rr.ask: three bounded attempts on engine-side "LLM error" flakiness. `attempts: 1` is for a best-effort call
+ *  whose caller already holds a usable answer, such as a repair pass: a Product Hunt repair that failed its JSON
+ *  three times held six parallel drafts for 555 s while the other five had finished in under 2 minutes (09-30). */
+export async function ask(pipeName: string, questionText: string, opts: { attempts?: number } = {}): Promise<Dict> {
   let last: Error | null = null;
-  for (const attempt of [1, 2, 3]) {
+  const tries = [1, 2, 3].slice(0, Math.max(1, Math.min(3, opts.attempts ?? 3)));
+  for (const attempt of tries) {
     try {
       return await askOnce(pipeName, questionText);
     } catch (e) {
@@ -243,7 +246,7 @@ export async function ask(pipeName: string, questionText: string): Promise<Dict>
       const unparsed = /did not parse|Python literal|no JSON object|Unexpected token|Unterminated string/i.test(msg);
       if (!msg.includes('LLM error') && !(unparsed && attempt === 1)) throw e;
       last = err;
-      if (attempt < 3) await new Promise((r) => setTimeout(r, 2000));
+      if (attempt < tries.length) await new Promise((r) => setTimeout(r, 2000));
     }
   }
   throw last ?? new Error('ask failed');
