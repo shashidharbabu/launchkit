@@ -1,0 +1,218 @@
+{
+  "slug": "plausible",
+  "scores": {"profile": 4, "brand": 3, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 2, "linkedin_post": 2, "reddit_post": 2, "producthunt": 3, "show_hn": 1, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The profile records Plausible's prices without the traffic cap they depend on; the live site sells traffic-based plans and $9 is the 10k-pageview step only.",
+      "evidence": "profiles[0].data.pricing_current: \"Starter: $9/month or $90/year ... 1 site, 3 years data retention.\" Live site plausible.io/#pricing: \"Traffic based plans that match your growth ... Up to 10k monthly pageviews\"",
+      "systemic": true,
+      "cause_hint": "understand/profile pipe prompt: pricing extraction keeps tier prices but drops the usage axis (slider value) from the scraped pricing block"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The chosen angle's hook is an invented first-person event that the site never records, and it flows straight into the X and LinkedIn posts and their card images.",
+      "evidence": "brand_campaigns 'No Cookies, No Banners'.hook: \"We removed our cookie banner and our GDPR compliance got better, not worse.\"",
+      "systemic": true,
+      "cause_hint": "brand campaigns pipe: hook generation is not bound by GLOBAL_RULES 'Never invent an origin story ... the moment that made you build it'"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "A second angle's hook invents a number and a team experience.",
+      "evidence": "brand_campaigns 'One Dashboard, One Minute'.hook: \"GA4 took our team three weeks to configure. Plausible took one minute.\"",
+      "systemic": true,
+      "cause_hint": "brand campaigns pipe: no invented-metric gate on hooks and sample_copy"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Brand DNA records no colours or fonts although the site's logo and computed styles give an indigo palette (the assets probe found it later).",
+      "evidence": "brand_dna.visual.colors: [] with note \"Scrape returned markdown without CSS or HTML styling\"; studio probe observed.primary \"#909cf7\" (\"the site logo's own colour\"), accent \"#4b38d8\"",
+      "systemic": true,
+      "cause_hint": "brand DNA pipe reads Firecrawl markdown only; it does not reuse the studio probe's computed palette"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The pricing analysis compares Plausible's 10k-pageview price with rivals' 100k-pageview prices and concludes a 40 to 55 percent undercut that does not hold (Plausible Starter at 100k pageviews is $19, above Fathom's $15).",
+      "evidence": "pricing.recommendation.positioning_note: \"Plausible underprices peers by 40-55% at entry\"; tier rationale: \"At $9/mo vs Fathom $15/mo (100k pageviews) and Simple Analytics $20/mo (100k pageviews), Starter is the clear value leader.\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe: competitor tiers carry key_limits but the app's own tiers carry none, so the market_rate comparison is not normalised by usage"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The pricing stage states Plausible uses flat-seat pricing, the opposite of the site's traffic-based plans.",
+      "evidence": "pricing.models_considered[usage-based].why: \"Plausible's current flat-seat pricing is simpler and avoids bill-shock for high-traffic sites.\"",
+      "systemic": true,
+      "cause_hint": "follows from the profile's missing pageview axis; pricing prompt does not re-read the app's own pricing page"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Fathom's tier names are invented: Fathom sells one plan on a pageview slider, and the repositioning option claims to 'match' tiers that differ by pageviews while Plausible's differ by sites and features.",
+      "evidence": "pricing.competitors[Fathom].tiers: \"Starter\" $15, \"Growth\" $25, \"Scale\" $45; options[2].market_rate_note: \"these prices match Fathom's published Starter, Growth, and Scale tiers exactly\". usefathom.com/pricing: \"$15/month Up to 100,000 monthly pageviews $25/month Up to 200,000 monthly pageviews $45/month Up to 500,000\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe competitor scrape: names slider steps as tiers"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing's pricing FAQ presents the entry prices as the whole price, with no pageview limit, so a reader with real traffic is misled.",
+      "evidence": "listing.faq 'How does pricing work?': \"Starter is $9/month (1 site, 3 years data retention). Growth is $14/month ...\"",
+      "systemic": true,
+      "cause_hint": "listing pipe inherits profile.pricing_current"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The approved X and LinkedIn posts open with the invented claim that the team removed its cookie banner; the X warning even admits it is not a documented event, yet the post was approved.",
+      "evidence": "assets x_post v1 (approved).post: \"We removed our cookie banner and our GDPR compliance got better, not worse.\"; warnings[0]: \"APP_PROFILE does not record this as a documented event for the Plausible team specifically\"",
+      "systemic": true,
+      "cause_hint": "social gate has no check for invented first-person events taken from the campaign hook; the warning is advisory and does not block approval"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "LinkedIn turns 21,000 paying subscribers into 21,000 site owners who dropped their cookie banners, a claim the site never makes.",
+      "evidence": "linkedin_post.post: \"21,000 site owners are already running without a banner.\"; alt_hook: \"21,000 site owners dropped their cookie banners and stayed fully GDPR compliant.\"",
+      "systemic": true,
+      "cause_hint": "linkedin drafting prompt: proof point reframed to fit the angle; no gate compares reworded figures to proof_points"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The newest Reddit draft (r/selfhosted) frames an eight-year-old open-source product as a fresh open-sourcing, breaking the release-not-debut rule.",
+      "evidence": "reddit_post v2.title: \"We open sourced our web analytics under AGPLv3, runs in Docker, no cookies set\" (repo created 2018-12-04)",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts release-not-debut rule exists for X but is not applied to reddit_post titles"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit redraft re-introduces a negative framing of GA4 that the gate removed from the first draft, and adds an unverified footprint comparison with Matomo.",
+      "evidence": "reddit_post v2.body: \"Google Analytics 4 processes visitor data on Google's servers and sets cookies, which makes a consent banner a legal requirement under GDPR.\" and \"The CE is a lighter footprint if you don't need Matomo's full feature set.\"",
+      "systemic": true,
+      "cause_hint": "competitor-negative gate pattern matched v1 wording (\"no path to GDPR complia\") but not v2; comparative-claim check absent"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Show HN draft leaves two blockers unresolved, keeps a builder placeholder in the body, invents self-hoster feedback, and pitches a repeat Show HN without naming any major change.",
+      "evidence": "show_hn.blockers: \"{APP_URL} inside a sentence\", \"An origin story APP_PROFILE does not hold ... (\\\"so we built\\\")\"; body: \"[Builder: one sentence on the founding moment if you want to add it.]\" and \"some self-hosters find it heavy to run alongside Postgres\"",
+      "systemic": true,
+      "cause_hint": "show_hn drafting after two rewrites; the repeat-Show-HN opener in rulebooks.ts (line 245) was not used; mechanical paragraph drop instead of rewrite"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN and Product Hunt copy still grade the competitor or the category, against GLOBAL_RULES and the HN rule on prior art.",
+      "evidence": "show_hn.body: \"GA4 is complex and requires a consent banner in most jurisdictions.\"; producthunt.first_comment: \"GDPR compliance is a configuration problem for most analytics tools, not a design decision.\"",
+      "systemic": true,
+      "cause_hint": "competitor gate keys on named 'Google' strings; category-level swipes pass"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Product Hunt's maker comment asserts an unsupported behavioural claim about site owners.",
+      "evidence": "producthunt.first_comment: \"Site owners who want simple traffic data spend more time managing cookie consent than reading their stats.\"",
+      "systemic": true,
+      "cause_hint": "PH drafting prompt; no gate for invented generalisations"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter pitch carries a source citation into the copy, a sentence no editor would send.",
+      "evidence": "newsletter_pitch.pitch: \"The product has 21,000 paying subscribers, tracked on the Plausible homepage.\"",
+      "systemic": true,
+      "cause_hint": "repair for 'Pitch under 100 words' padded with the proof_points source tag"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Warnings shown to the builder include gate self-narration rather than gaps.",
+      "evidence": "x_post.warnings[6]: \"warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\\\"has been removed\\\")\"",
+      "systemic": true,
+      "cause_hint": "gate appends its own findings to the warnings list shown in the UI"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The reel script ships truncated and template text on screen: a clipped chip, a clipped brand line, and generic load beats with no product numbers.",
+      "evidence": "studio script.slots: \"chip_1\": \"PRIVACY-FRIE\", \"drop_line\": \"NO COOKIES. JUST.\", \"load_n1\": \"MANY\", \"load_l1\": \"PAGES TRACKED\", \"load_n2\": \"ONE\", \"load_l2\": \"PERSON\", \"load_n3\": \"NOW\", \"load_l3\": \"NO CLEAR DATA\"; clamped: [\"load_l2\",\"cost_line\",\"drop_line\",\"chip_1\"]",
+      "systemic": true,
+      "cause_hint": "studio script clamp truncates by character count instead of redrafting; 'verdict' concept load beat forces scenario numbers the profile does not hold"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "A doubt beat asks 'who visited your site', a question a privacy tool that identifies no individual visitor is designed not to answer.",
+      "evidence": "studio script.slots.doubt_1: \"WHO VISITED YOUR SITE?\"",
+      "systemic": true,
+      "cause_hint": "verdict concept doubt slots filled generically, not checked against the product's claims"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The X and LinkedIn post images carry the invented cookie-banner hook as their headline.",
+      "evidence": "studio kit.images[x].headline: \"We removed our cookie banner and our GDPR compliance got better, not worse. ...\"",
+      "systemic": true,
+      "cause_hint": "kit cards copy the approved post's first line"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "On the poster the dark navy logo wordmark sits on a near-black canvas and is barely legible, and the name appears twice.",
+      "evidence": "poster.jpg: logo wordmark 'Plausible' in dark ink above a large 'PLAUSIBLE' on canvas #040509 (reel vars.canvas)",
+      "systemic": true,
+      "cause_hint": "reel lockup uses the light-surface logo on the dark canvas without a contrast check"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Every venue's rules are unverified, including r/privacy, which is selected although the sub is known to restrict self-promotion.",
+      "evidence": "targets rank 3 r/privacy selected: true, rules_summary: \"not verified: read https://old.reddit.com/r/privacy/about/rules before posting\"; targets_meta.confidence.notes: \"all Reddit rules unverified due to scraper limits\"",
+      "systemic": true,
+      "cause_hint": "targets pipe scraper budget; selection does not weigh unverified self-promotion rules"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "No newsletter venue was found although a newsletter pitch was drafted.",
+      "evidence": "targets_meta.confidence.notes: \"newsletter slot left unfilled due to no results\"",
+      "systemic": true,
+      "cause_hint": "targets pipe newsletter search query"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The empty-state copy says nobody is asking and calls it common before launch, while the scan report shows the search was cut short by budget and the product launched in 2019.",
+      "evidence": "7-signals.png: \"Nobody is publicly asking for what your app does right now; that's common before launch.\"; signals_meta.coverage_notes: \"PASS C ... not reached, budget exhausted at 9 calls ... Reddit not searchable\"",
+      "systemic": true,
+      "cause_hint": "signals UI empty state ignores coverage_notes and maturity.stage; signals pipe call budget"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan's open-items text is stale: it says Reddit was written for no chosen subreddit while a newer r/selfhosted draft exists (unapproved).",
+      "evidence": "8-plan.png: \"Reddit, written for no chosen subreddit; Targets selected r/selfhosted, r/webdev, r/privacy: redraft it for the subreddit you will post in.\"; assets reddit_post v2 venue: \"r/selfhosted\", status \"draft\"",
+      "systemic": true,
+      "cause_hint": "plan readiness reads the approved reddit row, not the newest row"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan carries a Product Hunt tracked link although Targets ranked Product Hunt tenth, did not select it, and said a repeat launch needs a major new version; Show HN, drafted, is absent.",
+      "evidence": "8-plan.png tracked links: \"Product Hunt platform lk_platform_product_hunt\"; targets rank 10 Product Hunt selected false, why_fit: \"repeat submission only justified by a major new version or feature\"",
+      "systemic": true,
+      "cause_hint": "plan adds every approved post's platform as a venue regardless of the Targets verdict"
+    }
+  ],
+  "best": "The profile: accurate against plausible.io, the README and the repo (21k subscribers, 313B pageviews, 29,259 stars, AGPLv3, CE limits, team of 10 since 2018), with an honest 0.8 confidence and a real /pricing 404 noted.",
+  "worst": "Social: the approved X and LinkedIn posts lead with an invented 'we removed our cookie banner' event, the Reddit redraft pitches an eight-year-old codebase as newly open-sourced, and the Show HN draft has two unresolved blockers, a placeholder and invented self-hoster feedback.",
+  "notes": "Newest rows judged: reddit_post v2 (r/selfhosted, draft) for the Reddit score. The pricing fault starts in the profile (no pageview axis) and propagates into a wrong market comparison and a 'flat-seat' claim. The gates caught named-Google comparisons but not invented first-person events, category swipes, or reworded proof points. Reel was correctly left unapproved. Signals kept none; both rejections (Seven, doorbell) are correct builder rejections."
+}

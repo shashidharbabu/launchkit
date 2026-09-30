@@ -1,0 +1,167 @@
+{
+  "name": "Khoj",
+  "site": "https://khoj.dev",
+  "repo": "https://github.com/khoj-ai/khoj",
+  "started": "2026-09-30T07:38:26.789Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 127,
+      "understandSecs": 111,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 114,
+      "dnaSecs": 55,
+      "anglesSecs": 55,
+      "angles": 5,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 85,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "0",
+        "0"
+      ],
+      "chosen": true,
+      "listingRedrafted": false,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 615,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 31,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 25,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 124,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 67,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 49,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 6,
+      "blocked": [],
+      "counts": "",
+      "warnings": 6,
+      "repaired": 3
+    },
+    "assets": {
+      "ok": true,
+      "secs": 512,
+      "probe": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 61,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 22,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 85,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": false,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a researcher's home server rack glowing in a dim studystacks of annotated PDFs and printed research papersa terminal window open with a self-hosted Docker container ru",
+      "fits": 4,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 88,
+      "redditRedrafted": true,
+      "ranked": 12,
+      "top5": [
+        "GitHub khoj-ai/khoj Discussions",
+        "docs.khoj.dev",
+        "r/selfhosted",
+        "r/LocalLLaMA",
+        "r/ObsidianMD"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 274,
+      "idle": true,
+      "heading": "1 signal found: 1 in the queue (1 verified, 0 unverified)",
+      "none": false,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": false,
+      "notReady": true,
+      "decisions": true,
+      "angle": "Keep Your Second Brain",
+      "pricing": "No Pricing (Sunset State), free plus paid tiers: Self-Hosted (Free) $0/mo"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 259979,
+  "finished": "2026-09-30T08:09:40.309Z",
+  "page_errors": []
+}

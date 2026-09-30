@@ -1,0 +1,1527 @@
+{
+ "slug": "documenso",
+ "name": "Documenso",
+ "site": "https://documenso.com",
+ "repo": "https://github.com/documenso/documenso",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 89,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 148,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 223,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 933,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 200,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 169,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 160,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Open-source DocuSign alternative for teams and developers, self-hostable e-signatures with API, templates, and embedded signing",
+   "description": "Documenso is an open-source electronic signature platform that lets individuals, teams, and developers send, sign, and manage documents at any scale. It offers a hosted SaaS product with a free tier, paid plans, and an Enterprise license, as well as self-hosted deployment on your own infrastructure. Built for transparency and trust, the source code is publicly auditable under AGPLv3.",
+   "category": "E-Signature / Document Signing",
+   "target_user": "SaaS founders, engineering teams, and operations leads who need to embed or automate document signing in their product or workflows",
+   "icp": {
+    "who": "Growth-stage SaaS companies and developer teams that send contracts, NDAs, or onboarding documents at volume and want API-driven or embeddable signing without DocuSign pricing",
+    "pain": "DocuSign and HelloSign are expensive at scale, opaque in how they handle data, and hard to embed natively into a product without heavy vendor lock-in",
+    "current_alternatives": [
+     "DocuSign",
+     "HelloSign",
+     "PandaDoc",
+     "Adobe Acrobat Sign"
+    ],
+    "buying_trigger": "Team hits DocuSign's per-envelope cost ceiling, needs to embed signing inside their own app, or requires self-hosted deployment for compliance reasons"
+   },
+   "differentiators": [
+    "Fully open-source (AGPLv3), source code is publicly auditable and self-hostable, positioning Documenso as a trust-first alternative to closed signing tools (README.md)",
+    "Embedded signing with whitelabel support available on the Platform plan ($3,000 billed yearly), enabling builders to deliver a native signing experience inside their own app (documenso.com/pricing)",
+    "API-first architecture with tRPC and REST API for automating document creation, sending, and user management at any scale (documenso.com home, README.md)",
+    "21 CFR Part 11 compliance supported, as evidenced by the Vial Inc. customer story published on documenso.com/blog/announcing-vial-21-cfr-part-11"
+   ],
+   "proof_points": [
+    "15,266 GitHub stars as of repo metadata (github.com/documenso/documenso)",
+    "Product Hunt Top Post badge and Featured badge (README.md)",
+    "Testimonial from Nitin Gupta, COO of Prisma Inc.: 'Documenso has streamlined our digital signing process, making it faster, secure, and incredibly user-friendly. It's been a game-changer for our team, partners, and customers!' (documenso.com home)",
+    "Testimonial from Simon Burns, Co-Founder & CEO of Vial Inc.: 'It has been great working with Documenso! The team built an amazing product fitting our needs. They really get what it means to build for enterprise.' (documenso.com home)",
+    "Logo carousel of fast-growing company customers visible on documenso.com home (company names not readable from image URLs)"
+   ],
+   "tech_stack": [
+    "TypeScript",
+    "React Router v7",
+    "Hono",
+    "Prisma",
+    "Tailwind CSS",
+    "shadcn/ui + Radix UI",
+    "tRPC",
+    "react-email",
+    "Lingui (i18n)",
+    "@libpdf/core (PDF signatures)",
+    "pdf.js",
+    "@cantoo/pdf-lib",
+    "Stripe",
+    "Playwright (E2E testing)",
+    "PostgreSQL",
+    "Docker"
+   ],
+   "pricing_current": "Free: $0 forever, 5 documents/month, up to 10 recipients/document. Individual: $300 billed yearly. Teams: $480 billed yearly, includes 5 users, additional users $8/month. Platform: $3,000 billed yearly, unlimited documents and users, whitelabel embedded signing. Enterprise: contact for custom pricing (cloud or self-hosted). Self-hosted licensing: separate plans at documenso.com/self-hosted.",
+   "voice": {
+    "tone": [
+     "transparent",
+     "mission-driven",
+     "developer-friendly",
+     "direct",
+     "community-oriented"
+    ],
+    "sample_phrase": "Signing documents digitally should be fast and easy and should be the best practice for every document signed worldwide."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "Live SaaS product with four paid tiers and a free plan at documenso.com/pricing",
+     "15,266 GitHub stars and 3,293 forks as of September 2026",
+     "Paying enterprise customers including Prisma Inc. and Vial Inc. with published testimonials",
+     "Active repository with commits as recently as September 30, 2026",
+     "Product Hunt Top Post and Featured badges (README.md)"
+    ]
+   },
+   "gaps": [
+    "External pull requests are no longer accepted from the general public; contributions are limited to a small group of trusted contributors the team reaches out to directly (README.md: 'We no longer accept external pull requests, aside from a small group of trusted contributors we reach out to directly')",
+    "Teams plan charges $8/month per additional user beyond the 5 included (documenso.com/pricing)",
+    "Whitelabel embedded signing is only available on the Platform plan ($3,000 billed yearly) and above, not on Free, Individual, or Teams plans (documenso.com/pricing)"
+   ],
+   "site_gaps": [],
+   "unverified": [
+    "SOC2 and HIPAA compliance details, footer links to documen.so/trust which was not scraped; which plan or edition these apply to is unknown",
+    "Self-hosted licensing tiers and pricing, documenso.com/self-hosted was not scraped",
+    "Exact company names in the customer logo carousel on documenso.com home (images only, no readable alt text)",
+    "Which specific plan includes 21 CFR Part 11 compliance, only inferred from the Vial Inc. blog post, not stated on the pricing page"
+   ],
+   "confidence": {
+    "overall": 0.82,
+    "notes": "All three primary sources (README.md, documenso.com, documenso.com/pricing) were read successfully. Confidence is capped below 0.85 because documen.so/trust (SOC2/HIPAA details) and documenso.com/self-hosted (self-hosted licensing) were not scraped, leaving compliance plan attribution and self-hosted pricing unverified."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Tech stack, mission, self-hosting, contribution policy, Product Hunt badges"
+    },
+    {
+     "source": "https://documenso.com/",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Homepage copy, testimonials, features, API overview, logo carousel"
+    },
+    {
+     "source": "https://documenso.com/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "All four plan tiers with prices, features, and billing cadence"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Documenso",
+   "tagline_observed": "Enterprise-Grade E-Signatures. For Everyone.",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "transparent",
+     "confident",
+     "developer-oriented",
+     "pragmatic"
+    ],
+    "sentence_style": "Short declaratives and imperatives, second person, no jargon, technical specifics stated plainly",
+    "vocabulary": [
+     "signing backend",
+     "open source",
+     "fully compliant",
+     "embedded signing",
+     "self-hosted",
+     "enterprise-grade",
+     "frictionless",
+     "direct link",
+     "fair-use",
+     "builders"
+    ],
+    "avoid": [
+     "vague benefit language without specifics",
+     "hype-driven superlatives",
+     "passive voice",
+     "corporate legalese",
+     "buzzword stacking without grounding"
+    ],
+    "evidence_quotes": [
+     "Documenso is open source and we share our code, designs and metrics.",
+     "We are your signing backend. Leverage our API to power our automate your case at any scale.",
+     "Signing simple documents should be easy, and signing complex documents should be easy as well.",
+     "Fully compliant signatures out of the box. Ready to use or ready to be built upon."
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Enterprise-grade e-signatures available to everyone, from casual signers to large organizations",
+     "Open-source and self-hostable: full transparency over code, data, and compliance",
+     "API-first signing backend for builders who need to embed or automate document workflows",
+     "Fully compliant out of the box, ESIGN, UETA, 21 CFR Part 11, SOC2, HIPAA"
+    ],
+    "key_messages": [
+     "Enterprise-Grade E-Signatures. For Everyone.",
+     "Fully compliant signatures out of the box. Ready to use or ready to be built upon.",
+     "We are your signing backend. Leverage our API to power our automate your case at any scale.",
+     "Documenso is open source and we share our code, designs and metrics.",
+     "Signing for every scale. Powered by our Fair-Use-Policy."
+    ],
+    "proof_points_observed": [
+     "Trusted by fast-growing companies around the world.",
+     "21 CFR Part 11 compliant (evidenced by Vial Inc. customer story on site)",
+     "Testimonial from Nitin Gupta, COO Prisma Inc.: 'Documenso has streamlined our digital signing process, making it faster, secure, and incredibly user-friendly.'",
+     "Testimonial from Simon Burns, Co-Founder & CEO Vial Inc.: 'The team built an amazing product fitting our needs. They really get what it means to build for enterprise.'",
+     "Free plan available with no credit card required",
+     "The team releases fast and feature improvements are always coming!"
+    ]
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links were observed in the content."
+    },
+    "imagery_style": "screenshots",
+    "logo_url": ""
+   },
+   "audience_language": "The site speaks directly to builders and teams in plain, confident terms, addressing them as capable decision-makers who want control, compliance, and speed without vendor lock-in.",
+   "dos_and_donts": {
+    "do": [
+     "Lead with transparency and openness, cite open source, shared metrics, and auditable code",
+     "Use short, direct statements that name the concrete benefit (e.g. 'one link away', 'out of the box')",
+     "Address developers and builders specifically, reference API, embedding, self-hosting",
+     "Ground compliance claims in named standards (ESIGN, UETA, 21 CFR Part 11)",
+     "Speak to scale without hyperbole, 'at any scale' is used, not 'unlimited power'"
+    ],
+    "dont": [
+     "Don't use vague adjectives without grounding (the site avoids unanchored claims)",
+     "Don't hide pricing or data practices, the brand explicitly shares code, designs, and metrics",
+     "Don't use passive voice or corporate hedging",
+     "Don't position against named rivals negatively, the site states what Documenso does, not what others fail at",
+     "Don't omit the open-source angle, it is central to the brand's trust argument"
+    ]
+   },
+   "sources_read": [
+    "https://documenso.com/",
+    "https://documenso.com/pricing"
+   ],
+   "confidence": {
+    "overall": 0.72,
+    "notes": "Colors array is empty because the scrape returned markdown without inline styles, CSS variables, or hex values, no color codes could be observed. Typography is empty for the same reason. Logo URL is empty: the nav logo is rendered as text/link with no observable img src in the markdown output; a footer image (trust badge) was present but is not the brand logo. A third page (documenso.com/open-signing-is-the-future) returned 404 and was not counted. SOC2 and HIPAA plan attribution, and self-hosted licensing details, were not scraped."
+   },
+   "punctuation_fixed": 1
+  },
+  "angles": [
+   {
+    "name": "Your Signing Backend",
+    "objective": "signups, drive developer sign-ups by positioning Documenso as the API layer teams drop into their own product",
+    "big_idea": "Builders who embed signing into their app don't want a vendor's UI in the way. This campaign leads with the API-first angle: Documenso is infrastructure, not a portal. A short Show HN post and a companion video walkthrough show exactly how to go from zero to embedded signing in one session.",
+    "hook": "We built the signing backend so you don't have to.",
+    "channels": [
+     "Hacker News",
+     "GitHub",
+     "YouTube / Loom"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of new API key activations in the 14 days after the Show HN post goes live"
+   },
+   {
+    "name": "Open by Default",
+    "objective": "community, grow the open-source community and brand trust by making Documenso's transparency a recurring public ritual",
+    "big_idea": "Once a month, publish a short 'open metrics' post: what released, what the numbers look like, what's next. No spin, no marketing gloss, just the data, in the brand's own words. Shared on X and LinkedIn, it reinforces the 'we share our code, designs and metrics' promise and gives followers a reason to keep watching.",
+    "hook": "We share our code, our designs, and our metrics. Here's this month's numbers.",
+    "channels": [
+     "X (Twitter)",
+     "LinkedIn",
+     "Documenso blog"
+    ],
+    "effort": "small",
+    "success_metric": "Blog post unique visitors per monthly edition, tracked via UTM from X and LinkedIn"
+   },
+   {
+    "name": "Compliance, Out of the Box",
+    "objective": "awareness, reach ops leads and compliance-sensitive founders who don't know a self-hostable, fully compliant signing tool exists",
+    "big_idea": "Many teams discover they need ESIGN, UETA, or 21 CFR Part 11 compliance only after a deal or audit forces the question. A LinkedIn post series and a newsletter pitch to ops/legal-adjacent newsletters surface Documenso at that moment of realisation, leading with the compliance standards by name, not with open-source ideology.",
+    "hook": "Fully compliant signatures out of the box. ESIGN, UETA, 21 CFR Part 11, ready before your next audit.",
+    "channels": [
+     "LinkedIn",
+     "Newsletter sponsorship or pitch (ops/legal/SaaS-focused)"
+    ],
+    "effort": "small",
+    "success_metric": "Click-through rate on the newsletter pitch CTA link"
+   },
+   {
+    "name": "Self-Host Your Signatures",
+    "objective": "signups, capture developers and ops teams in self-hosted and privacy-focused communities who are actively looking for alternatives to cloud-only signing tools",
+    "big_idea": "Reddit communities like r/selfhosted, r/devops, and r/opensource are full of teams who have already decided they want to run their own infrastructure. A genuine, non-promotional post that explains how Documenso's self-hosted deployment works, Docker, PostgreSQL, your own data, meets them where they already are.",
+    "hook": "We open-sourced our entire signing platform. Here's how to self-host it in under an hour.",
+    "channels": [
+     "Reddit (r/selfhosted, r/devops, r/opensource)"
+    ],
+    "effort": "small",
+    "success_metric": "Upvotes and comments on the Reddit post within 72 hours"
+   },
+   {
+    "name": "Platform Plan Launch Story",
+    "objective": "signups, convert growth-stage SaaS founders evaluating embedded signing into Platform plan trials or sales conversations",
+    "big_idea": "Founders building SaaS products need signing to feel like part of their product, not a redirect to a third-party portal. A Product Hunt launch focused on the embedded signing and whitelabel capability, with a clear before/after framing, targets exactly the moment a founder realises their current signing vendor breaks the user experience they've built.",
+    "hook": "Embedded signing that looks like your product, not ours.",
+    "channels": [
+     "Product Hunt",
+     "X (Twitter)",
+     "LinkedIn"
+    ],
+    "effort": "large",
+    "success_metric": "Number of Platform plan demo requests or sign-ups in the 7 days following the Product Hunt launch"
+   },
+   {
+    "name": "Fair-Use, No Surprises",
+    "objective": "awareness, reach founders and ops leads who have been burned by per-envelope pricing and are actively comparing signing tools",
+    "big_idea": "Pricing anxiety is real for teams that send documents at volume. A transparent breakdown of how Documenso's Fair-Use-Policy works, posted as a LinkedIn article and an X thread, gives decision-makers the honest comparison they're looking for without naming rivals negatively. The mechanic is education, not promotion.",
+    "hook": "Signing for every scale. Here's exactly how our Fair-Use-Policy works.",
+    "channels": [
+     "LinkedIn",
+     "X (Twitter)"
+    ],
+    "effort": "small",
+    "success_metric": "Pricing page visits attributed to the LinkedIn article and X thread UTM links"
+   }
+  ],
+  "chosen": [
+   "Your Signing Backend"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "DocuSign",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": []
+   },
+   {
+    "name": "PandaDoc",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "5 docs/month, unlimited eSign"
+     },
+     {
+      "name": "Starter",
+      "price": "$19",
+      "period": "seat/month",
+      "key_limits": "unlimited docs, basic workflows"
+     },
+     {
+      "name": "Business",
+      "price": "$49",
+      "period": "seat/month",
+      "key_limits": "CRM integrations, approval workflows"
+     }
+    ]
+   },
+   {
+    "name": "Dropbox Sign",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": []
+   },
+   {
+    "name": "SignNow",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Business",
+      "price": "$8",
+      "period": "month billed annually",
+      "key_limits": "100 invites/year, unlimited users"
+     },
+     {
+      "name": "Business Premium",
+      "price": "$15",
+      "period": "month billed annually",
+      "key_limits": "bulk send, payments, team reports"
+     },
+     {
+      "name": "Enterprise",
+      "price": "$30",
+      "period": "month billed annually",
+      "key_limits": "custom branding, advanced workflows"
+     }
+    ]
+   },
+   {
+    "name": "Adobe Acrobat Sign",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": []
+   }
+  ],
+  "rejected": [
+   {
+    "name": "AlternativeTo listing page",
+    "url": "https://alternativeto.net/software/docusign/",
+    "why": "Aggregator page, not a product; competitor is the listed product"
+   },
+   {
+    "name": "Product Hunt entry",
+    "url": "https://www.producthunt.com/posts/documenso",
+    "why": "Aggregator/marketplace page, not a competing product"
+   },
+   {
+    "name": "Documenso",
+    "url": "https://documenso.com",
+    "why": "This is the subject app itself, not a competitor"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium + annual subscription",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "who_its_for": "Individuals and small teams evaluating e-signatures",
+     "includes": [
+      "5 documents/month",
+      "Up to 10 recipients/document",
+      "Legally binding eSignatures",
+      "Hosted on Documenso cloud"
+     ],
+     "rationale": "Matches current Free tier exactly; on par with PandaDoc Free (5 docs/month)."
+    },
+    {
+     "name": "Individual",
+     "price_usd_month": 25,
+     "who_its_for": "Solo founders and freelancers needing unlimited signing",
+     "includes": [
+      "Unlimited documents",
+      "1 user",
+      "All core signing features",
+      "$300 billed yearly"
+     ],
+     "rationale": "Current tier at $25/mo annualized; above PandaDoc Starter ($19/seat) but open-source trust justifies delta."
+    },
+    {
+     "name": "Teams",
+     "price_usd_month": 40,
+     "who_its_for": "Small ops and engineering teams sending contracts at volume",
+     "includes": [
+      "5 users included",
+      "$8/month per additional user",
+      "Unlimited documents",
+      "$480 billed yearly"
+     ],
+     "rationale": "Current tier; $8/user matches SignNow Business ($8/user, 100 invites/year) at same per-seat level."
+    },
+    {
+     "name": "Platform",
+     "price_usd_month": 250,
+     "who_its_for": "SaaS builders embedding signing natively inside their product",
+     "includes": [
+      "Unlimited documents and users",
+      "Whitelabel embedded signing",
+      "API access",
+      "$3,000 billed yearly"
+     ],
+     "rationale": "Current tier; unique embedded+whitelabel positioning has no direct scraped comp; price feels defensible."
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": 0,
+     "who_its_for": "Large orgs needing custom SLAs, self-hosted, or 21 CFR Part 11",
+     "includes": [
+      "Custom pricing",
+      "Cloud or self-hosted",
+      "Dedicated support"
+     ],
+     "rationale": "Current tier; contact sales. Consistent with DocuSign and Adobe Acrobat Sign enterprise model."
+    }
+   ],
+   "anchor_competitors": [
+    "PandaDoc",
+    "SignNow"
+   ],
+   "positioning_note": "Open-source trust and embedded signing differentiate Documenso; current pricing is fair, not obviously 5x wrong.",
+   "risks": [
+    "Free tier 5-doc cap may frustrate developers evaluating API integrations; consider a higher cap for API-only usage",
+    "DocuSign and Dropbox Sign pricing pages unreachable; anchoring is limited to PandaDoc and SignNow only",
+    "Platform tier at $3,000/year is a large jump from Teams $480/year; a mid-tier could reduce churn at that gap"
+   ]
+  },
+  "options": [
+   {
+    "name": "Current Pricing, Kept As-Is",
+    "billing": "free plus paid tiers",
+    "positioning": "Restate the live Documenso tiers at their current annual prices; no changes to features, quotas, or seats. Individual is $300 billed yearly ($25/mo), Teams is $480 billed yearly ($40/mo) for 5 users plus $8/month per additional user, Platform is $3,000 billed yearly ($250/mo).",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals and small teams evaluating e-signatures",
+      "includes": [
+       "5 documents/month",
+       "Up to 10 recipients/document",
+       "Legally binding eSignatures",
+       "Hosted on Documenso cloud"
+      ]
+     },
+     {
+      "name": "Individual",
+      "price_usd_month": 25,
+      "who_its_for": "Solo founders and freelancers needing unlimited signing",
+      "includes": [
+       "Unlimited documents",
+       "1 user",
+       "All core signing features",
+       "$300 billed yearly"
+      ]
+     },
+     {
+      "name": "Teams",
+      "price_usd_month": 40,
+      "who_its_for": "Small ops and engineering teams sending contracts at volume",
+      "includes": [
+       "5 users included",
+       "$8/month per additional user",
+       "Unlimited documents",
+       "$480 billed yearly"
+      ]
+     },
+     {
+      "name": "Platform",
+      "price_usd_month": 250,
+      "who_its_for": "SaaS builders embedding signing natively inside their product",
+      "includes": [
+       "Unlimited documents and users",
+       "Whitelabel embedded signing",
+       "API access",
+       "$3,000 billed yearly"
+      ]
+     }
+    ],
+    "market_rate_note": "Individual at $25/mo sits above PandaDoc Starter ($19/seat) and Teams at $40/mo base is above SignNow Business ($8/mo), reflecting Documenso's open-source trust and embedded-signing differentiation.",
+    "revenue_at": {
+     "10": 1050,
+     "50": 5250,
+     "200": 21000
+    },
+    "when_to_pick": "Pick this if the goal is zero disruption to existing customers and the current conversion funnel is working; it is the lowest-risk path."
+   },
+   {
+    "name": "Monthly Subscription, No Annual Lock-In",
+    "billing": "monthly subscription",
+    "positioning": "Offer the same four tiers billed month-to-month at a modest premium over the annualized rates to lower the barrier for developers and small teams who are not ready to commit annually; Individual at $30/mo, Teams at $49/mo, Platform at $299/mo.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals and small teams evaluating e-signatures",
+      "includes": [
+       "5 documents/month",
+       "Up to 10 recipients/document",
+       "Legally binding eSignatures",
+       "Hosted on Documenso cloud"
+      ]
+     },
+     {
+      "name": "Individual",
+      "price_usd_month": 30,
+      "who_its_for": "Solo founders and freelancers needing unlimited signing",
+      "includes": [
+       "Unlimited documents",
+       "1 user",
+       "All core signing features"
+      ]
+     },
+     {
+      "name": "Teams",
+      "price_usd_month": 49,
+      "who_its_for": "Small ops and engineering teams sending contracts at volume",
+      "includes": [
+       "5 users included",
+       "$8/month per additional user",
+       "Unlimited documents"
+      ]
+     },
+     {
+      "name": "Platform",
+      "price_usd_month": 299,
+      "who_its_for": "SaaS builders embedding signing natively inside their product",
+      "includes": [
+       "Unlimited documents and users",
+       "Whitelabel embedded signing",
+       "API access"
+      ]
+     }
+    ],
+    "market_rate_note": "Individual at $30/mo and Teams at $49/mo are level with PandaDoc Business ($49/seat) and above SignNow Business ($8/mo), sitting in the middle of the read competitor range.",
+    "revenue_at": {
+     "10": 1260,
+     "50": 6300,
+     "200": 25200
+    },
+    "when_to_pick": "Pick this if developer trials are stalling because annual commitment is too large an ask; monthly billing reduces friction at the cost of slightly higher churn risk."
+   },
+   {
+    "name": "Usage-Based Envelope Pricing",
+    "billing": "usage-based",
+    "positioning": "This is a product change: replace flat tiers with a per-envelope model where a typical individual sender uses roughly 20 envelopes per month and a typical team uses roughly 100, priced at $1.50 per envelope sent above a small free allowance; a free base of 5 envelopes per month is retained, and the Platform embedded tier remains a flat annual plan at $3,000 billed yearly ($250/mo) because embedded usage is volume-unpredictable for the builder.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individuals evaluating the product",
+      "includes": [
+       "5 envelopes/month included",
+       "Up to 10 recipients/document",
+       "Legally binding eSignatures",
+       "Hosted on Documenso cloud"
+      ]
+     },
+     {
+      "name": "Pay-as-you-go",
+      "price_usd_month": 30,
+      "who_its_for": "Individuals and small teams with variable monthly volume",
+      "includes": [
+       "$1.50 per envelope sent",
+       "Typical individual spend ~$30/mo at 20 envelopes",
+       "Typical team spend ~$150/mo at 100 envelopes",
+       "No seat limits"
+      ]
+     },
+     {
+      "name": "Platform",
+      "price_usd_month": 250,
+      "who_its_for": "SaaS builders embedding signing natively inside their product",
+      "includes": [
+       "Unlimited documents and users",
+       "Whitelabel embedded signing",
+       "API access",
+       "$3,000 billed yearly"
+      ]
+     }
+    ],
+    "market_rate_note": "No scraped competitor uses a pure per-envelope public price in the research, so this option is partially unanchored; DocuSign is known to use envelope-based pricing but its page was not read.",
+    "revenue_at": {
+     "10": 1400,
+     "50": 7000,
+     "200": 28000
+    },
+    "when_to_pick": "Pick this if the buyer base is highly variable in volume and you want revenue to scale automatically with usage, accepting that it requires a meaningful product and billing infrastructure change."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "possible",
+    "why": "Competitors like PandaDoc and SignNow offer monthly billing, but Documenso's current tiers are all billed annually, and annual commits suit the SaaS-team buyer who plans ahead."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "good",
+    "why": "All four of Documenso's live paid tiers are billed annually, matching how PandaDoc and SignNow price their business plans and aligning with the buying cadence of ops and engineering teams."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "E-signature is a recurring workflow need and every established competitor uses subscription pricing, so a one-time purchase would not match buyer expectations or support ongoing hosting costs."
+   },
+   {
+    "model": "usage-based",
+    "fit": "possible",
+    "why": "Envelope-based pricing is how DocuSign charges at scale, and Documenso's API-first positioning could support it, but the current product and all live tiers are flat-rate, making a switch a meaningful product change."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "Documenso already runs a permanent free tier alongside paid plans, PandaDoc does the same, and the freemium funnel is the standard developer-acquisition motion in this category."
+   }
+  ],
+  "market_rate": "PandaDoc's pricing page was read and shows Starter at $19 per seat per month and Business at $49 per seat per month, with a free tier capped at 5 documents per month. SignNow's page was read and shows Business at $8 per month billed annually, Business Premium at $15, and Enterprise at $30. DocuSign, Dropbox Sign, and Adobe Acrobat Sign pricing pages were not successfully scraped, so no prices are available for those three. The going rate in this category runs from roughly $8 to $49 per seat per month for team plans, with embedded or API-heavy tiers commanding a significant premium above that range.",
+  "confidence": {
+   "overall": 0.82,
+   "notes": "5 established competitors identified via recurrence across comparison sources. PandaDoc and SignNow pricing pages scraped successfully. DocuSign and Dropbox Sign pricing pages returned 404; tiers not available. Adobe Acrobat Sign not scraped due to budget exhaustion. Anchoring relies on PandaDoc and SignNow only. APP pricing_current was fully detailed in profile so current_tiers is empty."
+  },
+  "selected_pricing": {
+   "model": "freemium + annual subscription",
+   "option": "Current Pricing, Kept As-Is",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Individuals and small teams evaluating e-signatures",
+     "includes": [
+      "5 documents/month",
+      "Up to 10 recipients/document",
+      "Legally binding eSignatures",
+      "Hosted on Documenso cloud"
+     ]
+    },
+    {
+     "name": "Individual",
+     "price_usd_month": 25,
+     "included": true,
+     "who_its_for": "Solo founders and freelancers needing unlimited signing",
+     "includes": [
+      "Unlimited documents",
+      "1 user",
+      "All core signing features",
+      "$300 billed yearly"
+     ]
+    },
+    {
+     "name": "Teams",
+     "price_usd_month": 40,
+     "included": true,
+     "who_its_for": "Small ops and engineering teams sending contracts at volume",
+     "includes": [
+      "5 users included",
+      "$8/month per additional user",
+      "Unlimited documents",
+      "$480 billed yearly"
+     ]
+    },
+    {
+     "name": "Platform",
+     "price_usd_month": 250,
+     "included": true,
+     "who_its_for": "SaaS builders embedding signing natively inside their product",
+     "includes": [
+      "Unlimited documents and users",
+      "Whitelabel embedded signing",
+      "API access",
+      "$3,000 billed yearly"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "PandaDoc",
+    "SignNow"
+   ],
+   "chosen_at": "2026-09-30T09:06:12.920Z"
+  },
+  "listing": {
+   "title": "Documenso: Open-Source E-Signatures",
+   "tagline": "Auditable, self-hostable document signing for dev teams",
+   "description_short": "Send, sign, and manage documents with an open-source, API-first e-signature platform. Free tier, self-hosting, and embedded signing available.",
+   "description_long": "Documenso is an open-source electronic signature platform built for teams and developers who need reliable, transparent document signing at any scale.\n\n**Why Documenso?**\n- **Publicly auditable source code** under AGPLv3, 15,266 GitHub stars and counting. You can inspect exactly how your documents and signatures are handled.\n- **API-first by design.** Automate document creation, sending, and user management via REST and tRPC APIs. Integrate signing directly into your product without heavy vendor lock-in.\n- **Embedded signing with whitelabel support** on the Platform plan, so your users never leave your app to complete a signature.\n- **Self-hosted or cloud.** Deploy on your own infrastructure for full data control, or use the hosted SaaS with a free tier that never expires.\n- **Enterprise-grade compliance.** 21 CFR Part 11 support is available, as demonstrated by Vial Inc.'s published customer story.\n\nSimon Burns, Co-Founder & CEO of Vial Inc., says: *\"It has been great working with Documenso! The team built an amazing product fitting our needs. They really get what it means to build for enterprise.\"*\n\nStart free with 5 documents per month, scale to unlimited on the Platform plan, or bring Documenso inside your own infrastructure with an Enterprise license.",
+   "keywords": [
+    "open source e-signature",
+    "electronic signature API",
+    "self-hosted document signing",
+    "DocuSign alternative",
+    "embedded signing",
+    "whitelabel e-signature",
+    "document signing for developers",
+    "AGPLv3 signature platform",
+    "contract signing SaaS",
+    "21 CFR Part 11 e-signature",
+    "free e-signature tool",
+    "sign documents online",
+    "e-signature API integration"
+   ],
+   "screenshot_order": [
+    "1st: Document signing flow, show a recipient completing a signature inside a clean, branded interface. Establishes the core job-to-be-done immediately and signals polish.",
+    "2nd: API / developer dashboard or embed code snippet, demonstrates the API-first, embeddable nature that differentiates Documenso from closed tools. Speaks directly to the developer ICP.",
+    "3rd: Pricing or plan comparison screen, show the Free tier alongside Teams and Platform tiers to address the cost objection up front and highlight the self-hosting option."
+   ],
+   "faq": [
+    {
+     "q": "Is there really a free plan with no time limit?",
+     "a": "Yes. The Free plan is $0 forever and includes 5 documents per month with up to 10 recipients per document. No credit card required."
+    },
+    {
+     "q": "Can I embed signing directly inside my own product?",
+     "a": "Yes. Whitelabel embedded signing is available on the Platform plan, billed at $3,000 per year, with unlimited documents and users."
+    },
+    {
+     "q": "Is the source code really open and auditable?",
+     "a": "Yes. Documenso is licensed under AGPLv3. The full source code is on GitHub with 15,266 stars. You can audit, fork, or self-host it on your own infrastructure."
+    },
+    {
+     "q": "What does the Teams plan include and how does pricing scale?",
+     "a": "The Teams plan is $480 billed yearly and includes 5 users. Additional users are $8 per month each. For unlimited users and documents, the Platform plan is $3,000 per year."
+    },
+    {
+     "q": "Is Documenso suitable for regulated industries like life sciences?",
+     "a": "21 CFR Part 11 compliance is supported. Vial Inc. uses Documenso in a regulated environment, their full customer story is published on the Documenso blog."
+    }
+   ],
+   "cta": "Start signing free at documenso.com",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.82,
+    "notes": "All listing claims sourced directly from APP_PROFILE (README.md, documenso.com, documenso.com/pricing). GitHub star count (15,266) and testimonials quoted verbatim from profile. 21 CFR Part 11 attributed to Vial customer story as recorded in profile. SOC2/HIPAA details and self-hosted pricing not verified (documenso.so/trust and documenso.com/self-hosted not scraped), so no compliance claims beyond 21 CFR Part 11 were made. Prisma testimonial omitted from listing body because it contains a banned phrase; Vial testimonial used instead."
+   }
+  },
+  "listing_status": null
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "15,266 GitHub stars. Documenso is the open-source signing backend: API-first, self-hostable, with embedded signing you can drop into your own product. No vendor UI in the way.\n{APP_URL}",
+    "thread_extension": [
+     "The Platform plan gives you whitelabel embedded signing. Your users complete a signature inside your app, on your domain, with your branding. The signing layer is ours; the experience is yours.",
+     "Self-hosted deployment is available if you need full data control. 21 CFR Part 11 support is there too, Vial Inc. runs on it in production and published the story on our blog.",
+     "Free tier is 5 documents a month, no credit card. If you are building something that needs signing at volume, the API docs are in the first tweet's link."
+    ],
+    "alt_variants": [
+     "Documenso turns a document into a signed, auditable record via REST or tRPC API. Open source under AGPLv3, self-hostable, embedded signing on your own domain. Source code is public and readable.\n{APP_URL}",
+     "Simon Burns, CEO of Vial Inc., runs Documenso for 21 CFR Part 11 compliant signing in production. Open source, API-first, self-hostable. We built the signing backend so you don't have to.\n{APP_URL}"
+    ],
+    "warnings": [
+     "The CAMPAIGN_ANGLE hook 'We built the signing backend so you don't have to.' is a slogan, not a fact. Per PLATFORM_RULES the post must open on the fact behind it. The star count was used as the opening fact and the slogan was moved to a closing clause in alt_variant 2.",
+     "The Nitin Gupta testimonial from proof_points contains the word 'game-changer'; that word was not used anywhere in this draft per GLOBAL_RULES.",
+     "Thread tweet 3 directs readers to 'the first tweet's link' rather than repeating {APP_URL}, per PLATFORM_RULES ({APP_URL} must not appear in thread_extension).",
+     "No pricing figures appear in the post or thread; pricing is not in proof_points and PLATFORM_RULES prohibit inventing numbers."
+    ],
+    "app_name": "Documenso",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "The CAMPAIGN_ANGLE hook 'We built the signing backend so you don't have to.' is a slogan, not a fact. Per PLATFORM_RULES the post must open on the fact behind it. The star count was used as the opening fact and the slogan was moved to a closing clause in alt_variant 2.",
+    "The Nitin Gupta testimonial from proof_points contains the word 'game-changer'; that word was not used anywhere in this draft per GLOBAL_RULES.",
+    "Thread tweet 3 directs readers to 'the first tweet's link' rather than repeating {APP_URL}, per PLATFORM_RULES ({APP_URL} must not appear in thread_extension).",
+    "No pricing figures appear in the post or thread; pricing is not in proof_points and PLATFORM_RULES prohibit inventing numbers."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1130,
+   "words": 186,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "We built the signing backend so you don't have to.\n\nDocumenso is open-source, API-first document signing. You drop it into your product, your users sign inside your app, and you own the data.\n\nThe source code is public under AGPLv3, 15,266 GitHub stars. You can read exactly how signatures are created and stored. Self-host it on your own infrastructure, or use the hosted plan with a free tier that doesn't expire.\n\nThe Platform plan adds whitelabel embedded signing, so your users never see Documenso's UI. It's the signing layer, not a portal they get redirected to.\n\nSimon Burns, Co-Founder and CEO of Vial Inc., said: \"The team built an amazing product fitting our needs. They really get what it means to build for enterprise.\"\n\nIf you're embedding signing into your product, start with the free tier and see how far it gets you.\n\nLink in the first comment.\n\n#opensource #devtools #esignature",
+    "alt_hook": "15,266 developers have starred Documenso's repo. It's an open-source signing backend you can self-host or embed in your own product.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "Quote from Nitin Gupta, COO of Prisma Inc., was dropped entirely. It contains 'streamlined' and 'game-changer', both on the slop lexicon ban, and cannot be quoted verbatim without violating platform rules. Warning: quote dropped: 'Documenso has streamlined our digital signing process'",
+     "Launch week: after this launch post, at most four posts this week, never two of the same kind back to back. Documenso's four subjects for the week: open-source signing backend (this post), embedded signing API (teach), self-hosted compliance (opinion), developer onboarding flow (story, only if the profile holds a scene). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone; line 1 matters more than the hour.",
+     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    ],
+    "app_name": "Documenso",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "alt_hook: Alternate hook over 140 characters (141 characters, cap 140)"
+    ]
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "Quote from Nitin Gupta, COO of Prisma Inc., was dropped entirely. It contains 'streamlined' and 'game-changer', both on the slop lexicon ban, and cannot be quoted verbatim without violating platform rules. Warning: quote dropped: 'Documenso has streamlined our digital signing process'",
+    "Launch week: after this launch post, at most four posts this week, never two of the same kind back to back. Documenso's four subjects for the week: open-source signing backend (this post), embedded signing API (teach), self-hosted compliance (opinion), developer onboarding flow (story, only if the profile holds a scene). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone; line 1 matters more than the hour.",
+    "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer the question fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [
+    "alt_hook: Alternate hook over 140 characters (141 characters, cap 140)"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1119,
+   "words": 183,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "title": "We open sourced a self-hostable e-signature backend under AGPLv3",
+    "body": "DocuSign is a hosted signing portal. Teams that need signing data on their own infrastructure, for compliance or data-sovereignty reasons, need a different path.\n\nWe built Documenso, an open-source e-signature platform, and I work on it. It runs on Docker, exposes REST and tRPC APIs for document creation, sending, and signature collection, and can be deployed entirely on your own infrastructure. The source code is publicly auditable under AGPLv3, so you can inspect exactly how signatures and documents are handled before you trust it with anything sensitive. There's a hosted SaaS option with a free tier if you want to try it before committing to a self-hosted setup.\n\nSelf-hosted signing tools exist, so this space isn't new. What we focused on is the API-first and embedded signing path, because that's where the closed tools make things hard for builders who want signing to feel native inside their own product.\n\nOne real limitation: whitelabel embedded signing, where your users complete the signing step inside your app with no third-party branding visible, is only available on the Platform plan at $3,000 per year. The free and Teams tiers don't include it, so if a fully branded in-app experience is the requirement, that's the entry point.\n\nGitHub stars: 15,266\n\nIf you've self-hosted a signing tool before, what was the hardest part to get right, the PDF rendering, the audit trail storage, or something in the webhook and notification layer?\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "TARGET is r/selfhosted. The product has been live for over a year with paying enterprise customers and 15,266 GitHub stars, so it is not under 3 months old and does not need to go in the New Project Megathread. This draft is written for the main feed. Verify this against r/selfhosted's current pinned rules at https://www.reddit.com/r/selfhosted/about/rules before posting.",
+     "Mention level used: 2 (product named once in the builder-disclosure sentence, {APP_URL} once in the final paragraph, per platform rules for r/selfhosted).",
+     "suggested_flair is 'none' because r/selfhosted's real flair options were not verified from a live rules scrape. The builder should check the sub's current flair list before submitting.",
+     "Builder disclosure uses 'we built' and 'I work on' because APP_PROFILE and BRAND_DNA indicate a team and a product older than one year. If this post goes out from a personal account, rewrite to 'I maintain' and confirm the mention level is still appropriate for the account's post history in the sub.",
+     "DocuSign is named as a neutral factual label ('hosted signing portal') with no negative word attached, per GLOBAL_RULES. The gap is framed as what teams need, not what DocuSign lacks.",
+     "The limitation stated (whitelabel embedded signing only on Platform plan at $3,000/yr) comes directly from APP_PROFILE.gaps. No limitation was invented.",
+     "The only traction number used is GitHub stars: 15,266, taken directly from APP_PROFILE.proof_points. No other metrics, user counts, or benchmarks were added.",
+     "r/selfhosted has a 10% self-promotion rule. If the posting account does not have sufficient comment and post history in the sub beyond self-promotion, the post may be removed. The builder should review their account's r/selfhosted history before submitting.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"$3\")"
+    ],
+    "venue": "r/selfhosted",
+    "app_name": "Documenso",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Product named three or more times in the body (the ladder says once) (3, cap 2)",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"DocuSign is a hosted signing portal; it has no self-hosted deployment option, which means \")"
+    ]
+   },
+   "warnings": [
+    "TARGET is r/selfhosted. The product has been live for over a year with paying enterprise customers and 15,266 GitHub stars, so it is not under 3 months old and does not need to go in the New Project Megathread. This draft is written for the main feed. Verify this against r/selfhosted's current pinned rules at https://www.reddit.com/r/selfhosted/about/rules before posting.",
+    "Mention level used: 2 (product named once in the builder-disclosure sentence, {APP_URL} once in the final paragraph, per platform rules for r/selfhosted).",
+    "suggested_flair is 'none' because r/selfhosted's real flair options were not verified from a live rules scrape. The builder should check the sub's current flair list before submitting.",
+    "Builder disclosure uses 'we built' and 'I work on' because APP_PROFILE and BRAND_DNA indicate a team and a product older than one year. If this post goes out from a personal account, rewrite to 'I maintain' and confirm the mention level is still appropriate for the account's post history in the sub.",
+    "DocuSign is named as a neutral factual label ('hosted signing portal') with no negative word attached, per GLOBAL_RULES. The gap is framed as what teams need, not what DocuSign lacks.",
+    "The limitation stated (whitelabel embedded signing only on Platform plan at $3,000/yr) comes directly from APP_PROFILE.gaps. No limitation was invented.",
+    "The only traction number used is GitHub stars: 15,266, taken directly from APP_PROFILE.proof_points. No other metrics, user counts, or benchmarks were added.",
+    "r/selfhosted has a 10% self-promotion rule. If the posting account does not have sufficient comment and post history in the sub beyond self-promotion, the post may be removed. The builder should review their account's r/selfhosted history before submitting.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"$3\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"DocuSign is a hosted signing portal; it has no self-hosted deployment option, which means \")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1854,
+   "words": 300,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "draft",
+   "data": {
+    "name": "Documenso",
+    "tagline": "Open-source e-signatures with API and self-hosting",
+    "description": "Closed signing tools are expensive at scale and hard to embed natively in your own product.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Documenso.\n\nEvery team we talked to had the same problem: they needed signing inside their own product, not a redirect to a third-party portal. The per-envelope costs added up fast, and there was no way to audit what was happening to their documents. So we built Documenso as the signing backend you drop into your own stack.\n\nWhat makes our approach concrete: the code is open. You can read exactly how signatures are created and stored. 21 CFR Part 11 compliance is supported, as Vial Inc. documented in their published customer story.\n\nOne honest limitation: whitelabel embedded signing is only available on the Platform plan ($3,000 billed yearly). The Free, Individual, and Teams plans do not include it. If that is a blocker for your use case, I want to know.\n\nTwo things I would genuinely like feedback on: does the API surface cover the document workflow you actually run, or are there steps you would still have to build around? And if you are evaluating self-hosted deployment, what would you need to see before you ran this on production traffic?\n\nI will be in the comments all day.",
+    "topics": [
+     "Developer Tools",
+     "Open Source",
+     "SaaS"
+    ],
+    "warnings": [
+     "Over the length cap after two rewrites, so the draft check dropped description: the closing sentence (178 characters) and first_comment: a paragraph of 77 words from the middle. Read what is left and put back what you need in your own words.",
+     "APP_PROFILE does not name the builder; replace [Builder first name] and [role] in the first comment before launch.",
+     "The first comment uses 'we' because APP_PROFILE and BRAND_DNA reference a team; if this is a solo launch, change 'we built' to 'I built'.",
+     "The 15,266 GitHub stars figure appears in APP_PROFILE.proof_points but not in the name, tagline, or description per platform rules; it was intentionally omitted from those fields. Add it to the first comment only if you want to cite it, and confirm the count is current on launch day.",
+     "SOC2 and HIPAA compliance details were not scraped from documenso.com/trust; do not add those claims to the listing without verifying them first.",
+     "Self-hosted licensing pricing from documenso.com/self-hosted was not confirmed; do not add self-hosted plan prices to the listing without verifying.",
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (270 characters, cap 260)",
+     "first_comment: Maker comment over 250 words (273 words, cap 250)",
+     "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")",
+     "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"So we built\")"
+    ],
+    "app_name": "Documenso",
+    "blockers": [
+     "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"So we built\")"
+    ],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (270 characters, cap 260)",
+     "first_comment: Maker comment over 250 words (273 words, cap 250)",
+     "description: the closing sentence (178 characters)",
+     "first_comment: a paragraph of 77 words"
+    ]
+   },
+   "warnings": [
+    "Over the length cap after two rewrites, so the draft check dropped description: the closing sentence (178 characters) and first_comment: a paragraph of 77 words from the middle. Read what is left and put back what you need in your own words.",
+    "APP_PROFILE does not name the builder; replace [Builder first name] and [role] in the first comment before launch.",
+    "The first comment uses 'we' because APP_PROFILE and BRAND_DNA reference a team; if this is a solo launch, change 'we built' to 'I built'.",
+    "The 15,266 GitHub stars figure appears in APP_PROFILE.proof_points but not in the name, tagline, or description per platform rules; it was intentionally omitted from those fields. Add it to the first comment only if you want to cite it, and confirm the count is current on launch day.",
+    "SOC2 and HIPAA compliance details were not scraped from documenso.com/trust; do not add those claims to the listing without verifying them first.",
+    "Self-hosted licensing pricing from documenso.com/self-hosted was not confirmed; do not add self-hosted plan prices to the listing without verifying.",
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (270 characters, cap 260)",
+    "first_comment: Maker comment over 250 words (273 words, cap 250)",
+    "first_comment: AI-tell or hype vocabulary the brand rulebook bans (delve, elevate, unlock, leverage, excited to share, powerful, genuinely, transforms how, the future of, 2am) (\"genuinely\")",
+    "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"So we built\")"
+   ],
+   "blockers": [
+    "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"So we built\")"
+   ],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (270 characters, cap 260)",
+    "first_comment: Maker comment over 250 words (273 words, cap 250)",
+    "description: the closing sentence (178 characters)",
+    "first_comment: a paragraph of 77 words"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1733,
+   "words": 284,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "draft",
+   "data": {
+    "title": "Show HN: Documenso, open-source e-signatures with API and embedded signing",
+    "body": "Hi HN, Documenso is an open-source e-signature platform that takes a PDF document and produces a legally binding signed document. {APP_URL} opens the live app; a free account gives you 5 documents per month with no credit card required. [Builder: one sentence on why you built it.]\n\nThe stack is TypeScript, React Router v7 on the front end, Hono for the API layer, Prisma and PostgreSQL for persistence, and tRPC for typed API calls between client and server. Docker images are published for self-hosted deployment.\n\nThe core design decision is that signing is an API first, not a portal. Teams drop it into their own product and their users never leave the app to complete a signature. Two honest limitations: whitelabel embedded signing is only available on the Platform plan ($3,000 billed yearly), and the Teams plan charges $8 per month per user beyond the five included.\n\nThe choice I want a second opinion on is the deployment path: self-hosted on your own infrastructure via Docker, or the hosted cloud with the free tier? I am one of the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "No earlier HN thread was recorded in APP_PROFILE or BRAND_DNA. Search Hacker News for 'Documenso' before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. If an earlier thread exists, link it in the body and add one sentence on what changed since.",
+     "The 'why you built it' sentence is a placeholder. APP_PROFILE and BRAND_DNA record no founder quote, README origin line, or dated origin story. Fill in [Builder: one sentence on why you built it] before submitting.",
+     "{APP_URL} must point to the running product itself, not a landing page, waitlist, or Product Hunt page. Confirm the URL opens the live app before submitting.",
+     "The body discloses that a free account is required to try the product. If no account is needed to view a demo or a sample document, update that sentence accordingly.",
+     "body: {APP_URL} inside a sentence; put it on its own line (\"document. {APP_URL}\")"
+    ],
+    "app_name": "Documenso",
+    "blockers": [
+     "body: {APP_URL} inside a sentence; put it on its own line (\"document. {APP_URL}\")"
+    ],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (209 words, cap 200)",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"DocuSign and HelloSign are expensive at volume and hard to embed natively inside another p\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "No earlier HN thread was recorded in APP_PROFILE or BRAND_DNA. Search Hacker News for 'Documenso' before posting. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. If an earlier thread exists, link it in the body and add one sentence on what changed since.",
+    "The 'why you built it' sentence is a placeholder. APP_PROFILE and BRAND_DNA record no founder quote, README origin line, or dated origin story. Fill in [Builder: one sentence on why you built it] before submitting.",
+    "{APP_URL} must point to the running product itself, not a landing page, waitlist, or Product Hunt page. Confirm the URL opens the live app before submitting.",
+    "The body discloses that a free account is required to try the product. If no account is needed to view a demo or a sample document, update that sentence accordingly.",
+    "body: {APP_URL} inside a sentence; put it on its own line (\"document. {APP_URL}\")"
+   ],
+   "blockers": [
+    "body: {APP_URL} inside a sentence; put it on its own line (\"document. {APP_URL}\")"
+   ],
+   "repaired": [
+    "body: Body over 200 words (209 words, cap 200)",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"DocuSign and HelloSign are expensive at volume and hard to embed natively inside another p\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1502,
+   "words": 253,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For developers: open-source e-signature API for builders",
+    "pitch": "Hi [Editor first name],\n\nDevelopers who need to embed document signing inside their own product usually end up wiring around a third-party portal, which means their users leave the app to complete a signature and come back. That friction is the part teams keep asking us to fix.\n\nDocumenso is an open-source e-signature platform for teams and developers: self-hostable, API-first, with embedded signing and templates so builders can deliver a native signing experience without standing up the whole backend themselves.\n\nThe repo has 15,266 stars on GitHub, and the Platform plan includes whitelabel embedded signing for teams who need it inside their own product.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is missing from TARGET: greeting uses placeholder 'Hi [Editor first name],' which the builder must fill in before sending.",
+     "Builder first name is not named in APP_PROFILE or BRAND_DNA: sign-off uses placeholder '[Builder first name]' which the builder must fill in.",
+     "No TARGET newsletter name was provided: the subject line uses 'developers' as a stand-in; the builder should replace it with the actual newsletter name or its readers' descriptor.",
+     "TARGET rules were not verified: no submission form or paid-placement policy was confirmed. If the newsletter uses a submission form, this pitch text can be pasted as form text.",
+     "Word count is approximately 130 words, within the 110-140 target band.",
+     "pitch: Six or more paragraph breaks (\"Developers who need to embed document signing inside their o\")"
+    ],
+    "app_name": "Documenso",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "subject: Subject over 70 characters (74 characters, cap 70)"
+    ]
+   },
+   "warnings": [
+    "Recipient name is missing from TARGET: greeting uses placeholder 'Hi [Editor first name],' which the builder must fill in before sending.",
+    "Builder first name is not named in APP_PROFILE or BRAND_DNA: sign-off uses placeholder '[Builder first name]' which the builder must fill in.",
+    "No TARGET newsletter name was provided: the subject line uses 'developers' as a stand-in; the builder should replace it with the actual newsletter name or its readers' descriptor.",
+    "TARGET rules were not verified: no submission form or paid-placement policy was confirmed. If the newsletter uses a submission form, this pitch text can be pasted as form text.",
+    "Word count is approximately 130 words, within the 110-140 target band.",
+    "pitch: Six or more paragraph breaks (\"Developers who need to embed document signing inside their o\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "subject: Subject over 70 characters (74 characters, cap 70)"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 895,
+   "words": 136,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a developer's desk with two monitors showing code editors and terminal windows",
+    "a stack of unsigned contract PDFs fanned across a keyboard",
+    "a REST API reference printed and annotated in the margins",
+    "a self-hosted server rack humming in a glass-doored cabinet behind the desk",
+    "a GitHub repository tab glowing open on a secondary screen",
+    "a signing-status dashboard with a column of pending envelope rows",
+    "a sticky-note-covered monitor bezel tracking integration milestones",
+    "a half-empty coffee mug beside a mechanical keyboard",
+    "a whiteboard covered in API endpoint diagrams and webhook flow arrows",
+    "a compliance checklist pinned above the desk with boxes ticked in pen",
+    "a laptop open to an embedded signing preview inside a product UI mockup"
+   ],
+   "subject": "A mid-thirties developer with short natural hair and a grey hoodie, working alone in a home office built around two monitors, a self-hosted server rack, and a whiteboard of API diagrams, integrating an e-signature backend into their own product.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A developer's home office at eleven at night: two wide monitors face the camera from the far wall, one showing a dense terminal window, the other a column of pending document rows in a signing dashboard, a stack of printed contract PDFs fanned across the desk beside a mechanical keyboard, a self-hosted server rack blinking behind a glass cabinet door to the left, a whiteboard covered in API flow arrows filling the right wall, a compliance checklist pinned above the desk, the room lit only by the cold blue glow of the screens, seen wide from the doorway.",
+     "url": "http://localhost:3500/files/23d19f37b9c9/images-8e4253f15cdf/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for stronger composition and clearer presentation of the required props and scene while maintaining high photographic quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2055
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clear developer/home lab cues (server rack, dual monitors, code, papers) make the world obvious quickly, it matches the brief closely and leaves a dark quiet top third, with good photographic quality though some on-screen text looks readable at full size."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Slightly stronger composition and prop placement (more visible server, papers, whiteboard and monitors) make the developer-home-office world immediate and the shot closely fulfills the brief, with excellent lighting and lens work though the top third is a touch busier."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties developer with short natural hair and a grey hoodie sits hunched at that same desk at eleven at night, both hands on the keyboard, a terminal window filling one monitor and a column of pending envelope rows on the other, a stack of unsigned contract PDFs fanned beside the keyboard, a printed API reference open and margin-annotated under one elbow, sticky notes covering the monitor bezel, the server rack blinking behind the glass cabinet in the background, not looking at the camera, jaw tight.",
+     "url": "http://localhost:3500/files/23d19f37b9c9/images-8e4253f15cdf/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best balances domain recognition and fidelity while preserving more usable quiet space at the top for headline placement.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2075
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clear developer/server context, good props and pose, but the top third is busy with server/monitors and the composition crops close to the head so headline space is limited."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Very faithful to the brief with visible sticky notes, stacked contracts and server rack while keeping the subject lower in-frame for a quieter top third and stronger sense of place."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same developer with short natural hair and a grey hoodie, now upright and relaxed at the same desk in morning light coming through a window to the left, the contract stack squared into a neat pile, the signing-status dashboard on one monitor showing a clean column of completed rows, the terminal on the other showing a finished build, the compliance checklist on the wall above with every box ticked, the server rack still blinking behind its glass door, a fresh coffee mug in one hand, the sticky notes still on the bezel, calm.",
+     "url": "http://localhost:3500/files/23d19f37b9c9/images-8e4253f15cdf/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins because it matches the brief most closely while preserving a quieter top third and stronger overall composition despite some legible screen detail.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2160
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Strongly reads as a developer/server room with the right props, clear dashboard/code on monitors, checklist and server rack, relaxed posture and coffee: all elements from the brief are present and well lit."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Also convincingly a developer desk with the required props and mood, but the top third is busier/brighter and there are more legible on-screen details which reduce compositional and quality points."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "That developer and two colleagues, one leaning over the desk and one standing beside the server rack cabinet, gathered in the right two thirds of a wide landscape frame around a monitor showing an embedded signing preview inside a product UI mockup, the whiteboard of API flow arrows and the compliance checklist visible on the wall behind them, the printed API reference and the neat stack of signed contracts on the desk, morning light from a window filling the left third of the frame with open, uncluttered space.",
+     "url": "http://localhost:3500/files/23d19f37b9c9/images-8e4253f15cdf/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best matches the brief exactly in subject placement and roles with the cleanest left third and strongest fidelity.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2020
+     },
+     "takes": [
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Clearly a developer/team environment with server rack, whiteboard and desk props; composition and actions match the brief though monitor text is somewhat readable and the left area is a little busier than ideal."
+      },
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Matches the brief very closely: one person leaning, one beside the rack, monitor and props visible and subjects confined to the right two-thirds with a clean left third, though on-screen text is still discernible."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "MONDAY. CONTRACT DUE.",
+    "load_n1": "MANY",
+    "load_l1": "DOCUMENTS",
+    "load_n2": "EACH",
+    "load_l2": "RECIPIENT",
+    "load_n3": "ONE",
+    "load_l3": "DEADLINE",
+    "pile_line": "SEND, SIGN, MANAGE.",
+    "pile_label": "DOCUMENT",
+    "pile_sub": "DRAFT · SEND · SIGN",
+    "doubt_1": "WHO HAS SIGNED?",
+    "doubt_2": "IS IT COMPLIANT?",
+    "cost_line": "THE DEAL WAITS. YOU PAY.",
+    "app_name": "DOCUMENSO",
+    "drop_line": "YOUR SIGNING BACKEND.",
+    "step1_label": "UPLOAD YOUR DOCUMENT.",
+    "step1_field": "FULL NAME · EMAIL",
+    "step1_button": "START NOW",
+    "step2_label": "EVERY RECIPIENT, QUEUED.",
+    "chip_1": "SENT",
+    "chip_2": "OPENED",
+    "chip_3": "SIGNED",
+    "chip_4": "COMPLETE",
+    "step3_label": "ALL SIGNATURES COLLECTED.",
+    "step3_marker": "ALL SIGNED",
+    "step3_chip": "DONE",
+    "product_line": "DRAFT TO SIGN. ONE PLACE.",
+    "payoff_n": "ONE",
+    "payoff_unit": "API.",
+    "payoff_line": "EVERY DOCUMENT. SIGNED.",
+    "payoff_timer": "",
+    "breathe_line": "BUILT FOR BUILDERS.",
+    "arrive_line": "START SIGNING FREE.",
+    "arrive_chip": "DOCUMENSO.COM",
+    "lock_top": "FOR BUILDERS AND TEAMS",
+    "lock_title": "DOCUMENSO",
+    "lock_tag": "ENTERPRISE-GRADE E-SIGNATURES. FOR EVERYONE.",
+    "lock_host": "DOCUMENSO.COM"
+   },
+   "clamped": [],
+   "repaired": [
+    "step1_button"
+   ],
+   "tagline": "Enterprise-Grade E-Signatures. For Everyone.",
+   "claims_used": [
+    "drop_line 'YOUR SIGNING BACKEND.', BRAND_DNA evidence_quotes: 'We are your signing backend.'",
+    "step2 chips SENT, OPENED, SIGNED, COMPLETE, SITE_COPY: 'All signatures collected', 'Sign document', 'Define workflows from draft to sign'",
+    "step3_marker 'ALL SIGNED', SITE_COPY: 'All signatures collected'",
+    "step3_chip 'DONE', SITE_COPY: 'All signatures collected / Thank you for signing the document!'",
+    "step1_field 'FULL NAME · EMAIL', SITE_COPY: 'Full name', 'Email'",
+    "step1_button 'GET STARTED', SITE_COPY: 'Get Started'",
+    "payoff_unit 'API.', SITE_COPY: 'Documenso API', 'Our API let's you create and trigger custom workflows'",
+    "lock_tag 'ENTERPRISE-GRADE E-SIGNATURES. FOR EVERYONE.', BRAND_DNA tagline_observed and SITE_COPY",
+    "arrive_chip / lock_host 'DOCUMENSO.COM', SITE_HOST",
+    "app_name 'DOCUMENSO', APP_NAME",
+    "pile_line 'SEND, SIGN, MANAGE.', SITE_COPY: 'Create, Send, Sign Documents With Ease', APP_PROFILE one_liner 'send, sign, and manage documents'",
+    "breathe_line 'BUILT FOR BUILDERS.', BRAND_DNA vocabulary: 'builders'; CAMPAIGN_ANGLE big_idea references builders",
+    "lock_top 'FOR BUILDERS AND TEAMS', APP_PROFILE target_user, BRAND_DNA audience_language"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, transparent, confident",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Monday. Contract due. Every recipient waiting, one deadline. You do it by hand.",
+     "seconds": 4.42,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Documenso.",
+     "seconds": 0.77,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Upload your document. We queue every recipient, track each one. Done.",
+     "seconds": 3.37,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "One API. Every document signed, fully compliant.",
+     "seconds": 2.91,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Start free today. That's Documenso.",
+     "seconds": 2.54,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/23d19f37b9c9/reel-c232efb8fbb0/reel.mp4",
+   "poster_url": "http://localhost:3500/files/23d19f37b9c9/reel-c232efb8fbb0/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "approved"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "ICP explicitly wants self-hosted deployment for compliance; Documenso releases Docker-first with AGPLv3 license.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Public TypeScript/tRPC repo with 15k stars; Show HN fits for a major new version or significant feature release.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "r/opensource",
+   "kind": "subreddit",
+   "why_fit": "AGPLv3 license and publicly auditable source code are core differentiators; open-source community is primary evangelist base.",
+   "url": "https://www.reddit.com/r/opensource/"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "Self-Host Weekly",
+   "kind": "newsletter",
+   "why_fit": "Newsletter covers self-hosted open-source releases weekly; Documenso's Docker-first, AGPLv3 e-signature tool is exact editorial fit.",
+   "url": "https://selfh.st"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "r/webdev",
+   "kind": "subreddit",
+   "why_fit": "Embedded signing with TypeScript/React SDK targets web developers building SaaS products who are the core ICP.",
+   "url": "https://www.reddit.com/r/webdev/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "Indie Hackers",
+   "kind": "community",
+   "why_fit": "Established open-source SaaS with revenue story; IH audience of SaaS founders matches ICP; post as milestone update not new launch.",
+   "url": "https://www.indiehackers.com"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Promo-tolerant subreddit; open-source DocuSign alternative with free tier appeals to indie builders who are secondary ICP.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "r/EntrepreneurRideAlong",
+   "kind": "subreddit",
+   "why_fit": "Journey-style posts about open-source SaaS growth resonate here; Documenso's transparent mission and revenue story fit the format.",
+   "url": "https://www.reddit.com/r/EntrepreneurRideAlong/"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Prior PH launch confirmed (Top Post badge); repeat launch accepted only for a major new version such as embedded signing GA or v2.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "G2",
+   "kind": "directory",
+   "why_fit": "Enterprise ICP (Prisma, Vial) researches e-signature tools on G2; DocuSign alternative positioning drives comparison traffic.",
+   "url": "https://www.g2.com"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Evergreen SaaS directory; DocuSign alternative category drives ongoing discovery by cost-sensitive SaaS founders in ICP.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "TypeScript, tRPC, Prisma, PostgreSQL, Docker stack; engineering teams evaluating signing tools discover via stack comparisons.",
+   "url": "https://stackshare.io"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "Capterra",
+   "kind": "directory",
+   "why_fit": "Operations leads and SaaS founders in ICP compare e-signature tools on Capterra; DocuSign alternative category is high-intent.",
+   "url": "https://www.capterra.com"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "awesome-selfhosted",
+   "kind": "awesome_list",
+   "why_fit": "Canonical list for self-hosted open-source apps; Documenso is AGPLv3 and Docker-deployable, fits Document Signing category.",
+   "url": "https://github.com/awesome-selfhosted/awesome-selfhosted"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 5,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-30T08:58:30.359Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 5,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-30T08:58:30.359Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-30T08:58:30.359Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 5,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-30T08:58:30.359Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 5,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-30T08:58:30.359Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-30T08:58:30.359Z"
+  }
+ ]
+}

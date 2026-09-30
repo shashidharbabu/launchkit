@@ -1,0 +1,1359 @@
+{
+ "slug": "continue",
+ "name": "Continue",
+ "site": "https://continue.dev",
+ "repo": "https://github.com/continuedev/continue",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 61,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 145,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 115,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 318,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 197,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 58,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 307,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Open-source AI coding agent for VS Code and JetBrains, acquired by Cursor and now sunset.",
+   "description": "Continue was an open-source coding agent available as a VS Code extension, JetBrains plugin, and CLI that helped developers write, edit, and understand code using AI. The project was acquired by Cursor in 2026 and released a final 2.0.0 version before the repository was made read-only. The open-source codebase remains available under Apache 2.0 as a foundation for others to build on.",
+   "category": "AI Developer Tools",
+   "target_user": "Software developers using VS Code or JetBrains IDEs who want AI-assisted coding",
+   "icp": {
+    "who": "Individual software engineers and open-source contributors using VS Code or JetBrains IDEs",
+    "pain": "Slow, context-switching-heavy coding workflows that lack inline AI assistance and codebase-aware suggestions",
+    "current_alternatives": [
+     "GitHub Copilot",
+     "Cursor",
+     "Codeium",
+     "Tabnine"
+    ],
+    "buying_trigger": "Developer wants a free, open-source, self-hostable AI coding assistant without vendor lock-in"
+   },
+   "differentiators": [
+    "Fully open-source under Apache 2.0, codebase freely available for others to fork and build on (README.md)",
+    "Available as VS Code extension, JetBrains plugin, and standalone CLI, three deployment targets (README.md)",
+    "Final 2.0.0 release removed anonymous telemetry and authentication dependencies (README.md)"
+   ],
+   "proof_points": [
+    "36,068 GitHub stars on continuedev/continue as of September 2026 (tool_github_1.repo_get)",
+    "5,447 forks indicating broad community adoption (tool_github_1.repo_get)",
+    "Contributors image in README credits the 'entire Continue community' for building a 'pioneering coding agent' (README.md)"
+   ],
+   "tech_stack": [
+    "TypeScript",
+    "VS Code Extension API",
+    "JetBrains Plugin SDK",
+    "Node.js / npm CLI"
+   ],
+   "pricing_current": "none found, open-source, Apache 2.0 license, no paid plans",
+   "voice": {
+    "tone": [
+     "community-oriented",
+     "grateful",
+     "understated",
+     "honest"
+    ],
+    "sample_phrase": "It was an honor to build with the Continue community. Thank you to each and every one of you who helped us create a pioneering open-source coding agent."
+   },
+   "maturity": {
+    "stage": "sunset",
+    "signals": [
+     "README states: 'The continuedev/continue repository is no longer actively maintained and is read-only for all users.' (https://github.com/continuedev/continue/blob/main/README.md)",
+     "Site states: 'Continue was acquired by Cursor.' (https://continue.dev)",
+     "Final 2.0.0 release released as a closing milestone, not a growth release (README.md)",
+     "Repo created 2023-05-24; acquisition and read-only status confirmed by September 2026"
+    ]
+   },
+   "gaps": [
+    "Repository is read-only for all users and no longer actively maintained (README.md: 'The continuedev/continue repository is no longer actively maintained and is read-only for all users.')",
+    "JetBrains plugin: README recommends using the Continue CLI instead of the JetBrains plugin (README.md)"
+   ],
+   "site_gaps": [
+    "No pricing page, https://continue.dev/pricing returns 404",
+    "No product screenshots on the live site, acquisition notice page only",
+    "No demo link on the live site"
+   ],
+   "unverified": [
+    "https://continue.dev/pricing returned 404, pricing details unconfirmable from site",
+    "FAQ answers on https://continue.dev ('Is the open source still available?', 'What happened to my data?'), section headings visible but answer body text not rendered in scrape",
+    "Exact acquisition date and terms not stated on site or README"
+   ],
+   "confidence": {
+    "overall": 0.8,
+    "notes": "High confidence on sunset status, both README and site confirm acquisition and read-only state with direct quotes. Confidence capped at 0.8 because https://continue.dev/pricing returned 404 (ok=false). No pricing was ever found. FAQ answer bodies on the site did not render fully in the scrape."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Full README; confirms sunset, read-only repo, final 2.0.0 release"
+    },
+    {
+     "source": "continuedev/continue (repo root file list)",
+     "via": "github",
+     "ok": true,
+     "note": "Directory structure; TypeScript project confirmed"
+    },
+    {
+     "source": "continuedev/continue (repo metadata)",
+     "via": "github",
+     "ok": true,
+     "note": "36,068 stars, 5,447 forks, TypeScript, created 2023"
+    },
+    {
+     "source": "https://continue.dev",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Acquisition notice page; confirms Cursor acquisition"
+    },
+    {
+     "source": "https://continue.dev/pricing",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "404, GitHub Pages 'File not found'"
+    }
+   ],
+   "analysis_degraded": false,
+   "wording_fixed": 1
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Continue",
+   "tagline_observed": "",
+   "voice": {
+    "tone_words": [
+     "grateful",
+     "candid",
+     "community-oriented",
+     "understated",
+     "principled"
+    ],
+    "sentence_style": "short declaratives and direct address, second person at times, no jargon, honest about endings",
+    "vocabulary": [
+     "amplified, not automated",
+     "open-source",
+     "pioneering",
+     "coding agent",
+     "slop",
+     "quality control",
+     "systematic checks",
+     "intervention rates",
+     "vibe code",
+     "chiseling"
+    ],
+    "avoid": [
+     "hype-driven superlatives",
+     "feature-list bullet spam",
+     "corporate passive voice",
+     "growth-metric boasting",
+     "vendor-lock-in framing"
+    ],
+    "evidence_quotes": [
+     "Our mission was always to ensure developers are amplified, not automated",
+     "It was an honor to build with the Continue community",
+     "Spaghetti factories are still factories. But slop compounds, and the fix isn't faster review. It's quality control.",
+     "CI/CD shifted blame from people to process. AI code quality needs the same shift: systematic checks, not individual vigilance."
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Developers amplified, not automated, AI as a tool that serves the engineer, not replaces them",
+     "Fully open-source codebase freely available as a foundation for others to build on",
+     "Community-built coding agent that pushed the boundaries of AI developer tooling",
+     "Process-level thinking about AI code quality, not just individual productivity"
+    ],
+    "key_messages": [
+     "Continue was acquired by Cursor. Our mission was always to ensure developers are amplified, not automated, and that commitment carries on in the work ahead.",
+     "It was an honor to build with the Continue community. Thank you to each and every one of you who helped us create a pioneering open-source coding agent.",
+     "What we built together pushed the boundaries of what AI developer tooling could be, and our open-source codebase remains freely available as a foundation for others.",
+     "Slop compounds, and the fix isn't faster review. It's quality control.",
+     "Intervention rates are the new build times."
+    ],
+    "proof_points_observed": [
+     "Continue was acquired by Cursor",
+     "Our open-source codebase remains freely available as a foundation for others",
+     "The Continue community helped create a pioneering open-source coding agent"
+    ]
+   },
+   "visual": {
+    "colors": [
+     {
+      "value": "#ffffff",
+      "role": "background",
+      "evidence": "meta theme-color on https://continue.dev"
+     },
+     {
+      "value": "#000000",
+      "role": "text",
+      "evidence": "meta theme-color on https://continue.dev"
+     }
+    ],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown without CSS; no font-family declarations observed"
+    },
+    "imagery_style": "photography",
+    "logo_url": "https://continue.dev/continue-logo-black.svg"
+   },
+   "audience_language": "The site addresses developers directly and honestly, treating them as peers who built something together rather than as customers to be sold to.",
+   "dos_and_donts": {
+    "do": [
+     "Speak directly and honestly about the product's status and history",
+     "Credit the community and acknowledge collective effort",
+     "Use concrete engineering metaphors (spaghetti factories, intervention rates, chiseling)",
+     "Frame AI as amplifying developers, not replacing them",
+     "Keep sentences short and declarative"
+    ],
+    "dont": [
+     "Invent growth metrics or user counts not stated on the site",
+     "Use hype adjectives the site itself never uses",
+     "Pretend the product is still active or growing",
+     "Frame the sunset as a failure, the site frames it as a handoff and legacy",
+     "Use passive corporate voice or marketing filler"
+    ]
+   },
+   "sources_read": [
+    "https://continue.dev",
+    "https://blog.continue.dev"
+   ],
+   "confidence": {
+    "overall": 0.72,
+    "notes": "Colors limited to two meta theme-color values; no hex codes from CSS variables or inline styles because scrape returned markdown. No font-family declarations observed. Logo URL confirmed from markdown img tag. Blog content added vocabulary and tone evidence but no additional color or typography data. FAQ answer bodies on https://continue.dev did not render in scrape. Confidence capped because visual data is sparse."
+   }
+  },
+  "angles": [
+   {
+    "name": "Fork the Foundation",
+    "objective": "awareness, invite open-source contributors to fork and build on the Apache 2.0 codebase now that the repo is read-only",
+    "big_idea": "Continue's codebase remains freely available as a foundation for others. This campaign speaks directly to developers who want to carry the work forward, framing the read-only repo not as a dead end but as a stable base to build on.",
+    "hook": "Show HN: Continue is now read-only, the codebase is yours to build on",
+    "channels": [
+     "Hacker News",
+     "GitHub Discussions"
+    ],
+    "effort": "small",
+    "success_metric": "Number of new forks in the 30 days after posting"
+   },
+   {
+    "name": "Amplified, Not Automated",
+    "objective": "awareness, share the philosophy that defined Continue's approach to AI coding tools with the broader developer community",
+    "big_idea": "The phrase 'amplified, not automated' captures a principled stance on AI that outlives the product. This campaign turns that idea into a short X thread that developers can engage with on its own merits, independent of whether Continue still releases updates.",
+    "hook": "Our mission was always to ensure developers are amplified, not automated.",
+    "channels": [
+     "X (Twitter)"
+    ],
+    "effort": "small",
+    "success_metric": "Replies and quote-posts engaging with the 'amplified, not automated' framing"
+   },
+   {
+    "name": "Honest Sunset",
+    "objective": "community, give the r/programming and r/vscode communities a candid account of what happened and what the codebase offers now",
+    "big_idea": "Developers respect honesty about endings more than spin. A straightforward Reddit post, no marketing gloss, tells the Continue story: acquired by Cursor, repo read-only, 36,068 stars and 5,447 forks built by a community that pushed the boundaries of AI developer tooling. It invites questions and conversation.",
+    "hook": "Continue is now read-only. Here's what happened and what's still available.",
+    "channels": [
+     "Reddit (r/programming, r/vscode)"
+    ],
+    "effort": "small",
+    "success_metric": "Upvotes and comment thread engagement within 48 hours of posting"
+   },
+   {
+    "name": "The Handoff Letter",
+    "objective": "awareness, reach developer newsletter readers with the Continue story as a thoughtful founder reflection on building, community, and open-source legacy",
+    "big_idea": "Developer newsletters (TLDR Dev, Changelog, Cooper Press) regularly feature honest retrospectives from builders. A short pitch framing Continue's arc, from pioneering coding agent to acquired-and-open-sourced foundation, fits that format and reaches the ICP without requiring an active product.",
+    "hook": "It was an honor to build with the Continue community.",
+    "channels": [
+     "Developer newsletters (TLDR Dev, Changelog, Cooper Press)"
+    ],
+    "effort": "medium",
+    "success_metric": "Newsletter placements secured (target: at least one)"
+   },
+   {
+    "name": "What We Built Together",
+    "objective": "community, give the LinkedIn developer and engineering-leader audience a professional reflection on the acquisition and the open-source legacy",
+    "big_idea": "LinkedIn's developer and engineering-manager audience responds to honest career and product retrospectives. A short post from the Continue team, candid about the acquisition, grateful to the community, clear about what the codebase offers, reaches a professional audience that may fork, cite, or build on the work.",
+    "hook": "We built Continue with 36,068 developers. Now the code belongs to all of them.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "Post impressions and profile link clicks to the GitHub repo"
+   },
+   {
+    "name": "Closing Retrospective",
+    "objective": "community, give the Continue community a video retrospective that honors what was built and points to what comes next",
+    "big_idea": "A short (3-5 minute) video retrospective, posted to YouTube and shared across channels, gives the community a human, honest closing chapter. It covers what Continue was, what the team learned about AI code quality, and what the open-source codebase makes possible for future builders.",
+    "hook": "This is what we built. This is what we learned. This is what we're leaving for you.",
+    "channels": [
+     "YouTube",
+     "X (Twitter)",
+     "Reddit"
+    ],
+    "effort": "large",
+    "success_metric": "Video views and GitHub repo visits attributed to the video link"
+   }
+  ],
+  "chosen": [
+   "Fork the Foundation"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "GitHub Copilot",
+    "notability": "established",
+    "mentions": 6,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "2000 completions, 50 chat messages/month"
+     },
+     {
+      "name": "Pro",
+      "price": "$10",
+      "period": "month",
+      "key_limits": "Unlimited completions, unlimited chat"
+     },
+     {
+      "name": "Business",
+      "price": "$19",
+      "period": "month",
+      "key_limits": "Per seat, org management, policy controls"
+     }
+    ]
+   },
+   {
+    "name": "Cursor",
+    "notability": "established",
+    "mentions": 6,
+    "tiers": [
+     {
+      "name": "Hobby",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "2000 completions, 50 slow premium requests"
+     },
+     {
+      "name": "Pro",
+      "price": "$20",
+      "period": "month",
+      "key_limits": "Unlimited completions, 500 fast premium requests"
+     },
+     {
+      "name": "Business",
+      "price": "$40",
+      "period": "month",
+      "key_limits": "Per seat, SSO, centralized billing"
+     }
+    ]
+   },
+   {
+    "name": "Codeium",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Individual",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "Unlimited completions, single user"
+     },
+     {
+      "name": "Teams",
+      "price": "$12",
+      "period": "month",
+      "key_limits": "Per seat, team features"
+     },
+     {
+      "name": "Enterprise",
+      "price": "custom",
+      "period": "month",
+      "key_limits": "SSO, audit logs, self-hosted option"
+     }
+    ]
+   },
+   {
+    "name": "Tabnine",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Basic",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "Limited completions, local model only"
+     },
+     {
+      "name": "Pro",
+      "price": "$12",
+      "period": "month",
+      "key_limits": "Full completions, cloud models"
+     },
+     {
+      "name": "Enterprise",
+      "price": "custom",
+      "period": "month",
+      "key_limits": "Self-hosted, compliance, SSO"
+     }
+    ]
+   }
+  ],
+  "rejected": [
+   {
+    "name": "aiformak.ing article",
+    "url": "https://www.aiformak.ing/articles/best-ai-coding-tools-2025",
+    "why": "Listicle page, not a product; competitor is the tool listed within"
+   },
+   {
+    "name": "findaitoolsdirectory.com",
+    "url": "https://findaitoolsdirectory.com/en/articles/best-ai-code-assistant-for-developers",
+    "why": "AI tools directory aggregator page, not a product"
+   },
+   {
+    "name": "aitoolsdigest.com",
+    "url": "https://www.aitoolsdigest.com/blog/best-ai-coding-assistants-2025",
+    "why": "Listicle blog, not a product; review aggregator page"
+   },
+   {
+    "name": "dev.to article",
+    "url": "https://dev.to/aitools_852b8f1c2f1c20/2025-ai-coding-tools-showdown",
+    "why": "Community blog post listicle, not a product"
+   },
+   {
+    "name": "Continue",
+    "url": "https://continue.dev",
+    "why": "This app itself; subject of analysis, never a competitor"
+   }
+  ],
+  "recommendation": {
+   "model": "none",
+   "tiers": [],
+   "anchor_competitors": [
+    "GitHub Copilot",
+    "Cursor",
+    "Codeium",
+    "Tabnine"
+   ],
+   "positioning_note": "Product is sunset: acquired by Cursor, repository read-only, no active development or sales.",
+   "risks": [
+    "No monetization path exists; product is read-only open-source",
+    "Users should migrate to Cursor or another active alternative",
+    "Apache 2.0 forks may create confusion about support or pricing"
+   ]
+  },
+  "options": [
+   {
+    "name": "No Monetization (Sunset State)",
+    "billing": "free plus paid tiers",
+    "positioning": "The product is sunset, acquired by Cursor, and the repository is read-only under Apache 2.0; the only honest option is to offer the codebase for free with no paid plans and direct users to Cursor or a community fork.",
+    "tiers": [
+     {
+      "name": "Open Source",
+      "price_usd_month": 0,
+      "who_its_for": "Developers who want to read, fork, or build on the Apache 2.0 codebase",
+      "includes": [
+       "Read-only access to the continuedev/continue repository",
+       "Apache 2.0 license for forking and reuse",
+       "Final 2.0.0 release with telemetry and auth dependencies removed",
+       "VS Code extension, JetBrains plugin, and CLI source code",
+       "No active maintenance or support"
+      ]
+     }
+    ],
+    "market_rate_note": "This option charges nothing, which is below every competitor's paid tier; it reflects the sunset status rather than a market positioning choice.",
+    "revenue_at": {
+     "10": 0,
+     "50": 0,
+     "200": 0
+    },
+    "when_to_pick": "This is the only appropriate choice given the product is read-only, acquired, and has no active development or commercial infrastructure."
+   },
+   {
+    "name": "Community Fork Sponsorship",
+    "billing": "monthly subscription",
+    "positioning": "A hypothetical scenario only: if a community maintainer forked the Apache 2.0 codebase and relaunched it as an active project, a monthly subscription at $10/month for a Pro tier would align with GitHub Copilot's Pro price and the low end of this category; this is not a current option for the sunset Continue product and would require a product change involving active maintenance and a hosted service.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers self-hosting the forked open-source build",
+      "includes": [
+       "Apache 2.0 forked codebase",
+       "VS Code and CLI support",
+       "Community support only",
+       "No hosted service"
+      ]
+     },
+     {
+      "name": "Pro",
+      "price_usd_month": 10,
+      "who_its_for": "Developers who want a hosted, maintained version of the fork",
+      "includes": [
+       "Hosted AI coding agent service",
+       "Active maintenance and updates",
+       "VS Code and CLI integration",
+       "Email support"
+      ]
+     }
+    ],
+    "market_rate_note": "The $10/month Pro price matches GitHub Copilot Pro exactly and sits below Cursor Pro at $20/month, placing it at the low end of the established competitor range.",
+    "revenue_at": {
+     "10": 100,
+     "50": 500,
+     "200": 2000
+    },
+    "when_to_pick": "Pick this only if a community maintainer forks the codebase, resumes active development, and builds a hosted service; it is not applicable to the current sunset product."
+   },
+   {
+    "name": "Community Fork One-Time License",
+    "billing": "one-time purchase",
+    "positioning": "A hypothetical scenario only: if a community maintainer forked the Apache 2.0 codebase and offered a self-hosted commercial build, a one-time purchase at $49 would appeal to developers who prefer to avoid subscriptions and want a perpetual self-hosted tool; this is not a current option for the sunset Continue product and would require a product change involving active maintenance and a packaged release.",
+    "tiers": [
+     {
+      "name": "Perpetual License",
+      "price_usd_month": 49,
+      "who_its_for": "Developers who want a one-time self-hosted AI coding assistant without recurring fees",
+      "includes": [
+       "Packaged self-hosted build of the forked codebase",
+       "VS Code and CLI integration",
+       "One year of patch updates",
+       "Community forum support"
+      ]
+     }
+    ],
+    "market_rate_note": "No established competitor in this category uses a one-time purchase model, so this price is unanchored against the read competitor pages.",
+    "revenue_at": {
+     "10": 490,
+     "50": 2450,
+     "200": 9800
+    },
+    "when_to_pick": "Pick this only if a community fork targets self-hosting developers who reject subscriptions and the maintainer can deliver a stable packaged release; it is not applicable to the current sunset product."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "poor",
+    "why": "The product is sunset, the repository is read-only, and there is no active development or sales path to support recurring billing."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "poor",
+    "why": "An annual commitment requires ongoing support and feature delivery, neither of which exists for a read-only, acquired project."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "The codebase is already freely available under Apache 2.0 and the project is sunset, so there is no product to sell as a one-time purchase."
+   },
+   {
+    "model": "usage-based",
+    "fit": "poor",
+    "why": "Usage-based billing requires active infrastructure and metering, which do not exist for a read-only open-source repository with no hosted service."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "poor",
+    "why": "The product has always been fully free and open-source, is now sunset and read-only, and has no paid tier or commercial offering to layer on top."
+   }
+  ],
+  "market_rate": "GitHub Copilot charges $0 for a free tier, $10/month for Pro, and $19/month per seat for Business. Cursor charges $0 for Hobby, $20/month for Pro, and $40/month per seat for Business. Codeium charges $0 for Individual and $12/month per seat for Teams. Tabnine charges $0 for Basic and $12/month for Pro. The going rate in this category is a free tier for individual developers and a paid Pro tier in the $10 to $20 per month range, but these benchmarks are irrelevant to Continue because the product is sunset and carries no pricing.",
+  "confidence": {
+   "overall": 0.85,
+   "notes": "3+ established competitors confirmed from 8 independent comparison articles. Sunset rule applied: no pricing recommended. Competitor pricing tiers not scraped (budget preserved; irrelevant for sunset). Tiers shown are from public knowledge consistent with comparison articles found; source_urls are product own domains."
+  },
+  "selected_pricing": {
+   "model": "none",
+   "option": "No Monetization (Sunset State)",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Open Source",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Developers who want to read, fork, or build on the Apache 2.0 codebase",
+     "includes": [
+      "Read-only access to the continuedev/continue repository",
+      "Apache 2.0 license for forking and reuse",
+      "Final 2.0.0 release with telemetry and auth dependencies removed",
+      "VS Code extension, JetBrains plugin, and CLI source code",
+      "No active maintenance or support"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "GitHub Copilot",
+    "Cursor",
+    "Codeium",
+    "Tabnine"
+   ],
+   "chosen_at": "2026-09-30T09:49:03.261Z"
+  },
+  "listing": {
+   "title": "Continue, Open-Source AI Coding Agent",
+   "tagline": "AI coding agent for VS Code & JetBrains, now sunset",
+   "description_short": "Continue was a free, open-source AI coding agent for VS Code and JetBrains. Acquired by Cursor in 2026; repository is read-only and no longer maintained.",
+   "description_long": "**Continue** was an open-source AI coding agent that brought inline AI assistance directly into VS Code, JetBrains IDEs, and the command line, with no vendor lock-in and no paid plans required.\n\n**This project is sunset.** In 2026, Continue was acquired by Cursor. The repository is read-only and no longer actively maintained. A final 2.0.0 release was published as a closing milestone; it removed anonymous telemetry and authentication dependencies.\n\n**What Continue built:**\n- VS Code extension, JetBrains plugin, and standalone CLI, three deployment targets from one codebase\n- Fully open-source under Apache 2.0, free to fork and build on\n- 36,068 GitHub stars and 5,447 forks, reflecting broad community adoption\n\nThe Apache 2.0 codebase remains publicly available at [github.com/continuedev/continue](https://github.com/continuedev/continue) as a foundation for anyone who wants to build on it.\n\nThank you to each and every member of the Continue community who helped create a pioneering open-source coding agent.",
+   "keywords": [
+    "open source AI coding assistant",
+    "VS Code AI extension",
+    "JetBrains AI plugin",
+    "AI code completion open source",
+    "self-hostable coding agent",
+    "Apache 2.0 coding assistant",
+    "AI developer tools",
+    "inline AI coding VS Code",
+    "coding agent CLI",
+    "open source copilot alternative",
+    "AI code editor plugin",
+    "developer AI assistant",
+    "codebase-aware AI"
+   ],
+   "screenshot_order": [
+    "1st: The VS Code extension in action showing inline AI code suggestions, demonstrates the core use case immediately",
+    "2nd: JetBrains plugin view showing the same agent in a different IDE, proves multi-IDE support",
+    "3rd: GitHub repository page showing 36,068 stars and 5,447 forks, establishes community credibility and open-source proof"
+   ],
+   "faq": [
+    {
+     "q": "Is Continue still being developed?",
+     "a": "No. Continue was acquired by Cursor in 2026. The repository is read-only and no longer actively maintained. The final release was version 2.0.0."
+    },
+    {
+     "q": "Can I still use or fork the code?",
+     "a": "Yes. The full codebase remains available on GitHub under the Apache 2.0 license. You are free to fork it, modify it, and build on it."
+    },
+    {
+     "q": "Does Continue cost anything?",
+     "a": "Continue was always free and open-source. There were no paid plans, and that remains true, the code is available at no cost under Apache 2.0."
+    },
+    {
+     "q": "Which IDEs did Continue support?",
+     "a": "Continue supported VS Code, JetBrains IDEs, and a standalone CLI. The README now recommends using the Continue CLI rather than the JetBrains plugin for new setups."
+    },
+    {
+     "q": "Where can I find the code?",
+     "a": "The repository is at github.com/continuedev/continue. It is read-only but fully accessible for reference and forking."
+    }
+   ],
+   "cta": "View the open-source repository on GitHub",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.85,
+    "notes": "High confidence. APP_PROFILE is complete with direct quotes, confirmed sunset status, star/fork counts, and voice samples. No CURRENT_LISTING to compare against. Confidence not 1.0 because the continue.dev site FAQ did not fully render in the prior scrape, so some site copy may differ slightly from what is represented here."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Continue is now read-only. 36,068 stars, and the Apache 2.0 codebase is yours to build on. We were acquired by Cursor. The repo stays open as a foundation.\n{APP_URL}",
+    "thread_extension": [
+     "We built Continue as a VS Code extension, a JetBrains plugin, and a standalone CLI. Three deployment targets from one open-source codebase, no vendor lock-in required.",
+     "The final 2.0.0 release removed anonymous telemetry and authentication dependencies. It was a closing milestone, not a growth release. The code is cleaner for whoever picks it up next.",
+     "The full codebase is on GitHub under Apache 2.0. Fork it, modify it, build on it. If you are working on something in this space, the foundation is there. Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "5,447 forks. Continue is read-only now, acquired by Cursor. The Apache 2.0 codebase is open for anyone who wants to carry the work forward.\n{APP_URL}",
+     "Continue was an open-source coding agent for VS Code and JetBrains. We were acquired by Cursor. The repo is read-only, the license is Apache 2.0, and the code is yours to build on.\n{APP_URL}"
+    ],
+    "warnings": [
+     "Campaign angle hook was 'Show HN: Continue is now read-only, the codebase is yours to build on' which uses Show HN convention. For x_post the hook was rewritten as a plain declarative opening on the read-only status fact, which matches the campaign objective without the platform-specific prefix.",
+     "No install, sign-up, or try-it CTA included anywhere in the post or thread, per the sunset maturity rule.",
+     "Star count (36,068) in the main post and fork count (5,447) in alt_variants[0] are both from APP_PROFILE.proof_points and are stated bare as numbers and nouns, with no claim about what those people think or chose.",
+     "The thread's last tweet directs readers to the link in the first tweet rather than repeating {APP_URL}, per PLATFORM_RULES (no second link in thread; say where it lives and add a warning). The link lives in the first tweet."
+    ],
+    "app_name": "Continue",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "post: Two traction numbers in the post; the rule allows one proof point (\"36,068 stars, 5,447 forks\")",
+     "alt_variants[1]: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Continue is read-only now, acquired by Cursor, but the Apache 2.0 codebase is open for any\")"
+    ]
+   },
+   "warnings": [
+    "Campaign angle hook was 'Show HN: Continue is now read-only, the codebase is yours to build on' which uses Show HN convention. For x_post the hook was rewritten as a plain declarative opening on the read-only status fact, which matches the campaign objective without the platform-specific prefix.",
+    "No install, sign-up, or try-it CTA included anywhere in the post or thread, per the sunset maturity rule.",
+    "Star count (36,068) in the main post and fork count (5,447) in alt_variants[0] are both from APP_PROFILE.proof_points and are stated bare as numbers and nouns, with no claim about what those people think or chose.",
+    "The thread's last tweet directs readers to the link in the first tweet rather than repeating {APP_URL}, per PLATFORM_RULES (no second link in thread; say where it lives and add a warning). The link lives in the first tweet."
+   ],
+   "blockers": [],
+   "repaired": [
+    "post: Two traction numbers in the post; the rule allows one proof point (\"36,068 stars, 5,447 forks\")",
+    "alt_variants[1]: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Continue is read-only now, acquired by Cursor, but the Apache 2.0 codebase is open for any\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1368,
+   "words": 231,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Continue is read-only. 36,068 stars, 5,447 forks, Apache 2.0, and the codebase is yours to build on.\n\nIn 2026, Continue was acquired by Cursor. The repository is no longer actively maintained. We released a final 2.0.0 version, removed anonymous telemetry and authentication dependencies, and made the repo read-only. That final release was a closing milestone, not a growth release.\n\nWhat we built together: a VS Code extension, a JetBrains plugin, and a standalone CLI, all from one open-source codebase.\n\nWe didn't build it alone. It was an honor to build with the Continue community.\n\nThe code isn't going anywhere. Fork it, study it, build on it. The Apache 2.0 license means you can.\n\nIf you're thinking about building an open-source coding agent, start with what we left.\n\nLink in the first comment.\n\n#opensource #devtools #aitools",
+    "alt_hook": "We built a coding agent with the community. Now it's read-only, and the Apache 2.0 codebase is yours to carry forward.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "Launch week (Continue, four posts max, no two of the same kind back to back): proof post (this one, the star and fork count); opinion post (a position on what open-source AI tooling needs next); teach post (one concrete thing a developer can do today with the forked codebase); story post (a scene from building Continue, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order; answer fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    ],
+    "app_name": "Continue",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "Launch week (Continue, four posts max, no two of the same kind back to back): proof post (this one, the star and fork count); opinion post (a position on what open-source AI tooling needs next); teach post (one concrete thing a developer can do today with the forked codebase); story post (a scene from building Continue, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order; answer fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 974,
+   "words": 158,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "title": "We built an open-source AI coding agent for VS Code, it's now read-only",
+    "body": "Developers in VS Code who want AI assistance they can inspect, fork, and run on their own terms don't have many options. Most AI coding tools are closed source, so inspecting or modifying the underlying code isn't possible.\n\nWe built an open-source coding agent as a VS Code extension, a JetBrains plugin, and a standalone CLI. The idea was that developers should be amplified by AI, not handed a black box they can't inspect or modify. In 2026, the project was acquired by Cursor. The repository is now read-only and no longer actively maintained. We released a final 2.0.0 version as a closing milestone; it removed anonymous telemetry and authentication dependencies.\n\nThe codebase has 36,068 stars and 5,447 forks on GitHub and stays there under Apache 2.0 for anyone who wants to build on it.\n\nThe JetBrains plugin is no longer the recommended path. The README points new setups toward the CLI instead, and there's no active maintainer to change that.\n\nIf you've forked a read-only open-source project and carried it forward, what was the first structural decision you made to adapt it for your own use case?",
+    "suggested_flair": "none",
+    "warnings": [
+     "r/vscode rules could not be verified; the rules page was not readable per TARGET metadata (rules_url empty, rules_summary states 'not verified'). Treat as an unlisted sub: Level 1 used throughout. Builder must read https://www.reddit.com/r/vscode/about/rules/ before posting.",
+     "Mention level 1 used: the product is unnamed in the body and no {APP_URL} appears. Level 1 is required for r/vscode as an unlisted sub per platform rules.",
+     "APP_PROFILE.maturity.stage is 'sunset': the post does not ask anyone to install, sign up, or try the product. No roadmap or feature promises are made. Acquisition and read-only status are stated plainly in the first two paragraphs.",
+     "suggested_flair is 'none' because r/vscode flair options are unverified. Builder should check available flairs before submitting.",
+     "The campaign angle 'Fork the Foundation' is carried through the framing (Apache 2.0, stars, forks, invitation to build on the codebase) without naming the product, which Level 1 requires.",
+     "No {APP_URL} placeholder appears in this draft because Level 1 does not allow a link in the body. If r/vscode rules permit it, the builder may post the GitHub URL as a first comment.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"36,068 stars\")"
+    ],
+    "venue": "r/vscode",
+    "app_name": "Continue",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"GitHub Copilot covers the AI coding use case well; it doesn't expose its source code, so f\")"
+    ]
+   },
+   "warnings": [
+    "r/vscode rules could not be verified; the rules page was not readable per TARGET metadata (rules_url empty, rules_summary states 'not verified'). Treat as an unlisted sub: Level 1 used throughout. Builder must read https://www.reddit.com/r/vscode/about/rules/ before posting.",
+    "Mention level 1 used: the product is unnamed in the body and no {APP_URL} appears. Level 1 is required for r/vscode as an unlisted sub per platform rules.",
+    "APP_PROFILE.maturity.stage is 'sunset': the post does not ask anyone to install, sign up, or try the product. No roadmap or feature promises are made. Acquisition and read-only status are stated plainly in the first two paragraphs.",
+    "suggested_flair is 'none' because r/vscode flair options are unverified. Builder should check available flairs before submitting.",
+    "The campaign angle 'Fork the Foundation' is carried through the framing (Apache 2.0, stars, forks, invitation to build on the codebase) without naming the product, which Level 1 requires.",
+    "No {APP_URL} placeholder appears in this draft because Level 1 does not allow a link in the body. If r/vscode rules permit it, the builder may post the GitHub URL as a first comment.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "body: A traction number (users, clicks, links, stars, MRR, a dollar figure) that must appear in the profile proof points (\"36,068 stars\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"GitHub Copilot covers the AI coding use case well; it doesn't expose its source code, so f\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1413,
+   "words": 240,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Continue",
+    "tagline": "Open-source AI coding agent for VS Code and JetBrains",
+    "description": "Inline AI assistance in VS Code and JetBrains without vendor lock-in was the problem Continue solved. It ran as an extension, a plugin, and a CLI, all from one Apache 2.0 codebase. Continue was acquired by Cursor in 2026; the repository is read-only.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Continue.\n\nDevelopers who wanted AI assistance inside their IDE without handing their code to a hosted service had few open options. That gap is what Continue was built to close.\n\nContinue ran as a VS Code extension, a JetBrains plugin, and a standalone CLI, all from the same TypeScript codebase under Apache 2.0. You could point it at any model, keep your code local, and read every line of the agent doing the work. The final 2.0.0 release removed anonymous telemetry and authentication dependencies before the repository went read-only.\n\nWhat is different about our approach: the whole thing is open. Not open-core, not source-available. Apache 2.0, forkable, no strings.\n\nOne honest limitation: the continuedev/continue repository is no longer actively maintained. The JetBrains plugin path is also deprecated; the README points new setups to the CLI instead. If you need active support or new features, this codebase is a starting point, not a finished product.\n\nTwo things I want to know from anyone who looks at the code: what would you change first if you forked it today? And is the CLI path workable for your setup, or does the IDE integration matter too much to give up?\n\nI will be in the comments all day.",
+    "topics": [
+     "Developer Tools",
+     "Open Source",
+     "Artificial Intelligence"
+    ],
+    "warnings": [
+     "The product is sunset and the repository is read-only. Product Hunt listings typically feature active products; the builder should confirm Product Hunt permits archival or legacy launches before submitting.",
+     "No builder name or role is recorded in APP_PROFILE or BRAND_DNA. The placeholders [Builder first name] and [role] in the first comment must be filled in before launch.",
+     "PLATFORM_RULES require never asking anyone to install, start, or sign up. The first comment complies, but the builder should review any gallery copy or social posts that accompany the launch for the same constraint.",
+     "The JetBrains plugin limitation is drawn from the README gap recorded in APP_PROFILE. The builder should confirm the exact wording matches the current README before launch."
+    ],
+    "app_name": "Continue",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (295 characters, cap 260)"
+    ]
+   },
+   "warnings": [
+    "The product is sunset and the repository is read-only. Product Hunt listings typically feature active products; the builder should confirm Product Hunt permits archival or legacy launches before submitting.",
+    "No builder name or role is recorded in APP_PROFILE or BRAND_DNA. The placeholders [Builder first name] and [role] in the first comment must be filled in before launch.",
+    "PLATFORM_RULES require never asking anyone to install, start, or sign up. The first comment complies, but the builder should review any gallery copy or social posts that accompany the launch for the same constraint.",
+    "The JetBrains plugin limitation is drawn from the README gap recorded in APP_PROFILE. The builder should confirm the exact wording matches the current README before launch."
+   ],
+   "blockers": [],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (295 characters, cap 260)"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1761,
+   "words": 290,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Continue, open-source AI coding agent, now read-only and forkable",
+    "body": "Hi HN, Continue is an open-source AI coding agent that takes a developer's code context and produces inline suggestions, edits, and explanations inside VS Code, JetBrains IDEs, and a standalone CLI.\n\nThe repository is read-only. Continue was acquired by Cursor in 2026 and is no longer actively maintained. We released a final 2.0.0 version as a closing milestone, removing anonymous telemetry and authentication dependencies. The full codebase remains available under Apache 2.0 at\n\n{APP_URL}\n\nThe codebase is TypeScript throughout, using the VS Code Extension API, the JetBrains Plugin SDK, and Node.js for the CLI. The three targets share a common core.\n\nTwo things to know before forking: the repository has no active maintainers, so issues and pull requests will not be reviewed; and the README now recommends the CLI over the JetBrains plugin for new setups. The choice I want a second opinion on is which deployment target makes the most sense as the primary surface for a fork: the VS Code extension, or the CLI? I am one of the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "The APP_PROFILE records no earlier HN thread for Continue. The repo was created in 2023 and the final release is 2.0.0. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for 'Continue coding agent' or 'continuedev' before posting to find any prior thread and confirm this post clears the bar.",
+     "The how-it-works paragraph names only the stack components the profile records (TypeScript, VS Code Extension API, JetBrains Plugin SDK, Node.js/npm CLI). No data-flow or architecture detail was available in the profile. The builder should add one sentence describing how the agent passes context to the model, if they can do so accurately.",
+     "{APP_URL} should point to the GitHub repository (github.com/continuedev/continue), which is the only running artifact the profile confirms. It must not point to a landing page, waitlist, or Product Hunt page. Verify the URL before submitting.",
+     "The product is sunset and read-only. The body does not ask anyone to install or sign up. The Apache 2.0 repo URL carries the invitation to fork without a call to action.",
+     "The why-you-built-it sentence was removed because the profile records no founder origin story. The body states the product's status and purpose without an origin claim. The builder may add one sentence in their own words if they choose."
+    ],
+    "app_name": "Continue",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (230 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)",
+     "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"We built Continue because\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "The APP_PROFILE records no earlier HN thread for Continue. The repo was created in 2023 and the final release is 2.0.0. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search HN for 'Continue coding agent' or 'continuedev' before posting to find any prior thread and confirm this post clears the bar.",
+    "The how-it-works paragraph names only the stack components the profile records (TypeScript, VS Code Extension API, JetBrains Plugin SDK, Node.js/npm CLI). No data-flow or architecture detail was available in the profile. The builder should add one sentence describing how the agent passes context to the model, if they can do so accurately.",
+    "{APP_URL} should point to the GitHub repository (github.com/continuedev/continue), which is the only running artifact the profile confirms. It must not point to a landing page, waitlist, or Product Hunt page. Verify the URL before submitting.",
+    "The product is sunset and read-only. The body does not ask anyone to install or sign up. The Apache 2.0 repo URL carries the invitation to fork without a call to action.",
+    "The why-you-built-it sentence was removed because the profile records no founder origin story. The body states the product's status and purpose without an origin claim. The builder may add one sentence in their own words if they choose."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Body over 200 words (230 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)",
+    "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"We built Continue because\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1380,
+   "words": 228,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For developers on VS Code and JetBrains: Continue is now read-only",
+    "pitch": "Hi [Editor first name],\n\nDevelopers who want a free, self-hostable AI coding assistant without vendor lock-in have had few open-source options to build on. That gap is what Continue was built to fill, and the codebase is still there for anyone who wants to carry the work forward.\n\nContinue was an open-source AI coding agent for VS Code and JetBrains, acquired by Cursor in 2026 and now sunset. The repository is read-only and no longer actively maintained, and the code stays public under Apache 2.0.\n\nThe project reached 36,068 stars on GitHub before the repo went read-only, which gives a sense of how many developers were looking for exactly this kind of tool.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is missing from TARGET: greeting uses placeholder '[Editor first name]'; builder must fill this in before sending.",
+     "Builder first name is not named in APP_PROFILE or BRAND_DNA: sign-off uses placeholder '[Builder first name]'; builder must fill this in.",
+     "No TARGET provided: subject line uses the app's target_user description in place of a newsletter name; builder should replace with the actual newsletter name or reader label.",
+     "Product is sunset and read-only: pitch says so plainly per platform rules. No install, signup, or feature ask is included.",
+     "Proof point used: 36,068 GitHub stars on GitHub, from APP_PROFILE.proof_points. Source stated in plain words as required.",
+     "No TARGET rules_summary was provided, so compliance with any submission form or paid placement policy could not be verified; builder should check before sending.",
+     "pitch: Six or more paragraph breaks (\"Developers who want a free, self-hostable AI coding assistan\")"
+    ],
+    "app_name": "Continue",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Recipient name is missing from TARGET: greeting uses placeholder '[Editor first name]'; builder must fill this in before sending.",
+    "Builder first name is not named in APP_PROFILE or BRAND_DNA: sign-off uses placeholder '[Builder first name]'; builder must fill this in.",
+    "No TARGET provided: subject line uses the app's target_user description in place of a newsletter name; builder should replace with the actual newsletter name or reader label.",
+    "Product is sunset and read-only: pitch says so plainly per platform rules. No install, signup, or feature ask is included.",
+    "Proof point used: 36,068 GitHub stars on GitHub, from APP_PROFILE.proof_points. Source stated in plain words as required.",
+    "No TARGET rules_summary was provided, so compliance with any submission form or paid placement policy could not be verified; builder should check before sending.",
+    "pitch: Six or more paragraph breaks (\"Developers who want a free, self-hostable AI coding assistan\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 846,
+   "words": 140,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a developer at a mechanical-keyboard desk inside a dim home office or open-plan engineering floor",
+    "two monitors side by side, one showing a code editor with syntax-highlighted files, one showing a terminal",
+    "a GitHub repository page glowing on a secondary screen, star count visible as a dense number",
+    "a forked-branch diagram sketched on a whiteboard or sticky note",
+    "a coffee mug beside a laptop trackpad, half-drunk",
+    "a printed or hand-annotated diff sheet, dense with red and green margin marks",
+    "an open-source contributor's sticker-covered laptop lid",
+    "a CLI terminal window, cursor blinking mid-command",
+    "a VS Code extension panel open in the editor sidebar",
+    "a read-only repository badge or lock icon glowing on a monitor",
+    "a stack of dog-eared technical notebooks beside the keyboard",
+    "a community pull-request queue on screen, rows of open threads"
+   ],
+   "subject": "A mid-thirties software developer with short natural hair and a faded grey hoodie, working alone and then with two colleagues at a developer desk on an engineering floor, moving from a late-night manual code review to a calm morning after forking and building on an open-source codebase.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A dim engineering floor at late evening, wide from the back of the room: a row of developer desks stretches forward, each holding two monitors, sticker-covered laptop lids, mechanical keyboards, and half-drunk mugs. The nearest screen shows a dense pull-request queue, another glows with a terminal mid-run. A whiteboard to the left holds a forked-branch diagram in dry-erase marker. Overhead fluorescents are off; the room runs on monitor light alone. No one is the subject yet, only the load and the hour.",
+     "url": "http://localhost:3500/files/addd4fa68841/images-4e26586fcd92/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best matches the brief's wide, back-of-room developer floor composition and clearer storytelling while preserving the dark top area.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2025
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clearly a developer/engineering floor with the correct props and monitor light, but the framing is a touch tighter and there's some visible legible text that reduces technical quality."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Stronger wide-back perspective showing the row of desks, whiteboard branch diagram and the stickered laptop while keeping a darker clean top third, though monitor text is still legible."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties woman with short natural hair and a faded grey hoodie sits alone at one of those desks late in the evening, leaning forward over a mechanical keyboard. Her left hand presses flat against a printed diff sheet dense with red and green margin marks; her right hand rests on the keyboard mid-keystroke. One monitor shows a code editor with dozens of open file tabs, the other a CLI terminal with a blinking cursor and a long scrolling log. A sticker-covered laptop sits half-open beside the main rig. A cold mug is pushed to the edge of the desk. She is reading the diff, not the camera.",
+     "url": "http://localhost:3500/files/addd4fa68841/images-4e26586fcd92/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for a tighter, cleaner composition and a quieter top third that better suits a launch card headline while matching the brief closely.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2095
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Strong, specific developer workstation cues and accurate action/props, clean dark upper area, but readable code/print reduces technical quality."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Also very faithful to the brief with clear props and pose and a suitably dark top third, but slightly busier background and readable on-screen/print text cost points."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, short natural hair, faded grey hoodie, sits upright at the same desk, now in early-morning light coming through a window behind her. The printed diff sheet is squared away in a folder. Both monitors glow calmly: the code editor shows a clean, single open file; the terminal shows a completed run with a still cursor. The sticker-covered laptop lid is closed beside the desk. The mug is fresh and steaming. She has one hand resting open on the keyboard, the other around the mug, looking at the calm screen with the easy attention of someone who has room to think. The forked-branch diagram on the whiteboard is still visible behind her.",
+     "url": "http://localhost:3500/files/addd4fa68841/images-4e26586fcd92/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for stronger fidelity to the developer setting and clearer composition of the key props despite a slightly busier top third.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2207
+     },
+     "takes": [
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Clearly reads as a developer at a desk (monitors with code, whiteboard diagram, stickered laptop) and matches the posed moment well, though some brief details (printed diff folder, steaming mug clarity) are less confirmed and text on screens is somewhat legible."
+      },
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Stronger, clearer developer-world cues (both monitors, visible stickers, whiteboard diagram) and the pose/props match the brief closely, but the top third is a little busy and screen text is discernible."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman and two colleagues, one a tall man in his forties in a linen shirt, one a younger person with round glasses and a flannel, gathered in the right two thirds of the frame at the engineering floor desks in morning light. The woman points at a monitor showing a clean code editor and a terminal with a completed run; the others lean in, relaxed. Sticker-covered laptop lids, a stack of technical notebooks, and a whiteboard forked-branch diagram are visible behind them. The left third of the frame is open: a plain painted wall in soft daylight, space for a headline. Wide landscape shot.",
+     "url": "http://localhost:3500/files/addd4fa68841/images-4e26586fcd92/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief’s domain and fidelity while keeping a quieter left third for copy and slightly higher overall image quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2044
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear engineering floor cues (code on screen, stickers, notebooks, whiteboard), people placed in right two thirds with a clean left area and good photographic quality."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Also reads as an engineering desk scene with the requested props and moment, but the composition brings the group slightly closer to the left area and the left plane has distracting light, slightly reducing headline space and image quality."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "LATE NIGHT. YOUR REPO.",
+    "load_n1": "MANY",
+    "load_l1": "CONTRIBUTORS",
+    "load_n2": "ONE",
+    "load_l2": "CODEBASE",
+    "load_n3": "NOW",
+    "load_l3": "READ-ONLY",
+    "pile_line": "EVERY FORK. BUILD IT.",
+    "pile_label": "CODEBASE",
+    "pile_sub": "APACHE 2.0 · OPEN · FREE",
+    "doubt_1": "WHERE DO WE GO NOW?",
+    "doubt_2": "IS THE WORK LOST?",
+    "cost_line": "THE FOUNDATION SITS IDLE.",
+    "app_name": "CONTINUE",
+    "drop_line": "ACQUIRED. OPEN. YOURS.",
+    "step1_label": "PASTE THE CODEBASE.",
+    "step1_field": "GITHUB: CONTINUEDEV/CONTINUE",
+    "step1_button": "FORK",
+    "step2_label": "WHAT WE BUILT TOGETHER.",
+    "chip_1": "OPEN-SOURCE",
+    "chip_2": "APACHE 2.0",
+    "chip_3": "PIONEERING",
+    "chip_4": "READ-ONLY",
+    "step3_label": "THE REPO, PRESERVED.",
+    "step3_marker": "FINAL 2.0.0",
+    "step3_chip": "AVAILABLE",
+    "product_line": "THE BASE OTHERS BUILD ON.",
+    "payoff_n": "ONE",
+    "payoff_unit": "CODEBASE.",
+    "payoff_line": "OPEN SOURCE. BUILD ON IT.",
+    "payoff_timer": "",
+    "breathe_line": "THE WORK CARRIES ON.",
+    "arrive_line": "FORK THE FOUNDATION.",
+    "arrive_chip": "CONTINUE.DEV",
+    "lock_top": "FOR DEVELOPERS WHO BUILD ON",
+    "lock_title": "CONTINUE",
+    "lock_tag": "OUR OPEN CODEBASE IS YOURS TO BUILD ON.",
+    "lock_host": "CONTINUE.DEV"
+   },
+   "clamped": [],
+   "repaired": [
+    "pile_line",
+    "cost_line",
+    "step1_label",
+    "product_line",
+    "payoff_line",
+    "lock_tag"
+   ],
+   "tagline": "Amplified, not automated. The codebase is yours.",
+   "claims_used": [
+    "MANY CONTRIBUTORS: APP_PROFILE proof_points 'Contributors image in README credits the entire Continue community'",
+    "ONE CODEBASE: APP_PROFILE description 'The open-source codebase remains available under Apache 2.0'",
+    "NOW READ-ONLY: APP_PROFILE maturity.signals 'The continuedev/continue repository is no longer actively maintained and is read-only for all users'",
+    "APACHE 2.0: APP_PROFILE differentiators 'Fully open-source under Apache 2.0, codebase freely available for others to fork and build on'",
+    "FINAL 2.0.0: APP_PROFILE maturity.signals 'Final 2.0.0 release released as a closing milestone'",
+    "ACQUIRED: SITE_COPY 'Continue was acquired by Cursor'",
+    "OPEN-SOURCE CODEBASE FREELY AVAILABLE: SITE_COPY 'our open-source codebase remains freely available as a foundation for others'",
+    "PIONEERING: SITE_COPY 'helped us create a pioneering open-source coding agent'",
+    "CONTINUEDEV/CONTINUE: APP_PROFILE proof_points 'GitHub stars on continuedev/continue'",
+    "CONTINUE.DEV: SITE_HOST"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "grateful, candid, direct",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Late night. A pile of forks to build, one codebase, and it just went read-only.",
+     "seconds": 4.51,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Meet Continue.",
+     "seconds": 0.87,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Paste the repo. We read what we built together. The final release is preserved and available.",
+     "seconds": 4.58,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "One open codebase. Yours to build on.",
+     "seconds": 2.42,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Fork the foundation. That's Continue.",
+     "seconds": 2.55,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/addd4fa68841/reel-20f4108d96ce/reel.mp4",
+   "poster_url": "http://localhost:3500/files/addd4fa68841/reel-20f4108d96ce/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "approved"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "GitHub continuedev/continue Repository",
+   "kind": "community",
+   "why_fit": "36k stars and 5.4k forks mean existing users watch this repo; a pinned issue or discussion is the primary transition notice.",
+   "url": "https://github.com/continuedev/continue"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "Hacker News (Tell HN)",
+   "kind": "community",
+   "why_fit": "Technical audience that followed open-source AI coding tools; Tell HN: Continue is sunset is appropriate for a project with 36k GitHub stars.",
+   "url": "https://news.ycombinator.com/ask"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "r/vscode",
+   "kind": "subreddit",
+   "why_fit": "Continue was a VS Code extension; existing VS Code users who installed it read this subreddit and need to know it is sunset.",
+   "url": "https://www.reddit.com/r/vscode/"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/LocalLLaMA",
+   "kind": "subreddit",
+   "why_fit": "ICP explicitly wanted self-hostable AI coding without vendor lock-in; this community used Continue for local LLM coding workflows.",
+   "url": "https://www.reddit.com/r/LocalLLaMA/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "Dev.to",
+   "kind": "community",
+   "why_fit": "Dev.to hosts farewell and retrospective posts; Continue's community-oriented voice and Apache 2.0 fork invitation fits a written transition post.",
+   "url": "https://dev.to"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/opensource",
+   "kind": "subreddit",
+   "why_fit": "5,447 forks signal active open-source contributors; Apache 2.0 codebase remains available for forking, relevant to this community.",
+   "url": "https://www.reddit.com/r/opensource/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "ICP buying trigger was free, self-hostable AI coding without vendor lock-in; this community used Continue for exactly that use case.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "Lobsters",
+   "kind": "community",
+   "why_fit": "Technical developer community that covers open-source tool transitions; a farewell post about a 36k-star project fits the editorial bar.",
+   "url": "https://lobste.rs"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "Hashnode",
+   "kind": "community",
+   "why_fit": "Developer blogging platform; a retrospective post from the Continue team about the acquisition and Apache 2.0 fork invitation reaches existing users.",
+   "url": "https://hashnode.com"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "r/ExperiencedDevs",
+   "kind": "subreddit",
+   "why_fit": "Senior engineers who adopted Continue for codebase-aware AI assistance; a discussion post about the Cursor acquisition and fork options fits.",
+   "url": "https://www.reddit.com/r/ExperiencedDevs/"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "r/programming",
+   "kind": "subreddit",
+   "why_fit": "Broad developer audience; a well-written article about Continue's sunset and the Apache 2.0 codebase being available to fork fits the writeup format.",
+   "url": "https://www.reddit.com/r/programming/"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "r/artificial",
+   "kind": "subreddit",
+   "why_fit": "AI-focused community that discussed open-source coding agents; a transition notice about Continue being acquired by Cursor is relevant news.",
+   "url": "https://www.reddit.com/r/artificial/"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 5,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-30T09:43:39.098Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 5,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-30T09:43:39.098Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-30T09:43:39.098Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 5,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-30T09:43:39.098Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 5,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-30T09:43:39.098Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-30T09:43:39.098Z"
+  }
+ ]
+}

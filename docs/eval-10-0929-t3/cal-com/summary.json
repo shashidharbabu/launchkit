@@ -1,0 +1,169 @@
+{
+  "name": "Cal.com",
+  "site": "https://cal.com",
+  "repo": "https://github.com/calcom/cal.com",
+  "started": "2026-09-29T22:11:49.122Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 97,
+      "understandSecs": 91,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 129,
+      "dnaSecs": 55,
+      "anglesSecs": 70,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 184,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "5",
+        "4"
+      ],
+      "chosen": true,
+      "listingRedrafted": false,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 934,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 19,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 46,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 64,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 470,
+          "idle": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 19,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 5,
+      "blocked": [
+        "Approve the Product Hunt draft"
+      ],
+      "counts": "5 approved, 1 needs review",
+      "warnings": 6,
+      "repaired": 4
+    },
+    "assets": {
+      "ok": true,
+      "secs": 491,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 22,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 58,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": false,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a developer's dual-monitor workstation with a terminal and a calendar grid glowing side by sidea booking-link preview open in a browser taba round-robin routing diagra",
+      "fits": 5,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 79,
+      "redditRedrafted": true,
+      "ranked": 14,
+      "top5": [
+        "Show HN (Hacker News)",
+        "r/selfhosted",
+        "r/webdev",
+        "r/opensource",
+        "r/startups"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 193,
+      "idle": true,
+      "heading": "",
+      "none": true,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": false,
+      "notReady": true,
+      "decisions": true,
+      "angle": "Infrastructure for Time",
+      "pricing": "Current model: free plus paid tiers (annual billing), free plus paid tiers: Free"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 282335,
+  "finished": "2026-09-29T22:49:03.672Z",
+  "page_errors": []
+}

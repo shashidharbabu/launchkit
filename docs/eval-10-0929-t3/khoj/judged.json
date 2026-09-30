@@ -1,0 +1,210 @@
+{
+  "slug": "khoj",
+  "scores": {"profile": 4, "brand": 3, "commercial": 3, "social": 3, "assets": 3, "targets": 3, "signals": 2, "plan": 2},
+  "post_scores": {"x_post": 4, "linkedin_post": 4, "reddit_post": 4, "producthunt": 3, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The only kept signal is a DeepSeek feature request whose author explicitly wants to avoid self-hosting, yet the reply pitches a product that now requires running your own server.",
+      "evidence": "Issue body (github.com/deepseek-ai/DeepSeek-V3/issues/1643): \"forcing users to rely on complex self-hosted solutions like Termux + Ollama + Open WebUI\"; signals[0].drafted_reply: \"You'd run the server yourself, so documents never leave your machine\"",
+      "systemic": true,
+      "cause_hint": "signals rescore judges topic match only; it does not check the asker's stated constraint against profile.gaps (self-host only) or maturity.stage=sunset"
+    },
+    {
+      "stage": "signals",
+      "severity": "high",
+      "summary": "The drafted reply contradicts itself on privacy and adds unverified capabilities: it says DeepSeek can be the LLM and also that documents never leave the machine, and promises the 'memory controls you described'.",
+      "evidence": "signals[0].drafted_reply: \"supports DeepSeek as the underlying LLM, and has Android and WhatsApp clients ... documents never leave your machine, and you get the citation and memory controls you described. I built it\"",
+      "systemic": true,
+      "cause_hint": "signals reply prompt: no check of reply claims against profile differentiators (profile says 'phone', not Android; nothing about editable memory)"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The signal's date is stored as unknown although the issue carries a creation date (2026-09-13), so recency was not verified from the source.",
+      "evidence": "signals[0].posted_when: \"unknown\"",
+      "systemic": true,
+      "cause_hint": "signals scan: GitHub issue created_at not read"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The voice-over claims 'Nothing leaves your machine', which is false for a product whose headline feature is using cloud LLMs (GPT, Claude, Gemini) over your documents, and a self-host server is not necessarily your machine.",
+      "evidence": "studio voice segment 'how': \"Drop in your docs. It searches, indexes, and cites. Nothing leaves your machine.\"; profile.differentiators: \"Supports any local or cloud LLM interchangeably: ... gpt, claude, gemini, deepseek\"",
+      "systemic": true,
+      "cause_hint": "voice/script prompt drifts to a generic privacy beat; no claim check against the profile"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "Reel 'how it works' beats use template words, not Khoj's real UI or categories: a BUILD button and FOUND/INDEXED/CITED/OPEN chips that the beat spec says must be the product's real categories.",
+      "evidence": "studio script slots: \"step1_button\": \"BUILD\", \"chip_1\": \"FOUND\", \"chip_2\": \"INDEXED\", \"chip_3\": \"CITED\", \"chip_4\": \"OPEN\", \"step3_label\": \"NOTHING SLIPS. IT STAYS.\"; beat spec: \"The chips are the product's real categories.\"",
+      "systemic": true,
+      "cause_hint": "verdict concept template in studio script pipe; the concept fits a review/triage product, not a chat assistant"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel's product beat uses the khoj.dev screenshot, which is now the company page promoting Open Paper and Pipali, not the Khoj app.",
+      "evidence": "studio probe copy: \"a: NEWPipali - Our desktop AI co-worker\", \"h2: Our products\", \"h3: Open Paper\"; reel: \"screenshot_used\": true, product_line \"INTELLIGENCE YOU CAN TRUST.\"",
+      "systemic": true,
+      "cause_hint": "studio probe screenshots site_url without checking it shows the product (sunset case)"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The sunset rule forbids asking anyone to install the product, yet the reel, voice and listing CTA tell viewers to self-host now, while the posts claim no install ask was made; the rule and the angle conflict and outputs apply it inconsistently.",
+      "evidence": "reel slots: \"arrive_line\": \"SELF-HOST IT NOW.\"; voice 'close': \"Self-host it today. That's Khoj.\"; rulebooks.ts GLOBAL: \"never ask anyone to install, start, sign up for or buy it\"; x_post warning: \"does not ask anyone to install, sign up, or start a trial\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts sunset rule has no carve-out for a live self-host path; studio script prompt does not apply it"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Brand DNA reports no colours, fonts or logo although the site's CSS declares Roboto and Source Serif 4 and a #282828 on #fff palette and the favicon is the lantern logo; the studio probe found them, so the two stages disagree.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"typography\": {\"headings\": \"\", \"body\": \"\", \"evidence\": \"Scrape returned markdown without CSS\"}, \"logo_url\": \"\"; studio probe fonts: {\"heading\": \"Roboto\", \"body\": \"Source Serif 4\"}; khoj.dev/css/design-tokens.css: \"--color-text: #282828\"",
+      "systemic": true,
+      "cause_hint": "brand DNA pipe reads Firecrawl markdown only; a read failure is left as an empty field instead of reusing the studio probe"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The Self-Host Workshop angle invents a time claim.",
+      "evidence": "brand_campaigns[4].sample_copy.headline: \"Self-Host Khoj in Under an Hour: A Practical Walkthrough\"",
+      "systemic": false,
+      "cause_hint": "brand angles prompt"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The chosen pricing option is 'No Pricing' but carries billing 'free plus paid tiers', and that contradiction flows into the plan's Decisions card.",
+      "evidence": "pricing.options[0]: \"name\": \"No Pricing (Sunset State)\", \"billing\": \"free plus paid tiers\"; plan screenshot: \"No Pricing (Sunset State), free plus paid tiers: Self-Hosted (Free) $0/mo\"",
+      "systemic": true,
+      "cause_hint": "pricing options prompt/schema forces a billing enum even for model none"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Two hypothetical relaunch options add unanchored prices and an invented feature ('bundled model access') for a product with no hosted service.",
+      "evidence": "pricing.options[1].tiers[1]: \"price_usd_month\": 12, \"includes\": [... \"Bring your own LLM API key or use bundled model access\", \"Email support\"]; market_rate: \"roughly $8 to $20 per month, but this cannot be confirmed\"",
+      "systemic": true,
+      "cause_hint": "pricing options prompt still generates alternative tiers after research returned model none for a sunset product"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing embellishes an unverified README line into 'thousands of self-hosters worldwide', which the profile itself lists as unverified.",
+      "evidence": "listing.description_long: \"is used by thousands of self-hosters worldwide\"; README: \"a tool used by thousands to boost productivity\"; profile.unverified: \"'Used by thousands' claim in README, no independent verification found\"",
+      "systemic": true,
+      "cause_hint": "listing prompt draws from proof_points without honouring profile.unverified"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing FAQ asserts that the founders left and the community now maintains Khoj, but that is not in the profile and the repo shows founder Debanjum committing in June 2026.",
+      "evidence": "listing.faq[4].a: \"The original founders have moved to new projects, but the community continues to maintain the self-hosted version.\"; GitHub commits: \"2026-06-24 Debanjum Use configured app URL for auth emails\"",
+      "systemic": false,
+      "cause_hint": "listing prompt inference from maturity.signals"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt first comment opens with a false absolute claim about the field that swipes at every other assistant.",
+      "evidence": "producthunt.first_comment: \"Every AI assistant that can search your notes requires you to hand those notes to someone else's server.\"",
+      "systemic": true,
+      "cause_hint": "producthunt rulebook lacks the Show HN 'never make an absolute claim about the field' rule; the gate did not catch it"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN makes the same absolute field claim that the HN rulebook forbids, and it asks for architecture advice on a project whose team has moved to other products, which suggests active development.",
+      "evidence": "show_hn.body: \"Existing AI assistants require handing private documents to a third-party cloud and lock users into one model provider.\" and \"The choice I want a second opinion on is the retrieval architecture\"; rulebooks.ts: \"Never make an absolute claim about the field\"",
+      "systemic": true,
+      "cause_hint": "show_hn gate misses paraphrased absolutes; the closer template is applied even for maturity.stage=sunset"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "A repeat Show HN for a sunset product has no major change to show; Khoj already had a 565-point Show HN in 2023, and the draft was approved with only a warning.",
+      "evidence": "show_hn.warnings: \"HN accepts a repeat Show HN only for a major overhaul ... Search HN for earlier Khoj threads\"; HN: \"2023-07-30 565 Show HN: Khoj – Chat offline with your second brain using Llama 2\"",
+      "systemic": true,
+      "cause_hint": "social stage drafts all six platforms regardless of maturity.stage=sunset; the profile does not record the earlier thread"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch invents a user pain and reads the stars count as current attention.",
+      "evidence": "newsletter_pitch.pitch: \"That is the step that keeps breaking, and it is the step your readers are still doing by hand.\" and \"37,545 stars on GitHub, which tells you the self-hosting audience is real and paying attention.\"",
+      "systemic": true,
+      "cause_hint": "newsletter rulebook problem-sentence template"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Product Hunt draft keeps a flagged template phrase it did not repair, and the Reddit draft echoes the flagged 'stated plainly' pattern.",
+      "evidence": "producthunt.first_comment: \"What makes our approach different is the license and the architecture\"; reddit_post v2: \"We said so plainly on the sunset page\"",
+      "systemic": true,
+      "cause_hint": "template-phrase check is warn-only, not repaired"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Gate warnings misfire: a traction-number warning fires on a fork count that is in proof_points, and a foundation-model warning fires on non-comparative model lists in every post.",
+      "evidence": "reddit_post.warnings: \"A traction number ... that must appear in the profile proof points (\\\"2,497 forks\\\")\"; profile.proof_points: \"37,545 GitHub stars and 2,497 forks\"",
+      "systemic": true,
+      "cause_hint": "traction-number gate matching in the social checks; brand rulebook 4.3 check ignores the 'comparative or adversarial context' qualifier"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "Every post links {APP_URL} but the project has no app URL, and the only app host shows the sunset notice, so the link target is unresolved.",
+      "evidence": "projects[0].app_url: \"\"; show_hn.warnings: \"{APP_URL} must point to the self-host setup guide ... not to app.khoj.dev, which displays only the sunset notice\"",
+      "systemic": true,
+      "cause_hint": "APP_URL fallback for sunset products"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The top two ranked and selected 'venues' are the app's own repo Discussions and its own docs site, which are owned channels rather than launch venues, and nearly every rules summary and audience signal is unverified or unknown.",
+      "evidence": "targets rank 2: \"name\": \"docs.khoj.dev\", \"kind\": \"community\", \"rules_summary\": \"not verified\", \"audience_signal\": \"unknown\"",
+      "systemic": true,
+      "cause_hint": "targets pipe sunset branch; FireCrawl blocked on reddit (targets_meta notes)"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Hacker News is ranked as 'Ask HN' while the social stage and plan use Show HN.",
+      "evidence": "targets rank 7: \"name\": \"Hacker News (Ask HN)\"; plan tracked links: \"Hacker News Show HN\"",
+      "systemic": false,
+      "cause_hint": "targets ranking vs social platform list"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan gate says Reddit was written for no chosen subreddit, but a v2 redraft for r/selfhosted exists in the store as a draft; the gate reads the older approved row.",
+      "evidence": "plan screenshot: \"Reddit, written for no chosen subreddit; Targets selected r/selfhosted: redraft it\"; assets reddit_post v2: \"venue\": \"r/selfhosted\", status \"draft\"",
+      "systemic": true,
+      "cause_hint": "plan readiness check uses latest approved reddit row, not the newest row or its venue"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan attributes signups through khoj.dev ref links for a product with no signup and a site that now promotes other products, so its attribution section cannot work for this app.",
+      "evidence": "targets ref_url: \"https://khoj.dev?ref=lk_community_github_khoj_ai_khoj_discussions\"; plan: \"Total signups 0 ... Post with your tracked links and signups will appear here\"",
+      "systemic": true,
+      "cause_hint": "plan tracked-links logic has no sunset branch"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The profile lists 'used by thousands' as a proof point and as unverified at once, and describes the self-hostable product in the past tense.",
+      "evidence": "profile.proof_points: \"README states tool is 'used by thousands'\"; profile.unverified: \"'Used by thousands' claim in README, no independent verification found\"; description: \"Khoj was a personal AI assistant\"",
+      "systemic": true,
+      "cause_hint": "profile understand pipe"
+    }
+  ],
+  "best": "The profile and the handling of the sunset: it read app.khoj.dev, quoted the April 15, 2026 notice, got stars and forks exactly right (37,545 / 2,497), and every post discloses the shutdown in its first sentences without inventing a reason. The X and LinkedIn posts are close to usable as they are.",
+  "worst": "Signals and assets. The one kept signal is a person who explicitly does not want to self-host, answered with a reply that contradicts itself ('supports DeepSeek' and 'documents never leave your machine'). The reel voice-over makes the same false privacy claim and uses template how-it-works beats.",
+  "notes": "Judged newest rows: reddit_post v2 (draft, r/selfhosted) for the Reddit score; studio reel v1 draft (not approved, drive stuck on Approve reel, which is appropriate given the faults). Live checks: app.khoj.dev sunset text matches the profile; GitHub API confirms 37,545 stars, 2,497 forks, last push 2026-08-02, founder commits June 2026; khoj.dev now a company page (Open Paper, Pipali, Khoj app) with Roboto / Source Serif 4 and a #282828 on #fff palette; prior Show HN 2023-07-30 (565 points). The main systemic tension is that the sunset rule ('never ask anyone to install') conflicts with the chosen self-host migration angle, and stages resolve it differently. Plan not ready (reel unapproved, Reddit gate)."
+}

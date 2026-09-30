@@ -1,0 +1,178 @@
+{
+  "slug": "hoppscotch",
+  "scores": {"profile": 4, "brand": 3, "commercial": 3, "social": 2, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 3, "reddit_post": 1, "producthunt": 2, "show_hn": 2, "newsletter_pitch": 4},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The newest Reddit draft (v2, r/selfhosted) makes a false, absolute claim about Postman and Insomnia. Postman's free plan already covers WebSocket, Socket.IO and MQTT, and self-hosters in that sub would correct it at once.",
+      "evidence": "assets reddit_post v2 body: \"Postman covers REST and GraphQL well; getting WebSocket, MQTT, or Server-Sent Events into the same workflow means a separate tool or a plan upgrade.\" and \"Postman and Insomnia both handle REST and GraphQL; neither covers all six protocols in a single free interface without a paid tier or a separate client.\"",
+      "systemic": true,
+      "cause_hint": "The targets-stage Reddit redraft skips the repair gate. v1's gate had caught and removed 'Postman covers REST and GraphQL well', but v2 has no 'repaired' field and restores it. The reddit rule that asks for the alternative's gap within the first 120 words pushes the model to invent that gap."
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Reddit v2 invents a personal origin ('I built') for a team product that has been public since 2019, which breaks the builder-disclosure and no-origin-story rules and clashes with 'we' and 'one of the builders' in the other posts.",
+      "evidence": "assets reddit_post v2 body: \"That gap is what I built Hoppscotch to cover, and I still maintain it.\"; its own warning says \"Builder disclosure uses 'I maintain' because the product was created in 2019 and has a team\"",
+      "systemic": true,
+      "cause_hint": "The redraft pipe for a chosen subreddit runs without the GLOBAL_RULES origin gate. The reddit rule 'Write I built only when APP_PROFILE shows one builder' is not enforced after generation."
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Show HN infers a data mechanism from a stack name and repeats an outdated stack. Firebase is not recorded anywhere as the sync path, and the app is no longer on Nuxt.",
+      "evidence": "assets show_hn body: \"The stack is TypeScript and Vue.js/Nuxt, running as a PWA with service workers for offline access. Firebase handles optional cloud sync when you opt in.\"; its own warning says \"No data-flow mechanism was inferred beyond what the profile states.\"",
+      "systemic": true,
+      "cause_hint": "The show_hn rule 'Never infer a mechanism from a name' has no gate. profile.tech_stack took 'Firebase' from root files (.firebaserc, firebase.json), while the repo's packages include hoppscotch-backend and the README does not mention Nuxt."
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt first comment takes a swipe at rival tools and makes an absolute claim about the field, copying the rulebook's own example sentence.",
+      "evidence": "assets producthunt first_comment: \"the popular hosted clients keep adding telemetry and locking collections behind paywalls\" and \"What we do differently: the client runs on your own hardware if you want it to. The hosted tools do not offer that on their free or mid-tier plans.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts producthunt rule \"Other products: ... ('it runs on your own hardware; the hosted tools do not')\". The model uses the example as prose. The competitor-negative gate only checks named rivals, so the unnamed 'hosted clients ... locking' passes."
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen 'Current Pricing' option shows invented or wrongly tiered features as Hoppscotch's current plans: a support SLA, RBAC in Business, self-host support in the cloud Enterprise tier, and 'AI governance'.",
+      "evidence": "projects.selected_pricing Business includes \"Role-based access control\", \"Business support SLA\"; Enterprise includes \"Audit logs and AI governance\", \"Self-host support\". hoppscotch.com/pricing: Business lists \"Email support\" and no RBAC; Enterprise (\"A cloud-based enterprise API testing experience\") lists \"Role-based access controls\", \"AI Agent features\", \"Priority support via Slack Connect\".",
+      "systemic": true,
+      "cause_hint": "The pricing pipe writes tier 'includes' from memory and profile.gaps instead of copying the scraped tier bullets. No gate compares the 'current' option against the pricing page."
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing and three posts put role-based access on the Business plan. The pricing page lists it only under Enterprise.",
+      "evidence": "listing description_long: \"Real-time collaboration, shared collections, and role-based access on Business and Enterprise plans.\"; x_post thread: \"role-based access are on the Business plan\"; producthunt: \"the Business plan adds shared workspaces, real-time collaboration, role-based access\"",
+      "systemic": false,
+      "cause_hint": "Comes from the recommendation tier list above. The homepage's generic 'Access-Level Roles' feature was merged into the Business tier."
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The monthly-billing option offers month-to-month billing as if it were new. The live pricing page already has an Annually/Monthly toggle whose prices were never read.",
+      "evidence": "pricing options[1] positioning: \"Offer the same Business and Enterprise tiers billed month-to-month at $8 and $14\"; hoppscotch.com/pricing: \"Plan Period Annually Monthly\"",
+      "systemic": true,
+      "cause_hint": "The profile and pricing scrape reads only the default toggle state, and the profile notes only the Cloud/Self-Host toggle. Toggled pricing states are never captured."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "LinkedIn invents a past tool experience and an 'unlimited' quota that the site does not state.",
+      "evidence": "assets linkedin_post post: \"I've used tools that do one protocol well.\" and \"the core tool, every protocol, unlimited personal collections, is $0\"; hoppscotch.com/pricing Free: \"Personal workspace\", \"Collections and environments\" (no 'unlimited')",
+      "systemic": true,
+      "cause_hint": "The GLOBAL_RULES ban on 'a tool you used to use' is not enforced by a gate. 'Unlimited personal collections' comes from the pricing recommendation's Free tier."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The X thread reworks the site's proof point by adding 'across all six protocols', which the site never says.",
+      "evidence": "assets x_post thread_extension[0]: \"We process 5M+ requests every month across all six protocols.\"; hoppscotch.com: \"Hoppscotch processes over 5M+ requests every month\"",
+      "systemic": false,
+      "cause_hint": "The model elaborated on the proof point. There is no verbatim-figure check on the thread tweets."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Show HN is a fourth Show HN for this product but has no repeat framing. It names no major change, although the profile records Enterprise Cloud and API Mocking releases.",
+      "evidence": "assets show_hn title: \"Show HN: Hoppscotch, a multi-protocol API client, open-source and self-hostable\"; profile.maturity.signals: \"Blog announcements for new features: API Mocking (v2025-10-0), Enterprise Cloud + AI bot (v2026-9-0)\"; HN has \"Show HN: I created Postwoman...\" (2019, 280 points) and two 2021 Hoppscotch Show HNs",
+      "systemic": true,
+      "cause_hint": "The 'Opener for a repeat Show HN' rule fires only when the profile holds an HN link. The profile never searches HN (Algolia), so the repeat case falls back to a warning alone."
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Brand DNA records only three meta theme-color backgrounds and no logo. It misses the green brand accent that the probe later found on the logo.",
+      "evidence": "brand_dna visual.colors: \"#181818\", \"#ffffff\", \"#09090b\" all role \"background\"; \"logo_url\": \"\"; studio probe accent: \"#00c899\" from \"the apple touch icon's second colour\"",
+      "systemic": true,
+      "cause_hint": "The DNA pipe reads markdown scrapes with no CSS. It does not reuse the studio probe's computed palette and logo."
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle rests on a superlative that every post then had to drop, and the six campaigns reuse nearly the same sample body.",
+      "evidence": "brand_campaigns chosen \"Most Popular on GitHub\" hook: \"The most popular API development tool on GitHub.\"; x_post warning: \"The phrase 'most popular' is a superlative claim... omits the superlative framing to comply.\"",
+      "systemic": true,
+      "cause_hint": "The angles pipe does not apply the platform rules' ban on superlatives, so an angle can be chosen that no post can carry."
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel and cards set the product name in indigo #6366f1 beside the green planet logo. That colour came from a button count, not from the brand.",
+      "evidence": "studio probe palette primary: {\"hex\": \"#6366f1\", \"source\": \"most common button background\"}; reel vars \"brand\": \"#6366f1\"; poster.jpg shows HOPPSCOTCH in indigo under a green logo",
+      "systemic": true,
+      "cause_hint": "The studio-forge probe picks primary from button frequency on the app page and does not check it against the logo's colours."
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The voice-over and payoff turn 'processes' into 'tested' and overclaim; the load beat fills its number slots with words.",
+      "evidence": "voice proof: \"Five million plus requests tested every month.\"; script payoff_line \"EVERY API. TESTED.\"; load_n1 \"MANY\", load_n3 \"NOW\"",
+      "systemic": true,
+      "cause_hint": "The verdict template's payoff and load beats. The voice rewrite is not checked against the proof point's wording."
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Directory venues are recommended as new submissions, but SaaSHub already lists Hoppscotch and the 'not listed' claim for AlternativeTo rests on a 404 from a guessed URL.",
+      "evidence": "targets rank 11 AlternativeTo why_fit: \"confirmed not listed (404) so submission adds evergreen SEO traffic\"; rank 13 SaaSHub \"Evergreen directory...\"; live https://www.saashub.com/hoppscotch title \"Hoppscotch reviews. Is Hoppscotch good? - SaaSHub\"",
+      "systemic": true,
+      "cause_hint": "The targets pipe treats one failed slug fetch as proof that a listing is absent, and never checks whether an established app is already listed."
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "r/webdev is selected at rank 2 with unverified rules, but it allows self-promotion only in Showoff Saturday. No draft was written for it.",
+      "evidence": "targets rank 2 r/webdev rules_summary: \"not verified: read https://www.reddit.com/r/webdev/about/rules before posting\"; plan: \"Targets selected r/selfhosted, r/webdev: redraft it for the subreddit you will post in.\"",
+      "systemic": true,
+      "cause_hint": "FireCrawl cannot read reddit.com, so subreddit rules are never verified."
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan is not ready and its blocking message is stale: it says Reddit was written for no chosen subreddit, although an r/selfhosted redraft exists unapproved.",
+      "evidence": "8-plan.png: \"Still open: Reddit, written for no chosen subreddit; Targets selected r/selfhosted, r/webdev\"; assets reddit_post v2 status \"draft\", venue \"r/selfhosted\"",
+      "systemic": true,
+      "cause_hint": "The plan readiness check looks only at the approved reddit row's venue, not at a newer draft."
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan's pricing decision drops 'per user' and 'billed annually', so $6 reads as a flat monthly price.",
+      "evidence": "8-plan.png Decisions Pricing: \"Free $0/mo, Business $6/mo, Enterprise $11/mo\"; hoppscotch.com/pricing: \"$6 per user/month, billed annually\"",
+      "systemic": true,
+      "cause_hint": "The plan's decisions formatter renders price_usd_month without the billing unit."
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The newsletter pitch leaks a source note into its prose.",
+      "evidence": "assets newsletter_pitch: \"The platform processes over 5 million requests every month, on hoppscotch.com.\"",
+      "systemic": true,
+      "cause_hint": "The profile's proof_points carry ', hoppscotch.com' source suffixes that the model copies into the text."
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The tech stack is stale and incomplete: Nuxt and Firebase are listed, while the NestJS backend, CLI and desktop packages in the repo are missing.",
+      "evidence": "profile.tech_stack: [\"TypeScript\", \"Vue.js / Nuxt\", \"PWA (Service Workers)\", \"Firebase\", \"Docker\", \"GitHub Actions\"]; repo packages include hoppscotch-backend, hoppscotch-cli, hoppscotch-desktop",
+      "systemic": true,
+      "cause_hint": "The profile infers the stack from root file names (firebase.json) and does not read packages/."
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The 'gaps' list holds pricing-tier gating, not product gaps, and the posts then present tier placement as the product's limitation.",
+      "evidence": "profile.gaps: \"MCP server support and API mocking are Business plan and above only, hoppscotch.com/pricing\"; producthunt: \"One honest limitation: SSO and SCIM provisioning are Enterprise-only today.\"",
+      "systemic": true,
+      "cause_hint": "The profile prompt's gaps definition, together with the rules that require a limitation."
+    }
+  ],
+  "best": "Signals, together with the profile's facts. Every rejection is correct (a builder's own launch, a post 185 days old, a thread 576 days old), and the scan report says honestly that Reddit is unsearchable. The profile's prices, star count, 5M+ requests and MIT licence all match the live site and repo.",
+  "worst": "The newest Reddit draft for r/selfhosted. It says Postman and Insomnia cannot cover WebSocket, MQTT or SSE on a free plan, restores the 'Postman covers REST and GraphQL well' framing that the v1 gate had removed, and invents 'what I built Hoppscotch to cover' for a team product that has been public since 2019.",
+  "notes": "One drive; the newest row of each kind was judged (reddit_post v2 draft). Checked live: hoppscotch.com/pricing ($0 / $6 / $11 per user per month billed annually; Business lists Email support, while RBAC and AI Agent features sit under Enterprise; a Monthly toggle exists), hoppscotch.com (5M+ requests, 'Most popular API development tool on GitHub', local-first, one-click migration), GitHub API (80,553 stars, MIT) and HN Algolia (Show HNs from 2019, March 2021 and December 2021). Revenue maths is consistent on an unstated 50/50 Business/Enterprise split; 68% and 42% below Postman are correct. The recurring theme: gates catch rule breaks on first drafts, but the targets-stage redraft and the unnamed-rival wording get through, and the tier features in pricing are generated rather than copied from the page. Could not verify AlternativeTo or G2 (403) or Hoppscotch's monthly prices."
+}

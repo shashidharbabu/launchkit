@@ -1,0 +1,266 @@
+{
+  "slug": "cal-com",
+  "scores": {"profile": 4, "brand": 3, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 2, "linkedin_post": 3, "reddit_post": 2, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The X thread misquotes a named real person: Guillermo Rauch said Cal.com 'has a very good chance of creating a new category', the thread says he 'called it a new category'.",
+      "evidence": "assets x_post v1 thread_extension[2]: \"Kent C. Dodds migrated from Calendly. Guillermo Rauch called it a new category.\" vs profile proof_points: \"Guillermo Rauch (CEO, Vercel): 'I think Cal.com has a very good chance of creating a new category...'\"",
+      "systemic": true,
+      "cause_hint": "x_post rulebook / draft gate: no check that a paraphrased testimonial keeps the speaker's hedge; testimonials allowed in the thread outside the one-proof-point rule"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The X warnings describe the draft falsely: they say the Kent C. Dodds line names no source tool, but the approved thread names Calendly.",
+      "evidence": "x_post warnings[1]: \"Kent C. Dodds quote references a migration without naming the source tool\" vs thread_extension[2]: \"Kent C. Dodds migrated from Calendly.\"",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts x_post rule 'warnings ... describes the draft exactly as returned' is prompt-only; no gate checks warnings against text"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The last X tweet says the repo link is in the first tweet, but the first tweet's only link is {APP_URL} (the cal.com site, not the repo).",
+      "evidence": "x_post thread_extension[3]: \"The link to the repo is in the first tweet.\"; post ends \"{APP_URL}\"; project app_url/site_url is https://cal.com",
+      "systemic": false,
+      "cause_hint": "x_post draft"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The LinkedIn hook turns a star count into an invented claim about what developers think, breaking the rule that a count is stated bare, and the same line is printed on the LinkedIn image card.",
+      "evidence": "linkedin_post v1 post: \"48,737 developers starred Cal.com on GitHub. Developers treat that the same way they treat an infrastructure dependency.\"; studio kit images[linkedin].headline carries the same text",
+      "systemic": true,
+      "cause_hint": "rulebooks.ts 'never say what those people think, chose, trust' is not enforced by a gate; the repair of the 'not X, it's Y' contrast (repaired[0]) left this orphan sentence"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "LinkedIn quotes the Teams price without 'billed yearly'; the live page shows $12 as the discounted annual rate ('Save 25%').",
+      "evidence": "linkedin_post: \"Teams start at $12 per user per month.\"; cal.com/pricing: \"$12 per user/month Save 25%\"",
+      "systemic": false,
+      "cause_hint": "linkedin_post draft"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt description, after the length trim, is only a swipe at 'most scheduling tools' and never says what Cal.com does.",
+      "evidence": "producthunt description: \"Booking pages, round-robin routing, and built-in video conferencing are all closed off or expensive to embed in most scheduling tools.\"; repaired: \"description: the closing sentence (151 characters)\"",
+      "systemic": true,
+      "cause_hint": "repair-then-trim gate drops closing sentences first, which removed the product sentence"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "A Product Hunt blocker was left unresolved and the draft was never approved.",
+      "evidence": "producthunt status \"draft\", blockers: [\"topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)\"]; summary.json social.blocked: [\"Approve the Product Hunt draft\"]",
+      "systemic": true,
+      "cause_hint": "draft gate repairs text length but does not trim the topics array to 3"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt maker comment complains about per-seat pricing, which is Cal.com's own model ($12 and $28 per user).",
+      "evidence": "producthunt first_comment: \"per-seat pricing that compounds fast as your team grows\"",
+      "systemic": true,
+      "cause_hint": "ICP pain in profile ('expensive to embed or white-label at scale') copied as a category swipe; the competitor rule only polices named rivals"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The newest Reddit draft keeps an unmotivated Calendly mention left over from the competitor repair, and was never approved.",
+      "evidence": "reddit_post v2 (draft) body: \"Calendly is a hosted scheduling service. I work on Cal.com, and cal.diy is the MIT-licensed...\"; repaired: \"Calendly is a hosted booking tool; it has no self-host option and no open codebase to read\"",
+      "systemic": true,
+      "cause_hint": "competitor repair rewrites the negative clause to a neutral fact instead of deleting the comparison, leaving an orphan contrast"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit v2 draft credits cal.diy with the Platform API, embeds, payments and Cal Video, but nothing in the profile says those are in the MIT fork. The fork's README says enterprise and commercial code is removed.",
+      "evidence": "reddit_post v2: \"cal.diy is the MIT-licensed, self-hosted edition... A Platform API and embeddable widgets let you drop scheduling directly into your own product\"; cal.diy README: \"a fork of Cal.com with all enterprise/commercial code removed\"",
+      "systemic": false,
+      "cause_hint": "reddit_post draft mixes hosted-product differentiators into the cal.diy description"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Reddit v2 suggests the new-project megathread flair for a product that has been live for years, and asks what broke 'under real load' about an edition that is for personal, non-production use only.",
+      "evidence": "reddit_post v2 suggested_flair: \"New Project Megathread\"; body: \"what was the first thing that broke under real load or a multi-user setup?\"",
+      "systemic": false,
+      "cause_hint": "reddit_post rulebook r/selfhosted megathread rule applied without the maturity check"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Show HN and Product Hunt call Cal.com itself 'open-source', but the profile records that the hosted product's code is not public and the open repo is cal.diy, a community fork with commercial code removed.",
+      "evidence": "show_hn title: \"Show HN: Cal.com, open-source scheduling infrastructure for developers\"; producthunt tagline: \"Open-source scheduling infrastructure for teams and devs\"; profile unverified[0]: \"the hosted product's proprietary code is not publicly readable\"",
+      "systemic": false,
+      "cause_hint": "drafts ignore APP_PROFILE.unverified; listing tagline repeats it"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN opens its argument on a swipe at the whole category and invents the builder's reasoning about a tRPC tradeoff.",
+      "evidence": "show_hn body: \"Most scheduling tools are closed systems: hard to embed, hard to brand, and expensive to extend\" and \"contributors outside the TypeScript ecosystem hit a steeper ramp. Worth the tradeoff?\"",
+      "systemic": true,
+      "cause_hint": "show_hn rule that asks for 'a decision you want a second opinion on' when the profile holds no decision"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch faults other tools for charging to remove branding, which is exactly how Cal.com works: branding removal is a Teams feature.",
+      "evidence": "newsletter_pitch: \"cannot remove branding from without paying for a higher tier\"; cal.com/pricing Teams list: \"Remove Cal.com branding\"",
+      "systemic": true,
+      "cause_hint": "ICP pain line reused as a category swipe with no check against the app's own pricing"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen 'current model' option claims to match live pricing exactly, but it moves payments from Free to Teams, invents 'Platform API and embeds' as an Organizations feature, and cuts Free's 100+ integrations to 'Basic integrations'.",
+      "evidence": "pricing options[0].positioning: \"prices match the live cal.com/pricing page exactly\"; Teams includes \"Payment collection\"; Organizations includes \"Platform API and embeds\"; Free includes \"Basic integrations\"; cal.com/pricing Free: \"Integrate with 100+ apps ... Accept Stripe & PayPal payments\"; Organizations: \"Additional APIs\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe: current_tiers is [] even though profile.pricing_current exists, so the tier contents are regenerated instead of copied"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Option 3 is called a price raise to $15 and $32 billed monthly, but the live $12 and $28 are the annual rates ('Save 25%'), so the implied monthly prices are about $16 and $37 and this option is a cut.",
+      "evidence": "pricing options[2].positioning: \"Raise Teams to $15/user/mo and Organizations to $32/user/mo billed monthly\"; cal.com/pricing: \"$12 per user/month Save 25%\", \"$28 per user/month Save 25%\"",
+      "systemic": true,
+      "cause_hint": "profile marks monthly price unverified; pricing pipe does not derive it from the 'Save 25%' label"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The pricing rationale uses an unsourced competitor figure and a wrong comparison.",
+      "evidence": "recommendation Enterprise rationale: \"Calendly Enterprise starts at $15k/yr\" (no Calendly Enterprise tier scraped); options[0].market_rate_note: \"level with Calendly Standard ($10)\" for a $12 tier",
+      "systemic": false,
+      "cause_hint": "pricing pipe"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing rewrites a testimonial inside quotation marks, and its confidence note then says the testimonials are quoted word for word.",
+      "evidence": "listing description_long: \"\\\"I just migrated from [another tool] to Cal.com.\\\", Kent C. Dodds\"; confidence.notes: \"Testimonials quoted word-for-word from profile.\"",
+      "systemic": true,
+      "cause_hint": "competitor-name scrub applied inside verbatim quotes; it should drop the quote instead"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "Listing wording shows word-substitution artefacts: features 'release with' a plan, and a comma where the title's separator belongs.",
+      "evidence": "listing: \"Round-robin routing, shared availability, and routing forms release with the Teams plan.\"; title: \"Cal.com, Scheduling for Teams & Devs\"",
+      "systemic": true,
+      "cause_hint": "banned-verb and dash substitution pass (punctuation_fixed: 1)"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The DNA has no colours, typography or logo, even though the assets probe later found Cal Sans, black and white, and the logo on the same site.",
+      "evidence": "brand_dna visual: \"colors\": [], \"logo_url\": \"\", typography evidence: \"no typography could be observed\"; studio probe fonts: {\"heading\": \"Cal Sans\"}, logos[0] picked",
+      "systemic": true,
+      "cause_hint": "brand DNA reads a Firecrawl markdown scrape; probe results are never fed back into DNA"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "A line about salary policy on the About page is taken as brand-voice evidence.",
+      "evidence": "brand_dna voice.evidence_quotes: \"Work = Money.\"; cal.com/about under 'Global salaries': \"Work = Money.\"",
+      "systemic": false,
+      "cause_hint": "brand DNA extraction"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "One angle is named with an awkward substituted verb, and another angle's copy calls the hosted product's codebase MIT.",
+      "evidence": "campaign name: \"Release Your Booking Page Today\"; 'Embed It in Your Product' body: \"Cal.com's embed and Platform API ... Open-source codebase (MIT) if you want to read the code.\"",
+      "systemic": true,
+      "cause_hint": "banned-word substitution; campaigns prompt"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The accent colour #0099ff is labelled 'most common link colour', but it appears on 3 links against 37 and 54 for others. It is Framer's default link blue, not a Cal.com brand colour, and it drives the whole reel palette.",
+      "evidence": "probe palette.accent: {\"hex\": \"#0099ff\", \"source\": \"most common link colour\"}; evidence.links: rgb(17,17,17) n 54, rgb(0,0,238) n 37, rgb(0,153,255) n 3; reel vars accent \"#0099ff\"",
+      "systemic": true,
+      "cause_hint": "studio-forge probe colour picker filters default link colours and ranks the rest badly"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel's how-it-works chips and button are template words, not Cal.com's booking states or UI.",
+      "evidence": "script slots: chip_1..4 \"CONFIRMED\", \"ROUTED\", \"PENDING\", \"BLOCKED\"; step1_button \"GET GOING\" (repaired) while claims_used cites \"GET STARTED: SITE_COPY a 'Get started'\"",
+      "systemic": true,
+      "cause_hint": "verdict concept requires four verdict chips; the slot repair replaced the site's button text"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The load beat has no real figures and one tile is nonsense. A flagged 'BY HAND' line was rendered anyway. The plates show a developer debugging routing errors among server racks, while the script is about one person booking meetings by hand.",
+      "evidence": "script slots: \"load_n3\": \"NOW\", \"load_l3\": \"NO SYSTEM\"; flagged: [\"pile_line\"] with pile_line \"EVERY BOOKING. BY HAND.\"; pile plate brief: \"a terminal window dense with routing-logic errors\"",
+      "systemic": true,
+      "cause_hint": "verdict template slots force a numeric load beat; images and script are briefed separately"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "On the poster lockup the app name is dark grey on black and barely legible. The Reddit card headline still uses the superseded v1 title.",
+      "evidence": "reel vars brand \"#606060\" on canvas \"#090404\" (poster.jpg CAL.COM title); kit images[reddit].headline: \"Cal.com - open-source scheduling infrastructure for teams and developers\" vs reddit_post v2 title \"I work on cal.diy, ...\"",
+      "systemic": true,
+      "cause_hint": "reel brand var taken from a grey scale step when the primary is black; kit not regenerated after the Reddit redraft"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Directories where Cal.com is almost certainly already listed (G2, AlternativeTo, SaaSHub, StackShare, Product Hunt) are ranked as new submissions and recommended to 'start with immediately'.",
+      "evidence": "targets_meta sequencing_advice[0]: \"Start with low-effort evergreen directories (AlternativeTo, SaaSHub, StackShare, G2) immediately\"; G2 submission_url \"https://sell.g2.com/list-your-product\"",
+      "systemic": true,
+      "cause_hint": "targets pipe has no check for an existing listing on an established product"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "Every venue's rules are unverified, and Show HN ranks first for a years-old product on a minor point release.",
+      "evidence": "all 14 targets rules_summary \"not verified\"; confidence.notes: \"All subreddit rules unverified due to FireCrawl blocking Reddit\"; Show HN why_fit: \"textbook Show HN fit for v6.9 or Platform API launch\"",
+      "systemic": true,
+      "cause_hint": "targets pipe Reddit rules fetch blocked; no maturity penalty for repeat Show HN"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "Internal tool-call strings are shown to the user as search queries, and the HN pass was skipped for budget. The empty result is honest but the search was thin.",
+      "evidence": "signals_meta queries: \"memory.peek wave-2.r0 results[2].url\", \"memory.peek wave-9.r0 json.items[0:6].title\"; coverage_notes: \"HN pass (PASS A) skipped due to budget exhaustion at 10 calls\"",
+      "systemic": true,
+      "cause_hint": "signals pipe records every tool call as a query; call budget of 10"
+    },
+    {
+      "stage": "plan",
+      "severity": "high",
+      "summary": "The plan never assembled: Product Hunt is blocked, the reel is unapproved and Reddit is unresolved. Its Reddit note is stale because a redraft for r/selfhosted exists, and two subreddits are selected for one post.",
+      "evidence": "8-plan.png: \"Plan not ready. Still open: Product Hunt, 1 hard-rule failure...; Reel, rendered, not approved yet; Reddit, written for no chosen subreddit; Targets selected r/selfhosted, r/webdev\"; assets reddit_post v2 venue \"r/selfhosted\" status \"draft\"",
+      "systemic": true,
+      "cause_hint": "plan readiness reads the approved Reddit row (v1), not the newest draft; drive log STUCK {\"label\":\"Approve reel\",\"waitedSecs\":300}"
+    },
+    {
+      "stage": "plan",
+      "severity": "low",
+      "summary": "The plan's pricing decision drops 'per user, billed yearly' and repeats the billing label.",
+      "evidence": "summary.json plan.pricing / 8-plan.png: \"Current model: free plus paid tiers (annual billing), free plus paid tiers: Free $0/mo, Teams $12/mo, Organizations $28/mo, Enterprise\"",
+      "systemic": true,
+      "cause_hint": "plan decisions formatter concatenates option name and billing"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The profile marks the monthly price unverified, though the pricing page's 'Save 25%' implies it. Its ICP pain frames named rivals negatively, and posts then echoed that framing.",
+      "evidence": "profile unverified[1]: \"Exact monthly-equivalent pricing ... was not shown\"; icp.pain: \"Calendly and other scheduling tools are closed, hard to customize, and expensive to embed\"",
+      "systemic": true,
+      "cause_hint": "profile understanding prompt"
+    }
+  ],
+  "best": "Profile: prices match cal.com/pricing ($12 and $28 per user billed yearly, Enterprise custom). It caught that the repo URL now resolves to cal.diy and recorded the fork's real limits (no Teams, SSO or Workflows; personal, non-production use). Confidence 0.82 is honest.",
+  "worst": "Social set: the X thread misquotes Guillermo Rauch and its warnings misdescribe the text. LinkedIn invents what 48,737 stargazers think. The Product Hunt description was trimmed down to a category swipe and left with an unresolved topics blocker. The newest Reddit draft carries an orphan Calendly line and was never approved.",
+  "notes": "Facts checked live: cal.com/pricing (Free includes 100+ integrations and Stripe/PayPal; Teams $12 'Save 25%' with branding removal and routing forms; Organizations $28 with SAML/SCIM, SOC 2/HIPAA/ISO and 'Additional APIs'; Enterprise custom with dedicated database and SLA), cal.com/about (the 'infrastructure for time' line is real; 'Work = Money' is about salaries), GitHub API (calcom/cal.com resolves to calcom/cal.diy, 48,729 stars), cal.diy README (a fork with all commercial code removed, personal non-production use). No em dashes or banned vocabulary were found in the store. The reel was correctly left unapproved; the drive stalled on 'Approve reel' for 300 s. The Reddit post was judged on the newest row (v2, draft, r/selfhosted). Revenue_at averages the paid tiers ((12+28)/2 x N), which is arithmetically consistent but unexplained."
+}

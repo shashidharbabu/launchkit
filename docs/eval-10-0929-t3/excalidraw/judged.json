@@ -1,0 +1,178 @@
+{
+  "slug": "excalidraw",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 2, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 4, "linkedin_post": 2, "reddit_post": 2, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile says end-to-end encryption covers the Plus tier and attributes this to the README and site, but the pricing page only lists E2EE on the Free plan, locally in the browser; Plus says 'Securely saved on cloud'.",
+      "evidence": "profiles[0].data.differentiators: \"End-to-end encrypted collaboration built into both the free and Plus tiers, as stated in the README and product site\"; plus.excalidraw.com/pricing Free: \"E2EE locally in your browser\", Plus: \"Securely saved on cloud\"",
+      "systemic": true,
+      "cause_hint": "profile/understand pipe: it merges README features for the open-source app into the hosted paid product without checking which tier they apply to"
+    },
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The approved listing claims every canvas is end-to-end encrypted on Plus, which the site does not state. This is a security claim about the paid product.",
+      "evidence": "commercial_results listing.description_long: \"Every canvas is **end-to-end encrypted**, on both the free and Plus plans, so your work stays private.\"; faq: \"All canvases are end-to-end encrypted on both the Free and Plus plans.\"",
+      "systemic": true,
+      "cause_hint": "the listing copies profile.differentiators verbatim; no listing gate checks claims against the pricing page"
+    },
+    {
+      "stage": "social",
+      "severity": "blocker",
+      "summary": "The LinkedIn and Product Hunt posts repeat the unsupported claim that every plan or canvas is E2EE.",
+      "evidence": "linkedin_post.post: \"end-to-end encryption on every plan, including the free one\"; producthunt.first_comment: \"end-to-end encryption on every canvas\"",
+      "systemic": true,
+      "cause_hint": "the fault carries over from the profile differentiator; the social gates only check proof points for numbers"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt first comment invents an origin story (tools the builder tried, a learning curve that slowed them), which GLOBAL_RULES forbid.",
+      "evidence": "producthunt.first_comment: \"Every whiteboard tool I tried that handled real-time collaboration also came with a learning curve that slowed the first sketch down. I wanted something you could open in a browser tab and just draw\"",
+      "systemic": true,
+      "cause_hint": "the producthunt prompt asks for a why-built paragraph; the no-origin rule (rulebooks.ts GLOBAL_RULES line 27) is not machine-gated"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The newest Reddit draft (v2, r/softwarearchitecture) is titled 'I built' for a six-year-old team product, while the body says 'I work on'.",
+      "evidence": "reddit_post v2 title: \"I built a whiteboard that works before you create an account\"; body: \"I work on a collaborative whiteboard built on an open-source editor with 133,200 GitHub stars\"",
+      "systemic": true,
+      "cause_hint": "the venue redraft for Reddit breaks rulebooks.ts reddit rule 146 and X rule 81 (never 'I built' for an established product); no gate checks the title"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Reddit limitation is misleading: the free plan offers 'save to file' export, so 'no good answer' for two persistent diagrams is not true.",
+      "evidence": "reddit_post v2: \"I don't have a clean answer for the person who wants two persistent diagrams without upgrading.\"; pricing page Free: \"Export to .png, .svg or 'save to file'\"",
+      "systemic": false,
+      "cause_hint": "the limitation template is built from profile.gaps without the export capability"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch inflates the logo wall into a claim that the named companies use Excalidraw+ specifically for persistent cloud collaboration, and it invents 'a week of onboarding'.",
+      "evidence": "newsletter_pitch.pitch: \"Teams at Netflix, Meta, Stripe, and Spotify use Excalidraw+ for persistent cloud collaboration, per the product site.\"; \"without a week of onboarding to get there\"; site only says \"Trusted by the largest companies in the world\"",
+      "systemic": true,
+      "cause_hint": "newsletter prompt proof-point rule; the gate does not catch attribution inflation"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN gives a wrong mechanism: the free tier's live collaboration and share links go through Excalidraw's servers. It also names no new release for a repeat Show HN of a 2020 product.",
+      "evidence": "show_hn.body: \"The free tier saves your canvas to the browser with no server involved\"; warning: \"Excalidraw has been public since January 2020 ... HN accepts a repeat Show HN only for a major overhaul\"",
+      "systemic": true,
+      "cause_hint": "show_hn how-it-works paragraph extrapolated from 'local-first'; rule 81 (release, not debut) not enforced for show_hn"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "LinkedIn adds an invented first-person motive, and Product Hunt keeps the banned word 'genuinely' after its warning.",
+      "evidence": "linkedin_post: \"I've been building on this because the entry point is as low as it gets\"; producthunt warning: \"AI-tell or hype vocabulary ... (\\\"genuinely\\\")\" with first_comment still reading \"The free tier is genuinely free forever\"",
+      "systemic": true,
+      "cause_hint": "warnings are recorded but not repaired; only show_hn went through repair"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The brand DNA visual section is empty in practice: one colour (the dark-mode theme colour), no logo and no fonts. The probe later found the real primary #6965db.",
+      "evidence": "brand_dna.visual.colors: [{\"value\": \"#121212\", \"role\": \"background\"}], logo_url: \"\", typography.headings: \"\"; studio probe palette primary \"#6965db\"",
+      "systemic": true,
+      "cause_hint": "DNA pipe scrapes markdown without CSS; it does not reuse the studio probe"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "A campaign contains a garbled replacement for the banned word 'ship' and an invented reach claim.",
+      "evidence": "brand_campaigns 'Diagram in the Open': \"the real companies that already release it\"; sample_copy: \"Google Cloud, Notion, Replit, CodeSandbox, and Obsidian already release it\"; big_idea: \"embedded in products used by millions of developers\"",
+      "systemic": true,
+      "cause_hint": "the punctuation/banned-word fixer swaps 'ship' to 'release' mechanically (punctuation_fixed: 2)"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The 'Send the Link' copy claims the trial needs no credit card, which the site does not say. The site's FAQ says credit card is the only payment method.",
+      "evidence": "brand_campaigns 'Send the Link' body: \"Start a 14-day free trial, no credit card required.\"",
+      "systemic": false,
+      "cause_hint": "campaign drafting prompt"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The third pricing option drops the free tier, which does not fit an MIT open-source product whose free web app is its core funnel. The current monthly price ($7, implied by 'save 14%') is not captured, and current_tiers is empty.",
+      "evidence": "pricing.options[2].positioning: \"Drop the free tier and offer Plus as a single annual subscription at $60 per user per year\"; pricing.current_tiers: []",
+      "systemic": true,
+      "cause_hint": "the pricing pipe always emits an annual-only option; current_tiers is not filled from profile.pricing_current"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The script's pile beat is template filler justified by a claim the profile does not make. 'By hand' is the problem shown for a hand-drawn tool, and the payoff celebrates the free-plan limit of one canvas.",
+      "evidence": "script.claims_used: \"\\\"BY HAND\\\" in pile_line: APP_PROFILE states Excalidraw replaces manual diagramming work done individually\"; slots pile_line \"EVERY DIAGRAM. BY HAND.\", payoff \"ONE\" \"CANVAS.\"; flagged: [\"pile_line\"]",
+      "systemic": true,
+      "cause_hint": "the 'verdict' concept spec forces load/pile/payoff slots that do not fit a drawing tool"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The logo was picked as a black single-colour SVG (the site mark uses currentColor), so the app icon is black and the mark almost disappears on the reel's near-black lockup. Fonts fell back to Times.",
+      "evidence": "kit.logo: \"site-logo-svg\" logo-1.svg; reel.vars canvas \"#040409\"; kit.fonts: {\"heading\": \"Times\", \"body\": \"Times\"}; poster.jpg lockup shows the mark as a black shape on the near-black canvas, barely visible above 'FOR TEAMS WHO JUST DRAW'",
+      "systemic": true,
+      "cause_hint": "studio-forge probe: inline SVG with currentColor is not recoloured; the computed font is the fallback"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The cards carry a 'NOW LIVE' chip for a product live since 2020. The voice style is written for a hackathon room.",
+      "evidence": "5-assets.png cards chip \"NOW LIVE\"; voice.style: \"spoken to a room of judges and builders\"",
+      "systemic": true,
+      "cause_hint": "kit template chip and voice style prompt defaults"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The hero plate breaks character continuity: the brief says 'the same woman' with short natural hair, but the hero shows a different woman with long hair tied up. The other three plates fit the product's world.",
+      "evidence": "images.hero.brief: \"The same woman in the faded indigo hoodie and a male colleague in a grey crewneck\"; pile brief: \"A mid-thirties woman with short natural hair\"; plates.jpg hero (judge 9/10) shows a woman with long tied-up hair",
+      "systemic": true,
+      "cause_hint": "each plate is generated independently with no reference image, and the gpt-5-mini judge does not check identity across plates"
+    },
+    {
+      "stage": "targets",
+      "severity": "high",
+      "summary": "The sequencing advice recommends a coordinated upvote push for Product Hunt, which is vote manipulation under PH rules, and it presumes cooperation from Netflix/Stripe/Meta.",
+      "evidence": "targets_meta.sequencing_advice: \"Reserve Product Hunt for a major version launch with a coordinated upvote push from existing Netflix/Stripe/Meta users.\"",
+      "systemic": true,
+      "cause_hint": "targets pipe sequencing prompt; no vote-solicitation rule applied to advice"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "12 of 13 venues have unverified rules (Show HN included), directories where Excalidraw is surely listed already are treated as new submissions, and r/SideProject does not fit a 133k-star enterprise product.",
+      "evidence": "Show HN rules_summary: \"not verified\"; AlternativeTo submission_url \"https://alternativeto.net/manage-item/\"; r/SideProject why_fit: \"open-source Excalidraw+ Plus launch story fits the indie-builder narrative\"",
+      "systemic": true,
+      "cause_hint": "targets pipe does not check existing listings; rules scrape budget"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The honest empty result is correct, but the scan was thin: 6 items from 6 queries, and nothing searched for people asking for an architecture-diagram or whiteboard tool.",
+      "evidence": "signals_meta: \"found\": 6, \"kept\": 0; coverage_notes: \"Reddit not searchable from this pipeline. HN pass returned no items within 14-day freshness window.\"",
+      "systemic": true,
+      "cause_hint": "signals query generation; Reddit source unavailable"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan is not ready: the reel was rightly blocked, and the r/softwarearchitecture Reddit redraft was never approved. It also lists Product Hunt as a tracked venue although Targets left PH unselected and said to reserve it.",
+      "evidence": "8-plan.png: \"Plan not ready. Still open: Reel, rendered, not approved yet; Reddit, written for no chosen subreddit\"; tracked links include \"Product Hunt | platform\"; targets Product Hunt selected: false",
+      "systemic": true,
+      "cause_hint": "the plan assembler adds every approved post's platform as a venue regardless of target selection"
+    }
+  ],
+  "best": "The X post: one proof point (133,200 stars) stated bare, framed as an existing product, correct Plus price with 'billed yearly', no competitor, no invented claims.",
+  "worst": "The claim that E2EE covers the paid plan. It starts in the profile and reaches the approved listing, the LinkedIn post and the Product Hunt first comment, while the pricing page limits E2EE to the Free plan 'locally in your browser'.",
+  "notes": "Current prices were verified on plus.excalidraw.com/pricing: Free, and Plus at $6/user/month billed yearly, with 'save 14%' implying $7 monthly. The logo wall and the 'zero learning curve' and 'dead simple' quotes were also verified there. Judged the newest Reddit row (v2, draft, r/softwarearchitecture). The reel's Approve button was disabled because 2 lines were clamped or flagged, which was correct. plates.jpg and poster.jpg were read after they were built. The plates show the right world (a tech workspace, hand-drawn diagrams on the monitors); the poster confirms that the logo nearly disappears on the dark lockup. The assets score stays at 3."
+}

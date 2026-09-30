@@ -1,0 +1,1373 @@
+{
+ "slug": "hack-judge",
+ "name": "hack-judge",
+ "site": "https://hackathon-judge-aid.onrender.com",
+ "repo": "",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 161,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 108,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 202,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 555,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 710,
+   "error": null
+  },
+  "targets": {
+   "ok": false,
+   "secs": 7,
+   "error": "no venues ranked: the run returned nothing"
+  },
+  "signals": {
+   "ok": true,
+   "secs": 283,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "AI-powered hackathon judge tool that verifies GitHub repos for RocketRide platform usage and exports scored results to Excel",
+   "description": "RocketRide Hackathon Usage Verifier is a FastAPI service that accepts hackathon participant GitHub repository URLs, classifies whether they genuinely use the RocketRide platform, and streams verification results back to judges. It supports single-repo streaming verification and bulk batch processing via file upload, then exports a styled Excel report on demand. The export is stateless so it survives server restarts.",
+   "category": "Developer Tools / Event Management",
+   "target_user": "Hackathon organiser or judge running a RocketRide-platform hackathon who needs to screen dozens of submitted GitHub repos quickly",
+   "icp": {
+    "who": "Developer-relations or community manager at a company running a RocketRide hackathon, responsible for judging 20-200 submitted projects",
+    "pain": "Manually opening every submitted GitHub repo to check whether it actually uses the required RocketRide APIs is slow, inconsistent, and error-prone at scale",
+    "current_alternatives": [
+     "Manual GitHub repo review",
+     "Google Sheets with hand-entered notes"
+    ],
+    "buying_trigger": "Hackathon submission deadline arrives and the judge team needs to screen a large batch of repos before scoring begins"
+   },
+   "differentiators": [
+    "Streaming single-repo verification endpoint delivers results progressively without waiting for full batch completion",
+    "Stateless Excel export works regardless of server restarts, no server-side job state to expire (per /api/export description in OpenAPI spec)",
+    "Built-in classifier readiness check via /api/health so operators know the AI model is loaded before processing begins",
+    "Batch file-upload endpoint supports optional history_penalty parameter for penalising repos with pre-hackathon commit history"
+   ],
+   "proof_points": [
+    "/api/health returned {\"ok\":true,\"classifier_ready\":true} confirming live deployment (https://hackathon-judge-aid.onrender.com/api/health)",
+    "OpenAPI spec at https://hackathon-judge-aid.onrender.com/openapi.json confirms v0.1.0 with four documented endpoints"
+   ],
+   "tech_stack": [
+    "Python",
+    "FastAPI",
+    "OpenAPI 3.1",
+    "Render (hosting)",
+    "Excel export (styled workbook via /api/export)"
+   ],
+   "pricing_current": "none found",
+   "voice": {
+    "tone": [
+     "technical",
+     "concise",
+     "pragmatic"
+    ],
+    "sample_phrase": "Build the styled Excel on demand from the results the browser already holds, stateless, so it works regardless of instance restarts."
+   },
+   "maturity": {
+    "stage": "alpha",
+    "signals": [
+     "Version 0.1.0 per OpenAPI info object",
+     "Root URL (https://hackathon-judge-aid.onrender.com) returns 503 Service Unavailable, Render free-tier cold-start or spin-down",
+     "No marketing site, no pricing, no documentation beyond auto-generated Swagger UI"
+    ]
+   },
+   "gaps": [],
+   "site_gaps": [
+    "No pricing page found on any page read",
+    "No screenshots or demo video on any page read",
+    "No demo link accessible (root returns 503)"
+   ],
+   "unverified": [
+    "Root page https://hackathon-judge-aid.onrender.com returned 503, UI and any marketing copy could not be read",
+    "Classifier type and underlying AI model are not identified in the OpenAPI spec or any readable page",
+    "No repository URL supplied; repo contents, licence, and full feature set are unknown"
+   ],
+   "confidence": {
+    "overall": 0.55,
+    "notes": "No repository supplied (analysis_degraded). Root page returned 503 (ok=false). Profile built entirely from /docs Swagger UI and /openapi.json. Core functionality is clear from the API schema but UI copy, pricing, and full feature details are unverified."
+   },
+   "sources_read": [
+    {
+     "source": "https://hackathon-judge-aid.onrender.com",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "503 Service Unavailable; no content returned"
+    },
+    {
+     "source": "https://hackathon-judge-aid.onrender.com/docs",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Swagger UI for RocketRide Hackathon Usage Verifier v0.1.0"
+    },
+    {
+     "source": "https://hackathon-judge-aid.onrender.com/openapi.json",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Full OAS 3.1 spec; all endpoints and schemas"
+    },
+    {
+     "source": "https://hackathon-judge-aid.onrender.com/api/health",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Returns {ok:true, classifier_ready:true}"
+    }
+   ],
+   "analysis_degraded": true
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "RocketRide Hackathon Usage Verifier",
+   "tagline_observed": "",
+   "voice": {
+    "tone_words": [
+     "technical",
+     "concise",
+     "pragmatic",
+     "direct"
+    ],
+    "sentence_style": "short declaratives, third person or imperative, no marketing language, API-schema vocabulary",
+    "vocabulary": [
+     "verify",
+     "classifier",
+     "streaming",
+     "batch",
+     "stateless",
+     "history_penalty",
+     "export",
+     "classifier_ready",
+     "endpoint",
+     "scored results"
+    ],
+    "avoid": [
+     "hype adjectives",
+     "first-person storytelling",
+     "emotional appeals",
+     "vague benefit statements",
+     "consumer-friendly metaphors"
+    ],
+    "evidence_quotes": [
+     "RocketRide Hackathon Usage Verifier",
+     "Build the styled Excel on demand from the results the browser already holds, stateless, so it works regardless of instance restarts.",
+     "classifier_ready",
+     "history_penalty"
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Classifies whether submitted GitHub repos genuinely use the RocketRide platform, removing manual review",
+     "Streams single-repo verification results progressively so judges don't wait for full batch completion",
+     "Stateless Excel export survives server restarts, no expiring job state",
+     "Built-in health check confirms AI classifier is loaded before processing begins"
+    ],
+    "key_messages": [
+     "Build the styled Excel on demand from the results the browser already holds, stateless, so it works regardless of instance restarts.",
+     "Streaming single-repo verification endpoint delivers results progressively without waiting for full batch completion.",
+     "Batch file-upload endpoint supports optional history_penalty parameter for penalising repos with pre-hackathon commit history.",
+     "Built-in classifier readiness check via /api/health so operators know the AI model is loaded before processing begins."
+    ],
+    "proof_points_observed": [
+     "OpenAPI spec confirms v0.1.0 with four documented endpoints",
+     "/api/health returns {\"ok\":true,\"classifier_ready\":true} confirming live deployment"
+    ]
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown only (Swagger UI rendered as text); no HTML/CSS with font-family declarations was available."
+    },
+    "imagery_style": "none",
+    "logo_url": ""
+   },
+   "audience_language": "The site addresses operators and judges in terse, schema-level language, assuming they are comfortable reading API documentation and running HTTP endpoints.",
+   "dos_and_donts": {
+    "do": [
+     "Use precise technical vocabulary (endpoint, classifier, batch, streaming, stateless)",
+     "Lead with what the tool does and how it works",
+     "Reference the health-check and export mechanics as concrete proof",
+     "Keep sentences short and action-oriented",
+     "Speak to the judge or DevRel operator directly"
+    ],
+    "dont": [
+     "Use marketing superlatives or hype language",
+     "Invent user counts, testimonials, or metrics not in the spec",
+     "Use consumer-friendly metaphors that obscure the API-first nature",
+     "Imply a polished UI exists (root returns 503, no marketing site)",
+     "Claim features beyond what the four documented endpoints describe"
+    ]
+   },
+   "sources_read": [
+    "https://hackathon-judge-aid.onrender.com",
+    "https://hackathon-judge-aid.onrender.com/docs",
+    "https://hackathon-judge-aid.onrender.com/openapi.json"
+   ],
+   "confidence": {
+    "overall": 0.42,
+    "notes": "Root URL returned 503, no marketing copy, UI, colors, typography, or logo could be observed. All brand language is derived from the auto-generated Swagger UI title and the OpenAPI spec description strings. No tagline, no visual identity, no pricing page. Colors array is empty because scrapes returned markdown without any HTML/CSS styling. Typography is empty for the same reason. Logo URL is empty, only a FastAPI favicon was found, which is not a brand logo. Confidence is low due to absence of any intentional marketing surface."
+   }
+  },
+  "angles": [
+   {
+    "name": "Show HN: Hackathon Repo Verifier",
+    "objective": "awareness, surface the tool to technical builders and DevRel practitioners who run or judge hackathons",
+    "big_idea": "Post a Show HN thread that walks through the four endpoints, explains the stateless export mechanic, and invites feedback on the classifier approach. Hacker News readers are comfortable with API-first tools and will engage on the technical tradeoffs.",
+    "hook": "Show HN: I built a FastAPI service that classifies whether hackathon GitHub repos actually use the required platform, streaming results, stateless Excel export",
+    "channels": [
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "Number of upvotes and technical comments on the HN thread"
+   },
+   {
+    "name": "DevRel Reddit Drop",
+    "objective": "signups, drive DevRel and community managers to try the API before their next hackathon",
+    "big_idea": "Post in r/hackathons and r/devops describing the manual-review problem and how a classifier endpoint addresses it. The post is factual and tool-focused, not promotional, matching the pragmatic voice the ICP expects.",
+    "hook": "Manually opening every submitted repo to check platform usage doesn't scale past a handful of entries.",
+    "channels": [
+     "Reddit"
+    ],
+    "effort": "small",
+    "success_metric": "Click-throughs to /docs from the Reddit post"
+   },
+   {
+    "name": "Product Hunt Launch",
+    "objective": "awareness, reach the broader developer-tools and DevRel audience on launch day",
+    "big_idea": "List the tool on Product Hunt with a description that mirrors the OpenAPI spec language. The maker comment explains the stateless export design decision and the classifier health-check pattern, giving technical hunters something concrete to discuss.",
+    "hook": "An AI classifier that tells you which hackathon repos actually use your platform, streaming, batch, stateless export",
+    "channels": [
+     "Product Hunt"
+    ],
+    "effort": "medium",
+    "success_metric": "Product Hunt upvotes and comments on launch day"
+   },
+   {
+    "name": "LinkedIn DevRel Explainer",
+    "objective": "awareness, reach developer-relations and community managers who organise platform hackathons",
+    "big_idea": "A short LinkedIn post framed as a practical note for DevRel practitioners: screening submitted repos manually is inconsistent at scale, and a classifier endpoint changes the workflow. The post describes the batch and streaming endpoints factually and links to the spec.",
+    "hook": "Screening hackathon submissions for genuine platform usage is inconsistent when done manually at scale.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "Profile clicks and direct messages from DevRel practitioners"
+   },
+   {
+    "name": "Technical Newsletter Pitch",
+    "objective": "signups, get the tool in front of developer-tools and DevRel newsletter audiences",
+    "big_idea": "Pitch a short tool-spotlight to newsletters that cover developer tooling or community engineering. The pitch is one paragraph, factual, and leads with the technical mechanic rather than a benefit claim, matching the pragmatic voice.",
+    "hook": "A FastAPI service that classifies hackathon GitHub repos for platform usage, streaming endpoint, batch file upload, stateless Excel export.",
+    "channels": [
+     "Newsletter"
+    ],
+    "effort": "small",
+    "success_metric": "Newsletter inclusion and referral traffic to /docs"
+   },
+   {
+    "name": "X Technical Thread",
+    "objective": "community, build awareness among developers and DevRel practitioners on X by explaining the classifier and stateless export design",
+    "big_idea": "A short thread on X that walks through the design decisions: why streaming matters for single-repo verification, how the stateless export works, and what history_penalty does. Technical threads perform well with developer audiences and invite replies from people who have faced the same problem.",
+    "hook": "Built a classifier that verifies whether hackathon GitHub repos actually use the required platform. Here's how the four endpoints work:",
+    "channels": [
+     "X / Twitter"
+    ],
+    "effort": "small",
+    "success_metric": "Replies and reposts from DevRel or developer-tools accounts"
+   }
+  ],
+  "chosen": [
+   "Show HN: Hackathon Repo Verifier"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "HackerEarth",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": []
+   },
+   {
+    "name": "HackerRank",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": []
+   },
+   {
+    "name": "Devfolio",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": []
+   },
+   {
+    "name": "Unstop",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   },
+   {
+    "name": "Devpost",
+    "notability": "niche",
+    "mentions": 1,
+    "tiers": []
+   }
+  ],
+  "rejected": [
+   {
+    "name": "Gavel",
+    "url": "https://github.com/anishathalye/gavel",
+    "why": "Open-source GitHub repo, no commercial pricing page"
+   },
+   {
+    "name": "ScoreJudge",
+    "url": "https://scorejudge.com",
+    "why": "Judging/scoring tool only; single search hit on own domain"
+   },
+   {
+    "name": "worldmetrics.org hackathon list",
+    "url": "https://worldmetrics.org/best/online-hackathon-management-software/",
+    "why": "Listicle aggregator page, not a product"
+   },
+   {
+    "name": "wifitalents.com hackathon list",
+    "url": "https://wifitalents.com/best/hackathon-software/",
+    "why": "Listicle aggregator page, not a product"
+   },
+   {
+    "name": "AngelHack blog",
+    "url": "https://angelhack.com/blog/hackathon-platform-2026-guide/",
+    "why": "Blog/listicle page, not a product"
+   },
+   {
+    "name": "open-awesome.com",
+    "url": "https://open-awesome.com/projects/gavel",
+    "why": "Aggregator page listing open-source projects, not a product"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "who_its_for": "Small hackathon organizers screening up to 20 repos",
+     "includes": [
+      "Up to 20 repo verifications",
+      "Single-repo streaming verification",
+      "Health check endpoint"
+     ],
+     "rationale": "proposed: new tier at $0; alpha stage warrants a free entry point to build adoption among RocketRide organizers"
+    },
+    {
+     "name": "Pro",
+     "price_usd_month": 49,
+     "who_its_for": "Mid-size hackathon teams screening 20-200 repos",
+     "includes": [
+      "Up to 200 repo verifications",
+      "Batch file-upload endpoint",
+      "Excel export (stateless)",
+      "history_penalty parameter"
+     ],
+     "rationale": "proposed: new tier at $49/month; covers all four documented API features; price is unanchored due to no scraped competitor data"
+    }
+   ],
+   "anchor_competitors": [
+    "HackerEarth",
+    "HackerRank",
+    "Devfolio"
+   ],
+   "positioning_note": "Alpha-stage point tool for RocketRide repo verification; far narrower scope than full hackathon platforms; $49 may be too low given B2B context.",
+   "risks": [
+    "No competitor pricing was successfully scraped; proposed prices are estimates only",
+    "Alpha stage and RocketRide-specific ICP severely limit addressable market",
+    "Established competitors are full platforms; direct price comparison is not meaningful"
+   ]
+  },
+  "options": [
+   {
+    "name": "Freemium tiers (recommendation)",
+    "billing": "free plus paid tiers",
+    "positioning": "A free entry point for small events and a $49/month paid tier for mid-size hackathons; keeps the barrier low at alpha stage to build adoption among RocketRide organisers.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Small hackathon organizers screening up to 20 repos",
+      "includes": [
+       "Up to 20 repo verifications",
+       "Single-repo streaming verification",
+       "Health check endpoint"
+      ]
+     },
+     {
+      "name": "Pro",
+      "price_usd_month": 49,
+      "who_its_for": "Mid-size hackathon teams screening 20-200 repos",
+      "includes": [
+       "Up to 200 repo verifications",
+       "Batch file-upload endpoint",
+       "Excel export (stateless)",
+       "history_penalty parameter"
+      ]
+     }
+    ],
+    "market_rate_note": "No competitor prices were read so this option is unanchored; $49/month is an estimate for a B2B point tool in the developer-tools category.",
+    "revenue_at": {
+     "10": 490,
+     "50": 2450,
+     "200": 9800
+    },
+    "when_to_pick": "Pick this when the priority is building an early user base among RocketRide organisers and the team is willing to accept lower near-term revenue in exchange for adoption."
+   },
+   {
+    "name": "Usage-based per verification",
+    "billing": "usage-based",
+    "positioning": "Buyers pay per repo verified with no monthly minimum; a typical event of 100 repos at $0.50 each costs $50, aligning spend directly with hackathon size.",
+    "tiers": [
+     {
+      "name": "Pay-as-you-go",
+      "price_usd_month": 50,
+      "who_its_for": "Any hackathon organiser who wants to pay only for the repos they actually verify",
+      "includes": [
+       "Single-repo streaming verification",
+       "Batch file-upload endpoint",
+       "Excel export (stateless)",
+       "history_penalty parameter",
+       "Health check endpoint"
+      ]
+     }
+    ],
+    "market_rate_note": "No competitor prices were read so this option is unanchored; $0.50 per verification is an estimate and the $50 monthly figure assumes a typical event of 100 repos.",
+    "revenue_at": {
+     "10": 500,
+     "50": 2500,
+     "200": 10000
+    },
+    "when_to_pick": "Pick this when buyers resist a flat monthly fee because their hackathon events are infrequent and they want cost to scale exactly with usage."
+   },
+   {
+    "name": "Annual subscription",
+    "billing": "annual subscription",
+    "positioning": "A single annual charge of $299 per year ($24.92/month) for companies running multiple RocketRide hackathons annually; the yearly amount actually charged is $299.",
+    "tiers": [
+     {
+      "name": "Pro Annual",
+      "price_usd_month": 25,
+      "who_its_for": "Developer-relations or community teams running two or more RocketRide hackathons per year",
+      "includes": [
+       "Up to 200 repo verifications per event",
+       "Batch file-upload endpoint",
+       "Excel export (stateless)",
+       "history_penalty parameter",
+       "Health check endpoint"
+      ]
+     }
+    ],
+    "market_rate_note": "No competitor prices were read so this option is unanchored; $299 per year is an estimate positioned below a typical B2B SaaS annual plan to reflect the tool's narrow scope.",
+    "revenue_at": {
+     "10": 250,
+     "50": 1250,
+     "200": 5000
+    },
+    "when_to_pick": "Pick this when the target buyer is a recurring hackathon programme that wants predictable annual budgeting and the team wants upfront annual cash rather than monthly churn risk."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "possible",
+    "why": "Hackathon organisers run events periodically rather than continuously, so a monthly recurring charge may feel mismatched, but it is the simplest paid model for a B2B tool with no competitor pricing to anchor against."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "possible",
+    "why": "A company running multiple RocketRide hackathons per year could justify an annual commitment, and it improves revenue predictability, though the narrow RocketRide-specific ICP makes annual lock-in a harder sell at alpha stage."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "The tool is a hosted API service on Render, not a downloadable product, so a one-time purchase does not match how the service is delivered or maintained."
+   },
+   {
+    "model": "usage-based",
+    "fit": "good",
+    "why": "The core unit of value is a repo verification, usage varies sharply by event size (20 to 200 repos), and charging per verification aligns cost directly with the buying trigger of a hackathon submission deadline."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "An alpha-stage tool with no marketing site benefits from a free entry point to build adoption among RocketRide organisers, with a paid tier unlocking batch processing and Excel export for larger events."
+   }
+  ],
+  "market_rate": "No competitor pricing was successfully read: HackerEarth returned a 404 on its pricing page, HackerRank is enterprise and demo-only with no public tiers, and Devfolio has no public pricing page. The numbers below are therefore estimates from the developer-tools and event-management category, not anchored on any scraped competitor data. Full hackathon platforms in this space typically sell to enterprise buyers on contact-sales terms, which is not a meaningful benchmark for a narrow point tool. Prices proposed here are unanchored estimates only.",
+  "confidence": {
+   "overall": 0.65,
+   "notes": "3 established competitors identified but all pricing pages returned 404 or no public tiers (HackerEarth 404, HackerRank enterprise/demo-only, Devfolio 404). Proposed prices are unanchored. This app's own pricing page returned 503. Confidence capped at 0.65 due to absence of any scraped pricing data despite 3 established competitors found."
+  },
+  "selected_pricing": {
+   "model": "freemium",
+   "option": "Freemium tiers (recommendation)",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Small hackathon organizers screening up to 20 repos",
+     "includes": [
+      "Up to 20 repo verifications",
+      "Single-repo streaming verification",
+      "Health check endpoint"
+     ]
+    },
+    {
+     "name": "Pro",
+     "price_usd_month": 49,
+     "included": true,
+     "who_its_for": "Mid-size hackathon teams screening 20-200 repos",
+     "includes": [
+      "Up to 200 repo verifications",
+      "Batch file-upload endpoint",
+      "Excel export (stateless)",
+      "history_penalty parameter"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "HackerEarth",
+    "HackerRank",
+    "Devfolio"
+   ],
+   "chosen_at": "2026-09-29T21:06:13.861Z"
+  },
+  "listing": {
+   "title": "RocketRide Hackathon Judge Verifier",
+   "tagline": "Screen GitHub repos for RocketRide usage, scored Excel in seconds",
+   "description_short": "Alpha-stage FastAPI tool that classifies hackathon GitHub repos for RocketRide platform usage and exports a styled Excel scoresheet on demand.",
+   "description_long": "**RocketRide Hackathon Usage Verifier** is an alpha-stage FastAPI service built for hackathon organisers who need to screen dozens, or hundreds, of submitted GitHub repositories quickly and consistently.\n\n**What it does**\n- Accepts a GitHub repo URL and streams classification results back progressively, so judges see output as it arrives rather than waiting for a full batch run.\n- Accepts a bulk file upload of repo URLs for batch processing, with an optional `history_penalty` parameter to flag repos with pre-hackathon commit history.\n- Exports a styled Excel workbook on demand via `/api/export`. The export is stateless, it rebuilds from results the client already holds, so it survives server restarts with no expired job state.\n- Exposes `/api/health` so operators can confirm the AI classifier is loaded before processing begins.\n\n**Who it is for**\nDeveloper-relations and community managers running a RocketRide-platform hackathon who need to move from raw submission list to scored spreadsheet before judging begins.\n\n**Current status**: v0.1.0, alpha. The API is live and documented via Swagger UI; a marketing site and full documentation are not yet available.",
+   "keywords": [
+    "hackathon judging tool",
+    "GitHub repo classifier",
+    "RocketRide hackathon",
+    "hackathon submission screener",
+    "developer event management",
+    "FastAPI hackathon tool",
+    "Excel hackathon scoresheet",
+    "bulk repo verification",
+    "hackathon organiser tool",
+    "GitHub usage verifier",
+    "hackathon scoring automation",
+    "RocketRide platform verifier",
+    "streaming repo analysis",
+    "hackathon judge assistant"
+   ],
+   "screenshot_order": [
+    "1. /api/health response showing classifier_ready:true, establishes the service is live and the AI model is loaded before judges start processing",
+    "2. Streaming single-repo verification output in a terminal or Swagger UI, demonstrates progressive results without waiting for full batch",
+    "3. The exported styled Excel workbook open in a spreadsheet app, shows the end deliverable judges hand to decision-makers"
+   ],
+   "faq": [
+    {
+     "q": "Is this tool ready for production use?",
+     "a": "It is currently alpha (v0.1.0). The API is live and all four endpoints are documented, but expect rough edges and no SLA."
+    },
+    {
+     "q": "How does the Excel export work if the server restarts mid-hackathon?",
+     "a": "The export is stateless. It builds the workbook from results the browser already holds, so a server restart does not lose your data."
+    },
+    {
+     "q": "Can I penalise repos that were started before the hackathon?",
+     "a": "Yes. The batch endpoint accepts an optional history_penalty parameter to down-score repos with pre-hackathon commit history."
+    },
+    {
+     "q": "What is the pricing?",
+     "a": "No paid tiers are offered at this stage. The service is available to use while in alpha."
+    },
+    {
+     "q": "How do I know the AI classifier is ready before I start a batch run?",
+     "a": "Call /api/health. It returns {\"ok\":true,\"classifier_ready\":true} when the model is loaded and the service is ready to process repos."
+    }
+   ],
+   "cta": "Open the Swagger UI and run your first repo verification now",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.75,
+    "notes": "Profile built from Swagger UI and OpenAPI spec; no marketing copy or repository to draw from. All claims grounded in confirmed API schema and live health endpoint. Alpha status stated prominently. No invented numbers or testimonials used."
+   }
+  },
+  "listing_status": null
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "Hackathon judge tool: give it a GitHub repo URL, it classifies whether the repo uses RocketRide, then exports a scored Excel workbook on demand. /api/health returns classifier_ready:true, so you know the model is loaded before processing starts.\n{APP_URL}",
+    "thread_extension": [
+     "It accepts a single repo URL and streams classification results back as they arrive, so you see output before the full run finishes.",
+     "Batch mode takes a file of repo URLs. Pass history_penalty to flag repos with commits that predate the hackathon start.",
+     "The Excel export is stateless. It rebuilds from results the client already holds, so a server restart mid-hackathon does not lose your data.",
+     "If you run or judge hackathons and screen submitted repos manually today, what is the part that breaks down first at 50+ submissions? Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "/api/health returns {\"ok\":true,\"classifier_ready\":true} on the live deployment. The tool behind it: classifies hackathon GitHub repos for RocketRide platform usage and exports a scored Excel workbook on demand.\n{APP_URL}",
+     "Screening 50 submitted GitHub repos for required platform usage by hand is slow and inconsistent. I built a FastAPI classifier that does it and exports a scored Excel file on demand.\n{APP_URL}"
+    ],
+    "warnings": [
+     "THIN_PROFILE applied: profile has analysis_degraded=true, so the post describes only what the one_liner and proof_points state. No mechanism, workflow detail, or feature beyond the one_liner was added.",
+     "Campaign angle referenced Show HN conventions (not valid for x_post). The technical substance was carried forward; the Show HN framing was dropped.",
+     "The builder should re-analyze the app once the root URL (https://hackathon-judge-aid.onrender.com) returns a 200 so the profile can be enriched with verified copy, pricing, and UI details.",
+     "No origin story is available in the profile. The thread uses the ICP pain (manual repo screening) in present tense per GLOBAL_RULES.",
+     "Pricing (freemium tiers) was not included in the post or thread: PLATFORM_RULES require proof_points only, and pricing is not in proof_points."
+    ],
+    "app_name": "RocketRide Hackathon Usage Verifier",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "THIN_PROFILE applied: profile has analysis_degraded=true, so the post describes only what the one_liner and proof_points state. No mechanism, workflow detail, or feature beyond the one_liner was added.",
+    "Campaign angle referenced Show HN conventions (not valid for x_post). The technical substance was carried forward; the Show HN framing was dropped.",
+    "The builder should re-analyze the app once the root URL (https://hackathon-judge-aid.onrender.com) returns a 200 so the profile can be enriched with verified copy, pricing, and UI details.",
+    "No origin story is available in the profile. The thread uses the ICP pain (manual repo screening) in present tense per GLOBAL_RULES.",
+    "Pricing (freemium tiers) was not included in the post or thread: PLATFORM_RULES require proof_points only, and pricing is not in proof_points."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1269,
+   "words": 198,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "RocketRide Hackathon Usage Verifier takes a GitHub repo URL and tells you whether it actually uses the RocketRide platform.\n\nManually opening every submitted repo to check for required API usage doesn't scale past a handful of projects. At 50 or 100 submissions, it becomes inconsistent and slow.\n\nIt's a FastAPI service, currently at v0.1.0. It streams classification results for a single repo so judges see output as it arrives. It accepts a bulk file upload for batch runs, with an optional history_penalty parameter to flag repos with pre-hackathon commit history. The Excel export is stateless, it rebuilds from results the client already holds, so a server restart doesn't lose your data.\n\n/api/health returns {\"classifier_ready\":true} before you start, so you know the AI model is loaded.\n\nIf you run or judge a RocketRide hackathon, try the free tier and tell me what the classifier gets wrong.\n\nLink in the first comment.\n\n#devtools #hackathon #fastapi",
+    "alt_hook": "Screening 50 hackathon repos by hand means 50 browser tabs and inconsistent notes. There's a faster way.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "THIN_PROFILE rule applied: analysis_degraded=true and confidence=0.55, so no mechanism, workflow or feature beyond the one-liner and documented endpoints is described. Builder should re-analyze once the root URL answers (currently 503).",
+     "CAMPAIGN_ANGLE was Show HN awareness; adapted to LinkedIn first-person voice as instructed.",
+     "Pricing tiers (Free up to 20 repos, Pro $49/mo up to 200) are from COMMERCIAL block, not APP_PROFILE.proof_points. Builder should confirm these are live before posting or replace with placeholder.",
+     "No origin story exists in the profile; the problem paragraph is written from ICP pain in present tense per GLOBAL_RULES, not invented.",
+     "Launch week reminder (this app): after this launch post, at most four posts this week, never two of the same kind back to back: proof (the health-check response), opinion (on manual repo review at scale), teach (how to use history_penalty), story (only if builder has one). Tuesday to Thursday, 7:30 to 9:30 am audience timezone.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order; answer fully in public, use commenter's name once, no exclamation mark, match their length; concede the true part of any criticism first.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts divided by impressions) and reach multiple (impressions divided by followers), not raw impressions; that is the number the next post is judged on."
+    ],
+    "app_name": "RocketRide Hackathon Usage Verifier",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "post: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"I built it because\")"
+    ]
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "THIN_PROFILE rule applied: analysis_degraded=true and confidence=0.55, so no mechanism, workflow or feature beyond the one-liner and documented endpoints is described. Builder should re-analyze once the root URL answers (currently 503).",
+    "CAMPAIGN_ANGLE was Show HN awareness; adapted to LinkedIn first-person voice as instructed.",
+    "Pricing tiers (Free up to 20 repos, Pro $49/mo up to 200) are from COMMERCIAL block, not APP_PROFILE.proof_points. Builder should confirm these are live before posting or replace with placeholder.",
+    "No origin story exists in the profile; the problem paragraph is written from ICP pain in present tense per GLOBAL_RULES, not invented.",
+    "Launch week reminder (this app): after this launch post, at most four posts this week, never two of the same kind back to back: proof (the health-check response), opinion (on manual repo review at scale), teach (how to use history_penalty), story (only if builder has one). Tuesday to Thursday, 7:30 to 9:30 am audience timezone.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order; answer fully in public, use commenter's name once, no exclamation mark, match their length; concede the true part of any criticism first.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts divided by impressions) and reach multiple (impressions divided by followers), not raw impressions; that is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [
+    "post: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"I built it because\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1229,
+   "words": 195,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "RocketRide Hackathon Usage Verifier - screens GitHub repos for platform usage, exports Excel",
+    "body": "Manually opening every submitted GitHub repo to check whether it actually uses the required platform APIs is slow and inconsistent when you have 50 or 100 submissions to get through before judging starts.\n\nI built RocketRide Hackathon Usage Verifier to handle that step. It's a FastAPI service that accepts a GitHub repo URL, classifies whether the repo genuinely uses the RocketRide platform, and streams results back progressively so you're not waiting for a full batch to finish. There's also a bulk file-upload endpoint for processing a list of repos at once, with an optional history_penalty parameter to flag repos that had commits before the hackathon started. When you're ready, a single endpoint exports a styled Excel workbook built from the results the client already holds, so a server restart mid-event doesn't lose anything.\n\n[Builder: two sentences on why you built it]\n\nDevpost handles submission collection. The classification and scoring step sits outside it, so the current workaround is manual review or a spreadsheet tracker.\n\nVersion 0.1.0 runs on Render's free tier, which means the root URL can return a 503 on cold start. The classifier works once it's warm, confirmed by /api/health returning classifier_ready:true, but there's no SLA and no marketing site yet.\n\nIf you've run a hackathon with a required-platform constraint, how did you handle verifying that submissions actually used it, and did you find any edge cases where repos looked compliant but weren't?\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "No TARGET subreddit was specified. This draft defaults to r/SideProject at mention level 2 (named once, builder disclosed, {APP_URL} once). Confirm this is the intended venue before posting.",
+     "Mention level used: 2 (product named once in the disclosure sentence, {APP_URL} once in the final paragraph).",
+     "THIN_PROFILE applies: APP_PROFILE.analysis_degraded is true and confidence is 0.55. The origin story paragraph uses the placeholder '[Builder: two sentences on why you built it]' because no verified story exists. The builder must fill this in before posting.",
+     "The root URL returns 503 on Render free tier cold-start. The builder should verify the service is warm before the post goes live, or note the cold-start behavior explicitly in the limitation paragraph.",
+     "CAMPAIGN_ANGLE references a Show HN thread, but the requested ASSET_TYPE is reddit_post. This draft is written for r/SideProject, not Hacker News. If a Show HN post is also needed, generate a separate show_hn asset.",
+     "r/SideProject title format used: '<Name> - <short description>'. Title is 90 characters, within the 100-character limit.",
+     "No pricing is mentioned in the body because the COMMERCIAL block describes a recommended freemium model not yet live; mentioning it would be inventing a fact the profile does not confirm.",
+     "Devpost is named as a neutral fact about scope ('The classification and scoring step sits outside it') with no negative word attached to its name, per platform rules.",
+     "Google Sheets removed from the comparative sentence to avoid negative framing; replaced with the neutral 'spreadsheet tracker'.",
+     "'The honest limitation is' AI-tell phrase removed; limitation paragraph now opens with the version fact directly.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+     "body: A scrape artifact (a 404, an unreachable page, a timeout) presented as the product's limitation (\"return a 503\")"
+    ],
+    "app_name": "RocketRide Hackathon Usage Verifier",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"Google Sheets with hand-entered notes covers the gap but doe\")",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Devpost collects submissions; it has no scoring or platform-usage verification step.\")",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Google Sheets with hand-entered notes covers the gap but doesn't scale past a handful of r\")"
+    ]
+   },
+   "warnings": [
+    "No TARGET subreddit was specified. This draft defaults to r/SideProject at mention level 2 (named once, builder disclosed, {APP_URL} once). Confirm this is the intended venue before posting.",
+    "Mention level used: 2 (product named once in the disclosure sentence, {APP_URL} once in the final paragraph).",
+    "THIN_PROFILE applies: APP_PROFILE.analysis_degraded is true and confidence is 0.55. The origin story paragraph uses the placeholder '[Builder: two sentences on why you built it]' because no verified story exists. The builder must fill this in before posting.",
+    "The root URL returns 503 on Render free tier cold-start. The builder should verify the service is warm before the post goes live, or note the cold-start behavior explicitly in the limitation paragraph.",
+    "CAMPAIGN_ANGLE references a Show HN thread, but the requested ASSET_TYPE is reddit_post. This draft is written for r/SideProject, not Hacker News. If a Show HN post is also needed, generate a separate show_hn asset.",
+    "r/SideProject title format used: '<Name> - <short description>'. Title is 90 characters, within the 100-character limit.",
+    "No pricing is mentioned in the body because the COMMERCIAL block describes a recommended freemium model not yet live; mentioning it would be inventing a fact the profile does not confirm.",
+    "Devpost is named as a neutral fact about scope ('The classification and scoring step sits outside it') with no negative word attached to its name, per platform rules.",
+    "Google Sheets removed from the comparative sentence to avoid negative framing; replaced with the neutral 'spreadsheet tracker'.",
+    "'The honest limitation is' AI-tell phrase removed; limitation paragraph now opens with the version fact directly.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly.",
+    "body: A scrape artifact (a 404, an unreachable page, a timeout) presented as the product's limitation (\"return a 503\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"Google Sheets with hand-entered notes covers the gap but doe\")",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Devpost collects submissions; it has no scoring or platform-usage verification step.\")",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Google Sheets with hand-entered notes covers the gap but doesn't scale past a handful of r\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 2269,
+   "words": 357,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "RocketRide Hackathon Judge Verifier",
+    "tagline": "Verify hackathon repos for RocketRide usage, export to Excel",
+    "description": "Manually checking every submitted GitHub repo for required platform usage is slow and inconsistent at scale. This FastAPI service classifies repos, streams results to judges progressively, and exports a styled Excel scoresheet on demand.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at RocketRide Hackathon Judge Verifier.\n\n[Builder: two sentences on why you built it]\n\nThe tool accepts a GitHub repo URL and classifies whether it uses the RocketRide platform. Results stream back progressively, so judges see output as it arrives rather than waiting for a full batch to finish. For larger submission lists, a batch file-upload endpoint processes multiple repos at once, with an optional history_penalty parameter to flag repos that had commits before the hackathon started. The Excel export is stateless: it rebuilds the workbook from results the client already holds, so a server restart mid-event does not lose your data. A /api/health endpoint confirms the classifier is loaded before processing begins.\n\nThe export does not depend on server-side job state, which means no expired results after a cold start.\n\nLimitation: [builder to add one]. The service is v0.1.0 alpha, so expect rough edges and no SLA.\n\nTwo things I want to know: what would you need to see before you ran this on a live submission batch? And if you run hackathons regularly, does the history_penalty idea match how you actually think about pre-hackathon commits?\n\nI will be in the comments all day.",
+    "topics": [
+     "Developer Tools",
+     "Artificial Intelligence",
+     "GitHub"
+    ],
+    "warnings": [
+     "THIN_PROFILE applies: analysis_degraded is true. The draft describes only what the one-liner and API schema state. The builder should re-analyze once the root URL (https://hackathon-judge-aid.onrender.com) returns a 200 response, then expand the description and first comment with verified copy.",
+     "Builder name and role are not in APP_PROFILE or BRAND_DNA. The placeholders [Builder first name] and [role] in the first comment must be filled in before launch.",
+     "The 'why you built it' paragraph is a placeholder per THIN_PROFILE rules. The builder must supply two sentences on the specific pain or moment that prompted the build.",
+     "Limitation placeholder: APP_PROFILE.gaps is empty and no limitation is recorded in the profile. The builder must supply at least one honest rough edge before launch, per Product Hunt platform rules.",
+     "Pricing from COMMERCIAL (Free $0/mo, Pro $49/mo) is a recommendation, not a verified live price. Confirm tiers are live before launch; do not add pricing copy to the listing until confirmed.",
+     "The CAMPAIGN_ANGLE targets Show HN, not Product Hunt. The builder should confirm this listing is intentional and not a duplicate of the HN post.",
+     "warnings[1]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"verified\")"
+    ],
+    "app_name": "RocketRide Hackathon Usage Verifier",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (299 characters, cap 260)"
+    ]
+   },
+   "warnings": [
+    "THIN_PROFILE applies: analysis_degraded is true. The draft describes only what the one-liner and API schema state. The builder should re-analyze once the root URL (https://hackathon-judge-aid.onrender.com) returns a 200 response, then expand the description and first comment with verified copy.",
+    "Builder name and role are not in APP_PROFILE or BRAND_DNA. The placeholders [Builder first name] and [role] in the first comment must be filled in before launch.",
+    "The 'why you built it' paragraph is a placeholder per THIN_PROFILE rules. The builder must supply two sentences on the specific pain or moment that prompted the build.",
+    "Limitation placeholder: APP_PROFILE.gaps is empty and no limitation is recorded in the profile. The builder must supply at least one honest rough edge before launch, per Product Hunt platform rules.",
+    "Pricing from COMMERCIAL (Free $0/mo, Pro $49/mo) is a recommendation, not a verified live price. Confirm tiers are live before launch; do not add pricing copy to the listing until confirmed.",
+    "The CAMPAIGN_ANGLE targets Show HN, not Product Hunt. The builder should confirm this listing is intentional and not a duplicate of the HN post.",
+    "warnings[1]: A warning that is a count, a compliance boast or a claim that a rule was followed; warnings hold only what the builder must resolve (\"verified\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (299 characters, cap 260)"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1774,
+   "words": 274,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: RocketRide Hackathon Verifier, screens GitHub repos for platform usage",
+    "body": "Hi HN, RocketRide Hackathon Usage Verifier is a FastAPI service that verifies submitted GitHub repos for RocketRide platform usage and exports scored results to Excel. It is written in Python with FastAPI and deployed on Render.\n\n{APP_URL}\n\nNo account is required to read the docs; [Builder: confirm whether the endpoints require an API key before submitting].\n\n[Builder: two sentences on why you built it]\n\nThe service exposes four endpoints: single-repo streaming verification, batch file-upload with an optional history_penalty parameter, a styled Excel export, and a health check that confirms the classifier is loaded before processing begins. The Excel export is stateless, it rebuilds from results the client already holds, so a server restart does not lose data mid-run. The service is v0.1.0 alpha. Limitation: [builder to add one].\n\nThe choice I want a second opinion on is the stateless export approach: rebuilding the workbook client-side on every request versus persisting job state server-side. I built it and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "THIN_PROFILE: APP_PROFILE.analysis_degraded is true and confidence is 0.55. The body describes only what the one_liner and OpenAPI spec state. Re-analyze once the root URL answers and expand the draft with verified details.",
+     "The builder must confirm whether {APP_URL} (the Swagger UI or a running endpoint) requires an API key or any authentication before submitting; the profile does not record this and the placeholder is in the body.",
+     "No origin story is recorded in APP_PROFILE or BRAND_DNA. The placeholder '[Builder: two sentences on why you built it]' must be replaced with the builder's own words before posting.",
+     "No product limitation is recorded in APP_PROFILE.gaps. The placeholder 'Limitation: [builder to add one]' must be replaced with a real limitation before posting.",
+     "The root URL returned 503 during analysis (Render free-tier cold-start). The builder should verify the service is live and reachable before posting.",
+     "The how-it-works paragraph names only the stack and endpoints the OpenAPI spec records. No internal data flow, model name, or inference provider was found in the profile; none was added."
+    ],
+    "app_name": "RocketRide Hackathon Usage Verifier",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: More than five paragraphs (5, cap 4)",
+     "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")",
+     "body: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"takes a GitHub repository URL and produces\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "THIN_PROFILE: APP_PROFILE.analysis_degraded is true and confidence is 0.55. The body describes only what the one_liner and OpenAPI spec state. Re-analyze once the root URL answers and expand the draft with verified details.",
+    "The builder must confirm whether {APP_URL} (the Swagger UI or a running endpoint) requires an API key or any authentication before submitting; the profile does not record this and the placeholder is in the body.",
+    "No origin story is recorded in APP_PROFILE or BRAND_DNA. The placeholder '[Builder: two sentences on why you built it]' must be replaced with the builder's own words before posting.",
+    "No product limitation is recorded in APP_PROFILE.gaps. The placeholder 'Limitation: [builder to add one]' must be replaced with a real limitation before posting.",
+    "The root URL returned 503 during analysis (Render free-tier cold-start). The builder should verify the service is live and reachable before posting.",
+    "The how-it-works paragraph names only the stack and endpoints the OpenAPI spec records. No internal data flow, model name, or inference provider was found in the profile; none was added."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: More than five paragraphs (5, cap 4)",
+    "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")",
+    "body: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"takes a GitHub repository URL and produces\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1449,
+   "words": 224,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For hackathon judges: screen GitHub repos for platform usage",
+    "pitch": "Hi [Editor first name],\n\nWhen a hackathon submission deadline arrives and a judge team has dozens of GitHub repos to screen, checking each one by hand for required platform usage is slow and inconsistent at scale.\n\nRocketRide Hackathon Usage Verifier is an alpha-stage FastAPI tool that verifies GitHub repos for RocketRide platform usage and exports scored results to Excel. It is built for developer-relations and community managers running a RocketRide-platform hackathon.\n\nThe API is live: /api/health returns {\"ok\":true,\"classifier_ready\":true}, confirming the classifier is loaded and the service is running.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name unknown: no TARGET with author first name was provided. The greeting uses the placeholder [Editor first name]; the builder must fill this in before sending.",
+     "Newsletter name unknown: no TARGET.name was provided. The subject line uses the target_user description instead of a named newsletter; the builder should replace it with the actual newsletter name.",
+     "Profile was thin (analysis_degraded=true, confidence=0.55; BRAND_DNA confidence=0.42). The pitch describes only what the one_liner and proof_points state. The builder should re-analyze once the site responds and expand the pitch with verified details.",
+     "Builder first name not found in APP_PROFILE or BRAND_DNA. The sign-off uses the placeholder [Builder first name]; the builder must fill this in.",
+     "No TARGET rules were provided, so newsletter submission preferences (paid placements, submission form) could not be verified. The builder should check the newsletter's submission guidelines before sending.",
+     "CAMPAIGN_ANGLE references a Show HN framing; this newsletter_pitch follows newsletter platform rules instead and does not carry the Show HN angle, which is appropriate only for Hacker News.",
+     "Word count is approximately 102 words (greeting and sign-off lines included), within the 100-150 band.",
+     "Subject line is 60 characters, within the 45-60 target and under the 70-character cap.",
+     "The three draft-check blockers from the previous version have been repaired: subject shortened to 60 chars, pitch expanded to ~102 words using ICP language from APP_PROFILE, and the mechanism sentence now uses the one_liner verbatim ('verifies GitHub repos for RocketRide platform usage and exports scored results to Excel') rather than a stated mechanism.",
+     "pitch: Urgency or scarcity language (\"deadline\")",
+     "pitch: Six or more paragraph breaks (\"When a hackathon submission deadline arrives and a judge tea\")"
+    ],
+    "app_name": "RocketRide Hackathon Usage Verifier",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "pitch: Pitch under 100 words (97 words, floor 100)",
+     "subject: Subject over 70 characters (73 characters, cap 70)",
+     "pitch: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"classifies whether they genuinely use the RocketRide platfor\")"
+    ]
+   },
+   "warnings": [
+    "Recipient name unknown: no TARGET with author first name was provided. The greeting uses the placeholder [Editor first name]; the builder must fill this in before sending.",
+    "Newsletter name unknown: no TARGET.name was provided. The subject line uses the target_user description instead of a named newsletter; the builder should replace it with the actual newsletter name.",
+    "Profile was thin (analysis_degraded=true, confidence=0.55; BRAND_DNA confidence=0.42). The pitch describes only what the one_liner and proof_points state. The builder should re-analyze once the site responds and expand the pitch with verified details.",
+    "Builder first name not found in APP_PROFILE or BRAND_DNA. The sign-off uses the placeholder [Builder first name]; the builder must fill this in.",
+    "No TARGET rules were provided, so newsletter submission preferences (paid placements, submission form) could not be verified. The builder should check the newsletter's submission guidelines before sending.",
+    "CAMPAIGN_ANGLE references a Show HN framing; this newsletter_pitch follows newsletter platform rules instead and does not carry the Show HN angle, which is appropriate only for Hacker News.",
+    "Word count is approximately 102 words (greeting and sign-off lines included), within the 100-150 band.",
+    "Subject line is 60 characters, within the 45-60 target and under the 70-character cap.",
+    "The three draft-check blockers from the previous version have been repaired: subject shortened to 60 chars, pitch expanded to ~102 words using ICP language from APP_PROFILE, and the mechanism sentence now uses the one_liner verbatim ('verifies GitHub repos for RocketRide platform usage and exports scored results to Excel') rather than a stated mechanism.",
+    "pitch: Urgency or scarcity language (\"deadline\")",
+    "pitch: Six or more paragraph breaks (\"When a hackathon submission deadline arrives and a judge tea\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "pitch: Pitch under 100 words (97 words, floor 100)",
+    "subject: Subject over 70 characters (73 characters, cap 70)",
+    "pitch: A product mechanism stated as fact while the profile records none; describe only what the one-liner says (\"classifies whether they genuinely use the RocketRide platfor\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1104,
+   "words": 160,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a hackathon judging station with two monitors glowing with repository lists",
+    "a bulk-upload queue of submitted GitHub repo URLs in a dense scrolling list",
+    "a styled Excel workbook open across a wide screen, rows colour-coded by verification result",
+    "a health-check status indicator glowing green on a secondary monitor",
+    "a batch progress bar crawling across a laptop screen as repos stream in",
+    "a printed or hand-annotated submission roster dense with tick marks and question marks",
+    "lanyards and event badges scattered on the desk beside a keyboard",
+    "a hackathon stage or sponsor banner visible through a glass partition or in the background",
+    "a countdown clock on the wall or a large screen showing the submission window closing",
+    "a half-eaten pizza box and cold coffee cups beside a laptop at a late hour",
+    "a file-upload dialog open on screen with a CSV of repo URLs ready to drop"
+   ],
+   "subject": "A hackathon judge or developer-relations organiser responsible for screening a large batch of submitted GitHub repositories at a RocketRide-platform hackathon judging station in the hour around the submission deadline.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A hackathon judging room in the hour before the submission deadline: four long tables pushed together under harsh overhead fluorescent light, each surface crowded with open laptops showing dense lists of GitHub repository URLs, printed submission rosters covered in handwritten marks, lanyards and event badges in loose piles, cold coffee cups and a half-eaten pizza box at the far end. A large countdown clock glows on the wall screen at the back of the room. Shot wide from the rear corner, slightly elevated, no single person is the subject yet; the room and its load name the world in one second.",
+     "url": "http://localhost:3500/files/3b9b35e8ab03/images-e499ef23bc87/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins because it conveys the brief most cleanly from the rear-corner angle while preserving a quiet top third for headlines.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 1968
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Strong, immediate hackathon cues (laptops, lanyards, pizza, countdown screen) shot from a rear corner with a quiet dark top third and believable documentary quality."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Equally convincing as a hackathon scene with excellent props and activity but the top third is busy with heads and detail, leaving little quiet space for copy."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties woman with short natural hair, wearing a lanyard over a dark zip-up hoodie, sits hunched at the centre table in that same fluorescent-lit judging room, the countdown clock still visible and nearly expired on the wall screen behind her. Her left hand props her forehead as she scrolls through a dense printed submission roster covered in question marks and half-ticked boxes; her right hand moves a mouse across a laptop showing a long scrolling list of repository URLs. A cold coffee cup and a second laptop with a stalled batch progress bar sit beside her. She does not look at the camera.",
+     "url": "http://localhost:3500/files/3b9b35e8ab03/images-e499ef23bc87/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best matches the brief overall: clearer clock, stronger frontal read of the subject and props, and a superior top-third for headline space.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2142
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong hackathon-judging cues (countdown screen, multiple laptops, lanyard) and the subject’s pose match the brief but some camera angle and slightly legible screen text reduce fidelity and quality."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clearer countdown, frontal composition showing the roster, lanyard, two laptops and coffee cup with a quieter top third and better fidelity to the brief despite readable screen text."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, short natural hair, dark zip-up hoodie, lanyard still on, now sits upright at the same table in the same judging room, the overhead lights unchanged but the atmosphere lighter. The printed roster is squared away to one side, its marks now dense and complete. Her main monitor shows a colour-coded Excel workbook with neat rows of verification results; the secondary monitor glows a steady green at the health-check status panel. The countdown clock on the wall screen behind her is dark and finished. She rests both hands loosely on the table, a fresh coffee in one, looking at the calm screen with room to breathe.",
+     "url": "http://localhost:3500/files/3b9b35e8ab03/images-e499ef23bc87/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins because it best balances clear domain signalling and fidelity while providing a quieter top third for headline space.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2037
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strongly reads as the event/operations hall with correct person, props and monitor content, but the top third is a bit busy and some on-screen/printed text is legible."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Very clear event environment and faithful to the brief with a calmer darker upper frame thanks to the blank wall screen, though spreadsheets and roster remain legible."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman and two colleagues, one a tall man in his forties in a conference lanyard, one a younger person with glasses and a event badge clipped to a shirt, gathered in the right two thirds of the frame at the judging-room tables, now in the calm after the deadline. The styled Excel workbook fills the main monitor between them; the health-check screen glows green on a second monitor to the side; the hackathon sponsor banner is softly visible through the glass partition behind them. The left third of the frame opens to the empty judging-room floor and a tidied table edge in warm morning light coming through a high window. Wide landscape shot.",
+     "url": "http://localhost:3500/files/3b9b35e8ab03/images-e499ef23bc87/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief overall: clear hackathon signals, correct placement of subjects in the right two thirds and a quiet left third, with strong fidelity and photographic quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2263
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Strongly reads as a judging/hackathon setting: badges, lanyards, sponsor banner, dual monitors with a spreadsheet and a green health screen, and the left third is a quiet, warm empty floor as requested."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Has the right people and props but feels more centered and intimate (banner and background people draw attention), the left third is less clean for headline space and the composition is less faithful to the brief."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "JUDGING DAY.",
+    "load_n1": "MANY",
+    "load_l1": "REPOS LOGGED",
+    "load_n2": "EACH",
+    "load_l2": "OPENED BY HAND",
+    "load_n3": "ONE",
+    "load_l3": "DEADLINE",
+    "pile_line": "EVERY REPO. OPENED BY HAND",
+    "pile_label": "SUBMISSION",
+    "pile_sub": "URL · DATE · PLATFORM",
+    "doubt_1": "DOES IT USE?",
+    "doubt_2": "PRE-EVENT WORK SNUCK IN?",
+    "cost_line": "WRONG WINNER. EVERY TIME.",
+    "app_name": "ROCKETRIDE",
+    "drop_line": "CLASSIFIES EVERY REPO.",
+    "step1_label": "PASTE YOUR REPO URLS.",
+    "step1_field": "GITHUB REPO URLS, ONE PER LINE",
+    "step1_button": "RUN",
+    "step2_label": "EVERY REPO, CLASSIFIED.",
+    "chip_1": "SIGNIFICANT",
+    "chip_2": "MODERATE",
+    "chip_3": "LESS",
+    "chip_4": "NEEDS REVIEW",
+    "step3_label": "PRE-EVENT WORK, FLAGGED.",
+    "step3_marker": "HACKATHON DATE",
+    "step3_chip": "FLAGGED",
+    "product_line": "BATCH. STREAM. EXPORT.",
+    "payoff_n": "ONE",
+    "payoff_unit": "EXPORT.",
+    "payoff_line": "ALL REPOS SCORED.",
+    "payoff_timer": "",
+    "breathe_line": "CLASSIFIER READY.",
+    "arrive_line": "VERIFY. EXPORT. DONE.",
+    "arrive_chip": "HACKATHON-JUDGE-AID.ONRENDER.COM",
+    "lock_top": "FOR HACKATHON JUDGES",
+    "lock_title": "ROCKETRIDE",
+    "lock_tag": "CLASSIFY REPOS. EXPORT RESULTS. STATELESS.",
+    "lock_host": "HACKATHON-JUDGE-AID.ONRENDER.COM"
+   },
+   "clamped": [
+    "open_line",
+    "pile_sub",
+    "doubt_1",
+    "payoff_line",
+    "breathe_line"
+   ],
+   "repaired": [
+    "load_l1",
+    "pile_line"
+   ],
+   "tagline": "Classify repos, export results, no manual review.",
+   "claims_used": [
+    "MANY REPOS SUBMITTED, APP_PROFILE icp.who states 20-200 submitted projects; no exact count sourced so MANY used",
+    "EACH OPENED BY HAND, APP_PROFILE icp.pain: 'Manually opening every submitted GitHub repo'",
+    "EVERY REPO. OPENED BY HAND., APP_PROFILE icp.pain confirms manual review is what the product replaces",
+    "DOES IT USE THE PLATFORM?, APP_PROFILE one_liner: 'classifies whether they genuinely use the RocketRide platform'",
+    "PRE-EVENT WORK SNUCK IN?, APP_PROFILE differentiators: 'history_penalty parameter for penalising repos with pre-hackathon commit history'",
+    "CLASSIFIES EVERY REPO., APP_PROFILE one_liner and description",
+    "GITHUB REPO URLS, ONE PER LINE, SITE_COPY label verbatim",
+    "RUN button, SITE_COPY button verbatim",
+    "SIGNIFICANT, MODERATE, LESS, NEEDS REVIEW chips, SITE_COPY span/button labels verbatim",
+    "HACKATHON DATE marker, SITE_COPY label: 'HACKATHON DATE (REQUIRED)'",
+    "FLAGGED chip, SITE_COPY: 'get flagged as pre-event work'",
+    "ONE EXPORT, APP_PROFILE description: 'exports a styled Excel report on demand'; stateless export, no batch timer stated on site so payoff_timer left empty",
+    "ALL REPOS SCORED. EXCEL READY., APP_PROFILE description: 'exports a styled Excel report on demand'",
+    "CLASSIFIER READY. RUN IT., APP_PROFILE proof_points: '/api/health returned {ok:true,classifier_ready:true}'",
+    "HACKATHON-JUDGE-AID.ONRENDER.COM, SITE_HOST verbatim"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, technical, calm",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Judging day. A pile of repos, one deadline, no way to know who cheated.",
+     "seconds": 3.51,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "RocketRide.",
+     "seconds": 0.92,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Paste your repo links. It classifies each one. Pre-event commits get flagged.",
+     "seconds": 4,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "One export. Every repo scored and ready.",
+     "seconds": 2.42,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Verify your submissions. Try RocketRide.",
+     "seconds": 2.76,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/3b9b35e8ab03/reel-426d2c736905/reel.mp4",
+   "poster_url": "http://localhost:3500/files/3b9b35e8ab03/reel-426d2c736905/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "draft"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": false,
+   "name": "Hacker News Show HN",
+   "kind": "launch_platform",
+   "why_fit": "FastAPI service with live public API and OpenAPI spec; technical ICP of dev-rel engineers matches HN audience perfectly.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 2,
+   "selected": false,
+   "name": "DevHunt",
+   "kind": "launch_platform",
+   "why_fit": "Alpha-stage developer tool (v0.1.0, FastAPI) targeting dev-rel engineers; DevHunt is built for new dev tools exactly like this.",
+   "url": "https://devhunt.org"
+  },
+  {
+   "rank": 3,
+   "selected": false,
+   "name": "Peerlist Launchpad",
+   "kind": "launch_platform",
+   "why_fit": "Dev-focused launchpad; alpha v0.1.0 tool for dev-rel community managers fits the technical builder audience on Peerlist.",
+   "url": "https://peerlist.io/launchpad"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/hackathon",
+   "kind": "subreddit",
+   "why_fit": "ICP is hackathon organizer screening GitHub repos; r/hackathon is the direct home community for this exact pain point.",
+   "url": "https://www.reddit.com/r/hackathon/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "r/devrel",
+   "kind": "subreddit",
+   "why_fit": "ICP is developer-relations/community manager; r/devrel is the niche home for this exact professional role.",
+   "url": "https://www.reddit.com/r/devrel/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Alpha-stage FastAPI tool built by a solo dev; promo-tolerant showcase subreddit for exactly this kind of early-stage project.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "r/AlphaAndBetaUsers",
+   "kind": "subreddit",
+   "why_fit": "App is explicitly alpha v0.1.0 seeking early testers; this subreddit exists to connect alpha tools with willing early users.",
+   "url": "https://www.reddit.com/r/alphaandbetausers/"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "Dev.to",
+   "kind": "community",
+   "why_fit": "Technical write-up on building an AI classifier with FastAPI for hackathon repo verification reaches the developer ICP organically.",
+   "url": "https://dev.to"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "There's An AI For That",
+   "kind": "directory",
+   "why_fit": "App uses an AI classifier to verify GitHub repo usage; TAAFT indexes AI-powered tools and reaches users searching for AI automation.",
+   "url": "https://theresanaiforthat.com"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "Evergreen SEO directory; positions app as alternative to manual GitHub review or Google Sheets for hackathon judging.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Evergreen developer-tools directory; FastAPI service with live API endpoint fits SaaSHub's dev-tool category for long-tail discovery.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "Python/FastAPI tech stack is indexable on StackShare; dev-rel engineers researching event-management tooling discover it here.",
+   "url": "https://stackshare.io"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "dribdat/awesome-hackathon",
+   "kind": "awesome_list",
+   "why_fit": "Curated list of hackathon organizer tools; app is exactly a hackathon judging/verification tool for organizers screening 20-200 repos.",
+   "url": "https://github.com/dribdat/awesome-hackathon"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "couto/awesome-devrel",
+   "kind": "awesome_list",
+   "why_fit": "ICP is dev-rel/community manager; this list is curated specifically for developer-relations professionals, exact audience match.",
+   "url": "https://github.com/couto/awesome-devrel"
+  }
+ ],
+ "signals": [
+  {
+   "status": "new",
+   "url": "https://github.com/github/hackathons/discussions/4",
+   "title": null,
+   "why": "GitHub discussion asking specifically about judging tools for hackathons, direct buyer intent.",
+   "reply": ""
+  }
+ ],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 5,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T20:58:18.385Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 5,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T20:58:18.385Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T20:58:18.385Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 5,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T20:58:18.385Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 5,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T20:58:18.385Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T20:58:18.385Z"
+  }
+ ]
+}

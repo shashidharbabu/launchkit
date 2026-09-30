@@ -1,0 +1,194 @@
+{
+  "slug": "documenso",
+  "scores": {"profile": 3, "brand": 3, "commercial": 3, "social": 3, "assets": 3, "targets": 3, "signals": 3, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 3, "reddit_post": 3, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "Brand DNA and the 'Compliance, Out of the Box' angle present 21 CFR Part 11 as built in for everyone, including free and self-hosted users, but Documenso's docs list it as Enterprise License only.",
+      "evidence": "brand_dna.messaging.value_props: \"Fully compliant out of the box, ESIGN, UETA, 21 CFR Part 11, SOC2, HIPAA\"; brand_campaigns 'Compliance, Out of the Box': \"Documenso releases with ESIGN, UETA, and 21 CFR Part 11 compliance built in. Self-host it on your own infrastructure or use our cloud. Either way, your signing workflow is audit-ready from day one.\" / cta \"Start free. No credit card required.\" Site (docs.documenso.com/docs/compliance/certifications): \"21 CFR Part 11 ... Status: Compliant (Enterprise License)\"",
+      "systemic": true,
+      "cause_hint": "Profile recorded this in `unverified` (\"Which specific plan includes 21 CFR Part 11 compliance, only inferred...\") but the DNA and angle prompts do not honour the unverified list; the DNA merged the homepage line 'Fully compliant signatures out of the box' with the footer's compliance links."
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The approved X thread and alt variant repeat the unscoped 21 CFR Part 11 claim and attribute a statement to a named real person that he did not make.",
+      "evidence": "x_post.thread_extension[1]: \"Self-hosted deployment is available if you need full data control. 21 CFR Part 11 support is there too, Vial Inc. runs on it in production\"; alt_variants[1]: \"Simon Burns, CEO of Vial Inc., runs Documenso for 21 CFR Part 11 compliant signing in production.\" (site testimonial is only \"It has been great working with Documenso! The team built an amazing product fitting our needs...\", title \"Co-Founder & CEO Vial Inc.\")",
+      "systemic": true,
+      "cause_hint": "Compliance claims flow from profile.differentiators without the plan scope; no gate checks that a named person's attributed statement matches their quote."
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "Product Hunt first comment invents a customer-research origin story (gate flagged it but left it unresolved), uses the banned word 'genuinely', and the description was truncated to a single negative line about closed tools that never says what Documenso is.",
+      "evidence": "producthunt.first_comment: \"Every team we talked to had the same problem: they needed signing inside their own product, not a redirect to a third-party portal. The per-envelope costs added up fast... So we built Documenso\"; \"Two things I would genuinely like feedback on\"; description: \"Closed signing tools are expensive at scale and hard to embed natively in your own product.\"; blockers: [\"first_comment: An origin story APP_PROFILE does not hold...\"]",
+      "systemic": true,
+      "cause_hint": "Trim-after-two-rewrites drops the closing sentence of the description, leaving only the problem line; PH rule 182 part (2) 'why you built it, the specific moment or pain' pulls the model toward an origin story the profile lacks."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Approved newsletter pitch invents a customer anecdote.",
+      "evidence": "newsletter_pitch.pitch: \"That friction is the part teams keep asking us to fix.\"",
+      "systemic": true,
+      "cause_hint": "Newsletter rulebook asks the first paragraph to start from the readers' situation; no gate catches invented 'teams keep asking us' claims."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "LinkedIn post opens on the campaign slogan, not on a specific true fact, against the LinkedIn line-1 rule (the X draft for the same app followed the rule and dropped the slogan).",
+      "evidence": "linkedin_post.post line 1: \"We built the signing backend so you don't have to.\"; rulebooks.ts LinkedIn: \"Line 1 is the hook and stands alone at 140 characters or fewer: one specific, true thing about this app (a number from proof_points, a named failure, a concrete before and after).\"",
+      "systemic": true,
+      "cause_hint": "LinkedIn rulebook lacks the X rule's explicit 'When the CAMPAIGN_ANGLE hook is a string of adjectives, open on the fact behind it and drop the slogan'; no gate checks line 1."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Newest Reddit draft (r/selfhosted) uses the 'I open sourced X' hook for a project public since March 2023, framing a three-year-old repo as news, and tells self-hosters the $3,000/yr cloud Platform plan is the entry point for whitelabel without mentioning the self-hosted licensing.",
+      "evidence": "reddit_post v2 title: \"We open sourced a self-hostable e-signature backend under AGPLv3\"; body: \"whitelabel embedded signing ... is only available on the Platform plan at $3,000 per year.\" GitHub repo created_at 2023-03-12; pricing page lists a separate 'Self-hosted' track with Community Edition and Business Edition.",
+      "systemic": true,
+      "cause_hint": "Reddit hook list in rulebooks.ts: 'I open sourced <thing> under <License>...' applied without a maturity check; profile never read documenso.com/self-hosted."
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "Show HN lists a per-seat price as a product 'limitation' and still carries an unresolved hard-rule blocker.",
+      "evidence": "show_hn.body: \"Two honest limitations: whitelabel embedded signing is only available on the Platform plan ($3,000 billed yearly), and the Teams plan charges $8 per month per user beyond the five included.\"; blockers: [\"body: {APP_URL} inside a sentence; put it on its own line (\\\"document. {APP_URL}\\\")\"]",
+      "systemic": true,
+      "cause_hint": "profile.gaps holds pricing facts, and the HN rule takes limitations from gaps; the repair loop did not fix the {APP_URL} placement."
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "X thread points readers to API docs that the link does not lead to, and a gate warning on a pricing figure is left as a false positive on both Reddit drafts.",
+      "evidence": "x_post.thread_extension[2]: \"the API docs are in the first tweet's link\" (the link is {APP_URL}, the app); reddit_post warnings: \"body: A traction number ... that must appear in the profile proof points (\\\"$3\\\")\"",
+      "systemic": true,
+      "cause_hint": "Traction-number gate treats a price from pricing_current as an unsourced traction number."
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "Two of three 'gaps' are plan pricing, not product gaps, and the profile misses that Teams includes (non-whitelabel) Embedded Signing and that Individual and Teams include API access.",
+      "evidence": "profile.gaps: \"Teams plan charges $8/month per additional user beyond the 5 included (documenso.com/pricing)\", \"Whitelabel embedded signing is only available on the Platform plan...\"; site pricing, Teams: \"API Access for Automation ... Embedded Signing\"; Individual: \"API Access for Personal Use\"",
+      "systemic": true,
+      "cause_hint": "Profile prompt's gaps definition lets tier differences count as gaps; those gaps then become the 'limitation' in Reddit, PH and HN drafts."
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "Profile does not record the current release or the product's age, so posts frame an established v2.x product as a debut.",
+      "evidence": "GitHub: latest release v2.19.0 published 2026-09-29, repo created 2023-03-12; profile.maturity.signals has no version or first-release date.",
+      "systemic": true,
+      "cause_hint": "Profile pipe does not read releases or repo created_at; X rule 92 'release note as a post' cannot fire without them."
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The 'Current Pricing, Kept As-Is' option claims no feature changes but drops features the live plans include, implying API access is Platform-only.",
+      "evidence": "pricing.options[0].positioning: \"no changes to features, quotas, or seats\"; Individual includes: [\"Unlimited documents\",\"1 user\",\"All core signing features\",\"$300 billed yearly\"]; only Platform lists \"API access\". Site: Individual \"API Access for Personal Use\", Teams \"API Access for Automation\", \"Embedded Signing\".",
+      "systemic": false,
+      "cause_hint": "Inherited from profile.pricing_current, which already omitted per-tier features."
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The monthly-billing option is presented as a new product change although the pricing page's 'Save' labels imply monthly billing already exists at $30, $50 and $300, and its proposed $49 and $299 do not match those.",
+      "evidence": "pricing.options[1]: \"Offer the same four tiers billed month-to-month ... Individual at $30/mo, Teams at $49/mo, Platform at $299/mo\"; models_considered: \"Documenso's current tiers are all billed annually\". Site: Individual \"$300 billed yearly Save $60\", Teams \"$480 billed yearly ... Save $120 /yr.\", Platform \"$3,000 billed yearly ... Save $600\".",
+      "systemic": true,
+      "cause_hint": "Firecrawl markdown of the pricing page shows only the yearly toggle state; the pricing pipe does not reason from 'Save $X' labels."
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Revenue estimates assume customers split evenly across paid tiers, so the $250 Platform plan inflates every figure; the assumption is not stated.",
+      "evidence": "pricing.options[0].revenue_at: {\"10\": 1050, \"50\": 5250, \"200\": 21000} = N x (25+40+250)/3; options[1]: 1260 = 10 x (30+49+299)/3.",
+      "systemic": true,
+      "cause_hint": "revenue_at formula in the pricing pipe or its prompt: mean of paid tier prices."
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "A tier rationale contradicts the scraped competitor data it cites.",
+      "evidence": "recommendation Teams rationale: \"$8/user matches SignNow Business ($8/user, 100 invites/year)\" while competitors SignNow: \"pricing_model\": \"subscription flat-rate unlimited users\", Business \"key_limits\": \"100 invites/year, unlimited users\"",
+      "systemic": false,
+      "cause_hint": "pricing prompt"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The listing states 21 CFR Part 11 support without the Enterprise License scope, and the listing was never approved.",
+      "evidence": "listing (newest).description_long: \"Enterprise-grade compliance. 21 CFR Part 11 support is available\"; faq: \"21 CFR Part 11 compliance is supported.\"; drive.log: STUCK {\"label\":\"Approve listing\",\"waitedSecs\":60}; summary listingApproved: false",
+      "systemic": true,
+      "cause_hint": "Same unverified-list leak as brand; listing approval stall in the commercial stage UI or driver."
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "DNA rewrites a customer quote to avoid a banned word, then presents it as observed site copy.",
+      "evidence": "brand_dna.proof_points_observed: \"The team releases fast and feature improvements are always coming!\"; site: \"The team ships fast and feature improvements are always coming!\"",
+      "systemic": true,
+      "cause_hint": "Banned-word substitution (ship to release) applied inside quoted third-party text."
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "Angle copy invents specifics the profile does not hold.",
+      "evidence": "brand_campaigns 'Self-Host Your Signatures' hook: \"Here's how to self-host it in under an hour.\"; body: \"We use it ourselves.\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "Reel's problem beats are template filler rather than this product's world: the load beat has no numbers, and the voice says the viewer signs 'by hand' although the chosen angle is builders embedding an API.",
+      "evidence": "script slots: \"load_n1\": \"MANY\", \"load_n2\": \"EACH\", \"load_n3\": \"ONE\", \"cost_line\": \"THE DEAL WAITS. YOU PAY.\"; voice problem: \"Monday. Contract due. Every recipient waiting, one deadline. You do it by hand.\"; reel status: \"approved\"",
+      "systemic": true,
+      "cause_hint": "'verdict' concept spec forces a three-number load beat and a cost line even when the profile has no scenario numbers."
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "Poster lockup renders the product name in dim grey on black, and a repaired script slot no longer matches the site copy it claims.",
+      "evidence": "reel.vars \"brand\": \"#606060\" on canvas \"#090404\" (poster.jpg 'DOCUMENSO' in grey); script \"step1_button\": \"START NOW\" vs claims_used \"step1_button 'GET STARTED', SITE_COPY: 'Get Started'\"",
+      "systemic": true,
+      "cause_hint": "Palette derivation when primary is black ('no brand colour anywhere on the page'); script repair step does not re-check claims."
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "awesome-selfhosted is ranked and sequenced as a Week 1 submission, but Documenso is already listed there.",
+      "evidence": "targets_meta.sequencing_advice: \"Week 1: Submit to awesome-selfhosted via GitHub PR\"; confidence notes \"awesome-selfhosted listing status unconfirmed\". awesome-selfhosted README: \"[Documenso](https://documenso.com) - Digital document signing platform (alternative to DocuSign)... AGPL-3.0 Nodejs/Docker\"",
+      "systemic": true,
+      "cause_hint": "Targets pipe does not check existing listings before recommending directory submissions."
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Every venue's rules are unverified, and a relaunch trigger is proposed for a feature that is already generally available.",
+      "evidence": "rules_summary: \"not verified\" on all 14 rows; Product Hunt why_fit: \"repeat launch accepted only for a major new version such as embedded signing GA or v2\" (embedded signing is live on Teams and Platform; product is at v2.19.0)",
+      "systemic": true,
+      "cause_hint": "FireCrawl blocked on reddit rules pages (targets_meta: 'All reddit rules unverified due to FireCrawl block')."
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "Empty result is honest, but coverage stopped early: Reddit unsearchable and the GitHub/StackOverflow pass never ran.",
+      "evidence": "signals_meta.coverage_notes: \"Reddit not searchable from this pipeline. PASS C (GitHub issues, StackOverflow, SoftwareRecs) not run - budget of 10 calls exhausted after PASS 0, A, and B.\"",
+      "systemic": true,
+      "cause_hint": "Signals pipe call budget of 10."
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "Plan is not ready and its status text is stale: it says Reddit was written for no chosen subreddit although an r/selfhosted redraft exists (unapproved), and the listing decision is empty.",
+      "evidence": "8-plan.png: \"Reddit, written for no chosen subreddit; Targets selected r/selfhosted, r/opensource: redraft it for the subreddit you will post in.\" / \"Listing Not approved yet\"; store reddit_post v2: \"venue\": \"r/selfhosted\", \"status\": \"draft\"",
+      "systemic": true,
+      "cause_hint": "Plan readiness reads the approved Reddit row (v1) and ignores a newer draft for the selected venue."
+    }
+  ],
+  "best": "Commercial pricing anchoring: current prices ($0 / $300 / $480 / $3,000 yearly, $8 per extra Teams user) match the live pricing page exactly, and the recommendation keeps them with a clear low-risk rationale. The profile was also accurate and honest about what it could not verify.",
+  "worst": "The 21 CFR Part 11 claim: the profile marked its plan as unverified, but brand DNA, the compliance angle, the listing and the approved X thread all present it as built in, even for free and self-hosted users, while Documenso's own docs say 'Compliant (Enterprise License)'. The Product Hunt draft's invented 'every team we talked to' origin story is close behind.",
+  "notes": "Judged newest rows: listing created 09:07:00, reddit_post v2 (r/selfhosted, draft). The v1 Reddit post (r/SideProject default) is the approved one. Facts checked live: documenso.com/pricing, docs.documenso.com compliance certifications, GitHub API (15,266 stars, v2.19.0 released 2026-09-29, repo created 2023-03-12), awesome-selfhosted README, HN Algolia (earlier Documenso submissions exist, so any Show HN is a repeat). The Save $60/$120/$600 labels suggest a monthly toggle the scrape did not capture. That is an inference from the page text; I did not see the monthly state directly. Page errors: repeated WebSocket 502s to staging during the drive."
+}

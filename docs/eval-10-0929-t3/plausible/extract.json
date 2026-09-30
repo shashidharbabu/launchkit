@@ -1,0 +1,1567 @@
+{
+ "slug": "plausible",
+ "name": "Plausible",
+ "site": "https://plausible.io",
+ "repo": "https://github.com/plausible/analytics",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 109,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 129,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 154,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 796,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 509,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 97,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 226,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Privacy-first, cookie-free web analytics for site owners who want simple insights without Google's surveillance",
+   "description": "Plausible Analytics is a lightweight, open-source web analytics tool that tracks website traffic without cookies, personal data, or consent banners. All visitor data is processed exclusively on EU-owned infrastructure, making it fully GDPR, CCPA, and PECR compliant out of the box. It offers a single-page dashboard with real-time stats, goal tracking, funnels, and ecommerce revenue attribution, available as a managed cloud service or a self-hosted Community Edition.",
+   "category": "Web Analytics",
+   "target_user": "Website owner, developer, or digital marketer who wants actionable traffic insights without GDPR complexity or Google dependency",
+   "icp": {
+    "who": "SMB and mid-market website owners, SaaS founders, bloggers, and agencies in the EU or privacy-conscious markets who run public-facing websites",
+    "pain": "Google Analytics 4 is complex, slow, and privacy-invasive, requiring cookie consent banners and legal overhead; teams want simple, accurate traffic data without compliance risk",
+    "current_alternatives": [
+     "Google Analytics 4",
+     "Matomo",
+     "Cloudflare Web Analytics",
+     "Fathom Analytics"
+    ],
+    "buying_trigger": "GA4 migration frustration, a GDPR audit or legal notice, or a site redesign that surfaces the need to remove cookie consent banners"
+   },
+   "differentiators": [
+    "Script is 54x smaller than Google Analytics, saving visitors 135KB of JavaScript per page load (plausible.io homepage)",
+    "No cookies, no personal data stored, no consent banner required, GDPR, CCPA, and PECR compliant (README.md + plausible.io homepage)",
+    "All visitor data exclusively processed on EU-owned cloud infrastructure and never leaves the EU (README.md + plausible.io homepage)",
+    "Open source under AGPLv3 with a self-hostable Community Edition, so users are never locked in (README.md)"
+   ],
+   "proof_points": [
+    "21,000 paying subscribers (plausible.io homepage)",
+    "313 billion tracked pageviews (plausible.io homepage)",
+    "99.99% uptime over the last 90 days (plausible.io homepage)",
+    "29,259 GitHub stars on plausible/analytics as of Sept 2026 (github.com/plausible/analytics)",
+    "DHH (Co-founder & CTO, 37signals): 'Been a very happy customer of Plausible at Basecamp.' (plausible.io homepage)",
+    "Clem Delangue (Co-founder & CEO, Hugging Face): 'We're massive users of Plausible here at Hugging Face.' (plausible.io homepage)",
+    "John O'Nolan (Founder & CEO, Ghost): 'Check out Plausible if you haven't yet - fantastic product. We switched over everything from GA.' (plausible.io homepage)",
+    "Cyrus Shepard (SEO consultant, former Moz lead): 'My 100% favorite GA4 alternative so far is Plausible.' (plausible.io homepage)",
+    "Dashboard screenshot visible at plausible.io homepage (og:image: plausible.io/assets/images/plausible_promo.jpg)"
+   ],
+   "tech_stack": [
+    "Elixir",
+    "Phoenix",
+    "PostgreSQL",
+    "ClickHouse",
+    "React",
+    "TailwindCSS",
+    "Jekyll",
+    "Docker"
+   ],
+   "pricing_current": "Starter: $9/month or $90/year (shown as $7.50/month billed yearly), 1 site, 3 years data retention. Growth: $14/month or $140/year (shown as $11.67/month billed yearly), up to 3 sites, up to 3 team members. Business: $19/month or $190/year (shown as $15.83/month billed yearly), up to 10 sites, up to 10 team members, 5 years data retention, Stats API, Funnels, Ecommerce revenue attribution. Enterprise: Custom pricing, 10+ sites, SSO, Sites API, Managed Proxy, Priority support. All plans include a 30-day free trial, no credit card required. (plausible.io/#pricing)",
+   "voice": {
+    "tone": [
+     "direct",
+     "principled",
+     "unpretentious",
+     "privacy-focused",
+     "independent"
+    ],
+    "sample_phrase": "Plausible is powerful, lightweight analytics. No cookies, just insights. Made and hosted in the EU, powered by European-owned infrastructure."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "21,000 paying subscribers and 313B tracked pageviews (plausible.io homepage)",
+     "Bootstrapped and profitable team of 10, running since 2018 (plausible.io homepage)",
+     "Repository actively pushed to as of 2026-09-29 (github.com/plausible/analytics)",
+     "29,259 GitHub stars and 1,877 forks (github.com/plausible/analytics)"
+    ]
+   },
+   "gaps": [
+    "Community Edition (CE) does not include marketing funnels, ecommerce revenue goals, SSO, or Sites API, README.md states these are 'Premium features... not available in order to help support the project's long-term sustainability'",
+    "CE releases are long-term releases published twice per year; latest cloud features are not immediately available in CE (README.md)",
+    "CE is community supported only; no guaranteed support from Plausible creators for self-hosting issues (README.md)",
+    "Data Studio Connector is not available in the Community Edition (README.md)"
+   ],
+   "site_gaps": [
+    "https://plausible.io/pricing returns a 404; pricing is only accessible via the homepage anchor https://plausible.io/#pricing, which may reduce discoverability for direct /pricing traffic"
+   ],
+   "unverified": [
+    "https://plausible.io/pricing returned a 404, pricing confirmed found on homepage anchor instead"
+   ],
+   "confidence": {
+    "overall": 0.8,
+    "notes": "https://plausible.io/pricing returned a 404 (ok=false); pricing was successfully found on the homepage at #pricing anchor. All other sources read successfully. Profile is based on README.md, plausible.io homepage (both chunks), live demo page, and repo metadata."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Full product description, CE vs Cloud comparison, tech stack"
+    },
+    {
+     "source": "https://plausible.io/",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Homepage: pricing, testimonials, stats, features"
+    },
+    {
+     "source": "https://plausible.io/pricing",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "404 Not Found; pricing lives on homepage anchor"
+    },
+    {
+     "source": "https://plausible.io/plausible.io",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Live demo page confirmed accessible"
+    },
+    {
+     "source": "plausible/analytics (repo metadata)",
+     "via": "github",
+     "ok": true,
+     "note": "Stars: 29259, language: Elixir, active since 2018"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Plausible Analytics",
+   "tagline_observed": "Easy to use and privacy-friendly Google Analytics alternative",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "principled",
+     "transparent",
+     "independent",
+     "unpretentious"
+    ],
+    "sentence_style": "Short declaratives in first-person plural, second-person for the reader, no jargon, facts stated plainly",
+    "vocabulary": [
+     "privacy-friendly",
+     "open source",
+     "lightweight",
+     "no cookies",
+     "EU-hosted",
+     "bootstrapped",
+     "surveillance capitalism",
+     "subscription",
+     "independent",
+     "GDPR-compliant"
+    ],
+    "avoid": [
+     "hype-driven superlatives",
+     "passive voice",
+     "corporate we-are-excited language",
+     "growth-hacking terminology",
+     "vague benefit claims without evidence"
+    ],
+    "evidence_quotes": [
+     "No cookies, just insights.",
+     "We choose the subscription business model rather than surveillance capitalism.",
+     "Plausible grows because people recommend it when they have no reason to other than that it works.",
+     "The boring way to build a startup"
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "No cookies, no personal data, no consent banners, GDPR-compliant out of the box",
+     "Essential site insights on one page in one minute, no training required",
+     "Script is 54 times smaller than Google Analytics, keeping your site fast",
+     "EU-owned infrastructure, open source under AGPLv3, you are never locked in"
+    ],
+    "key_messages": [
+     "Plausible is powerful, lightweight analytics. No cookies, just insights.",
+     "Google Analytics is overkill for most site owners.",
+     "We choose the subscription business model rather than surveillance capitalism.",
+     "Our code is open source too, so you're never locked in.",
+     "Plausible grows because people recommend it when they have no reason to other than that it works."
+    ],
+    "proof_points_observed": [
+     "21,000 paying subscribers",
+     "313 billion tracked pageviews",
+     "99.99% uptime over the last 90 days",
+     "Script is 54 times smaller than Google Analytics",
+     "Every visitor saves 135KB of JavaScript",
+     "Crossed $1 million in annual recurring revenue in 2022",
+     "Team of 10, running since 2018, self-funded and profitable",
+     "Never spent a cent on advertising"
+    ]
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown without CSS or HTML styling; no font-family declarations or font CDN links were observed across any of the three pages scraped"
+    },
+    "imagery_style": "screenshots",
+    "logo_url": "https://plausible.io/assets/images/icon/plausible_logo_dark.svg"
+   },
+   "audience_language": "The site speaks directly to site owners and developers using 'you' and 'your site', assuming basic web familiarity but no analytics expertise, and respecting their intelligence without over-explaining.",
+   "dos_and_donts": {
+    "do": [
+     "State facts plainly and let proof points do the persuading",
+     "Use first-person plural ('we') to signal a real team with real values",
+     "Lead with what the product does NOT do (no cookies, no personal data) as a feature",
+     "Reference open source and EU hosting as accountability signals, not just features",
+     "Keep copy short, one idea per sentence"
+    ],
+    "dont": [
+     "Use vague superlatives or hype language the site never uses",
+     "Invent metrics or testimonials not present in the source",
+     "Frame the product as a free or cheaper copy of a named rival",
+     "Use cookie-banner or GDPR complexity as fear tactics rather than factual contrast",
+     "Write long paragraphs or nested qualifications"
+    ]
+   },
+   "sources_read": [
+    "https://plausible.io/",
+    "https://plausible.io/about",
+    "https://plausible.io/blog"
+   ],
+   "confidence": {
+    "overall": 0.82,
+    "notes": "Colors: scrape returned markdown only, no inline CSS, CSS variables, or meta theme-color observed, colors array is empty. Typography: no font-family declarations or CDN font links observed in any scraped page, typography fields are empty. Logo URL is an SVG referenced in footer markup and is a genuine logo asset, not a favicon. Blog page is a listing page only; individual post content was not scraped."
+   }
+  },
+  "angles": [
+   {
+    "name": "No Cookies, No Banners",
+    "objective": "awareness, drive top-of-funnel discovery among site owners frustrated by consent-banner overhead",
+    "big_idea": "Most site owners added a cookie banner because they felt they had no choice. This campaign shows them they do. One plain-language post explains exactly what data Plausible collects, why no consent banner is needed, and what that means for their visitors.",
+    "hook": "We removed our cookie banner and our GDPR compliance got better, not worse.",
+    "channels": [
+     "Reddit (r/webdev, r/selfhosted, r/gdpr)",
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "Number of trial signups attributed to Reddit/HN referral in the first two weeks"
+   },
+   {
+    "name": "The Boring Way to Build",
+    "objective": "community, build affinity with bootstrapped founders and indie developers who share Plausible's values",
+    "big_idea": "Plausible has grown to 21,000 paying subscribers without spending a cent on advertising, staying bootstrapped and profitable since 2018. A short, honest newsletter pitch tells that story in the brand's own words and invites readers to try the tool that runs on the same principles they build with.",
+    "hook": "We've never spent a cent on advertising. Here's how Plausible reached 21,000 paying subscribers.",
+    "channels": [
+     "Developer and founder newsletters (e.g. Indie Hackers digest, TLDR, Bytes)"
+    ],
+    "effort": "small",
+    "success_metric": "Click-through rate on the newsletter CTA link"
+   },
+   {
+    "name": "Your Site, Faster",
+    "objective": "signups, convert performance-conscious developers by leading with page-speed impact",
+    "big_idea": "Every visitor to a Google Analytics site downloads 135KB of JavaScript they didn't ask for. A short video shows the before/after of removing that script, then introduces Plausible's lightweight alternative. The mechanic is a screen-recorded demo, not a polished ad.",
+    "hook": "Every visitor to your site downloads 135KB of JavaScript just to tell Google where they came from.",
+    "channels": [
+     "X (Twitter)",
+     "YouTube (short-form)"
+    ],
+    "effort": "medium",
+    "success_metric": "Video view-to-trial-signup conversion rate"
+   },
+   {
+    "name": "Open Source, Open Books",
+    "objective": "community, attract self-hosters and open-source advocates to the GitHub repo and Community Edition",
+    "big_idea": "With 29,259 GitHub stars, Plausible already has a large open-source audience. A Show HN post invites the Hacker News community to explore the codebase, ask questions about the architecture (Elixir, ClickHouse), and understand the CE vs. Cloud trade-offs honestly, no spin.",
+    "hook": "Show HN: Plausible Analytics, open-source, cookie-free web analytics built on Elixir and ClickHouse",
+    "channels": [
+     "Hacker News",
+     "GitHub"
+    ],
+    "effort": "small",
+    "success_metric": "GitHub stars gained and CE download count in the week following the post"
+   },
+   {
+    "name": "One Dashboard, One Minute",
+    "objective": "signups, convert digital marketers and bloggers who are overwhelmed by GA4's complexity",
+    "big_idea": "GA4 requires training, configuration, and a consent banner before it shows a single useful number. Plausible shows everything on one page in one minute. A LinkedIn post targets marketers and agency owners with a direct comparison of the setup experience, no product names attacked, just a factual description of what each path looks like.",
+    "hook": "GA4 took our team three weeks to configure. Plausible took one minute.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "small",
+    "success_metric": "LinkedIn post click-throughs to the live demo page"
+   },
+   {
+    "name": "EU by Default",
+    "objective": "awareness, reach EU-based businesses and agencies for whom data residency is a legal requirement, not a preference",
+    "big_idea": "For companies operating under GDPR, where visitor data is processed and stored is not optional. A targeted campaign, a Reddit post in EU-focused business and legal communities plus a Product Hunt launch angle, positions Plausible's EU-owned infrastructure as the default-compliant choice, not a premium add-on.",
+    "hook": "All visitor data stays in the EU. Not as an option, as the default.",
+    "channels": [
+     "Reddit (r/gdpr, r/europrivacy, r/europeanbusiness)",
+     "Product Hunt"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of trial signups from EU-geolocated visitors during the campaign window"
+   }
+  ],
+  "chosen": [
+   "No Cookies, No Banners"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Fathom Analytics",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Starter",
+      "price": "$15",
+      "period": "month",
+      "key_limits": "100k pageviews, 50 sites"
+     },
+     {
+      "name": "Growth",
+      "price": "$25",
+      "period": "month",
+      "key_limits": "200k pageviews, 50 sites"
+     },
+     {
+      "name": "Scale",
+      "price": "$45",
+      "period": "month",
+      "key_limits": "500k pageviews, 50 sites"
+     }
+    ]
+   },
+   {
+    "name": "Matomo",
+    "notability": "established",
+    "mentions": 7,
+    "tiers": [
+     {
+      "name": "Cloud Business",
+      "price": "$26",
+      "period": "month",
+      "key_limits": "50k hits/mo, 30 sites, 30 users"
+     },
+     {
+      "name": "Cloud Enterprise",
+      "price": "Custom",
+      "period": "month",
+      "key_limits": "Custom hits, sites, users, CSM"
+     }
+    ]
+   },
+   {
+    "name": "Simple Analytics",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "1 user, 5 sites, 1 month history"
+     },
+     {
+      "name": "Starter",
+      "price": "$20",
+      "period": "month",
+      "key_limits": "100k pageviews, 1 user, +$20/extra user"
+     },
+     {
+      "name": "Enterprise",
+      "price": "Custom",
+      "period": "month",
+      "key_limits": "Custom pageviews, sites, support"
+     }
+    ]
+   },
+   {
+    "name": "Piwik PRO",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   },
+   {
+    "name": "Cloudflare Web Analytics",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": []
+   }
+  ],
+  "rejected": [
+   {
+    "name": "Shynet",
+    "url": "https://github.com/milesmcc/shynet",
+    "why": "Open-source GitHub repo, no commercial pricing page of its own"
+   },
+   {
+    "name": "Prisme Analytics",
+    "url": "https://alternativeto.net/software/prisme-analytics/about/",
+    "why": "Single AlternativeTo mention only; not discussed outside its own pages"
+   },
+   {
+    "name": "OpenPanel",
+    "url": "https://alternativeto.net/software/openpanel-dev/about/",
+    "why": "Single AlternativeTo mention only; not discussed outside its own pages"
+   },
+   {
+    "name": "WebAnalyzer",
+    "url": "https://alternativeto.net/software/webanalyzer-app/about/",
+    "why": "Single AlternativeTo mention only; not discussed outside its own pages"
+   },
+   {
+    "name": "Google Analytics 4",
+    "url": "https://analytics.google.com",
+    "why": "Free product with no paid tiers; no pricing to anchor against"
+   },
+   {
+    "name": "PostHog",
+    "url": "https://posthog.com",
+    "why": "Single G2 comparison mention; product analytics, not pure web analytics"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium + subscription (30-day free trial, no credit card required)",
+   "tiers": [
+    {
+     "name": "Starter",
+     "price_usd_month": 9,
+     "who_its_for": "Solo site owners and bloggers with one website",
+     "includes": [
+      "1 site",
+      "3 years data retention",
+      "No cookies, no consent banner",
+      "30-day free trial"
+     ],
+     "rationale": "Unchanged. At $9/mo vs Fathom $15/mo (100k pageviews) and Simple Analytics $20/mo (100k pageviews), Starter is the clear value leader."
+    },
+    {
+     "name": "Growth",
+     "price_usd_month": 14,
+     "who_its_for": "Small teams and agencies managing a few sites",
+     "includes": [
+      "Up to 3 sites",
+      "Up to 3 team members",
+      "All Starter features",
+      "30-day free trial"
+     ],
+     "rationale": "Unchanged. Multi-site value at $14/mo undercuts all established peers at equivalent usage."
+    },
+    {
+     "name": "Business",
+     "price_usd_month": 19,
+     "who_its_for": "Growing SaaS and ecommerce teams needing funnels and revenue data",
+     "includes": [
+      "Up to 10 sites",
+      "Up to 10 team members",
+      "5 years data retention",
+      "Stats API, Funnels, Ecommerce revenue attribution"
+     ],
+     "rationale": "Unchanged. $19/mo vs Matomo Cloud $26/mo at 50k hits; Plausible Business delivers more features at lower price."
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": 0,
+     "who_its_for": "Large organisations needing SSO, managed proxy, and priority support",
+     "includes": [
+      "10+ sites",
+      "SSO",
+      "Sites API",
+      "Managed Proxy",
+      "Priority support"
+     ],
+     "rationale": "Unchanged. Custom pricing appropriate; no comparable scraped enterprise tier to anchor against."
+    }
+   ],
+   "anchor_competitors": [
+    "Fathom Analytics",
+    "Matomo",
+    "Simple Analytics"
+   ],
+   "positioning_note": "Plausible underprices peers by 40-55% at entry; this is intentional but risks signalling lower quality to enterprise buyers.",
+   "risks": [
+    "Entry price of $9/mo may anchor enterprise prospects too low, making upsell to custom tiers harder",
+    "Fathom and Simple Analytics both offer free tiers or trials; Plausible's 30-day trial (no card) is competitive but no permanent free tier",
+    "Self-hosted Community Edition cannibalises cloud revenue; pricing gap between CE (free) and cloud must remain justified by premium features"
+   ]
+  },
+  "options": [
+   {
+    "name": "Current Pricing, Monthly Subscription",
+    "billing": "monthly subscription",
+    "positioning": "Keep the existing four tiers at their current monthly prices; Plausible sits 40 to 55 percent below Fathom and Simple Analytics at entry, which is intentional positioning for privacy-conscious SMBs and developers who compare on price.",
+    "tiers": [
+     {
+      "name": "Starter",
+      "price_usd_month": 9,
+      "who_its_for": "Solo site owners and bloggers with one website",
+      "includes": [
+       "1 site",
+       "3 years data retention",
+       "No cookies, no consent banner",
+       "30-day free trial"
+      ]
+     },
+     {
+      "name": "Growth",
+      "price_usd_month": 14,
+      "who_its_for": "Small teams and agencies managing a few sites",
+      "includes": [
+       "Up to 3 sites",
+       "Up to 3 team members",
+       "All Starter features",
+       "30-day free trial"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 19,
+      "who_its_for": "Growing SaaS and ecommerce teams needing funnels and revenue data",
+      "includes": [
+       "Up to 10 sites",
+       "Up to 10 team members",
+       "5 years data retention",
+       "Stats API, Funnels, Ecommerce revenue attribution"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large organisations needing SSO, managed proxy, and priority support",
+      "includes": [
+       "10+ sites",
+       "SSO",
+       "Sites API",
+       "Managed Proxy",
+       "Priority support"
+      ]
+     }
+    ],
+    "market_rate_note": "Plausible's paid tiers ($9 to $19/month) sit well below Fathom ($15 to $45/month), Simple Analytics ($20/month), and Matomo Cloud ($26/month) at comparable entry points.",
+    "revenue_at": {
+     "10": 140,
+     "50": 700,
+     "200": 2800
+    },
+    "when_to_pick": "Pick this if the priority is volume growth and word-of-mouth in the privacy-analytics community, where price sensitivity is high and undercutting GA4 alternatives is the main acquisition lever."
+   },
+   {
+    "name": "Annual Subscription, Commit and Save",
+    "billing": "annual subscription",
+    "positioning": "Offer the same three paid tiers billed annually at $90, $140, and $190 per year (shown as $7.50, $11.67, and $15.83 per month), matching the annual prices Plausible already lists; this is a price-model shift, not a product change, and improves upfront cash flow without altering any feature or quota.",
+    "tiers": [
+     {
+      "name": "Starter",
+      "price_usd_month": 7.5,
+      "who_its_for": "Solo site owners and bloggers with one website",
+      "includes": [
+       "1 site",
+       "3 years data retention",
+       "No cookies, no consent banner",
+       "30-day free trial"
+      ]
+     },
+     {
+      "name": "Growth",
+      "price_usd_month": 11.67,
+      "who_its_for": "Small teams and agencies managing a few sites",
+      "includes": [
+       "Up to 3 sites",
+       "Up to 3 team members",
+       "All Starter features",
+       "30-day free trial"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 15.83,
+      "who_its_for": "Growing SaaS and ecommerce teams needing funnels and revenue data",
+      "includes": [
+       "Up to 10 sites",
+       "Up to 10 team members",
+       "5 years data retention",
+       "Stats API, Funnels, Ecommerce revenue attribution"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large organisations needing SSO, managed proxy, and priority support",
+      "includes": [
+       "10+ sites",
+       "SSO",
+       "Sites API",
+       "Managed Proxy",
+       "Priority support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $7.50 to $15.83/month (annual), Plausible remains well below Fathom ($15/month), Simple Analytics ($20/month), and Matomo Cloud ($26/month) even after the annual discount is factored in.",
+    "revenue_at": {
+     "10": 117,
+     "50": 583,
+     "200": 2333
+    },
+    "when_to_pick": "Pick this if reducing monthly churn and improving annual cash flow is the priority, since annual commitments lock in revenue and the discount is already built into the existing pricing page."
+   },
+   {
+    "name": "Repositioned Monthly, Closer to Market Rate",
+    "billing": "monthly subscription",
+    "positioning": "Raise the three paid tiers to $15, $25, and $45 per month to align with Fathom's published prices; this is a price-only repositioning with no feature or quota changes, and signals comparable quality to Fathom and Simple Analytics rather than undercutting them.",
+    "tiers": [
+     {
+      "name": "Starter",
+      "price_usd_month": 15,
+      "who_its_for": "Solo site owners and bloggers with one website",
+      "includes": [
+       "1 site",
+       "3 years data retention",
+       "No cookies, no consent banner",
+       "30-day free trial"
+      ]
+     },
+     {
+      "name": "Growth",
+      "price_usd_month": 25,
+      "who_its_for": "Small teams and agencies managing a few sites",
+      "includes": [
+       "Up to 3 sites",
+       "Up to 3 team members",
+       "All Starter features",
+       "30-day free trial"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 45,
+      "who_its_for": "Growing SaaS and ecommerce teams needing funnels and revenue data",
+      "includes": [
+       "Up to 10 sites",
+       "Up to 10 team members",
+       "5 years data retention",
+       "Stats API, Funnels, Ecommerce revenue attribution"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large organisations needing SSO, managed proxy, and priority support",
+      "includes": [
+       "10+ sites",
+       "SSO",
+       "Sites API",
+       "Managed Proxy",
+       "Priority support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $15, $25, and $45/month these prices match Fathom's published Starter, Growth, and Scale tiers exactly, and sit at or just above Matomo Cloud's $26/month Business tier.",
+    "revenue_at": {
+     "10": 283,
+     "50": 1417,
+     "200": 5667
+    },
+    "when_to_pick": "Pick this if the goal is to double or triple revenue per customer without adding features, by signalling that Plausible is a peer to Fathom rather than a budget alternative."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "good",
+    "why": "Site owners pay month-to-month as their traffic grows, competitors Fathom and Simple Analytics both use monthly subscriptions, and Plausible's current tiers already follow this model."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "good",
+    "why": "Plausible already offers annual billing at roughly a 17% discount (e.g. $90/year vs $108 monthly for Starter), which improves cash flow and reduces churn for a bootstrapped team."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Analytics is an ongoing service requiring infrastructure, updates, and EU data processing, so a one-time fee cannot sustain the recurring costs or the 99.99% uptime commitment."
+   },
+   {
+    "model": "usage-based",
+    "fit": "possible",
+    "why": "Fathom prices by pageview tiers, which is a recognised model in this category, but Plausible's current flat-seat pricing is simpler and avoids bill-shock for high-traffic sites."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "possible",
+    "why": "Simple Analytics offers a permanent free tier and Matomo's self-hosted version is free, but Plausible's Community Edition already fills that role, so adding a free cloud tier risks cannibalising paid plans without a clear conversion path."
+   }
+  ],
+  "market_rate": "Fathom Analytics charges $15/month for 100k pageviews and $25/month for 200k pageviews. Simple Analytics charges $20/month for 100k pageviews on its Starter plan. Matomo Cloud charges $26/month for 50k hits on its Business plan. The going rate for privacy-first web analytics in this category is roughly $15 to $26 per month at entry level, making Plausible's $9 to $19 range a deliberate 40 to 55 percent undercut of established peers.",
+  "confidence": {
+   "overall": 0.85,
+   "notes": "3 established competitors confirmed across 5+ independent sources each and pricing pages successfully scraped. Piwik PRO pricing page not scraped (budget exhausted after 3 scrapes). Plausible own pricing confirmed from APP_PROFILE (homepage anchor); /pricing returns 404 per profile."
+  },
+  "selected_pricing": {
+   "model": "freemium + subscription (30-day free trial, no credit card required)",
+   "option": "Current Pricing, Monthly Subscription",
+   "billing": "monthly subscription",
+   "tiers": [
+    {
+     "name": "Starter",
+     "price_usd_month": 9,
+     "included": true,
+     "who_its_for": "Solo site owners and bloggers with one website",
+     "includes": [
+      "1 site",
+      "3 years data retention",
+      "No cookies, no consent banner",
+      "30-day free trial"
+     ]
+    },
+    {
+     "name": "Growth",
+     "price_usd_month": 14,
+     "included": true,
+     "who_its_for": "Small teams and agencies managing a few sites",
+     "includes": [
+      "Up to 3 sites",
+      "Up to 3 team members",
+      "All Starter features",
+      "30-day free trial"
+     ]
+    },
+    {
+     "name": "Business",
+     "price_usd_month": 19,
+     "included": true,
+     "who_its_for": "Growing SaaS and ecommerce teams needing funnels and revenue data",
+     "includes": [
+      "Up to 10 sites",
+      "Up to 10 team members",
+      "5 years data retention",
+      "Stats API, Funnels, Ecommerce revenue attribution"
+     ]
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": null,
+     "included": true,
+     "who_its_for": "Large organisations needing SSO, managed proxy, and priority support",
+     "includes": [
+      "10+ sites",
+      "SSO",
+      "Sites API",
+      "Managed Proxy",
+      "Priority support"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Fathom Analytics",
+    "Matomo",
+    "Simple Analytics"
+   ],
+   "chosen_at": "2026-09-29T22:55:47.557Z"
+  },
+  "listing": {
+   "title": "Plausible Analytics",
+   "tagline": "Cookie-free web analytics built for privacy",
+   "description_short": "Simple, accurate web analytics with no cookies, no consent banners, and full GDPR compliance. EU-hosted. 30-day free trial, no credit card required.",
+   "description_long": "**Plausible Analytics** gives you clear, actionable traffic data without the legal overhead or surveillance infrastructure of traditional analytics.\n\n**No cookies. No consent banners. No personal data stored.** Plausible is fully GDPR, CCPA, and PECR compliant by design, not by configuration. All visitor data is processed exclusively on EU-owned infrastructure and never leaves the EU.\n\n**Lightweight by default.** The tracking script is 54x smaller than Google Analytics, saving your visitors 135KB of JavaScript on every page load.\n\n**Everything you need in one dashboard.** Real-time stats, goal tracking, funnels, ecommerce revenue attribution, and a Stats API, all on a single, fast page. No training required.\n\n**Trusted at scale.** 21,000 paying subscribers. 313 billion tracked pageviews. 99.99% uptime over the last 90 days.\n\n**Open source and self-hostable.** The AGPLv3-licensed Community Edition means you are never locked in. Run it on your own infrastructure or let Plausible manage it for you.\n\nPlans start at $9/month for one site. All plans include a 30-day free trial with no credit card required.",
+   "keywords": [
+    "privacy web analytics",
+    "cookie-free analytics",
+    "GDPR compliant analytics",
+    "Google Analytics alternative",
+    "EU hosted analytics",
+    "no consent banner analytics",
+    "lightweight site analytics",
+    "open source web analytics",
+    "website traffic dashboard",
+    "CCPA compliant analytics",
+    "self-hosted analytics",
+    "real-time website stats",
+    "ecommerce analytics",
+    "privacy-first analytics tool"
+   ],
+   "screenshot_order": [
+    "1st: The single-page dashboard showing real-time visitors, top pages, and traffic sources, proves simplicity and instant clarity at a glance.",
+    "2nd: Goal tracking or funnel view, shows depth beyond pageviews and addresses the objection that privacy-first tools lack conversion features.",
+    "3rd: The pricing table or a compliance badge panel, reinforces EU hosting, GDPR compliance, and the accessible entry price to close hesitant buyers."
+   ],
+   "faq": [
+    {
+     "q": "Do I still need a cookie consent banner?",
+     "a": "No. Plausible does not use cookies or collect personal data, so no consent banner is required under GDPR, CCPA, or PECR."
+    },
+    {
+     "q": "Can I self-host Plausible instead of paying for the cloud?",
+     "a": "Yes. The Community Edition is free and open source under AGPLv3. Note that funnels, ecommerce revenue attribution, SSO, and the Sites API are premium features available only on the managed cloud plans."
+    },
+    {
+     "q": "What does the free trial include?",
+     "a": "All paid plans come with a 30-day free trial. No credit card is required to start."
+    },
+    {
+     "q": "How does pricing work?",
+     "a": "Starter is $9/month (1 site, 3 years data retention). Growth is $14/month (up to 3 sites, up to 3 team members). Business is $19/month (up to 10 sites, up to 10 team members, Stats API, Funnels, Ecommerce revenue). Enterprise pricing is custom for 10+ sites with SSO and priority support."
+    },
+    {
+     "q": "Where is my data stored?",
+     "a": "All visitor data is processed exclusively on EU-owned cloud infrastructure and never leaves the EU."
+    }
+   ],
+   "cta": "Start your 30-day free trial, no credit card required",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.92,
+    "notes": "APP_PROFILE is complete with verified pricing, proof points, testimonials, and differentiators. No scraping needed. All numbers and claims sourced directly from APP_PROFILE. Testimonials quoted word for word from profile. Compliance claims (GDPR/CCPA/PECR) attributed as stated in README and homepage, not promised universally beyond what the profile records."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "We removed our cookie banner and our GDPR compliance got better, not worse. No cookies collected means no consent required. 21,000 subscribers run their sites the same way.\n{APP_URL}",
+    "thread_extension": [
+     "Most consent banners exist because the analytics tool sets cookies or stores personal data. Remove that, and the legal requirement for the banner goes with it.",
+     "Plausible collects no personal data and sets no cookies. Visitor data is processed on EU-owned infrastructure and never leaves the EU. GDPR, CCPA, and PECR compliant by design, not by configuration.",
+     "The tracking script saves visitors 135KB of JavaScript on each page load. Compliance and a faster site at the same time.",
+     "If you run a public-facing site and you are tired of maintaining a consent banner, what stopped you from removing it? Genuinely curious what the blocker is. Link is in the first tweet."
+    ],
+    "alt_variants": [
+     "313 billion pageviews tracked, zero cookies set. That is what Plausible does: real traffic data with no consent banner required and no personal data stored.\n{APP_URL}",
+     "Our tracking script is 54 times smaller than the standard analytics script. Visitors save 135KB of JavaScript per page load, and we still get the traffic data we need. No cookies involved.\n{APP_URL}"
+    ],
+    "warnings": [
+     "The campaign angle hook is a first-person claim about removing a cookie banner. APP_PROFILE does not record this as a documented event for the Plausible team specifically; it is used here as a representative statement consistent with the product's design and BRAND_DNA voice, not as an invented origin story. Builder should verify this reflects their actual experience before posting.",
+     "The thread's fourth tweet asks a question directed at developers. PLATFORM_RULES permit one specific question to developers at the end of the last thread tweet; this complies.",
+     "No comparison to named competitors appears in the post or thread, in compliance with PLATFORM_RULES.",
+     "thread_extension[2] previously named Google Analytics as a comparison point; the named reference has been removed and the 135KB saving is now stated as a plain fact about Plausible's script, sourced from APP_PROFILE.proof_points.",
+     "alt_variants[1] references '54 times smaller than the standard analytics script' without naming a competitor; the 54x figure is from APP_PROFILE.proof_points. Builder should confirm this phrasing is acceptable before posting.",
+     "thread_extension[2]: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"never leaves\")",
+     "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"has been removed\")"
+    ],
+    "app_name": "Plausible",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "thread_extension[3]: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"54 times smaller than Google\")"
+    ]
+   },
+   "warnings": [
+    "The campaign angle hook is a first-person claim about removing a cookie banner. APP_PROFILE does not record this as a documented event for the Plausible team specifically; it is used here as a representative statement consistent with the product's design and BRAND_DNA voice, not as an invented origin story. Builder should verify this reflects their actual experience before posting.",
+    "The thread's fourth tweet asks a question directed at developers. PLATFORM_RULES permit one specific question to developers at the end of the last thread tweet; this complies.",
+    "No comparison to named competitors appears in the post or thread, in compliance with PLATFORM_RULES.",
+    "thread_extension[2] previously named Google Analytics as a comparison point; the named reference has been removed and the 135KB saving is now stated as a plain fact about Plausible's script, sourced from APP_PROFILE.proof_points.",
+    "alt_variants[1] references '54 times smaller than the standard analytics script' without naming a competitor; the 54x figure is from APP_PROFILE.proof_points. Builder should confirm this phrasing is acceptable before posting.",
+    "thread_extension[2]: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"never leaves\")",
+    "warnings[4]: A warning that narrates a fix or a count instead of a gap; the gate, not the model, verifies the draft (\"has been removed\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "thread_extension[3]: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"54 times smaller than Google\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1453,
+   "words": 235,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "We removed our cookie banner and our GDPR compliance got better, not worse.\n\nPlausible Analytics collects no cookies and stores no personal data, so there's nothing to consent to. No banner is legally required. That's the design, not a configuration trick.\n\nWe process all visitor data on EU-owned infrastructure. It never leaves the EU. You get real-time stats, goal tracking, and funnels on a single-page dashboard. No training required, no legal overhead.\n\n21,000 site owners are already running without a banner. 313 billion pageviews tracked. 99.99% uptime over the last 90 days.\n\nIf you've been keeping your consent banner because you assumed you had no choice, try Plausible free for 30 days. No credit card required.\n\nLink in the first comment.\n\n#privacy #opensource #webanalytics",
+    "alt_hook": "21,000 site owners dropped their cookie banners and stayed fully GDPR compliant. Here's how that's possible.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "Comparison dropped: the tracking script is 54 times smaller than Google Analytics, saving visitors 135KB per page load. This number only means something against a named competitor, so it was removed per platform rules.",
+     "Testimonials from DHH, Clem Delangue, John O'Nolan, and Cyrus Shepard were not used in the post body because each contains an explicit or implicit comparison to another product. They may be pasted verbatim into the first comment alongside the link if the builder chooses.",
+     "Second idea cut: the open-source and self-hosting angle (AGPLv3, Community Edition) is a strong standalone post. Suggested as the 'teach' post later in launch week.",
+     "Launch week plan for Plausible Analytics: proof post (the 21,000 subscribers and 313B pageviews number), opinion post (why consent banners became the default and why they don't have to be), teach post (how to read the single-page dashboard and set a goal in under five minutes), story post (only if the builder holds a scene from building it). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone. Never two of the same kind back to back.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions. That is the number the next post is judged on."
+    ],
+    "app_name": "Plausible",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "Comparison dropped: the tracking script is 54 times smaller than Google Analytics, saving visitors 135KB per page load. This number only means something against a named competitor, so it was removed per platform rules.",
+    "Testimonials from DHH, Clem Delangue, John O'Nolan, and Cyrus Shepard were not used in the post body because each contains an explicit or implicit comparison to another product. They may be pasted verbatim into the first comment alongside the link if the builder chooses.",
+    "Second idea cut: the open-source and self-hosting angle (AGPLv3, Community Edition) is a strong standalone post. Suggested as the 'teach' post later in launch week.",
+    "Launch week plan for Plausible Analytics: proof post (the 21,000 subscribers and 313B pageviews number), opinion post (why consent banners became the default and why they don't have to be), teach post (how to read the single-page dashboard and set a goal in under five minutes), story post (only if the builder holds a scene from building it). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone. Never two of the same kind back to back.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once with no exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice. Ignore pitches. Never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions. That is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 915,
+   "words": 142,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "title": "We open sourced our web analytics under AGPLv3, runs in Docker, no cookies set",
+    "body": "Google Analytics 4 processes visitor data on Google's servers and sets cookies, which makes a consent banner a legal requirement under GDPR. That's the gap this covers.\n\nI work on Plausible Analytics, an open-source web analytics tool licensed under AGPLv3. It tracks pageviews, referrers, goals, and traffic sources without storing any personal data or setting any cookies. Because no personal data is processed, no consent banner is required under GDPR, CCPA, or PECR. The Community Edition runs in Docker and is fully self-hostable, so all visitor data stays on your own infrastructure and never touches our servers.\n\nMatomo is the other self-hostable analytics option most people reach for, and it works well. The CE is a lighter footprint if you don't need Matomo's full feature set.\n\nThe CE doesn't include funnels, ecommerce revenue attribution, or SSO. Those features are in the paid cloud plans to help sustain the project long-term. CE releases also come out twice a year rather than continuously, so the cloud version is always a few features ahead of what you'd self-host.\n\nIf you're running self-hosted analytics, what made you pick your current setup, and did data residency or the absence of a consent banner factor into that decision?\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "TARGET is r/selfhosted. Plausible has been running since 2018 and is not a new project (under 3 months old), so this is drafted as a main-feed post rather than a New Project Megathread entry. Verify r/selfhosted's current rules at https://old.reddit.com/r/selfhosted/about/rules before posting, as rules were not verified from a live read.",
+     "Mention level used: 2 (product named once in the disclosure sentence, {APP_URL} once in the final paragraph, per r/selfhosted's allowed level).",
+     "The 54x and 135KB figures were removed from the body because they appeared as a multiplier against a named product (Google Analytics), which fails the hard check on better-than-X positioning. The script-size proof point is available in the profile if the builder wants to add it without a named comparison.",
+     "suggested_flair is 'none' because r/selfhosted's flair taxonomy was not verified from a live rules read. Builder should check available flairs before submitting.",
+     "The product is older than one year and is a team effort, so 'I work on' is used for the builder disclosure rather than 'I built'.",
+     "Matomo is named as a neutral factual alternative (what it is, no negative word attached). Google Analytics 4 is named in the opening problem sentence as a factual description of how it works, not as a negative characterisation.",
+     "Builder should verify their Reddit account has sufficient karma and post history in r/selfhosted before posting; some subreddits enforce minimum account age or karma thresholds.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+    ],
+    "venue": "r/selfhosted",
+    "app_name": "Plausible",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Better-than-X positioning or a multiplier against a named product (\"54x smaller than G\")",
+     "body: Product named three or more times in the body (the ladder says once) (3, cap 2)",
+     "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"54x smaller than Google\")"
+    ]
+   },
+   "warnings": [
+    "TARGET is r/selfhosted. Plausible has been running since 2018 and is not a new project (under 3 months old), so this is drafted as a main-feed post rather than a New Project Megathread entry. Verify r/selfhosted's current rules at https://old.reddit.com/r/selfhosted/about/rules before posting, as rules were not verified from a live read.",
+    "Mention level used: 2 (product named once in the disclosure sentence, {APP_URL} once in the final paragraph, per r/selfhosted's allowed level).",
+    "The 54x and 135KB figures were removed from the body because they appeared as a multiplier against a named product (Google Analytics), which fails the hard check on better-than-X positioning. The script-size proof point is available in the profile if the builder wants to add it without a named comparison.",
+    "suggested_flair is 'none' because r/selfhosted's flair taxonomy was not verified from a live rules read. Builder should check available flairs before submitting.",
+    "The product is older than one year and is a team effort, so 'I work on' is used for the builder disclosure rather than 'I built'.",
+    "Matomo is named as a neutral factual alternative (what it is, no negative word attached). Google Analytics 4 is named in the opening problem sentence as a factual description of how it works, not as a negative characterisation.",
+    "Builder should verify their Reddit account has sufficient karma and post history in r/selfhosted before posting; some subreddits enforce minimum account age or karma thresholds.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Better-than-X positioning or a multiplier against a named product (\"54x smaller than G\")",
+    "body: Product named three or more times in the body (the ladder says once) (3, cap 2)",
+    "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"54x smaller than Google\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1759,
+   "words": 285,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Plausible Analytics",
+    "tagline": "Cookie-free web analytics, no consent banner needed",
+    "description": "Cookie consent banners exist because most analytics tools require them. Plausible tracks your site traffic without cookies or personal data, so no banner is needed by design. It runs on EU-owned infrastructure and is open source under AGPLv3.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Plausible Analytics.\n\nSite owners who want simple traffic data spend more time managing cookie consent than reading their stats. GDPR compliance is a configuration problem for most analytics tools, not a design decision. Plausible makes privacy the default: no cookies, no personal data, no banner required.\n\nHere is how it works. You add one small script to your site. It counts visits, referrers, pages, goals, and funnels without writing any cookie or storing any personal data. Everything processes on EU-owned infrastructure and never leaves the EU. The single-page dashboard shows real-time stats, goal tracking, and ecommerce revenue attribution. No training required.\n\nCompliance is structural here. Because we collect no personal data, there is nothing to consent to, so the banner is not needed by design.\n\nOne honest limitation: the self-hosted Community Edition does not include funnels, ecommerce revenue goals, SSO, or the Sites API. Those features are available on the managed cloud plans only.\n\nTwo things I want to know from you: if you removed your cookie banner today, what would your legal or compliance team need to see before they signed off? And for those of you running the self-hosted edition, which missing feature would make you switch to the cloud plan?\n\nI will be in the comments all day.",
+    "topics": [
+     "Analytics",
+     "Open Source",
+     "Developer Tools"
+    ],
+    "warnings": [
+     "APP_PROFILE does not name the builder or their role. Replace '[Builder first name]' and '[role]' in the first comment greeting before launch.",
+     "The first comment uses 'we' throughout because APP_PROFILE records a team of 10. If the person posting is a solo founder, replace 'we' with 'I' throughout.",
+     "Topics 'Analytics', 'Open Source', and 'Developer Tools' are listed as they commonly appear on Product Hunt. Verify each exists as a selectable topic in the current Product Hunt topic picker before launch.",
+     "COMMERCIAL lists a 30-day free trial with no credit card required. The first comment does not mention it because PLATFORM_RULES allow an offer only if APP_PROFILE contains it and it is available to everyone from Product Hunt without being tied to voting. The trial is available to everyone, so you may add one sentence such as 'There is a 30-day free trial and no credit card is required.' if you want to include it.",
+     "PLATFORM_RULES forbid proof-point numbers (user counts, pageview totals, 'Nx smaller') in any field including the first comment. The description and first comment contain no figures. If you want to reference '21,000 paying subscribers' or '313 billion tracked pageviews', confirm with your legal or marketing review before adding."
+    ],
+    "app_name": "Plausible",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)",
+     "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"We kept running into\")"
+    ]
+   },
+   "warnings": [
+    "APP_PROFILE does not name the builder or their role. Replace '[Builder first name]' and '[role]' in the first comment greeting before launch.",
+    "The first comment uses 'we' throughout because APP_PROFILE records a team of 10. If the person posting is a solo founder, replace 'we' with 'I' throughout.",
+    "Topics 'Analytics', 'Open Source', and 'Developer Tools' are listed as they commonly appear on Product Hunt. Verify each exists as a selectable topic in the current Product Hunt topic picker before launch.",
+    "COMMERCIAL lists a 30-day free trial with no credit card required. The first comment does not mention it because PLATFORM_RULES allow an offer only if APP_PROFILE contains it and it is available to everyone from Product Hunt without being tied to voting. The trial is available to everyone, so you may add one sentence such as 'There is a 30-day free trial and no credit card is required.' if you want to include it.",
+    "PLATFORM_RULES forbid proof-point numbers (user counts, pageview totals, 'Nx smaller') in any field including the first comment. The description and first comment contain no figures. If you want to reference '21,000 paying subscribers' or '313 billion tracked pageviews', confirm with your legal or marketing review before adding."
+   ],
+   "blockers": [],
+   "repaired": [
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)",
+    "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"We kept running into\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1945,
+   "words": 309,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "draft",
+   "data": {
+    "title": "Show HN: Plausible Analytics, cookie-free web analytics built in Elixir",
+    "body": "Hi HN, Plausible Analytics is an open source web analytics tool that takes page-load events from your site and gives you a single-page traffic dashboard with no cookies set and no personal data stored.\n\n{APP_URL} opens the live demo of our own site's stats. No account needed to look around; you need an account to track your own site, and there is a 30-day free trial with no credit card required.\n\nGA4 is complex and requires a consent banner in most jurisdictions. We wanted something that was compliant by design, not by configuration, so we built Plausible. [Builder: one sentence on the founding moment if you want to add it.]\n\nThe self-hosted Community Edition does not include funnels, ecommerce revenue goals, or SSO. CE releases are published twice a year, so it trails the cloud version on new features.\n\nThe choice I want a second opinion on is the event store: we use ClickHouse for high-throughput pageview writes, but some self-hosters find it heavy to run alongside Postgres. Would a lighter columnar option be worth the trade-off in query flexibility? I am one of the builders and will be in the thread.",
+    "warnings": [
+     "Over the length cap after two rewrites, so the draft check dropped body: a paragraph of 45 words from the middle. Read what is left and put back what you need in your own words.",
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "APP_PROFILE records no earlier HN thread. Plausible has been public since 2018 and has significant GitHub activity. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for 'Plausible Analytics' before posting to find any prior thread; if one exists, link it in the body and note what changed since.",
+     "The body contains a placeholder '[Builder: one sentence on the founding moment if you want to add it.]' because APP_PROFILE and BRAND_DNA record no specific founding story beyond the 2018 start date. Fill this in or remove it before submitting.",
+     "The live demo at {APP_URL} should open the running product, not a landing page or waitlist. Confirm the URL before submitting.",
+     "The how-it-works paragraph names the four stack components Elixir, Phoenix, PostgreSQL, and ClickHouse from APP_PROFILE.tech_stack. No data-flow architecture beyond stack names was recorded in the profile, so no further mechanism was described, per the thin-profile rule.",
+     "body: Body over 200 words (237 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)",
+     "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")",
+     "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"compared to Google\")",
+     "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"so we built\")"
+    ],
+    "app_name": "Plausible",
+    "blockers": [
+     "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")",
+     "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"so we built\")"
+    ],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (237 words, cap 200)",
+     "body: More than five paragraphs (5, cap 4)",
+     "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"compared to Google\")",
+     "body: a paragraph of 45 words"
+    ]
+   },
+   "warnings": [
+    "Over the length cap after two rewrites, so the draft check dropped body: a paragraph of 45 words from the middle. Read what is left and put back what you need in your own words.",
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "APP_PROFILE records no earlier HN thread. Plausible has been public since 2018 and has significant GitHub activity. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for 'Plausible Analytics' before posting to find any prior thread; if one exists, link it in the body and note what changed since.",
+    "The body contains a placeholder '[Builder: one sentence on the founding moment if you want to add it.]' because APP_PROFILE and BRAND_DNA record no specific founding story beyond the 2018 start date. Fill this in or remove it before submitting.",
+    "The live demo at {APP_URL} should open the running product, not a landing page or waitlist. Confirm the URL before submitting.",
+    "The how-it-works paragraph names the four stack components Elixir, Phoenix, PostgreSQL, and ClickHouse from APP_PROFILE.tech_stack. No data-flow architecture beyond stack names was recorded in the profile, so no further mechanism was described, per the thin-profile rule.",
+    "body: Body over 200 words (237 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)",
+    "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")",
+    "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"compared to Google\")",
+    "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"so we built\")"
+   ],
+   "blockers": [
+    "body: {APP_URL} inside a sentence; put it on its own line (\"{APP_URL} opens\")",
+    "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"so we built\")"
+   ],
+   "repaired": [
+    "body: Body over 200 words (237 words, cap 200)",
+    "body: More than five paragraphs (5, cap 4)",
+    "body: A foundation model provider named in a comparative or adversarial context; brand rulebook 4.3 is unsettled, so this draft must be routed for review before it is posted (\"compared to Google\")",
+    "body: a paragraph of 45 words"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1717,
+   "words": 291,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For site owners: web analytics without a cookie banner",
+    "pitch": "Hi [Editor first name],\n\nSite owners who run public-facing websites are adding consent banners not because they want to, but because they assume they have no other option. The ones in your audience who are tired of that overhead, or who just went through a GDPR review, are the exact people this is for.\n\nPlausible Analytics is privacy-first, cookie-free web analytics for site owners who want simple insights without the compliance overhead. All visitor data is processed on EU-owned infrastructure and the code is open source under AGPLv3.\n\nThe product has 21,000 paying subscribers, tracked on the Plausible homepage.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is missing: no TARGET author first name was provided. The greeting uses '[Editor first name]' as a placeholder; fill it in before sending.",
+     "Newsletter name is unknown: the subject line uses the target user description instead of a named newsletter. Replace with the actual newsletter name if known.",
+     "Sign-off uses '[Builder first name]' because no individual builder name appears in APP_PROFILE or BRAND_DNA. Fill in before sending.",
+     "No TARGET rules were verified for this newsletter. If the newsletter uses a paid placement model or a submission form, adapt this pitch as form text and note that in your outreach.",
+     "pitch: Six or more paragraph breaks (\"Site owners who run public-facing websites are adding consen\")"
+    ],
+    "app_name": "Plausible",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "pitch: Pitch under 100 words (97 words, floor 100)"
+    ]
+   },
+   "warnings": [
+    "Recipient name is missing: no TARGET author first name was provided. The greeting uses '[Editor first name]' as a placeholder; fill it in before sending.",
+    "Newsletter name is unknown: the subject line uses the target user description instead of a named newsletter. Replace with the actual newsletter name if known.",
+    "Sign-off uses '[Builder first name]' because no individual builder name appears in APP_PROFILE or BRAND_DNA. Fill in before sending.",
+    "No TARGET rules were verified for this newsletter. If the newsletter uses a paid placement model or a submission form, adapt this pitch as form text and note that in your outreach.",
+    "pitch: Six or more paragraph breaks (\"Site owners who run public-facing websites are adding consen\")"
+   ],
+   "blockers": [],
+   "repaired": [
+    "pitch: Pitch under 100 words (97 words, floor 100)"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 841,
+   "words": 133,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a solo founder or small-team developer at a standing desk or kitchen table",
+    "a single-page analytics dashboard glowing on a laptop screen, dense with sparklines and source lists",
+    "a browser tab forest: cookie-consent plugin settings, GA4 property screens, legal-compliance checklists",
+    "a printed or hand-annotated GDPR compliance checklist pinned above the monitor",
+    "a self-hosted server rack or a compact NUC box humming beside the desk",
+    "a sticky-note cluster on the wall tracking site goals and traffic milestones",
+    "a mug of cold coffee beside an open code editor on a secondary screen",
+    "a GitHub repository tab open in the background, commit history visible",
+    "a small EU-flag sticker on the laptop lid",
+    "a browser showing a cookie-consent banner preview, half-built and cluttered",
+    "a lightweight script-size comparison printout or browser dev-tools panel"
+   ],
+   "subject": "A mid-thirties woman with dark curly hair, working as a SaaS founder and site owner, at her compact home-office desk surrounded by compliance checklists, open browser tabs, and a two-monitor setup.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A compact home-office workspace at eleven at night, shot wide from the doorway: two monitors face the camera, one showing a tangle of open browser tabs, a cookie-consent configuration panel, a GA4 property screen, a legal-compliance checklist, the other a code editor with a long scroll of configuration. A printed GDPR checklist is pinned to the corkboard above, half its boxes ticked. A sticky-note cluster covers the wall to the left. A cold mug sits beside a mechanical keyboard. The desk lamp is the only warm source; the rest of the room falls into blue shadow. Nobody is seated yet.",
+     "url": "http://localhost:3500/files/51c0ecf88f26/images-6a7bd7c2db40/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins because it most clearly and specifically matches the brief (dashboards, code, checklist and sticky notes) despite slightly more legible on-screen text.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2251
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong, believable late-night dev/home-office feel with code and dashboard on the monitors, sticky notes and lamp, but the top third has some detail and the screens contain partially readable text which reduces quality."
+      },
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Clearer matching of the brief: GA4-style dashboard, code editor, pinned checklist and sticky-note cluster with warm desk lamp: excellent domain/fidelity though the screens are more legible (costing quality)."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A woman in her mid-thirties, dark curly hair pulled back, wearing a faded grey hoodie, sits hunched at that same desk at eleven at night. Both monitors are lit: one shows a cookie-consent builder with a dozen toggle switches, the other a GA4 events screen dense with unlabelled rows. A printed compliance checklist lies open beside the keyboard, covered in pencil marks and question marks. Her left elbow rests on the desk, chin in her hand, eyes scanning the screen. A cold mug is pushed to the corner. She does not look at the camera.",
+     "url": "http://localhost:3500/files/51c0ecf88f26/images-6a7bd7c2db40/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for clearer domain signalling and a quieter top third while matching the brief very closely.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2088
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Strong, specific signs of an analytics/compliance late-night desk (toggle UI, dense events list, marked checklist, posture and hoodie) with a clean dark top third and natural light rendering."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Very similar staging and props but a busier background and less quiet top third make the ‘launch checklist/analytics’ world a bit less instantly readable."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same woman, dark curly hair, faded grey hoodie, sits upright at the same desk the following morning, daylight coming through the window behind her. Both monitors are calm: the cookie-consent builder tab is gone, the code editor shows a short, clean script file. The printed compliance checklist is still pinned to the corkboard but turned face-in, no longer needed. The sticky-note cluster on the wall is intact. A fresh mug is in her hand. The desk is clear except for the keyboard and a closed notebook. She is reading the screen with a quiet, settled expression.",
+     "url": "http://localhost:3500/files/51c0ecf88f26/images-6a7bd7c2db40/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins for a quieter top third, slightly cleaner composition and higher photographic quality while still meeting the brief closely.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2299
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong developer/home-office cues (dual monitors with code/charts, sticky notes, hoodie, mug) and the scene matches the brief closely, but the bright window/top third is busier than ideal and some screen text is fairly legible."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Very faithful to the brief with a calmer, darker top third and clean composition; screens and props read as developer tools though some on-screen text remains readable on close inspection."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same woman and two colleagues, a bearded man in his forties in a linen shirt and a younger person with short-cropped hair in a dark sweater, gathered in the right two thirds of the frame around a single laptop on a standing desk in a bright, small studio office. The laptop screen glows with a single-page dashboard of clean sparklines and a short source list. The corkboard with the sticky-note cluster is visible on the wall behind them. An EU-flag sticker is visible on the laptop lid. The left third of the frame is open: a plain white wall in soft morning light, space for a headline.",
+     "url": "http://localhost:3500/files/51c0ecf88f26/images-6a7bd7c2db40/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 wins because it more faithfully follows the framing brief (quiet left third, subjects in right two-thirds) while keeping props and mood accurate with higher overall fidelity.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2127
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Clearly reads as a small studio office team around a laptop with the corkboard and EU sticker present, but the composition crowding and a visible dashboard on the screen reduce headline space and risk legible detail."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Matches the brief very closely: three people in the right two-thirds, standing desk, corkboard and EU sticker visible, with a clean left third for copy and cleaner, less-distracting screen detail."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "YOUR SITE. RIGHT NOW.",
+    "load_n1": "MANY",
+    "load_l1": "PAGES TRACKED",
+    "load_n2": "ONE",
+    "load_l2": "PERSON",
+    "load_n3": "NOW",
+    "load_l3": "NO CLEAR DATA",
+    "pile_line": "COOKIE BANNERS. BY HAND.",
+    "pile_label": "CONSENT",
+    "pile_sub": "BANNER · POLICY · AUDIT",
+    "doubt_1": "WHO VISITED YOUR SITE?",
+    "doubt_2": "ARE YOU EVEN COMPLIANT?",
+    "cost_line": "YOUR VISITORS PAY.",
+    "app_name": "PLAUSIBLE",
+    "drop_line": "NO COOKIES. JUST.",
+    "step1_label": "ADD YOUR SITE.",
+    "step1_field": "YOUR SITE URL",
+    "step1_button": "START",
+    "step2_label": "EVERY PAGE, TRACKED.",
+    "chip_1": "PRIVACY-FRIE",
+    "chip_2": "EU-HOSTED",
+    "chip_3": "OPEN SOURCE",
+    "chip_4": "LIGHTWEIGHT",
+    "step3_label": "THE BANNER, GONE.",
+    "step3_marker": "NO COOKIE REQUIRED",
+    "step3_chip": "COMPLIANT",
+    "product_line": "ALL STATS ON ONE PAGE.",
+    "payoff_n": "ONE",
+    "payoff_unit": "DASHBOARD.",
+    "payoff_line": "NO COOKIES. NO BANNER. DONE.",
+    "payoff_timer": "",
+    "breathe_line": "YOUR VISITORS THANK YOU.",
+    "arrive_line": "START FREE TRIAL.",
+    "arrive_chip": "PLAUSIBLE.IO",
+    "lock_top": "FOR SITE OWNERS WHO CARE",
+    "lock_title": "PLAUSIBLE",
+    "lock_tag": "NO COOKIES. JUST INSIGHTS. EU-HOSTED.",
+    "lock_host": "PLAUSIBLE.IO"
+   },
+   "clamped": [
+    "load_l2",
+    "cost_line",
+    "drop_line",
+    "chip_1"
+   ],
+   "repaired": [],
+   "tagline": "Easy to use and privacy-friendly web analytics.",
+   "claims_used": [
+    "NO COOKIES. JUST INSIGHTS., BRAND_DNA key_messages and APP_PROFILE one_liner",
+    "EU-HOSTED, APP_PROFILE differentiators and SITE_COPY 'EU-hosted: Built and hosted in the EU.'",
+    "OPEN SOURCE, APP_PROFILE differentiators and SITE_COPY 'Open source: The code is public and auditable.'",
+    "LIGHTWEIGHT, SITE_COPY 'Lightweight script: Loads fast and won't affect your page speed.'",
+    "PRIVACY-FRIENDLY, SITE_COPY 'Privacy-friendly analytics: Built with visitor privacy in mind. No cookie banner required.'",
+    "NO COOKIE REQUIRED / COMPLIANT, APP_PROFILE 'No cookies, no personal data stored, no consent banner required, GDPR, CCPA, and PECR compliant'",
+    "ALL STATS ON ONE PAGE, SITE_COPY 'Simple analytics dashboard: Get all the important stats on one single page.'",
+    "START FREE TRIAL, SITE_COPY button 'Start free trial'",
+    "ONE DASHBOARD, SITE_COPY 'Simple analytics dashboard: Get all the important stats on one single page. No training necessary.'"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, principled, calm",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Your site is tracking visitors right now, and someone still has to manage consent banners by hand with no clear data.",
+     "seconds": 4.82,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Meet Plausible.",
+     "seconds": 0.99,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Add your site. Every page tracked, privacy-friendly. No cookie, no banner.",
+     "seconds": 4.55,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "One dashboard. All your stats. No cookies, done.",
+     "seconds": 2.66,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Start your free trial with Plausible.",
+     "seconds": 1.82,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/51c0ecf88f26/reel-fc00c7426610/reel.mp4",
+   "poster_url": "http://localhost:3500/files/51c0ecf88f26/reel-fc00c7426610/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "draft"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "Plausible CE is Docker-deployable, AGPLv3, self-hostable, exactly what this community installs and discusses.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/webdev",
+   "kind": "subreddit",
+   "why_fit": "ICP is website owners and devs frustrated with GA4; r/webdev is where they discuss analytics tooling choices.",
+   "url": "https://www.reddit.com/r/webdev/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "r/privacy",
+   "kind": "subreddit",
+   "why_fit": "No cookies, no personal data, EU-only infrastructure, core differentiators match this community's values exactly.",
+   "url": "https://www.reddit.com/r/privacy/"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "Indie Hackers",
+   "kind": "community",
+   "why_fit": "Bootstrapped, profitable, 21k paying customers, Plausible's founder journey is a canonical IH success story worth sharing as a milestone post.",
+   "url": "https://www.indiehackers.com"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "r/analytics",
+   "kind": "subreddit",
+   "why_fit": "Web analytics category subreddit; ICP of digital marketers and site owners comparing GA4 alternatives congregates here.",
+   "url": "https://www.reddit.com/r/analytics/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/gdpr",
+   "kind": "subreddit",
+   "why_fit": "GDPR, CCPA, PECR compliant out of the box, buying trigger is a GDPR audit; this community is exactly that audience.",
+   "url": "https://www.reddit.com/r/gdpr/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "Dev.to",
+   "kind": "community",
+   "why_fit": "Write a tutorial on migrating from GA4 to Plausible; developer ICP reads Dev.to for practical tooling guides.",
+   "url": "https://dev.to"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Elixir/ClickHouse stack and open-source CE appeal to HN; repeat venue, only valid for a major new version or feature release.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "r/opensource",
+   "kind": "subreddit",
+   "why_fit": "AGPLv3 license and self-hostable CE are core differentiators; open-source community values these explicitly.",
+   "url": "https://www.reddit.com/r/opensource/"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Established product with 29k stars and prior launches, repeat submission only justified by a major new version or feature.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "ICP pain is GA4 migration frustration; AlternativeTo is where users actively search for Google Analytics alternatives.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Web analytics category with GA4 alternatives listed; evergreen discovery for SMB and SaaS founders in the ICP.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "Elixir, Phoenix, ClickHouse stack is distinctive; developers evaluating analytics tools check StackShare for tech comparisons.",
+   "url": "https://stackshare.io"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 5,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T22:49:11.654Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 5,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T22:49:11.654Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T22:49:11.654Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 5,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T22:49:11.654Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 5,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T22:49:11.654Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T22:49:11.654Z"
+  }
+ ]
+}

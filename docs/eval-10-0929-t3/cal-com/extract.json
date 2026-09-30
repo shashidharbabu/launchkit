@@ -1,0 +1,1589 @@
+{
+ "slug": "cal-com",
+ "name": "Cal.com",
+ "site": "https://cal.com",
+ "repo": "https://github.com/calcom/cal.com",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 97,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 129,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 184,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 934,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 491,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 79,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 193,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Cal.com is fully customizable scheduling software for individuals, teams, and developers building scheduling platforms.",
+   "description": "Cal.com lets individuals, businesses, and developers create booking pages, connect calendars, and automate scheduling workflows. It offers unlimited event types, built-in video conferencing via Cal Video, Stripe and PayPal payment collection, routing forms, and round-robin team scheduling. Enterprise tiers add SOC 2, HIPAA, and ISO 27001 compliance, SAML SSO, SCIM, and dedicated infrastructure.",
+   "category": "Scheduling & Booking",
+   "target_user": "Freelancers, SaaS teams, and developers who need embeddable, brandable scheduling with API access",
+   "icp": {
+    "who": "Growth-stage SaaS companies and developer-led teams that need white-label scheduling embedded in their product or website",
+    "pain": "Calendly and other scheduling tools are closed, hard to customize, and expensive to embed or white-label at scale",
+    "current_alternatives": [
+     "Calendly",
+     "SavvyCal",
+     "Acuity Scheduling",
+     "HubSpot Meetings"
+    ],
+    "buying_trigger": "Team grows beyond one person and needs shared availability, round-robin routing, or removal of third-party branding from booking pages"
+   },
+   "differentiators": [
+    "Open-source codebase (cal.diy MIT edition) gives developers full transparency and self-host option for personal use",
+    "Built-in Cal Video conferencing included at no extra tier, no Zoom dependency required",
+    "SOC 2, HIPAA, and ISO 27001 compliance available on the Organizations plan",
+    "Platform API and embeds let developers build scheduling into their own products with custom booking links (e.g. cal.com/username)"
+   ],
+   "proof_points": [
+    "48,737 GitHub stars and 15,242 forks on calcom/cal.diy as of repo metadata",
+    "Flo Merian (Product Marketing, Mintlify): 'More elegant than Calendly, more open than SavvyCal, Cal.com works and it feels just right.', cal.com homepage",
+    "Guillermo Rauch (CEO, Vercel): 'I think Cal.com has a very good chance of creating a new category around being both great and well designed.', cal.com homepage",
+    "Kent C. Dodds (Founder of EpicWeb.dev): 'I just migrated from Calendly to Cal.com.', cal.com homepage",
+    "Aria Minaei (CEO, Theatre.JS): 'Just gave it a go and it's definitely the easiest meeting I've ever scheduled!', cal.com homepage"
+   ],
+   "tech_stack": [
+    "Next.js",
+    "TypeScript",
+    "tRPC",
+    "React.js",
+    "Tailwind CSS",
+    "Prisma",
+    "Daily.co",
+    "PostgreSQL"
+   ],
+   "pricing_current": "Free forever (1 user, unlimited event types and calendars). Teams: $12 per user/month, billed yearly (save 25%), 14-day free trial. Organizations: $28 per user/month, billed yearly (save 25%), 14-day free trial. Enterprise: Custom, annual pricing. Source: cal.com/pricing",
+   "voice": {
+    "tone": [
+     "direct",
+     "confident",
+     "developer-friendly",
+     "approachable",
+     "modern"
+    ],
+    "sample_phrase": "A fully customizable scheduling software for individuals, businesses taking calls and developers building scheduling platforms where users meet users."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "Live product at cal.com with four paid tiers including Enterprise",
+     "v6.9 release announced on homepage ('Cal.com launches v6.9')",
+     "48,737 GitHub stars and active commit history (last push 2026-09-26)",
+     "1,456 open issues indicating active development and community",
+     "Trusted by companies including Vercel (per CEO testimonial)"
+    ]
+   },
+   "gaps": [
+    "Cal.diy (open-source edition) explicitly removes Teams, Organizations, Insights, Workflows, SSO/SAML, and other EE-only features, README.md: 'No enterprise features, Teams, Organizations, Insights, Workflows, SSO/SAML, and other EE-only features have been removed'",
+    "Cal.diy is strictly recommended for personal, non-production use only, README.md: 'It is strictly recommended for personal, non-production use'",
+    "Cal.diy has no hosted/managed version, README.md: 'Cal.diy is a self-hosted project. There is no hosted/managed version. You run it on your own infrastructure.'",
+    "SAML SSO and SCIM are available only on the Organizations plan, cal.com/pricing",
+    "SOC 2, HIPAA, ISO 27001 compliance is available only on the Organizations plan, cal.com/pricing",
+    "Dedicated database and SLA/uptime guarantees are Enterprise-only, cal.com/pricing"
+   ],
+   "site_gaps": [],
+   "unverified": [
+    "The GitHub URL https://github.com/calcom/cal.com redirects to calcom/cal.diy, which is the open-source community edition, not the full hosted product codebase; the hosted product's proprietary code is not publicly readable",
+    "Exact monthly-equivalent pricing for Teams and Organizations when billed monthly (non-yearly) was not shown on the pricing page scraped",
+    "Number of paying customers or total users not stated on any page read"
+   ],
+   "confidence": {
+    "overall": 0.82,
+    "notes": "All sources read successfully (ok=true). Confidence is modestly capped because the repository URL resolves to cal.diy (the open-source community edition), not the hosted product's codebase, so feature and architecture claims for the hosted product rest on the cal.com marketing site rather than the actual production code. Pricing and feature details are well-evidenced from cal.com/pricing."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Cal.diy open-source edition; warnings, features removed, tech stack"
+    },
+    {
+     "source": "package.json",
+     "via": "github",
+     "ok": true,
+     "note": "Monorepo manifest; confirmed TypeScript, yarn workspace"
+    },
+    {
+     "source": "https://github.com/calcom/cal.diy",
+     "via": "github",
+     "ok": true,
+     "note": "Repo metadata: 48737 stars, 15242 forks, TypeScript"
+    },
+    {
+     "source": "https://cal.com/",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Homepage: features, testimonials, CTAs, v6.9 launch"
+    },
+    {
+     "source": "https://cal.com/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Full pricing tiers, feature breakdown, compliance claims"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Cal.com",
+   "tagline_observed": "The better way to schedule your meetings",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "mission-driven",
+     "transparent",
+     "matter-of-fact",
+     "developer-oriented"
+    ],
+    "sentence_style": "Short declaratives and fragments, second person where addressing the reader, no jargon, occasional rhetorical questions",
+    "vocabulary": [
+     "scheduling",
+     "infrastructure",
+     "booking",
+     "customizable",
+     "programmable",
+     "routing",
+     "embeds",
+     "workflows",
+     "open",
+     "flexible"
+    ],
+    "avoid": [
+     "flowery adjectives",
+     "hype-driven superlatives",
+     "passive voice",
+     "corporate-speak",
+     "buzzword stacking",
+     "long compound sentences"
+    ],
+    "evidence_quotes": [
+     "We're building the infrastructure for time",
+     "Scheduling isn't just about booking meetings.",
+     "Work = Money.",
+     "Start scheduling for free, with no usage limits."
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Free forever for individuals with unlimited event types and calendars",
+     "Infrastructure-first scheduling that fits into your product and workflows, not alongside them",
+     "From a simple booking link to complex multi-team routing and embedded scheduling platforms",
+     "Programmable, flexible, and reliable at scale with SOC 2, HIPAA, and ISO 27001 compliance"
+    ],
+    "key_messages": [
+     "The better way to schedule your meetings",
+     "We're building the infrastructure for time",
+     "A fully customizable scheduling software for individuals, businesses taking calls and developers building scheduling platforms where users meet users.",
+     "From simple booking links to fully embedded scheduling inside products",
+     "Scheduling should be programmable, flexible, reliable at scale, secure"
+    ],
+    "proof_points_observed": [
+     "Free forever for individuals",
+     "Integrate with 100+ apps",
+     "65+ languages supported",
+     "SOC 2, HIPAA, ISO 27001 compliant (Organizations plan)",
+     "14-day free trial on Teams and Organizations plans",
+     "1-click import Calendly events",
+     "Cal Video built-in video conferencing included"
+    ]
+   },
+   "visual": {
+    "colors": [],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned Framer-rendered markdown with no inline CSS, CSS variables, or font CDN links; no typography could be observed"
+    },
+    "imagery_style": "screenshots",
+    "logo_url": ""
+   },
+   "audience_language": "The site addresses individuals, teams, and developers directly with plain declarative statements, assuming technical literacy without talking down or over-explaining.",
+   "dos_and_donts": {
+    "do": [
+     "Use short, declarative sentences that state facts plainly",
+     "Lead with what the product does and for whom",
+     "Emphasize openness, transparency, and developer control",
+     "Reference infrastructure, programmability, and scale as core values",
+     "Speak to both individual users and developer/enterprise buyers in the same breath"
+    ],
+    "dont": [
+     "Use vague superlatives or hype language",
+     "Bury the free tier, it is a primary message",
+     "Ignore the developer and API audience",
+     "Use passive voice or corporate filler phrases",
+     "Overload sentences with feature lists instead of outcomes"
+    ]
+   },
+   "sources_read": [
+    "https://cal.com/",
+    "https://cal.com/pricing",
+    "https://cal.com/about"
+   ],
+   "confidence": {
+    "overall": 0.78,
+    "notes": "All three pages scraped successfully. Colors array is empty because the Framer site returned markdown with no inline styles, CSS variables, or hex/rgb values observable. Typography fields are empty for the same reason. Logo URL is empty because no <img> or SVG logo URL appeared in the markdown content (only a favicon URL was present in metadata, which is excluded per rules). Tone and messaging confidence is high as content was rich across all three pages."
+   }
+  },
+  "angles": [
+   {
+    "name": "Infrastructure for Time",
+    "objective": "awareness, establish Cal.com as the scheduling infrastructure layer for developer-led products, not just a booking tool",
+    "big_idea": "Most developers treat scheduling as an afterthought. This campaign reframes scheduling as infrastructure, something you build on, not bolt on. It leads with the line 'We're building the infrastructure for time' and invites developers to think about scheduling the way they think about auth or payments.",
+    "hook": "Scheduling is infrastructure. We built it so you don't have to.",
+    "channels": [
+     "Hacker News (Show HN)",
+     "X / Twitter",
+     "Developer newsletters"
+    ],
+    "effort": "medium",
+    "success_metric": "Click-throughs to cal.com/docs or the embed/API pages from the Show HN and newsletter placements"
+   },
+   {
+    "name": "Release Your Booking Page Today",
+    "objective": "signups, drive free-tier sign-ups from individual developers and freelancers by removing every perceived barrier",
+    "big_idea": "The free tier is a primary message per the DNA. This campaign makes that concrete: no trial clock, no credit card, no usage cap. A single-channel Product Hunt launch post paired with an X thread shows exactly what you get on day one, in plain language.",
+    "hook": "Free forever. Unlimited event types. No usage limits. Start scheduling.",
+    "channels": [
+     "Product Hunt",
+     "X / Twitter"
+    ],
+    "effort": "small",
+    "success_metric": "New free-tier sign-ups attributed to Product Hunt and X referral traffic in the week after launch"
+   },
+   {
+    "name": "Embed It in Your Product",
+    "objective": "signups, reach SaaS builders on Reddit who are actively evaluating scheduling solutions to embed in their own products",
+    "big_idea": "Developer-led SaaS teams often post in r/SaaS and r/webdev asking how to add booking or scheduling to their product. This campaign is a genuine, helpful Reddit presence: a post that explains the embed and API options, links to docs, and answers follow-up questions, no hard sell.",
+    "hook": "How we built embeddable scheduling that lives inside your product, not as a redirect to someone else's page",
+    "channels": [
+     "Reddit (r/SaaS, r/webdev, r/selfhosted)"
+    ],
+    "effort": "small",
+    "success_metric": "Upvotes and comments on the Reddit post; click-throughs to cal.com/docs"
+   },
+   {
+    "name": "Scheduling Should Be Programmable",
+    "objective": "community, build an audience of developers on LinkedIn by publishing a short series on what programmable scheduling actually means in practice",
+    "big_idea": "LinkedIn's developer and SaaS-founder audience responds to concrete, opinionated takes. A 4-post series, one post every two weeks, each tackles one scheduling problem (routing, availability, embeds, compliance) and explains how a programmable approach solves it. No product pitch in the first line; the insight leads.",
+    "hook": "Scheduling isn't just about booking meetings. Here's what it actually involves when you build it into a product.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "Follower growth on the Cal.com LinkedIn page and post impressions over the 8-week series"
+   },
+   {
+    "name": "From Calendly to Cal.com",
+    "objective": "signups, capture teams actively looking to switch scheduling tools by making the migration path concrete and low-risk",
+    "big_idea": "Cal.com offers 1-click Calendly import. This campaign makes that fact the entire story: a short video walkthrough of the import flow, paired with an X post and a newsletter pitch. The angle is not 'Calendly is bad', it's 'migration takes minutes, here's exactly what happens.'",
+    "hook": "Migrating your scheduling setup takes about as long as a coffee break. Here's the walkthrough.",
+    "channels": [
+     "X / Twitter",
+     "YouTube / Loom",
+     "Developer and productivity newsletters"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of Calendly imports completed in the two weeks following the campaign launch"
+   },
+   {
+    "name": "Open by Default",
+    "objective": "community, grow the open-source contributor and self-hoster community by making the GitHub project and its MIT license the story",
+    "big_idea": "48,737 GitHub stars and 15,242 forks represent a real community. This campaign speaks directly to developers who want to read the code, self-host for personal use, or contribute. A Show HN post about the open-source edition (cal.diy) paired with an X thread invites that audience in honestly, including the clear note that cal.diy is for personal, non-production use.",
+    "hook": "Show HN: Cal.diy, the MIT-licensed, self-hosted edition of Cal.com (personal use)",
+    "channels": [
+     "Hacker News (Show HN)",
+     "X / Twitter",
+     "GitHub"
+    ],
+    "effort": "small",
+    "success_metric": "New GitHub stars and forks in the two weeks following the Show HN post"
+   }
+  ],
+  "chosen": [
+   "Infrastructure for Time"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Calendly",
+    "notability": "established",
+    "mentions": 6,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "1 event type, 1 calendar connection"
+     },
+     {
+      "name": "Standard",
+      "price": "$10",
+      "period": "seat/mo annual",
+      "key_limits": "unlimited event types, 6 calendars"
+     },
+     {
+      "name": "Teams",
+      "price": "$16",
+      "period": "seat/mo annual",
+      "key_limits": "round-robin, routing, Salesforce"
+     }
+    ]
+   },
+   {
+    "name": "Acuity Scheduling",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Starter",
+      "price": "$16",
+      "period": "mo annual",
+      "key_limits": "1 calendar, payments, email reminders"
+     },
+     {
+      "name": "Standard",
+      "price": "$27",
+      "period": "mo annual",
+      "key_limits": "up to 6 calendars, SMS, waitlist"
+     },
+     {
+      "name": "Premium",
+      "price": "$49",
+      "period": "mo annual",
+      "key_limits": "up to 36 calendars"
+     }
+    ]
+   },
+   {
+    "name": "SavvyCal",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Basic",
+      "price": "$10",
+      "period": "user/mo",
+      "key_limits": "unlimited links, team scheduling"
+     },
+     {
+      "name": "Premium",
+      "price": "$17",
+      "period": "user/mo",
+      "key_limits": "custom domains, delegate, paid bookings"
+     }
+    ]
+   },
+   {
+    "name": "HubSpot Meetings",
+    "notability": "established",
+    "mentions": 3,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "basic scheduling, HubSpot branding"
+     }
+    ]
+   },
+   {
+    "name": "Doodle",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "basic polls, Doodle branding"
+     }
+    ]
+   }
+  ],
+  "rejected": [
+   {
+    "name": "SpotsaaS comparison page",
+    "url": "https://www.spotsaas.com/compare/acuity-scheduling-vs-calendly-vs-square-appointments",
+    "why": "Aggregator comparison page, not a product"
+   },
+   {
+    "name": "ITQlick",
+    "url": "https://www.itqlick.com/calendly/competitors",
+    "why": "Review aggregator site, not a product"
+   },
+   {
+    "name": "ExpressBook listicle",
+    "url": "https://expressbook.com/calendly-alternatives/",
+    "why": "Blog listicle, not a product"
+   },
+   {
+    "name": "WorkflowAutomation guide",
+    "url": "https://workflowautomation.net/guides/best-scheduling-software",
+    "why": "Listicle/guide page, not a product"
+   },
+   {
+    "name": "WorldMetrics list",
+    "url": "https://worldmetrics.org/best/booking-and-scheduling-software/",
+    "why": "Listicle page, not a product"
+   },
+   {
+    "name": "Square Appointments",
+    "url": "https://squareup.com/us/en/appointments",
+    "why": "Only 1 mention; POS-focused, not scheduling-category leader"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium + per-user subscription",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "who_its_for": "Individual users and developers evaluating the platform",
+     "includes": [
+      "1 user",
+      "Unlimited event types",
+      "Unlimited calendars",
+      "Cal Video included",
+      "Basic integrations"
+     ],
+     "rationale": "Matches current Free tier; competitive with Calendly Free (1 event type) but more generous."
+    },
+    {
+     "name": "Teams",
+     "price_usd_month": 12,
+     "who_its_for": "Small teams needing shared availability and round-robin routing",
+     "includes": [
+      "Per user/mo billed yearly",
+      "14-day free trial",
+      "Round-robin scheduling",
+      "Routing forms",
+      "Payment collection"
+     ],
+     "rationale": "Matches current $12/user/mo. Calendly Teams is $16/seat/mo; Cal.com is 25% cheaper at same per-user level, defensible on open-source value."
+    },
+    {
+     "name": "Organizations",
+     "price_usd_month": 28,
+     "who_its_for": "Larger orgs needing compliance, SSO, and white-label embeds",
+     "includes": [
+      "Per user/mo billed yearly",
+      "SOC 2, HIPAA, ISO 27001 (Organizations plan)",
+      "SAML SSO and SCIM",
+      "14-day free trial",
+      "Platform API and embeds"
+     ],
+     "rationale": "Matches current $28/user/mo. Compliance tier is unique vs scraped rivals; price is justified by SOC 2/HIPAA/ISO 27001 inclusion."
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": 0,
+     "who_its_for": "Large enterprises needing dedicated infrastructure and SLA",
+     "includes": [
+      "Custom annual pricing",
+      "Dedicated database",
+      "SLA and uptime guarantees",
+      "Dedicated onboarding"
+     ],
+     "rationale": "Matches current Enterprise custom tier. Calendly Enterprise starts at $15k/yr; Cal.com custom pricing is standard for this segment."
+    }
+   ],
+   "anchor_competitors": [
+    "Calendly",
+    "Acuity Scheduling",
+    "SavvyCal"
+   ],
+   "positioning_note": "Cal.com undercuts Calendly Teams by 25% per seat while offering open-source transparency and broader compliance on Organizations.",
+   "risks": [
+    "Teams at $12 may feel too cheap vs Calendly $16; could test $15 without losing developer-led buyers",
+    "HubSpot Meetings is free for HubSpot CRM users; buyers already on HubSpot may not convert",
+    "Open-source self-host option (cal.diy) may cannibalize paid Teams conversions"
+   ]
+  },
+  "options": [
+   {
+    "name": "Current model: free plus paid tiers (annual billing)",
+    "billing": "free plus paid tiers",
+    "positioning": "Permanent free tier for individuals, per-seat annual plans for teams and organizations, custom pricing for enterprise; prices match the live cal.com/pricing page exactly.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual users and developers evaluating the platform",
+      "includes": [
+       "1 user",
+       "Unlimited event types",
+       "Unlimited calendars",
+       "Cal Video included",
+       "Basic integrations"
+      ]
+     },
+     {
+      "name": "Teams",
+      "price_usd_month": 12,
+      "who_its_for": "Small teams needing shared availability and round-robin routing",
+      "includes": [
+       "Per user/mo billed yearly",
+       "14-day free trial",
+       "Round-robin scheduling",
+       "Routing forms",
+       "Payment collection"
+      ]
+     },
+     {
+      "name": "Organizations",
+      "price_usd_month": 28,
+      "who_its_for": "Larger orgs needing compliance, SSO, and white-label embeds",
+      "includes": [
+       "Per user/mo billed yearly",
+       "SOC 2, HIPAA, ISO 27001 (Organizations plan)",
+       "SAML SSO and SCIM",
+       "14-day free trial",
+       "Platform API and embeds"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large enterprises needing dedicated infrastructure and SLA",
+      "includes": [
+       "Custom annual pricing",
+       "Dedicated database",
+       "SLA and uptime guarantees",
+       "Dedicated onboarding"
+      ]
+     }
+    ],
+    "market_rate_note": "Teams at $12/seat/mo is 25% below Calendly Teams ($16) and level with Calendly Standard ($10) and SavvyCal Basic ($10), positioning Cal.com as the value leader in the per-seat segment.",
+    "revenue_at": {
+     "10": 200,
+     "50": 1000,
+     "200": 4000
+    },
+    "when_to_pick": "Pick this when you want to stay exactly on the live pricing and let the open-source reputation and lower per-seat cost drive conversion from Calendly."
+   },
+   {
+    "name": "Annual-only subscription with visible yearly price",
+    "billing": "annual subscription",
+    "positioning": "Same per-seat tiers as the live pricing but marketed as annual totals ($144/user/yr for Teams, $336/user/yr for Organizations) to match how Acuity Scheduling and enterprise buyers evaluate annual software spend; monthly equivalent shown for comparison.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual users and developers evaluating the platform",
+      "includes": [
+       "1 user",
+       "Unlimited event types",
+       "Unlimited calendars",
+       "Cal Video included",
+       "Basic integrations"
+      ]
+     },
+     {
+      "name": "Teams",
+      "price_usd_month": 12,
+      "who_its_for": "Small teams needing shared availability and round-robin routing",
+      "includes": [
+       "Per user/mo billed yearly ($144/user/yr)",
+       "14-day free trial",
+       "Round-robin scheduling",
+       "Routing forms",
+       "Payment collection"
+      ]
+     },
+     {
+      "name": "Organizations",
+      "price_usd_month": 28,
+      "who_its_for": "Larger orgs needing compliance, SSO, and white-label embeds",
+      "includes": [
+       "Per user/mo billed yearly ($336/user/yr)",
+       "SOC 2, HIPAA, ISO 27001 (Organizations plan)",
+       "SAML SSO and SCIM",
+       "14-day free trial",
+       "Platform API and embeds"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large enterprises needing dedicated infrastructure and SLA",
+      "includes": [
+       "Custom annual pricing",
+       "Dedicated database",
+       "SLA and uptime guarantees",
+       "Dedicated onboarding"
+      ]
+     }
+    ],
+    "market_rate_note": "At $144/user/yr (Teams) and $336/user/yr (Organizations), Cal.com is below Calendly Teams ($192/seat/yr) and below Acuity Standard ($324/yr), making the annual framing competitive on sticker price.",
+    "revenue_at": {
+     "10": 200,
+     "50": 1000,
+     "200": 4000
+    },
+    "when_to_pick": "Pick this when your buyer is a finance or procurement team that evaluates software on annual budget lines and needs to see a yearly number up front rather than a monthly one."
+   },
+   {
+    "name": "Higher-positioned per-seat tiers targeting Calendly switchers",
+    "billing": "monthly subscription",
+    "positioning": "Raise Teams to $15/user/mo and Organizations to $32/user/mo billed monthly (no annual lock-in required), positioning Cal.com as a premium open-source alternative rather than a discount option; this is a product positioning change that tests whether the developer and compliance story supports a price closer to Calendly.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual users and developers evaluating the platform",
+      "includes": [
+       "1 user",
+       "Unlimited event types",
+       "Unlimited calendars",
+       "Cal Video included",
+       "Basic integrations"
+      ]
+     },
+     {
+      "name": "Teams",
+      "price_usd_month": 15,
+      "who_its_for": "Small teams needing shared availability and round-robin routing",
+      "includes": [
+       "Per user/mo billed monthly",
+       "14-day free trial",
+       "Round-robin scheduling",
+       "Routing forms",
+       "Payment collection"
+      ]
+     },
+     {
+      "name": "Organizations",
+      "price_usd_month": 32,
+      "who_its_for": "Larger orgs needing compliance, SSO, and white-label embeds",
+      "includes": [
+       "Per user/mo billed monthly",
+       "SOC 2, HIPAA, ISO 27001 (Organizations plan)",
+       "SAML SSO and SCIM",
+       "14-day free trial",
+       "Platform API and embeds"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": null,
+      "who_its_for": "Large enterprises needing dedicated infrastructure and SLA",
+      "includes": [
+       "Custom annual pricing",
+       "Dedicated database",
+       "SLA and uptime guarantees",
+       "Dedicated onboarding"
+      ]
+     }
+    ],
+    "market_rate_note": "Teams at $15/user/mo is level with Calendly Teams ($16) and above SavvyCal Basic ($10), while Organizations at $32/user/mo is above all scraped competitor tiers except Acuity Premium ($49/mo flat) and Calendly Enterprise.",
+    "revenue_at": {
+     "10": 235,
+     "50": 1175,
+     "200": 4700
+    },
+    "when_to_pick": "Pick this when you want to test whether the open-source credibility and compliance story can command near-Calendly prices without an annual commitment requirement, and you are willing to accept slightly lower conversion in exchange for higher revenue per customer."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "possible",
+    "why": "Cal.com sells annually billed per-seat plans and its closest rival Calendly also anchors on annual billing, so monthly-only would be an off-model outlier that raises per-seat cost without matching buyer expectations."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "good",
+    "why": "Cal.com already bills Teams at $12/user/mo and Organizations at $28/user/mo on an annual cadence, matching Calendly and Acuity Scheduling, and the compliance-heavy Organizations buyer expects annual contracts."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Scheduling software requires ongoing calendar sync, video infrastructure, and compliance maintenance that cannot be sustained without recurring revenue, and no established competitor in this category uses a one-time model."
+   },
+   {
+    "model": "usage-based",
+    "fit": "possible",
+    "why": "Developer and platform API buyers who embed Cal.com in their own products could relate to per-booking or per-seat-active pricing, but the current product and all scraped competitors price per seat, not per event."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "Cal.com already offers a permanent free tier for individuals, Calendly and HubSpot Meetings do the same, and the freemium funnel is the primary conversion path for the developer and freelancer ICP."
+   }
+  ],
+  "market_rate": "Calendly charges $10/seat/mo (Standard) and $16/seat/mo (Teams) billed annually; SavvyCal charges $10/user/mo (Basic) and $17/user/mo (Premium); Acuity Scheduling charges $16/mo (Starter) to $49/mo (Premium) billed annually for calendar-count tiers rather than per seat. The going rate for a team-level scheduling seat in this category is roughly $10 to $17 per user per month on annual billing, with compliance and enterprise tiers moving to custom pricing. Cal.com at $12/user/mo (Teams) and $28/user/mo (Organizations) sits within that band and above it respectively.",
+  "confidence": {
+   "overall": 0.85,
+   "notes": "3 established competitors (Calendly, Acuity, SavvyCal) confirmed and pricing pages scraped. HubSpot Meetings established by mention count but pricing page not scraped (budget exhausted after 3 scrapes). Doodle is emerging only. Recommendation anchored exclusively on established competitors."
+  },
+  "selected_pricing": {
+   "model": "freemium + per-user subscription",
+   "option": "Current model: free plus paid tiers (annual billing)",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Individual users and developers evaluating the platform",
+     "includes": [
+      "1 user",
+      "Unlimited event types",
+      "Unlimited calendars",
+      "Cal Video included",
+      "Basic integrations"
+     ]
+    },
+    {
+     "name": "Teams",
+     "price_usd_month": 12,
+     "included": true,
+     "who_its_for": "Small teams needing shared availability and round-robin routing",
+     "includes": [
+      "Per user/mo billed yearly",
+      "14-day free trial",
+      "Round-robin scheduling",
+      "Routing forms",
+      "Payment collection"
+     ]
+    },
+    {
+     "name": "Organizations",
+     "price_usd_month": 28,
+     "included": true,
+     "who_its_for": "Larger orgs needing compliance, SSO, and white-label embeds",
+     "includes": [
+      "Per user/mo billed yearly",
+      "SOC 2, HIPAA, ISO 27001 (Organizations plan)",
+      "SAML SSO and SCIM",
+      "14-day free trial",
+      "Platform API and embeds"
+     ]
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": null,
+     "included": true,
+     "who_its_for": "Large enterprises needing dedicated infrastructure and SLA",
+     "includes": [
+      "Custom annual pricing",
+      "Dedicated database",
+      "SLA and uptime guarantees",
+      "Dedicated onboarding"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Calendly",
+    "Acuity Scheduling",
+    "SavvyCal"
+   ],
+   "chosen_at": "2026-09-29T22:18:45.484Z"
+  },
+  "listing": {
+   "title": "Cal.com, Scheduling for Teams & Devs",
+   "tagline": "Open-source scheduling with API, video, and white-label",
+   "description_short": "Booking pages, round-robin routing, built-in video, and payments, free forever for individuals, scalable to enterprise with SOC 2 and HIPAA compliance.",
+   "description_long": "**Cal.com** is fully customizable scheduling software built for individuals, growing teams, and developers who need scheduling embedded in their own products.\n\n**Book without limits.** The free plan gives you unlimited event types and calendar connections, no artificial caps. Add Stripe or PayPal to collect payments at the point of booking.\n\n**Video included.** Cal Video is built in, so you can run meetings without a separate conferencing subscription.\n\n**Built for developers.** A Platform API and embeddable booking widgets let you drop scheduling directly into your product with custom booking links (e.g. cal.com/yourname). The open-source codebase has earned 48,737 GitHub stars and 15,242 forks.\n\n**Team scheduling that scales.** Round-robin routing, shared availability, and routing forms release with the Teams plan. The Organizations plan adds SAML SSO, SCIM, and SOC 2, HIPAA, and ISO 27001 compliance for regulated industries.\n\n**Trusted by builders:** \"I just migrated from [another tool] to Cal.com.\", Kent C. Dodds, Founder of EpicWeb.dev. \"Cal.com has a very good chance of creating a new category around being both great and well designed.\", Guillermo Rauch, CEO of Vercel.\n\nStart free. Upgrade when your team does.",
+   "keywords": [
+    "scheduling software",
+    "booking page builder",
+    "open source scheduling",
+    "white label scheduling",
+    "calendar booking app",
+    "round robin scheduling",
+    "embeddable booking widget",
+    "scheduling API for developers",
+    "team scheduling tool",
+    "HIPAA compliant scheduling",
+    "Calendly alternative",
+    "online appointment booking",
+    "scheduling automation",
+    "developer scheduling platform"
+   ],
+   "screenshot_order": [
+    "1st: Booking page with custom branding, shows the white-label, polished end-user experience that is the core differentiator for developer and SaaS buyers.",
+    "2nd: Team availability and round-robin routing view, demonstrates the Teams feature that drives upgrades from the free tier.",
+    "3rd: Embed / API code snippet alongside a live booking widget, speaks directly to the developer ICP and the platform use case."
+   ],
+   "faq": [
+    {
+     "q": "Is there really a free plan, and what does it include?",
+     "a": "Yes. The Free plan is free forever for one user and includes unlimited event types, unlimited calendar connections, Cal Video, and payment collection via Stripe and PayPal. No trial period, no credit card required."
+    },
+    {
+     "q": "What do I get on the Teams plan?",
+     "a": "The Teams plan is $12 per user per month (billed yearly) and adds shared team availability, round-robin routing, routing forms, and a 14-day free trial. It is designed for groups that need coordinated scheduling."
+    },
+    {
+     "q": "Which plan includes SOC 2, HIPAA, and ISO 27001 compliance?",
+     "a": "Compliance certifications (SOC 2, HIPAA, ISO 27001), SAML SSO, and SCIM are available on the Organizations plan at $28 per user per month (billed yearly). They are not included on Free or Teams plans."
+    },
+    {
+     "q": "Can I self-host Cal.com?",
+     "a": "The open-source cal.diy edition (MIT license) is available for self-hosting on your own infrastructure for personal, non-production use. It does not include Teams, Organizations, Insights, Workflows, SSO/SAML, or other enterprise features. The hosted cal.com product is the recommended path for production and team use."
+    },
+    {
+     "q": "Can I embed scheduling directly into my own product?",
+     "a": "Yes. Cal.com provides a Platform API and embeddable booking widgets so developers can integrate scheduling into their own applications with custom booking links. Enterprise plans include dedicated infrastructure and custom SLA options."
+    }
+   ],
+   "cta": "Start free, no credit card needed",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.82,
+    "notes": "All claims sourced directly from APP_PROFILE (cal.com homepage, cal.com/pricing, GitHub repo metadata). Testimonials quoted word-for-word from profile. Compliance claims scoped to Organizations plan as specified. No competitor names appear in the listing. No numbers invented beyond what the profile provides."
+   },
+   "punctuation_fixed": 1
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "48,737 stars on the open-source repo. Cal.com is scheduling infrastructure: booking pages, round-robin routing, built-in video, and a platform API you can embed in your own product.\n{APP_URL}",
+    "thread_extension": [
+     "The free plan has no artificial caps. Unlimited event types, unlimited calendar connections, Cal Video included. No separate conferencing subscription needed.",
+     "The platform API and embeddable widgets let you drop scheduling directly into your product with custom booking links. SOC 2, HIPAA, and ISO 27001 compliance are on the Organizations plan when you need them.",
+     "Kent C. Dodds migrated from Calendly. Guillermo Rauch called it a new category. We think scheduling should be infrastructure, something you build on, not bolt on.",
+     "If you are building scheduling into your own product and hitting the limits of closed tools, what is the part that broke first for you? The link to the repo is in the first tweet."
+    ],
+    "alt_variants": [
+     "Cal.com v6.9 is out. Booking pages, round-robin routing, built-in Cal Video, and a platform API, free forever for individuals, scalable to enterprise. We're building the infrastructure for time.\n{APP_URL}",
+     "15,242 forks of the open-source codebase. Cal.com gives developers a platform API and embeddable booking widgets so scheduling lives inside your product, not alongside it.\n{APP_URL}"
+    ],
+    "warnings": [
+     "Campaign angle hook 'Scheduling is infrastructure. We built it so you don't have to.' was adapted rather than copied verbatim, per platform rules requiring the fact behind the slogan to open the post.",
+     "Comparison angle (Calendly, SavvyCal, Acuity) was dropped from the main post and thread per the rule against framing against another product; Kent C. Dodds quote references a migration without naming the source tool.",
+     "Thread tweet 3 references Kent C. Dodds and Guillermo Rauch quotes from APP_PROFILE.proof_points; no invented testimonials.",
+     "'We' voice used throughout, consistent with BRAND_DNA and Cal.com team context."
+    ],
+    "app_name": "Cal.com",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Campaign angle hook 'Scheduling is infrastructure. We built it so you don't have to.' was adapted rather than copied verbatim, per platform rules requiring the fact behind the slogan to open the post.",
+    "Comparison angle (Calendly, SavvyCal, Acuity) was dropped from the main post and thread per the rule against framing against another product; Kent C. Dodds quote references a migration without naming the source tool.",
+    "Thread tweet 3 references Kent C. Dodds and Guillermo Rauch quotes from APP_PROFILE.proof_points; no invented testimonials.",
+    "'We' voice used throughout, consistent with BRAND_DNA and Cal.com team context."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1303,
+   "words": 201,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "48,737 developers starred Cal.com on GitHub. Developers treat that the same way they treat an infrastructure dependency.\n\nMost teams treat scheduling as an afterthought. A third-party link, a bolt-on widget, something you figure out after the real product is built. We built Cal.com to sit underneath your product the way auth or payments do.\n\nIt's fully customizable scheduling: booking pages, round-robin routing, built-in video via Cal Video, Stripe and PayPal payments, routing forms, and a Platform API that lets you embed scheduling directly into your own product with your own branding.\n\nThe free plan has no artificial caps. One user, unlimited event types, unlimited calendars. Teams start at $12 per user per month. Organizations add SOC 2, HIPAA, and ISO 27001 compliance.\n\nIf you're building a product where users need to meet other users, scheduling is part of your infrastructure. Treat it that way.\n\nLink in the first comment.\n\n#opensource #devtools #scheduling",
+    "alt_hook": "Cal.com is at v6.9 with 15,242 forks. Here's what that tells you about where scheduling is going.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "The Guillermo Rauch and Kent C. Dodds quotes were not used in the post body because they contain implicit competitor comparisons or would push the post past 200 words. They can be pasted verbatim into the first comment alongside the link.",
+     "quote dropped: 'I just migrated from Calendly to Cal.com.' (Kent C. Dodds), contains a competitor name used in a migration framing; dropped per rules. Use verbatim in first comment if desired.",
+     "quote dropped: 'More elegant than Calendly, more open than SavvyCal' (Flo Merian), contains direct competitor comparisons; dropped per rules.",
+     "Launch week plan (Cal.com): four posts max, no two of the same kind back to back. Suggested sequence: (1) this awareness post on launch day, (2) proof post using the 48,737 stars number with context on what the Platform API enables, (3) teach post showing one concrete thing a developer can do with the embed or routing forms today, (4) opinion post on why scheduling belongs in the infrastructure layer, not the integration layer. Run Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once without an exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice, ignore pitches, never ask for likes or reposts.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+    ],
+    "app_name": "Cal.com",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"That's not a booking tool metric. That's\")"
+    ]
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "The Guillermo Rauch and Kent C. Dodds quotes were not used in the post body because they contain implicit competitor comparisons or would push the post past 200 words. They can be pasted verbatim into the first comment alongside the link.",
+    "quote dropped: 'I just migrated from Calendly to Cal.com.' (Kent C. Dodds), contains a competitor name used in a migration framing; dropped per rules. Use verbatim in first comment if desired.",
+    "quote dropped: 'More elegant than Calendly, more open than SavvyCal' (Flo Merian), contains direct competitor comparisons; dropped per rules.",
+    "Launch week plan (Cal.com): four posts max, no two of the same kind back to back. Suggested sequence: (1) this awareness post on launch day, (2) proof post using the 48,737 stars number with context on what the Platform API enables, (3) teach post showing one concrete thing a developer can do with the embed or routing forms today, (4) opinion post on why scheduling belongs in the infrastructure layer, not the integration layer. Run Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort comments into lead, substance, peer, support, noise and answer in that order. Answer fully in public, use the commenter's name once without an exclamation mark, match their length. To a critic, concede the true part first in their words, then hold the line. Never delete, never reply twice, ignore pitches, never ask for likes or reposts.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on."
+   ],
+   "blockers": [],
+   "repaired": [
+    "post: The \"it's not X, it's Y\" contrast in any form (not because / because, isn't a / it's the, not just / they're, a \"Not X. Y.\" fragment pair, not only / but also) (\"That's not a booking tool metric. That's\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1301,
+   "words": 213,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "title": "I work on cal.diy, a self-hosted MIT-licensed scheduling platform with 48,737 GitHub stars",
+    "body": "Running your own scheduling without depending on a closed SaaS is harder than it should be. Most tools assume you want a hosted booking page, not something you can embed in your own product or run on your own infrastructure.\n\nCalendly is a hosted scheduling service. I work on Cal.com, and cal.diy is the MIT-licensed, self-hosted edition of the codebase. It lets you create booking pages, connect calendars, collect payments via Stripe or PayPal, and run Cal Video for conferencing without a separate dependency. A Platform API and embeddable widgets let you drop scheduling directly into your own product with custom booking links. The stack is Next.js, TypeScript, tRPC, Prisma, and PostgreSQL, so it's readable and forkable.\n\nThe part worth knowing before you spin it up: cal.diy removes Teams, Organizations, Insights, Workflows, and SSO/SAML. The README is explicit that it's for personal, non-production use only. If you need round-robin routing, SAML SSO, or SOC 2 compliance, those live in the hosted product, not this edition.\n\nIf you've self-hosted a scheduling tool before, what was the first thing that broke under real load or a multi-user setup?\n\n{APP_URL}",
+    "suggested_flair": "New Project Megathread",
+    "warnings": [
+     "TARGET is r/selfhosted. Platform rules state that projects under 3 months old must go in the current New Project Megathread. Cal.com is a long-established product, but verify the sub's current rules at https://old.reddit.com/r/selfhosted/about/rules before posting to the main feed.",
+     "Mention level 2 used: cal.diy named in the builder-disclosure sentence and once more in the limitation paragraph (two total, under the three-mention block); {APP_URL} appears once in the final paragraph.",
+     "The title is 15 words and 82 characters, within the 6-16 word and 100-character limits.",
+     "Builder disclosure uses 'I work on' because Cal.com is a company product older than a year. If this post goes out from a personal account with no visible affiliation history, add an explicit affiliation line such as 'I work at Cal.com' to satisfy r/selfhosted's self-promotion transparency norms and the 10% rule.",
+     "Calendly is named once as a neutral fact (a hosted scheduling service); no negative language is attached to its name and no statement is made about what it lacks.",
+     "The limitation (cal.diy removes Teams, Organizations, Insights, Workflows, SSO/SAML and is for personal non-production use only) comes directly from APP_PROFILE.gaps and the README source.",
+     "r/selfhosted rules could not be verified from a rules URL (rules_summary: 'not verified'). Read https://old.reddit.com/r/selfhosted/about/rules before posting and confirm the flair name matches the current megathread.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+    ],
+    "venue": "r/selfhosted",
+    "app_name": "Cal.com",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Calendly is a hosted booking tool; it has no self-host option and no open codebase to read\")"
+    ]
+   },
+   "warnings": [
+    "TARGET is r/selfhosted. Platform rules state that projects under 3 months old must go in the current New Project Megathread. Cal.com is a long-established product, but verify the sub's current rules at https://old.reddit.com/r/selfhosted/about/rules before posting to the main feed.",
+    "Mention level 2 used: cal.diy named in the builder-disclosure sentence and once more in the limitation paragraph (two total, under the three-mention block); {APP_URL} appears once in the final paragraph.",
+    "The title is 15 words and 82 characters, within the 6-16 word and 100-character limits.",
+    "Builder disclosure uses 'I work on' because Cal.com is a company product older than a year. If this post goes out from a personal account with no visible affiliation history, add an explicit affiliation line such as 'I work at Cal.com' to satisfy r/selfhosted's self-promotion transparency norms and the 10% rule.",
+    "Calendly is named once as a neutral fact (a hosted scheduling service); no negative language is attached to its name and no statement is made about what it lacks.",
+    "The limitation (cal.diy removes Teams, Organizations, Insights, Workflows, SSO/SAML and is for personal non-production use only) comes directly from APP_PROFILE.gaps and the README source.",
+    "r/selfhosted rules could not be verified from a rules URL (rules_summary: 'not verified'). Read https://old.reddit.com/r/selfhosted/about/rules before posting and confirm the flair name matches the current megathread.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Calendly is a hosted booking tool; it has no self-host option and no open codebase to read\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1511,
+   "words": 241,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "draft",
+   "data": {
+    "name": "Cal.com",
+    "tagline": "Open-source scheduling infrastructure for teams and devs",
+    "description": "Booking pages, round-robin routing, and built-in video conferencing are all closed off or expensive to embed in most scheduling tools.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Cal.com.\n\nMost scheduling tools are fine until you need to put scheduling inside your own product. At that point you hit a wall: closed APIs, forced third-party branding on your booking pages, and per-seat pricing that compounds fast as your team grows. We built Cal.com to be the scheduling layer you build on, not a tool you bolt alongside your product.\n\nWhat makes our approach concrete: the open-source codebase (cal.diy, MIT licensed) has 48,737 GitHub stars and 15,242 forks, so you can read exactly what runs under the hood.\n\nOne honest limitation: the open-source cal.diy edition is recommended for personal, non-production use only. It removes Teams, Organizations, Insights, Workflows, and SSO features. Production workloads belong on the hosted product.\n\nTwo things I want to know: what would you need to see before you embedded a third-party scheduling widget in a customer-facing product? And if you have tried routing forms for lead qualification, where did the setup break down?\n\nI will be in the comments all day.",
+    "topics": [
+     "Developer Tools",
+     "Open Source",
+     "Productivity",
+     "SaaS"
+    ],
+    "warnings": [
+     "Over the length cap after two rewrites, so the draft check dropped description: the closing sentence (90 characters) and description: the closing sentence (151 characters) and first_comment: a paragraph of 80 words from the middle. Read what is left and put back what you need in your own words.",
+     "APP_PROFILE does not name the builder; the first comment uses [Builder first name] and [role] placeholders that must be filled in before launch.",
+     "The description is at the 260-character limit; verify the final character count after any edits.",
+     "The open-source cal.diy limitation is drawn directly from APP_PROFILE.gaps; confirm this is still accurate before launch.",
+     "No offer is included because APP_PROFILE records no Product Hunt-specific discount or promo code; add one only if a real offer exists.",
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (377 characters, cap 260)",
+     "first_comment: Maker comment over 250 words (253 words, cap 250)",
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ],
+    "app_name": "Cal.com",
+    "blockers": [
+     "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+    ],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (377 characters, cap 260)",
+     "first_comment: Maker comment over 250 words (253 words, cap 250)",
+     "description: the closing sentence (90 characters)",
+     "description: the closing sentence (151 characters)",
+     "first_comment: a paragraph of 80 words"
+    ]
+   },
+   "warnings": [
+    "Over the length cap after two rewrites, so the draft check dropped description: the closing sentence (90 characters) and description: the closing sentence (151 characters) and first_comment: a paragraph of 80 words from the middle. Read what is left and put back what you need in your own words.",
+    "APP_PROFILE does not name the builder; the first comment uses [Builder first name] and [role] placeholders that must be filled in before launch.",
+    "The description is at the 260-character limit; verify the final character count after any edits.",
+    "The open-source cal.diy limitation is drawn directly from APP_PROFILE.gaps; confirm this is still accurate before launch.",
+    "No offer is included because APP_PROFILE records no Product Hunt-specific discount or promo code; add one only if a real offer exists.",
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (377 characters, cap 260)",
+    "first_comment: Maker comment over 250 words (253 words, cap 250)",
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
+   "blockers": [
+    "topics: More than 3 topics; Product Hunt's form accepts up to 3 launch tags (4, cap 3)"
+   ],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (377 characters, cap 260)",
+    "first_comment: Maker comment over 250 words (253 words, cap 250)",
+    "description: the closing sentence (90 characters)",
+    "description: the closing sentence (151 characters)",
+    "first_comment: a paragraph of 80 words"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1743,
+   "words": 271,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Cal.com, open-source scheduling infrastructure for developers",
+    "body": "Hi HN, Cal.com is a scheduling platform that takes a calendar connection and a set of event rules as input and produces embeddable booking pages, routing forms, and meeting workflows as output.\n\n{APP_URL}\n\nCreating a booking page requires a free signup; no account is needed to browse.\n\nMost scheduling tools are closed systems: hard to embed, hard to brand, and expensive to extend once a team grows beyond one person. Cal.com treats scheduling as infrastructure instead.\n\nThe stack is Next.js and TypeScript, with tRPC for the API layer, Prisma over PostgreSQL for persistence, and Daily.co for built-in video. The open-source edition (cal.diy, MIT license) is the self-hosted community build. Cal.diy is intended for personal, non-production use and does not include Teams, Organizations, SSO, SAML, or Insights; there is no managed version, so you run it on your own infrastructure.\n\nThe choice I want a second opinion on is the tRPC layer: it keeps client and server types in sync without a separate schema step, but contributors outside the TypeScript ecosystem hit a steeper ramp. Worth the tradeoff? I am one of the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "Cal.com is a launched product at v6.9 with an active GitHub history. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for earlier Cal.com or cal.diy threads before posting and, if one exists, link it in the body and note what changed since.",
+     "The body states that creating a booking page requires a free signup. Verify whether {APP_URL} allows any meaningful interaction before account creation; if not, say so more plainly in the body.",
+     "No prior HN thread URL appears in APP_PROFILE. If one exists, the body must reference it per HN rules for repeat submissions.",
+     "The how-it-works paragraph names the stack components but cannot describe a specific data flow because APP_PROFILE does not record that detail. Builder should add one concrete data-path sentence before submitting."
+    ],
+    "app_name": "Cal.com",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: Body over 200 words (232 words, cap 200)",
+     "body: {APP_URL} inside a sentence; put it on its own line (\"at {APP_URL}\")",
+     "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"we kept running into\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "Cal.com is a launched product at v6.9 with an active GitHub history. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search news.ycombinator.com for earlier Cal.com or cal.diy threads before posting and, if one exists, link it in the body and note what changed since.",
+    "The body states that creating a booking page requires a free signup. Verify whether {APP_URL} allows any meaningful interaction before account creation; if not, say so more plainly in the body.",
+    "No prior HN thread URL appears in APP_PROFILE. If one exists, the body must reference it per HN rules for repeat submissions.",
+    "The how-it-works paragraph names the stack components but cannot describe a specific data flow because APP_PROFILE does not record that detail. Builder should add one concrete data-path sentence before submitting."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: Body over 200 words (232 words, cap 200)",
+    "body: {APP_URL} inside a sentence; put it on its own line (\"at {APP_URL}\")",
+    "body: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"we kept running into\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1489,
+   "words": 241,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For developers and SaaS teams: scheduling as infrastructure",
+    "pitch": "Hi [Editor first name],\n\nDeveloper-led teams building SaaS products often treat scheduling as an afterthought, bolting on a third-party booking tool that they cannot customize, cannot embed cleanly, and cannot remove branding from without paying for a higher tier. When the team grows and needs round-robin routing or white-label booking inside their own product, the options get expensive fast.\n\nCal.com is fully customizable scheduling software for individuals, teams, and developers building scheduling platforms.\n\nThe open-source codebase has 48,737 stars on GitHub, and the hosted product runs from a free tier with unlimited event types up to an Organizations plan with SOC 2, HIPAA, and ISO 27001 compliance, a Platform API, and embeddable booking widgets.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "Recipient name is unknown: the greeting uses the placeholder [Editor first name]; fill this in before sending.",
+     "Builder first name is not named in APP_PROFILE or BRAND_DNA: the sign-off uses the placeholder [Builder first name]; fill this in before sending.",
+     "No TARGET was provided, so the subject line uses APP_PROFILE.target_user rather than a named newsletter or author.",
+     "The proof point used is '48,737 GitHub stars on GitHub' from APP_PROFILE.proof_points (repo metadata). This figure is from the repo metadata as of the profile; verify it is still current before sending.",
+     "No TARGET.rules_summary was provided, so newsletter submission rules have not been verified. Check whether this newsletter accepts unsolicited pitches or requires a submission form.",
+     "pitch: Six or more paragraph breaks (\"Developer-led teams building SaaS products often treat sched\")"
+    ],
+    "app_name": "Cal.com",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Recipient name is unknown: the greeting uses the placeholder [Editor first name]; fill this in before sending.",
+    "Builder first name is not named in APP_PROFILE or BRAND_DNA: the sign-off uses the placeholder [Builder first name]; fill this in before sending.",
+    "No TARGET was provided, so the subject line uses APP_PROFILE.target_user rather than a named newsletter or author.",
+    "The proof point used is '48,737 GitHub stars on GitHub' from APP_PROFILE.proof_points (repo metadata). This figure is from the repo metadata as of the profile; verify it is still current before sending.",
+    "No TARGET.rules_summary was provided, so newsletter submission rules have not been verified. Check whether this newsletter accepts unsolicited pitches or requires a submission form.",
+    "pitch: Six or more paragraph breaks (\"Developer-led teams building SaaS products often treat sched\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 936,
+   "words": 138,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a developer's dual-monitor workstation with a terminal and a calendar grid glowing side by side",
+    "a booking-link preview open in a browser tab",
+    "a round-robin routing diagram sketched on a whiteboard",
+    "a GitHub pull-request queue dense with open issues",
+    "a team availability grid spanning multiple time zones",
+    "a self-hosted server rack humming in a corner of the office",
+    "a Stripe payment confirmation on a secondary screen",
+    "sticky notes mapping event types and routing rules across a glass wall",
+    "a laptop lid covered in open-source project stickers",
+    "a standing desk with a mechanical keyboard and a half-drunk coffee",
+    "a Slack thread of scheduling-conflict messages piling up on a phone screen",
+    "a whiteboard calendar grid marked with team meeting blocks and routing arrows"
+   ],
+   "subject": "A mid-thirties developer with short natural hair, a faded grey hoodie and round wire-frame glasses, working alone and then with colleagues at a standing-desk workstation in a developer team's open office built around scheduling infrastructure.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A developer team's open workspace at eleven at night: four standing desks pushed together under cold overhead fluorescents, each monitor showing a different terminal or calendar grid, a whiteboard along the back wall dense with routing diagrams and sticky notes mapping event types, a self-hosted server rack blinking in the far corner, laptops covered in stickers, phones face-up with notification banners stacking, coffee cups at every station, seen wide from the back of the room so the whole cluttered infrastructure of the scheduling problem fills the frame before anyone is the subject.",
+     "url": "http://localhost:3500/files/f25ad8862d0e/images-1f59f9c60d38/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 2 best matches the brief most clearly (whiteboard and infrastructure are more visible and composition is cleaner), despite legible text on screens.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2034
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Strong developer signals (server rack, sticky-filled whiteboard, multiple terminals) and correct wide-from-back framing, but some compositional clutter and legible screen text lower fidelity and quality."
+      },
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Very clear developer workspace with the whiteboard, server rack, stickers and monitors all readable in place from the back of the room and a cleaner top third, though screens contain legible text which reduces quality."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties developer with short natural hair, a faded grey hoodie and round wire-frame glasses, alone at the central standing desk at eleven at night, hunched forward over a mechanical keyboard, one hand scrolling a terminal window dense with routing-logic errors while the other holds a pen tracing a tangled round-robin diagram on a printed sheet beside the laptop, a phone screen beside the keyboard showing a Slack thread of scheduling-conflict messages stacking up, the whiteboard of sticky notes and arrows visible and half-lit behind her, not looking at the camera.",
+     "url": "http://localhost:3500/files/f25ad8862d0e/images-1f59f9c60d38/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for a tighter composition and a darker, quieter top third that better suits a headline while still matching the brief closely.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2036
+     },
+     "takes": [
+      {
+       "score": 8,
+       "chosen": true,
+       "why": "Tight, well-lit developer setup with code, diagrams, keyboard and phone makes the software-engineering world clear and matches the brief closely, with a suitably quiet top third but some legible on-screen text costing quality points."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Very clear developer context and all props are present with strong storytelling, but the top third is busier with window/whiteboard detail and readable text on screens reduces quality."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same developer the next morning at the same standing desk: short natural hair, faded grey hoodie, round wire-frame glasses, now standing upright with both hands relaxed on the keyboard, the terminal window behind her showing a clean green build, the routing diagram on the whiteboard behind her redrawn neatly with a single clear path circled, the sticky notes squared and colour-sorted on the glass wall, the phone face-down and silent, a fresh coffee steaming beside the sticker-covered laptop, morning light coming through the window and warming the server rack still blinking steadily in the corner.",
+     "url": "http://localhost:3500/files/f25ad8862d0e/images-1f59f9c60d38/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for having the most faithful, immediately readable developer environment with a cleaner top third and clearer fulfillment of the brief's specific props and mood.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2168
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear, immediate developer workspace: all props and actions from the brief are present (steaming coffee, circled diagram, green build, phone face-down) and the top third is quiet."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Very close to the brief with the right subject, props and server rack, but the top third is busier/brighter and the composition feels slightly less aligned to the brief's moment."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same developer and two colleagues gathered in the right two thirds of the frame around one monitor showing a calm team availability grid and a booking-link preview, the whiteboard of clean routing arrows and the self-hosted server rack visible behind them in the left depth of the room, the left third of the frame open to a plain wall washed in soft morning light, all three relaxed and mid-conversation, the standing desks and sticker-covered laptops and a whiteboard calendar grid framing the scene, wide landscape shot.",
+     "url": "http://localhost:3500/files/f25ad8862d0e/images-1f59f9c60d38/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief: monitor content, subject placement in the right two thirds, background props and the quiet left third are all correctly framed.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2243
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear developer workspace: three people clustered right of frame around a monitor showing a calendar-like grid, visible server rack and routing whiteboard left, and a plain lit left third for copy."
+      },
+      {
+       "score": 7,
+       "chosen": false,
+       "why": "Technically a developer space with the rack and whiteboards, but the main monitor shows a terminal/metrics view rather than the requested availability grid and the subjects sit more central."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "MONDAY. BACK-TO-BACK.",
+    "load_n1": "MANY",
+    "load_l1": "MEETINGS",
+    "load_n2": "ONE",
+    "load_l2": "PERSON BOOKING",
+    "load_n3": "NOW",
+    "load_l3": "NO SYSTEM",
+    "pile_line": "EVERY BOOKING. BY HAND.",
+    "pile_label": "BOOKING",
+    "pile_sub": "TIME · LINK · CALENDAR",
+    "doubt_1": "WHO BOOKED WHAT?",
+    "doubt_2": "IS THERE A CONFLICT?",
+    "cost_line": "DOUBLE-BOOKED. AGAIN.",
+    "app_name": "CAL.COM",
+    "drop_line": "SCHEDULING.",
+    "step1_label": "CONNECT YOUR CALENDAR.",
+    "step1_field": "CALENDAR · AVAILABILITY · EVENT",
+    "step1_button": "GET GOING",
+    "step2_label": "SET YOUR AVAILABILITY.",
+    "chip_1": "CONFIRMED",
+    "chip_2": "ROUTED",
+    "chip_3": "PENDING",
+    "chip_4": "BLOCKED",
+    "step3_label": "THE CONFLICT, HANDLED.",
+    "step3_marker": "AVAILABILITY CHECK",
+    "step3_chip": "BOOKED",
+    "product_line": "ONE BOOKING LINK. ANY TEAM.",
+    "payoff_n": "ONE",
+    "payoff_unit": "BOOKING LINK",
+    "payoff_line": "NO CONFLICTS. NO CHASING.",
+    "payoff_timer": "",
+    "breathe_line": "SCHEDULING HANDLED.",
+    "arrive_line": "BUILD ON IT.",
+    "arrive_chip": "CAL.COM",
+    "lock_top": "FOR TEAMS AND DEVELOPERS",
+    "lock_title": "CAL.COM",
+    "lock_tag": "THE BETTER WAY TO SCHEDULE YOUR MEETINGS",
+    "lock_host": "CAL.COM"
+   },
+   "clamped": [
+    "drop_line"
+   ],
+   "repaired": [
+    "step1_field",
+    "step1_button",
+    "payoff_unit"
+   ],
+   "tagline": "The better way to schedule your meetings",
+   "claims_used": [
+    "SCHEDULING INFRASTRUCTURE: BRAND_DNA.messaging.key_messages 'We're building the infrastructure for time' and CAMPAIGN_ANGLE big_idea",
+    "CONNECT YOUR CALENDAR: SITE_COPY h3 'Connect your calendar'",
+    "SET YOUR AVAILABILITY: SITE_COPY h3 'Set your availability'",
+    "NO CONFLICTS / double bookings: SITE_COPY p 'We'll handle all the cross-referencing, so you don't have to worry about double bookings.'",
+    "ONE BOOKING LINK: APP_PROFILE.differentiators 'custom booking links (e.g. cal.com/username)'",
+    "GET STARTED: SITE_COPY a 'Get started'",
+    "TAGLINE: BRAND_DNA.tagline_observed 'The better way to schedule your meetings'",
+    "ONE_LINER: APP_PROFILE.one_liner verbatim",
+    "lock_top FOR TEAMS AND DEVELOPERS: APP_PROFILE.target_user 'Freelancers, SaaS teams, and developers'",
+    "CAMPAIGN_ANGLE hook 'Scheduling is infrastructure. We built it so you don't have to.' grounds BUILD ON IT CTA and drop_line"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, calm, confident",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Back-to-back meetings, one person, no system, every booking done by hand.",
+     "seconds": 4.75,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "drop",
+     "text": "Cal.com.",
+     "seconds": 0.95,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Connect your calendar. It confirms, routes, and blocks. Conflicts caught.",
+     "seconds": 3.71,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "proof",
+     "text": "One booking link. Your whole team, no conflicts.",
+     "seconds": 2.8,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Build on it. Start with Cal.com.",
+     "seconds": 2.01,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/f25ad8862d0e/reel-af9447deecae/reel.mp4",
+   "poster_url": "http://localhost:3500/files/f25ad8862d0e/reel-af9447deecae/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "draft"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "Show HN (Hacker News)",
+   "kind": "launch_platform",
+   "why_fit": "Cal.com has a public repo (48k stars), Next.js/TypeScript stack, and developer-led ICP, textbook Show HN fit for v6.9 or Platform API launch.",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "Cal.diy MIT edition is explicitly self-hosted; ICP includes devs who reject SaaS lock-in, exact audience for self-host scheduling.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "r/webdev",
+   "kind": "subreddit",
+   "why_fit": "Next.js/TypeScript stack and embeddable booking widget directly targets web developers building SaaS products.",
+   "url": "https://www.reddit.com/r/webdev/"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/opensource",
+   "kind": "subreddit",
+   "why_fit": "Cal.diy is MIT-licensed open-source; 48k GitHub stars signals community credibility for this audience.",
+   "url": "https://www.reddit.com/r/opensource/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "r/startups",
+   "kind": "subreddit",
+   "why_fit": "ICP is explicitly growth-stage SaaS companies; buying trigger is team growth beyond one person needing round-robin routing.",
+   "url": "https://www.reddit.com/r/startups/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "Dev.to",
+   "kind": "community",
+   "why_fit": "Developer-led ICP; a technical post on embedding Cal.com via Platform API in a Next.js app reaches the exact builder audience.",
+   "url": "https://dev.to"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "r/SideProject",
+   "kind": "subreddit",
+   "why_fit": "Indie developers building scheduling into side projects are a secondary ICP segment; promo-tolerant subreddit for showcasing.",
+   "url": "https://www.reddit.com/r/SideProject/"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "r/EntrepreneurRideAlong",
+   "kind": "subreddit",
+   "why_fit": "Bootstrapped founders scaling past solo use match the buying trigger: team growth needing shared availability and round-robin.",
+   "url": "https://www.reddit.com/r/EntrepreneurRideAlong/"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "Indie Hackers",
+   "kind": "community",
+   "why_fit": "Established product; a post on open-source scheduling revenue model or v6.9 milestone fits IH's product-story format.",
+   "url": "https://www.indiehackers.com"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Established product with prior launches; repeat accepted only for a major new version such as Platform API GA or v7.0.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "Calendly is the stated current alternative in ICP; users searching 'Calendly alternative' land here, evergreen SEO capture.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "Tech stack (Next.js, TypeScript, tRPC, Prisma, PostgreSQL) is exactly what StackShare indexes; developer-led ICP browses it.",
+   "url": "https://stackshare.io"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Growth-stage SaaS ICP researches tools on SaaSHub; Calendly is listed there, making Cal.com a natural alternative entry.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "G2",
+   "kind": "directory",
+   "why_fit": "Enterprise tiers with SOC 2, HIPAA, ISO 27001 compliance match B2B buyers who rely on G2 reviews for procurement decisions.",
+   "url": "https://www.g2.com"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 5,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-29T22:11:51.214Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 5,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-29T22:11:51.214Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-29T22:11:51.214Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 5,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-29T22:11:51.214Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 5,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-29T22:11:51.214Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-29T22:11:51.214Z"
+  }
+ ]
+}

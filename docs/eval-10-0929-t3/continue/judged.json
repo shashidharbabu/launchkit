@@ -1,0 +1,218 @@
+{
+  "slug": "continue",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 3, "assets": 2, "targets": 3, "signals": 4, "plan": 2},
+  "post_scores": {"x_post": 3, "linkedin_post": 3, "reddit_post": 2, "producthunt": 2, "show_hn": 3, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "commercial",
+      "severity": "blocker",
+      "summary": "The approved listing tells readers Continue never had paid plans, but it sold a Team tier until the acquisition and the live site still carries a subscription FAQ.",
+      "evidence": "listing.faq: \"Continue was always free and open-source. There were no paid plans, and that remains true\"; live continue.dev FAQ heading: \"What about my subscription?\"; archived continue.dev/pricing (web.archive.org 20260130183246): \"Team For teams that need centralized management $20/seat/month Includes $10 monthly credits per seat\"",
+      "systemic": true,
+      "cause_hint": "profile understand pipe turns the /pricing 404 into pricing_current \"no paid plans\"; listing and pricing prompts repeat it as fact"
+    },
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The profile states Continue had no paid plans even though its only pricing evidence was a 404, and it leaves out the site's own subscription FAQ, which contradicts that.",
+      "evidence": "profile.pricing_current: \"none found, open-source, Apache 2.0 license, no paid plans\"; profile.unverified: \"https://continue.dev/pricing returned 404, pricing details unconfirmable from site\"; the FAQ list in unverified names only 'Is the open source still available?' and 'What happened to my data?', not the site's 'What about my subscription?'",
+      "systemic": true,
+      "cause_hint": "profile prompt lets a read failure become a negative fact; the Firecrawl markdown truncated the FAQ list"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The profile describes Continue only as an IDE extension and CLI, and misses its later commercial product (cloud and background agents, AI PR checks), which the site and blog still show.",
+      "evidence": "continue.dev meta keywords: \"AI agents,background agents,continuous AI,GitHub automation,... cloud agents,... AI PR checks,AI code review\"; profile.description: \"Continue was an open-source coding agent available as a VS Code extension, JetBrains plugin, and CLI\"",
+      "systemic": false,
+      "cause_hint": "the site is now a single notice page, so the product history has to come from the blog or an archived page"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen 'no monetization' option is labelled 'free plus paid tiers', a billing model the same result rates as a poor fit, and the contradiction reaches the plan's decisions.",
+      "evidence": "pricing.options[0]: \"name\": \"No Monetization (Sunset State)\", \"billing\": \"free plus paid tiers\"; models_considered: \"free plus paid tiers\" \"fit\": \"poor\"; plan decisions: \"No Monetization (Sunset State), free plus paid tiers: Open Source $0/mo\"",
+      "systemic": true,
+      "cause_hint": "pricing schema forces a billing enum with no 'none' value; plan renders it verbatim"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "Competitor prices come from the model's memory, not from pages it read, yet each carries a source URL. Some are out of date: Codeium is listed under its old name and plan, and Cursor's Hobby limits are old.",
+      "evidence": "pricing.confidence.notes: \"Competitor pricing tiers not scraped (budget preserved; irrelevant for sunset). Tiers shown are from public knowledge\"; Cursor Hobby key_limits: \"2000 completions, 50 slow premium requests\"; Codeium \"source_url\": \"https://codeium.com/pricing\"",
+      "systemic": true,
+      "cause_hint": "pricing pipe skips the scrape for sunset apps but still writes tiers and source_url"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The hypothetical one-time licence is stored as a monthly price, so its revenue figures are one-off totals shown alongside monthly figures. It also invents entitlements.",
+      "evidence": "\"name\": \"Perpetual License\", \"price_usd_month\": 49 ... \"revenue_at\": {\"10\": 490, \"50\": 2450, \"200\": 9800}; includes \"One year of patch updates\"",
+      "systemic": true,
+      "cause_hint": "pricing tier schema has only price_usd_month; revenue maths assumes monthly"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "Listing keywords use 'alternative' framing against a named competitor, and the screenshot order asks for screenshots the profile says do not exist.",
+      "evidence": "listing.keywords: \"open source copilot alternative\"; screenshot_order: \"1st: The VS Code extension in action showing inline AI code suggestions\"; profile.site_gaps: \"No product screenshots on the live site\"",
+      "systemic": true,
+      "cause_hint": "listing prompt"
+    },
+    {
+      "stage": "brand",
+      "severity": "high",
+      "summary": "The LinkedIn angle's hook reads the star count as the number of people who built Continue.",
+      "evidence": "brand_campaigns 'What We Built Together' hook: \"We built Continue with 36,068 developers. Now the code belongs to all of them.\"; profile.proof_points: \"36,068 GitHub stars on continuedev/continue\"",
+      "systemic": true,
+      "cause_hint": "campaigns prompt lacks the social rule that a star count is a count and nothing more"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "Four of the six angles are the same retrospective with a different channel, and one promises content that no source supports.",
+      "evidence": "'Honest Sunset' big_idea: \"tells the Continue story: acquired by Cursor, repo read-only\"; 'The Handoff Letter' body: \"what we got wrong about AI code quality\"; 'What We Built Together' and 'Closing Retrospective' repeat the acquisition-plus-codebase message",
+      "systemic": true,
+      "cause_hint": "campaigns prompt for sunset apps has one story to tell and splits it by channel"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt tagline and first comment present Continue as a live product. The description does not mention the sunset until its third sentence, and the first comment only mentions it in passing mid-paragraph, which breaks the global sunset rule.",
+      "evidence": "producthunt.tagline: \"Open-source AI coding agent for VS Code and JetBrains\"; description sentence 3: \"Continue was acquired by Cursor in 2026; the repository is read-only.\"; GLOBAL rule: \"When APP_PROFILE.maturity.stage is \\\"sunset\\\" ... say so plainly in the first two sentences\"",
+      "systemic": true,
+      "cause_hint": "draft gate does not check sunset placement; producthunt platform rules have no sunset clause"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The Product Hunt first comment makes capability claims the profile does not hold, and says 'not open-core' about a company that sold a closed hosted Team tier.",
+      "evidence": "producthunt.first_comment: \"You could point it at any model, keep your code local, and read every line of the agent doing the work.\" ... \"Not open-core, not source-available. Apache 2.0, forkable, no strings.\"",
+      "systemic": true,
+      "cause_hint": "producthunt prompt; mechanism claims are not traced to the profile"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The newest Reddit draft (r/vscode) opens with a false claim about the market and does not mention the sunset until sentence five.",
+      "evidence": "reddit_post v2 body: \"Most AI coding tools are closed source, so inspecting or modifying the underlying code isn't possible.\" ... \"In 2026, the project was acquired by Cursor.\"",
+      "systemic": true,
+      "cause_hint": "repair of the competitor clause replaced a named comparison with an unsupported generalisation; no sunset-position check"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The r/vscode draft never names the project or links it, so readers cannot find the codebase it invites them to fork.",
+      "evidence": "reddit_post v2 warnings: \"Mention level 1 used: the product is unnamed in the body and no {APP_URL} appears.\"; body: \"We built an open-source coding agent as a VS Code extension...\"",
+      "systemic": true,
+      "cause_hint": "Reddit mention ladder applied to an unverified sub defaults to level 1 even for a non-commercial sunset notice"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch reads the star count as a measure of demand, and claims open options were scarce without evidence.",
+      "evidence": "newsletter_pitch: \"The project reached 36,068 stars on GitHub before the repo went read-only, which gives a sense of how many developers were looking for exactly this kind of tool.\"; \"have had few open-source options to build on\"",
+      "systemic": true,
+      "cause_hint": "the count-is-only-a-count rule is not enforced in the newsletter gate"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "An antithesis line that is Launch Kit's own profile wording, not Continue's, appears in both the X thread and the LinkedIn post, and a repair left the X opener clumsy.",
+      "evidence": "x_post thread: \"It was a closing milestone, not a growth release.\"; linkedin_post: \"That final release was a closing milestone, not a growth release.\"; x_post: \"36,068 stars, and the Apache 2.0 codebase is yours to build on.\"",
+      "systemic": true,
+      "cause_hint": "profile maturity.signals wording leaks into drafts; X repair of the two-number rule"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Show HN repair log claims the paragraph count was fixed, but the body still has five paragraphs, and the gate's cap of 4 contradicts the rulebook's '3 to 5'. The why-built placeholder is also missing.",
+      "evidence": "show_hn.repaired: \"body: More than five paragraphs (5, cap 4)\"; stored body has 5 blank-line-separated paragraphs; rulebook: \"3 to 5 paragraphs separated by blank lines\"",
+      "systemic": true,
+      "cause_hint": "draft gate paragraph cap vs rulebooks.ts show_hn body rule"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The gate warns that a traction number is not in the proof points when it is.",
+      "evidence": "reddit_post warnings: \"body: A traction number ... that must appear in the profile proof points (\\\"36,068 stars\\\")\"; profile.proof_points: \"36,068 GitHub stars on continuedev/continue\"",
+      "systemic": true,
+      "cause_hint": "traction-number check matches 'stars' without comparing against proof_points"
+    },
+    {
+      "stage": "assets",
+      "severity": "high",
+      "summary": "The approved reel invents a product flow (paste a repo into a field and press a fork button) and opens with 'Meet Continue' for a product that has shut down, both template beats rather than facts.",
+      "evidence": "script slots: \"step1_label\": \"PASTE THE CODEBASE.\", \"step1_field\": \"GITHUB: CONTINUEDEV/CONTINUE\", \"step1_button\": \"FORK\"; voice 'how': \"Paste the repo. We read what we built together.\"; voice 'drop': \"Meet Continue.\"; reel status \"approved\"",
+      "systemic": true,
+      "cause_hint": "verdict concept template requires an input-field beat and a 'meet' drop; reel approval gate does not check beats against the profile"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The black site logo is placed on a near-black reel canvas, where it is barely visible, and the purple brand colour comes from a hidden CSS border variable on what is a black-and-white site.",
+      "evidence": "logo source: \"https://continue.dev/continue-logo-black.svg\"; reel vars: \"canvas\": \"#060409\"; palette primary: \"#a88cd9\", \"source\": \"css variable --brand-border\"; brand_dna.visual.colors: only \"#ffffff\" and \"#000000\"",
+      "systemic": true,
+      "cause_hint": "studio-forge probe palette picks a CSS variable over the visible colours; no logo contrast check against the canvas"
+    },
+    {
+      "stage": "assets",
+      "severity": "low",
+      "summary": "The problem beat's voice line and captions make no sense, and they undercut the message of the handoff.",
+      "evidence": "voice 'problem': \"Late night. A pile of forks to build, one codebase, and it just went read-only.\"; slots: \"doubt_2\": \"IS THE WORK LOST?\", \"cost_line\": \"THE FOUNDATION SITS IDLE.\"",
+      "systemic": true,
+      "cause_hint": "verdict concept problem/load/doubt beats forced onto a sunset app"
+    },
+    {
+      "stage": "targets",
+      "severity": "high",
+      "summary": "The top-ranked, selected venue is the read-only repo itself, where users cannot open issues and discussions are switched off, yet the sequencing advice says to post there first.",
+      "evidence": "target rank 1: \"submission_url\": \"https://github.com/continuedev/continue/issues/new\"; sequencing_advice: \"Post a pinned GitHub issue or discussion on continuedev/continue first\"; README: \"read-only for all users\"; GitHub API: has_discussions false",
+      "systemic": true,
+      "cause_hint": "targets pipe does not check whether a venue can take a post when the profile says sunset or read-only"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The Hacker News venue is a Tell HN on the Ask page, but the drafted post and the chosen angle are both a Show HN.",
+      "evidence": "target rank 2: \"name\": \"Hacker News (Tell HN)\", \"url\": \"https://news.ycombinator.com/ask\"; show_hn.title: \"Show HN: Continue, open-source AI coding agent, now read-only and forkable\"",
+      "systemic": true,
+      "cause_hint": "targets and social stages choose the HN format independently"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "Every tracked link points at Cursor's acquisition notice page and counts signups a shut-down product cannot receive, while the Show HN warning itself says the link should be the repository.",
+      "evidence": "target ref_url: \"https://continue.dev?ref=lk_community_github_continuedev_continue_repo\"; plan: \"Total signups 0 ... Post with your tracked links and signups will appear here\"; show_hn warning: \"{APP_URL} should point to the GitHub repository (github.com/continuedev/continue)\"",
+      "systemic": true,
+      "cause_hint": "ref links are built from site_url; plan has no sunset mode"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan is not ready: the r/vscode Reddit redraft was left as a draft, so the document cannot be downloaded.",
+      "evidence": "plan screen: \"Plan not ready. Still open: Reddit, written for no chosen subreddit; Targets selected r/vscode: redraft it for the subreddit you will post in.\"; assets reddit_post v2 \"status\": \"draft\"",
+      "systemic": true,
+      "cause_hint": "targets-driven Reddit redraft lands as a new draft row needing re-approval"
+    },
+    {
+      "stage": "profile",
+      "severity": "low",
+      "summary": "The acquisition year is stated as fact across the profile, listing and posts, even though the profile lists it as unverified.",
+      "evidence": "profile.description: \"The project was acquired by Cursor in 2026\"; profile.unverified: \"Exact acquisition date and terms not stated on site or README\"",
+      "systemic": true,
+      "cause_hint": "profile prompt infers a date from the licence years '2023-2026'"
+    },
+    {
+      "stage": "signals",
+      "severity": "low",
+      "summary": "The scan searched for buyers of an active product, even though any buyer it found would be steered to an unmaintained tool. The empty result is honest and correctly reported.",
+      "evidence": "signals_meta.queries: \"looking for free open source AI coding assistant VS Code no subscription\"; \"found\": 6, \"kept\": 0",
+      "systemic": true,
+      "cause_hint": "signals pipe has no sunset mode"
+    }
+  ],
+  "best": "The run handled the acquisition consistently. Every stage says Continue was acquired by Cursor and is read-only, no draft asks anyone to install or buy, pricing correctly recommends no monetization, and the brand DNA quotes (\"amplified, not automated\", the blog's \"slop compounds\" line) are verbatim from continue.dev and blog.continue.dev.",
+  "worst": "The approved listing FAQ tells readers \"There were no paid plans\", yet Continue sold a Team tier at $20/seat/month until the acquisition and the site still carries a \"What about my subscription?\" FAQ. Next worst: an approved reel that invents a 'paste the repo, press FORK' flow and opens with \"Meet Continue.\"",
+  "notes": "Continue is sunset: continue.dev is an acquisition notice page, and the README says the repo is read-only. The profile got the status, stars (36,068) and forks (5,447) right, but it turned a 404 on /pricing into 'no paid plans' and missed the later cloud-agents product. Launch Kit has no real sunset mode below the prose level: the targets, tracked links, signals, plan and reel templates all still assume a live product (signup attribution, a buyer search, a dead repo venue, an input-field reel beat). The newest reddit_post row (v2, r/vscode) is a draft, which is why the plan is not ready. Plates show a generic developer world, acceptable for a codebase handoff. Competitor prices were not read from their pages."
+}

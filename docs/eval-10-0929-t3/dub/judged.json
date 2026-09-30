@@ -1,0 +1,194 @@
+{
+  "slug": "dub",
+  "scores": {"profile": 3, "brand": 3, "commercial": 2, "social": 3, "assets": 3, "targets": 3, "signals": 3, "plan": 3},
+  "post_scores": {"x_post": 3, "linkedin_post": 4, "reddit_post": 3, "producthunt": 3, "show_hn": 4, "newsletter_pitch": 3},
+  "issues": [
+    {
+      "stage": "profile",
+      "severity": "high",
+      "summary": "The paid plan prices are recorded as unreadable 'animated counters', but the live pricing page serves them as static text (Pro $30, Business $90, Advanced $300 per month), so a read failure became an 'unverified' gap that every later stage inherits.",
+      "evidence": "profiles[0].data.unverified: \"Exact monthly dollar prices for Pro, Business, and Advanced plans ... rendered via animated counter JavaScript, not readable as static text by scraper\"; live dub.co/pricing/links: \"### Pro $30 per month ... ### Business Best Value $90 per month ... ### Advanced $300 per month\"",
+      "systemic": true,
+      "cause_hint": "understand pipe: the firecrawl read of dub.co/pricing, or how the pricing text is extracted (numbers dropped from the markdown); no fallback plain fetch before marking prices unverified"
+    },
+    {
+      "stage": "profile",
+      "severity": "medium",
+      "summary": "The profile puts the AI landing page generator on Advanced and Enterprise only, but the live pricing table lists it on Business too; the error then spreads to the listing and the X thread.",
+      "evidence": "profiles[0].data.differentiators: \"AI landing page generator for affiliate programs and embedded referral dashboard for white-labeling partner portals (Advanced and Enterprise plans)\"; live dub.co/pricing Partners table: Business | Advanced | Enterprise all show \"AI landing page generator\"",
+      "systemic": false,
+      "cause_hint": "understand pipe merged two features with different plan gates into one differentiator"
+    },
+    {
+      "stage": "commercial",
+      "severity": "high",
+      "summary": "The chosen pricing ($24/$89/$249) is described as matching Dub's live structure, but Dub publishes $30/$90/$300, so the recommended option underprices every paid tier and does not start from current public prices.",
+      "evidence": "commercial_results pricing options[0].positioning: \"Four tiers from free to advanced, billed monthly, matching Dub's current live structure; paid tier prices are estimates\"; tiers Pro price_usd_month 24, Business 89, Advanced 249; projects.selected_pricing carries the same; live site: Pro $30, Business $90, Advanced $300",
+      "systemic": true,
+      "cause_hint": "pricing pipe takes the profile's 'unverified' at face value and invents estimates instead of re-reading dub.co/pricing"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The Advanced tier rationale cites a Short.io Enterprise price of $148/mo that is not among the competitor tiers the pipe actually read.",
+      "evidence": "recommendation.tiers[Advanced].rationale: \"$199-299/mo range is consistent with Short.io Enterprise at $148/mo (unlimited, SSO)\"; competitors[Short.io].tiers lists only Free $0, Pro $18, Team $48",
+      "systemic": true,
+      "cause_hint": "pricing pipe prompt allows anchors from model memory; no check that each cited price is in competitors[].tiers"
+    },
+    {
+      "stage": "commercial",
+      "severity": "medium",
+      "summary": "The newest listing repeats the wrong plan gate for the AI landing page generator and promises 'no credit card required', which the site does not state; the listing is also still unapproved.",
+      "evidence": "listing (04:20:13) description_long: \"**AI landing page generator** for affiliate programs (Advanced and Enterprise plans)\"; cta: \"Start free, no credit card required\"; summary.json commercial.listingApproved: false",
+      "systemic": false,
+      "cause_hint": "listing pipe inherits the profile differentiator; the CTA phrase is boilerplate"
+    },
+    {
+      "stage": "commercial",
+      "severity": "low",
+      "summary": "The competitor set anchors on link shorteners and rejects the affiliate platforms the profile names as the ICP's alternatives, so the Partners side of pricing has no anchor.",
+      "evidence": "pricing.rejected: \"PartnerStack ... Only 2 independent mentions; partner platform, not link management\"; profile icp.current_alternatives: [\"Bitly\",\"Rebrandly\",\"Impact\",\"PartnerStack\",\"Rewardful\"]",
+      "systemic": true,
+      "cause_hint": "pricing pipe notability gate (mentions >= 3) filters out the profile's own named alternatives"
+    },
+    {
+      "stage": "brand",
+      "severity": "medium",
+      "summary": "The chosen angle's sample copy invents a customer migration story and a click figure, and the Product Hunt angle plans an upvote outreach list.",
+      "evidence": "brand_campaigns[0].sample_copy.body: \"Twilio, Vercel, and Framer already made the switch.\"; hook: \"Your link got 4,000 clicks.\"; campaigns[4].assets_needed: \"Hunter outreach list for launch day upvotes\"",
+      "systemic": true,
+      "cause_hint": "brand_campaigns prompt lacks the GLOBAL_RULES no-invented-numbers and no-vote-ask rules the social drafters enforce"
+    },
+    {
+      "stage": "brand",
+      "severity": "low",
+      "summary": "The brand DNA has no colours, fonts or logo, even though the studio probe later read them from the same site.",
+      "evidence": "brand_dna.visual: \"colors\": [], \"logo_url\": \"\", typography.evidence: \"Scrape returned markdown without CSS styling\"; studio probe: fonts {\"heading\": \"satoshi\", \"body\": \"Inter\"}, logo source https://assets.dub.co/favicons/apple-touch-icon.png",
+      "systemic": true,
+      "cause_hint": "brand_dna reads firecrawl markdown only and never uses the studio probe's computed styles"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The Product Hunt first comment invents a limitation: it says the embedded referral dashboard is Enterprise-only, but it is on Advanced as well, which contradicts both the live site and the Show HN draft.",
+      "evidence": "producthunt.first_comment: \"The embedded referral dashboard and SAML/SSO are Enterprise-only.\"; show_hn.body: \"the embedded referral dashboard is Advanced and Enterprise only\"; live dub.co/pricing Advanced: \"Embedded referral dashboard\"",
+      "systemic": false,
+      "cause_hint": "producthunt drafter compressed profile.gaps; no cross-post fact consistency check"
+    },
+    {
+      "stage": "social",
+      "severity": "high",
+      "summary": "The X thread presents a false plan gate as a product limitation ('does not do yet'): the AI landing page generator is available on Business.",
+      "evidence": "x_post.thread_extension[2]: \"One thing it does not do yet: the embedded referral dashboard and AI landing page generator are on Advanced and Enterprise plans, not Business.\"",
+      "systemic": false,
+      "cause_hint": "inherits the profile differentiator error; also misframes plan gating as a missing feature"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newest Reddit draft opens by framing Bitly negatively and uses an 'I built' title, which conflicts with the body's 'I work on' disclosure for a company product.",
+      "evidence": "reddit_post v2 title: \"I built a link tool that tracks conversions, not just clicks\"; body: \"Bitly tracks clicks. It has no conversion step, so when a partner link drives a sale three days later, that revenue is invisible to your link tool.\" ... \"I work on a link attribution platform\"",
+      "systemic": true,
+      "cause_hint": "reddit rulebook 'the existing tool named' pulls against GLOBAL_RULES line 28 (neutral fact only); the title template forces first-person 'I built'"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The gates show false positives and self-referential lint as warnings the builder must read: sourced figures are flagged as unsourced, and a '$2' plan cap is flagged as a traction number.",
+      "evidence": "reddit_post v2 warnings: \"body: A traction number ... that must appear in the profile proof points (\\\"100M+ clicks\\\")\" (it is in proof_points); reddit_post v1: \"(\\\"$2\\\")\"; producthunt warnings: \"warnings[3]: A warning that is a count, a compliance boast or a claim that a rule was followed\"",
+      "systemic": true,
+      "cause_hint": "social gate regexes (traction-number and name-drop checks) do not match proof_points text; the warnings-lint output is appended into warnings"
+    },
+    {
+      "stage": "social",
+      "severity": "medium",
+      "summary": "The newsletter pitch is thin, cites its sources inside the pitch (the homepage does not state 100M+), and keeps an unresolved shape warning and a compliance-boast warning.",
+      "evidence": "newsletter_pitch.pitch: \"it powers 100M+ clicks monthly, per the project README and homepage.\"; warnings: \"pitch: Six or more paragraph breaks\", \"Word count verified at approximately 112 words, within the 110-140 target band.\"; homepage says \"handles hundreds of millions of links & events monthly\"",
+      "systemic": true,
+      "cause_hint": "newsletter drafter/repair loop: the repair to reach 100 words added a citation clause; the warning filter lets 'verified' boasts through"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The LinkedIn opener puts Dub's own scale figure next to 'most teams can't tell you how many became customers', which reads as if Dub's own traffic is unattributed.",
+      "evidence": "linkedin_post.post: \"100M+ clicks tracked monthly. Most teams can't tell you how many became customers.\"",
+      "systemic": false,
+      "cause_hint": "linkedin 'receipt' hook pattern"
+    },
+    {
+      "stage": "social",
+      "severity": "low",
+      "summary": "The Product Hunt draft does not warn that Dub has launched on Product Hunt before, although Targets calls it a repeat venue that is valid only for a major new feature.",
+      "evidence": "targets rank 9 why_fit: \"Established product with prior launches; repeat submission only justified for a major new feature launch like Dub Partners.\"; producthunt warnings contain no repeat-launch note",
+      "systemic": true,
+      "cause_hint": "producthunt rulebook has no maturity/repeat-launch check (show_hn has one)"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "A clamped slot left a broken line in the rendered reel, and the load beat is template filler rather than product fact.",
+      "evidence": "reel.slots.payoff_line: \"EVERY CLICK. EVERY.\" (script claims_used: \"payoff_line 'EVERY CLICK. EVERY CONVERSION.'\"); load slots: \"MANY\" \"LINKS SHARED\" / \"ONE\" \"PERSON\" / \"NOW\" \"NO ANSWERS\"",
+      "systemic": true,
+      "cause_hint": "studio script clamp truncates at max chars mid-phrase instead of rejecting and re-asking; verdict template load beat forces three numbers"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The reel's verdict chips reuse the custom-domain DNS states from the homepage ('Verified', 'Pending') as if they were attribution outcomes, which misstates what the product does.",
+      "evidence": "script slots chip_1 \"VERIFIED\", chip_2 \"PENDING\" under step2_label \"EVERY CLICK, ATTRIBUTED.\"; probe copy: \"span: Verified ... span: Pending ... p: To use try.acme.com for your short link domain, ensure the records below are configured.\"",
+      "systemic": true,
+      "cause_hint": "studio script prompt takes any site-copy label as a 'real category' without checking its context"
+    },
+    {
+      "stage": "assets",
+      "severity": "medium",
+      "summary": "The brand primary was set to a blue that appears on one button, although black buttons are equally common and Dub's mark is black and white; the poster wordmark and the whole kit are tinted blue.",
+      "evidence": "probe.evidence.buttons: [{\"bg\": \"rgb(245, 245, 245)\", \"n\": 2}, {\"bg\": \"rgb(0, 0, 0)\", \"n\": 2}, ... {\"bg\": \"rgb(59, 130, 246)\", \"n\": 1}]; palette.primary: {\"hex\": \"#3b82f6\", \"source\": \"most common button background\"}; poster.jpg shows 'DUB' in blue",
+      "systemic": true,
+      "cause_hint": "studio-forge probe palette picker excludes neutrals and breaks ties by chroma; should allow a neutral primary for monochrome brands"
+    },
+    {
+      "stage": "targets",
+      "severity": "medium",
+      "summary": "The low-effort directories are ranked as new submissions for a four-year-old product that is already listed on them, and r/SideProject does not fit a venture-backed company with enterprise customers.",
+      "evidence": "targets rank 12 SaaSHub submission_url \"https://www.saashub.com/submit\" (saashub.com/dub-co-alternatives already returns 200); targets_meta sequencing: \"Start with AlternativeTo, SaaSHub, and StackShare ... to capture search traffic\"; rank 5 r/SideProject why_fit: \"indie builders running referral programs are a secondary ICP segment\"",
+      "systemic": true,
+      "cause_hint": "targets pipe has no 'already listed' check and does not weigh maturity.stage 'launched' against side-project venues"
+    },
+    {
+      "stage": "targets",
+      "severity": "low",
+      "summary": "Every venue's rules are unverified, including the three selected ones.",
+      "evidence": "targets rank 1 rules_summary: \"not verified: read https://old.reddit.com/r/GrowthHacking/about/rules before posting\"; targets_meta confidence notes: \"All Reddit rules unverified due to FireCrawl blocking Reddit.\"",
+      "systemic": true,
+      "cause_hint": "targets pipe: Reddit rules fetch blocked by FireCrawl"
+    },
+    {
+      "stage": "signals",
+      "severity": "medium",
+      "summary": "The scan report contradicts itself: it says one strong Indie Hackers buyer was found, but that same post was rejected as 2,280 days old and nothing was kept. The queries also cover only the affiliate angle.",
+      "evidence": "signals_meta.coverage_notes: \"Only 1 strong IH buyer signal found\"; rejected_by_rescore: \"https://www.indiehackers.com/post/how-to-track-purchases-with-facebook-ads-cj-affiliate-c3784cc696\" why \"posted 2280 days ago, older than 90 days\"; kept: 0",
+      "systemic": true,
+      "cause_hint": "signals pipe writes coverage_notes before the rescore and never reconciles them; the query generator draws only on the chosen angle"
+    },
+    {
+      "stage": "plan",
+      "severity": "medium",
+      "summary": "The plan carries the wrong paid prices and adds Product Hunt and Show HN tracked links, although Targets left both unselected and reserved them for a major new version.",
+      "evidence": "8-plan.png Decisions: \"Pro $24/mo, Business $89/mo, Advanced $249/mo\"; Tracked links include \"Product Hunt ... lk_platform_product_hunt\" and \"Hacker News Show HN\"; targets rank 8 and 9 selected: false, targets_meta: \"Reserve Show HN and Product Hunt for a major new version launch\"",
+      "systemic": true,
+      "cause_hint": "plan assembler adds every approved post's platform as a venue regardless of the Targets selection"
+    },
+    {
+      "stage": "plan",
+      "severity": "low",
+      "summary": "The not-ready note says the Reddit post was written for no chosen subreddit, but a redraft for r/GrowthHacking already exists (unapproved), so the instruction is stale.",
+      "evidence": "8-plan.png: \"Reddit, written for no chosen subreddit; Targets selected r/GrowthHacking, r/affiliatemarketing: redraft it for the subreddit you will post in\"; assets reddit_post v2 status draft, venue \"r/GrowthHacking\"",
+      "systemic": true,
+      "cause_hint": "plan readiness reads the approved Reddit row only, not the newer draft"
+    }
+  ],
+  "best": "The Show HN draft is concrete and honest: a real stack (Turborepo, PlanetScale, Upstash, Tinybird from the README), real plan limits for Pro and Business, a pointed architecture question (Tinybird against a self-hosted OLAP store), and a repeat-launch warning. The image plates also show a believable growth-team world.",
+  "worst": "The commercial stage presents $24/$89/$249 as estimates that match Dub's live structure, when Dub publishes $30/$90/$300 in static text. The cause is a profile read failure that was recorded as 'animated counters'. The wrong prices flow into the chosen pricing and the plan.",
+  "notes": "Newest rows judged: reddit_post v2 (draft, r/GrowthHacking), listing 04:20:13, one row each for studio and pricing. The live site was checked against dub.co, dub.co/pricing and dub.co/pricing/links, and the repo against the README and GitHub API (24,844 stars, created 2022-08-27; 100M+ clicks and 2M+ links confirmed in the README). The testimonial attributions (Koen Bok as CEO Framer, Guillermo Rauch, Ian Mackey) match the site. The reel was correctly left unapproved. The signals result is honestly empty (0 kept of 5), but the report text is inconsistent. The two stages to fix first: the pricing read in the profile, and cross-post consistency on plan gates (the PH, X and Show HN drafts disagree about the embedded referral dashboard)."
+}

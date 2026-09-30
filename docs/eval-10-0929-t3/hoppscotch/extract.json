@@ -1,0 +1,1523 @@
+{
+ "slug": "hoppscotch",
+ "name": "Hoppscotch",
+ "site": "https://hoppscotch.io",
+ "repo": "https://github.com/hoppscotch/hoppscotch",
+ "stages": {
+  "profile": {
+   "ok": true,
+   "secs": 89,
+   "error": null
+  },
+  "brand": {
+   "ok": true,
+   "secs": 124,
+   "error": null
+  },
+  "commercial": {
+   "ok": true,
+   "secs": 160,
+   "error": null
+  },
+  "social": {
+   "ok": true,
+   "secs": 372,
+   "error": null
+  },
+  "assets": {
+   "ok": true,
+   "secs": 203,
+   "error": null
+  },
+  "targets": {
+   "ok": true,
+   "secs": 142,
+   "error": null
+  },
+  "signals": {
+   "ok": true,
+   "secs": 160,
+   "error": null
+  },
+  "plan": {
+   "ok": true,
+   "secs": 4,
+   "error": null
+  }
+ },
+ "profile": {
+  "status": "approved",
+  "data": {
+   "one_liner": "Open-source API development ecosystem for developers to build, test, and share REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO APIs",
+   "description": "Hoppscotch is an open-source, lightweight API development platform that lets developers send requests, run tests, and collaborate on collections across REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events protocols. It offers a cloud-hosted app, self-hosting via Docker, and desktop clients for Mac, Windows, and Linux, with real-time team collaboration and role-based access on paid plans. The platform is local-first with no tracking or ads, and supports one-click migration from Postman and Insomnia.",
+   "category": "API Development & Testing",
+   "target_user": "Software developer or API engineer who tests and builds APIs daily and wants a fast, open-source alternative to Postman",
+   "icp": {
+    "who": "Individual developers and engineering teams at startups to enterprises who build and test APIs regularly",
+    "pain": "Postman and Insomnia have become bloated, expensive, or privacy-invasive; developers want a lightweight, open-source tool that supports multiple protocols without vendor lock-in",
+    "current_alternatives": [
+     "Postman",
+     "Insomnia"
+    ],
+    "buying_trigger": "Team grows and needs shared collections, real-time collaboration, or SSO/SCIM provisioning, or a company mandates self-hosted tooling for security compliance"
+   },
+   "differentiators": [
+    "Open-source (MIT licence) with self-hosting via Docker, README LICENSE and hoppscotch.com",
+    "Multi-protocol in one tool: REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events, README features list",
+    "One-click migration from Postman and Insomnia, hoppscotch.com",
+    "Local-first data storage with no tracking, no analytics, and no ads, hoppscotch.com"
+   ],
+   "proof_points": [
+    "80,552 GitHub stars as of repo metadata read (github.com/hoppscotch/hoppscotch)",
+    "'Trusted by millions of developers to build, test and share APIs.', hoppscotch.com",
+    "Processes 5M+ requests every month, hoppscotch.com",
+    "Testimonial from Joseph Jacks, Founder OSS Capital: 'Hoppscotch is the future of API development infrastructure and the future is here.', hoppscotch.com/pricing",
+    "App UI screenshots visible on hoppscotch.com (hero-screenshot.png and multiple feature images)"
+   ],
+   "tech_stack": [
+    "TypeScript",
+    "Vue.js / Nuxt",
+    "PWA (Service Workers)",
+    "Firebase",
+    "Docker",
+    "GitHub Actions"
+   ],
+   "pricing_current": "Free: $0 forever. Business: $6 per user/month, billed annually. Enterprise: $11 per user/month, billed annually. Self-host plans also available via toggle on pricing page (details not fully captured). Source: hoppscotch.com/pricing",
+   "voice": {
+    "tone": [
+     "developer-first",
+     "minimalist",
+     "direct",
+     "open",
+     "energetic"
+    ],
+    "sample_phrase": "Trusted by millions of developers to build, test and share APIs."
+   },
+   "maturity": {
+    "stage": "launched",
+    "signals": [
+     "80,552 GitHub stars with active commits as recently as 2026-09-29",
+     "Paid Business and Enterprise cloud plans available with pricing page",
+     "Blog announcements for new features: API Mocking (v2025-10-0), Enterprise Cloud + AI bot (v2026-9-0)",
+     "Desktop apps for Mac, Windows, Linux listed in README and hoppscotch.com/download"
+    ]
+   },
+   "gaps": [
+    "SSO (Single Sign-On) is an Enterprise edition feature only, README footnote [^EE]: 'Enterprise edition feature. Learn more: https://docs.hoppscotch.io/documentation/self-host/getting-started'",
+    "SAML-based SSO, OpenID Connect, SCIM user and group provisioning, AI Agent features, and Audit logs are Enterprise plan only, hoppscotch.com/pricing",
+    "MCP server support and API mocking are Business plan and above only, hoppscotch.com/pricing"
+   ],
+   "site_gaps": [
+    "Client logos on hoppscotch.com are unnamed SVG image files; company names are not readable from the page"
+   ],
+   "unverified": [
+    "hoppscotch.io/pricing returned a 'page could not be found' response (404-equivalent); pricing confirmed instead at hoppscotch.com/pricing",
+    "Self-host plan pricing details: a toggle exists on hoppscotch.com/pricing but only cloud tier content was captured in the scrape",
+    "Client company names behind logo SVGs on hoppscotch.com could not be read"
+   ],
+   "confidence": {
+    "overall": 0.88,
+    "notes": "hoppscotch.io/pricing returned a not-found page (ok=false); pricing was successfully found at hoppscotch.com/pricing. Self-host plan pricing details were not fully captured from the pricing page toggle. All other key sources (README, repo metadata, hoppscotch.com, hoppscotch.com/pricing) were read successfully."
+   },
+   "sources_read": [
+    {
+     "source": "README.md",
+     "via": "github",
+     "ok": true,
+     "note": "Full feature list, SSO EE footnote, licence, add-ons"
+    },
+    {
+     "source": "hoppscotch/hoppscotch (repo root file list)",
+     "via": "github",
+     "ok": true,
+     "note": "Directory structure, confirmed TypeScript, Docker, Firebase"
+    },
+    {
+     "source": "hoppscotch/hoppscotch (repo metadata)",
+     "via": "github",
+     "ok": true,
+     "note": "80,552 stars, created 2019, last pushed 2026-09-29"
+    },
+    {
+     "source": "https://hoppscotch.io",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Live app editor; confirmed app is at this URL"
+    },
+    {
+     "source": "https://hoppscotch.io/pricing",
+     "via": "firecrawl",
+     "ok": false,
+     "note": "Page not found; pricing lives on hoppscotch.com"
+    },
+    {
+     "source": "https://hoppscotch.com",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Marketing copy, features, testimonials, 5M+ requests/month"
+    },
+    {
+     "source": "https://hoppscotch.com/pricing",
+     "via": "firecrawl",
+     "ok": true,
+     "note": "Free $0, Business $6/user/mo annually, Enterprise $11/user/mo annually"
+    }
+   ],
+   "analysis_degraded": false
+  }
+ },
+ "brand": {
+  "dna": {
+   "brand_name": "Hoppscotch",
+   "tagline_observed": "Make Better APIs",
+   "voice": {
+    "tone_words": [
+     "direct",
+     "developer-first",
+     "open",
+     "concise",
+     "collaborative"
+    ],
+    "sentence_style": "Short imperative headings and noun-phrase feature labels, second person implied, technical API vocabulary used without explanation",
+    "vocabulary": [
+     "open-source",
+     "API development ecosystem",
+     "self-host",
+     "workspaces",
+     "collections",
+     "real-time collaboration",
+     "multi-protocol",
+     "local-first",
+     "developer-first",
+     "release products faster"
+    ],
+    "avoid": [
+     "long marketing prose",
+     "passive voice",
+     "enterprise-speak",
+     "vague superlatives",
+     "non-technical lifestyle language"
+    ],
+    "evidence_quotes": [
+     "Make Better APIs",
+     "Trusted by millions of developers to build, test and share APIs.",
+     "built by developers for developers to make their lives easier",
+     "Helps you create requests faster, saving precious time on development."
+    ]
+   },
+   "messaging": {
+    "value_props": [
+     "Open-source API development ecosystem, free forever and self-hostable via Docker",
+     "Multi-protocol in one tool: REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events",
+     "Real-time team collaboration with workspaces, access-level roles, and shared collections",
+     "Local-first data storage, no tracking, no analytics, no ads"
+    ],
+    "key_messages": [
+     "Make Better APIs",
+     "Trusted by millions of developers to build, test and share APIs.",
+     "Hoppscotch is an open-source API development ecosystem that helps you create and test your API requests saving precious time in development.",
+     "built by developers for developers to make their lives easier",
+     "Hoppscotch processes over 5M+ requests every month"
+    ],
+    "proof_points_observed": [
+     "Trusted by millions of developers to build, test and share APIs.",
+     "Hoppscotch processes over 5M+ requests every month",
+     "Most popular API development tool on GitHub.",
+     "Hoppscotch is the future of API development infrastructure and the future is here., Joseph Jacks, Founder, OSS Capital"
+    ]
+   },
+   "visual": {
+    "colors": [
+     {
+      "value": "#181818",
+      "role": "background",
+      "evidence": "meta theme-color (dark scheme) on hoppscotch.io; also msapplication-TileColor"
+     },
+     {
+      "value": "#ffffff",
+      "role": "background",
+      "evidence": "meta theme-color (light scheme) on hoppscotch.io"
+     },
+     {
+      "value": "#09090b",
+      "role": "background",
+      "evidence": "meta theme-color on hoppscotch.com and hoppscotch.com/pricing"
+     }
+    ],
+    "typography": {
+     "headings": "",
+     "body": "",
+     "evidence": "Scrape returned markdown without CSS; no font-family declarations or font CDN links were observed"
+    },
+    "imagery_style": "screenshots",
+    "logo_url": ""
+   },
+   "audience_language": "Speaks directly to developers and engineering teams using technical API vocabulary, assuming fluency, with short imperatives and no hand-holding.",
+   "dos_and_donts": {
+    "do": [
+     "Use short, direct imperatives and noun-phrase feature labels",
+     "Lead with the open-source and self-host angle",
+     "Reference real developer workflows: testing, building, sharing APIs",
+     "Emphasise team collaboration and multi-protocol support",
+     "Use 'developer-first' framing and community signals like GitHub stars"
+    ],
+    "dont": [
+     "Use vague superlatives or lifestyle marketing language",
+     "Write long paragraphs of marketing prose",
+     "Obscure the open-source identity",
+     "Use passive voice or enterprise-speak",
+     "Invent metrics or testimonials not present on the site"
+    ]
+   },
+   "sources_read": [
+    "https://hoppscotch.io",
+    "https://hoppscotch.com",
+    "https://hoppscotch.com/pricing"
+   ],
+   "confidence": {
+    "overall": 0.82,
+    "notes": "Typography could not be observed, scrape returned markdown with no CSS, font-family declarations, or font CDN links; typography fields left empty. No <img> or SVG logo URL appeared in scraped content (favicon excluded per rules); logo_url left empty. Colors are limited to meta theme-color values; no inline CSS or CSS variable hex codes were present in the markdown output. Self-host plan pricing details were not fully captured from the pricing page toggle."
+   },
+   "punctuation_fixed": 1
+  },
+  "angles": [
+   {
+    "name": "Most Popular on GitHub",
+    "objective": "awareness, drive organic discovery among developers browsing open-source API tooling on GitHub and X",
+    "big_idea": "Lean into the community signal: Hoppscotch is the most popular API development tool on GitHub. A short, factual post series surfaces that proof point alongside a concrete developer workflow, building, testing, and sharing APIs across multiple protocols, without any marketing fluff.",
+    "hook": "The most popular API development tool on GitHub. Built by developers, for developers.",
+    "channels": [
+     "X (Twitter)",
+     "GitHub Discussions"
+    ],
+    "effort": "small",
+    "success_metric": "GitHub star growth week-over-week after post goes live"
+   },
+   {
+    "name": "Show HN: Self-Host Your API Workspace",
+    "objective": "signups, convert Hacker News developers who need a self-hosted, privacy-respecting API tool into free or paid self-host users",
+    "big_idea": "A Show HN post positions Hoppscotch as the open-source API development ecosystem engineering teams can run entirely on their own infrastructure. The post leads with the self-host angle and multi-protocol breadth, letting the GitHub star count and 5M+ monthly requests do the credibility work.",
+    "hook": "Show HN: Hoppscotch, open-source API development ecosystem, self-host via Docker, supports REST/GraphQL/WebSocket/MQTT/SSE/Socket.IO",
+    "channels": [
+     "Hacker News"
+    ],
+    "effort": "small",
+    "success_metric": "Number of upvotes and comments on the Show HN post within 24 hours"
+   },
+   {
+    "name": "Multi-Protocol in One Tool",
+    "objective": "awareness, reach developers on Reddit who are evaluating API tooling and frustrated by single-protocol limitations",
+    "big_idea": "A Reddit post in r/webdev or r/programming frames the multi-protocol breadth of Hoppscotch as a practical developer workflow story: one workspace for REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO. No product bashing, just a concrete description of what the tool does and for whom.",
+    "hook": "We built an open-source API development ecosystem that handles REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO in one place, here's what we learned.",
+    "channels": [
+     "Reddit"
+    ],
+    "effort": "small",
+    "success_metric": "Upvotes and inbound traffic to hoppscotch.com from Reddit referral within 48 hours"
+   },
+   {
+    "name": "API Ecosystem Launch on Product Hunt",
+    "objective": "signups, generate a spike in new user registrations and GitHub stars from the Product Hunt developer audience",
+    "big_idea": "A Product Hunt launch positions Hoppscotch as the open-source API development ecosystem for teams who want multi-protocol support, real-time collaboration, and full data ownership. The listing leads with the 'Make Better APIs' tagline, surfaces the GitHub star proof point, and highlights the self-host and local-first differentiators.",
+    "hook": "Make Better APIs, open-source, multi-protocol, local-first, trusted by millions of developers.",
+    "channels": [
+     "Product Hunt"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of upvotes and new signups on launch day"
+   },
+   {
+    "name": "Team Collaboration Deep-Dive",
+    "objective": "signups, convert engineering team leads and DevOps engineers on LinkedIn who are evaluating shared API tooling for their teams",
+    "big_idea": "A LinkedIn post series targets engineering managers and team leads with a concrete story about real-time API collaboration: shared workspaces, collections, and role-based access, all on infrastructure the team controls. Each post ends with a direct link to the Business or Enterprise plan page.",
+    "hook": "Your API workspace should belong to your team, not a vendor's cloud.",
+    "channels": [
+     "LinkedIn"
+    ],
+    "effort": "medium",
+    "success_metric": "Click-through rate to hoppscotch.com/pricing from LinkedIn posts"
+   },
+   {
+    "name": "Newsletter: Built by Developers, for Developers",
+    "objective": "community, build awareness and trust in developer-focused newsletters by telling the Hoppscotch open-source origin story and current ecosystem breadth",
+    "big_idea": "Pitch a guest feature or sponsored slot in developer newsletters (e.g. TLDR, Bytes, Cooper Press) that tells the Hoppscotch story in the brand's own voice: an open-source API development ecosystem built by developers for developers, now processing over 5M+ requests every month. The pitch is factual, concise, and leads with community proof.",
+    "hook": "Hoppscotch is an open-source API development ecosystem built by developers for developers, and it processes over 5M+ requests every month.",
+    "channels": [
+     "Developer newsletters"
+    ],
+    "effort": "medium",
+    "success_metric": "Number of newsletter placements secured and referral traffic from newsletter links"
+   }
+  ],
+  "chosen": [
+   "Most Popular on GitHub"
+  ]
+ },
+ "commercial": {
+  "competitors": [
+   {
+    "name": "Postman",
+    "notability": "established",
+    "mentions": 8,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "50 AI credits, core API client"
+     },
+     {
+      "name": "Solo",
+      "price": "$9",
+      "period": "month billed annually",
+      "key_limits": "400 AI credits, 1 user"
+     },
+     {
+      "name": "Team",
+      "price": "$19",
+      "period": "user/month billed annually",
+      "key_limits": "team collab, RBAC, SDK gen"
+     }
+    ]
+   },
+   {
+    "name": "Insomnia",
+    "notability": "established",
+    "mentions": 6,
+    "tiers": [
+     {
+      "name": "Essentials",
+      "price": "$0",
+      "period": "month",
+      "key_limits": "local scratch pad, 3 collaborators free"
+     },
+     {
+      "name": "Pro",
+      "price": "not rendered",
+      "period": "user/month annually",
+      "key_limits": "unlimited collaborators, 1 project"
+     },
+     {
+      "name": "Enterprise",
+      "price": "not rendered",
+      "period": "user/month annually",
+      "key_limits": "SSO, SCIM, E2EE, enterprise RBAC"
+     }
+    ]
+   },
+   {
+    "name": "Bruno",
+    "notability": "established",
+    "mentions": 5,
+    "tiers": [
+     {
+      "name": "Open Source",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "2 workspaces, community support"
+     },
+     {
+      "name": "Pro",
+      "price": "$6",
+      "period": "user/month billed annually",
+      "key_limits": "unlimited workspaces, 48hr support"
+     },
+     {
+      "name": "Ultimate",
+      "price": "$11",
+      "period": "user/month billed annually",
+      "key_limits": "SSO, SCIM, audit logs, 24hr support"
+     }
+    ]
+   },
+   {
+    "name": "SoapUI",
+    "notability": "established",
+    "mentions": 4,
+    "tiers": [
+     {
+      "name": "Open Source",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "REST, SOAP testing, no team features"
+     }
+    ]
+   },
+   {
+    "name": "Thunder Client",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "VS Code extension, basic requests"
+     }
+    ]
+   },
+   {
+    "name": "HTTPie",
+    "notability": "emerging",
+    "mentions": 2,
+    "tiers": [
+     {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "key_limits": "CLI and desktop, limited team features"
+     }
+    ]
+   }
+  ],
+  "rejected": [
+   {
+    "name": "GoReplay",
+    "url": "https://goreplay.org",
+    "why": "Traffic replay tool, not an API client or testing platform"
+   },
+   {
+    "name": "AlternativeTo Insomnia page",
+    "url": "https://alternativeto.net/software/insomnia-rest-client/",
+    "why": "Aggregator listing page, not a product"
+   },
+   {
+    "name": "G2 Insomnia vs Postman page",
+    "url": "https://www.g2.com/compare/kong-insomnia-vs-postman",
+    "why": "Review aggregator comparison page, not a product"
+   },
+   {
+    "name": "EchoAPI",
+    "url": "https://www.echoapi.com",
+    "why": "Single mention only; could not establish independent standing"
+   },
+   {
+    "name": "RapidAPI",
+    "url": "https://rapidapi.com",
+    "why": "API marketplace, not a direct API client testing tool"
+   },
+   {
+    "name": "Hoppscotch",
+    "url": "https://hoppscotch.com",
+    "why": "This is the subject app, not a competitor"
+   }
+  ],
+  "recommendation": {
+   "model": "freemium + subscription (annual billing)",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "who_its_for": "Individual developers exploring or using Hoppscotch solo",
+     "includes": [
+      "All protocols: REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO",
+      "Unlimited personal collections",
+      "Cloud-hosted and PWA access",
+      "Community support"
+     ],
+     "rationale": "Matches current Free tier at $0; open-source core is the acquisition engine."
+    },
+    {
+     "name": "Business",
+     "price_usd_month": 6,
+     "who_its_for": "Teams needing shared collections, real-time collaboration, and MCP server support",
+     "includes": [
+      "Everything in Free",
+      "Team workspaces and real-time collaboration",
+      "Role-based access control",
+      "MCP server support and API mocking",
+      "Business support SLA"
+     ],
+     "rationale": "Matches current Business at $6/user/mo annually; identical to Bruno Pro at $6 for same team tier."
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": 11,
+     "who_its_for": "Orgs requiring SSO, SCIM, audit logs, or self-hosted compliance",
+     "includes": [
+      "Everything in Business",
+      "SAML SSO and OpenID Connect",
+      "SCIM provisioning",
+      "Audit logs and AI governance",
+      "Self-host support"
+     ],
+     "rationale": "Matches current Enterprise at $11/user/mo annually; identical to Bruno Ultimate at $11, 42% below Postman Team at $19."
+    }
+   ],
+   "anchor_competitors": [
+    "Postman",
+    "Bruno",
+    "Insomnia"
+   ],
+   "positioning_note": "At $6 Business vs Postman Team $19/user/mo, Hoppscotch is 68% cheaper with multi-protocol and open-source self-hosting.",
+   "risks": [
+    "Free open-source tier cannibalises paid conversion; teams self-host without paying",
+    "Bruno at identical price points is a direct open-source rival; differentiation must be protocol breadth and cloud UX",
+    "$11 Enterprise may feel low for large orgs expecting $20+ for SSO/SCIM; test anchoring higher"
+   ]
+  },
+  "options": [
+   {
+    "name": "Current Pricing, Annual Subscription",
+    "billing": "free plus paid tiers",
+    "positioning": "Keep the existing three-tier structure at $0 / $6 / $11 per user per month billed annually, sitting 68% below Postman Team and matching Bruno exactly, with the free open-source tier as the acquisition engine.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers exploring or using Hoppscotch solo",
+      "includes": [
+       "All protocols: REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO",
+       "Unlimited personal collections",
+       "Cloud-hosted and PWA access",
+       "Community support"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 6,
+      "who_its_for": "Teams needing shared collections, real-time collaboration, and MCP server support",
+      "includes": [
+       "Everything in Free",
+       "Team workspaces and real-time collaboration",
+       "Role-based access control",
+       "MCP server support and API mocking",
+       "Business support SLA"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": 11,
+      "who_its_for": "Orgs requiring SSO, SCIM, audit logs, or self-hosted compliance",
+      "includes": [
+       "Everything in Business",
+       "SAML SSO and OpenID Connect",
+       "SCIM provisioning",
+       "Audit logs and AI governance",
+       "Self-host support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $6 Business and $11 Enterprise, this option matches Bruno exactly and sits well below Postman Team at $19/user/mo.",
+    "revenue_at": {
+     "10": 85,
+     "50": 425,
+     "200": 1700
+    },
+    "when_to_pick": "Pick this when you want to validate the current price points against the market before any change, and when matching Bruno's price is the deliberate competitive signal."
+   },
+   {
+    "name": "Monthly Subscription, No Annual Lock-in",
+    "billing": "monthly subscription",
+    "positioning": "Offer the same Business and Enterprise tiers billed month-to-month at $8 and $14 per user per month respectively, roughly 30% above the annual equivalent, giving smaller teams flexibility without a yearly commitment.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers exploring or using Hoppscotch solo",
+      "includes": [
+       "All protocols: REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO",
+       "Unlimited personal collections",
+       "Cloud-hosted and PWA access",
+       "Community support"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 8,
+      "who_its_for": "Teams needing shared collections, real-time collaboration, and MCP server support, without an annual commitment",
+      "includes": [
+       "Everything in Free",
+       "Team workspaces and real-time collaboration",
+       "Role-based access control",
+       "MCP server support and API mocking",
+       "Business support SLA"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": 14,
+      "who_its_for": "Orgs requiring SSO, SCIM, audit logs, or self-hosted compliance, billed monthly",
+      "includes": [
+       "Everything in Business",
+       "SAML SSO and OpenID Connect",
+       "SCIM provisioning",
+       "Audit logs and AI governance",
+       "Self-host support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $8 and $14 per user per month, this option is above Bruno ($6/$11 annually) and below Postman Team ($19 annually), sitting in the middle of the read competitor range.",
+    "revenue_at": {
+     "10": 110,
+     "50": 550,
+     "200": 2200
+    },
+    "when_to_pick": "Pick this when you want to attract startups and contractors who resist annual commitments and are willing to pay a small premium for month-to-month flexibility."
+   },
+   {
+    "name": "Higher-Positioned Annual, Closer to Postman",
+    "billing": "annual subscription",
+    "positioning": "Raise Business to $9/user/mo and Enterprise to $16/user/mo billed annually (charged as $108 and $192 per user per year), positioning above Bruno and closer to Postman to signal enterprise readiness and reduce the perception that low price means lower quality.",
+    "tiers": [
+     {
+      "name": "Free",
+      "price_usd_month": 0,
+      "who_its_for": "Individual developers exploring or using Hoppscotch solo",
+      "includes": [
+       "All protocols: REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO",
+       "Unlimited personal collections",
+       "Cloud-hosted and PWA access",
+       "Community support"
+      ]
+     },
+     {
+      "name": "Business",
+      "price_usd_month": 9,
+      "who_its_for": "Teams needing shared collections, real-time collaboration, and MCP server support",
+      "includes": [
+       "Everything in Free",
+       "Team workspaces and real-time collaboration",
+       "Role-based access control",
+       "MCP server support and API mocking",
+       "Business support SLA"
+      ]
+     },
+     {
+      "name": "Enterprise",
+      "price_usd_month": 16,
+      "who_its_for": "Orgs requiring SSO, SCIM, audit logs, or self-hosted compliance",
+      "includes": [
+       "Everything in Business",
+       "SAML SSO and OpenID Connect",
+       "SCIM provisioning",
+       "Audit logs and AI governance",
+       "Self-host support"
+      ]
+     }
+    ],
+    "market_rate_note": "At $9 Business this matches Postman Solo and sits 50% above Bruno Pro ($6); at $16 Enterprise it is below Postman Team ($19) and above Bruno Ultimate ($11), within the read competitor range.",
+    "revenue_at": {
+     "10": 125,
+     "50": 625,
+     "200": 2500
+    },
+    "when_to_pick": "Pick this when you want to test whether enterprise buyers anchor on price as a quality signal and whether the gap from Bruno justifies a premium for Hoppscotch's protocol breadth and cloud UX."
+   }
+  ],
+  "models_considered": [
+   {
+    "model": "monthly subscription",
+    "fit": "possible",
+    "why": "Teams do buy API tools on monthly cycles, but every established competitor in this category (Postman, Bruno) defaults to annual billing, making monthly a secondary option rather than the natural fit."
+   },
+   {
+    "model": "annual subscription",
+    "fit": "good",
+    "why": "Hoppscotch already bills Business at $6/user/mo and Enterprise at $11/user/mo annually, matching Bruno and Postman's default billing cadence for team API tools where seats are stable year-round."
+   },
+   {
+    "model": "one-time purchase",
+    "fit": "poor",
+    "why": "Cloud hosting, real-time collaboration, and ongoing protocol updates require recurring infrastructure costs that a one-time price cannot sustain, and no established competitor in this category uses it."
+   },
+   {
+    "model": "usage-based",
+    "fit": "poor",
+    "why": "API client tools are priced per seat, not per request; developers expect a flat team rate, and metering individual API calls would conflict with the local-first, no-tracking positioning."
+   },
+   {
+    "model": "free plus paid tiers",
+    "fit": "good",
+    "why": "The open-source free tier is the primary acquisition engine for millions of developers, and paid tiers unlock team collaboration and enterprise compliance features, exactly the freemium pattern Postman and Bruno use."
+   }
+  ],
+  "market_rate": "Postman charges $9/user/mo (Solo) and $19/user/mo (Team) billed annually, both prices read from their pricing page. Bruno charges $6/user/mo (Pro) and $11/user/mo (Ultimate) billed annually, also read directly. Insomnia's pricing page rendered without dollar amounts so its prices are excluded. The going rate for this category is roughly $6-$19 per user per month billed annually, with open-source-positioned tools clustering at the lower end around $6-$11 and full-featured commercial tools at $19.",
+  "confidence": {
+   "overall": 0.88,
+   "notes": "3 established competitors confirmed across 6+ independent sources each. Postman and Bruno pricing fully scraped. Insomnia pricing page rendered without dollar amounts (JS-gated); tiers confirmed but prices excluded. Hoppscotch pricing taken from APP_PROFILE (confirmed at hoppscotch.com/pricing). Self-host plan pricing details for Hoppscotch not fully captured from toggle."
+  },
+  "selected_pricing": {
+   "model": "freemium + subscription (annual billing)",
+   "option": "Current Pricing, Annual Subscription",
+   "billing": "free plus paid tiers",
+   "tiers": [
+    {
+     "name": "Free",
+     "price_usd_month": 0,
+     "included": true,
+     "who_its_for": "Individual developers exploring or using Hoppscotch solo",
+     "includes": [
+      "All protocols: REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO",
+      "Unlimited personal collections",
+      "Cloud-hosted and PWA access",
+      "Community support"
+     ]
+    },
+    {
+     "name": "Business",
+     "price_usd_month": 6,
+     "included": true,
+     "who_its_for": "Teams needing shared collections, real-time collaboration, and MCP server support",
+     "includes": [
+      "Everything in Free",
+      "Team workspaces and real-time collaboration",
+      "Role-based access control",
+      "MCP server support and API mocking",
+      "Business support SLA"
+     ]
+    },
+    {
+     "name": "Enterprise",
+     "price_usd_month": 11,
+     "included": true,
+     "who_its_for": "Orgs requiring SSO, SCIM, audit logs, or self-hosted compliance",
+     "includes": [
+      "Everything in Business",
+      "SAML SSO and OpenID Connect",
+      "SCIM provisioning",
+      "Audit logs and AI governance",
+      "Self-host support"
+     ]
+    }
+   ],
+   "anchor_competitors": [
+    "Postman",
+    "Bruno",
+    "Insomnia"
+   ],
+   "chosen_at": "2026-09-30T04:59:00.375Z"
+  },
+  "listing": {
+   "title": "Hoppscotch, API Development Platform",
+   "tagline": "Open-source API testing for REST, GraphQL & more",
+   "description_short": "Build, test, and share APIs across REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO. Open-source, local-first, no tracking.",
+   "description_long": "**Hoppscotch** is a lightweight, open-source API development platform trusted by millions of developers to build, test, and share APIs, processing 5M+ requests every month.\n\n**Every protocol in one place**\nSend REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events requests from a single, fast interface, no bloat, no ads, no tracking.\n\n**Your data stays yours**\nLocal-first storage means your requests and collections never leave your machine unless you choose to sync. No analytics. No vendor lock-in.\n\n**Flexible deployment**\n- Cloud-hosted app at hoppscotch.io\n- Self-host via Docker for full control\n- Desktop clients for Mac, Windows, and Linux\n\n**Built for teams**\nReal-time collaboration, shared collections, and role-based access on Business and Enterprise plans. SAML SSO, SCIM provisioning, audit logs, and AI features are available on Enterprise.\n\n**Open-source at its core**\nMIT-licensed with 80,000+ GitHub stars and active development. One-click import from other API tools gets your team up and running in minutes.\n\nFree forever for individuals. Business plan starts at $6 per user/month (billed annually).",
+   "keywords": [
+    "API testing tool",
+    "open source API client",
+    "REST API tester",
+    "GraphQL client",
+    "WebSocket testing",
+    "API development platform",
+    "self-hosted API tool",
+    "Postman alternative",
+    "API collaboration",
+    "MQTT client",
+    "API collections",
+    "developer tools",
+    "API request builder",
+    "team API workspace",
+    "Docker API tool"
+   ],
+   "screenshot_order": [
+    "1st: Multi-protocol request editor (REST active) showing the clean UI, proves the core value prop and minimal design immediately",
+    "2nd: Team workspace with shared collections and real-time collaboration, addresses the buying trigger of team growth",
+    "3rd: Protocol switcher showing REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO tabs, differentiates from single-protocol tools"
+   ],
+   "faq": [
+    {
+     "q": "Is Hoppscotch really free?",
+     "a": "Yes. The Free plan is $0 forever with no usage limits on core API testing. Business is $6/user/month and Enterprise is $11/user/month, both billed annually."
+    },
+    {
+     "q": "Can I self-host Hoppscotch for my company?",
+     "a": "Yes. Hoppscotch supports self-hosting via Docker. Self-host plans are available alongside the cloud plans, check the pricing page for self-host tier details."
+    },
+    {
+     "q": "Which features require a paid plan?",
+     "a": "Real-time team collaboration, shared workspaces, MCP server support, and API mocking require Business or above. SSO, SAML, SCIM, audit logs, and AI features are Enterprise only."
+    },
+    {
+     "q": "Is my API data private?",
+     "a": "Hoppscotch is local-first: your requests stay on your device by default. There is no tracking, no analytics collection, and no ads anywhere in the platform."
+    },
+    {
+     "q": "Can I import my existing collections?",
+     "a": "Yes. Hoppscotch supports one-click migration from other popular API tools so you can bring your existing collections without manual re-entry."
+    }
+   ],
+   "cta": "Start for free at hoppscotch.io",
+   "changes_from_current": [],
+   "confidence": {
+    "overall": 0.92,
+    "notes": "APP_PROFILE is comprehensive with verified pricing, proof points, and differentiators. No current listing was provided so no diff required. Self-host plan tier details were not fully captured in the profile; FAQ answer on self-host is intentionally non-specific to avoid inventing numbers."
+   }
+  },
+  "listing_status": "approved"
+ },
+ "posts": {
+  "x_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "80,552 GitHub stars. Hoppscotch is an open-source API development ecosystem: REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO in one place. Local-first, no tracking, self-hostable via Docker.\n{APP_URL}",
+    "thread_extension": [
+     "We process 5M+ requests every month across all six protocols. One tool, one interface, no protocol switching between apps.",
+     "Local-first means your collections and requests stay on your machine by default. No analytics, no ads, no vendor lock-in. Self-host via Docker if you want full control.",
+     "Real-time team collaboration, shared collections, and role-based access are on the Business plan. One-click import from other API tools gets your team moved over without rebuilding everything.",
+     "If you build or test APIs daily and want something open-source with no bloat, try it and open an issue if something does not work the way you expect."
+    ],
+    "alt_variants": [
+     "Hoppscotch processes 5M+ API requests every month. Open-source, MIT-licensed, six protocols in one tool: REST, GraphQL, WebSocket, MQTT, SSE, Socket.IO. Self-host via Docker or use the cloud app.\n{APP_URL}",
+     "Open-source API development ecosystem: REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events in one interface. No tracking, no ads, local-first data storage.\n{APP_URL}"
+    ],
+    "warnings": [
+     "Campaign angle hook was 'The most popular API development tool on GitHub, built by developers, for developers.' The phrase 'most popular' is a superlative claim. The profile's proof_points_observed includes it as a direct quote from hoppscotch.com, but PLATFORM_RULES prohibit evaluative adjectives and require stating a bare number instead. The post uses the star count (80,552) as the number and omits the superlative framing to comply.",
+     "PLATFORM_RULES say a star count is stated bare as a number and a noun, never with what those people think, chose, trust or agree with. The post states '80,552 GitHub stars' with no attribution of sentiment.",
+     "No comparison to Postman or Insomnia was included per PLATFORM_RULES: never frame against another product.",
+     "post: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"no tracking\")"
+    ],
+    "app_name": "Hoppscotch",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "Campaign angle hook was 'The most popular API development tool on GitHub, built by developers, for developers.' The phrase 'most popular' is a superlative claim. The profile's proof_points_observed includes it as a direct quote from hoppscotch.com, but PLATFORM_RULES prohibit evaluative adjectives and require stating a bare number instead. The post uses the star count (80,552) as the number and omits the superlative framing to comply.",
+    "PLATFORM_RULES say a star count is stated bare as a number and a noun, never with what those people think, chose, trust or agree with. The post states '80,552 GitHub stars' with no attribution of sentiment.",
+    "No comparison to Postman or Insomnia was included per PLATFORM_RULES: never frame against another product.",
+    "post: An absolute privacy claim: confirm APP_PROFILE states it without a cloud or hosted option (\"no tracking\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1243,
+   "words": 183,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "linkedin_post": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "post": "80,552 GitHub stars. Hoppscotch is an open-source API platform for REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO.\n\nI've used tools that do one protocol well. Hoppscotch does all six, and it's free forever for individuals. No tracking, no ads, no vendor lock-in. Your collections stay local unless you choose to sync.\n\nIf your team's grown to the point where you need shared workspaces and real-time collaboration, there's a Business plan at $6 per user per month. SSO, SCIM, and audit logs are on Enterprise. But the core tool, every protocol, unlimited personal collections, is $0.\n\nIt processes over 5M requests every month. MIT-licensed, self-hostable via Docker, and one-click import gets you off whatever you're using now.\n\nTry it and tell me which protocol you test most.\n\nLink in the first comment.\n\n#opensource #devtools #api",
+    "alt_hook": "Hoppscotch handles REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO. MIT-licensed, local-first, free forever.",
+    "warnings": [
+     "First comment: {APP_URL}",
+     "Launch week cadence for Hoppscotch: after this awareness post, at most four posts this week, never two of the same kind back to back: proof (the 5M+ requests/month or 80,552 stars figure), opinion (a position on protocol fragmentation in API tooling), teach (one concrete workflow, e.g. switching protocols in one tab), story (a scene from building it, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+     "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+     "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+     "The Joseph Jacks testimonial ('Hoppscotch is the future of API development infrastructure and the future is here.') was not used in the post body because it contains a comparative superlative framing. It can be pasted verbatim into the first comment alongside the link if the builder chooses, attributed to Joseph Jacks, Founder, OSS Capital.",
+     "'Most popular API development tool on GitHub' appears in BRAND_DNA proof_points_observed but is not independently verified with a rank source in APP_PROFILE.proof_points. The post uses the star count (80,552) as the concrete number instead, which is directly sourced. If the builder can confirm the ranking claim from a public source, it can replace or accompany the star count in a future post."
+    ],
+    "app_name": "Hoppscotch",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "post: Line 1 over 140 characters (mobile truncation) (\"80,552 GitHub stars. That's what developers gave Hoppscotch,\")",
+     "alt_hook: Alternate hook over 140 characters (146 characters, cap 140)"
+    ]
+   },
+   "warnings": [
+    "First comment: {APP_URL}",
+    "Launch week cadence for Hoppscotch: after this awareness post, at most four posts this week, never two of the same kind back to back: proof (the 5M+ requests/month or 80,552 stars figure), opinion (a position on protocol fragmentation in API tooling), teach (one concrete workflow, e.g. switching protocols in one tab), story (a scene from building it, only if the profile holds one). Tuesday to Thursday, 7:30 to 9:30 am in the audience's timezone.",
+    "Launch day replies: in the first hour sort every comment into lead, substance, peer, support, noise and answer in that order; answer fully in public, use the commenter's name once with no exclamation mark, match their length; to a critic concede the true part first in their words, then hold the line; never delete, never reply twice; ignore pitches; never ask for likes, reposts, tags or comments as a favour.",
+    "48 hours after posting, record engagement rate (reactions plus comments plus reposts, divided by impressions) and reach multiple (impressions divided by followers), not impressions; that is the number the next post is judged on.",
+    "The Joseph Jacks testimonial ('Hoppscotch is the future of API development infrastructure and the future is here.') was not used in the post body because it contains a comparative superlative framing. It can be pasted verbatim into the first comment alongside the link if the builder chooses, attributed to Joseph Jacks, Founder, OSS Capital.",
+    "'Most popular API development tool on GitHub' appears in BRAND_DNA proof_points_observed but is not independently verified with a rank source in APP_PROFILE.proof_points. The post uses the star count (80,552) as the concrete number instead, which is directly sourced. If the builder can confirm the ranking claim from a public source, it can replace or accompany the star count in a future post."
+   ],
+   "blockers": [],
+   "repaired": [
+    "post: Line 1 over 140 characters (mobile truncation) (\"80,552 GitHub stars. That's what developers gave Hoppscotch,\")",
+    "alt_hook: Alternate hook over 140 characters (146 characters, cap 140)"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1158,
+   "words": 175,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 3,
+   "has_app_url": false
+  },
+  "reddit_post": {
+   "version": 2,
+   "status": "draft",
+   "data": {
+    "title": "I maintain an MIT-licensed API client for six protocols, self-hostable via Docker",
+    "body": "Postman covers REST and GraphQL well; getting WebSocket, MQTT, or Server-Sent Events into the same workflow means a separate tool or a plan upgrade. That gap is what I built Hoppscotch to cover, and I still maintain it.\n\nIt's an open-source API development platform, MIT-licensed, that lets you send requests, run tests, and share collections across REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events from one interface. Data stays local by default, there's no tracking and no ads. You can self-host the whole thing via Docker if your team has compliance requirements, or use the cloud-hosted app or desktop clients for Mac, Windows, and Linux. One-click import from other API tools brings existing collections in without manual work.\n\nPostman and Insomnia both handle REST and GraphQL; neither covers all six protocols in a single free interface without a paid tier or a separate client.\n\nSSO, SCIM provisioning, and audit logs are Enterprise-only, so if your self-hosted setup needs those on the free or lower-tier self-host plan, that's a real gap right now.\n\nIf you've run it self-hosted on Docker in a team setting, which part of the setup caused the most friction?\n\n{APP_URL}",
+    "suggested_flair": "none",
+    "warnings": [
+     "TARGET is r/selfhosted. The platform rules list 'New Project Megathread' as the venue for projects under 3 months old. Hoppscotch was created in 2019 and has active commits as of 2026-09-29, so it is not a new project under 3 months old and a main-feed post is appropriate. Suggested flair is 'none' because no confirmed main-feed flair for established projects was available; the builder should check https://www.reddit.com/r/selfhosted/about/rules and the sub's flair list before posting.",
+     "Mention level 2 used: product named once in the disclosure sentence, {APP_URL} placeholder appears once at the end of the body.",
+     "Builder disclosure uses 'I maintain' because the product was created in 2019 and has a team; APP_PROFILE does not name a single solo builder.",
+     "Competitor framing is neutral: Postman and Insomnia are named as a factual statement about protocol coverage, with no negative word attached to either name.",
+     "Limitation stated: SSO, SCIM provisioning, and audit logs are Enterprise-only. This comes directly from APP_PROFILE.gaps.",
+     "Product name count in body: 1 (disclosure sentence only). Subsequent references use 'it' to stay within the Level 2 cap.",
+     "r/selfhosted rules were not fully verified (rules_url was empty in TARGET). The builder must read https://www.reddit.com/r/selfhosted/about/rules before posting and answer the AI-disclosure bot honestly.",
+     "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+    ],
+    "venue": "r/selfhosted",
+    "app_name": "Hoppscotch",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "TARGET is r/selfhosted. The platform rules list 'New Project Megathread' as the venue for projects under 3 months old. Hoppscotch was created in 2019 and has active commits as of 2026-09-29, so it is not a new project under 3 months old and a main-feed post is appropriate. Suggested flair is 'none' because no confirmed main-feed flair for established projects was available; the builder should check https://www.reddit.com/r/selfhosted/about/rules and the sub's flair list before posting.",
+    "Mention level 2 used: product named once in the disclosure sentence, {APP_URL} placeholder appears once at the end of the body.",
+    "Builder disclosure uses 'I maintain' because the product was created in 2019 and has a team; APP_PROFILE does not name a single solo builder.",
+    "Competitor framing is neutral: Postman and Insomnia are named as a factual statement about protocol coverage, with no negative word attached to either name.",
+    "Limitation stated: SSO, SCIM provisioning, and audit logs are Enterprise-only. This comes directly from APP_PROFILE.gaps.",
+    "Product name count in body: 1 (disclosure sentence only). Subsequent references use 'it' to stay within the Level 2 cap.",
+    "r/selfhosted rules were not fully verified (rules_url was empty in TARGET). The builder must read https://www.reddit.com/r/selfhosted/about/rules before posting and answer the AI-disclosure bot honestly.",
+    "This draft was model-assisted. Rewrite it in your own words before posting; r/programming rule 1, r/LocalLLaMA rule 3 and r/opensource rule 3 remove LLM-written posts, and r/selfhosted and r/ExperiencedDevs require you to answer the AI-disclosure bot honestly."
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1315,
+   "words": 209,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "producthunt": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "name": "Hoppscotch",
+    "tagline": "Open-source API testing for REST, GraphQL and more",
+    "description": "Testing REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO APIs in separate tools wastes time. Hoppscotch puts all six protocols in one open-source client, local-first, no tracking, no ads. MIT-licensed, self-hostable via Docker, free forever for individuals.",
+    "first_comment": "Hi, I'm [Builder first name], [role] at Hoppscotch.\n\nEvery protocol needs a different tool today, and the popular hosted clients keep adding telemetry and locking collections behind paywalls. Developers need one fast client that covers everything and stays out of the way.\n\nHoppscotch handles REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events from a single interface. Your requests and collections are stored locally by default, so nothing leaves your machine unless you choose to sync. If you need full control over the infrastructure, you can self-host the whole stack with Docker. For teams, the Business plan adds shared workspaces, real-time collaboration, role-based access, MCP server support, and API mocking at $6 per user per month, billed annually. SAML SSO, SCIM provisioning, audit logs, and AI features are on the Enterprise plan at $11 per user per month.\n\nWhat we do differently: the client runs on your own hardware if you want it to. The hosted tools do not offer that on their free or mid-tier plans.\n\nOne honest limitation: SSO and SCIM provisioning are Enterprise-only today. If your org needs those on a lower tier, that is not possible yet.\n\nTwo things I want to know: which protocol do you test most that current tools handle badly? And what would you need to see before you ran Hoppscotch on your team's production workflow?\n\nI'll be in the comments all day.",
+    "topics": [
+     "Developer Tools",
+     "Open Source",
+     "API"
+    ],
+    "warnings": [
+     "APP_PROFILE does not name the builder; first_comment uses [Builder first name] and [role] placeholders that must be filled in before launch.",
+     "Self-host plan pricing details were not fully captured from the pricing page; the first_comment covers only cloud plan pricing. Builder should verify self-host tier prices before launch.",
+     "No offer is included because APP_PROFILE contains no Product Hunt-specific offer or discount code."
+    ],
+    "app_name": "Hoppscotch",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (313 characters, cap 260)",
+     "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"We kept running into\")"
+    ]
+   },
+   "warnings": [
+    "APP_PROFILE does not name the builder; first_comment uses [Builder first name] and [role] placeholders that must be filled in before launch.",
+    "Self-host plan pricing details were not fully captured from the pricing page; the first_comment covers only cloud plan pricing. Builder should verify self-host tier prices before launch.",
+    "No offer is included because APP_PROFILE contains no Product Hunt-specific offer or discount code."
+   ],
+   "blockers": [],
+   "repaired": [
+    "description: Description over 260 characters (our card limit; Product Hunt's form allows 500) (313 characters, cap 260)",
+    "first_comment: An origin story APP_PROFILE does not hold: state the problem in the present tense instead (\"We kept running into\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 2022,
+   "words": 319,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": false
+  },
+  "show_hn": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "title": "Show HN: Hoppscotch, a multi-protocol API client, open-source and self-hostable",
+    "body": "Hi HN, Hoppscotch is an open-source API client that takes requests across REST, GraphQL, WebSocket, Socket.IO, MQTT, and Server-Sent Events and returns the response in a single interface. You can try it at\n\n{APP_URL}\n\nwithout an account on the free plan.\n\n[Builder: one sentence on why you built it.] The stack is TypeScript and Vue.js/Nuxt, running as a PWA with service workers for offline access. Firebase handles optional cloud sync when you opt in. Self-hosting the full platform is available via Docker.\n\nData is stored locally by default, so your requests and collections stay on your machine unless you choose to sync. MCP server support and API mocking are Business plan features. SSO, SCIM provisioning, and audit logs are Enterprise only.\n\nThe choice I want a second opinion on is local-first storage versus cloud sync as the default: which matters more to a team adopting a new API tool? I am one of the builders and will be in the thread.",
+    "warnings": [
+     "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+     "Hoppscotch has been public since 2019 and has a large GitHub following. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search Hacker News for earlier Hoppscotch threads before posting and, if one exists, link it in the body and add a sentence explaining what changed since.",
+     "The origin story paragraph contains a placeholder because APP_PROFILE and BRAND_DNA record no README history line, founder quote, or dated origin. The builder must fill in [Builder: one sentence on why you built it.] before submitting.",
+     "Confirm that {APP_URL} opens the live app directly and does not land on a waitlist, a video-only page, or a signup gate. If any gate exists, add a plain sentence in the body saying so.",
+     "The how-it-works paragraph names TypeScript, Vue.js/Nuxt, PWA with service workers, Firebase, and Docker from the recorded tech_stack. No data-flow mechanism was inferred beyond what the profile states. If the architecture has changed, update that paragraph before posting."
+    ],
+    "app_name": "Hoppscotch",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default",
+    "repaired": [
+     "body: More than five paragraphs (6, cap 4)",
+     "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Postman and Insomnia have grown heavier and more expensive over time.\")"
+    ]
+   },
+   "warnings": [
+    "HN guidelines ask that posted text be written by hand, not generated or edited by an LLM. Treat this draft as an outline: rewrite every sentence in your own words before submitting.",
+    "Hoppscotch has been public since 2019 and has a large GitHub following. HN accepts a repeat Show HN only for a major overhaul, roughly once or twice a year. Search Hacker News for earlier Hoppscotch threads before posting and, if one exists, link it in the body and add a sentence explaining what changed since.",
+    "The origin story paragraph contains a placeholder because APP_PROFILE and BRAND_DNA record no README history line, founder quote, or dated origin. The builder must fill in [Builder: one sentence on why you built it.] before submitting.",
+    "Confirm that {APP_URL} opens the live app directly and does not land on a waitlist, a video-only page, or a signup gate. If any gate exists, add a plain sentence in the body saying so.",
+    "The how-it-works paragraph names TypeScript, Vue.js/Nuxt, PWA with service workers, Firebase, and Docker from the recorded tech_stack. No data-flow mechanism was inferred beyond what the profile states. If the architecture has changed, update that paragraph before posting."
+   ],
+   "blockers": [],
+   "repaired": [
+    "body: More than five paragraphs (6, cap 4)",
+    "body: A competitor named beside a negative word; state facts about this app, never what a rival lacks (\"Postman and Insomnia have grown heavier and more expensive over time.\")"
+   ],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 1269,
+   "words": 210,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  },
+  "newsletter_pitch": {
+   "version": 1,
+   "status": "approved",
+   "data": {
+    "subject": "For developer tools readers: Hoppscotch, open-source API testing",
+    "pitch": "Hi [Editor first name],\n\nDevelopers who build and test APIs daily are looking for a tool that covers every protocol they actually use, without tracking their requests or locking their data to a vendor. That need gets sharper when a team grows and needs shared collections or self-hosted tooling for security compliance.\n\nHoppscotch is an open-source API development ecosystem for developers to build, test, and share REST, GraphQL, WebSocket, MQTT, SSE, and Socket.IO APIs. It is MIT-licensed, self-hostable via Docker, and free forever for individuals.\n\nThe platform processes over 5 million requests every month, on hoppscotch.com.\n\n{APP_URL}\n\nHappy to send screenshots or answer anything your readers ask.\n\n[Builder first name]",
+    "warnings": [
+     "No TARGET provided: newsletter name and author first name are unknown. Greeting uses placeholder '[Editor first name]' and sign-off uses '[Builder first name]'; builder must fill both before sending.",
+     "No TARGET rules verified: confirm the newsletter does not require a paid placement or a submission form before sending this as a direct email.",
+     "Sign-off name is a placeholder '[Builder first name]' because APP_PROFILE and BRAND_DNA do not name the builder.",
+     "pitch: Six or more paragraph breaks (\"Developers who build and test APIs daily are looking for a t\")"
+    ],
+    "app_name": "Hoppscotch",
+    "blockers": [],
+    "rulebook_version": 5,
+    "rulebook_source": "default"
+   },
+   "warnings": [
+    "No TARGET provided: newsletter name and author first name are unknown. Greeting uses placeholder '[Editor first name]' and sign-off uses '[Builder first name]'; builder must fill both before sending.",
+    "No TARGET rules verified: confirm the newsletter does not require a paid placement or a submission form before sending this as a direct email.",
+    "Sign-off name is a placeholder '[Builder first name]' because APP_PROFILE and BRAND_DNA do not name the builder.",
+    "pitch: Six or more paragraph breaks (\"Developers who build and test APIs daily are looking for a t\")"
+   ],
+   "blockers": [],
+   "repaired": [],
+   "rulebook_version": 5,
+   "rulebook_source": "default",
+   "chars": 814,
+   "words": 120,
+   "dashes": 0,
+   "banned_words": [],
+   "exclamations": 0,
+   "hashtags": 0,
+   "has_app_url": true
+  }
+ },
+ "assets": {
+  "images": {
+   "domain": [
+    "a developer's workstation with two monitors glowing with dark-themed code editors and terminal windows",
+    "a browser tab grid of open API request panels across REST, GraphQL, and WebSocket protocols",
+    "a shared collections sidebar dense with nested endpoint folders and colour-coded request types",
+    "a self-hosted Docker stack humming in a rack or under a desk, status lights blinking",
+    "a GitHub repository page open on a secondary screen, star count visible as a dense number",
+    "a whiteboard covered in endpoint diagrams, arrows between services, and handwritten protocol labels",
+    "a mechanical keyboard and a trackpad beside a half-drunk mug of cold coffee",
+    "a Postman export file sitting in a downloads folder, mid-migration, half replaced",
+    "a team workspace panel showing collaborator avatars and role badges in a sidebar",
+    "a terminal window running a Docker compose command, output scrolling green on black",
+    "sticky notes on a monitor bezel listing endpoint names and status codes",
+    "a desk lamp casting a tight cone of warm light over a keyboard at a late hour"
+   ],
+   "subject": "A mid-thirties South Asian woman with short hair pulled back, wearing a faded grey hoodie, working as an API developer or backend engineer at a multi-monitor workstation in a small developer team room.",
+   "model": "gpt-image-2",
+   "plates": [
+    {
+     "id": "scene",
+     "brief": "A developer team room at eleven at night: four workstations arranged in an L-shape, each with two monitors showing dark-themed editors, terminal windows scrolling green on black, and browser tabs crowded with open request panels. A whiteboard behind the desks is dense with endpoint diagrams and protocol labels connected by arrows. A Docker rack blinks under the nearest desk. Sticky notes line every monitor bezel. Cold mugs sit beside mechanical keyboards. Seen wide from the doorway, the room lit only by the screens.",
+     "url": "http://localhost:3500/files/72464ed86420/images-8dd46c1db825/plate-scene.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 most faithfully matches the brief and reads immediately as a developer team room while retaining better overall composition for a launch image.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2094
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Strongly reads as an overnight developer room with racks, monitors, sticky notes and mugs; composition matches the brief though the whiteboard is somewhat busy in the upper area and some monitor text is legible."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Also convincing as a late-night dev room with clear props and a visible Docker rack, but it's framed more as a straight row (not clearly L-shaped) and the top third contains a busy whiteboard limiting headline space."
+      }
+     ]
+    },
+    {
+     "id": "pile",
+     "brief": "A mid-thirties South Asian woman with short hair pulled back, wearing a faded grey hoodie, sits alone at her workstation at eleven at night. Both monitors are open: one shows a terminal scrolling a failed request chain, the other a browser with a Postman export file sitting in a downloads folder beside a half-built collections sidebar. Sticky notes crowd her monitor bezel. A cold mug is pushed to the edge of the desk. One hand props her chin, the other scrolls slowly through a long list of endpoints. She does not look at the camera. The whiteboard with its endpoint diagrams is visible behind her.",
+     "url": "http://localhost:3500/files/72464ed86420/images-8dd46c1db825/plate-pile.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins for the most instantly recognizable developer environment and overall stronger sense of context and narrative.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2223
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Strong, unmistakable developer workstation: dual monitors with terminals and app UI, sticky notes, whiteboard and mug all present and the subject’s pose matches the brief."
+      },
+      {
+       "score": 9,
+       "chosen": false,
+       "why": "Very faithful to the brief with clear terminal and browser screens, whiteboard and props, and a quieter top area for headline copy, though slightly less immediately iconic than take 1."
+      }
+     ]
+    },
+    {
+     "id": "arrival",
+     "brief": "The same mid-thirties South Asian woman with short hair pulled back, in the same faded grey hoodie, sits upright at the same workstation the following morning. Daylight comes through a window to her left. Both monitors are calm: one shows a tidy collections sidebar with nested folders colour-coded and closed, the other a terminal with a clean green output line. The sticky notes are still on the bezel but the cold mug has been replaced by a fresh one held in both hands. The whiteboard behind her is unchanged, its endpoint diagrams now circled and ticked. She looks at the screen, relaxed, shoulders down.",
+     "url": "http://localhost:3500/files/72464ed86420/images-8dd46c1db825/plate-arrival.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 wins because it matches the brief with the cleanest composition and a quieter top third while preserving all required props and mood.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2174
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "This frame clearly reads as a developer workstation with the tidy collections sidebar, terminal output, whiteboard ticks, sticky notes and the subject relaxed with a fresh mug in both hands, matching the brief closely."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Very similar to take 1 in props and pose but the top third is busier and composition feels slightly less clean for a headline area, so it scores a touch lower overall."
+      }
+     ]
+    },
+    {
+     "id": "hero",
+     "brief": "The same mid-thirties South Asian woman with short hair pulled back and two colleagues, a tall Black man in his late twenties and a white woman in her early forties with reading glasses pushed up on her head, gathered in the right two thirds of the frame around one monitor showing a calm, colour-coded collections sidebar and a green terminal output. The whiteboard covered in endpoint diagrams and protocol labels fills the wall behind them. The Docker rack blinks under the desk to the right. The left third of the frame is open: a plain painted wall in soft morning light. Wide landscape shot, warm grade.",
+     "url": "http://localhost:3500/files/72464ed86420/images-8dd46c1db825/plate-hero.jpg",
+     "judge": {
+      "model": "gpt-5-mini",
+      "why": "Take 1 best matches the brief most faithfully: strongest right-two-thirds composition and the quiet left area while retaining clear domain cues and higher overall image quality.",
+      "ok": true,
+      "fell_back": false,
+      "tokens": 2064
+     },
+     "takes": [
+      {
+       "score": 9,
+       "chosen": true,
+       "why": "Clear engineering/dev domain with whiteboard diagrams, rack and terminal; composition places the trio and monitor in the right two-thirds with a calm plain left third and good lens/light, though some on-screen text is slightly readable."
+      },
+      {
+       "score": 8,
+       "chosen": false,
+       "why": "Also strongly reads as a dev team with all required props and acting, but the group sits a bit more central, the left third is busier with a large shadow/shape, and monitor/whiteboard text is more legible which reduces quality."
+      }
+     ]
+    }
+   ]
+  },
+  "script": {
+   "slots": {
+    "open_line": "MONDAY. SPRINT DAY.",
+    "load_n1": "MANY",
+    "load_l1": "ENDPOINTS",
+    "load_n2": "ONE",
+    "load_l2": "DEVELOPER",
+    "load_n3": "NOW",
+    "load_l3": "DEADLINE",
+    "pile_line": "EVERY REQUEST. BY TAB.",
+    "pile_label": "REQUEST",
+    "pile_sub": "METHOD · URL · HEADERS",
+    "doubt_1": "DID THE REQUEST WORK?",
+    "doubt_2": "WHICH STATUS CODE?",
+    "cost_line": "THE BUG RELEASES TO PROD.",
+    "app_name": "HOPPSCOTCH",
+    "drop_line": "BUILD AND TEST APIS.",
+    "step1_label": "SEND YOUR FIRST REQUEST.",
+    "step1_field": "METHOD · URL · PARAMETERS",
+    "step1_button": "SEND",
+    "step2_label": "EVERY RESPONSE, READ.",
+    "chip_1": "200 OK",
+    "chip_2": "4XX ERROR",
+    "chip_3": "3XX",
+    "chip_4": "5XX ERROR",
+    "step3_label": "THE RESULT, VERIFIED.",
+    "step3_marker": "STATUS CODE IS 200",
+    "step3_chip": "PASSED",
+    "product_line": "REST, GRAPHQL, WEBSOCKET.",
+    "payoff_n": "5M+",
+    "payoff_unit": "REQUESTS.",
+    "payoff_line": "EVERY API. TESTED.",
+    "payoff_timer": "",
+    "breathe_line": "RELEASE WITH CONFIDENCE.",
+    "arrive_line": "BUILD BETTER APIS.",
+    "arrive_chip": "HOPPSCOTCH.IO",
+    "lock_top": "FOR DEVELOPERS AND TEAMS",
+    "lock_title": "HOPPSCOTCH",
+    "lock_tag": "MAKE BETTER APIS",
+    "lock_host": "HOPPSCOTCH.IO"
+   },
+   "clamped": [],
+   "repaired": [
+    "pile_line"
+   ],
+   "tagline": "Make Better APIs",
+   "claims_used": [
+    "SEND button: SITE_COPY button label 'Send'",
+    "STATUS CODE IS 200: SITE_COPY snippet button 'Response: Status code is 200'",
+    "4XX ERROR / 5XX ERROR / 3XX: SITE_COPY snippet buttons 'Status code is 4xx', 'Status code is 5xx', 'Status code is 3xx'",
+    "REST, GRAPHQL, WEBSOCKET: APP_PROFILE one_liner and description listing supported protocols",
+    "5M+ REQUESTS: APP_PROFILE proof_points 'Processes 5M+ requests every month, hoppscotch.com' and BRAND_DNA key_messages",
+    "MAKE BETTER APIS: BRAND_DNA tagline_observed",
+    "BUILD AND TEST APIS: APP_PROFILE one_liner 'build, test, and share'",
+    "TRUSTED BY MILLIONS / developer-first framing: BRAND_DNA evidence_quotes and messaging",
+    "HOPPSCOTCH.IO: SITE_HOST",
+    "BY HAND: APP_PROFILE differentiators confirm product replaces manual request building ('Helps you create requests faster')"
+   ]
+  },
+  "voice": {
+   "engine": "chatterbox",
+   "tone": "direct, confident, developer-first",
+   "all_fit": true,
+   "segments": [
+    {
+     "id": "problem",
+     "text": "Sprint day. A pile of endpoints, one developer, and the deadline is now. Every request tested by hand, tab by tab.",
+     "seconds": 5.81,
+     "window": 5.8,
+     "fits": true,
+     "tempo": 1.109
+    },
+    {
+     "id": "drop",
+     "text": "Hoppscotch.",
+     "seconds": 0.58,
+     "window": 1.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "how",
+     "text": "Paste your method and link, hit send. Every response gets a verdict. Failed status codes get caught before they release.",
+     "seconds": 5.5,
+     "window": 5.5,
+     "fits": true,
+     "tempo": 1.104
+    },
+    {
+     "id": "proof",
+     "text": "Five million plus requests tested every month.",
+     "seconds": 2.44,
+     "window": 3.6,
+     "fits": true,
+     "tempo": 1
+    },
+    {
+     "id": "close",
+     "text": "Build better APIs with Hoppscotch.",
+     "seconds": 2.01,
+     "window": 3.3,
+     "fits": true,
+     "tempo": 1
+    }
+   ]
+  },
+  "reel": {
+   "video_url": "http://localhost:3500/files/72464ed86420/reel-300dbc831047/reel.mp4",
+   "poster_url": "http://localhost:3500/files/72464ed86420/reel-300dbc831047/poster.jpg",
+   "plates_used": [
+    "scene",
+    "pile",
+    "arrival"
+   ],
+   "voice_used": [
+    "problem",
+    "drop",
+    "how",
+    "proof",
+    "close"
+   ],
+   "status": "approved"
+  },
+  "cards": {
+   "count": 5,
+   "images": 7,
+   "zip": true
+  }
+ },
+ "targets": [
+  {
+   "rank": 1,
+   "selected": true,
+   "name": "r/selfhosted",
+   "kind": "subreddit",
+   "why_fit": "Hoppscotch's Docker self-hosting and MIT license directly serve the self-hosted ICP who avoids vendor lock-in.",
+   "url": "https://www.reddit.com/r/selfhosted/"
+  },
+  {
+   "rank": 2,
+   "selected": true,
+   "name": "r/webdev",
+   "kind": "subreddit",
+   "why_fit": "ICP is web developers who build and test REST/GraphQL APIs daily; r/webdev is their primary community.",
+   "url": "https://www.reddit.com/r/webdev/"
+  },
+  {
+   "rank": 3,
+   "selected": true,
+   "name": "Show HN",
+   "kind": "launch_platform",
+   "why_fit": "Dev tool with 80k GitHub stars and public repo; Show HN accepts repeat posts for major new versions (e.g. API Mocking, Enterprise Cloud).",
+   "url": "https://news.ycombinator.com/show"
+  },
+  {
+   "rank": 4,
+   "selected": false,
+   "name": "r/devops",
+   "kind": "subreddit",
+   "why_fit": "Buying trigger includes CI/CD pipeline API testing and self-hosted tooling for security compliance, core devops concerns.",
+   "url": "https://www.reddit.com/r/devops/"
+  },
+  {
+   "rank": 5,
+   "selected": false,
+   "name": "GraphQL Weekly",
+   "kind": "newsletter",
+   "why_fit": "Hoppscotch supports GraphQL natively as a first-class protocol; newsletter audience are exactly the GraphQL developers in the ICP.",
+   "url": "https://graphqlweekly.com/"
+  },
+  {
+   "rank": 6,
+   "selected": false,
+   "name": "r/opensource",
+   "kind": "subreddit",
+   "why_fit": "MIT license and no-tracking, no-ads stance are core differentiators that resonate with the open-source community ICP.",
+   "url": "https://www.reddit.com/r/opensource/"
+  },
+  {
+   "rank": 7,
+   "selected": false,
+   "name": "Dev.to",
+   "kind": "community",
+   "why_fit": "Developer content platform; a technical post on multi-protocol API testing (REST, GraphQL, WebSocket) reaches the exact ICP.",
+   "url": "https://dev.to"
+  },
+  {
+   "rank": 8,
+   "selected": false,
+   "name": "API Evangelist Newsletter",
+   "kind": "newsletter",
+   "why_fit": "Newsletter covers API tooling and strategy for API engineers, the exact target user building and testing REST and GraphQL APIs.",
+   "url": "https://newsletters.apievangelist.com/"
+  },
+  {
+   "rank": 9,
+   "selected": false,
+   "name": "Lobsters",
+   "kind": "community",
+   "why_fit": "Computing-focused link aggregator; Hoppscotch's open-source, multi-protocol API tool is on-topic for the technical audience.",
+   "url": "https://lobste.rs"
+  },
+  {
+   "rank": 10,
+   "selected": false,
+   "name": "Product Hunt",
+   "kind": "launch_platform",
+   "why_fit": "Established product (80k stars, prior launches); repeat post accepted only for a major new version such as API Mocking or Enterprise Cloud release.",
+   "url": "https://www.producthunt.com"
+  },
+  {
+   "rank": 11,
+   "selected": false,
+   "name": "AlternativeTo",
+   "kind": "directory",
+   "why_fit": "Hoppscotch is a direct Postman and Insomnia alternative; confirmed not listed (404) so submission adds evergreen SEO traffic.",
+   "url": "https://alternativeto.net"
+  },
+  {
+   "rank": 12,
+   "selected": false,
+   "name": "StackShare",
+   "kind": "directory",
+   "why_fit": "Engineering teams compare API dev tools on StackShare; Hoppscotch's TypeScript and Docker stack fits the tool-comparison ICP.",
+   "url": "https://stackshare.io"
+  },
+  {
+   "rank": 13,
+   "selected": false,
+   "name": "SaaSHub",
+   "kind": "directory",
+   "why_fit": "Evergreen directory for Postman alternatives; captures teams searching for open-source API tools with self-hosting.",
+   "url": "https://www.saashub.com"
+  },
+  {
+   "rank": 14,
+   "selected": false,
+   "name": "G2",
+   "kind": "directory",
+   "why_fit": "Enterprise buying trigger (SSO, SCIM, self-hosted compliance) means procurement teams check G2 reviews before purchasing Business/Enterprise plans.",
+   "url": "https://www.g2.com"
+  }
+ ],
+ "signals": [],
+ "platform_rules": [
+  {
+   "platform": "linkedin_post",
+   "version": 5,
+   "source": "default",
+   "rules": 25,
+   "hooks": 10,
+   "updated_at": "2026-09-30T04:52:43.971Z"
+  },
+  {
+   "platform": "newsletter_pitch",
+   "version": 5,
+   "source": "default",
+   "rules": 18,
+   "hooks": 11,
+   "updated_at": "2026-09-30T04:52:43.971Z"
+  },
+  {
+   "platform": "producthunt",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 12,
+   "updated_at": "2026-09-30T04:52:43.971Z"
+  },
+  {
+   "platform": "reddit_post",
+   "version": 5,
+   "source": "default",
+   "rules": 23,
+   "hooks": 9,
+   "updated_at": "2026-09-30T04:52:43.971Z"
+  },
+  {
+   "platform": "show_hn",
+   "version": 5,
+   "source": "default",
+   "rules": 22,
+   "hooks": 10,
+   "updated_at": "2026-09-30T04:52:43.971Z"
+  },
+  {
+   "platform": "x_post",
+   "version": 5,
+   "source": "default",
+   "rules": 21,
+   "hooks": 11,
+   "updated_at": "2026-09-30T04:52:43.971Z"
+  }
+ ]
+}

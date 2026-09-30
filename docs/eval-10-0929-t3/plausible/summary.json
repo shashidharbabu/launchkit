@@ -1,0 +1,169 @@
+{
+  "name": "Plausible",
+  "site": "https://plausible.io",
+  "repo": "https://github.com/plausible/analytics",
+  "started": "2026-09-29T22:49:09.183Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 109,
+      "understandSecs": 103,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "brand": {
+      "ok": true,
+      "secs": 129,
+      "dnaSecs": 61,
+      "anglesSecs": 64,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 154,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "5",
+        "3"
+      ],
+      "chosen": true,
+      "listingRedrafted": false,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 796,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 43,
+          "idle": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 40,
+          "idle": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 58,
+          "idle": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 58,
+          "idle": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 301,
+          "idle": false,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 281,
+          "idle": true,
+          "failed": ""
+        }
+      },
+      "approved": 5,
+      "blocked": [
+        "Approve the Hacker News draft"
+      ],
+      "counts": "5 approved, 1 needs review",
+      "warnings": 6,
+      "repaired": 5
+    },
+    "assets": {
+      "ok": true,
+      "secs": 509,
+      "probe": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 28,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 70,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 28,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": false,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a solo founder or small-team developer at a standing desk or kitchen tablea single-page analytics dashboard glowing on a laptop screen, dense with sparklines and sourc",
+      "fits": 4,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 97,
+      "redditRedrafted": true,
+      "ranked": 13,
+      "top5": [
+        "r/selfhosted",
+        "r/webdev",
+        "r/privacy",
+        "Indie Hackers",
+        "r/analytics"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 226,
+      "idle": true,
+      "heading": "2 signals with verified full URLs recovered",
+      "none": true,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": false,
+      "notReady": true,
+      "decisions": true,
+      "angle": "No Cookies, No Banners",
+      "pricing": "Current Pricing, Monthly Subscription, monthly subscription: Starter $9/mo, Grow"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 288017,
+  "finished": "2026-09-29T23:24:20.924Z",
+  "page_errors": []
+}
