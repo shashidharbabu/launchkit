@@ -170,3 +170,10 @@ test('complianceBlankets: a security feature promised on both or every plan is c
   assert.equal(complianceBlankets('SSO and audit logs on every plan.').length, 1);
   assert.equal(complianceBlankets('End-to-end encryption comes with the free plan.').length, 0);
 });
+
+test('competitorSwipes: a comparison that puts a rival behind a paid tier or a separate tool is a swipe (hoppscotch r/selfhosted)', () => {
+  const c = ['Postman', 'Insomnia'];
+  assert.equal(gates.competitorSwipes('Postman covers REST and GraphQL well; getting WebSocket, MQTT, or Server-Sent Events into the same workflow means a separate tool or a plan upgrade.', c).length, 1);
+  assert.equal(gates.competitorSwipes('Postman and Insomnia both handle REST and GraphQL; neither covers all six protocols in a single free interface without a paid tier or a separate client.', c).length, 1);
+  assert.equal(gates.competitorSwipes('Teams moving from Postman can import their collections in one step.', c).length, 0);
+});

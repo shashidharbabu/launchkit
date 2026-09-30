@@ -341,8 +341,9 @@ export function competitorNames(profile: unknown, pricing: unknown, appName = ""
 }
 
 // the words that turn a mention into a swipe (hoppscotch "Postman has become slow and paywalled",
-// dub "Bitly ... has no step that connects those clicks", documenso "DocuSign is a closed black box")
-const NEGATIVE = /\b(?:slow(?:er|s)?|sluggish|bloat(?:ed)?|heavy|clunky|paywall(?:s|ed)?|lock(?:s|ed)?[- ]?in|locks? (?:you|your|teams?)|closed|black box|expensive|overpriced|pric(?:ey|ier)|gouge[sd]?|shrinking|outdated|legacy|broken|fails?|failing|can(?:no|')t|does(?: not|n't)|lacks?|lacking|missing|has no|no (?:way|api|step)|forces?|forced|stuck|nickel-and-dimes?|charges? (?:you|for)|but)\b/i;
+// dub "Bitly ... has no step that connects those clicks", documenso "DocuSign is a closed black box"; a comparison
+// is a swipe too: hoppscotch's Reddit redraft said Postman needs "a separate tool or a plan upgrade", turn 3)
+const NEGATIVE = /\b(?:slow(?:er|s)?|sluggish|bloat(?:ed)?|heavy|clunky|paywall(?:s|ed)?|lock(?:s|ed)?[- ]?in|locks? (?:you|your|teams?)|closed|black box|expensive|overpriced|pric(?:ey|ier)|gouge[sd]?|shrinking|outdated|legacy|broken|fails?|failing|can(?:no|')t|does(?: not|n't)|lacks?|lacking|missing|has no|no (?:way|api|step)|forces?|forced|stuck|nickel-and-dimes?|charges? (?:you|for)|but|neither|nor|separate (?:tool|client|app|product)|(?:paid|higher|pricier)[- ]tier|(?:plan|paid) upgrade|upgrade to|without (?:a|an) (?:paid|upgrade|add-?on))\b/i;
 
 function escapeRe(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
