@@ -177,3 +177,9 @@ test('competitorSwipes: a comparison that puts a rival behind a paid tier or a s
   assert.equal(gates.competitorSwipes('Postman and Insomnia both handle REST and GraphQL; neither covers all six protocols in a single free interface without a paid tier or a separate client.', c).length, 1);
   assert.equal(gates.competitorSwipes('Teams moving from Postman can import their collections in one step.', c).length, 0);
 });
+
+test('origin story: "every team we talked to" is a story the profile does not hold (documenso turn 3)', () => {
+  const ctx = gates.gateContext({ name: 'Documenso' }, '', '', { texts: [], competitors: [] });
+  const out = gates.gateAsset('producthunt', { first_comment: 'Every team we talked to wanted signing they could audit.', warnings: [], blockers: [] }, ctx);
+  assert.ok(out.blockers.some((b) => /origin story/i.test(b)), JSON.stringify(out.blockers));
+});

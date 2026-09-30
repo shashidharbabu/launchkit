@@ -375,7 +375,7 @@ export function replyWithoutSwipes(reply: string, competitors: string[]): string
 // An origin story the profile does not hold: GLOBAL_RULES forbids it and every turn still found one (cal-com
 // "We kept running into teams who... so we built Cal.com", khoj "so we built Khoj", documenso "I built Documenso
 // because", plausible "We kept running sites where the analytics setup had become its own project"). The gate catches the story's shapes; the repair pass removes them.
-const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) (?:running into|running (?:sites?|apps?|teams?|projects?|servers?|stores?)|hitting|seeing|watching|getting asked|fighting)\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b/i;
+const ORIGIN_STORY = /\b(?:so|that'?s why|which is why) (?:we|I) (?:built|made|started|created|wrote)\b|\b(?:we|I) (?:kept|keep) (?:running into|running (?:sites?|apps?|teams?|projects?|servers?|stores?)|hitting|seeing|watching|getting asked|fighting)\b|\b(?:we|I) (?:built|made|started|created) (?:it|this|[A-Z][\w.]*) (?:because|after|when|out of)\b|\bthe (?:moment|day) (?:we|I) (?:decided|realized|realised)\b|\bevery (?:team|founder|customer|user|developer) (?:we|I) (?:talked|spoke) (?:to|with)\b/i;
 
 // A compliance standard with a blanket qualifier: documenso's drafts said HIPAA and 21 CFR Part 11 came "on all
 // plans, with no add-on fees" (09-29) while its docs mark both Enterprise only. A certification is sold with a
