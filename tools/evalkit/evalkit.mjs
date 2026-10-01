@@ -104,7 +104,12 @@ if (layers.has('e2e')) {
     run('evidence: plates and poster', 'python3', ['eval-sheets.py'], { cwd: FRONT, env: { EVAL_OUT: OUT } }),
   ];
   const done = e2e.out.match(/EVAL_RUN_DONE (\[.*\])/);
-  report.results.e2e = { ok: e2e.ok, apps: done ? JSON.parse(done[1]) : null, reruns, evidence: evidence.every((x) => x.ok) };
+  // the runner exits 0 even when it killed an app at its time limit (hoppscotch speed3, 09-30): an app counts only
+  // when its drive finished every stage, or a stage it failed was re-run cleanly
+  const statuses = done ? JSON.parse(done[1]) : [];
+  const unfinished = apps.filter((a) => !statuses.includes(`${a}:ok`) && !reruns.some((r) => r.app === a && r.ok));
+  report.results.e2e = { ok: e2e.ok && Boolean(done) && unfinished.length === 0, apps: statuses, unfinished, reruns, evidence: evidence.every((x) => x.ok) };
+  if (unfinished.length) say('FAIL', `launch drive: ${unfinished.join(', ')} did not finish`);
 }
 
 // ---- judged ----

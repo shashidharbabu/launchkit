@@ -1,0 +1,60 @@
+{
+  "target": "staging",
+  "started": "2026-09-30T22:08:03.793Z",
+  "out": "docs/evals/staging/2026-09-30-speed3",
+  "layers": [
+    "deterministic",
+    "e2e",
+    "scorecard"
+  ],
+  "results": {
+    "deterministic": {
+      "tests": {
+        "ok": true,
+        "pass": 99,
+        "fail": 0
+      },
+      "typecheck": {
+        "ok": true,
+        "secs": 3
+      },
+      "pipes": {
+        "ok": true,
+        "lines": [
+          "OK   lk_assets.pipe",
+          "OK   lk_brand.pipe",
+          "OK   lk_commercial.pipe",
+          "OK   lk_navigator.pipe",
+          "OK   lk_rescore.pipe",
+          "OK   lk_signals.pipe",
+          "OK   lk_store.external.pipe",
+          "OK   lk_store.pipe",
+          "OK   lk_studio.pipe",
+          "OK   lk_targets.pipe",
+          "OK   lk_thread_fetch.pipe",
+          "OK   lk_understand.pipe"
+        ]
+      },
+      "walk": {
+        "ok": true,
+        "passed": "16/16"
+      },
+      "ok": true
+    },
+    "e2e": {
+      "ok": true,
+      "apps": [
+        "hoppscotch:partial"
+      ],
+      "reruns": [],
+      "evidence": true
+    },
+    "scorecard": {
+      "ok": true,
+      "file": "docs/evals/staging/2026-09-30-speed3/scorecard.md",
+      "barMet": false,
+      "overall": null
+    }
+  },
+  "finished": "2026-10-01T00:11:24.251Z"
+}

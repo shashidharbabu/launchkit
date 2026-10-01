@@ -81,22 +81,40 @@ function requireClient(): RocketRideClient {
 export const getPipeToken = (pipeName: string) => pipeToken(pipeName);
 export function getClient(): RocketRideClient { return requireClient(); }
 
+// One task start per pipe at a time: six parallel drafts on a pipe this session had not opened yet sent six
+// use() calls at once, and two of them never returned, holding Reddit and Product Hunt (and the batch) for over
+// an hour (hoppscotch, 09-30). Concurrent callers share the one in-flight start.
+const starting = new Map<string, Promise<string>>();
+/** How long starting a pipe's task may take before it counts as a dropped connection. */
+const USE_DEADLINE_MS = 120_000;
+
 async function pipeToken(pipeName: string): Promise<string> {
   const cached = tokens.get(pipeName);
   if (cached) return cached;
-  const c = requireClient();
-  const res = await c.use({
-    pipeline: PIPES[pipeName] as unknown as PipelineConfig,
-    source: 'chat_1',
-    useExisting: true,
-    ttl: 3600,
-    pipelineTraceLevel: 'summary',
-  });
-  const t = (res as { token: string }).token;
-  tokens.set(pipeName, t);
-  // tracing layer 2 (best-effort): step-level FLOW events for this task
-  void c.addMonitor({ token: t }, ['flow']).catch((e) => console.warn('[LaunchKit] addMonitor failed', e));
-  return t;
+  const inflight = starting.get(pipeName);
+  if (inflight) return inflight;
+  const start = (async () => {
+    const c = requireClient();
+    // worded as a lost connection, so the caller retries it; a slow answer is the other deadline and is not retried
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const res = await Promise.race([
+      c.use({
+        pipeline: PIPES[pipeName] as unknown as PipelineConfig,
+        source: 'chat_1',
+        useExisting: true,
+        ttl: 3600,
+        pipelineTraceLevel: 'summary',
+      }),
+      new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`${pipeName} did not start within ${USE_DEADLINE_MS / 60000} minutes: connection lost`)), USE_DEADLINE_MS); }),
+    ]).finally(() => clearTimeout(timer));
+    const t = (res as { token: string }).token;
+    tokens.set(pipeName, t);
+    // tracing layer 2 (best-effort): step-level FLOW events for this task
+    void c.addMonitor({ token: t }, ['flow']).catch((e) => console.warn('[LaunchKit] addMonitor failed', e));
+    return t;
+  })();
+  starting.set(pipeName, start);
+  try { return await start; } finally { starting.delete(pipeName); }
 }
 
 export async function restartPipe(pipeName: string): Promise<string> {
