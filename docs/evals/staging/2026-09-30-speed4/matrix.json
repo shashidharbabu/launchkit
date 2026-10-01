@@ -1,0 +1,107 @@
+{
+ "apps": [
+  {
+   "slug": "hoppscotch",
+   "name": "Hoppscotch",
+   "stages_ok": [
+    "profile",
+    "research",
+    "brand",
+    "commercial",
+    "social",
+    "assets",
+    "targets",
+    "signals",
+    "plan"
+   ],
+   "stages_failed": [],
+   "profile_confidence": {
+    "overall": 0.88,
+    "notes": "hoppscotch.io/pricing returned a 404 (ok=false in sources_read); pricing was successfully read from hoppscotch.com/pricing. All other sources loaded. Confidence capped below 0.9 due to the failed fetch. Tech stack partially inferred from repo file structure (Vue.js not explicitly named in README but standard for this project)."
+   },
+   "dna_tone_words": 5,
+   "angles": 6,
+   "angle_chosen": true,
+   "competitors": 3,
+   "established": 3,
+   "pricing_options": 3,
+   "pricing_chosen": true,
+   "listing_approved": true,
+   "posts": {
+    "newsletter_pitch": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "x_post": {
+     "status": "approved",
+     "warnings": 4,
+     "blockers": 0,
+     "repaired": 0,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "reddit_post": {
+     "status": "draft",
+     "warnings": 8,
+     "blockers": 0,
+     "repaired": 3,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "producthunt": {
+     "status": "approved",
+     "warnings": 4,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "show_hn": {
+     "status": "approved",
+     "warnings": 7,
+     "blockers": 0,
+     "repaired": 1,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    },
+    "linkedin_post": {
+     "status": "approved",
+     "warnings": 6,
+     "blockers": 0,
+     "repaired": 2,
+     "dashes": 0,
+     "banned": [],
+     "excl": 0,
+     "rulebook_version": 5
+    }
+   },
+   "plates": 4,
+   "judge_scores": [
+    9,
+    9,
+    9,
+    9
+   ],
+   "voice_all_fit": true,
+   "reel": true,
+   "reel_status": "draft",
+   "targets": 14,
+   "signals": 0,
+   "signals_new": 0
+  }
+ ]
+}

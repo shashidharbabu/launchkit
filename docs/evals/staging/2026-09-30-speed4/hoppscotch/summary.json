@@ -1,0 +1,183 @@
+{
+  "name": "Hoppscotch",
+  "site": "https://hoppscotch.io",
+  "repo": "https://github.com/hoppscotch/hoppscotch",
+  "started": "2026-10-01T05:04:44.098Z",
+  "stages": {
+    "profile": {
+      "ok": true,
+      "secs": 117,
+      "understandSecs": 111,
+      "partial": false,
+      "retried": false,
+      "rail": [
+        "Profile: approved",
+        "Brand: not started"
+      ]
+    },
+    "research": {
+      "ok": true,
+      "secs": 452,
+      "started": true,
+      "failed": ""
+    },
+    "brand": {
+      "ok": true,
+      "secs": 4,
+      "dnaSecs": 0,
+      "anglesSecs": 0,
+      "angles": 6,
+      "chosen": true,
+      "dnaEmpty": false,
+      "failed": ""
+    },
+    "commercial": {
+      "ok": true,
+      "secs": 0,
+      "idle": true,
+      "plans": 2,
+      "established": [
+        "3",
+        "3"
+      ],
+      "chosen": true,
+      "listingRedrafted": false,
+      "listingApproved": true,
+      "failed": ""
+    },
+    "social": {
+      "ok": true,
+      "secs": 132,
+      "per": {
+        "X": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "LinkedIn": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Reddit": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Product Hunt": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Hacker News": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        },
+        "Newsletter": {
+          "drafted": true,
+          "secs": 115,
+          "idle": true,
+          "parallel": true,
+          "failed": ""
+        }
+      },
+      "parallelSecs": 115,
+      "approved": 6,
+      "blocked": [],
+      "counts": "",
+      "warnings": 6,
+      "repaired": 5
+    },
+    "assets": {
+      "ok": true,
+      "secs": 521,
+      "probe": {
+        "secs": 10,
+        "idle": true,
+        "failed": ""
+      },
+      "images": {
+        "secs": 64,
+        "idle": true,
+        "failed": ""
+      },
+      "cards": {
+        "secs": 7,
+        "idle": true,
+        "failed": ""
+      },
+      "script": {
+        "secs": 25,
+        "idle": true,
+        "failed": ""
+      },
+      "voice": {
+        "secs": 82,
+        "idle": true,
+        "failed": ""
+      },
+      "reel": {
+        "secs": 28,
+        "idle": true,
+        "failed": ""
+      },
+      "approved": false,
+      "figures": 17,
+      "video": true,
+      "audio": true,
+      "world": "The world these pictures live in:a developer's workstation with two monitors glowing with API request panels and response payloadsa terminal window dense with CLI output and test run logsa shared coll",
+      "fits": 3,
+      "over": 0
+    },
+    "targets": {
+      "ok": true,
+      "secs": 0,
+      "redditRedrafted": true,
+      "ranked": 14,
+      "top5": [
+        "r/webdev",
+        "r/selfhosted",
+        "Show HN",
+        "r/devops",
+        "Dev.to"
+      ],
+      "selected": 3,
+      "failed": ""
+    },
+    "signals": {
+      "ok": true,
+      "secs": 226,
+      "idle": true,
+      "heading": "",
+      "none": true,
+      "failed": ""
+    },
+    "plan": {
+      "ok": true,
+      "secs": 4,
+      "ready": false,
+      "notReady": true,
+      "decisions": true,
+      "angle": "Most",
+      "pricing": "Freemium Annual (Current), free plus paid tiers: Free $0/mo, Business $6/mo, Ent"
+    }
+  },
+  "errors": [],
+  "appstate_bytes": 310179,
+  "finished": "2026-10-01T05:30:41.397Z",
+  "page_errors": [
+    "console: Access to fetch at 'https://www.linkedin.com/posts/halx-docs-633272344_i-got-tired-of-postman-charging-19-per-user-per-month-activity-7458804980137918464-cbb6' from origin 'http://localhost:3400' has ",
+    "console: Failed to load resource: net::ERR_FAILED"
+  ]
+}

@@ -339,10 +339,15 @@ await step('signals', async () => {
   await stage(/Signals/);
   const btn = main(/Search for demand/);
   let w = { secs: 0, idle: true };
-  if (await btn.count()) {
+  // the research already searched: a search that kept nothing still offers "Search for demand", and clicking it
+  // ran the scan a second time (hoppscotch speed4, 09-30), which a builder would not do
+  const searched = await page.evaluate(() => {
+    try { return (JSON.parse(localStorage.getItem('lk-preview-appstate') || '{}').launchkit?.runs || []).some((r) => r.kind === 'signals' && r.status === 'done'); } catch { return false; }
+  });
+  if (!searched && await btn.count()) {
     await clickWhenEnabled(btn, 'Search for demand');
     w = await waitIdle('signals', 900000);
-  } else if (!(await main(/Search again/).count())) {
+  } else if (!searched && !(await main(/Search again/).count())) {
     throw new Error('no Search for demand button');
   }
   const t = await text();

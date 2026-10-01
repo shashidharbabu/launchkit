@@ -77,6 +77,18 @@ Risk to check first: staging dropped connections when two sessions shared one ke
 
 Measure with the kit's timing report: the same ten apps, before and after, with the median and the slowest app.
 
+### Results so far (09-30, hoppscotch, measured with the eval kit)
+
+| Run | What changed | Drive | App time (profile read to reel) | Stages |
+|---|---|---|---|---|
+| turn 3 | everything one after another | 20.9 min | about 20 min | 8 of 8 |
+| speed1 | six posts drafted in parallel | 32.0 min | about 30 min | 8 of 8; Product Hunt's repair failed its JSON 3 times and held the batch 9 min |
+| speed2 | plus research in parallel, one-try repairs | 15.0 min | | 6 of 8; choosing an angle or pricing stayed locked until all research ended |
+| speed3 | plus decisions wait only for their own step | killed at 120 min | | two of six parallel task starts never returned |
+| speed4 | plus one task start per pipe, with a deadline | 24.3 min, including 5 min waiting on a blocked reel approval and a second demand search the drive should not have run | **16.0 min** | 8 of 8 |
+
+The six posts now take about 2 minutes, not 10. The research takes about 7.5 minutes, with the demand search the long pole (5.6 minutes after the venue ranking). Next for time: start the demand search with the profile instead of after the ranking (it reads only the ranked subreddits), and start the site read and images while the posts draft.
+
 ## Recommended order
 
 1. **Eval kit, first cut** (deterministic plus end-to-end plus timings, on staging). Both other workstreams need its numbers to show they worked. The judged layer and production come right after.
